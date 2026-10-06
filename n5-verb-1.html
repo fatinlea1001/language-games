@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N5 Verb Garden</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff0f4;color:#593b4a;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:750px;margin:auto;padding:22px 18px 40px}
+header,.stats{display:flex;justify-content:space-between;align-items:center;gap:10px}
+header b{font-size:18px}
+.tag{font-size:11px;letter-spacing:2px;color:#a1647d;font-weight:800}
+h1{font-size:clamp(30px,6vw,43px);letter-spacing:-1.5px;margin:23px 0 6px}
+p{line-height:1.6}
+.intro{margin:0 0 22px;color:#956e81;font-size:14px}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible{outline:3px solid #a94574;outline-offset:4px}
+.pill{border:1px solid #e7c2d0;border-radius:30px;background:#fff9fb;color:#784b60;padding:9px 12px;font-size:12px;white-space:nowrap}
+.stats{font-size:13px;font-weight:700}
+.track{height:7px;border-radius:20px;overflow:hidden;background:#efd5df;margin:12px 0 18px}
+.fill{width:0;height:100%;background:#cc7c9b;transition:width .3s}
+.card{padding:24px;background:#fffdfd;border:1px solid #efd6df;border-radius:26px;box-shadow:0 12px 35px #a65e7810}
+.art{height:185px;border-radius:19px;background:#fff3f6;overflow:hidden}
+.art svg{display:block;width:100%;height:100%}
+.instruction{font-size:10px;letter-spacing:2px;color:#ad7d90;font-weight:800;margin:20px 0 5px}
+.sentence{font-size:clamp(21px,4.5vw,27px);line-height:2.2;font-weight:600;margin:12px 0 20px}
+rt{font-size:.48em;font-weight:400;color:#9c7185}
+.off rt{visibility:hidden}
+.blank{display:inline-block;min-width:100px;text-align:center;color:#b95e86;border-bottom:3px solid #dfa3bd;line-height:1.6}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.option{min-height:79px;border:2px solid #efdce4;background:#fff;border-radius:15px;color:#633f52;display:flex;align-items:center;gap:11px;text-align:left;padding:12px;font-size:21px}
+.option:hover:not(:disabled){background:#fff0f6;border-color:#d191ac}
+.letter{font-size:11px;background:#f9edf2;min-width:25px;height:25px;border-radius:8px;display:grid;place-items:center;color:#a16c85}
+.option:disabled{cursor:default;opacity:1}
+.option.correct{background:#edf7ee;border-color:#77a77e}
+.option.wrong{background:#fff0e9;border-color:#d39176}
+.option.dim{opacity:.5}
+.feedback{background:#fff0f6;padding:16px;border-radius:14px;margin-top:17px;font-size:14px;line-height:1.7}
+.feedback strong{display:block;font-size:17px}
+.feedback p{margin:6px 0}
+.primary{background:#ac557c;color:white;border:0;border-radius:14px;padding:15px;width:100%;font-weight:700;margin-top:16px}
+.primary:hover{background:#934366}
+.footer{text-align:center;color:#9b7587;font-size:12px;margin-top:18px;line-height:1.8}
+.hidden{display:none!important}
+.result{text-align:center}
+.big{font-size:65px;font-weight:800;color:#ad557d}
+.big small{font-size:24px;color:#ac8b9b}
+.flowers{max-width:330px;margin:16px auto;line-height:1.8;font-size:25px;letter-spacing:5px}
+.review{text-align:left}
+.review article{padding:17px 0;border-top:1px solid #efdae3;font-size:14px;line-height:1.8}
+.review .jp{font-size:19px;line-height:2.1}
+.muted{color:#916c7e;font-size:13px}
+@media(max-width:450px){
+.card{padding:17px}
+.art{height:160px}
+.option{font-size:18px;padding:10px;gap:8px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div>
+<div class="tag">JAPANESE PRACTICE</div>
+<b>🌸 Verb Garden</b>
+</div>
+<button class="pill" id="furigana" aria-pressed="true">Furigana: ON</button>
+</header>
+
+<h1>Little verbs, lovely progress.</h1>
+<p class="intro">20 illustrated N5 verb questions · No timer, no rush.</p>
+
+<section id="game">
+<div class="stats">
+<span id="counter"></span>
+<span id="points"></span>
+</div>
+
+<div class="track" id="progress" role="progressbar"
+aria-label="Questions completed" aria-valuemin="0"
+aria-valuemax="20" aria-valuenow="0">
+<div class="fill" id="fill"></div>
+</div>
+
+<div class="card">
+<div class="art" id="art"></div>
+<div class="instruction">CHOOSE THE VERB THAT FITS</div>
+<div class="sentence" lang="ja" id="sentence"></div>
+<div class="options" id="options"></div>
+<div class="feedback hidden" id="feedback" aria-live="polite"></div>
+<button id="next" class="primary hidden">Next question →</button>
+</div>
+
+<p class="footer">
+Choose the action that makes sense in the sentence.<br>
+Replay reshuffles all 20 questions and their answer choices.
+</p>
+</section>
+
+<section id="results" class="card result hidden"></section>
+</main>
+
+<script>
+/*
+Format:
+illustration, sentence, correct answer, distractors,
+dictionary form, meaning, translation, note
+*/
+const questions=[
+[
+"eat",
+"おなかがすきました。パンを（　）。",
+"{食|た}べます",
+["{飲|の}みます","{聞|き}きます","{泳|およ}ぎます"],
+"{食|た}べる","to eat",
+"I am hungry. I will eat some bread.",
+"Use を to mark the food you eat: パンを食べます."
+],
+[
+"drink",
+"のどがかわきました。{水|みず}を（　）。",
+"{飲|の}みます",
+["{食|た}べます","{書|か}きます","{歩|ある}きます"],
+"{飲|の}む","to drink",
+"I am thirsty. I will drink some water.",
+"Use を with the drink: 水を飲みます."
+],
+[
+"read",
+"{図書館|としょかん}で{本|ほん}を（　）。",
+"{読|よ}みます",
+["{泳|およ}ぎます","{飲|の}みます","{寝|ね}ます"],
+"{読|よ}む","to read",
+"I read books at the library.",
+"で marks where an action happens: 図書館で."
+],
+[
+"write",
+"ペンで{紙|かみ}に{名前|なまえ}を（　）。",
+"{書|か}きます",
+["{聞|き}きます","{飲|の}みます","{起|お}きます"],
+"{書|か}く","to write",
+"I write my name on the paper with a pen.",
+"ペンで means with a pen. 紙に means on the paper."
+],
+[
+"listen",
+"イヤホンで{音楽|おんがく}を（　）。",
+"{聞|き}きます",
+["{書|か}きます","{泳|およ}ぎます","{洗|あら}います"],
+"{聞|き}く","to listen; to hear",
+"I listen to music with earphones.",
+"音楽を聞きます means listen to music."
+],
+[
+"watch",
+"{今夜|こんや}、テレビで{映画|えいが}を（　）。",
+"{見|み}ます",
+["{飲|の}みます","{洗|あら}います","{走|はし}ります"],
+"{見|み}る","to watch; to see",
+"Tonight, I will watch a film on TV.",
+"見る can mean see, look at, or watch."
+],
+[
+"sleep",
+"もう{夜|よる}の11{時|じ}です。{眠|ねむ}いので、（　）。",
+"{寝|ね}ます",
+["{起|お}きます","{泳|およ}ぎます","{買|か}います"],
+"{寝|ね}る","to sleep; to go to bed",
+"It is already 11 p.m. I am sleepy, so I will go to bed.",
+"眠いので means because I am sleepy."
+],
+[
+"wake",
+"{毎朝|まいあさ}6{時|じ}に（　）。それから、{朝|あさ}ごはんを{食|た}べます。",
+"{起|お}きます",
+["{寝|ね}ます","{閉|し}めます","{買|か}います"],
+"{起|お}きる","to wake up; to get up",
+"I get up at six every morning. Then I eat breakfast.",
+"に marks a specific time: 6時に."
+],
+[
+"go",
+"{明日|あした}、{電車|でんしゃ}で{東京|とうきょう}へ（　）。",
+"{行|い}きます",
+["{食|た}べます","{開|あ}けます","{読|よ}みます"],
+"{行|い}く","to go",
+"Tomorrow, I will go to Tokyo by train.",
+"へ marks the direction. 電車で means by train."
+],
+[
+"return",
+"{学校|がっこう}が{終|お}わりました。{家|いえ}に（　）。",
+"{帰|かえ}ります",
+["{書|か}きます","{飲|の}みます","{聞|き}きます"],
+"{帰|かえ}る","to return; to go home",
+"School has finished. I will go home.",
+"帰る is used when returning home or to a place you belong."
+],
+[
+"buy",
+"スーパーで{牛乳|ぎゅうにゅう}を（　）。レジでお{金|かね}を{払|はら}います。",
+"{買|か}います",
+["{泳|およ}ぎます","{寝|ね}ます","{閉|し}めます"],
+"{買|か}う","to buy",
+"I buy milk at the supermarket. I pay at the checkout.",
+"牛乳を買います means buy milk."
+],
+[
+"meet",
+"{日曜日|にちようび}に、{駅|えき}で{友達|ともだち}に（　）。",
+"{会|あ}います",
+["{食|た}べます","{洗|あら}います","{読|よ}みます"],
+"{会|あ}う","to meet",
+"I will meet my friend at the station on Sunday.",
+"Use に for the person you meet: 友達に会います."
+],
+[
+"walk",
+"{駅|えき}は{近|ちか}いです。バスに{乗|の}らないで、{駅|えき}まで（　）。",
+"{歩|ある}きます",
+["{泳|およ}ぎます","{寝|ね}ます","{飲|の}みます"],
+"{歩|ある}く","to walk",
+"The station is nearby. I will walk there instead of taking a bus.",
+"まで means as far as or to. 駅まで歩きます means walk to the station."
+],
+[
+"run",
+"{時間|じかん}がありません。{歩|ある}かないで、{駅|えき}まで（　）。",
+"{走|はし}ります",
+["{寝|ね}ます","{読|よ}みます","{食|た}べます"],
+"{走|はし}る","to run",
+"There is no time. I will run to the station instead of walking.",
+"歩かないで means without walking or instead of walking."
+],
+[
+"swim",
+"{夏|なつ}はプールで（　）。",
+"{泳|およ}ぎます",
+["{買|か}います","{開|あ}けます","{書|か}きます"],
+"{泳|およ}ぐ","to swim",
+"I swim in the pool in summer.",
+"プールで tells us where the swimming happens."
+],
+[
+"wash",
+"{手|て}が{汚|きたな}いです。せっけんで{手|て}を（　）。",
+"{洗|あら}います",
+["{読|よ}みます","{買|か}います","{聞|き}きます"],
+"{洗|あら}う","to wash",
+"My hands are dirty. I will wash them with soap.",
+"せっけんで means with soap."
+],
+[
+"open",
+"{部屋|へや}が{暑|あつ}いです。{涼|すず}しい{風|かぜ}を{入|い}れたいので、{窓|まど}を（　）。",
+"{開|あ}けます",
+["{閉|し}めます","{食|た}べます","{寝|ね}ます"],
+"{開|あ}ける","to open",
+"The room is hot. I want to let in a cool breeze, so I will open the window.",
+"開ける is used when you open something: 窓を開けます."
+],
+[
+"close",
+"{外|そと}の{音|おと}がうるさいです。{窓|まど}を（　）。",
+"{閉|し}めます",
+["{開|あ}けます","{泳|およ}ぎます","{飲|の}みます"],
+"{閉|し}める","to close",
+"The noise outside is loud. I will close the window.",
+"閉める is the opposite of 開ける."
+],
+[
+"photo",
+"きれいな{花|はな}ですね。カメラで{写真|しゃしん}を（　）。",
+"{撮|と}ります",
+["{飲|の}みます","{洗|あら}います","{寝|ね}ます"],
+"{撮|と}る","to take a photograph",
+"What beautiful flowers. I will take a photo with my camera.",
+"写真を撮ります is the phrase for taking a photograph."
+],
+[
+"wait",
+"バスはまだ{来|き}ません。バス{停|てい}でバスを（　）。",
+"{待|ま}ちます",
+["{食|た}べます","{書|か}きます","{泳|およ}ぎます"],
+"{待|ま}つ","to wait",
+"The bus has not come yet. I will wait for it at the bus stop.",
+"Use を for what you wait for: バスを待ちます."
+]
+];
+
+/* SVG drawing helpers */
+const P=(d,f="none",s="#96677e",w=3)=>
+`<path d="${d}" fill="${f}" stroke="${s}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+const R=(x,y,w,h,f,r=8)=>
+`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${f}"/>`;
+
+const C=(x,y,r,f)=>
+`<circle cx="${x}" cy="${y}" r="${r}" fill="${f}"/>`;
+
+const T=(x,y,t,size=18,c="#94657d")=>
+`<text x="${x}" y="${y}" text-anchor="middle" font-family="system-ui,sans-serif" font-size="${size}" font-weight="600" fill="${c}">${t}</text>`;
+
+const face=(x,y)=>
+C(x-8,y,2.5,"#745265")+C(x+8,y,2.5,"#745265")+
+P(`M${x-4} ${y+8}q4 4 8 0`);
+
+const head=(x,y)=>
+C(x,y,25,"#f1d0bc")+
+P(`M${x-25} ${y-3}q-1-33 26-29q27 0 25 30q-16-5-21-17q-8 13-30 16Z`,"#96748a","#96748a",1)+
+face(x,y+2);
+
+const person=(x,y,color="#d6aecb")=>
+head(x,y)+
+P(`M${x-26} ${y+73}v-28q0-20 26-20q26 0 26 20v28Z`,color,color)+
+P(`M${x-13} ${y+74}v27m26-27v27`,"none","#9d849d",9);
+
+const book=(x,y)=>
+P(`M${x} ${y}l35 8 35-8v43l-35 8-35-8Z`,"#fff6de")+
+P(`M${x+35} ${y+8}v42`)+
+P(`M${x+8} ${y+13}l19 5m-19 6 19 5m18-11 17-5m-17 16 17-5`,"none","#d2b4c2",2);
+
+const sparkle=(x,y)=>
+P(`M${x} ${y-8}q0 8 8 8q-8 0-8 8q0-8-8-8q8 0 8-8`,"#e6bd76","#e6bd76",1);
+
+const flower=(x,y)=>
+P(`M${x} ${y}v33`,"none","#92ad8e",3)+
+C(x-8,y,8,"#e6a7c1")+C(x+8,y,8,"#e6a7c1")+
+C(x,y-8,8,"#e6a7c1")+C(x,y+8,8,"#e6a7c1")+
+C(x,y,6,"#f0d69b");
+
+const house=(x,y)=>
+R(x,y,79,66,"#e6b1c9")+
+P(`M${x-9} ${y}l48-36 49 36Z`,"#bc8bab")+
+R(x+30,y+28,21,38,"#fff3db",3)+
+R(x+8,y+12,17,19,"#d0e4e7",2);
+
+function art(key){
+let a="",label="";
+switch(key){
+case "eat":
+label="A learner eating bread at a table";
+a=person(250,60)+R(193,139,210,12,"#d9b5c5")+
+P("M212 151v25m172-25v25")+
+P("M304 126v-31q-13-20 5-28q15-7 22 4q10-10 23-2q16 10 1 25v32Z","#efce9b","#c49c7c")+
+P("M275 103l25 9")+
+C(322,98,3,"#cfad84")+C(343,111,3,"#cfad84");
+break;
+
+case "drink":
+label="A learner drinking a glass of water";
+a=person(270,63)+P("M295 111l37-24")+
+P("M319 64h37l-5 58h-27Z","#dceef3","#a2bccb")+
+P("M324 91h27l-3 25h-21Z","#b8d7e6","#b8d7e6")+
+P("M331 56v-12h-17","none","#cf94ae",4);
+break;
+
+case "read":
+label="A learner reading a book in a library";
+a=R(166,27,87,132,"#e4c8d5")+
+R(177,42,16,42,"#afc9bd",2)+R(198,38,17,46,"#d4b7d8",2)+
+R(220,46,19,38,"#e6c991",2)+
+P("M173 91h71","none","#c6a0b5")+
+person(320,66)+book(285,109);
+break;
+
+case "write":
+label="A learner writing on paper with a pen";
+a=person(266,55)+R(199,142,208,12,"#d9b5c5")+
+P("M213 154v23m177-23v23")+
+P("M291 116h74l22 25h-93Z","#fffaf1")+
+P("M287 100l37 27","none","#a4b9cb",7)+
+P("M324 127l5 5","none","#795b72",3)+
+P("M304 135h39","none","#d0b4c1",2);
+break;
+
+case "listen":
+label="A learner listening to music with earphones";
+a=person(300,72)+
+C(275,73,5,"#a2a2c9")+C(325,73,5,"#a2a2c9")+
+P("M275 78v24q0 15 25 23q25-8 25-23V78","none","#a2a2c9",2)+
+R(320,124,24,39,"#b99cbd",4)+
+T(219,78,"♪",43)+T(382,66,"♫",37)+T(404,122,"♪",27);
+break;
+
+case "watch":
+label="A learner watching a film on television";
+a=person(218,69)+R(294,36,142,98,"#b595b2")+
+R(303,45,124,79,"#ddd4ec",4)+
+P("M358 64l29 19-29 19Z","#fff5fa","#fff5fa")+
+P("M365 135v18m-24 0h49")+
+R(183,131,73,28,"#d7b2c9");
+break;
+
+case "sleep":
+label="A learner sleeping in bed at eleven";
+a=R(181,96,249,64,"#c29ab5")+
+R(189,88,231,59,"#e8b5cc")+
+R(195,90,68,48,"#fff9ec")+
+head(232,110)+
+R(264,91,155,64,"#ddb1cf")+
+P("M186 160v17m239-17v17")+
+T(335,73,"Z z z",25)+
+C(411,40,22,"#fff7e7")+
+T(411,46,"11",15);
+break;
+
+case "wake":
+label="A learner getting up beside a six o’clock alarm";
+a=R(322,122,100,37,"#e3b7cf")+
+R(329,112,40,20,"#fff9ed")+
+person(271,61)+
+P("M244 103l-30-30m84 30 26-31","none","#bc8bab",7)+
+C(191,66,28,"#e5bad0")+C(191,66,22,"#fff9ef")+
+P("M191 51v15l0 15","none","#a5758c",2)+
+T(191,71,"",12)+P("M165 42l-6-7m59 7 6-7");
+break;
+
+case "go":
+label="A train going towards Tokyo";
+a=R(179,67,244,83,"#d1bbda",15)+
+R(190,82,49,34,"#edf4f1",5)+
+R(251,82,49,34,"#edf4f1",5)+
+R(312,82,49,34,"#edf4f1",5)+
+R(374,82,32,60,"#f2dbe6",4)+
+C(224,153,13,"#a189a8")+C(377,153,13,"#a189a8")+
+P("M156 169h293","none","#b697ab",3)+
+T(302,46,"TOKYO →",20);
+break;
+
+case "return":
+label="A learner returning home from school";
+a=house(348,85)+
+person(220,60)+R(190,92,23,45,"#b8bed5")+
+P("M263 113h55m-10-8 10 8-10 8","none","#c287a6",4)+
+sparkle(402,35);
+break;
+
+case "buy":
+label="Buying milk at a supermarket checkout";
+a=person(220,61)+R(277,128,159,31,"#e2b6cc")+
+R(340,80,67,45,"#bca5c3")+
+R(347,86,52,26,"#e9f0e7",3)+
+R(287,88,37,40,"#fffaf0",2)+
+P("M287 88l9-15h21l7 15Z","#b4cdd9")+
+T(305,113,"MILK",9)+
+C(261,107,10,"#ecd198")+T(261,111,"¥",11);
+break;
+
+case "meet":
+label="Two friends meeting at the station";
+a=person(243,65)+person(370,65,"#b9cabc")+
+P("M269 108l26-22m50 22-28-22","none","#c79bb1",6)+
+T(307,35,"STATION",15)+
+P("M282 147h48","none","#dfbed0",3)+sparkle(307,61);
+break;
+
+case "walk":
+label="A learner walking towards a station";
+a=head(277,55)+
+P("M277 85l-2 42m1-28-27 22m28-20 26 14m-28 12-27 36m27-36 30 33","none","#b88bab",10)+
+P("M201 175h226","none","#dbc0ce",3)+
+R(364,67,10,92,"#c1a4b5",3)+
+R(340,48,76,36,"#f7dfeb",5)+
+T(378,72,"駅 →",18);
+break;
+
+case "run":
+label="A learner running towards the station";
+a=head(299,51)+
+P("M287 79l-22 38m16-29 28 18 20-15m-52-1-25-10-18 11m31 26 37 15 23 29m-60-44-18 24-36-5","none","#bb8ead",10)+
+P("M188 88h36m-48 25h37m-22 24h24","none","#d8b0c4",3)+
+R(393,64,7,98,"#c1a4b5",2)+
+R(369,44,67,35,"#f7dfeb",4)+T(403,68,"駅 →",18);
+break;
+
+case "swim":
+label="A learner swimming in a pool";
+a=R(167,91,284,74,"#cce4ee",12)+
+head(295,80)+
+P("M315 106l40-19 24 13","none","#eac6b6",11)+
+P("M181 118q15-10 30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0M181 146q15-10 30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0","none","#a5cbdc",3)+
+P("M191 62v47m17-47v47m-17-32h17m-17 16h17","none","#b4afc9",4);
+break;
+
+case "wash":
+label="Washing hands with soap under a tap";
+a=R(217,128,198,37,"#d9d4e4",13)+
+P("M232 130q18 50 165 0","#f1edf7","#b7a9c5")+
+P("M354 86V48h-54v19","none","#b4b7ca",11)+
+P("M300 73v28m-10-20v22m20-22v22","none","#a7d2e4",3)+
+P("M217 91l65 22m-64 4 70-7","none","#ecc7b6",14)+
+R(365,93,34,30,"#e8b9d0",6)+
+P("M382 93V82h-13","none","#b993ad",4)+
+C(276,98,8,"#fff")+C(291,112,7,"#fff")+C(267,114,5,"#fff");
+break;
+
+case "open":
+label="An open window letting in a breeze";
+a=R(228,29,161,130,"#dcc2d2",4)+
+R(237,38,143,112,"#d1e7ed",1)+
+P("M237 38l-46-13v139l46-14Z","#fff7fb")+
+P("M380 38l46-13v139l-46-14Z","#fff7fb")+
+P("M253 78q38-16 76 0t71 0M260 109q36-16 66 0t57 0","none","#91bbcb",3)+
+C(350,59,14,"#f4d797");
+break;
+
+case "close":
+label="A closed window keeping outside noise out";
+a=R(216,28,175,135,"#d5b8ce",5)+
+R(228,40,151,111,"#d0dfe9",2)+
+P("M303 40v111m-75-56h151","none","#fff6fa",7)+
+R(311,104,5,17,"#b18ca7",2)+
+P("M415 66q16 17 0 34m11-46q26 30 0 57","none","#ca9ab3",3)+
+T(435,141,"♪",26);
+break;
+
+case "photo":
+label="Taking a photograph of flowers";
+a=person(233,58)+
+R(233,80,75,49,"#bba5c5",9)+
+R(245,73,24,13,"#bba5c5",3)+
+C(272,104,17,"#f6eaf3")+C(272,104,11,"#9daec7")+
+C(297,91,3,"#ecd291")+
+flower(379,96)+flower(410,80)+flower(439,108)+
+R(368,141,85,23,"#ddbdab",4)+sparkle(337,63);
+break;
+
+case "wait":
+label="A learner waiting beside a bus stop";
+a=person(263,62)+
+P("M369 55v112","none","#baa1b8",6)+
+R(337,29,65,64,"#dbb9d2",10)+
+R(347,44,45,25,"#fff5fa",5)+
+C(355,72,4,"#98758c")+C(383,72,4,"#98758c")+
+C(198,60,25,"#fff8eb")+
+P("M198 44v16l10 7","none","#b1849b",3)+
+P("M306 165h104","none","#dabccb",3);
+break;
+}
+return `<svg viewBox="135 0 340 195" role="img"
+aria-label="${label}" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="304" cy="178" rx="151" ry="7" fill="#efdae4"/>
+${a}</svg>`;
+}
+
+/* Furigana and game functions */
+const $=id=>document.getElementById(id);
+const jp=s=>s.replace(/\{([^|{}]+)\|([^{}]+)\}/g,
+"<ruby>$1<rt>$2</rt></ruby>");
+const plain=s=>s.replace(/\{([^|{}]+)\|([^{}]+)\}/g,"$1");
+
+function shuffle(array){
+const a=[...array];
+for(let i=a.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[a[i],a[j]]=[a[j],a[i]];
+}
+return a;
+}
+
+let deck=[],position=0,score=0,locked=false,mistakes=[];
+let lastOrder="",lastChoices={};
+
+function start(){
+const order=shuffle(questions.map((_,i)=>i));
+if(order.join()===lastOrder)order.push(order.shift());
+lastOrder=order.join();
+
+deck=order.map(id=>{
+const [image,sentence,answer,wrong,dictionary,meaning,translation,note]=questions[id];
+const choices=shuffle([answer,...wrong]);
+if(choices.join("|")===lastChoices[id])choices.push(choices.shift());
+lastChoices[id]=choices.join("|");
+return {image,sentence,answer,dictionary,meaning,translation,note,choices};
+});
+
+position=0;
+score=0;
+locked=false;
+mistakes=[];
+$("results").classList.add("hidden");
+$("game").classList.remove("hidden");
+render();
+}
+
+function render(){
+locked=false;
+const q=deck[position];
+$("counter").textContent=`Question ${position+1} / 20`;
+$("points").textContent=`🌸 ${score} correct`;
+$("fill").style.width=`${position*5}%`;
+$("progress").setAttribute("aria-valuenow",position);
+$("art").innerHTML=art(q.image);
+$("sentence").innerHTML=jp(q.sentence).replace(
+"（　）",'<span class="blank">?</span>'
+);
+$("feedback").classList.add("hidden");
+$("next").classList.add("hidden");
+$("options").replaceChildren();
+
+q.choices.forEach((choice,i)=>{
+const button=document.createElement("button");
+button.className="option";
+button.lang="ja";
+button.innerHTML=`<span class="letter">${"ABCD"[i]}</span>
+<span>${jp(choice)}</span>`;
+button.onclick=()=>choose(choice);
+$("options").appendChild(button);
+});
+}
+
+function choose(choice){
+if(locked)return;
+locked=true;
+const q=deck[position];
+const right=choice===q.answer;
+if(right)score++;
+else mistakes.push({...q,chosen:choice});
+
+[...$("options").children].forEach((button,i)=>{
+button.disabled=true;
+button.classList.add(
+q.choices[i]===q.answer?"correct":
+q.choices[i]===choice?"wrong":"dim"
+);
+});
+
+$("sentence").innerHTML=jp(q.sentence).replace(
+"（　）",`<span class="blank">${jp(q.answer)}</span>`
+);
+$("points").textContent=`🌸 ${score} correct`;
+$("fill").style.width=`${(position+1)*5}%`;
+$("progress").setAttribute("aria-valuenow",position+1);
+$("feedback").innerHTML=`
+<strong>${right?"🌷 Lovely! That’s correct.":"🌱 A new verb to grow."}</strong>
+<p>${jp(q.dictionary)} → ${jp(q.answer)} <b>· ${q.meaning}</b></p>
+<p>${q.translation}</p>
+<p class="muted">${q.note}</p>
+`;
+$("feedback").classList.remove("hidden");
+$("next").textContent=position===19?"See my results 🌸":"Next question →";
+$("next").classList.remove("hidden");
+}
+
+function finish(){
+$("game").classList.add("hidden");
+$("results").classList.remove("hidden");
+$("results").innerHTML=`
+<div class="tag">ROUND COMPLETE</div>
+<h2>${score===20?"Your verbs are in full bloom!":"Your Japanese is growing."}</h2>
+<div class="big">${score}<small> / 20</small></div>
+<div class="flowers" aria-hidden="true">${"🌸".repeat(score)}${"🌱".repeat(20-score)}</div>
+<p class="muted">One blossom for every correct answer.</p>
+<button class="primary" id="replay">↻ Replay — shuffle all 20</button>
+<p class="muted">New question order · New answer positions · Fresh score</p>
+<div class="review">
+<h3>${mistakes.length?"Verbs to practise":"All 20 correct. Beautiful work! 🌷"}</h3>
+${mistakes.map(q=>`
+<article>
+<div class="jp" lang="ja">${jp(q.sentence.replace("（　）",q.answer))}</div>
+<div>You chose ${plain(q.chosen)} → <b>${plain(q.answer)}</b></div>
+<div>${jp(q.dictionary)} · ${q.meaning}</div>
+<div class="muted">${q.translation}</div>
+</article>
+`).join("")}
+</div>`;
+
+$("replay").onclick=()=>{
+start();
+window.scrollTo(0,0);
+};
+window.scrollTo(0,0);
+}
+
+$("next").onclick=()=>{
+if(!locked)return;
+position++;
+if(position===20)finish();
+else{
+render();
+$("options").firstElementChild.focus({preventScroll:true});
+}
+};
+
+$("furigana").onclick=()=>{
+const off=document.body.classList.toggle("off");
+$("furigana").textContent="Furigana: "+(off?"OFF":"ON");
+$("furigana").setAttribute("aria-pressed",String(!off));
+};
+
+start();
+</script>
+</body>
+</html>
