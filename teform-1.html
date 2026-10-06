@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>N5 て-Form Builder 🌸</title>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  font-family: Arial, "Noto Sans JP", sans-serif;
+  background: #fff7fb;
+  color: #363238;
+}
+
+.game {
+  max-width: 680px;
+  margin: auto;
+}
+
+
+/* HEADER */
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.level {
+  color: #e6529a;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 29px;
+}
+
+.score-box {
+  min-width: 95px;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 3px 12px rgba(0,0,0,.05);
+}
+
+.score-box small {
+  display: block;
+  color: #888;
+  font-size: 11px;
+}
+
+.score-box strong {
+  font-size: 20px;
+}
+
+
+/* PROGRESS */
+
+.progress-bg {
+  height: 10px;
+  background: #efd8e4;
+  border-radius: 30px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.progress {
+  height: 100%;
+  background: #eb5da5;
+  width: 3.33%;
+  transition: .3s;
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  margin: 11px 3px 17px;
+  color: #777;
+  font-size: 14px;
+}
+
+
+/* CARD */
+
+.card {
+  background: white;
+  border-radius: 24px;
+  padding: 23px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.07);
+}
+
+
+/* VERB */
+
+.prompt {
+  text-align: center;
+  padding: 12px 5px 22px;
+}
+
+.instruction {
+  color: #999;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: .5px;
+}
+
+.verb {
+  font-size: 46px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.reading {
+  color: #777;
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.meaning {
+  color: #9b6e86;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+
+/* ARROW */
+
+.arrow {
+  text-align: center;
+  font-size: 30px;
+  color: #e45a9e;
+  margin-bottom: 8px;
+}
+
+
+/* ZONES */
+
+.zone-title {
+  font-size: 11px;
+  color: #999;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 15px 0 7px;
+}
+
+.zone {
+  min-height: 82px;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  align-content: flex-start;
+}
+
+.answer-zone {
+  border: 2px dashed #ddb5ca;
+  background: #fffbfd;
+}
+
+.bank-zone {
+  background: #f8f2f5;
+}
+
+
+/* TILES */
+
+.word {
+  min-height: 48px;
+  padding: 11px 16px;
+  border: 1px solid #dfd4da;
+  border-radius: 13px;
+  background: white;
+  font-size: 21px;
+  font-weight: bold;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 2px 7px rgba(0,0,0,.05);
+}
+
+.word:active {
+  cursor: grabbing;
+  transform: scale(.97);
+}
+
+.sortable-ghost {
+  opacity: .3;
+}
+
+.sortable-chosen {
+  background: #fff0f7;
+  border-color: #e95c9f;
+}
+
+
+/* HINT */
+
+.hint-box {
+  display: none;
+  padding: 13px;
+  margin-top: 14px;
+  border-radius: 13px;
+  background: #fff4cf;
+  color: #725d19;
+  line-height: 1.5;
+}
+
+
+/* FEEDBACK */
+
+.feedback {
+  display: none;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 14px;
+  line-height: 1.55;
+}
+
+.feedback.good {
+  display: block;
+  background: #e5f8ed;
+  color: #286843;
+}
+
+.feedback.bad {
+  display: block;
+  background: #fff0f0;
+  color: #934646;
+}
+
+.answer-display {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+/* BUTTONS */
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 8px;
+  margin-top: 17px;
+}
+
+button {
+  border: none;
+  min-height: 49px;
+  border-radius: 13px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.reset {
+  background: #f0e9ed;
+  color: #555;
+}
+
+.hint {
+  background: #fff1c9;
+  color: #765c12;
+}
+
+.check {
+  background: #e95b9f;
+  color: white;
+}
+
+.next {
+  width: 100%;
+  display: none;
+  margin-top: 10px;
+  background: #e95b9f;
+  color: white;
+}
+
+.help {
+  text-align: center;
+  margin-top: 13px;
+  color: #aaa;
+  font-size: 12px;
+}
+
+
+/* RESULT */
+
+.results {
+  display: none;
+  text-align: center;
+  background: white;
+  border-radius: 24px;
+  padding: 38px 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
+
+.result-emoji {
+  font-size: 64px;
+}
+
+.results h2 {
+  font-size: 29px;
+  margin-bottom: 5px;
+}
+
+.final-score {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.restart {
+  width: 100%;
+  background: #e95b9f;
+  color: white;
+  margin-top: 15px;
+}
+
+
+/* PHONE */
+
+@media (max-width: 500px) {
+
+  body {
+    padding: 13px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .verb {
+    font-size: 40px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .word {
+    font-size: 19px;
+    padding: 10px 14px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .check {
+    grid-column: span 2;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="game">
+
+<div id="playArea">
+
+  <div class="top">
+
+    <div>
+      <div class="level">
+        🌸 JLPT N5 • GRAMMAR
+      </div>
+
+      <h1>
+        て-Form Builder
+      </h1>
+    </div>
+
+
+    <div class="score-box">
+
+      <small>SCORE</small>
+
+      <strong id="score">
+        0 / 30
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <div class="progress-bg">
+
+    <div
+      id="progress"
+      class="progress">
+    </div>
+
+  </div>
+
+
+  <div class="status">
+
+    <span id="questionNumber">
+      Question 1 / 30
+    </span>
+
+    <span id="streak">
+      🔥 0 streak
+    </span>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="prompt">
+
+      <div class="instruction">
+        BUILD THE て-FORM
+      </div>
+
+      <div
+        id="verb"
+        class="verb">
+      </div>
+
+      <div
+        id="reading"
+        class="reading">
+      </div>
+
+      <div
+        id="meaning"
+        class="meaning">
+      </div>
+
+    </div>
+
+
+    <div class="arrow">
+      ↓
+    </div>
+
+
+    <div class="zone-title">
+      YOUR ANSWER
+    </div>
+
+    <div
+      id="answerZone"
+      class="zone answer-zone">
+    </div>
+
+
+    <div class="zone-title">
+      WORD BOXES
+    </div>
+
+    <div
+      id="bankZone"
+      class="zone bank-zone">
+    </div>
+
+
+    <div
+      id="hintBox"
+      class="hint-box">
+    </div>
+
+
+    <div
+      id="feedback"
+      class="feedback">
+    </div>
+
+
+    <div class="controls">
+
+      <button
+        id="resetButton"
+        class="reset">
+        Reset
+      </button>
+
+      <button
+        id="hintButton"
+        class="hint">
+        Hint 💡
+      </button>
+
+      <button
+        id="checkButton"
+        class="check">
+        Check ✓
+      </button>
+
+    </div>
+
+
+    <button
+      id="nextButton"
+      class="next">
+      Next →
+    </button>
+
+
+    <div class="help">
+      Drag the boxes or tap them to move them.
+    </div>
+
+  </div>
+
+</div>
+
+
+<div
+  id="results"
+  class="results">
+
+  <div
+    id="resultEmoji"
+    class="result-emoji">
+    🌸
+  </div>
+
+  <h2>
+    Finished!
+  </h2>
+
+  <div
+    id="finalScore"
+    class="final-score">
+  </div>
+
+  <p id="finalMessage">
+  </p>
+
+  <p id="bestStreak">
+  </p>
+
+  <button
+    id="restartButton"
+    class="restart">
+    Play Again 🔄
+  </button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   ENDING SETS
+===================================================== */
+
+const ENDINGS = {
+
+nde: [
+  "んで",
+  "って",
+  "いて",
+  "して"
+],
+
+ite: [
+  "いて",
+  "いで",
+  "って",
+  "んで"
+],
+
+ide: [
+  "いで",
+  "いて",
+  "して",
+  "って"
+],
+
+shite: [
+  "して",
+  "いて",
+  "って",
+  "んで"
+],
+
+tte: [
+  "って",
+  "んで",
+  "いて",
+  "て"
+],
+
+te: [
+  "て",
+  "って",
+  "んで",
+  "いて"
+]
+
+};
+
+
+/* =====================================================
+   30 N5 VERBS
+===================================================== */
+
+const questions = [
+
+{
+verb: "飲む",
+reading: "のむ",
+meaning: "to drink",
+stem: "飲",
+correct: "んで",
+full: "飲んで",
+endings: ENDINGS.nde,
+rule: "む・ぶ・ぬ → んで"
+},
+
+{
+verb: "読む",
+reading: "よむ",
+meaning: "to read",
+stem: "読",
+correct: "んで",
+full: "読んで",
+endings: ENDINGS.nde,
+rule: "む・ぶ・ぬ → んで"
+},
+
+{
+verb: "休む",
+reading: "やすむ",
+meaning: "to rest",
+stem: "休",
+correct: "んで",
+full: "休んで",
+endings: ENDINGS.nde,
+rule: "む・ぶ・ぬ → んで"
+},
+
+{
+verb: "遊ぶ",
+reading: "あそぶ",
+meaning: "to play",
+stem: "遊",
+correct: "んで",
+full: "遊んで",
+endings: ENDINGS.nde,
+rule: "む・ぶ・ぬ → んで"
+},
+
+{
+verb: "呼ぶ",
+reading: "よぶ",
+meaning: "to call",
+stem: "呼",
+correct: "んで",
+full: "呼んで",
+endings: ENDINGS.nde,
+rule: "む・ぶ・ぬ → んで"
+},
+
+{
+verb: "死ぬ",
+reading: "しぬ",
+meaning: "to die",
+stem: "死",
+correct: "んで",
+full: "死んで",
+endings: ENDINGS.nde,
+rule: "む・ぶ・ぬ → んで"
+},
+
+{
+verb: "書く",
+reading: "かく",
+meaning: "to write",
+stem: "書",
+correct: "いて",
+full: "書いて",
+endings: ENDINGS.ite,
+rule: "く → いて"
+},
+
+{
+verb: "聞く",
+reading: "きく",
+meaning: "to listen / ask",
+stem: "聞",
+correct: "いて",
+full: "聞いて",
+endings: ENDINGS.ite,
+rule: "く → いて"
+},
+
+{
+verb: "歩く",
+reading: "あるく",
+meaning: "to walk",
+stem: "歩",
+correct: "いて",
+full: "歩いて",
+endings: ENDINGS.ite,
+rule: "く → いて"
+},
+
+{
+verb: "泳ぐ",
+reading: "およぐ",
+meaning: "to swim",
+stem: "泳",
+correct: "いで",
+full: "泳いで",
+endings: ENDINGS.ide,
+rule: "ぐ → いで"
+},
+
+{
+verb: "急ぐ",
+reading: "いそぐ",
+meaning: "to hurry",
+stem: "急",
+correct: "いで",
+full: "急いで",
+endings: ENDINGS.ide,
+rule: "ぐ → いで"
+},
+
+{
+verb: "話す",
+reading: "はなす",
+meaning: "to speak",
+stem: "話",
+correct: "して",
+full: "話して",
+endings: ENDINGS.shite,
+rule: "す → して"
+},
+
+{
+verb: "貸す",
+reading: "かす",
+meaning: "to lend",
+stem: "貸",
+correct: "して",
+full: "貸して",
+endings: ENDINGS.shite,
+rule: "す → して"
+},
+
+{
+verb: "消す",
+reading: "けす",
+meaning: "to switch off / erase",
+stem: "消",
+correct: "して",
+full: "消して",
+endings: ENDINGS.shite,
+rule: "す → して"
+},
+
+{
+verb: "待つ",
+reading: "まつ",
+meaning: "to wait",
+stem: "待",
+correct: "って",
+full: "待って",
+endings: ENDINGS.tte,
+rule: "う・つ・る → って"
+},
+
+{
+verb: "持つ",
+reading: "もつ",
+meaning: "to hold / carry",
+stem: "持",
+correct: "って",
+full: "持って",
+endings: ENDINGS.tte,
+rule: "う・つ・る → って"
+},
+
+{
+verb: "立つ",
+reading: "たつ",
+meaning: "to stand",
+stem: "立",
+correct: "って",
+full: "立って",
+endings: ENDINGS.tte,
+rule: "う・つ・る → って"
+},
+
+{
+verb: "買う",
+reading: "かう",
+meaning: "to buy",
+stem: "買",
+correct: "って",
+full: "買って",
+endings: ENDINGS.tte,
+rule: "う・つ・る → って"
+},
+
+{
+verb: "会う",
+reading: "あう",
+meaning: "to meet",
+stem: "会",
+correct: "って",
+full: "会って",
+endings: ENDINGS.tte,
+rule: "う・つ・る → って"
+},
+
+{
+verb: "歌う",
+reading: "うたう",
+meaning: "to sing",
+stem: "歌",
+correct: "って",
+full: "歌って",
+endings: ENDINGS.tte,
+rule: "う・つ・る → って"
+},
+
+{
+verb: "取る",
+reading: "とる",
+meaning: "to take",
+stem: "取",
+correct: "って",
+full: "取って",
+endings: ENDINGS.tte,
+rule: "う・つ・る → って"
+},
+
+{
+verb: "帰る",
+reading: "かえる",
+meaning: "to return / go home",
+stem: "帰",
+correct: "って",
+full: "帰って",
+endings: ENDINGS.tte,
+rule: "帰る is a Group 1 verb → って"
+},
+
+{
+verb: "入る",
+reading: "はいる",
+meaning: "to enter",
+stem: "入",
+correct: "って",
+full: "入って",
+endings: ENDINGS.tte,
+rule: "入る is a Group 1 verb → って"
+},
+
+{
+verb: "行く",
+reading: "いく",
+meaning: "to go",
+stem: "行",
+correct: "って",
+full: "行って",
+endings: ENDINGS.tte,
+rule: "⚠️ Exception: 行く → 行って"
+},
+
+{
+verb: "食べる",
+reading: "たべる",
+meaning: "to eat",
+stem: "食べ",
+correct: "て",
+full: "食べて",
+endings: ENDINGS.te,
+rule: "Group 2: remove る → て"
+},
+
+{
+verb: "見る",
+reading: "みる",
+meaning: "to see / watch",
+stem: "見",
+correct: "て",
+full: "見て",
+endings: ENDINGS.te,
+rule: "Group 2: remove る → て"
+},
+
+{
+verb: "起きる",
+reading: "おきる",
+meaning: "to wake up",
+stem: "起き",
+correct: "て",
+full: "起きて",
+endings: ENDINGS.te,
+rule: "Group 2: remove る → て"
+},
+
+{
+verb: "寝る",
+reading: "ねる",
+meaning: "to sleep",
+stem: "寝",
+correct: "て",
+full: "寝て",
+endings: ENDINGS.te,
+rule: "Group 2: remove る → て"
+},
+
+{
+verb: "する",
+reading: "する",
+meaning: "to do",
+stem: "し",
+correct: "て",
+full: "して",
+endings: ENDINGS.te,
+rule: "Irregular: する → して"
+},
+
+{
+verb: "来る",
+reading: "くる",
+meaning: "to come",
+stem: "来（き）",
+correct: "て",
+full: "来て（きて）",
+endings: ENDINGS.te,
+rule: "Irregular: 来る → 来て（きて）"
+}
+
+];
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let quiz = [];
+
+let current = 0;
+
+let score = 0;
+
+let streak = 0;
+
+let bestStreak = 0;
+
+let firstTry = true;
+
+let solved = false;
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const verbEl =
+document.getElementById("verb");
+
+const readingEl =
+document.getElementById("reading");
+
+const meaningEl =
+document.getElementById("meaning");
+
+const bankZone =
+document.getElementById("bankZone");
+
+const answerZone =
+document.getElementById("answerZone");
+
+const feedback =
+document.getElementById("feedback");
+
+const hintBox =
+document.getElementById("hintBox");
+
+const checkButton =
+document.getElementById("checkButton");
+
+const resetButton =
+document.getElementById("resetButton");
+
+const hintButton =
+document.getElementById("hintButton");
+
+const nextButton =
+document.getElementById("nextButton");
+
+
+/* =====================================================
+   SHUFFLE
+===================================================== */
+
+function shuffle(array) {
+
+  const copy = [...array];
+
+  for (
+    let i = copy.length - 1;
+    i > 0;
+    i--
+  ) {
+
+    const j =
+    Math.floor(
+      Math.random() * (i + 1)
+    );
+
+    [
+      copy[i],
+      copy[j]
+    ]
+    =
+    [
+      copy[j],
+      copy[i]
+    ];
+
+  }
+
+  return copy;
+
+}
+
+
+/* =====================================================
+   DRAG SUPPORT
+===================================================== */
+
+if (window.Sortable) {
+
+  new Sortable(
+    bankZone,
+    {
+      group: "teWords",
+      animation: 170,
+      ghostClass: "sortable-ghost",
+      chosenClass: "sortable-chosen"
+    }
+  );
+
+
+  new Sortable(
+    answerZone,
+    {
+      group: "teWords",
+      animation: 170,
+      ghostClass: "sortable-ghost",
+      chosenClass: "sortable-chosen"
+    }
+  );
+
+}
+
+
+/* =====================================================
+   CREATE TILE
+===================================================== */
+
+function createTile(
+  text,
+  type
+) {
+
+  const tile =
+  document.createElement("div");
+
+  tile.className =
+  "word";
+
+  tile.textContent =
+  text;
+
+  tile.dataset.value =
+  text;
+
+  tile.dataset.type =
+  type;
+
+
+  /*
+     TAP SUPPORT
+
+     Tap bank tile → answer
+     Tap answer tile → bank
+  */
+
+  tile.addEventListener(
+    "click",
+    function () {
+
+      if (solved) return;
+
+
+      if (
+        tile.parentElement ===
+        bankZone
+      ) {
+
+        answerZone.appendChild(
+          tile
+        );
+
+      }
+
+      else {
+
+        bankZone.appendChild(
+          tile
+        );
+
+      }
+
+    }
+  );
+
+
+  return tile;
+
+}
+
+
+/* =====================================================
+   LOAD QUESTION
+===================================================== */
+
+function loadQuestion() {
+
+  solved = false;
+
+  firstTry = true;
+
+
+  const q =
+  quiz[current];
+
+
+  verbEl.textContent =
+  q.verb;
+
+  readingEl.textContent =
+  "（" + q.reading + "）";
+
+  meaningEl.textContent =
+  q.meaning;
+
+
+  bankZone.innerHTML = "";
+
+  answerZone.innerHTML = "";
+
+
+  feedback.className =
+  "feedback";
+
+  feedback.innerHTML = "";
+
+
+  hintBox.style.display =
+  "none";
+
+  hintBox.innerHTML = "";
+
+
+  checkButton.style.display =
+  "block";
+
+  nextButton.style.display =
+  "none";
+
+
+  resetButton.disabled =
+  false;
+
+  hintButton.disabled =
+  false;
+
+
+  /*
+     Create stem + ending choices
+  */
+
+  let tiles = [
+
+    {
+      text: q.stem,
+      type: "stem"
+    }
+
+  ];
+
+
+  q.endings.forEach(
+    ending => {
+
+      tiles.push({
+
+        text: ending,
+        type: "ending"
+
+      });
+
+    }
+  );
+
+
+  tiles =
+  shuffle(tiles);
+
+
+  tiles.forEach(
+    item => {
+
+      bankZone.appendChild(
+
+        createTile(
+          item.text,
+          item.type
+        )
+
+      );
+
+    }
+  );
+
+
+  updateStatus();
+
+}
+
+
+/* =====================================================
+   CHECK
+===================================================== */
+
+function checkAnswer() {
+
+  if (solved) return;
+
+
+  const q =
+  quiz[current];
+
+
+  const chosen =
+  [...answerZone.children]
+  .map(
+    tile =>
+    tile.textContent
+  );
+
+
+  /*
+    Answer should contain
+    exactly two boxes.
+  */
+
+  if (
+    chosen.length !== 2
+  ) {
+
+    feedback.className =
+    "feedback bad";
+
+    feedback.innerHTML =
+    "👀 Build the verb using exactly <strong>2 boxes</strong>.";
+
+    return;
+
+  }
+
+
+  const correct =
+  chosen[0] === q.stem &&
+  chosen[1] === q.correct;
+
+
+  /*
+     CORRECT
+  */
+
+  if (correct) {
+
+    solved = true;
+
+
+    if (firstTry) {
+
+      score++;
+
+      streak++;
+
+    }
+
+    else {
+
+      streak = 0;
+
+    }
+
+
+    if (
+      streak >
+      bestStreak
+    ) {
+
+      bestStreak =
+      streak;
+
+    }
+
+
+    feedback.className =
+    "feedback good";
+
+
+    feedback.innerHTML =
+    `
+    ✨ <strong>正解！ Correct!</strong>
+
+    <br><br>
+
+    <span class="answer-display">
+      ${q.full}
+    </span>
+
+    <br><br>
+
+    ${q.rule}
+    `;
+
+
+    checkButton.style.display =
+    "none";
+
+    nextButton.style.display =
+    "block";
+
+
+    resetButton.disabled =
+    true;
+
+    hintButton.disabled =
+    true;
+
+
+    if (
+      current ===
+      quiz.length - 1
+    ) {
+
+      nextButton.textContent =
+      "See Results 🏆";
+
+    }
+
+    else {
+
+      nextButton.textContent =
+      "Next →";
+
+    }
+
+
+    updateStatus();
+
+  }
+
+
+  /*
+     WRONG
+  */
+
+  else {
+
+    firstTry = false;
+
+    streak = 0;
+
+
+    feedback.className =
+    "feedback bad";
+
+
+    feedback.innerHTML =
+    `
+    💡 Not quite.
+
+    <br>
+
+    Rearrange the boxes and try again.
+    `;
+
+
+    updateStatus();
+
+  }
+
+}
+
+
+/* =====================================================
+   HINT
+===================================================== */
+
+function showHint() {
+
+  if (solved) return;
+
+
+  const q =
+  quiz[current];
+
+
+  /*
+    Using a hint removes
+    the first-try point.
+  */
+
+  firstTry = false;
+
+  streak = 0;
+
+
+  hintBox.innerHTML =
+  `
+  💡 <strong>Rule:</strong>
+  ${q.rule}
+  `;
+
+
+  hintBox.style.display =
+  "block";
+
+
+  updateStatus();
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetAnswer() {
+
+  if (solved) return;
+
+
+  const tiles =
+  [...answerZone.children];
+
+
+  tiles.forEach(
+    tile => {
+
+      bankZone.appendChild(
+        tile
+      );
+
+    }
+  );
+
+
+  feedback.className =
+  "feedback";
+
+  feedback.innerHTML = "";
+
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function nextQuestion() {
+
+  current++;
+
+
+  if (
+    current <
+    quiz.length
+  ) {
+
+    loadQuestion();
+
+  }
+
+  else {
+
+    showResults();
+
+  }
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function updateStatus() {
+
+  document.getElementById(
+    "questionNumber"
+  ).textContent =
+  `Question ${current + 1} / ${quiz.length}`;
+
+
+  document.getElementById(
+    "score"
+  ).textContent =
+  `${score} / ${quiz.length}`;
+
+
+  document.getElementById(
+    "streak"
+  ).textContent =
+  `🔥 ${streak} streak`;
+
+
+  document.getElementById(
+    "progress"
+  ).style.width =
+  `${((current + 1) / quiz.length) * 100}%`;
+
+}
+
+
+/* =====================================================
+   RESULTS
+===================================================== */
+
+function showResults() {
+
+  document.getElementById(
+    "playArea"
+  ).style.display =
+  "none";
+
+
+  document.getElementById(
+    "results"
+  ).style.display =
+  "block";
+
+
+  document.getElementById(
+    "finalScore"
+  ).textContent =
+  `${score} / ${quiz.length}`;
+
+
+  document.getElementById(
+    "bestStreak"
+  ).textContent =
+  `Best first-try streak: 🔥 ${bestStreak}`;
+
+
+  let emoji;
+
+  let message;
+
+
+  if (
+    score >= 27
+  ) {
+
+    emoji = "🏆";
+
+    message =
+    "すごい！ You really know your て-form!";
+
+  }
+
+  else if (
+    score >= 22
+  ) {
+
+    emoji = "🌸";
+
+    message =
+    "よくできました！ Very strong!";
+
+  }
+
+  else if (
+    score >= 15
+  ) {
+
+    emoji = "✨";
+
+    message =
+    "Good progress! Review the verb-ending groups.";
+
+  }
+
+  else {
+
+    emoji = "🌱";
+
+    message =
+    "がんばって！ Replay and watch the patterns.";
+
+  }
+
+
+  document.getElementById(
+    "resultEmoji"
+  ).textContent =
+  emoji;
+
+
+  document.getElementById(
+    "finalMessage"
+  ).textContent =
+  message;
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+function startGame() {
+
+  quiz =
+  shuffle(questions);
+
+  current = 0;
+
+  score = 0;
+
+  streak = 0;
+
+  bestStreak = 0;
+
+
+  document.getElementById(
+    "playArea"
+  ).style.display =
+  "block";
+
+
+  document.getElementById(
+    "results"
+  ).style.display =
+  "none";
+
+
+  loadQuestion();
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+checkButton.addEventListener(
+  "click",
+  checkAnswer
+);
+
+
+resetButton.addEventListener(
+  "click",
+  resetAnswer
+);
+
+
+hintButton.addEventListener(
+  "click",
+  showHint
+);
+
+
+nextButton.addEventListener(
+  "click",
+  nextQuestion
+);
+
+
+document.getElementById(
+  "restartButton"
+).addEventListener(
+  "click",
+  startGame
+);
+
+
+/* START */
+
+startGame();
+
+</script>
+
+</body>
+</html>
