@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>N5 Sentence Scramble 🌸</title>
+
+<!-- Makes dragging work nicely on phones too -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 18px;
+  font-family: Arial, "Noto Sans JP", sans-serif;
+  background: #fff7fb;
+  color: #353238;
+}
+
+.game {
+  max-width: 680px;
+  margin: auto;
+}
+
+/* HEADER */
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.tag {
+  color: #e44c96;
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.score {
+  background: white;
+  padding: 11px 16px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 3px 12px rgba(0,0,0,.05);
+}
+
+.score small {
+  display: block;
+  color: #888;
+}
+
+.score strong {
+  font-size: 20px;
+}
+
+/* PROGRESS */
+
+.progress-bg {
+  height: 10px;
+  background: #f1dce7;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.progress {
+  height: 100%;
+  width: 5%;
+  background: #ed5ca6;
+  transition: width .3s;
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  margin: 11px 3px 18px;
+  color: #777;
+  font-size: 14px;
+}
+
+/* CARD */
+
+.card {
+  background: white;
+  border-radius: 24px;
+  padding: 23px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.07);
+}
+
+.instruction {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.meaning {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* ZONES */
+
+.zone-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #999;
+  letter-spacing: 1px;
+  margin: 15px 0 8px;
+}
+
+.zone {
+  min-height: 82px;
+  padding: 12px;
+  border-radius: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  align-content: flex-start;
+}
+
+.answer-zone {
+  border: 2px dashed #e2bfd1;
+  background: #fffafd;
+}
+
+.bank-zone {
+  background: #f9f3f6;
+}
+
+/* WORD BOXES */
+
+.word {
+  border: 1px solid #e1d7dc;
+  background: white;
+  padding: 12px 15px;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
+}
+
+.word:active {
+  cursor: grabbing;
+  transform: scale(.97);
+}
+
+.sortable-ghost {
+  opacity: .3;
+}
+
+.sortable-chosen {
+  border-color: #ed5ca6;
+  background: #fff0f7;
+}
+
+/* FEEDBACK */
+
+.feedback {
+  margin-top: 17px;
+  padding: 15px;
+  border-radius: 14px;
+  line-height: 1.55;
+  display: none;
+}
+
+.feedback.good {
+  display: block;
+  background: #e5f8ed;
+  color: #256b43;
+}
+
+.feedback.bad {
+  display: block;
+  background: #fff0f0;
+  color: #9a3f3f;
+}
+
+/* BUTTONS */
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 17px;
+}
+
+button {
+  border: none;
+  min-height: 49px;
+  border-radius: 13px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.secondary {
+  flex: 1;
+  background: #f0e9ed;
+  color: #555;
+}
+
+.primary {
+  flex: 2;
+  background: #e95a9f;
+  color: white;
+}
+
+.next {
+  width: 100%;
+  background: #e95a9f;
+  color: white;
+  margin-top: 12px;
+  display: none;
+}
+
+.help {
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+  margin-top: 13px;
+}
+
+/* RESULTS */
+
+.results {
+  background: white;
+  border-radius: 24px;
+  text-align: center;
+  padding: 38px 25px;
+  display: none;
+}
+
+.results .emoji {
+  font-size: 60px;
+}
+
+.results h2 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.final-score {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.restart {
+  width: 100%;
+  background: #e95a9f;
+  color: white;
+  margin-top: 15px;
+}
+
+/* PHONE */
+
+@media (max-width: 500px) {
+
+  body {
+    padding: 14px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .meaning {
+    font-size: 18px;
+  }
+
+  .word {
+    font-size: 17px;
+    padding: 11px 13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="game">
+
+  <div id="playArea">
+
+    <div class="top">
+
+      <div>
+        <div class="tag">🌸 JLPT N5</div>
+        <h1>Sentence Scramble</h1>
+      </div>
+
+      <div class="score">
+        <small>Score</small>
+        <strong id="score">0 / 20</strong>
+      </div>
+
+    </div>
+
+    <div class="progress-bg">
+      <div id="progress" class="progress"></div>
+    </div>
+
+    <div class="status">
+      <span id="questionNumber">Question 1 / 20</span>
+      <span id="streak">🔥 0 streak</span>
+    </div>
+
+
+    <div class="card">
+
+      <div class="instruction">
+        Rearrange the boxes to make the Japanese sentence.
+      </div>
+
+      <div id="meaning" class="meaning"></div>
+
+
+      <div class="zone-title">
+        YOUR SENTENCE
+      </div>
+
+      <div
+        id="answerZone"
+        class="zone answer-zone">
+      </div>
+
+
+      <div class="zone-title">
+        WORD BOXES
+      </div>
+
+      <div
+        id="bankZone"
+        class="zone bank-zone">
+      </div>
+
+
+      <div
+        id="feedback"
+        class="feedback">
+      </div>
+
+
+      <div class="controls">
+
+        <button
+          id="resetButton"
+          class="secondary">
+          Reset
+        </button>
+
+        <button
+          id="checkButton"
+          class="primary">
+          Check ✓
+        </button>
+
+      </div>
+
+      <button
+        id="nextButton"
+        class="next">
+        Next →
+      </button>
+
+      <div class="help">
+        Drag the boxes — or simply tap a box to move it. 🌸
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div id="results" class="results">
+
+    <div id="resultEmoji" class="emoji">🌸</div>
+
+    <h2>Finished!</h2>
+
+    <div
+      id="finalScore"
+      class="final-score">
+    </div>
+
+    <p id="finalMessage"></p>
+
+    <p id="bestStreak"></p>
+
+    <button
+      id="restartButton"
+      class="restart">
+      Play Again 🔄
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   20 JLPT N5 SENTENCE SETS
+===================================================== */
+
+const questions = [
+
+{
+meaning: "I go to school every day.",
+words: [
+"わたしは",
+"毎日",
+"学校へ",
+"行きます。"
+],
+answer: [
+"わたしは",
+"毎日",
+"学校へ",
+"行きます。"
+]
+},
+
+{
+meaning: "I wake up at six every morning.",
+words: [
+"毎朝",
+"六時に",
+"起きます。"
+],
+answer: [
+"毎朝",
+"六時に",
+"起きます。"
+]
+},
+
+{
+meaning: "I read a book at the library.",
+words: [
+"図書館で",
+"本を",
+"読みます。"
+],
+answer: [
+"図書館で",
+"本を",
+"読みます。"
+]
+},
+
+{
+meaning: "I play at the park with my friend.",
+words: [
+"友達と",
+"公園で",
+"遊びます。"
+],
+answer: [
+"友達と",
+"公園で",
+"遊びます。"
+]
+},
+
+{
+meaning: "I drink coffee every morning.",
+words: [
+"毎朝",
+"コーヒーを",
+"飲みます。"
+],
+answer: [
+"毎朝",
+"コーヒーを",
+"飲みます。"
+]
+},
+
+{
+meaning: "I study Japanese every day.",
+words: [
+"毎日",
+"日本語を",
+"勉強します。"
+],
+answer: [
+"毎日",
+"日本語を",
+"勉強します。"
+]
+},
+
+{
+meaning: "I go to the station by bus.",
+words: [
+"バスで",
+"駅へ",
+"行きます。"
+],
+answer: [
+"バスで",
+"駅へ",
+"行きます。"
+]
+},
+
+{
+meaning: "There is a book on the desk.",
+words: [
+"机の",
+"上に",
+"本が",
+"あります。"
+],
+answer: [
+"机の",
+"上に",
+"本が",
+"あります。"
+]
+},
+
+{
+meaning: "There is a cat in the room.",
+words: [
+"部屋に",
+"猫が",
+"います。"
+],
+answer: [
+"部屋に",
+"猫が",
+"います。"
+]
+},
+
+{
+meaning: "This apple is very delicious.",
+words: [
+"この",
+"りんごは",
+"とても",
+"おいしいです。"
+],
+answer: [
+"この",
+"りんごは",
+"とても",
+"おいしいです。"
+]
+},
+
+{
+meaning: "My younger brother likes soccer.",
+words: [
+"弟は",
+"サッカーが",
+"好きです。"
+],
+answer: [
+"弟は",
+"サッカーが",
+"好きです。"
+]
+},
+
+{
+meaning: "My mother is good at cooking.",
+words: [
+"母は",
+"料理が",
+"上手です。"
+],
+answer: [
+"母は",
+"料理が",
+"上手です。"
+]
+},
+
+{
+meaning: "I watched a movie yesterday.",
+words: [
+"昨日",
+"映画を",
+"見ました。"
+],
+answer: [
+"昨日",
+"映画を",
+"見ました。"
+]
+},
+
+{
+meaning: "I will meet my friend tomorrow.",
+words: [
+"明日",
+"友達に",
+"会います。"
+],
+answer: [
+"明日",
+"友達に",
+"会います。"
+]
+},
+
+{
+meaning: "The weather is good today.",
+words: [
+"今日は",
+"天気が",
+"いいです。"
+],
+answer: [
+"今日は",
+"天気が",
+"いいです。"
+]
+},
+
+{
+meaning: "I do not drink coffee.",
+words: [
+"わたしは",
+"コーヒーを",
+"飲みません。"
+],
+answer: [
+"わたしは",
+"コーヒーを",
+"飲みません。"
+]
+},
+
+{
+meaning: "Let's eat lunch together.",
+words: [
+"いっしょに",
+"昼ご飯を",
+"食べましょう。"
+],
+answer: [
+"いっしょに",
+"昼ご飯を",
+"食べましょう。"
+]
+},
+
+{
+meaning: "May I take a photo here?",
+words: [
+"ここで",
+"写真を",
+"撮っても",
+"いいですか。"
+],
+answer: [
+"ここで",
+"写真を",
+"撮っても",
+"いいですか。"
+]
+},
+
+{
+meaning: "I do my homework and then sleep.",
+words: [
+"宿題を",
+"してから",
+"寝ます。"
+],
+answer: [
+"宿題を",
+"してから",
+"寝ます。"
+]
+},
+
+{
+meaning: "I want to go to Japan.",
+words: [
+"わたしは",
+"日本へ",
+"行きたいです。"
+],
+answer: [
+"わたしは",
+"日本へ",
+"行きたいです。"
+]
+}
+
+];
+
+
+/* =====================================================
+   GAME VARIABLES
+===================================================== */
+
+let quiz = [];
+
+let current = 0;
+
+let score = 0;
+
+let streak = 0;
+
+let bestStreak = 0;
+
+let firstTry = true;
+
+let solved = false;
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const bankZone =
+document.getElementById("bankZone");
+
+const answerZone =
+document.getElementById("answerZone");
+
+const meaning =
+document.getElementById("meaning");
+
+const feedback =
+document.getElementById("feedback");
+
+const checkButton =
+document.getElementById("checkButton");
+
+const resetButton =
+document.getElementById("resetButton");
+
+const nextButton =
+document.getElementById("nextButton");
+
+
+/* =====================================================
+   SHUFFLE
+===================================================== */
+
+function shuffle(array) {
+
+  const copy = [...array];
+
+  for (
+    let i = copy.length - 1;
+    i > 0;
+    i--
+  ) {
+
+    const j =
+    Math.floor(
+      Math.random() * (i + 1)
+    );
+
+    [
+      copy[i],
+      copy[j]
+    ]
+    =
+    [
+      copy[j],
+      copy[i]
+    ];
+
+  }
+
+  return copy;
+
+}
+
+
+/* =====================================================
+   SORTABLE DRAGGING
+===================================================== */
+
+new Sortable(
+  bankZone,
+  {
+    group: "words",
+    animation: 170,
+    ghostClass: "sortable-ghost",
+    chosenClass: "sortable-chosen"
+  }
+);
+
+new Sortable(
+  answerZone,
+  {
+    group: "words",
+    animation: 170,
+    ghostClass: "sortable-ghost",
+    chosenClass: "sortable-chosen"
+  }
+);
+
+
+/* =====================================================
+   CREATE WORD BOX
+===================================================== */
+
+function makeWord(word) {
+
+  const box =
+  document.createElement("div");
+
+  box.className = "word";
+
+  box.textContent = word;
+
+  /*
+    TAP ALTERNATIVE
+
+    Bank → answer
+    Answer → bank
+  */
+
+  box.addEventListener(
+    "click",
+    function () {
+
+      if (solved) return;
+
+      if (
+        box.parentElement === bankZone
+      ) {
+
+        answerZone.appendChild(box);
+
+      }
+
+      else {
+
+        bankZone.appendChild(box);
+
+      }
+
+    }
+  );
+
+  return box;
+
+}
+
+
+/* =====================================================
+   LOAD QUESTION
+===================================================== */
+
+function loadQuestion() {
+
+  solved = false;
+
+  firstTry = true;
+
+  feedback.className =
+  "feedback";
+
+  feedback.innerHTML = "";
+
+  nextButton.style.display =
+  "none";
+
+  checkButton.style.display =
+  "block";
+
+  resetButton.disabled =
+  false;
+
+
+  const q =
+  quiz[current];
+
+
+  meaning.textContent =
+  "💬 " + q.meaning;
+
+
+  bankZone.innerHTML = "";
+
+  answerZone.innerHTML = "";
+
+
+  const shuffledWords =
+  shuffle(q.words);
+
+
+  shuffledWords.forEach(
+    word => {
+
+      bankZone.appendChild(
+        makeWord(word)
+      );
+
+    }
+  );
+
+
+  updateStatus();
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function updateStatus() {
+
+  document.getElementById(
+    "questionNumber"
+  ).textContent =
+  `Question ${current + 1} / ${quiz.length}`;
+
+
+  document.getElementById(
+    "score"
+  ).textContent =
+  `${score} / ${quiz.length}`;
+
+
+  document.getElementById(
+    "streak"
+  ).textContent =
+  `🔥 ${streak} streak`;
+
+
+  document.getElementById(
+    "progress"
+  ).style.width =
+  `${((current + 1) / quiz.length) * 100}%`;
+
+}
+
+
+/* =====================================================
+   CHECK ANSWER
+===================================================== */
+
+function checkAnswer() {
+
+  if (solved) return;
+
+
+  const q =
+  quiz[current];
+
+
+  const chosen =
+  [...answerZone.children]
+  .map(
+    box => box.textContent
+  );
+
+
+  /*
+    Not all blocks used
+  */
+
+  if (
+    chosen.length !==
+    q.answer.length
+  ) {
+
+    feedback.className =
+    "feedback bad";
+
+    feedback.innerHTML =
+    "👀 Move all the word boxes into your sentence first.";
+
+    return;
+
+  }
+
+
+  const correct =
+  chosen.every(
+    (word, index) =>
+    word === q.answer[index]
+  );
+
+
+  if (correct) {
+
+    solved = true;
+
+
+    if (firstTry) {
+
+      score++;
+
+      streak++;
+
+    }
+
+    else {
+
+      streak = 0;
+
+    }
+
+
+    if (
+      streak > bestStreak
+    ) {
+
+      bestStreak =
+      streak;
+
+    }
+
+
+    feedback.className =
+    "feedback good";
+
+    feedback.innerHTML =
+    `
+    ✨ <strong>正解！ Correct!</strong>
+    <br><br>
+    ${q.answer.join(" ")}
+    `;
+
+
+    checkButton.style.display =
+    "none";
+
+    nextButton.style.display =
+    "block";
+
+    resetButton.disabled =
+    true;
+
+
+    updateStatus();
+
+  }
+
+  else {
+
+    firstTry = false;
+
+    streak = 0;
+
+
+    feedback.className =
+    "feedback bad";
+
+    feedback.innerHTML =
+    `
+    💡 Not quite.
+    Rearrange the boxes and try again!
+    `;
+
+
+    updateStatus();
+
+  }
+
+}
+
+
+/* =====================================================
+   RESET CURRENT SENTENCE
+===================================================== */
+
+function resetQuestion() {
+
+  if (solved) return;
+
+  const boxes =
+  [...answerZone.children];
+
+  boxes.forEach(
+    box =>
+    bankZone.appendChild(box)
+  );
+
+
+  feedback.className =
+  "feedback";
+
+  feedback.innerHTML = "";
+
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function nextQuestion() {
+
+  current++;
+
+  if (
+    current <
+    quiz.length
+  ) {
+
+    loadQuestion();
+
+  }
+
+  else {
+
+    showResults();
+
+  }
+
+}
+
+
+/* =====================================================
+   RESULTS
+===================================================== */
+
+function showResults() {
+
+  document.getElementById(
+    "playArea"
+  ).style.display =
+  "none";
+
+
+  document.getElementById(
+    "results"
+  ).style.display =
+  "block";
+
+
+  document.getElementById(
+    "finalScore"
+  ).textContent =
+  `${score} / ${quiz.length}`;
+
+
+  document.getElementById(
+    "bestStreak"
+  ).textContent =
+  `Best first-try streak: 🔥 ${bestStreak}`;
+
+
+  let emoji;
+  let message;
+
+
+  if (score >= 18) {
+
+    emoji = "🏆";
+
+    message =
+    "すごい！ Excellent sentence order!";
+
+  }
+
+  else if (score >= 15) {
+
+    emoji = "🌸";
+
+    message =
+    "よくできました！ Very good!";
+
+  }
+
+  else if (score >= 10) {
+
+    emoji = "✨";
+
+    message =
+    "Good progress! Keep practising Japanese word order.";
+
+  }
+
+  else {
+
+    emoji = "🌱";
+
+    message =
+    "がんばって！ Replay and try to beat your score.";
+
+  }
+
+
+  document.getElementById(
+    "resultEmoji"
+  ).textContent =
+  emoji;
+
+
+  document.getElementById(
+    "finalMessage"
+  ).textContent =
+  message;
+
+}
+
+
+/* =====================================================
+   START GAME
+===================================================== */
+
+function startGame() {
+
+  quiz =
+  shuffle(questions);
+
+  current = 0;
+
+  score = 0;
+
+  streak = 0;
+
+  bestStreak = 0;
+
+
+  document.getElementById(
+    "playArea"
+  ).style.display =
+  "block";
+
+
+  document.getElementById(
+    "results"
+  ).style.display =
+  "none";
+
+
+  loadQuestion();
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+checkButton.addEventListener(
+  "click",
+  checkAnswer
+);
+
+
+resetButton.addEventListener(
+  "click",
+  resetQuestion
+);
+
+
+nextButton.addEventListener(
+  "click",
+  nextQuestion
+);
+
+
+document.getElementById(
+  "restartButton"
+).addEventListener(
+  "click",
+  startGame
+);
+
+
+/* START */
+
+startGame();
+
+</script>
+
+</body>
+</html>
