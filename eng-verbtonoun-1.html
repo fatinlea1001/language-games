@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verb to Noun Quiz</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff0f5;
+  margin: 0;
+  padding: 15px;
+  color: #333;
+}
+
+.container {
+  max-width: 650px;
+  margin: 20px auto;
+  padding: 22px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px #eacbd6;
+}
+
+h1 {
+  text-align: center;
+  color: #bb4782;
+  font-size: 25px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+
+.example {
+  background: #fff0f7;
+  border: 2px solid #f5bfd6;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 22px 0;
+  line-height: 1.8;
+}
+
+.example h3 {
+  margin: 0 0 8px;
+  color: #b33b78;
+}
+
+.meaning {
+  color: #805d70;
+  font-size: 14px;
+}
+
+.instructions {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.result {
+  display: none;
+  background: #dff5e5;
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.percentage {
+  font-weight: bold;
+  font-size: 28px;
+  color: #198b45;
+}
+
+.progress {
+  height: 10px;
+  background: #c5dfcc;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-fill {
+  background: #32b86b;
+  height: 100%;
+  width: 0%;
+  transition: width .3s;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+button {
+  background: #d74d91;
+  color: white;
+  border: none;
+  padding: 11px 16px;
+  border-radius: 9px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover {
+  background: #b73574;
+}
+
+button.secondary {
+  background: #9c7190;
+}
+
+.question {
+  border-bottom: 1px solid #f2d9e4;
+  padding: 15px 0;
+}
+
+.question-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.number {
+  background: #f8e4ee;
+  padding: 10px;
+  border-radius: 7px;
+  font-weight: bold;
+  min-width: 38px;
+  text-align: center;
+}
+
+.verb {
+  font-size: 17px;
+}
+
+.answer-row {
+  margin: 10px 0 0 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.answer-row input {
+  min-width: 0;
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #e9c8d8;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.answer-row input:focus {
+  outline: none;
+  border-color: #d74d91;
+}
+
+.answer-row input.correct {
+  border-color: #29a65a;
+  background: #edfff2;
+}
+
+.answer-row input.wrong {
+  border-color: #e44f61;
+  background: #fff0f1;
+}
+
+.status {
+  min-width: 24px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.correct-icon {
+  color: #199547;
+}
+
+.wrong-icon {
+  color: #dc3545;
+}
+
+.answer-key {
+  display: none;
+  margin: 8px 0 0 50px;
+  font-size: 14px;
+  color: #178646;
+}
+
+.footer {
+  text-align: center;
+  color: #9b7a8a;
+  margin-top: 25px;
+  font-size: 12px;
+}
+
+@media(max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+
+  .verb {
+    font-size: 16px;
+  }
+
+  .answer-row {
+    margin-left: 0;
+  }
+
+  button {
+    flex: 1;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌸 Verb → Noun Quiz 🌸</h1>
+<p class="subtitle">English Word Formation Practice</p>
+
+<div class="example">
+  <h3>✨ Example / Contoh</h3>
+
+  <strong>Verb:</strong> explain<br>
+  <span class="meaning">Menerangkan</span>
+  <br>
+
+  <strong>Noun:</strong> an explanation<br>
+  <span class="meaning">Penerangan</span>
+</div>
+
+<p class="instructions">
+  Change each verb into its correct noun form.
+  Write only the missing word.
+</p>
+
+<div class="result" id="result">
+  <div id="scoreText"></div>
+  <div class="percentage" id="percentage"></div>
+  <div class="progress">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+</div>
+
+<div class="buttons">
+  <button onclick="checkAnswers()">✓ Check</button>
+  <button class="secondary" onclick="resetQuiz()">↻ Reset</button>
+  <button onclick="toggleAnswers()">Answers</button>
+</div>
+
+<div id="quiz"></div>
+
+<div class="buttons" style="margin-top:20px">
+  <button onclick="checkAnswers()">Check My Answers</button>
+</div>
+
+<div class="footer">
+  Keep practising! Every word counts. 🌷
+</div>
+
+</div>
+
+<script>
+
+const questionBank = [
+  {verb:"suggest", noun:"suggestion", article:"a"},
+  {verb:"advise", noun:"advice", article:""},
+  {verb:"decide", noun:"decision", article:"a"},
+  {verb:"compare", noun:"comparison", article:"a"},
+  {verb:"believe", noun:"belief", article:""},
+  {verb:"trust", noun:"trust", article:""},
+  {verb:"propose", noun:"proposal", article:"a"},
+  {verb:"marry", noun:"marriage", article:""},
+  {verb:"divorce", noun:"divorce", article:""},
+  {verb:"die", noun:"death", article:""},
+  {verb:"invent", noun:"invention", article:"an"},
+  {verb:"invite", noun:"invitation", article:"an"},
+  {verb:"agree", noun:"agreement", article:"an"},
+  {verb:"reserve", noun:"reservation", article:"a"},
+  {verb:"approve", noun:"approval", article:"an"}
+];
+
+let questions = [...questionBank];
+let answersVisible = false;
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function loadQuiz() {
+  const quiz = document.getElementById("quiz");
+  quiz.innerHTML = "";
+
+  questions.forEach((q, index) => {
+
+    const div = document.createElement("div");
+    div.className = "question";
+
+    div.innerHTML = `
+      <div class="question-top">
+        <span class="number">${index + 1}</span>
+        <span class="verb">verb: <b>${q.verb}</b></span>
+      </div>
+
+      <div class="answer-row">
+        <span>noun: ${q.article}</span>
+        <input
+          type="text"
+          id="answer${index}"
+          placeholder="Type answer"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+        >
+        <span class="status" id="status${index}"></span>
+      </div>
+
+      <div class="answer-key" id="key${index}">
+        Answer: ${q.noun}
+      </div>
+    `;
+
+    quiz.appendChild(div);
+  });
+
+  document.getElementById("result").style.display = "none";
+}
+
+function checkAnswers() {
+  let score = 0;
+
+  questions.forEach((q, index) => {
+
+    const input = document.getElementById("answer" + index);
+    const status = document.getElementById("status" + index);
+
+    const userAnswer = input.value.trim().toLowerCase();
+    const correctAnswer = q.noun.toLowerCase();
+
+    input.classList.remove("correct", "wrong");
+
+    if (userAnswer === correctAnswer) {
+      score++;
+      input.classList.add("correct");
+      status.innerHTML = "✓";
+      status.className = "status correct-icon";
+    } else {
+      input.classList.add("wrong");
+      status.innerHTML = "✕";
+      status.className = "status wrong-icon";
+    }
+  });
+
+  const percent = Math.round((score / questions.length) * 100);
+
+  document.getElementById("scoreText").innerHTML =
+    `You have <b>${score}</b> correct answers from a possible
+    <b>${questions.length}</b>.`;
+
+  document.getElementById("percentage").textContent =
+    percent + "%";
+
+  document.getElementById("progressFill").style.width =
+    percent + "%";
+
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("result").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function toggleAnswers() {
+  answersVisible = !answersVisible;
+
+  questions.forEach((q, index) => {
+    document.getElementById("key" + index).style.display =
+      answersVisible ? "block" : "none";
+  });
+}
+
+function resetQuiz() {
+  questions = shuffle([...questionBank]);
+  answersVisible = false;
+  loadQuiz();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+loadQuiz();
+
+</script>
+
+</body>
+</html>
