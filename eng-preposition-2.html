@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preposition Quiz - Set 2</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff0f6;
+  color: #333;
+  margin: 0;
+  padding: 15px;
+}
+
+.container {
+  max-width: 700px;
+  margin: 20px auto;
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px #ead1dc;
+}
+
+h1 {
+  text-align: center;
+  color: #c04482;
+  font-size: 25px;
+}
+
+.subtitle {
+  color: #888;
+  text-align: center;
+  font-size: 14px;
+}
+
+.example {
+  background: #fff0f7;
+  border: 2px solid #f2bdd6;
+  padding: 16px;
+  border-radius: 12px;
+  margin: 20px 0;
+  line-height: 1.8;
+}
+
+.example h3 {
+  color: #be4783;
+  margin: 0 0 8px;
+}
+
+.green {
+  color: #159447;
+  font-weight: bold;
+}
+
+.malay {
+  color: #80566f;
+  font-size: 14px;
+}
+
+.instructions {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+button {
+  background: #d54f91;
+  color: white;
+  border: none;
+  padding: 12px 17px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #b83a78;
+}
+
+button.secondary {
+  background: #94748a;
+}
+
+.result {
+  display: none;
+  background: #dcf5e3;
+  padding: 18px;
+  border-radius: 10px;
+  margin: 20px 0;
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+.percentage {
+  font-size: 30px;
+  font-weight: bold;
+  color: #168642;
+}
+
+.progress {
+  background: #b9ddc4;
+  border-radius: 20px;
+  height: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-fill {
+  background: #2caf61;
+  width: 0%;
+  height: 100%;
+  transition: width .3s;
+}
+
+.question {
+  border-bottom: 1px solid #f2dce5;
+  padding: 18px 0;
+}
+
+.question-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.number {
+  background: #f6e3ed;
+  padding: 8px;
+  min-width: 35px;
+  border-radius: 7px;
+  text-align: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.sentence {
+  flex: 1;
+  min-width: 0;
+  font-size: 17px;
+  line-height: 2.4;
+}
+
+select {
+  font-size: 16px;
+  padding: 7px;
+  min-width: 95px;
+  max-width: 150px;
+  border: 2px solid #d7b6c8;
+  background: white;
+  color: #333;
+  border-radius: 6px;
+  vertical-align: middle;
+  margin: 0 3px;
+}
+
+select.correct {
+  border-color: #20a452;
+  background: #e5f9eb;
+}
+
+select.wrong {
+  border-color: #df4b62;
+  background: #fff0f1;
+}
+
+.status {
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.correct-icon { color: #149444; }
+.wrong-icon { color: #e04459; }
+
+.answer-key {
+  display: none;
+  color: #168a46;
+  font-size: 14px;
+  margin: 7px 0 0 45px;
+  line-height: 1.5;
+}
+
+.footer {
+  text-align: center;
+  color: #a08091;
+  font-size: 12px;
+  margin-top: 25px;
+}
+
+@media(max-width:480px) {
+  .container { padding: 15px; }
+  .sentence { font-size: 16px; }
+  select { font-size: 15px; }
+  button { flex: 1; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>🌸 Preposition Quiz 🌸</h1>
+<p class="subtitle">Set 2 | B1–B2 | 20 Questions</p>
+
+<div class="example">
+  <h3>✨ Example / Contoh</h3>
+  The shoes are
+  <span class="green">under</span>
+  the bed.
+  <br>
+  <span class="malay">
+    Kasut itu berada di bawah katil.
+  </span>
+  <br>
+  <strong>under</strong> = di bawah
+</div>
+
+<p class="instructions">
+  <strong>Instructions:</strong><br>
+  Choose the correct preposition to complete each sentence.
+  Select one answer from each dropdown menu.
+</p>
+
+<div class="result" id="result">
+  <div id="scoreText"></div>
+  <div class="percentage" id="percentage"></div>
+  <div class="progress">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+</div>
+
+<div class="buttons">
+  <button onclick="checkAnswers()">✓ Check</button>
+  <button id="answersBtn" onclick="toggleAnswers()">
+    Answers
+  </button>
+  <button class="secondary" onclick="resetQuiz()">
+    ↻ Reset
+  </button>
+</div>
+
+<div id="quiz"></div>
+
+<div class="buttons">
+  <button onclick="checkAnswers()">
+    Check My Answers
+  </button>
+</div>
+
+<div class="footer">
+  Keep learning, keep improving! 🌷
+</div>
+
+</div>
+
+<script>
+
+const questionBank = [
+  {
+    before: "",
+    after: " feeling nervous, Sara gave an excellent presentation.",
+    answer: "Despite",
+    options: ["Despite", "Between", "Among", "Throughout"],
+    meaning: "walaupun / meskipun"
+  },
+  {
+    before: "The village is just ",
+    after: " the mountains, on the far side of the range.",
+    answer: "beyond",
+    options: ["beyond", "among", "beneath", "within"],
+    meaning: "di seberang / lebih jauh daripada"
+  },
+  {
+    before: "Please send the form ",
+    after: " 48 hours; late submissions will not be accepted.",
+    answer: "within",
+    options: ["within", "during", "between", "among"],
+    meaning: "dalam tempoh"
+  },
+  {
+    before: "The train passed ",
+    after: " a long tunnel before reaching the valley.",
+    answer: "through",
+    options: ["through", "among", "until", "against"],
+    meaning: "melalui / menembusi"
+  },
+  {
+    before: "The prize money was divided equally ",
+    after: " the five winners.",
+    answer: "among",
+    options: ["among", "against", "towards", "beside"],
+    meaning: "antara / dalam kalangan"
+  },
+  {
+    before: "The crowd pressed ",
+    after: " the glass doors, but they stayed shut.",
+    answer: "against",
+    options: ["against", "among", "without", "since"],
+    meaning: "pada / menentang"
+  },
+  {
+    before: "The café is located ",
+    after: " the post office and the hospital.",
+    answer: "between",
+    options: ["between", "despite", "throughout", "during"],
+    meaning: "di antara"
+  },
+  {
+    before: "Nobody spoke ",
+    after: " the two-minute silence.",
+    answer: "during",
+    options: ["during", "beyond", "among", "towards"],
+    meaning: "semasa / ketika"
+  },
+  {
+    before: "He completed the puzzle ",
+    after: " looking at the instructions.",
+    answer: "without",
+    options: ["without", "between", "beyond", "beneath"],
+    meaning: "tanpa"
+  },
+  {
+    before: "The old diary was found ",
+    after: " a loose floorboard.",
+    answer: "beneath",
+    options: ["beneath", "across", "during", "without"],
+    meaning: "di bawah"
+  },
+  {
+    before: "The balloon floated ",
+    after: " the roof and disappeared into the clouds.",
+    answer: "above",
+    options: ["above", "throughout", "among", "against"],
+    meaning: "di atas / lebih tinggi daripada"
+  },
+  {
+    before: "The submarine descended ",
+    after: " sea level.",
+    answer: "below",
+    options: ["below", "between", "beside", "until"],
+    meaning: "di bawah / lebih rendah daripada"
+  },
+  {
+    before: "They rowed ",
+    after: " the lake and reached the shore on the other side.",
+    answer: "across",
+    options: ["across", "beside", "beneath", "throughout"],
+    meaning: "merentasi"
+  },
+  {
+    before: "The cyclists rode ",
+    after: " the riverbank, keeping the water on their left.",
+    answer: "along",
+    options: ["along", "across", "beyond", "among"],
+    meaning: "di sepanjang"
+  },
+  {
+    before: "The puppy was hiding ",
+    after: " the sofa, completely out of sight.",
+    answer: "behind",
+    options: ["behind", "among", "along", "towards"],
+    meaning: "di belakang"
+  },
+  {
+    before: "Please sit ",
+    after: " me; there's an empty seat here.",
+    answer: "beside",
+    options: ["beside", "above", "throughout", "despite"],
+    meaning: "di sebelah"
+  },
+  {
+    before: "The tourists headed ",
+    after: " the exit when the museum announced it was closing.",
+    answer: "towards",
+    options: ["towards", "during", "among", "despite"],
+    meaning: "ke arah"
+  },
+  {
+    before: "The shop will remain closed ",
+    after: " Monday morning.",
+    answer: "until",
+    options: ["until", "among", "against", "despite"],
+    meaning: "sehingga"
+  },
+  {
+    before: "We have been friends ",
+    after: " primary school.",
+    answer: "since",
+    options: ["since", "across", "during", "against"],
+    meaning: "sejak"
+  },
+  {
+    before: "Check the timetable ",
+    after: " leaving the house so you don't miss the bus.",
+    answer: "before",
+    options: ["before", "along", "beyond", "among"],
+    meaning: "sebelum"
+  }
+];
+
+let questions = [...questionBank];
+let answersVisible = false;
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function clearMarks() {
+  document.getElementById("result").style.display = "none";
+
+  document.querySelectorAll(".question select").forEach(select => {
+    select.classList.remove("correct", "wrong");
+  });
+
+  document.querySelectorAll(".status").forEach(status => {
+    status.textContent = "";
+    status.className = "status";
+  });
+}
+
+function loadQuiz() {
+  const quiz = document.getElementById("quiz");
+  quiz.innerHTML = "";
+
+  questions.forEach((q, index) => {
+    const question = document.createElement("div");
+    question.className = "question";
+
+    const line = document.createElement("div");
+    line.className = "question-line";
+
+    const number = document.createElement("span");
+    number.className = "number";
+    number.textContent = index + 1;
+
+    const sentence = document.createElement("div");
+    sentence.className = "sentence";
+
+    const before = document.createElement("span");
+    before.textContent = q.before;
+
+    const after = document.createElement("span");
+    after.textContent = q.after;
+
+    const select = document.createElement("select");
+    select.id = "answer" + index;
+    select.setAttribute("aria-label", "Question " + (index + 1));
+
+    const blank = document.createElement("option");
+    blank.value = "";
+    blank.textContent = "—";
+    select.appendChild(blank);
+
+    shuffle([...q.options]).forEach(optionText => {
+      const option = document.createElement("option");
+      option.value = optionText;
+      option.textContent = optionText;
+      select.appendChild(option);
+    });
+
+    select.addEventListener("change", clearMarks);
+
+    const status = document.createElement("span");
+    status.id = "status" + index;
+    status.className = "status";
+
+    sentence.appendChild(before);
+    sentence.appendChild(select);
+    sentence.appendChild(after);
+    sentence.appendChild(status);
+
+    line.appendChild(number);
+    line.appendChild(sentence);
+
+    const key = document.createElement("div");
+    key.className = "answer-key";
+    key.textContent =
+      "Answer: " + q.answer + " — " + q.meaning;
+    key.style.display = answersVisible ? "block" : "none";
+
+    question.appendChild(line);
+    question.appendChild(key);
+    quiz.appendChild(question);
+  });
+
+  document.getElementById("result").style.display = "none";
+}
+
+function checkAnswers() {
+  let score = 0;
+
+  questions.forEach((q, index) => {
+    const select = document.getElementById("answer" + index);
+    const status = document.getElementById("status" + index);
+
+    select.classList.remove("correct", "wrong");
+
+    if (select.value === q.answer) {
+      score++;
+      select.classList.add("correct");
+      status.textContent = "✓";
+      status.className = "status correct-icon";
+    } else {
+      select.classList.add("wrong");
+      status.textContent = "✕";
+      status.className = "status wrong-icon";
+    }
+  });
+
+  const percentage = Math.round(
+    (score / questions.length) * 100
+  );
+
+  document.getElementById("scoreText").innerHTML =
+    "You have <b>" + score +
+    "</b> correct answers from a possible <b>" +
+    questions.length + "</b>.";
+
+  document.getElementById("percentage").textContent =
+    percentage + "%";
+
+  document.getElementById("progressFill").style.width =
+    percentage + "%";
+
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("result").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function toggleAnswers() {
+  answersVisible = !answersVisible;
+
+  document.querySelectorAll(".answer-key").forEach(key => {
+    key.style.display = answersVisible ? "block" : "none";
+  });
+
+  document.getElementById("answersBtn").textContent =
+    answersVisible ? "Hide Answers" : "Answers";
+}
+
+function resetQuiz() {
+  questions = shuffle([...questionBank]);
+  answersVisible = false;
+
+  document.getElementById("answersBtn").textContent =
+    "Answers";
+
+  loadQuiz();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+loadQuiz();
+
+</script>
+</body>
+</html>
