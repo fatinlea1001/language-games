@@ -1,0 +1,1022 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Environment Sentence Jumble - Set 2</title>
+
+<style>
+* { box-sizing: border-box; }
+
+:root {
+  --pink: #c84c90;
+  --dark-pink: #a73572;
+  --pale: #fff1f8;
+  --ink: #403640;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  background: #fff0f6;
+  color: var(--ink);
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 760px;
+  margin: 12px auto 36px;
+  padding: 22px;
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 5px 22px #e9cbd9;
+}
+
+h1 {
+  margin: 6px 0 7px;
+  color: var(--dark-pink);
+  font-size: 27px;
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #8d7281;
+}
+
+.mascot {
+  display: block;
+  width: 185px;
+  max-width: 70%;
+  height: auto;
+  margin: 8px auto;
+}
+
+.mascot-caption {
+  text-align: center;
+  color: var(--dark-pink);
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.example {
+  background: var(--pale);
+  border: 2px solid #f2bdd7;
+  padding: 15px;
+  border-radius: 14px;
+  margin: 20px 0 16px;
+  line-height: 1.7;
+}
+
+.example-title {
+  color: var(--dark-pink);
+  font-weight: bold;
+}
+
+.example-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 9px 0;
+}
+
+.example-tiles span {
+  padding: 7px 10px;
+  border: 1px solid #e9bed4;
+  border-radius: 8px;
+  background: white;
+  font-weight: bold;
+}
+
+.example-answer {
+  color: #168647;
+  font-weight: bold;
+}
+
+.malay {
+  font-size: 14px;
+  color: #805e72;
+}
+
+.instructions {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.action {
+  background: var(--pink);
+  color: white;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.action.secondary {
+  background: #97768b;
+}
+
+.action:hover {
+  filter: brightness(.94);
+}
+
+.result {
+  display: none;
+  margin: 18px 0;
+  padding: 18px;
+  border-radius: 12px;
+  background: #e6f8ec;
+  line-height: 1.6;
+}
+
+.percentage {
+  font-size: 30px;
+  color: #178648;
+  font-weight: bold;
+}
+
+.progress {
+  margin-top: 10px;
+  height: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #bee0c9;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #2eae65;
+  transition: width .25s;
+}
+
+.question {
+  border-bottom: 1px solid #f1dbe5;
+  padding: 18px 0;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.number {
+  min-width: 38px;
+  padding: 9px;
+  border-radius: 8px;
+  background: #f8e5ef;
+  color: var(--dark-pink);
+  font-weight: bold;
+  text-align: center;
+}
+
+.kind {
+  margin-left: auto;
+  font-size: 12px;
+  color: #8b6c7e;
+}
+
+.zone-label {
+  margin: 11px 0 5px;
+  color: #866a7a;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.tiles {
+  min-height: 53px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 7px;
+  padding: 10px;
+  border: 2px dashed #eec8dc;
+  border-radius: 11px;
+  background: #fff9fc;
+}
+
+.tiles.answer {
+  border-color: #dcbbce;
+  background: white;
+}
+
+.tiles.drag-over {
+  border-color: var(--pink);
+  background: #ffe5f2;
+}
+
+.tile {
+  padding: 9px 11px;
+  border: 1px solid #e5b8d0;
+  border-radius: 8px;
+  background: #f9e2ee;
+  color: #543950;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.15;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.answer .tile {
+  background: #f5eff3;
+  border-color: #d8bdcb;
+}
+
+.placeholder {
+  align-self: center;
+  font-size: 13px;
+  color: #9d8995;
+}
+
+.small-actions {
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.small {
+  border: 1px solid #e3c3d4;
+  background: white;
+  border-radius: 8px;
+  color: #a63c78;
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.feedback {
+  display: none;
+  margin: 10px 0 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.feedback.good {
+  display: block;
+  color: #148143;
+}
+
+.feedback.bad {
+  display: block;
+  color: #c73c57;
+}
+
+.answer-key {
+  display: none;
+  margin: 8px 0 0;
+  line-height: 1.6;
+  font-size: 14px;
+  color: #168647;
+}
+
+.question.is-correct .tiles.answer {
+  border-color: #4cb879;
+  background: #f2fff6;
+}
+
+.question.is-wrong .tiles.answer {
+  border-color: #e08091;
+  background: #fff8f9;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 12px;
+  color: #a38094;
+}
+
+@media(max-width:480px) {
+  .container { padding: 14px; }
+  h1 { font-size: 23px; }
+  .tile { font-size: 14px; padding: 9px; }
+  .action { flex: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+<h1>🌸 Environment Sentence Jumble 🌿</h1>
+
+<p class="subtitle">
+  Set 2 | B1 | 20 New Sentences
+</p>
+
+<!-- Cute Earth Mascot -->
+
+<svg class="mascot" viewBox="0 0 220 178"
+role="img"
+aria-label="Cute smiling Earth mascot"
+xmlns="http://www.w3.org/2000/svg">
+
+<ellipse cx="110" cy="162" rx="58" ry="9"
+fill="#ead8e3"/>
+
+<text x="19" y="52" font-size="22">✨</text>
+<text x="171" y="42" font-size="22">🌸</text>
+
+<path d="M75 123 L64 146 M145 123 L156 146"
+stroke="#68b7a4"
+stroke-width="8"
+stroke-linecap="round"/>
+
+<circle cx="109" cy="88" r="54"
+fill="#a6e2dc"
+stroke="#66b7ad"
+stroke-width="3"/>
+
+<path d="M76 51 Q90 39 105 48
+L103 62 91 67 96 83 79 92
+63 80 67 64 Z"
+fill="#8acd87"/>
+
+<path d="M135 46 Q160 53 158 72
+L143 78 144 99 128 110
+119 94 129 77 122 56 Z"
+fill="#8acd87"/>
+
+<path d="M96 119 Q109 113 127 123
+L121 134 107 136 Z"
+fill="#8acd87"/>
+
+<ellipse cx="92" cy="95" rx="4.5" ry="6.5"
+fill="#43565d"/>
+
+<ellipse cx="126" cy="95" rx="4.5" ry="6.5"
+fill="#43565d"/>
+
+<circle cx="93" cy="93" r="1.6" fill="white"/>
+<circle cx="127" cy="93" r="1.6" fill="white"/>
+
+<ellipse cx="80" cy="108" rx="8" ry="4"
+fill="#f5b4c6"/>
+
+<ellipse cx="139" cy="108" rx="8" ry="4"
+fill="#f5b4c6"/>
+
+<path d="M102 111 Q109 121 117 111"
+stroke="#695c69"
+stroke-width="3"
+stroke-linecap="round"
+fill="none"/>
+
+<path d="M64 105 Q48 105 42 115
+M155 105 Q171 100 177 113"
+stroke="#68b7a4"
+stroke-width="7"
+stroke-linecap="round"
+fill="none"/>
+
+<path d="M179 115 Q160 89 182 74
+Q197 89 179 115 Z"
+fill="#84c47c"
+stroke="#589c67"
+stroke-width="2"/>
+
+</svg>
+
+<p class="mascot-caption">
+  Little steps, greener planet! 🌱
+</p>
+
+<!-- WORKED EXAMPLE -->
+
+<div class="example">
+  <div class="example-title">
+    ✨ Example / Contoh
+  </div>
+
+  <div class="example-tiles">
+    <span>our</span>
+    <span>Clean</span>
+    <span>planet.</span>
+    <span>protects</span>
+    <span>water</span>
+  </div>
+
+  <div class="example-answer">
+    Clean water protects our planet.
+  </div>
+
+  <div class="malay">
+    Air bersih melindungi planet kita.
+  </div>
+</div>
+
+<p class="instructions">
+  <strong>Instructions:</strong>
+  Arrange the individual words into a correct sentence.
+  <strong>Tap</strong> word boxes in order on your phone,
+  or <strong>drag</strong> them on a computer.
+  Tap a word in your answer to return it.
+  Then press <strong>Check</strong> to see your score.
+  Capital letters and punctuation are part of the boxes.
+</p>
+
+<!-- RESULTS -->
+
+<div class="result" id="result" aria-live="polite">
+  <div id="scoreText"></div>
+  <div class="percentage" id="percentage"></div>
+  <div class="progress">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+</div>
+
+<!-- BUTTONS -->
+
+<div class="actions">
+  <button class="action" onclick="checkAnswers()">
+    ✓ Check
+  </button>
+
+  <button class="action" id="answersBtn"
+  onclick="toggleAnswers()">
+    Answers
+  </button>
+
+  <button class="action secondary"
+  onclick="resetQuiz()">
+    ↻ Reset
+  </button>
+</div>
+
+<div id="quiz"></div>
+
+<div class="actions">
+  <button class="action" onclick="checkAnswers()">
+    Check My Answers
+  </button>
+</div>
+
+<p class="footer">
+  Practise your English and protect our Earth! 🌷
+</p>
+
+</main>
+
+<script>
+
+// SET 2: 20 NEW SENTENCES
+// 10 SIMPLE + 10 COMPOUND
+
+const QUESTION_BANK = [
+
+  {
+    text: "Residents wore face masks during the thick haze.",
+    type: "Simple"
+  },
+
+  {
+    text: "The riverbank was covered with plastic rubbish.",
+    type: "Simple"
+  },
+
+  {
+    text: "Volunteers planted young trees near the school field.",
+    type: "Simple"
+  },
+
+  {
+    text: "Solar panels turn sunlight into useful electricity.",
+    type: "Simple"
+  },
+
+  {
+    text: "Smoke from forest fires reduced visibility on the highway.",
+    type: "Simple"
+  },
+
+  {
+    text: "My family separates food scraps from recyclable waste.",
+    type: "Simple"
+  },
+
+  {
+    text: "The wildlife centre protects injured animals.",
+    type: "Simple"
+  },
+
+  {
+    text: "Heavy rain washed rubbish into the nearby drain.",
+    type: "Simple"
+  },
+
+  {
+    text: "The city council installed more recycling bins near shops.",
+    type: "Simple"
+  },
+
+  {
+    text: "Many endangered species depend on healthy forests for survival.",
+    type: "Simple"
+  },
+
+  {
+    text: "The haze grew thicker, so the organisers postponed the sports event.",
+    type: "Compound"
+  },
+
+  {
+    text: "Our family used less electricity, so our monthly bill became lower.",
+    type: "Compound"
+  },
+
+  {
+    text: "A factory released dirty water, but the authorities discovered the problem.",
+    type: "Compound"
+  },
+
+  {
+    text: "The beach was crowded, yet several volunteers continued collecting litter.",
+    type: "Compound"
+  },
+
+  {
+    text: "You can ride a bicycle, or you can take the bus to school.",
+    type: "Compound"
+  },
+
+  {
+    text: "The students cleaned the garden, and their teacher provided gardening tools.",
+    type: "Compound"
+  },
+
+  {
+    text: "The air quality improved, so families returned to the park.",
+    type: "Compound"
+  },
+
+  {
+    text: "The villagers reported the illegal dumping, but the rubbish remained there.",
+    type: "Compound"
+  },
+
+  {
+    text: "The weather was dry, and small fires spread quickly through the grass.",
+    type: "Compound"
+  },
+
+  {
+    text: "The school provided reusable containers, so fewer plastic bags were needed.",
+    type: "Compound"
+  }
+
+];
+
+let questions = [...QUESTION_BANK];
+let work = [];
+let answersVisible = false;
+
+// SHUFFLE QUESTIONS AND WORDS
+
+function shuffled(items) {
+  const array = [...items];
+
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
+}
+
+// CREATE WORD BOXES
+
+function startWork() {
+  work = questions.map(q => {
+
+    const tokens = q.text.split(/\s+/).map(
+      (word, id) => ({word, id})
+    );
+
+    let pool = shuffled(tokens);
+
+    if (pool.map(t => t.word).join(" ") === q.text) {
+      const j = pool.findIndex(
+        (t, i) => i > 0 && t.word !== pool[0].word
+      );
+
+      if (j > 0) {
+        [pool[0], pool[j]] = [pool[j], pool[0]];
+      }
+    }
+
+    return {
+      pool,
+      answer: []
+    };
+  });
+}
+
+// MAKE A TAPPABLE WORD
+
+function makeTile(qIndex, token, zoneName) {
+
+  const tile = document.createElement("button");
+
+  tile.type = "button";
+  tile.className = "tile";
+  tile.textContent = token.word;
+  tile.draggable = true;
+  tile.dataset.id = token.id;
+
+  tile.setAttribute(
+    "aria-label",
+    "Word " + token.word + ". Tap to move."
+  );
+
+  tile.addEventListener("click", () => {
+    moveToken(
+      qIndex,
+      token.id,
+      zoneName,
+      zoneName === "pool" ? "answer" : "pool"
+    );
+  });
+
+  tile.addEventListener("dragstart", e => {
+    e.dataTransfer.setData(
+      "text/plain",
+      JSON.stringify({
+        i: qIndex,
+        id: token.id,
+        from: zoneName
+      })
+    );
+
+    e.dataTransfer.effectAllowed = "move";
+  });
+
+  return tile;
+}
+
+// DISPLAY WORDS
+
+function renderTiles(i) {
+
+  for (const zoneName of ["pool", "answer"]) {
+
+    const zone = document.getElementById(
+      zoneName + "-" + i
+    );
+
+    zone.innerHTML = "";
+
+    if (!work[i][zoneName].length) {
+
+      const hint = document.createElement("span");
+      hint.className = "placeholder";
+
+      hint.textContent = zoneName === "answer"
+        ? "Tap words below to build your sentence..."
+        : "All words have been used.";
+
+      zone.appendChild(hint);
+    }
+
+    work[i][zoneName].forEach(token => {
+      zone.appendChild(
+        makeTile(i, token, zoneName)
+      );
+    });
+  }
+}
+
+// CLEAR PREVIOUS MARKS
+
+function clearMarks() {
+
+  document.getElementById("result").style.display =
+    "none";
+
+  document.querySelectorAll(".question").forEach(card => {
+    card.classList.remove("is-correct", "is-wrong");
+  });
+
+  document.querySelectorAll(".feedback").forEach(feedback => {
+    feedback.className = "feedback";
+    feedback.textContent = "";
+  });
+}
+
+// MOVE WORDS BETWEEN BOXES
+
+function moveToken(i, id, from, to, beforeId = null) {
+
+  const origin = work[i][from];
+  const destination = work[i][to];
+
+  const oldIndex = origin.findIndex(t => t.id === id);
+
+  if (
+    oldIndex < 0 ||
+    (from === to && id === beforeId)
+  ) return;
+
+  const [token] = origin.splice(oldIndex, 1);
+
+  const newIndex = beforeId === null
+    ? -1
+    : destination.findIndex(t => t.id === beforeId);
+
+  if (newIndex < 0) {
+    destination.push(token);
+  } else {
+    destination.splice(newIndex, 0, token);
+  }
+
+  renderTiles(i);
+  clearMarks();
+}
+
+// UNDO LAST WORD
+
+function undoLast(i) {
+
+  const answer = work[i].answer;
+
+  if (answer.length) {
+    moveToken(
+      i,
+      answer[answer.length - 1].id,
+      "answer",
+      "pool"
+    );
+  }
+}
+
+// CLEAR ONE SENTENCE
+
+function clearSentence(i) {
+
+  work[i].pool.push(...work[i].answer);
+  work[i].answer = [];
+
+  renderTiles(i);
+  clearMarks();
+}
+
+// DRAG AND DROP SUPPORT
+
+function attachDrop(zone, i, destination) {
+
+  zone.addEventListener("dragover", e => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    zone.classList.add("drag-over");
+  });
+
+  zone.addEventListener("dragleave", e => {
+    if (!zone.contains(e.relatedTarget)) {
+      zone.classList.remove("drag-over");
+    }
+  });
+
+  zone.addEventListener("drop", e => {
+
+    e.preventDefault();
+    zone.classList.remove("drag-over");
+
+    let data;
+
+    try {
+      data = JSON.parse(
+        e.dataTransfer.getData("text/plain")
+      );
+    } catch {
+      return;
+    }
+
+    if (
+      data.i !== i ||
+      !["pool", "answer"].includes(data.from)
+    ) return;
+
+    const targetTile = e.target.closest(".tile");
+
+    const beforeId = targetTile
+      ? Number(targetTile.dataset.id)
+      : null;
+
+    moveToken(
+      i,
+      data.id,
+      data.from,
+      destination,
+      beforeId
+    );
+  });
+}
+
+// SHOW OR HIDE ANSWERS
+
+function updateAnswerVisibility() {
+
+  document.querySelectorAll(".answer-key").forEach(key => {
+    key.style.display =
+      answersVisible ? "block" : "none";
+  });
+
+  document.getElementById("answersBtn").textContent =
+    answersVisible ? "Hide Answers" : "Answers";
+}
+
+// DISPLAY QUIZ
+
+function renderQuiz() {
+
+  const quiz = document.getElementById("quiz");
+  quiz.innerHTML = "";
+
+  questions.forEach((q, i) => {
+
+    const card = document.createElement("section");
+    card.className = "question";
+
+    card.innerHTML = `
+      <div class="heading">
+        <span class="number">${i + 1}</span>
+        <strong>Arrange the words</strong>
+        <span class="kind">${q.type}</span>
+      </div>
+
+      <div class="zone-label">Your sentence</div>
+      <div class="tiles answer" id="answer-${i}"></div>
+
+      <div class="zone-label">
+        Word boxes (tap or drag)
+      </div>
+
+      <div class="tiles" id="pool-${i}"></div>
+
+      <div class="small-actions">
+
+        <button class="small"
+        id="undo-${i}" type="button">
+          ↶ Undo last
+        </button>
+
+        <button class="small"
+        id="clear-${i}" type="button">
+          Clear
+        </button>
+
+      </div>
+
+      <p class="feedback" id="feedback-${i}"></p>
+
+      <p class="answer-key" id="key-${i}">
+        <strong>Answer:</strong> ${q.text}
+      </p>
+    `;
+
+    quiz.appendChild(card);
+
+    attachDrop(
+      document.getElementById("answer-" + i),
+      i,
+      "answer"
+    );
+
+    attachDrop(
+      document.getElementById("pool-" + i),
+      i,
+      "pool"
+    );
+
+    document.getElementById("undo-" + i)
+      .addEventListener("click", () => undoLast(i));
+
+    document.getElementById("clear-" + i)
+      .addEventListener("click", () => clearSentence(i));
+
+    renderTiles(i);
+  });
+
+  updateAnswerVisibility();
+  clearMarks();
+}
+
+// CHECK ANSWERS AND CALCULATE SCORE
+
+function checkAnswers() {
+
+  let score = 0;
+
+  questions.forEach((q, i) => {
+
+    const attempt = work[i].answer
+      .map(t => t.word)
+      .join(" ");
+
+    const correct =
+      work[i].pool.length === 0 &&
+      attempt === q.text;
+
+    const card = document.getElementById(
+      "answer-" + i
+    ).closest(".question");
+
+    const feedback = document.getElementById(
+      "feedback-" + i
+    );
+
+    card.classList.remove(
+      "is-correct",
+      "is-wrong"
+    );
+
+    if (correct) {
+
+      score++;
+      card.classList.add("is-correct");
+
+      feedback.className = "feedback good";
+      feedback.textContent = "✓ Correct!";
+
+    } else {
+
+      card.classList.add("is-wrong");
+
+      feedback.className = "feedback bad";
+      feedback.textContent =
+        "✕ Not quite. Try rearranging the words.";
+    }
+  });
+
+  const percentage = Math.round(
+    100 * score / questions.length
+  );
+
+  document.getElementById("scoreText").textContent =
+    `You have ${score} correct answers from a possible ${questions.length}.`;
+
+  document.getElementById("percentage").textContent =
+    percentage + "%";
+
+  document.getElementById("progressFill").style.width =
+    percentage + "%";
+
+  document.getElementById("result").style.display =
+    "block";
+
+  document.getElementById("result").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+// ANSWERS BUTTON
+
+function toggleAnswers() {
+  answersVisible = !answersVisible;
+  updateAnswerVisibility();
+}
+
+// RESET AND SHUFFLE
+
+function resetQuiz() {
+
+  questions = shuffled(QUESTION_BANK);
+  answersVisible = false;
+
+  startWork();
+  renderQuiz();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+// START GAME
+
+startWork();
+renderQuiz();
+
+</script>
+</body>
+</html>
