@@ -1,0 +1,678 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verb to Noun Quiz - Set 2</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+  background: #fff0f6;
+  color: #39313a;
+}
+
+.container {
+  max-width: 680px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 5px 20px #edcfdd;
+}
+
+h1 {
+  color: #b83f80;
+  text-align: center;
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #8d7181;
+  font-size: 14px;
+}
+
+.illustration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 12px auto 20px;
+}
+
+.illustration svg {
+  width: 190px;
+  max-width: 65%;
+  height: auto;
+}
+
+.illustration p {
+  background: #fff0f7;
+  border-radius: 30px;
+  padding: 8px 16px;
+  color: #b24781;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.example {
+  background: #fff1f8;
+  border: 2px solid #f4bfd9;
+  border-radius: 14px;
+  padding: 16px;
+  margin: 20px 0;
+  line-height: 1.8;
+}
+
+.example h3 {
+  color: #ba4584;
+  margin: 0 0 8px;
+}
+
+.malay {
+  color: #87687b;
+  font-size: 14px;
+}
+
+.green {
+  color: #178c49;
+  font-weight: bold;
+}
+
+.instructions {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 20px 0;
+}
+
+.result {
+  display: none;
+  background: #e5f8ea;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 18px 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.percentage {
+  font-size: 32px;
+  font-weight: bold;
+  color: #178a46;
+}
+
+.progress {
+  background: #c3e4ce;
+  height: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: #31b76a;
+  transition: width 0.3s;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+button {
+  background: #d65193;
+  border: none;
+  color: white;
+  padding: 12px 17px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #b83d7a;
+}
+
+button.secondary {
+  background: #9b7893;
+}
+
+.question {
+  padding: 16px 0;
+  border-bottom: 1px solid #f0dce5;
+}
+
+.question-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.number {
+  background: #f8e5ef;
+  border-radius: 8px;
+  padding: 10px;
+  min-width: 39px;
+  text-align: center;
+  font-weight: bold;
+  color: #aa4680;
+}
+
+.verb {
+  font-size: 17px;
+}
+
+.answer-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 10px 0 0 51px;
+}
+
+.answer-row input {
+  flex: 1;
+  min-width: 0;
+  border: 2px solid #ead0de;
+  border-radius: 8px;
+  padding: 11px;
+  font-size: 16px;
+}
+
+.answer-row input:focus {
+  outline: none;
+  border-color: #d65193;
+}
+
+.answer-row input.correct {
+  border-color: #25a45a;
+  background: #effff3;
+}
+
+.answer-row input.wrong {
+  border-color: #e65a72;
+  background: #fff0f2;
+}
+
+.status {
+  font-size: 23px;
+  font-weight: bold;
+  min-width: 24px;
+}
+
+.correct-icon {
+  color: #159447;
+}
+
+.wrong-icon {
+  color: #df425c;
+}
+
+.answer-key {
+  display: none;
+  margin: 8px 0 0 51px;
+  color: #168548;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: #a98799;
+  margin-top: 25px;
+}
+
+@media (max-width:480px) {
+  .container { padding: 15px; }
+  .answer-row { margin-left: 0; }
+  .answer-key { margin-left: 0; }
+  button { flex: 1; }
+  h1 { font-size: 24px; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>🌸 Verb → Noun Quiz 🌸</h1>
+<p class="subtitle">Set 2 | 20 Words | B1–B2</p>
+
+<!-- CUTE CHIBI ILLUSTRATION -->
+<div class="illustration">
+
+<svg viewBox="0 0 220 230"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img"
+     aria-label="Cute chibi girl wearing a pink hijab and reading a book">
+
+  <!-- Background -->
+  <circle cx="110" cy="110" r="99" fill="#fff0f7"/>
+
+  <!-- Decorations -->
+  <text x="21" y="57" font-size="21">✨</text>
+  <text x="176" y="65" font-size="19">⭐</text>
+  <text x="17" y="167" font-size="21">🌸</text>
+  <text x="177" y="168" font-size="20">💕</text>
+
+  <!-- Shadow -->
+  <ellipse cx="110" cy="204" rx="47" ry="9" fill="#ead1df"/>
+
+  <!-- Hijab back -->
+  <path d="
+    M64 103
+    Q58 52 110 43
+    Q163 52 156 103
+    L166 174
+    Q110 207 54 174
+    Z"
+    fill="#d78cb7"/>
+
+  <!-- Face -->
+  <ellipse cx="110" cy="103"
+           rx="38" ry="43"
+           fill="#ffe3d2"/>
+
+  <!-- Hijab framing -->
+  <path d="
+    M72 95
+    Q64 59 95 50
+    Q110 44 127 50
+    Q156 59 148 95
+    Q142 71 129 66
+    Q110 59 91 66
+    Q78 73 72 95"
+    fill="#c575a8"/>
+
+  <!-- Eyes -->
+  <ellipse cx="96" cy="104" rx="5" ry="7" fill="#48313b"/>
+  <ellipse cx="124" cy="104" rx="5" ry="7" fill="#48313b"/>
+  <circle cx="97.5" cy="102" r="1.6" fill="white"/>
+  <circle cx="125.5" cy="102" r="1.6" fill="white"/>
+
+  <!-- Blush -->
+  <ellipse cx="86" cy="116" rx="8" ry="4" fill="#f5a7b8"/>
+  <ellipse cx="134" cy="116" rx="8" ry="4" fill="#f5a7b8"/>
+
+  <!-- Smile -->
+  <path d="M104 123 Q110 130 116 123"
+        fill="none"
+        stroke="#a75c72"
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+
+  <!-- Hijab sides -->
+  <path d="M71 96 Q66 140 92 156 L81 179 Q53 150 64 104 Z"
+        fill="#c575a8"/>
+  <path d="M149 96 Q154 140 128 156 L139 179 Q167 150 156 104 Z"
+        fill="#c575a8"/>
+
+  <!-- Dress -->
+  <path d="M85 156 Q110 169 135 156 L151 196 L69 196 Z"
+        fill="#f4bfd9"/>
+
+  <!-- Book -->
+  <path d="M110 160 Q94 150 80 158 L80 187 Q96 181 110 191 Z"
+        fill="white" stroke="#ce8eb3" stroke-width="2"/>
+  <path d="M110 160 Q126 150 140 158 L140 187 Q124 181 110 191 Z"
+        fill="white" stroke="#ce8eb3" stroke-width="2"/>
+
+  <!-- Book text -->
+  <path d="M87 165 L102 167 M87 172 L102 174 M118 167 L133 165 M118 174 L133 172"
+        stroke="#e5b0cf"
+        stroke-width="2"
+        stroke-linecap="round"/>
+
+  <!-- Hands -->
+  <circle cx="81" cy="170" r="6" fill="#ffe3d2"/>
+  <circle cx="139" cy="170" r="6" fill="#ffe3d2"/>
+
+</svg>
+
+<p>Let's learn new words! ✨</p>
+
+</div>
+
+<!-- WORKED EXAMPLE -->
+<div class="example">
+  <h3>✨ Example / Contoh</h3>
+
+  <strong>Verb:</strong> move<br>
+  <span class="malay">Bergerak</span>
+  <br>
+
+  <strong>Noun:</strong>
+  <span class="green">movement</span><br>
+  <span class="malay">Pergerakan</span>
+</div>
+
+<p class="instructions">
+  <strong>Instructions:</strong><br>
+  Change each verb into its correct noun form.
+  Type only the missing word.
+  <br>
+  <strong>Example:</strong> move → movement
+</p>
+
+<!-- RESULTS -->
+<div class="result" id="result" aria-live="polite">
+  <div id="scoreText"></div>
+  <div class="percentage" id="percentage"></div>
+
+  <div class="progress">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+</div>
+
+<!-- BUTTONS -->
+<div class="buttons">
+  <button onclick="checkAnswers()">✓ Check</button>
+  <button id="answersBtn" onclick="toggleAnswers()">
+    Answers
+  </button>
+  <button class="secondary" onclick="resetQuiz()">
+    ↻ Reset
+  </button>
+</div>
+
+<!-- QUESTIONS -->
+<div id="quiz"></div>
+
+<div class="buttons">
+  <button onclick="checkAnswers()">
+    Check My Answers
+  </button>
+</div>
+
+<div class="footer">
+  Keep practising! Every word counts. 🌷
+</div>
+
+</div>
+
+<script>
+
+const questionBank = [
+  {
+    verb: "achieve",
+    noun: "achievement",
+    article: "an",
+    bm: "pencapaian"
+  },
+  {
+    verb: "develop",
+    noun: "development",
+    article: "",
+    bm: "perkembangan"
+  },
+  {
+    verb: "improve",
+    noun: "improvement",
+    article: "an",
+    bm: "penambahbaikan"
+  },
+  {
+    verb: "protect",
+    noun: "protection",
+    article: "",
+    bm: "perlindungan"
+  },
+  {
+    verb: "educate",
+    noun: "education",
+    article: "",
+    bm: "pendidikan"
+  },
+  {
+    verb: "create",
+    noun: "creation",
+    article: "a",
+    bm: "penciptaan"
+  },
+  {
+    verb: "prepare",
+    noun: "preparation",
+    article: "",
+    bm: "persediaan"
+  },
+  {
+    verb: "celebrate",
+    noun: "celebration",
+    article: "a",
+    bm: "perayaan"
+  },
+  {
+    verb: "communicate",
+    noun: "communication",
+    article: "",
+    bm: "komunikasi"
+  },
+  {
+    verb: "compete",
+    noun: "competition",
+    article: "a",
+    bm: "pertandingan"
+  },
+  {
+    verb: "describe",
+    noun: "description",
+    article: "a",
+    bm: "penerangan"
+  },
+  {
+    verb: "perform",
+    noun: "performance",
+    article: "a",
+    bm: "persembahan"
+  },
+  {
+    verb: "discover",
+    noun: "discovery",
+    article: "a",
+    bm: "penemuan"
+  },
+  {
+    verb: "explore",
+    noun: "exploration",
+    article: "",
+    bm: "penerokaan"
+  },
+  {
+    verb: "inform",
+    noun: "information",
+    article: "",
+    bm: "maklumat"
+  },
+  {
+    verb: "encourage",
+    noun: "encouragement",
+    article: "",
+    bm: "galakan"
+  },
+  {
+    verb: "punish",
+    noun: "punishment",
+    article: "",
+    bm: "hukuman"
+  },
+  {
+    verb: "entertain",
+    noun: "entertainment",
+    article: "",
+    bm: "hiburan"
+  },
+  {
+    verb: "choose",
+    noun: "choice",
+    article: "a",
+    bm: "pilihan"
+  },
+  {
+    verb: "succeed",
+    noun: "success",
+    article: "",
+    bm: "kejayaan"
+  }
+];
+
+let questions = [...questionBank];
+let answersVisible = false;
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function clearMarks() {
+  document.getElementById("result").style.display = "none";
+
+  document.querySelectorAll(".answer-row input").forEach(input => {
+    input.classList.remove("correct", "wrong");
+  });
+
+  document.querySelectorAll(".status").forEach(status => {
+    status.textContent = "";
+    status.className = "status";
+  });
+}
+
+function loadQuiz() {
+  const quiz = document.getElementById("quiz");
+  quiz.innerHTML = "";
+
+  questions.forEach((q, index) => {
+    const div = document.createElement("div");
+    div.className = "question";
+
+    div.innerHTML = `
+      <div class="question-top">
+        <span class="number">${index + 1}</span>
+        <span class="verb">verb: <b>${q.verb}</b></span>
+      </div>
+
+      <div class="answer-row">
+        <span>noun: ${q.article}</span>
+        <input
+          type="text"
+          id="answer${index}"
+          placeholder="Your answer"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+        >
+        <span class="status" id="status${index}"></span>
+      </div>
+
+      <div class="answer-key" id="key${index}">
+        <strong>Answer:</strong> ${q.noun}
+        <br>
+        <strong>BM:</strong> ${q.bm}
+      </div>
+    `;
+
+    quiz.appendChild(div);
+
+    document.getElementById("answer" + index)
+      .addEventListener("input", clearMarks);
+
+    document.getElementById("key" + index)
+      .style.display = answersVisible ? "block" : "none";
+  });
+
+  document.getElementById("result").style.display = "none";
+}
+
+function checkAnswers() {
+  let score = 0;
+
+  questions.forEach((q, index) => {
+    const input = document.getElementById("answer" + index);
+    const status = document.getElementById("status" + index);
+
+    const userAnswer = input.value.trim().toLowerCase();
+    const correctAnswer = q.noun.toLowerCase();
+
+    input.classList.remove("correct", "wrong");
+
+    if (userAnswer === correctAnswer) {
+      score++;
+      input.classList.add("correct");
+      status.textContent = "✓";
+      status.className = "status correct-icon";
+    } else {
+      input.classList.add("wrong");
+      status.textContent = "✕";
+      status.className = "status wrong-icon";
+    }
+  });
+
+  const percent = Math.round(
+    (score / questions.length) * 100
+  );
+
+  document.getElementById("scoreText").innerHTML =
+    `You have <b>${score}</b> correct answers
+    from a possible <b>${questions.length}</b>.`;
+
+  document.getElementById("percentage").textContent =
+    percent + "%";
+
+  document.getElementById("progressFill").style.width =
+    percent + "%";
+
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("result").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function toggleAnswers() {
+  answersVisible = !answersVisible;
+
+  questions.forEach((q, index) => {
+    document.getElementById("key" + index).style.display =
+      answersVisible ? "block" : "none";
+  });
+
+  document.getElementById("answersBtn").textContent =
+    answersVisible ? "Hide Answers" : "Answers";
+}
+
+function resetQuiz() {
+  questions = shuffle([...questionBank]);
+  answersVisible = false;
+
+  document.getElementById("answersBtn").textContent = "Answers";
+
+  loadQuiz();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+loadQuiz();
+
+</script>
+</body>
+</html>
