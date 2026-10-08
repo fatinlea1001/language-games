@@ -1,0 +1,816 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Environment Sentence Jumble</title>
+<style>
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  padding:16px;
+  font-family:Arial,sans-serif;
+  color:#403441;
+  background:#fff0f6;
+}
+.container {
+  max-width:760px;
+  margin:12px auto 35px;
+  padding:22px;
+  background:white;
+  border-radius:22px;
+  box-shadow:0 5px 20px #e9cbd9;
+}
+h1 {
+  color:#b63c7f;
+  text-align:center;
+  font-size:26px;
+}
+.subtitle {
+  text-align:center;
+  color:#8b7080;
+  font-size:14px;
+}
+.mascot {
+  display:block;
+  width:170px;
+  max-width:70%;
+  height:auto;
+  margin:4px auto 8px;
+}
+.example {
+  background:#fff1f8;
+  border:2px solid #f2bfda;
+  border-radius:14px;
+  padding:15px;
+  margin:18px 0;
+  line-height:1.7;
+}
+.example strong { color:#ab3978; }
+.meaning {
+  font-size:14px;
+  color:#795e70;
+}
+.correct-example {
+  color:#168346;
+  font-weight:bold;
+}
+.instructions {
+  font-size:14px;
+  line-height:1.65;
+  margin:15px 0;
+}
+.example-tiles {
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin:7px 0;
+}
+.example-tiles span {
+  background:white;
+  border:1px solid #e9bcd2;
+  border-radius:8px;
+  padding:6px 9px;
+  font-weight:bold;
+}
+.actions {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:17px 0;
+}
+button {
+  font-family:inherit;
+  cursor:pointer;
+}
+.action {
+  border:0;
+  padding:11px 15px;
+  border-radius:9px;
+  background:#d34d91;
+  color:white;
+  font-weight:bold;
+  font-size:14px;
+}
+.action.secondary { background:#9c7991; }
+.action:hover { filter:brightness(.94); }
+.result {
+  display:none;
+  margin:16px 0;
+  background:#e7f8ed;
+  border-radius:13px;
+  padding:17px;
+}
+.percent {
+  color:#188548;
+  font-size:31px;
+  font-weight:bold;
+  margin-top:3px;
+}
+.progress {
+  margin-top:9px;
+  height:9px;
+  background:#b9ddc5;
+  border-radius:15px;
+  overflow:hidden;
+}
+.progress-fill {
+  background:#2db967;
+  width:0;
+  height:100%;
+  transition:width .25s;
+}
+.question {
+  padding:17px 0;
+  border-bottom:1px solid #f1dbe6;
+}
+.heading {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:9px;
+}
+.number {
+  background:#f9e4ee;
+  color:#a73e79;
+  font-weight:bold;
+  border-radius:7px;
+  min-width:37px;
+  text-align:center;
+  padding:8px;
+}
+.kind {
+  color:#876c7c;
+  font-size:12px;
+}
+.zone-label {
+  font-size:12px;
+  font-weight:bold;
+  color:#8d6b7e;
+  margin:10px 0 5px;
+}
+.tiles {
+  display:flex;
+  flex-wrap:wrap;
+  align-content:flex-start;
+  gap:7px;
+  min-height:51px;
+  padding:10px;
+  border:2px dashed #f0c9dc;
+  border-radius:11px;
+  background:#fff9fc;
+  transition:background .15s;
+}
+.tiles.answer {
+  background:#fff;
+  border-color:#dfbad0;
+}
+.tiles.drag-over {
+  background:#ffe3f1;
+  border-color:#d34d91;
+}
+.tile {
+  border:1px solid #e3b4ce;
+  background:#f9e1ee;
+  color:#543950;
+  border-radius:8px;
+  padding:9px 11px;
+  font-size:15px;
+  font-weight:bold;
+  line-height:1.1;
+  touch-action:manipulation;
+  user-select:none;
+}
+.answer .tile {
+  border-color:#d1b4c6;
+  background:#f5eff4;
+}
+.placeholder {
+  color:#aa91a0;
+  font-size:13px;
+  align-self:center;
+}
+.small-actions {
+  display:flex;
+  gap:7px;
+  margin-top:9px;
+}
+.small {
+  border:1px solid #e0bcd0;
+  color:#a33d78;
+  background:white;
+  border-radius:7px;
+  padding:7px 11px;
+  font-size:12px;
+  font-weight:bold;
+}
+.feedback {
+  display:none;
+  font-size:14px;
+  margin:9px 0 0;
+  font-weight:bold;
+}
+.feedback.good {
+  display:block;
+  color:#128340;
+}
+.feedback.bad {
+  display:block;
+  color:#c33e55;
+}
+.answer-key {
+  display:none;
+  font-size:14px;
+  color:#188044;
+  line-height:1.6;
+  margin:9px 0 0;
+}
+.question.is-correct .tiles.answer {
+  border-color:#54b77b;
+  background:#f3fff6;
+}
+.question.is-wrong .tiles.answer {
+  border-color:#df7588;
+  background:#fff7f8;
+}
+.footer {
+  text-align:center;
+  color:#a08092;
+  font-size:12px;
+  margin-top:20px;
+}
+@media(max-width:480px) {
+  .container { padding:14px; }
+  h1 { font-size:23px; }
+  .tile { font-size:14px; padding:9px; }
+  .action { flex:1; }
+}
+</style>
+</head>
+<body>
+
+<main class="container">
+
+<h1>🌸 Environment Sentence Jumble 🌿</h1>
+<p class="subtitle">
+B1 Level | 20 Questions | Simple & Compound
+</p>
+
+<!-- Cute Earth mascot -->
+<svg class="mascot" viewBox="0 0 220 170"
+role="img" aria-label="Cute smiling Earth mascot"
+xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="110" cy="155" rx="56" ry="8"
+    fill="#efdae5"/>
+  <text x="21" y="49" font-size="23">✨</text>
+  <text x="172" y="52" font-size="22">🌸</text>
+  <path d="M76 122 L65 143 M144 122 L155 143"
+    stroke="#6aaea1" stroke-width="8"
+    stroke-linecap="round"/>
+  <circle cx="110" cy="85" r="53"
+    fill="#ace4dd" stroke="#70bcb3"
+    stroke-width="3"/>
+  <path d="M77 49 Q91 34 104 44 L102 58
+    88 66 95 83 80 92 65 80 68 61 Z"
+    fill="#8fcb87"/>
+  <path d="M136 40 Q160 53 159 69
+    L144 75 145 95 125 109
+    118 91 130 73 122 55 Z"
+    fill="#8fcb87"/>
+  <path d="M100 121 Q119 111 133 121
+    L123 132 108 136 Z" fill="#8fcb87"/>
+  <ellipse cx="92" cy="92" rx="4" ry="6"
+    fill="#405b61"/>
+  <ellipse cx="126" cy="92" rx="4" ry="6"
+    fill="#405b61"/>
+  <circle cx="93" cy="90" r="1.3" fill="white"/>
+  <circle cx="127" cy="90" r="1.3" fill="white"/>
+  <ellipse cx="81" cy="104" rx="8" ry="4"
+    fill="#f6b4c6"/>
+  <ellipse cx="138" cy="104" rx="8" ry="4"
+    fill="#f6b4c6"/>
+  <path d="M102 107 Q110 116 118 107"
+    fill="none" stroke="#6d6471"
+    stroke-width="3" stroke-linecap="round"/>
+  <path d="M65 95 Q49 90 44 108
+    M155 95 Q171 90 174 104"
+    fill="none" stroke="#70bcb3"
+    stroke-width="7" stroke-linecap="round"/>
+  <path d="M177 108 Q157 82 176 69
+    Q194 79 177 108Z"
+    fill="#7fbf79" stroke="#559d69"
+    stroke-width="2"/>
+</svg>
+
+<div class="example">
+  <strong>✨ Example / Contoh</strong>
+  <div class="example-tiles">
+    <span>nature.</span>
+    <span>should</span>
+    <span>We</span>
+    <span>protect</span>
+  </div>
+  <div class="correct-example">
+    We should protect nature.
+  </div>
+  <div class="meaning">
+    Kita patut melindungi alam semula jadi.
+  </div>
+</div>
+
+<p class="instructions">
+  <strong>Instructions:</strong>
+  Tap each word box in the correct order to
+  build a sentence. Tap a word in your answer
+  to return it, or drag word boxes on a computer.
+  Each box contains <strong>one word</strong>.
+  Keep the punctuation attached to its word.
+  Then press <strong>Check</strong> to see your score.
+</p>
+
+<div class="result" id="result" aria-live="polite">
+  <div id="scoreText"></div>
+  <div class="percent" id="percentage"></div>
+  <div class="progress">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+</div>
+
+<div class="actions">
+  <button class="action" onclick="checkAnswers()">
+    ✓ Check
+  </button>
+  <button class="action" id="answersBtn"
+    onclick="toggleAnswers()">Answers</button>
+  <button class="action secondary"
+    onclick="resetQuiz()">↻ Reset</button>
+</div>
+
+<div id="quiz"></div>
+
+<div class="actions">
+  <button class="action" onclick="checkAnswers()">
+    Check My Answers
+  </button>
+</div>
+
+<p class="footer">
+  Small actions can make a big difference! 🌱
+</p>
+
+</main>
+
+<script>
+// 20 Environment sentences: 10 simple, 10 compound.
+const QUESTION_BANK = [
+  {
+    text: "We should plant more trees to protect the environment.",
+    type: "Simple"
+  },
+  {
+    text: "Thick haze covered the city yesterday morning.",
+    type: "Simple"
+  },
+  {
+    text: "Plastic waste causes serious problems for marine animals.",
+    type: "Simple"
+  },
+  {
+    text: "Many students bring reusable water bottles to school.",
+    type: "Simple"
+  },
+  {
+    text: "The government has introduced stricter rules against open burning.",
+    type: "Simple"
+  },
+  {
+    text: "Air pollution can affect our health in many ways.",
+    type: "Simple"
+  },
+  {
+    text: "Recycling helps reduce the amount of waste in landfills.",
+    type: "Simple"
+  },
+  {
+    text: "People should wear face masks during severe haze.",
+    type: "Simple"
+  },
+  {
+    text: "Illegal logging destroys the natural habitats of wild animals.",
+    type: "Simple"
+  },
+  {
+    text: "Using public transport can reduce air pollution in cities.",
+    type: "Simple"
+  },
+  {
+    text: "The air was unhealthy, so we stayed indoors.",
+    type: "Compound"
+  },
+  {
+    text: "We wanted to clean the beach, but it started raining.",
+    type: "Compound"
+  },
+  {
+    text: "Some people throw rubbish into rivers, and this harms aquatic life.",
+    type: "Compound"
+  },
+  {
+    text: "The haze became worse, so the school cancelled outdoor activities.",
+    type: "Compound"
+  },
+  {
+    text: "We can recycle old newspapers, or we can use them for art projects.",
+    type: "Compound"
+  },
+  {
+    text: "The river looks clean, but the water is still polluted.",
+    type: "Compound"
+  },
+  {
+    text: "Many people know about climate change, yet they continue to waste energy.",
+    type: "Compound"
+  },
+  {
+    text: "The weather was extremely hot, so we drank plenty of water.",
+    type: "Compound"
+  },
+  {
+    text: "The volunteers collected plastic bottles, and they separated them for recycling.",
+    type: "Compound"
+  },
+  {
+    text: "Factories must control their smoke emissions, or the air quality will become worse.",
+    type: "Compound"
+  }
+];
+
+let questions = [...QUESTION_BANK];
+let work = [];
+let answersVisible = false;
+
+// Shuffle questions or words.
+function shuffled(items) {
+  const a = [...items];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Prepare individual word boxes.
+function startWork() {
+  work = questions.map(q => {
+    const words = q.text.split(/\s+/).map(
+      (word, id) => ({ word, id })
+    );
+    let pool = shuffled(words);
+
+    // Avoid an already-completed jumbled sentence.
+    if (pool.map(t => t.word).join(" ") === q.text) {
+      [pool[0], pool[1]] = [pool[1], pool[0]];
+    }
+    return { pool, answer: [] };
+  });
+}
+
+// Create one word box.
+function tileElement(i, token, zoneName) {
+  const tile = document.createElement("button");
+  tile.type = "button";
+  tile.className = "tile";
+  tile.textContent = token.word;
+  tile.draggable = true;
+  tile.dataset.id = String(token.id);
+  tile.title = zoneName === "pool"
+    ? "Tap to add word"
+    : "Tap to return word";
+
+  tile.addEventListener("click", () => {
+    moveToken(
+      i,
+      token.id,
+      zoneName,
+      zoneName === "pool" ? "answer" : "pool"
+    );
+  });
+
+  tile.addEventListener("dragstart", e => {
+    e.dataTransfer.setData(
+      "text/plain",
+      JSON.stringify({
+        i,
+        id: token.id,
+        from: zoneName
+      })
+    );
+    e.dataTransfer.effectAllowed = "move";
+  });
+
+  return tile;
+}
+
+// Refresh word box positions.
+function renderTiles(i) {
+  for (const zoneName of ["pool", "answer"]) {
+    const zone = document.getElementById(
+      zoneName + "-" + i
+    );
+    zone.innerHTML = "";
+
+    if (!work[i][zoneName].length) {
+      const message = document.createElement("span");
+      message.className = "placeholder";
+      message.textContent = zoneName === "answer"
+        ? "Tap words below to build your answer..."
+        : "All words have been used.";
+      zone.appendChild(message);
+    }
+
+    work[i][zoneName].forEach(token => {
+      zone.appendChild(
+        tileElement(i, token, zoneName)
+      );
+    });
+  }
+}
+
+// Hide old scoring after any answer changes.
+function clearMarks() {
+  document.getElementById("result").style.display =
+    "none";
+
+  document.querySelectorAll(".question").forEach(q => {
+    q.classList.remove("is-correct", "is-wrong");
+  });
+
+  document.querySelectorAll(".feedback").forEach(f => {
+    f.className = "feedback";
+    f.textContent = "";
+  });
+}
+
+// Move one word between the areas.
+function moveToken(i, id, from, to, beforeId = null) {
+  const origin = work[i][from];
+  const destination = work[i][to];
+
+  const oldIndex = origin.findIndex(
+    token => token.id === id
+  );
+
+  if (
+    oldIndex === -1 ||
+    (from === to && id === beforeId)
+  ) return;
+
+  const [token] = origin.splice(oldIndex, 1);
+
+  const newIndex = beforeId === null
+    ? -1
+    : destination.findIndex(t => t.id === beforeId);
+
+  if (newIndex === -1) {
+    destination.push(token);
+  } else {
+    destination.splice(newIndex, 0, token);
+  }
+
+  renderTiles(i);
+  clearMarks();
+}
+
+// Undo the last word.
+function returnLast(i) {
+  const a = work[i].answer;
+  if (a.length) {
+    moveToken(
+      i,
+      a[a.length - 1].id,
+      "answer",
+      "pool"
+    );
+  }
+}
+
+// Clear one sentence.
+function clearSentence(i) {
+  work[i].pool.push(...work[i].answer);
+  work[i].answer = [];
+  renderTiles(i);
+  clearMarks();
+}
+
+// Allow desktop drag-and-drop.
+function attachDrops(zone, i, to) {
+  zone.addEventListener("dragover", e => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    zone.classList.add("drag-over");
+  });
+
+  zone.addEventListener("dragleave", e => {
+    if (!zone.contains(e.relatedTarget)) {
+      zone.classList.remove("drag-over");
+    }
+  });
+
+  zone.addEventListener("drop", e => {
+    e.preventDefault();
+    zone.classList.remove("drag-over");
+
+    let payload;
+    try {
+      payload = JSON.parse(
+        e.dataTransfer.getData("text/plain")
+      );
+    } catch {
+      return;
+    }
+
+    if (
+      payload.i !== i ||
+      !["pool", "answer"].includes(payload.from)
+    ) return;
+
+    const target = e.target.closest(".tile");
+    const beforeId = target
+      ? Number(target.dataset.id)
+      : null;
+
+    moveToken(
+      i,
+      payload.id,
+      payload.from,
+      to,
+      beforeId
+    );
+  });
+}
+
+// Display all 20 questions.
+function renderQuiz() {
+  const quiz = document.getElementById("quiz");
+  quiz.innerHTML = "";
+
+  questions.forEach((q, i) => {
+    const card = document.createElement("section");
+    card.className = "question";
+
+    card.innerHTML = `
+      <div class="heading">
+        <span class="number">${i + 1}</span>
+        <strong>Arrange the words</strong>
+        <span class="kind">${q.type}</span>
+      </div>
+
+      <div class="zone-label">Your sentence</div>
+      <div class="tiles answer" id="answer-${i}"></div>
+
+      <div class="zone-label">
+        Word boxes (tap or drag)
+      </div>
+      <div class="tiles" id="pool-${i}"></div>
+
+      <div class="small-actions">
+        <button class="small" id="undo-${i}">
+          ↶ Undo last
+        </button>
+        <button class="small" id="clear-${i}">
+          Clear
+        </button>
+      </div>
+
+      <p class="feedback" id="feedback-${i}"></p>
+
+      <p class="answer-key" id="key-${i}">
+        <strong>Answer:</strong> ${q.text}
+      </p>
+    `;
+
+    quiz.appendChild(card);
+
+    attachDrops(
+      document.getElementById("answer-" + i),
+      i,
+      "answer"
+    );
+    attachDrops(
+      document.getElementById("pool-" + i),
+      i,
+      "pool"
+    );
+
+    document.getElementById("undo-" + i)
+      .addEventListener("click", () => returnLast(i));
+
+    document.getElementById("clear-" + i)
+      .addEventListener("click", () => clearSentence(i));
+
+    renderTiles(i);
+  });
+
+  updateAnswerVisibility();
+  clearMarks();
+}
+
+// Mark all answers.
+function checkAnswers() {
+  let score = 0;
+
+  questions.forEach((q, i) => {
+    const attempt = work[i].answer
+      .map(t => t.word)
+      .join(" ");
+
+    const correct =
+      work[i].pool.length === 0 &&
+      attempt === q.text;
+
+    const card = document.getElementById(
+      "answer-" + i
+    ).closest(".question");
+
+    const feedback = document.getElementById(
+      "feedback-" + i
+    );
+
+    card.classList.remove(
+      "is-correct",
+      "is-wrong"
+    );
+
+    if (correct) {
+      score++;
+      card.classList.add("is-correct");
+      feedback.className = "feedback good";
+      feedback.textContent = "✓ Correct!";
+    } else {
+      card.classList.add("is-wrong");
+      feedback.className = "feedback bad";
+      feedback.textContent =
+        "✕ Not quite. Try rearranging the words.";
+    }
+  });
+
+  const percentage = Math.round(
+    score / questions.length * 100
+  );
+
+  document.getElementById("scoreText").textContent =
+    `You have ${score} correct answers from a possible ${questions.length}.`;
+
+  document.getElementById("percentage").textContent =
+    percentage + "%";
+
+  document.getElementById("progressFill").style.width =
+    percentage + "%";
+
+  document.getElementById("result").style.display =
+    "block";
+
+  document.getElementById("result").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+// Show or hide model sentences.
+function updateAnswerVisibility() {
+  document.querySelectorAll(".answer-key")
+    .forEach(key => {
+      key.style.display =
+        answersVisible ? "block" : "none";
+    });
+
+  document.getElementById("answersBtn").textContent =
+    answersVisible ? "Hide Answers" : "Answers";
+}
+
+function toggleAnswers() {
+  answersVisible = !answersVisible;
+  updateAnswerVisibility();
+}
+
+// Replay with shuffled questions and words.
+function resetQuiz() {
+  questions = shuffled(QUESTION_BANK);
+  answersVisible = false;
+  startWork();
+  renderQuiz();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+// Start the game.
+startWork();
+renderQuiz();
+
+</script>
+</body>
+</html>
