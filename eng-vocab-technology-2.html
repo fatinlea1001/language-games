@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technology Meaning Quest — Set 2</title>
+<style>
+:root {
+  --pink:#e77ca3;
+  --dark:#a83e67;
+  --light:#fff0f5;
+  --ink:#493441;
+  --muted:#796471;
+  --line:#f1cedd;
+  --green:#247448;
+  --green-bg:#eaf8ee;
+  --red:#a53850;
+  --red-bg:#fff0f0;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  min-height:100vh;
+  padding:24px 14px;
+  font-family:"Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%,#ffe0ec 0,transparent 35%),
+    radial-gradient(circle at 90% 80%,#fce0ef 0,transparent 35%),
+    #fff7fa;
+}
+button,input { font:inherit; }
+button {
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+button:focus-visible,input:focus-visible {
+  outline:3px solid var(--dark);
+  outline-offset:4px;
+}
+.app { max-width:720px; margin:auto; }
+header { text-align:center; margin-bottom:20px; }
+.tag {
+  display:inline-block;
+  padding:7px 14px;
+  border-radius:30px;
+  background:white;
+  color:var(--dark);
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:1px;
+}
+h1 {
+  font-size:clamp(1.75rem,6vw,2.5rem);
+  margin:12px 0 6px;
+}
+.subtitle { color:var(--muted); margin:0; line-height:1.6; }
+.card {
+  background:rgba(255,255,255,.97);
+  border:2px solid var(--line);
+  border-radius:26px;
+  padding:clamp(20px,5vw,36px);
+  box-shadow:0 12px 35px #b8678714;
+}
+[hidden] { display:none !important; }
+.center { text-align:center; }
+.intro-art { text-align:center; font-size:4rem; padding:15px; }
+.instructions {
+  background:var(--light);
+  padding:18px;
+  border-radius:16px;
+  line-height:1.9;
+  margin:20px 0;
+}
+label { display:block; font-weight:700; margin-bottom:9px; }
+input {
+  width:100%;
+  padding:15px;
+  border:2px solid var(--line);
+  border-radius:13px;
+  background:#fffbfd;
+  color:var(--ink);
+}
+input::placeholder { color:#a48b99; }
+.primary {
+  width:100%;
+  padding:15px 20px;
+  border:none;
+  border-radius:14px;
+  color:white;
+  background:var(--dark);
+  font-weight:700;
+  cursor:pointer;
+  margin-top:18px;
+  box-shadow:0 5px 0 #7d2a4b;
+}
+.primary:hover { background:#93345b; }
+.primary:active { transform:translateY(2px); }
+.secondary {
+  width:100%;
+  padding:13px;
+  margin-top:13px;
+  border:2px solid var(--line);
+  background:white;
+  color:var(--dark);
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:700;
+}
+.error { color:var(--red); font-size:.9rem; }
+.top-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  font-weight:700;
+  font-size:.92rem;
+}
+.player { color:var(--dark); overflow-wrap:anywhere; }
+.progress {
+  height:10px;
+  background:var(--light);
+  border-radius:20px;
+  overflow:hidden;
+  margin:16px 0 22px;
+}
+.progress-fill {
+  height:100%;
+  width:0%;
+  background:var(--pink);
+  transition:width .3s ease;
+}
+.art {
+  display:grid;
+  place-items:center;
+  width:110px;
+  height:110px;
+  background:var(--light);
+  border:2px dashed var(--line);
+  border-radius:28px;
+  font-size:3.8rem;
+  margin:0 auto 14px;
+}
+.word {
+  text-align:center;
+  font-size:clamp(1.5rem,6vw,2.2rem);
+  color:var(--dark);
+  margin:10px 0 18px;
+  overflow-wrap:anywhere;
+}
+.sentence {
+  font-size:1.12rem;
+  line-height:1.8;
+  padding:19px;
+  background:#fff7fa;
+  border-left:4px solid var(--pink);
+  border-radius:10px;
+}
+.sentence strong { color:var(--dark); font-weight:800; }
+.prompt { margin:22px 0 12px; font-weight:700; }
+.options { display:grid; gap:11px; }
+.option {
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-align:left;
+  border:2px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  background:white;
+  color:var(--ink);
+  cursor:pointer;
+  line-height:1.5;
+}
+.option:not(:disabled):hover {
+  background:var(--light);
+  border-color:var(--pink);
+}
+.letter {
+  display:grid;
+  place-items:center;
+  width:33px;
+  height:33px;
+  flex-shrink:0;
+  border-radius:10px;
+  background:var(--light);
+  color:var(--dark);
+  font-weight:800;
+}
+.option:disabled { cursor:default; opacity:1; }
+.option.correct {
+  background:var(--green-bg);
+  border-color:var(--green);
+}
+.option.wrong {
+  background:var(--red-bg);
+  border-color:var(--red);
+}
+.feedback {
+  padding:16px;
+  border-radius:13px;
+  margin-top:18px;
+  line-height:1.6;
+}
+.feedback.good { background:var(--green-bg); color:var(--green); }
+.feedback.bad { background:var(--red-bg); color:var(--red); }
+.result-art { font-size:4rem; margin-bottom:10px; }
+.result-name {
+  font-size:1.6rem;
+  color:var(--dark);
+  overflow-wrap:anywhere;
+  margin:12px 0;
+}
+.score-circle {
+  width:164px;
+  height:164px;
+  margin:24px auto 15px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border-radius:50%;
+  border:8px solid #f4b6cf;
+  background:var(--light);
+}
+.score-big { font-size:2.7rem; font-weight:800; }
+.score-label { font-size:.9rem; color:var(--muted); }
+.percentage { font-size:1.4rem; font-weight:800; color:var(--dark); }
+.message { line-height:1.7; }
+.result-meta { color:var(--muted); line-height:1.7; font-size:.9rem; }
+.screenshot-note {
+  padding:13px;
+  border-radius:12px;
+  background:var(--light);
+  line-height:1.6;
+  font-size:.92rem;
+  margin-top:20px;
+}
+.review { margin-top:25px; text-align:left; }
+.review-item {
+  padding:15px 0;
+  border-top:1px solid var(--line);
+  line-height:1.7;
+}
+.review-item p { margin:5px 0; }
+.review-item strong { color:var(--dark); }
+.review-answer { color:var(--green); }
+.review-wrong { color:var(--red); }
+footer {
+  text-align:center;
+  color:var(--muted);
+  font-size:.8rem;
+  margin-top:22px;
+}
+@media (prefers-reduced-motion:reduce) {
+  * { transition:none !important; }
+}
+@media print {
+  body { background:white; padding:0; }
+  .card { box-shadow:none; }
+  .primary,.secondary,.screenshot-note,footer { display:none; }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <header>
+    <span class="tag">SET 2 • GAMING & SOCIAL MEDIA</span>
+    <h1>🎮 Technology Meaning Quest</h1>
+    <p class="subtitle">New words. New challenges. Another level unlocked!</p>
+  </header>
+
+  <section id="startScreen" class="card" aria-labelledby="startTitle">
+    <div class="intro-art" aria-hidden="true">🎮🌷💻</div>
+    <h2 id="startTitle" class="center">Ready for Set 2?</h2>
+
+    <div class="instructions">
+      🌸 Answer <strong>25 questions</strong>.<br>
+      📖 Read each word or phrase in its sentence.<br>
+      🇲🇾 Choose its correct <strong>BM meaning</strong>.<br>
+      ⭐ Earn <strong>1 mark</strong> for each correct answer.<br>
+      🔄 Replay with shuffled questions and choices.
+    </div>
+
+    <form id="startForm">
+      <label for="nameInput">Your name</label>
+      <input id="nameInput" type="text"
+             placeholder="e.g. Nur Aisyah"
+             maxlength="70" autocomplete="name"
+             required aria-describedby="nameError">
+      <p id="nameError" class="error" role="alert" hidden>
+        Please enter your name before starting.
+      </p>
+      <button class="primary" type="submit">Let's play! 🎮</button>
+    </form>
+  </section>
+
+  <section id="gameScreen" class="card" aria-labelledby="wordTitle" hidden>
+    <div class="top-row">
+      <span id="playerLabel" class="player"></span>
+      <span id="questionCounter"></span>
+    </div>
+
+    <div id="progressBar" class="progress" role="progressbar"
+         aria-label="Questions completed"
+         aria-valuemin="0" aria-valuemax="25" aria-valuenow="0">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+
+    <div id="questionArt" class="art" aria-hidden="true"></div>
+    <h2 id="wordTitle" class="word" tabindex="-1"></h2>
+    <div id="sampleSentence" class="sentence"></div>
+
+    <p class="prompt">What does the bold word or phrase mean?</p>
+    <div id="options" class="options"
+         role="group" aria-label="Answer choices"></div>
+
+    <div id="feedback" class="feedback"
+         role="status" aria-live="polite" hidden></div>
+    <button id="nextButton" class="primary" type="button" hidden>
+      Next question →
+    </button>
+  </section>
+
+  <section id="resultScreen" class="card center"
+           aria-labelledby="resultTitle" hidden>
+    <div class="result-art" aria-hidden="true">🏆🌸</div>
+    <h2 id="resultTitle" tabindex="-1">Game completed!</h2>
+    <p><strong>Technology Meaning Quest — Set 2</strong></p>
+    <p>Gaming & Social Media</p>
+    <h3 id="resultName" class="result-name"></h3>
+
+    <div class="score-circle">
+      <span id="finalScore" class="score-big"></span>
+      <span class="score-label">TOTAL MARKS</span>
+    </div>
+
+    <p id="percentage" class="percentage"></p>
+    <p id="resultMessage" class="message"></p>
+    <p id="resultMeta" class="result-meta"></p>
+
+    <div class="screenshot-note">
+      📸 Take a screenshot of your name and score to submit to your teacher.
+    </div>
+
+    <button id="replayButton" class="primary" type="button">
+      Play again 🔄
+    </button>
+    <button id="reviewButton" class="secondary" type="button"
+            aria-expanded="false" aria-controls="reviewPanel">
+      Review my answers 📖
+    </button>
+    <button id="changeNameButton" class="secondary" type="button">
+      Change player name ✏️
+    </button>
+
+    <div id="reviewPanel" class="review" hidden></div>
+  </section>
+
+  <footer>New words unlocked. Keep growing! 🌷</footer>
+</div>
+
+<script>
+"use strict";
+
+// Text inside {curly brackets} is displayed in bold.
+const questionBank = [
+  {
+    word: "engaging",
+    emoji: "📖",
+    sentence: "The game has an {engaging} storyline that keeps players interested.",
+    answer: "Menarik dan mengekalkan perhatian",
+    wrong: [
+      "Sukar difahami tanpa bantuan",
+      "Mahal untuk dihasilkan",
+      "Sesuai hanya untuk orang dewasa"
+    ]
+  },
+  {
+    word: "intuitive",
+    emoji: "👆",
+    sentence: "The app has an {intuitive} design, so new users can navigate it easily.",
+    answer: "Mudah difahami atau digunakan tanpa banyak arahan",
+    wrong: [
+      "Cantik kerana menggunakan pelbagai warna",
+      "Selamat kerana memerlukan kata laluan panjang",
+      "Murah kerana tidak mempunyai banyak ciri"
+    ]
+  },
+  {
+    word: "lag",
+    emoji: "🐢",
+    sentence: "The {lag} made my character react several seconds late.",
+    answer: "Kelewatan tindak balas dalam permainan atau sistem",
+    wrong: [
+      "Peningkatan tahap kesukaran permainan",
+      "Kehilangan semua data pemain",
+      "Pertukaran watak secara automatik"
+    ]
+  },
+  {
+    word: "glitch",
+    emoji: "👾",
+    sentence: "A {glitch} caused the character to disappear from the screen.",
+    answer: "Gangguan teknikal kecil",
+    wrong: [
+      "Hadiah khas untuk pemain",
+      "Arahan baharu daripada pasukan",
+      "Bayaran tambahan untuk permainan"
+    ]
+  },
+  {
+    word: "restrict",
+    emoji: "🚧",
+    sentence: "Parents can {restrict} access to games that are unsuitable for children.",
+    answer: "Mengehadkan",
+    wrong: ["Memperluas", "Mengesyorkan", "Membaiki"]
+  },
+  {
+    word: "enhance",
+    emoji: "🎧",
+    sentence: "Good headphones can {enhance} the gaming experience.",
+    answer: "Meningkatkan kualiti atau keberkesanan",
+    wrong: [
+      "Mengukur tahap kesukaran",
+      "Menghentikan sesuatu buat sementara",
+      "Menggantikan sesuatu dengan yang lain"
+    ]
+  },
+  {
+    word: "impersonate",
+    emoji: "🎭",
+    sentence: "Scammers may {impersonate} famous gamers to trick their fans.",
+    answer: "Menyamar sebagai orang lain",
+    wrong: [
+      "Menemu bual seseorang",
+      "Mengkritik seseorang secara terbuka",
+      "Menjemput seseorang menyertai acara"
+    ]
+  },
+  {
+    word: "verify",
+    emoji: "🔎",
+    sentence: "Always {verify} a surprising claim before sharing it.",
+    answer: "Memeriksa untuk memastikan kesahihan",
+    wrong: [
+      "Menyebarkan kepada lebih ramai orang",
+      "Menterjemahkan ke bahasa lain",
+      "Meringkaskan kepada beberapa ayat"
+    ]
+  },
+  {
+    word: "consent",
+    emoji: "✅",
+    sentence: "Ask for your friend's {consent} before posting their photo.",
+    answer: "Persetujuan atau kebenaran",
+    wrong: [
+      "Kritikan atau aduan",
+      "Ganjaran atau hadiah",
+      "Nasihat atau cadangan"
+    ]
+  },
+  {
+    word: "accountability",
+    emoji: "⚖️",
+    sentence: "Clear rules encourage {accountability} for harmful behaviour online.",
+    answer: "Tanggungjawab terhadap tindakan sendiri",
+    wrong: [
+      "Kebebasan menggunakan semua aplikasi",
+      "Kebolehan menghasilkan kandungan menarik",
+      "Populariti dalam kalangan pengguna"
+    ]
+  },
+  {
+    word: "monetise",
+    emoji: "💰",
+    sentence: "Some gamers {monetise} their videos through advertisements.",
+    answer: "Menjana pendapatan daripada sesuatu",
+    wrong: [
+      "Menyimpan sesuatu untuk kegunaan sendiri",
+      "Mengubah sesuatu kepada bahasa lain",
+      "Melindungi sesuatu daripada disalin"
+    ]
+  },
+  {
+    word: "susceptible",
+    emoji: "🪤",
+    sentence: "Inexperienced users may be more {susceptible} to online scams.",
+    answer: "Mudah terpengaruh atau terjejas",
+    wrong: [
+      "Mahir menyelesaikan masalah",
+      "Berani mencuba perkara baharu",
+      "Berminat mempelajari teknologi"
+    ]
+  },
+  {
+    word: "compulsive",
+    emoji: "🎮",
+    sentence: "His {compulsive} gaming continued even when it caused him to miss classes.",
+    answer: "Sukar dikawal atau dihentikan walaupun membawa masalah",
+    wrong: [
+      "Dilakukan mengikut jadual yang teratur",
+      "Bertujuan untuk memperoleh pendapatan",
+      "Memerlukan kerjasama ramai peserta"
+    ]
+  },
+  {
+    word: "intrusive",
+    emoji: "🚪",
+    sentence: "The app asks {intrusive} questions about users' private lives.",
+    answer: "Mengganggu privasi atau ruang peribadi",
+    wrong: [
+      "Membantu pengguna memahami arahan",
+      "Menghiburkan dan menimbulkan rasa gembira",
+      "Mengandungi istilah yang sukar difahami"
+    ]
+  },
+  {
+    word: "predatory",
+    emoji: "🦈",
+    sentence: "{Predatory} sellers target inexperienced players with misleading offers.",
+    answer: "Mengambil kesempatan terhadap golongan yang mudah terpengaruh",
+    wrong: [
+      "Memberikan bantuan kepada pembeli yang memerlukan",
+      "Menawarkan produk hanya kepada pelanggan lama",
+      "Mematuhi semua peraturan jualan dalam talian"
+    ]
+  },
+  {
+    word: "instant gratification",
+    emoji: "❤️",
+    sentence: "Getting likes can provide {instant gratification}.",
+    answer: "Kepuasan yang diperoleh serta-merta",
+    wrong: [
+      "Kejayaan selepas bertahun-tahun berusaha",
+      "Kekecewaan akibat harapan yang terlalu tinggi",
+      "Kebimbangan tentang perkara yang belum berlaku"
+    ]
+  },
+  {
+    word: "targeted advertising",
+    emoji: "🎯",
+    sentence: "{Targeted advertising} shows users products based on their interests.",
+    answer: "Pengiklanan yang ditujukan kepada pengguna tertentu",
+    wrong: [
+      "Pengiklanan yang dipaparkan tanpa sebarang bayaran",
+      "Pengiklanan yang menggunakan gambar tanpa teks",
+      "Pengiklanan yang hanya disiarkan pada waktu malam"
+    ]
+  },
+  {
+    word: "data harvesting",
+    emoji: "🗂️",
+    sentence: "{Data harvesting} allows companies to build detailed profiles of users.",
+    answer: "Pengumpulan data pengguna dalam jumlah besar",
+    wrong: [
+      "Pemadaman data lama daripada komputer",
+      "Pemulihan data yang hilang akibat kerosakan",
+      "Perlindungan data menggunakan kata laluan"
+    ]
+  },
+  {
+    word: "attention span",
+    emoji: "⏱️",
+    sentence: "A long tutorial may be difficult to follow for someone with a short {attention span}.",
+    answer: "Tempoh seseorang dapat mengekalkan tumpuan",
+    wrong: [
+      "Masa yang diperlukan untuk mengecas telefon",
+      "Jarak antara pengguna dengan skrin",
+      "Jumlah maklumat yang boleh disimpan dalam peranti"
+    ]
+  },
+  {
+    word: "peer pressure",
+    emoji: "👥",
+    sentence: "{Peer pressure} may encourage teenagers to buy expensive game items.",
+    answer: "Tekanan daripada rakan untuk mengikut mereka",
+    wrong: [
+      "Arahan daripada ibu bapa untuk belajar",
+      "Kesukaran memahami peraturan permainan",
+      "Keinginan sendiri untuk mempelajari kemahiran"
+    ]
+  },
+  {
+    word: "set boundaries",
+    emoji: "🛑",
+    sentence: "It is important to {set boundaries} around when and how long you play.",
+    answer: "Menetapkan had tentang perkara yang dibenarkan",
+    wrong: [
+      "Menentukan pemenang dalam pertandingan",
+      "Menambah bilangan pemain dalam pasukan",
+      "Menukar tetapan grafik dalam permainan"
+    ]
+  },
+  {
+    word: "opt out",
+    emoji: "🔕",
+    sentence: "Users can {opt out} of receiving promotional messages.",
+    answer: "Memilih untuk tidak menyertai atau menerima sesuatu",
+    wrong: [
+      "Meminta maklumat lanjut tentang sesuatu",
+      "Membayar lebih untuk mendapatkan sesuatu",
+      "Menjemput orang lain menyertai sesuatu"
+    ]
+  },
+  {
+    word: "jump on the bandwagon",
+    emoji: "🚃",
+    sentence: "Many creators {jump on the bandwagon} when a new challenge becomes popular.",
+    answer: "Mengikut sesuatu kerana ia sedang popular",
+    wrong: [
+      "Mencipta sesuatu yang belum pernah dilakukan",
+      "Menolak sesuatu kerana tidak bersetuju",
+      "Meninggalkan sesuatu kerana sudah bosan"
+    ]
+  },
+  {
+    word: "get carried away",
+    emoji: "🛍️",
+    sentence: "It is easy to {get carried away} and spend too much on game items.",
+    answer: "Terlalu teruja sehingga melakukan sesuatu secara berlebihan",
+    wrong: [
+      "Terlalu takut sehingga tidak berani mencuba",
+      "Terlalu letih sehingga tidak dapat meneruskan aktiviti",
+      "Terlalu keliru sehingga memerlukan penerangan"
+    ]
+  },
+  {
+    word: "a slippery slope",
+    emoji: "🎢",
+    sentence: "Buying items without setting a budget can become {a slippery slope} towards overspending.",
+    answer: "Keadaan yang boleh membawa kepada masalah yang semakin serius",
+    wrong: [
+      "Peluang yang boleh membawa kejayaan dengan segera",
+      "Peraturan yang sukar difahami oleh orang baharu",
+      "Keputusan yang tidak membawa sebarang perubahan"
+    ]
+  }
+];
+
+const $ = id => document.getElementById(id);
+
+let playerName = "";
+let questions = [];
+let currentIndex = 0;
+let score = 0;
+let answered = false;
+let responses = [];
+let attempt = 0;
+
+function shuffle(items) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function showScreen(screenId) {
+  ["startScreen", "gameScreen", "resultScreen"].forEach(id => {
+    $(id).hidden = id !== screenId;
+  });
+  window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+function renderSentence(container, sentence) {
+  container.replaceChildren();
+
+  sentence.split(/(\{[^}]+\})/g).forEach(part => {
+    if (part.startsWith("{") && part.endsWith("}")) {
+      const bold = document.createElement("strong");
+      bold.textContent = part.slice(1, -1);
+      container.appendChild(bold);
+    } else {
+      container.appendChild(document.createTextNode(part));
+    }
+  });
+}
+
+function startGame() {
+  questions = shuffle(questionBank).map(question => ({
+    ...question,
+    choices: shuffle([question.answer, ...question.wrong])
+  }));
+
+  currentIndex = 0;
+  score = 0;
+  answered = false;
+  responses = [];
+  attempt++;
+
+  $("playerLabel").textContent = "🌸 " + playerName;
+  $("progressBar").setAttribute("aria-valuemax", questions.length);
+
+  $("reviewPanel").hidden = true;
+  $("reviewPanel").replaceChildren();
+  $("reviewButton").textContent = "Review my answers 📖";
+  $("reviewButton").setAttribute("aria-expanded", "false");
+
+  showScreen("gameScreen");
+  renderQuestion();
+}
+
+function updateProgress(completed) {
+  $("progressFill").style.width =
+    (completed / questions.length * 100) + "%";
+  $("progressBar").setAttribute("aria-valuenow", completed);
+}
+
+function renderQuestion() {
+  const question = questions[currentIndex];
+  answered = false;
+
+  $("questionCounter").textContent =
+    `Question ${currentIndex + 1} / ${questions.length}`;
+
+  updateProgress(currentIndex);
+  $("questionArt").textContent = question.emoji;
+  $("wordTitle").textContent = question.word;
+  renderSentence($("sampleSentence"), question.sentence);
+
+  $("feedback").hidden = true;
+  $("feedback").textContent = "";
+  $("nextButton").hidden = true;
+  $("nextButton").textContent =
+    currentIndex === questions.length - 1
+      ? "See my total marks 🏆"
+      : "Next question →";
+
+  $("options").replaceChildren();
+
+  question.choices.forEach((choice, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option";
+
+    const letter = document.createElement("span");
+    letter.className = "letter";
+    letter.textContent = String.fromCharCode(65 + index);
+    letter.setAttribute("aria-hidden", "true");
+
+    const label = document.createElement("span");
+    label.textContent = choice;
+
+    button.append(letter, label);
+    button.addEventListener("click", () => {
+      chooseAnswer(choice, button);
+    });
+    $("options").appendChild(button);
+  });
+
+  $("wordTitle").focus({ preventScroll: true });
+}
+
+function chooseAnswer(choice, clickedButton) {
+  if (answered) return;
+  answered = true;
+
+  const question = questions[currentIndex];
+  const isCorrect = choice === question.answer;
+
+  if (isCorrect) score++;
+
+  responses.push({
+    question,
+    selected: choice,
+    correct: isCorrect
+  });
+
+  [...$("options").children].forEach((button, index) => {
+    button.disabled = true;
+    if (question.choices[index] === question.answer) {
+      button.classList.add("correct");
+    }
+  });
+
+  if (!isCorrect) clickedButton.classList.add("wrong");
+
+  const feedback = $("feedback");
+  feedback.className = "feedback " + (isCorrect ? "good" : "bad");
+  feedback.textContent = isCorrect
+    ? `✓ Well done! ${question.word} = ${question.answer}.`
+    : `✗ Not this time. ${question.word} = ${question.answer}.`;
+
+  feedback.hidden = false;
+  $("nextButton").hidden = false;
+  updateProgress(currentIndex + 1);
+  $("nextButton").focus({ preventScroll: true });
+}
+
+function showResults() {
+  const percentage = Math.round(score / questions.length * 100);
+
+  $("resultName").textContent = playerName;
+  $("finalScore").textContent = `${score}/${questions.length}`;
+  $("percentage").textContent = `${percentage}%`;
+
+  if (percentage === 100) {
+    $("resultMessage").textContent =
+      "Perfect score! All vocabulary unlocked! 🏆";
+  } else if (percentage >= 80) {
+    $("resultMessage").textContent =
+      "Great work! Your technology vocabulary is levelling up. 🎮";
+  } else if (percentage >= 60) {
+    $("resultMessage").textContent =
+      "Good effort! Review the meanings you missed and try again. 🌷";
+  } else {
+    $("resultMessage").textContent =
+      "Every new word is progress. Review your answers and keep going! 🌸";
+  }
+
+  const dateText = new Intl.DateTimeFormat("en-MY", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Asia/Kuala_Lumpur"
+  }).format(new Date());
+
+  $("resultMeta").textContent =
+    `Attempt ${attempt} • ${dateText} (Malaysia time)`;
+
+  buildReview();
+  showScreen("resultScreen");
+  $("resultTitle").focus({ preventScroll: true });
+}
+
+function buildReview() {
+  const panel = $("reviewPanel");
+  panel.replaceChildren();
+
+  const heading = document.createElement("h3");
+  heading.textContent = "Your answer review";
+  panel.appendChild(heading);
+
+  responses.forEach((response, index) => {
+    const item = document.createElement("div");
+    item.className = "review-item";
+
+    const title = document.createElement("strong");
+    title.textContent =
+      `${index + 1}. ${response.correct ? "✓" : "✗"} ${response.question.word}`;
+
+    const sentence = document.createElement("p");
+    renderSentence(sentence, response.question.sentence);
+
+    item.append(title, sentence);
+
+    if (!response.correct) {
+      const selected = document.createElement("p");
+      selected.className = "review-wrong";
+      selected.textContent = "Your answer: " + response.selected;
+      item.appendChild(selected);
+    }
+
+    const correct = document.createElement("p");
+    correct.className = "review-answer";
+    correct.textContent = "Meaning: " + response.question.answer;
+    item.appendChild(correct);
+
+    panel.appendChild(item);
+  });
+}
+
+$("startForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const enteredName = $("nameInput").value.trim();
+
+  if (!enteredName) {
+    $("nameError").hidden = false;
+    $("nameInput").setAttribute("aria-invalid", "true");
+    $("nameInput").focus();
+    return;
+  }
+
+  $("nameError").hidden = true;
+  $("nameInput").removeAttribute("aria-invalid");
+  playerName = enteredName;
+  attempt = 0;
+  startGame();
+});
+
+$("nameInput").addEventListener("input", () => {
+  $("nameError").hidden = true;
+  $("nameInput").removeAttribute("aria-invalid");
+});
+
+$("nextButton").addEventListener("click", () => {
+  if (!answered) return;
+
+  currentIndex++;
+
+  if (currentIndex < questions.length) {
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "auto" });
+  } else {
+    showResults();
+  }
+});
+
+$("replayButton").addEventListener("click", startGame);
+
+$("reviewButton").addEventListener("click", () => {
+  const panel = $("reviewPanel");
+  panel.hidden = !panel.hidden;
+
+  $("reviewButton").textContent = panel.hidden
+    ? "Review my answers 📖"
+    : "Hide answer review";
+
+  $("reviewButton").setAttribute(
+    "aria-expanded",
+    String(!panel.hidden)
+  );
+});
+
+$("changeNameButton").addEventListener("click", () => {
+  showScreen("startScreen");
+  $("nameInput").value = "";
+  $("nameInput").focus();
+});
+</script>
+</body>
+</html>
