@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environment Meaning Quest — Set 2</title>
+
+<style>
+:root {
+  --pink: #e77ca3;
+  --dark: #a83e67;
+  --light: #fff0f5;
+  --ink: #493441;
+  --muted: #796471;
+  --line: #f1cedd;
+  --green: #247448;
+  --green-bg: #eaf8ee;
+  --red: #a53850;
+  --red-bg: #fff0f0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 14px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, #ffe0ec 0, transparent 35%),
+    radial-gradient(circle at 90% 80%, #fce0ef 0, transparent 35%),
+    #fff7fa;
+}
+
+button, input { font: inherit; }
+
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--dark);
+  outline-offset: 4px;
+}
+
+.app { max-width: 720px; margin: auto; }
+header { text-align: center; margin-bottom: 20px; }
+
+.tag {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 30px;
+  background: white;
+  color: var(--dark);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  margin: 12px 0 6px;
+}
+
+.subtitle { color: var(--muted); margin: 0; line-height: 1.6; }
+
+.card {
+  background: rgba(255,255,255,.97);
+  border: 2px solid var(--line);
+  border-radius: 26px;
+  padding: clamp(20px, 5vw, 36px);
+  box-shadow: 0 12px 35px #b8678714;
+}
+
+[hidden] { display: none !important; }
+.center { text-align: center; }
+.intro-art { text-align: center; font-size: 4rem; padding: 15px; }
+
+.instructions {
+  background: var(--light);
+  padding: 18px;
+  border-radius: 16px;
+  line-height: 1.9;
+  margin: 20px 0;
+}
+
+label { display: block; font-weight: 700; margin-bottom: 9px; }
+
+input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid var(--line);
+  border-radius: 13px;
+  background: #fffbfd;
+  color: var(--ink);
+}
+
+input::placeholder { color: #a48b99; }
+
+.primary {
+  width: 100%;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  background: var(--dark);
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 18px;
+  box-shadow: 0 5px 0 #7d2a4b;
+}
+
+.primary:hover { background: #93345b; }
+.primary:active { transform: translateY(2px); }
+
+.secondary {
+  width: 100%;
+  padding: 13px;
+  margin-top: 13px;
+  border: 2px solid var(--line);
+  background: white;
+  color: var(--dark);
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.error { color: var(--red); font-size: .9rem; }
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-weight: 700;
+  font-size: .92rem;
+}
+
+.player { color: var(--dark); overflow-wrap: anywhere; }
+
+.progress {
+  height: 10px;
+  background: var(--light);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 16px 0 22px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--pink);
+  transition: width .3s ease;
+}
+
+.art {
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  background: var(--light);
+  border: 2px dashed var(--line);
+  border-radius: 28px;
+  font-size: 3.8rem;
+  margin: 0 auto 14px;
+}
+
+.word {
+  text-align: center;
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  color: var(--dark);
+  margin: 10px 0 18px;
+  overflow-wrap: anywhere;
+}
+
+.sentence {
+  font-size: 1.12rem;
+  line-height: 1.8;
+  padding: 19px;
+  background: #fff7fa;
+  border-left: 4px solid var(--pink);
+  border-radius: 10px;
+}
+
+.sentence strong { color: var(--dark); font-weight: 800; }
+.prompt { margin: 22px 0 12px; font-weight: 700; }
+.options { display: grid; gap: 11px; }
+
+.option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  background: white;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.option:not(:disabled):hover {
+  background: var(--light);
+  border-color: var(--pink);
+}
+
+.letter {
+  display: grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--light);
+  color: var(--dark);
+  font-weight: 800;
+}
+
+.option:disabled { cursor: default; opacity: 1; }
+.option.correct { background: var(--green-bg); border-color: var(--green); }
+.option.wrong { background: var(--red-bg); border-color: var(--red); }
+
+.feedback {
+  padding: 16px;
+  border-radius: 13px;
+  margin-top: 18px;
+  line-height: 1.6;
+}
+
+.feedback.good { background: var(--green-bg); color: var(--green); }
+.feedback.bad { background: var(--red-bg); color: var(--red); }
+
+.result-art { font-size: 4rem; margin-bottom: 10px; }
+
+.result-name {
+  font-size: 1.6rem;
+  color: var(--dark);
+  overflow-wrap: anywhere;
+  margin: 12px 0;
+}
+
+.score-circle {
+  width: 164px;
+  height: 164px;
+  margin: 24px auto 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 50%;
+  border: 8px solid #f4b6cf;
+  background: var(--light);
+}
+
+.score-big { font-size: 2.7rem; font-weight: 800; }
+.score-label { font-size: .9rem; color: var(--muted); }
+.percentage { font-size: 1.4rem; font-weight: 800; color: var(--dark); }
+.message { line-height: 1.7; }
+.result-meta { color: var(--muted); line-height: 1.7; font-size: .9rem; }
+
+.screenshot-note {
+  padding: 13px;
+  border-radius: 12px;
+  background: var(--light);
+  line-height: 1.6;
+  font-size: .92rem;
+  margin-top: 20px;
+}
+
+.review { margin-top: 25px; text-align: left; }
+
+.review-item {
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+  line-height: 1.7;
+}
+
+.review-item p { margin: 5px 0; }
+.review-item strong { color: var(--dark); }
+.review-answer { color: var(--green); }
+.review-wrong { color: var(--red); }
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: .8rem;
+  margin-top: 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+@media print {
+  body { background: white; padding: 0; }
+  .card { box-shadow: none; }
+  .primary, .secondary, .screenshot-note, footer { display: none; }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header>
+  <span class="tag">SET 2 • B2–C1 • WORDS, PHRASES & IDIOMS</span>
+  <h1>🌿 Environment Meaning Quest</h1>
+  <p class="subtitle">Grow your vocabulary, one meaning at a time.</p>
+</header>
+
+<section id="startScreen" class="card" aria-labelledby="startTitle">
+  <div class="intro-art" aria-hidden="true">🌏🌸🐝</div>
+  <h2 id="startTitle" class="center">Ready for the next level?</h2>
+
+  <div class="instructions">
+    🌸 Answer <strong>25 questions</strong>.<br>
+    📖 Read each word or phrase in its sentence.<br>
+    🇲🇾 Choose its correct <strong>BM meaning</strong>.<br>
+    ⭐ Earn <strong>1 mark</strong> for each correct answer.<br>
+    🔄 Replay with shuffled questions and choices.
+  </div>
+
+  <form id="startForm">
+    <label for="nameInput">Your name</label>
+    <input
+      id="nameInput"
+      type="text"
+      placeholder="e.g. Nur Aisyah"
+      maxlength="70"
+      autocomplete="name"
+      required
+      aria-describedby="nameError"
+    >
+    <p id="nameError" class="error" role="alert" hidden>
+      Please enter your name before starting.
+    </p>
+    <button class="primary" type="submit">Let's play! 🌱</button>
+  </form>
+</section>
+
+<section id="gameScreen" class="card" aria-labelledby="wordTitle" hidden>
+  <div class="top-row">
+    <span id="playerLabel" class="player"></span>
+    <span id="questionCounter"></span>
+  </div>
+
+  <div id="progressBar" class="progress" role="progressbar"
+       aria-label="Questions completed"
+       aria-valuemin="0" aria-valuemax="25" aria-valuenow="0">
+    <div id="progressFill" class="progress-fill"></div>
+  </div>
+
+  <div id="questionArt" class="art" aria-hidden="true"></div>
+  <h2 id="wordTitle" class="word" tabindex="-1"></h2>
+  <div id="sampleSentence" class="sentence"></div>
+
+  <p class="prompt">What does the bold word or phrase mean?</p>
+  <div id="options" class="options" role="group" aria-label="Answer choices"></div>
+
+  <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+  <button id="nextButton" class="primary" type="button" hidden>
+    Next question →
+  </button>
+</section>
+
+<section id="resultScreen" class="card center" aria-labelledby="resultTitle" hidden>
+  <div class="result-art" aria-hidden="true">🏆🌷</div>
+  <h2 id="resultTitle" tabindex="-1">Game completed!</h2>
+  <p><strong>Environment Meaning Quest — Set 2</strong></p>
+  <h3 id="resultName" class="result-name"></h3>
+
+  <div class="score-circle">
+    <span id="finalScore" class="score-big"></span>
+    <span class="score-label">TOTAL MARKS</span>
+  </div>
+
+  <p id="percentage" class="percentage"></p>
+  <p id="resultMessage" class="message"></p>
+  <p id="resultMeta" class="result-meta"></p>
+
+  <div class="screenshot-note">
+    📸 Take a screenshot of your name and score to submit to your teacher.
+  </div>
+
+  <button id="replayButton" class="primary" type="button">Play again 🔄</button>
+  <button id="reviewButton" class="secondary" type="button"
+          aria-expanded="false" aria-controls="reviewPanel">
+    Review my answers 📖
+  </button>
+  <button id="changeNameButton" class="secondary" type="button">
+    Change player name ✏️
+  </button>
+
+  <div id="reviewPanel" class="review" hidden></div>
+</section>
+
+<footer>Learn a little. Grow a little. 🌱</footer>
+</div>
+
+<script>
+"use strict";
+
+// Text inside {curly brackets} is automatically displayed in bold.
+const questionBank = [
+  {
+    word: "preserve",
+    emoji: "🌳",
+    sentence: "We must {preserve} our forests for future generations.",
+    answer: "Memelihara agar kekal terjaga",
+    wrong: [
+      "Menjual kepada pihak lain",
+      "Membahagikan kepada kawasan kecil",
+      "Mengukur keluasan sesuatu kawasan"
+    ]
+  },
+  {
+    word: "restore",
+    emoji: "🌱",
+    sentence: "Volunteers planted trees to {restore} the damaged forest.",
+    answer: "Memulihkan kepada keadaan asal atau baik",
+    wrong: [
+      "Memindahkan ke tempat lain",
+      "Menutup daripada pandangan orang ramai",
+      "Mencatat perubahan setiap tahun"
+    ]
+  },
+  {
+    word: "depletion",
+    emoji: "🚰",
+    sentence: "Excessive water use causes the {depletion} of underground water supplies.",
+    answer: "Penyusutan sumber akibat penggunaan",
+    wrong: [
+      "Pencemaran sumber oleh bahan kimia",
+      "Penemuan sumber di kawasan baharu",
+      "Kenaikan harga peralatan"
+    ]
+  },
+  {
+    word: "degradation",
+    emoji: "🏭",
+    sentence: "Mining can cause serious environmental {degradation}.",
+    answer: "Kemerosotan kualiti alam sekitar",
+    wrong: [
+      "Pertambahan bilangan penduduk",
+      "Perubahan musim sepanjang tahun",
+      "Pemulihan kawasan yang rosak"
+    ]
+  },
+  {
+    word: "contamination",
+    emoji: "🧪",
+    sentence: "Chemical {contamination} has made the water unsafe to drink.",
+    answer: "Pencemaran oleh bahan berbahaya",
+    wrong: [
+      "Penyejatan air akibat haba",
+      "Pengumpulan air hujan",
+      "Pengaliran air ke laut"
+    ]
+  },
+  {
+    word: "scarcity",
+    emoji: "🏜️",
+    sentence: "Water {scarcity} is a growing problem in dry regions.",
+    answer: "Kekurangan bekalan atau sumber",
+    wrong: [
+      "Peningkatan suhu harian",
+      "Pencemaran akibat sampah",
+      "Pembinaan saluran air"
+    ]
+  },
+  {
+    word: "detrimental",
+    emoji: "🐢",
+    sentence: "Plastic waste is {detrimental} to marine life.",
+    answer: "Memudaratkan",
+    wrong: ["Menguntungkan", "Mengagumkan", "Mengelirukan"]
+  },
+  {
+    word: "curb",
+    emoji: "🪵",
+    sentence: "Stricter laws could {curb} illegal logging.",
+    answer: "Membendung atau mengehadkan",
+    wrong: [
+      "Membiayai atau menaja",
+      "Menggalakkan atau menyokong",
+      "Mengumumkan atau memberitahu"
+    ]
+  },
+  {
+    word: "overexploitation",
+    emoji: "🐟",
+    sentence: "The {overexploitation} of fish stocks threatens marine ecosystems.",
+    answer: "Penggunaan sumber secara berlebihan",
+    wrong: [
+      "Perlindungan kawasan pembiakan",
+      "Penyelidikan tentang hidupan laut",
+      "Pemindahan haiwan ke habitat baharu"
+    ]
+  },
+  {
+    word: "biodegradable",
+    emoji: "🍂",
+    sentence: "These {biodegradable} bags can break down under suitable conditions.",
+    answer: "Boleh terurai secara semula jadi",
+    wrong: [
+      "Boleh menghasilkan tenaga elektrik",
+      "Boleh digunakan untuk menapis air",
+      "Boleh menghalang kemasukan cahaya"
+    ]
+  },
+  {
+    word: "disposable",
+    emoji: "🥤",
+    sentence: "The café replaced {disposable} cups with washable mugs.",
+    answer: "Direka untuk dibuang selepas digunakan",
+    wrong: [
+      "Direka untuk menyimpan haba",
+      "Dihasilkan sepenuhnya dengan tangan",
+      "Dibawa masuk dari luar negara"
+    ]
+  },
+  {
+    word: "resource-efficient",
+    emoji: "💡",
+    sentence: "A {resource-efficient} factory uses less water and energy to make its products.",
+    answer: "Menggunakan sumber dengan pembaziran minimum",
+    wrong: [
+      "Menghasilkan barangan dengan harga tertinggi",
+      "Menggaji pekerja dari pelbagai negara",
+      "Beroperasi hanya pada waktu malam"
+    ]
+  },
+  {
+    word: "carbon footprint",
+    emoji: "👣",
+    sentence: "Taking the bus instead of driving alone can help reduce your {carbon footprint}.",
+    answer: "Jumlah pelepasan gas rumah hijau akibat aktiviti",
+    wrong: [
+      "Jumlah wang yang dibelanjakan untuk perjalanan",
+      "Jarak yang dilalui seseorang dengan berjalan kaki",
+      "Keluasan tanah yang digunakan untuk pembinaan"
+    ]
+  },
+  {
+    word: "ecological balance",
+    emoji: "🦊",
+    sentence: "Removing too many predators can upset the {ecological balance}.",
+    answer: "Keseimbangan antara hidupan dengan alam sekitar",
+    wrong: [
+      "Persamaan suhu antara waktu siang dan malam",
+      "Pembahagian keuntungan antara syarikat",
+      "Perbandingan saiz antara dua kawasan hutan"
+    ]
+  },
+  {
+    word: "habitat loss",
+    emoji: "🐘",
+    sentence: "{Habitat loss} has forced wild animals to move closer to villages.",
+    answer: "Kehilangan tempat tinggal semula jadi",
+    wrong: [
+      "Kekurangan pekerja di kawasan luar bandar",
+      "Perubahan waktu tidur haiwan",
+      "Peningkatan jumlah pelawat taman negara"
+    ]
+  },
+  {
+    word: "illegal dumping",
+    emoji: "🚯",
+    sentence: "{Illegal dumping} has filled the empty land with rubbish.",
+    answer: "Pembuangan sampah atau sisa secara haram",
+    wrong: [
+      "Penjualan haiwan liar tanpa permit",
+      "Penebangan pokok tanpa kebenaran",
+      "Pembinaan bangunan tanpa kelulusan"
+    ]
+  },
+  {
+    word: "phase out",
+    emoji: "📦",
+    sentence: "The company plans to {phase out} plastic packaging over the next three years.",
+    answer: "Menghentikan penggunaan secara berperingkat",
+    wrong: [
+      "Menambah pengeluaran secara mendadak",
+      "Memindahkan stok ke gudang lain",
+      "Mengagihkan barangan secara percuma"
+    ]
+  },
+  {
+    word: "cut down on",
+    emoji: "📄",
+    sentence: "We should {cut down on} the amount of paper we use.",
+    answer: "Mengurangkan penggunaan atau jumlah",
+    wrong: [
+      "Membahagikan kepada beberapa kumpulan",
+      "Menggantikan dengan bahan yang lebih mahal",
+      "Menyimpan untuk digunakan pada masa depan"
+    ]
+  },
+  {
+    word: "dispose of",
+    emoji: "🔋",
+    sentence: "Residents must {dispose of} old batteries safely.",
+    answer: "Membuang atau melupuskan",
+    wrong: [
+      "Membeli atau menyewa",
+      "Memeriksa atau menguji",
+      "Membaiki atau memasang"
+    ]
+  },
+  {
+    word: "take a toll on",
+    emoji: "🐠",
+    sentence: "Years of pollution have begun to {take a toll on} marine life.",
+    answer: "Memberikan kesan buruk dari semasa ke semasa",
+    wrong: [
+      "Mengenakan bayaran untuk melalui sesuatu tempat",
+      "Menarik perhatian orang ramai secara tiba-tiba",
+      "Membawa keuntungan dalam masa yang singkat"
+    ]
+  },
+  {
+    word: "pose a threat to",
+    emoji: "🛢️",
+    sentence: "Oil spills {pose a threat to} seabirds and fish.",
+    answer: "Mendatangkan ancaman kepada",
+    wrong: [
+      "Memberikan perlindungan kepada",
+      "Mempunyai persamaan dengan",
+      "Menjadi sumber makanan untuk"
+    ]
+  },
+  {
+    word: "raise awareness",
+    emoji: "📣",
+    sentence: "The campaign aims to {raise awareness} of plastic pollution.",
+    answer: "Meningkatkan kesedaran",
+    wrong: [
+      "Mengumpulkan derma",
+      "Menaikkan harga",
+      "Menambahkan hukuman"
+    ]
+  },
+  {
+    word: "a drop in the ocean",
+    emoji: "🌊",
+    sentence: "Planting ten trees is {a drop in the ocean} compared with the thousands being cut down.",
+    answer: "Usaha yang sangat kecil berbanding keperluan",
+    wrong: [
+      "Masalah yang muncul tanpa sebarang amaran",
+      "Kejayaan yang dicapai tanpa banyak usaha",
+      "Peluang yang hanya datang sekali"
+    ]
+  },
+  {
+    word: "turn a blind eye to",
+    emoji: "🙈",
+    sentence: "We must not {turn a blind eye to} illegal dumping.",
+    answer: "Sengaja mengabaikan sesuatu yang salah",
+    wrong: [
+      "Tidak dapat melihat kerana kecederaan",
+      "Mencari bukti sebelum membuat keputusan",
+      "Meminta bantuan untuk menyelesaikan masalah"
+    ]
+  },
+  {
+    word: "nip something in the bud",
+    emoji: "🌷",
+    sentence: "When littering starts in a park, quick action can {nip it in the bud}.",
+    answer: "Menghentikan masalah pada peringkat awal",
+    wrong: [
+      "Menunggu sehingga masalah menjadi serius",
+      "Menyalahkan orang lain atas sesuatu masalah",
+      "Menyembunyikan masalah daripada orang ramai"
+    ]
+  }
+];
+
+const $ = id => document.getElementById(id);
+
+let playerName = "";
+let questions = [];
+let currentIndex = 0;
+let score = 0;
+let answered = false;
+let responses = [];
+let attempt = 0;
+
+function shuffle(items) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function showScreen(screenId) {
+  ["startScreen", "gameScreen", "resultScreen"].forEach(id => {
+    $(id).hidden = id !== screenId;
+  });
+  window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+function renderSentence(container, sentence) {
+  container.replaceChildren();
+
+  sentence.split(/(\{[^}]+\})/g).forEach(part => {
+    if (part.startsWith("{") && part.endsWith("}")) {
+      const bold = document.createElement("strong");
+      bold.textContent = part.slice(1, -1);
+      container.appendChild(bold);
+    } else {
+      container.appendChild(document.createTextNode(part));
+    }
+  });
+}
+
+function startGame() {
+  questions = shuffle(questionBank).map(question => ({
+    ...question,
+    choices: shuffle([question.answer, ...question.wrong])
+  }));
+
+  currentIndex = 0;
+  score = 0;
+  answered = false;
+  responses = [];
+  attempt++;
+
+  $("playerLabel").textContent = "🌸 " + playerName;
+  $("progressBar").setAttribute("aria-valuemax", questions.length);
+  $("reviewPanel").hidden = true;
+  $("reviewPanel").replaceChildren();
+  $("reviewButton").textContent = "Review my answers 📖";
+  $("reviewButton").setAttribute("aria-expanded", "false");
+
+  showScreen("gameScreen");
+  renderQuestion();
+}
+
+function updateProgress(completed) {
+  $("progressFill").style.width =
+    (completed / questions.length * 100) + "%";
+  $("progressBar").setAttribute("aria-valuenow", completed);
+}
+
+function renderQuestion() {
+  const question = questions[currentIndex];
+  answered = false;
+
+  $("questionCounter").textContent =
+    `Question ${currentIndex + 1} / ${questions.length}`;
+
+  updateProgress(currentIndex);
+  $("questionArt").textContent = question.emoji;
+  $("wordTitle").textContent = question.word;
+  renderSentence($("sampleSentence"), question.sentence);
+
+  $("feedback").hidden = true;
+  $("feedback").textContent = "";
+  $("nextButton").hidden = true;
+  $("nextButton").textContent =
+    currentIndex === questions.length - 1
+      ? "See my total marks 🏆"
+      : "Next question →";
+
+  $("options").replaceChildren();
+
+  question.choices.forEach((choice, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option";
+
+    const letter = document.createElement("span");
+    letter.className = "letter";
+    letter.textContent = String.fromCharCode(65 + index);
+    letter.setAttribute("aria-hidden", "true");
+
+    const label = document.createElement("span");
+    label.textContent = choice;
+
+    button.append(letter, label);
+    button.addEventListener("click", () => chooseAnswer(choice, button));
+    $("options").appendChild(button);
+  });
+
+  $("wordTitle").focus({ preventScroll: true });
+}
+
+function chooseAnswer(choice, clickedButton) {
+  if (answered) return;
+  answered = true;
+
+  const question = questions[currentIndex];
+  const isCorrect = choice === question.answer;
+
+  if (isCorrect) score++;
+
+  responses.push({
+    question,
+    selected: choice,
+    correct: isCorrect
+  });
+
+  [...$("options").children].forEach((button, index) => {
+    button.disabled = true;
+    if (question.choices[index] === question.answer) {
+      button.classList.add("correct");
+    }
+  });
+
+  if (!isCorrect) clickedButton.classList.add("wrong");
+
+  const feedback = $("feedback");
+  feedback.className = "feedback " + (isCorrect ? "good" : "bad");
+  feedback.textContent = isCorrect
+    ? `✓ Well done! ${question.word} = ${question.answer}.`
+    : `✗ Not this time. ${question.word} = ${question.answer}.`;
+
+  feedback.hidden = false;
+  $("nextButton").hidden = false;
+  updateProgress(currentIndex + 1);
+  $("nextButton").focus({ preventScroll: true });
+}
+
+function showResults() {
+  const percentage = Math.round(score / questions.length * 100);
+
+  $("resultName").textContent = playerName;
+  $("finalScore").textContent = `${score}/${questions.length}`;
+  $("percentage").textContent = `${percentage}%`;
+
+  if (percentage === 100) {
+    $("resultMessage").textContent =
+      "Perfect score! Your environment vocabulary is blooming! 🌷";
+  } else if (percentage >= 80) {
+    $("resultMessage").textContent =
+      "Great work! You know these words and phrases well. 🌿";
+  } else if (percentage >= 60) {
+    $("resultMessage").textContent =
+      "Good effort! Review the meanings you missed and keep growing. 🌱";
+  } else {
+    $("resultMessage").textContent =
+      "Every new word is progress. Review your answers and try again! 🌸";
+  }
+
+  const dateText = new Intl.DateTimeFormat("en-MY", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Asia/Kuala_Lumpur"
+  }).format(new Date());
+
+  $("resultMeta").textContent =
+    `Attempt ${attempt} • ${dateText} (Malaysia time)`;
+
+  buildReview();
+  showScreen("resultScreen");
+  $("resultTitle").focus({ preventScroll: true });
+}
+
+function buildReview() {
+  const panel = $("reviewPanel");
+  panel.replaceChildren();
+
+  const heading = document.createElement("h3");
+  heading.textContent = "Your answer review";
+  panel.appendChild(heading);
+
+  responses.forEach((response, index) => {
+    const item = document.createElement("div");
+    item.className = "review-item";
+
+    const title = document.createElement("strong");
+    title.textContent =
+      `${index + 1}. ${response.correct ? "✓" : "✗"} ${response.question.word}`;
+
+    const sentence = document.createElement("p");
+    renderSentence(sentence, response.question.sentence);
+    item.append(title, sentence);
+
+    if (!response.correct) {
+      const selected = document.createElement("p");
+      selected.className = "review-wrong";
+      selected.textContent = "Your answer: " + response.selected;
+      item.appendChild(selected);
+    }
+
+    const correct = document.createElement("p");
+    correct.className = "review-answer";
+    correct.textContent = "Meaning: " + response.question.answer;
+    item.appendChild(correct);
+
+    panel.appendChild(item);
+  });
+}
+
+$("startForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const enteredName = $("nameInput").value.trim();
+
+  if (!enteredName) {
+    $("nameError").hidden = false;
+    $("nameInput").setAttribute("aria-invalid", "true");
+    $("nameInput").focus();
+    return;
+  }
+
+  $("nameError").hidden = true;
+  $("nameInput").removeAttribute("aria-invalid");
+  playerName = enteredName;
+  attempt = 0;
+  startGame();
+});
+
+$("nameInput").addEventListener("input", () => {
+  $("nameError").hidden = true;
+  $("nameInput").removeAttribute("aria-invalid");
+});
+
+$("nextButton").addEventListener("click", () => {
+  if (!answered) return;
+
+  currentIndex++;
+
+  if (currentIndex < questions.length) {
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "auto" });
+  } else {
+    showResults();
+  }
+});
+
+$("replayButton").addEventListener("click", startGame);
+
+$("reviewButton").addEventListener("click", () => {
+  const panel = $("reviewPanel");
+  panel.hidden = !panel.hidden;
+
+  $("reviewButton").textContent = panel.hidden
+    ? "Review my answers 📖"
+    : "Hide answer review";
+
+  $("reviewButton").setAttribute("aria-expanded", String(!panel.hidden));
+});
+
+$("changeNameButton").addEventListener("click", () => {
+  showScreen("startScreen");
+  $("nameInput").value = "";
+  $("nameInput").focus();
+});
+</script>
+</body>
+</html>
