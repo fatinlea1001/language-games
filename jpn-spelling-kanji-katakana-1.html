@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Japanese Spell-Off! 🌸</title>
+<style>
+:root{--pink:#ed72a5;--ink:#493c50;--good:#239b68;--bad:#e34a63}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:18px;
+  display:grid;place-items:center;
+  font-family:Arial,"Noto Sans JP",sans-serif;
+  color:var(--ink);
+  background:linear-gradient(140deg,#ffe3f0,#f3edff,#e5f8f1)
+}
+.app{
+  width:min(100%,640px);padding:28px 22px;
+  background:white;border-radius:26px;text-align:center;
+  box-shadow:0 15px 38px #b98ca644;
+  transition:background .15s
+}
+h1{color:#d74989;margin:10px 0}
+p{line-height:1.55}
+input{
+  font:inherit;width:100%;padding:15px;
+  border:2px solid #f2bfd5;border-radius:12px;
+  margin:12px 0
+}
+button{font:inherit;cursor:pointer}
+.primary{
+  width:100%;border:0;border-radius:13px;
+  background:var(--pink);color:white;
+  font-size:17px;font-weight:bold;
+  padding:16px;margin-top:16px
+}
+.primary:hover{background:#d95191}
+.primary:focus-visible,.choice:focus-visible{
+  outline:3px solid #6e52c2;outline-offset:3px
+}
+.pill{
+  display:inline-block;padding:8px 14px;
+  border-radius:99px;background:#ffe8f2;
+  color:#b14380;font-weight:bold;font-size:14px
+}
+.top{
+  display:flex;justify-content:space-between;
+  gap:10px;flex-wrap:wrap;
+  font-size:14px;font-weight:bold
+}
+.track{
+  height:10px;background:#f8dfeb;
+  border-radius:99px;margin:22px 0 25px;
+  overflow:hidden
+}
+.fill{
+  width:0;height:100%;background:var(--pink);
+  transition:width .25s
+}
+.meaning{
+  font-size:clamp(25px,5vw,35px);
+  font-weight:800;margin:14px 0 6px
+}
+.reading{
+  margin:0;color:#8d728a;min-height:24px
+}
+.choices{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin:25px 0 18px
+}
+.choice{
+  min-height:120px;padding:18px 7px;
+  border:3px solid #f4c4db;border-radius:17px;
+  background:#fff0f7;color:#604458;
+  font-size:clamp(23px,5vw,32px);
+  font-weight:bold;overflow-wrap:anywhere;
+  transition:background .15s,border-color .15s
+}
+.choice:hover:not(:disabled){
+  background:#ffe0ee;border-color:var(--pink)
+}
+.choice:disabled{cursor:default}
+.choice.correct{
+  background:#dcf8e8;border-color:var(--good);
+  color:#167248;animation:pop .45s ease
+}
+.choice.wrong{
+  background:#ffd4dc;border-color:var(--bad);
+  color:#b52340;animation:shake .5s ease
+}
+.feedback{
+  padding:14px;border-radius:13px;
+  font-weight:bold;line-height:1.65;
+  background:#fff0f7
+}
+.feedback.good{background:#e0f8e8;color:#237348}
+.feedback.bad{background:#ffe1e6;color:#a62443}
+.flash-bad{animation:badFlash .55s ease}
+.flash-good{animation:goodFlash .5s ease}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  15%,45%,75%{transform:translateX(-9px)}
+  30%,60%,90%{transform:translateX(9px)}
+}
+@keyframes pop{
+  0%,100%{transform:scale(1)}
+  40%{transform:scale(1.07)}
+}
+@keyframes badFlash{35%{background:#ffe1e7}}
+@keyframes goodFlash{35%{background:#e2f9e9}}
+#effects{
+  position:fixed;inset:0;pointer-events:none;
+  overflow:hidden;z-index:99
+}
+.particle{
+  position:fixed;font-size:30px;
+  animation:burst 1.2s ease-out forwards
+}
+@keyframes burst{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.3)
+  }
+  20%{opacity:1}
+  100%{
+    opacity:0;
+    transform:
+      translate(calc(-50% + var(--dx)),
+                calc(-50% + var(--dy)))
+      rotate(var(--rotate)) scale(1.2)
+  }
+}
+.big{
+  font-size:64px;color:#d94b8b;
+  font-weight:900;margin:18px 0
+}
+footer{
+  font-size:12px;color:#9f8799;margin-top:25px
+}
+[hidden]{display:none!important}
+@media(max-width:390px){
+  .choice{font-size:23px;min-height:95px}
+  .app{padding:24px 14px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important
+  }
+}
+</style>
+</head>
+<body>
+<div id="effects" aria-hidden="true"></div>
+<main class="app" id="app">
+
+<section id="start">
+  <div style="font-size:52px">🌸🇯🇵🎮</div>
+  <h1>Japanese Spell-Off!</h1>
+  <p>Choose the correct <b>kanji or katakana</b>!</p>
+  <p>
+    📚 JLPT N5–N4 practice<br>
+    🈶 Kanji + カタカナ<br>
+    ⭐ 25 questions · 1 point each
+  </p>
+  <form id="startForm">
+    <input id="name" maxlength="50" required
+      placeholder="Enter your name"
+      autocomplete="name">
+    <button class="primary">Start Game ✨</button>
+  </form>
+</section>
+
+<section id="game" hidden>
+  <div class="top">
+    <span id="player"></span>
+    <span id="score">⭐ 0 / 25</span>
+  </div>
+  <div class="track">
+    <div class="fill" id="progress"></div>
+  </div>
+  <span class="pill" id="category">Kanji</span>
+  <p id="number"></p>
+  <p style="margin-bottom:0">
+    Choose the correct Japanese word for:
+  </p>
+  <div class="meaning" id="meaning"></div>
+  <p class="reading" id="reading"></p>
+  <div class="choices" id="choices"></div>
+  <div id="feedback" class="feedback"
+    aria-live="polite" hidden></div>
+  <button class="primary" id="next" hidden>
+    Next Question →
+  </button>
+</section>
+
+<section id="result" hidden>
+  <div style="font-size:55px">🏆👏🌸</div>
+  <h1>Quiz Completed!</h1>
+  <h2 id="resultName"></h2>
+  <p>Your Japanese Score</p>
+  <div id="finalScore" class="big"></div>
+  <span class="pill" id="percent"></span>
+  <p id="message"></p>
+  <button class="primary" id="replay">
+    Play Again 🔀
+  </button>
+  <button class="primary" id="change"
+    style="background:#a589a5">
+    Change Name
+  </button>
+  <p>📸 Screenshot your score!</p>
+</section>
+
+<footer>Japanese Learning Games 🌷</footer>
+</main>
+
+<script>
+// [English, hiragana reading, correct kanji, wrong]
+const kanjiWords = [
+  ["school","がっこう","学校","学生"],
+  ["teacher","せんせい","先生","先月"],
+  ["student","がくせい","学生","先生"],
+  ["every day","まいにち","毎日","毎月"],
+  ["today","きょう","今日","今月"],
+  ["tomorrow","あした","明日","昨日"],
+  ["yesterday","きのう","昨日","明日"],
+  ["time","じかん","時間","週間"],
+  ["train","でんしゃ","電車","電話"],
+  ["bicycle","じてんしゃ","自転車","電車"],
+  ["library","としょかん","図書館","美術館"],
+  ["hospital","びょういん","病院","美容院"],
+  ["shopping","かいもの","買い物","食べ物"],
+  ["food","たべもの","食べ物","飲み物"],
+  ["drink","のみもの","飲み物","食べ物"],
+  ["weather","てんき","天気","電気"],
+  ["newspaper","しんぶん","新聞","作文"],
+  ["photograph","しゃしん","写真","写生"],
+  ["travel","りょこう","旅行","旅館"],
+  ["movie","えいが","映画","漫画"],
+  ["music","おんがく","音楽","音読"],
+  ["cooking / cuisine","りょうり","料理","理由"],
+  ["studying","べんきょう","勉強","強風"],
+  ["company","かいしゃ","会社","会話"],
+  ["work / job","しごと","仕事","食事"],
+  ["telephone","でんわ","電話","電車"],
+  ["bank","ぎんこう","銀行","銀色"],
+  ["animal","どうぶつ","動物","荷物"],
+  ["illness","びょうき","病気","元気"],
+  ["room","へや","部屋","部長"],
+  ["post office","ゆうびんきょく","郵便局","郵便箱"]
+];
+
+// [English meaning, correct katakana, wrong spelling]
+const katakanaWords = [
+  ["coffee","コーヒー","コヒー"],
+  ["computer","コンピューター","コンピュター"],
+  ["television","テレビ","テレピ"],
+  ["hotel","ホテル","ホテレ"],
+  ["restaurant","レストラン","レストレン"],
+  ["taxi","タクシー","タクシ"],
+  ["bus","バス","バズ"],
+  ["camera","カメラ","カメル"],
+  ["radio","ラジオ","ラシオ"],
+  ["supermarket","スーパー","スパー"],
+  ["ice cream","アイスクリーム","アイスクリム"],
+  ["juice","ジュース","ジュス"],
+  ["cheese","チーズ","チズ"],
+  ["chocolate","チョコレート","チョコレット"],
+  ["sandwich","サンドイッチ","サンドイチ"],
+  ["pizza","ピザ","ピサ"],
+  ["hamburger","ハンバーガー","ハンバガー"],
+  ["piano","ピアノ","ピヤノ"],
+  ["guitar","ギター","ギタ"],
+  ["soccer","サッカー","サカー"],
+  ["tennis","テニス","テニズ"],
+  ["baseball","ベースボール","ベスボール"],
+  ["game","ゲーム","ゲム"],
+  ["internet","インターネット","インタネット"],
+  ["email","メール","メル"],
+  ["app","アプリ","アブリ"],
+  ["password","パスワード","パスワド"],
+  ["message","メッセージ","メセージ"],
+  ["printer","プリンター","プリンタア"],
+  ["notebook","ノート","ノト"],
+  ["sports","スポーツ","スポツ"],
+  ["present / gift","プレゼント","プレセント"],
+  ["convenience store","コンビニ","コンピニ"],
+  ["air conditioner","エアコン","エアコ"],
+  ["shampoo","シャンプー","シャンプ"],
+  ["battery","バッテリー","バテリー"]
+];
+
+const TOTAL=25;
+const $=id=>document.getElementById(id);
+let questions=[],position=0,score=0;
+let playerName="",locked=false;
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function show(id){
+  ["start","game","result"].forEach(x=>{
+    $(x).hidden=x!==id;
+  });
+}
+
+function begin(){
+  // Every game: 12 kanji + 13 katakana.
+  const k=shuffle(kanjiWords).slice(0,12).map(w=>({
+    kind:"🈶 Kanji",
+    meaning:w[0],
+    reading:w[1],
+    correct:w[2],
+    wrong:w[3]
+  }));
+
+  const t=shuffle(katakanaWords).slice(0,13).map(w=>({
+    kind:"🔤 Katakana",
+    meaning:w[0],
+    reading:"",
+    correct:w[1],
+    wrong:w[2]
+  }));
+
+  questions=shuffle([...k,...t]);
+  position=0;
+  score=0;
+  locked=false;
+
+  $("player").textContent="👤 "+playerName;
+  show("game");
+  render();
+}
+
+function render(){
+  locked=false;
+  const q=questions[position];
+
+  $("number").textContent=
+    `Question ${position+1} of ${TOTAL}`;
+
+  $("category").textContent=q.kind;
+  $("meaning").textContent=q.meaning;
+
+  $("reading").textContent=q.reading
+    ? `Reading: ${q.reading}`
+    : "Katakana spelling";
+
+  $("score").textContent=`⭐ ${score} / ${TOTAL}`;
+
+  $("progress").style.width=
+    `${position/TOTAL*100}%`;
+
+  $("feedback").hidden=true;
+  $("feedback").className="feedback";
+  $("next").hidden=true;
+
+  const container=$("choices");
+  container.replaceChildren();
+
+  shuffle([q.correct,q.wrong]).forEach(word=>{
+    const btn=document.createElement("button");
+    btn.className="choice";
+    btn.textContent=word;
+
+    btn.addEventListener("click",()=>{
+      answer(word,btn);
+    });
+
+    container.appendChild(btn);
+  });
+}
+
+// Floating claps and ticks
+function burst(target){
+  const r=target.getBoundingClientRect();
+  const cx=r.left+r.width/2;
+  const cy=r.top+r.height/2;
+
+  ["👏","✅","👏","✅","🌸",
+   "✨","👏","✅","💖","🎉"]
+  .forEach((emoji,i,all)=>{
+    const node=document.createElement("span");
+    const a=2*Math.PI*i/all.length;
+    const d=85+Math.random()*105;
+
+    node.className="particle";
+    node.textContent=emoji;
+    node.style.left=cx+"px";
+    node.style.top=cy+"px";
+
+    node.style.setProperty(
+      "--dx",Math.cos(a)*d+"px"
+    );
+    node.style.setProperty(
+      "--dy",Math.sin(a)*d+"px"
+    );
+    node.style.setProperty(
+      "--rotate",(Math.random()*90-45)+"deg"
+    );
+
+    $("effects").appendChild(node);
+
+    node.addEventListener("animationend",()=>{
+      node.remove();
+    },{once:true});
+
+    setTimeout(()=>node.remove(),1500);
+  });
+}
+
+function answer(word,selected){
+  if(locked)return;
+  locked=true;
+
+  const q=questions[position];
+  const right=word===q.correct;
+  const feedback=$("feedback");
+
+  $("choices").querySelectorAll("button")
+  .forEach(btn=>{
+    btn.disabled=true;
+
+    if(btn.textContent===q.correct){
+      btn.classList.add("correct");
+    }
+
+    if(btn===selected&&!right){
+      btn.classList.add("wrong");
+    }
+  });
+
+  $("app").classList.remove(
+    "flash-bad","flash-good"
+  );
+  void $("app").offsetWidth;
+  $("app").classList.add(
+    right?"flash-good":"flash-bad"
+  );
+
+  feedback.hidden=false;
+
+  if(right){
+    score++;
+    feedback.classList.add("good");
+    feedback.textContent=
+      `✅ よくできました！ Correct: ${q.correct}  +1 point 👏`;
+    burst(selected);
+  }else{
+    feedback.classList.add("bad");
+    feedback.textContent=
+      `❌ Almost! The correct answer is ${q.correct}${q.reading?` (${q.reading})`:""}.`;
+
+    if(navigator.vibrate){
+      navigator.vibrate([90,50,90]);
+    }
+  }
+
+  $("score").textContent=
+    `⭐ ${score} / ${TOTAL}`;
+
+  $("progress").style.width=
+    `${(position+1)/TOTAL*100}%`;
+
+  $("next").textContent=position===TOTAL-1
+    ?"See Results 🏆"
+    :"Next Question →";
+
+  $("next").hidden=false;
+}
+
+function results(){
+  show("result");
+
+  const pct=Math.round(score/TOTAL*100);
+
+  $("resultName").textContent=playerName;
+  $("finalScore").textContent=
+    `${score} / ${TOTAL}`;
+
+  $("percent").textContent=
+    `${pct}% correct`;
+
+  $("message").textContent=pct>=80
+    ?"すごい！ 🌟 Amazing work!"
+    :pct>=60
+    ?"いいですね！ 🌷 Keep practising!"
+    :"がんばって！ 💗 Try again—you can improve!";
+
+  if(pct>=80){
+    burst($("finalScore"));
+  }
+}
+
+$("startForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  playerName=$("name").value.trim();
+  if(playerName)begin();
+});
+
+$("next").addEventListener("click",()=>{
+  if(!locked)return;
+  position++;
+
+  if(position===TOTAL){
+    results();
+  }else{
+    render();
+  }
+});
+
+$("replay").addEventListener("click",begin);
+
+$("change").addEventListener("click",()=>{
+  show("start");
+});
+
+// Optional keyboard shortcuts: 1 or 2.
+document.addEventListener("keydown",e=>{
+  if($("game").hidden||locked||e.repeat)return;
+
+  if(e.key==="1"||e.key==="2"){
+    $("choices").children[
+      Number(e.key)-1
+    ]?.click();
+  }
+});
+</script>
+</body>
+</html>
