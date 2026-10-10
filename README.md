@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**21 games** — automatically updated when an HTML game is added.
+**22 games** — automatically updated when an HTML game is added.
 Newest additions appear first in each category.
 
 ### 🇬🇧 English Games
+- [Elaboration Sports (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-sports-1.html) — added 10 Oct 2026
 - [Matchvocab Personal (Set 2)](https://fatinlea1001.github.io/language-games/eng-matchvocab-personal-2.html) — added 10 Oct 2026
 - [Matchvocab Personal (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-personal-1.html) — added 10 Oct 2026
 - [Technology Spelling (Set 1)](https://fatinlea1001.github.io/language-games/eng-spell-technology-1.html) — added 10 Oct 2026
