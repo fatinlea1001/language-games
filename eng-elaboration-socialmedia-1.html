@@ -1,0 +1,1089 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paragraph Builder! — Social Media</title>
+<style>
+:root{
+  --pink:#e96c9f;
+  --ink:#49384e;
+  --green:#218453;
+  --red:#c63856;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:16px;
+  background:linear-gradient(135deg,#ffe8f2,#f0edff,#e9f9f0);
+  font-family:"Segoe UI",Arial,sans-serif;
+  color:var(--ink)
+}
+.app{
+  width:min(100%,760px);margin:auto;background:#fff;
+  border-radius:24px;padding:26px 23px;
+  box-shadow:0 15px 40px #ad83a633
+}
+h1{text-align:center;color:#d64c8b;margin:10px 0 14px}
+h2{line-height:1.35}
+p{line-height:1.55}
+.center{text-align:center}
+.hero{text-align:center;font-size:49px}
+.pill{
+  display:inline-block;border-radius:99px;
+  background:#ffe8f2;color:#984671;
+  padding:8px 13px;font-weight:750;font-size:13px
+}
+input{
+  width:100%;font:inherit;padding:15px;
+  border:2px solid #efbdd4;border-radius:13px;
+  margin:13px 0
+}
+button{font:inherit;cursor:pointer}
+.action{
+  width:100%;border:0;border-radius:13px;
+  padding:15px;background:var(--pink);color:#fff;
+  font-weight:750;margin-top:15px;font-size:16px
+}
+.action:hover{background:#d1508a}
+.action.secondary{background:#a68aad}
+.action:focus-visible,.choice:focus-visible{
+  outline:3px solid #7653bb;outline-offset:3px
+}
+.stats{
+  display:flex;flex-wrap:wrap;gap:8px;
+  align-items:center;justify-content:space-between
+}
+.track{
+  height:10px;background:#f8ddea;border-radius:40px;
+  overflow:hidden;margin:19px 0
+}
+.bar{
+  height:100%;width:0;
+  background:linear-gradient(90deg,#efa6c8,var(--pink));
+  transition:width .22s
+}
+.steps{display:flex;gap:6px;margin:14px 0}
+.step{
+  flex:1;text-align:center;padding:9px 5px;
+  border-radius:12px;background:#f5f0f5;
+  color:#8d7a8e;font-size:12px;font-weight:800;
+  border:2px solid transparent
+}
+.step.active{
+  background:#fce1ef;color:#a73771;
+  border-color:#eb91ba
+}
+.step.done{background:#e1f5e9;color:#247b4f}
+.point{
+  background:#fff2f8;border:2px solid #f5d3e3;
+  padding:17px;border-radius:16px;margin:15px 0
+}
+.point small{
+  display:block;font-size:12px;font-weight:800;
+  color:#a44e7c;letter-spacing:.08em;
+  margin-bottom:7px
+}
+.point strong{font-size:19px;line-height:1.5}
+.draft{
+  background:#f9f7ff;border:1px dashed #c7afd9;
+  border-radius:14px;padding:13px 16px;margin:13px 0
+}
+.draft-label{
+  font-size:12px;font-weight:800;color:#8062a8
+}
+.draft p{margin:7px 0;font-size:14px;line-height:1.55}
+.prompt{
+  text-align:center;font-weight:800;margin:18px 0 13px
+}
+.choices{display:grid;gap:10px}
+.choice{
+  display:flex;align-items:flex-start;gap:12px;
+  text-align:left;background:#fff9fc;
+  border:2px solid #f1c9da;border-radius:14px;
+  width:100%;padding:14px;color:var(--ink);
+  line-height:1.5
+}
+.choice:hover:not(:disabled){
+  background:#ffe9f2;border-color:var(--pink)
+}
+.choice:disabled{cursor:default}
+.letter{
+  flex:0 0 30px;min-height:30px;border-radius:9px;
+  background:#f8dce9;color:#85506d;
+  display:grid;place-items:center;font-weight:850
+}
+.choice.correct{
+  background:#dff7e9;border-color:#4ab07b;color:#195f40
+}
+.choice.correct .letter{
+  background:#c7ecd7;color:#1c7649
+}
+.choice.wrong{
+  background:#ffe0e6;border-color:#e26983;
+  color:#9e2d48;animation:shake .42s ease
+}
+.feedback{
+  border-radius:13px;padding:14px;margin-top:15px;
+  line-height:1.55;font-size:14px;font-weight:650
+}
+.feedback.good{background:#e2f8ea;color:#1b6f45}
+.feedback.bad{background:#ffe2e9;color:#9d2c47}
+.paragraph{
+  border:2px solid #eec4d8;border-radius:16px;
+  padding:18px;background:#fff9fc;
+  font-size:16px;line-height:1.8
+}
+.paragraph p{margin:0}
+.breakdown{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center
+}
+.chip{
+  background:#fff0f6;border-radius:12px;
+  padding:9px 13px;font-size:13px;font-weight:700
+}
+.big{
+  font-size:66px;color:#d64d8b;font-weight:900;
+  text-align:center;margin:10px
+}
+.review-item{
+  text-align:left;border:1px solid #ecd4e2;
+  background:#fff8fc;padding:13px;border-radius:13px;
+  margin:10px 0;line-height:1.55;font-size:14px
+}
+.review-item strong{display:block;margin-bottom:7px}
+#effects{
+  position:fixed;inset:0;pointer-events:none;
+  z-index:99;overflow:hidden
+}
+.particle{
+  position:absolute;font-size:28px;
+  animation:burst 1.1s ease-out forwards
+}
+@keyframes burst{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.25)
+  }
+  20%{opacity:1}
+  100%{
+    opacity:0;
+    transform:translate(
+      calc(-50% + var(--dx)),
+      calc(-50% + var(--dy))
+    ) rotate(var(--r)) scale(1.25)
+  }
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%,60%{transform:translateX(-8px)}
+  40%,80%{transform:translateX(8px)}
+}
+@keyframes redFlash{35%{background:#ffe1e8}}
+@keyframes greenFlash{35%{background:#e5f9ed}}
+.flash-red{animation:redFlash .45s}
+.flash-green{animation:greenFlash .45s}
+[hidden]{display:none!important}
+@media(max-width:520px){
+  body{padding:8px}
+  .app{padding:21px 14px}
+  .point strong{font-size:17px}
+  .choice{padding:12px;font-size:14px}
+  .step{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important
+  }
+}
+</style>
+</head>
+<body>
+<div id="effects" aria-hidden="true"></div>
+<main class="app" id="app">
+
+<section id="start">
+  <div class="hero">📱💬🌸</div>
+  <h1>Paragraph Builder!</h1>
+  <p class="center">
+    <span class="pill">SOCIAL MEDIA · SET 1</span>
+  </p>
+  <p class="center">
+    Build a complete writing paragraph by choosing
+    the best <b>Explanation → Example →
+    Result / Effect</b>.
+  </p>
+  <div class="steps">
+    <span class="step active">1 · Explanation</span>
+    <span class="step active">2 · Example</span>
+    <span class="step active">3 · Result</span>
+  </div>
+  <p class="center">
+    <b>10 paragraphs · 3 choices each = 30 marks</b>
+  </p>
+  <p class="center">
+    🌟 Benefits (4) · ⚠️ Risks (3) ·
+    🛡️ Responsible Use (3)
+  </p>
+  <form id="nameForm">
+    <input id="nameInput" maxlength="60"
+      placeholder="Enter your name" required>
+    <button class="action">Start Building ✨</button>
+  </form>
+</section>
+
+<section id="play" hidden>
+  <div class="stats">
+    <span class="pill" id="player"></span>
+    <span class="pill" id="level"></span>
+    <span class="pill" id="score"></span>
+  </div>
+  <div class="track">
+    <div class="bar" id="bar"></div>
+  </div>
+  <p class="center" id="progress"></p>
+  <div class="steps">
+    <div class="step" id="step0">1 · Explanation</div>
+    <div class="step" id="step1">2 · Example</div>
+    <div class="step" id="step2">3 · Result</div>
+  </div>
+  <div class="point">
+    <small>MAIN POINT</small>
+    <strong id="point"></strong>
+  </div>
+  <div class="draft" id="draft" hidden>
+    <span class="draft-label">YOUR PARAGRAPH SO FAR</span>
+    <div id="draftText"></div>
+  </div>
+  <p class="prompt" id="prompt"></p>
+  <div class="choices" id="choices"></div>
+  <div class="feedback" id="feedback"
+    role="status" aria-live="polite" hidden></div>
+  <button class="action" id="next" hidden>
+    Continue →
+  </button>
+</section>
+
+<section id="built" hidden>
+  <div class="hero">📝👏🌸</div>
+  <h1>Paragraph Complete!</h1>
+  <p class="center" id="challengeResult"></p>
+  <div class="paragraph" id="paragraph"></div>
+  <p class="center" style="font-size:13px">
+    Read how the three supporting sentences
+    develop the main point.
+  </p>
+  <button class="action" id="nextChallenge">
+    Next Paragraph →
+  </button>
+</section>
+
+<section id="between" hidden>
+  <div class="hero">🎉💗</div>
+  <h1 id="levelFinished"></h1>
+  <p class="center" id="levelSummary"></p>
+  <button class="action" id="continueLevel">
+    Next Level →
+  </button>
+</section>
+
+<section id="end" hidden>
+  <div class="hero">🏆💗✨</div>
+  <h1>Writing Challenge Completed!</h1>
+  <h2 class="center" id="resultName"></h2>
+  <p class="center">Your score</p>
+  <div class="big" id="finalScore"></div>
+  <p class="center">
+    <span class="pill" id="percentage"></span>
+  </p>
+  <div class="breakdown" id="breakdown"></div>
+  <p class="center" id="message"></p>
+  <button class="action secondary" id="reviewButton">
+    Review My Mistakes 📚
+  </button>
+  <div id="review" hidden></div>
+  <button class="action" id="replay">Play Again 🔀</button>
+  <button class="action secondary" id="changeName">
+    Change Name
+  </button>
+  <p class="center" style="font-size:13px">
+    📸 Screenshot your result to submit!
+  </p>
+</section>
+
+</main>
+<script>
+// DATA FORMAT:
+// [correct sentence, wrong 1, wrong 2, explanation]
+
+const LEVELS = [
+{
+title:"Benefits of Social Media",
+items:[
+{
+point:"Social media helps teenagers stay connected with friends who live far away.",
+steps:[
+[
+"This is because messaging platforms allow them to share updates and communicate regularly despite the distance.",
+"This is because creative platforms allow young artists to display their work to a large audience.",
+"This is because online safety settings can limit who is allowed to view personal information.",
+"The explanation shows HOW online communication helps maintain long-distance friendships."
+],
+[
+"For example, a student who moves to another state can still chat with former classmates through a group conversation.",
+"For example, a student may watch short mathematics lessons online before an examination.",
+"For example, a student may change their account settings so strangers cannot see their photographs.",
+"The example shows friends keeping in touch even after moving away."
+],
+[
+"As a result, they can maintain close friendships even when they rarely meet face to face.",
+"As a result, they may become more confident about showing their artwork online.",
+"As a result, they can protect their private details from unwanted viewers.",
+"The effect follows naturally from staying in regular contact across distances."
+]
+]
+},
+{
+point:"Social media can support students' learning outside the classroom.",
+steps:[
+[
+"This is because educational creators share lessons and revision tips that students can revisit at their own pace.",
+"This is because users can send messages to friends who have moved to other towns.",
+"This is because community groups can advertise local volunteering opportunities.",
+"The explanation shows HOW educational content supports independent revision."
+],
+[
+"For example, a student may watch a short science tutorial to understand a difficult topic before a test.",
+"For example, a student may send holiday photographs to a cousin living overseas.",
+"For example, a student may join a weekend clean-up after seeing a community post.",
+"The example demonstrates using a specific online lesson to improve understanding."
+],
+[
+"As a result, students may understand challenging ideas better and become more independent learners.",
+"As a result, they may feel closer to relatives who live in another country.",
+"As a result, local community projects may attract more willing volunteers.",
+"The result focuses on learning, which is the purpose of the main point."
+]
+]
+},
+{
+point:"Sharing creative work on social media can help teenagers develop their talents.",
+steps:[
+[
+"This is because useful feedback and encouragement may motivate them to practise and improve their skills.",
+"This is because social media posts sometimes spread rumours before the facts are checked.",
+"This is because people can adjust privacy settings to control who sees their posts.",
+"The explanation links sharing work with feedback and skill improvement."
+],
+[
+"For example, a student might post a short animation, receive suggestions, and create a better version.",
+"For example, a student might share an unverified announcement about a school closure.",
+"For example, a student might hide their account from people they do not know.",
+"The example shows someone improving a creative project using suggestions."
+],
+[
+"As a result, teenagers may become more skilled and confident in expressing their creative ideas.",
+"As a result, classmates may become confused by information that is not true.",
+"As a result, strangers may find it harder to view personal photographs.",
+"The effect concerns both talent development and creative confidence."
+]
+]
+},
+{
+point:"Social media can encourage young people to participate in community activities.",
+steps:[
+[
+"This is because online campaigns make local problems more visible and show people how they can help.",
+"This is because edited photographs can make ordinary appearances seem less attractive.",
+"This is because too much scrolling can reduce the time available for homework.",
+"The explanation shows HOW online awareness can lead to community participation."
+],
+[
+"For example, students may join a river clean-up after seeing a volunteer invitation shared online.",
+"For example, students may feel dissatisfied after comparing themselves with filtered selfies.",
+"For example, students may stay awake late at night watching short videos.",
+"The example describes a specific community action prompted by a post."
+],
+[
+"As a result, more volunteers may support local projects and help improve their neighbourhoods.",
+"As a result, teenagers may start judging their own appearance unfairly.",
+"As a result, students may become tired and find it difficult to focus in class.",
+"The outcome describes a direct benefit to the community."
+]
+]
+}
+]
+},
+{
+title:"Risks of Social Media",
+items:[
+{
+point:"Unverified information on social media can mislead young people.",
+steps:[
+[
+"This is because posts can spread quickly without fact-checking, making false claims appear believable.",
+"This is because group chats allow classmates to stay in touch after changing schools.",
+"This is because public campaigns can attract support for charity activities.",
+"The explanation identifies why unreliable online claims are easy to believe."
+],
+[
+"For example, a student may forward a fake school-closure notice without checking the school's official announcement.",
+"For example, former classmates may exchange photos in a messaging group during the holidays.",
+"For example, students may share a charity poster to encourage more people to donate.",
+"The example demonstrates a believable false claim being shared without verification."
+],
+[
+"As a result, classmates may become confused and make plans based on information that is untrue.",
+"As a result, students may keep their friendships strong despite living far apart.",
+"As a result, fundraising campaigns may reach more members of the public.",
+"The result shows the harm caused by acting on inaccurate information."
+]
+]
+},
+{
+point:"Cruel comments on social media can harm teenagers' emotional wellbeing.",
+steps:[
+[
+"This is because repeated insults may make someone feel embarrassed, anxious, or afraid to express themselves.",
+"This is because short online tutorials allow learners to replay difficult explanations.",
+"This is because sports videos may inspire viewers to try a new physical activity.",
+"The explanation connects online bullying with emotional distress."
+],
+[
+"For example, a student who receives hurtful remarks about a photograph may stop sharing posts with friends.",
+"For example, a student may rewatch an English grammar tutorial before writing an essay.",
+"For example, a student may follow an exercise demonstration before joining a sports club.",
+"The example shows how hurtful comments change a student's behaviour."
+],
+[
+"As a result, the student may lose confidence and become less willing to participate in online discussions.",
+"As a result, the student may understand difficult classroom topics more clearly.",
+"As a result, the student may become more active during school holidays.",
+"The outcome follows from the emotional harm caused by cruel comments."
+]
+]
+},
+{
+point:"Constantly comparing appearances on social media can damage teenagers' body image.",
+steps:[
+[
+"This is because edited photos and carefully selected posts can create unrealistic expectations about appearance.",
+"This is because educational accounts can share useful vocabulary and revision exercises.",
+"This is because online group projects can help students organise work with classmates.",
+"The explanation identifies unrealistic appearance standards as the cause."
+],
+[
+"For example, someone may feel unhappy with their natural skin after seeing heavily filtered selfies.",
+"For example, someone may learn new English expressions by following a language-teaching account.",
+"For example, someone may organise group assignments through a class messaging channel.",
+"The example shows how a filtered image can affect a person's self-perception."
+],
+[
+"As a result, teenagers may judge themselves unfairly and become less satisfied with their appearance.",
+"As a result, teenagers may strengthen their vocabulary through regular revision.",
+"As a result, teenagers may complete group assignments more efficiently.",
+"The effect directly concerns body image and self-acceptance."
+]
+]
+}
+]
+},
+{
+title:"Using Social Media Responsibly",
+items:[
+{
+point:"Teenagers should protect their personal information when using social media.",
+steps:[
+[
+"This is because sharing private details publicly may expose them to unwanted contact or misuse of their information.",
+"This is because positive comments can motivate young artists to practise their talents.",
+"This is because digital campaigns can encourage volunteers to join community projects.",
+"The explanation states WHY protecting private information matters."
+],
+[
+"For example, students can set their accounts to private and avoid posting their home address or daily timetable.",
+"For example, students can share their drawings with an online art community and request feedback.",
+"For example, students can repost a charity appeal to help recruit volunteers.",
+"The example gives practical actions that protect personal information."
+],
+[
+"As a result, they can reduce the risk of unwanted contact and improve their online safety.",
+"As a result, they may learn creative techniques from other young artists.",
+"As a result, local charity events may receive greater public support.",
+"The effect describes improved privacy and safety, matching the main point."
+]
+]
+},
+{
+point:"Setting time limits on social media helps students maintain a healthy routine.",
+steps:[
+[
+"This is because endless scrolling can take time away from homework, sleep, and physical activities.",
+"This is because online communities can introduce students to people with similar hobbies.",
+"This is because carefully designed photographs may receive more likes and comments.",
+"The explanation shows WHY limiting screen time supports a balanced routine."
+],
+[
+"For example, a student might silence app notifications and stop scrolling an hour before bedtime.",
+"For example, a student might join an online book club to meet people who enjoy reading.",
+"For example, a student might edit photographs before uploading them to a personal account.",
+"The example describes a realistic habit that reduces unnecessary screen time."
+],
+[
+"As a result, students may get more rest and have enough time for their other responsibilities.",
+"As a result, students may build friendships with people who share their interests.",
+"As a result, students may attract more attention to their online photographs.",
+"The result connects time limits with better sleep and time management."
+]
+]
+},
+{
+point:"Students should verify social media posts before sharing them with others.",
+steps:[
+[
+"This is because comparing claims with reliable sources helps them identify inaccurate or misleading information.",
+"This is because privacy controls allow users to choose who can view their accounts.",
+"This is because online messaging helps people maintain long-distance friendships.",
+"The explanation describes HOW checking reliable sources prevents misinformation."
+],
+[
+"For example, before reposting a viral health tip, students can check guidance from a recognised health organisation.",
+"For example, students can hide their profiles from unknown users and limit public comments.",
+"For example, students can send voice messages to friends who have moved overseas.",
+"The example shows fact-checking a particular claim before passing it on."
+],
+[
+"As a result, they are less likely to spread false claims to their friends or family members.",
+"As a result, they may receive fewer unwanted messages from unfamiliar users.",
+"As a result, they may maintain stronger relationships with distant friends.",
+"The result shows the direct benefit of checking information before sharing."
+]
+]
+}
+]
+}
+];
+
+const $=id=>document.getElementById(id);
+const STEP_NAMES=[
+  "Explanation","Example","Result / Effect"
+];
+
+const LEVEL_TOTALS=LEVELS.map(
+  group=>group.items.length*3
+);
+
+const MAX_SCORE=LEVEL_TOTALS.reduce(
+  (sum,n)=>sum+n,0
+);
+
+let player="";
+let rounds=[];
+let level=0;
+let challenge=0;
+let step=0;
+let score=0;
+let answeredCount=0;
+let challengeScore=0;
+let levelScores=[];
+let answered=false;
+let errors=[];
+
+function shuffle(items){
+  const a=[...items];
+
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function screen(id){
+  for(const name of [
+    "start","play","built","between","end"
+  ]){
+    $(name).hidden=name!==id;
+  }
+}
+
+function current(){
+  return rounds[level].items[challenge];
+}
+
+function startGame(){
+
+  // GUARANTEED BALANCED ANSWER PLACEMENT
+  // Level 1: 4 correct A, 4 B, 4 C.
+  // Level 2: 3 correct A, 3 B, 3 C.
+  // Level 3: 3 correct A, 3 B, 3 C.
+  // Order is reshuffled every time students replay.
+
+  rounds=LEVELS.map(group=>{
+
+    const items=shuffle(group.items).map(item=>({
+      point:item.point,
+      steps:item.steps.map(
+        ([correct,wrong1,wrong2,tip])=>({
+          correct,
+          wrong:[wrong1,wrong2],
+          tip,
+          options:[]
+        })
+      )
+    }));
+
+    const totalChoices=items.length*3;
+
+    const positions=shuffle(
+      Array.from(
+        {length:totalChoices},
+        (_,i)=>i%3
+      )
+    );
+
+    let positionIndex=0;
+
+    for(const item of items){
+      for(const part of item.steps){
+
+        part.options=shuffle(part.wrong).map(
+          text=>({
+            text,
+            correct:false
+          })
+        );
+
+        part.options.splice(
+          positions[positionIndex++],
+          0,
+          {
+            text:part.correct,
+            correct:true
+          }
+        );
+      }
+    }
+
+    return{
+      title:group.title,
+      items
+    };
+  });
+
+  level=0;
+  challenge=0;
+  score=0;
+  answeredCount=0;
+  levelScores=LEVELS.map(()=>0);
+  errors=[];
+
+  startChallenge();
+}
+
+function startChallenge(){
+  step=0;
+  challengeScore=0;
+  screen("play");
+  render();
+}
+
+function render(){
+  answered=false;
+
+  const item=current();
+
+  $("player").textContent="👤 "+player;
+
+  $("level").textContent=
+    `Level ${level+1}/3 · ${rounds[level].title}`;
+
+  $("score").textContent=
+    `⭐ ${score}/${MAX_SCORE}`;
+
+  const before=rounds.slice(0,level).reduce(
+    (n,part)=>n+part.items.length,0
+  );
+
+  $("progress").textContent=
+    `Paragraph ${before+challenge+1} of 10 · Step ${step+1} of 3`;
+
+  $("bar").style.width=
+    (answeredCount/MAX_SCORE*100)+"%";
+
+  $("point").textContent=item.point;
+
+  STEP_NAMES.forEach((_,i)=>{
+    $("step"+i).className="step "+(
+      i<step?"done":i===step?"active":""
+    );
+  });
+
+  $("draft").hidden=step===0;
+  $("draftText").replaceChildren();
+
+  if(step){
+    const p=document.createElement("p");
+
+    p.textContent=[
+      item.point,
+      ...item.steps.slice(0,step).map(
+        part=>part.correct
+      )
+    ].join(" ");
+
+    $("draftText").appendChild(p);
+  }
+
+  $("prompt").textContent=
+    `Step ${step+1}: Choose the best ${STEP_NAMES[step].toLowerCase()} sentence.`;
+
+  $("choices").replaceChildren();
+
+  $("feedback").hidden=true;
+  $("feedback").className="feedback";
+  $("next").hidden=true;
+
+  current().steps[step].options.forEach(
+    (option,i)=>{
+
+      const button=document.createElement("button");
+      button.type="button";
+      button.className="choice";
+
+      const letter=document.createElement("span");
+      letter.className="letter";
+      letter.textContent="ABC"[i];
+
+      const label=document.createElement("span");
+      label.textContent=option.text;
+
+      button.append(letter,label);
+
+      button.addEventListener(
+        "click",
+        ()=>select(option,button)
+      );
+
+      $("choices").appendChild(button);
+    }
+  );
+}
+
+function flash(type){
+  const app=$("app");
+
+  app.classList.remove(
+    "flash-red","flash-green"
+  );
+
+  void app.offsetWidth;
+  app.classList.add(type);
+}
+
+function celebrate(target){
+  const box=target.getBoundingClientRect();
+
+  const x=box.left+box.width/2;
+  const y=box.top+box.height/2;
+
+  [
+    "👏","✅","✨","🌸",
+    "👏","✅","💖","⭐"
+  ].forEach((emoji,i,arr)=>{
+
+    const node=document.createElement("span");
+    const angle=i*Math.PI*2/arr.length;
+    const distance=70+Math.random()*85;
+
+    node.className="particle";
+    node.textContent=emoji;
+    node.style.left=x+"px";
+    node.style.top=y+"px";
+
+    node.style.setProperty(
+      "--dx",
+      Math.cos(angle)*distance+"px"
+    );
+
+    node.style.setProperty(
+      "--dy",
+      Math.sin(angle)*distance+"px"
+    );
+
+    node.style.setProperty(
+      "--r",
+      (Math.random()*80-40)+"deg"
+    );
+
+    $("effects").appendChild(node);
+
+    node.addEventListener(
+      "animationend",
+      ()=>node.remove(),
+      {once:true}
+    );
+
+    setTimeout(()=>node.remove(),1400);
+  });
+}
+
+function select(choice,button){
+  if(answered)return;
+
+  answered=true;
+  answeredCount++;
+
+  const part=current().steps[step];
+
+  for(const opt of $("choices").children){
+    opt.disabled=true;
+
+    if(
+      opt.querySelector("span:last-child")
+        .textContent===part.correct
+    ){
+      opt.classList.add("correct");
+    }
+  }
+
+  const fb=$("feedback");
+  fb.hidden=false;
+
+  if(choice.correct){
+
+    score++;
+    levelScores[level]++;
+    challengeScore++;
+
+    fb.classList.add("good");
+
+    fb.textContent=
+      "✅ Correct! +1 mark. "+part.tip;
+
+    flash("flash-green");
+    celebrate(button);
+
+  }else{
+
+    button.classList.add("wrong");
+    fb.classList.add("bad");
+
+    fb.textContent=
+      "❌ Best sentence: "+part.correct+
+      "  💡 "+part.tip;
+
+    errors.push({
+      point:current().point,
+      kind:STEP_NAMES[step],
+      correct:part.correct,
+      tip:part.tip
+    });
+
+    flash("flash-red");
+
+    if(typeof navigator.vibrate==="function"){
+      navigator.vibrate([90,45,90]);
+    }
+  }
+
+  $("score").textContent=
+    `⭐ ${score}/${MAX_SCORE}`;
+
+  $("bar").style.width=
+    (answeredCount/MAX_SCORE*100)+"%";
+
+  $("next").textContent=step<2
+    ?`Continue to ${STEP_NAMES[step+1]} →`
+    :"See Complete Paragraph 📝";
+
+  $("next").hidden=false;
+}
+
+function showParagraph(){
+
+  screen("built");
+
+  const item=current();
+
+  $("challengeResult").textContent=
+    `You earned ${challengeScore}/3 marks for this paragraph.`;
+
+  $("paragraph").replaceChildren();
+
+  const p=document.createElement("p");
+
+  p.textContent=[
+    item.point,
+    ...item.steps.map(part=>part.correct)
+  ].join(" ");
+
+  $("paragraph").appendChild(p);
+
+  const last=
+    challenge===rounds[level].items.length-1;
+
+  $("nextChallenge").textContent=last
+    ?(
+      level===2
+        ?"See Final Score 🏆"
+        :"Finish This Level →"
+    )
+    :"Next Paragraph →";
+}
+
+function nextChallenge(){
+
+  challenge++;
+
+  if(challenge<rounds[level].items.length){
+    startChallenge();
+    return;
+  }
+
+  if(level===rounds.length-1){
+    finish();
+    return;
+  }
+
+  $("levelFinished").textContent=
+    `Level ${level+1} Completed!`;
+
+  $("levelSummary").textContent=
+    `You scored ${levelScores[level]}/${LEVEL_TOTALS[level]} in ${rounds[level].title}. Next: ${rounds[level+1].title}.`;
+
+  screen("between");
+}
+
+function finish(){
+
+  screen("end");
+
+  $("resultName").textContent=player;
+
+  $("finalScore").textContent=
+    `${score} / ${MAX_SCORE}`;
+
+  $("percentage").textContent=
+    Math.round(score/MAX_SCORE*100)+"% correct";
+
+  $("breakdown").replaceChildren();
+
+  rounds.forEach((round,i)=>{
+
+    const chip=document.createElement("span");
+    chip.className="chip";
+
+    chip.textContent=
+      `Level ${i+1}: ${levelScores[i]}/${LEVEL_TOTALS[i]}`;
+
+    $("breakdown").appendChild(chip);
+  });
+
+  $("message").textContent=score>=27
+    ?"🌟 Excellent! You're building strong paragraphs!"
+    :score>=21
+    ?"👏 Great work! Keep connecting explanations, examples and results."
+    :"🌱 Keep practising: explain WHY, give an example and show the effect.";
+
+  $("reviewButton").textContent=
+    `Review My Mistakes (${errors.length}) 📚`;
+
+  $("review").hidden=true;
+  $("review").replaceChildren();
+
+  if(!errors.length){
+
+    const p=document.createElement("p");
+
+    p.textContent=
+      "Perfect! You have no mistakes to review. 🎉";
+
+    $("review").appendChild(p);
+  }
+
+  for(const [i,error] of errors.entries()){
+
+    const card=document.createElement("div");
+    card.className="review-item";
+
+    const heading=document.createElement("strong");
+
+    heading.textContent=
+      `${i+1}. ${error.kind} — ${error.point}`;
+
+    const answer=document.createElement("p");
+
+    answer.textContent=
+      "✅ Best sentence: "+error.correct;
+
+    const reason=document.createElement("p");
+
+    reason.textContent="💡 "+error.tip;
+
+    card.append(heading,answer,reason);
+
+    $("review").appendChild(card);
+  }
+}
+
+$("nameForm").addEventListener("submit",e=>{
+  e.preventDefault();
+
+  player=$("nameInput").value.trim();
+
+  if(player)startGame();
+});
+
+$("next").addEventListener("click",()=>{
+
+  if(!answered)return;
+
+  if(step<2){
+    step++;
+    render();
+  }else{
+    showParagraph();
+  }
+});
+
+$("nextChallenge").addEventListener(
+  "click",nextChallenge
+);
+
+$("continueLevel").addEventListener("click",()=>{
+  level++;
+  challenge=0;
+  startChallenge();
+});
+
+$("reviewButton").addEventListener("click",()=>{
+  $("review").hidden=!$("review").hidden;
+});
+
+$("replay").addEventListener("click",startGame);
+
+$("changeName").addEventListener("click",()=>{
+  screen("start");
+});
+
+// Keyboard shortcuts: 1, 2, 3 or A, B, C
+document.addEventListener("keydown",e=>{
+
+  if($("play").hidden||answered||e.repeat)return;
+
+  if(e.target.matches("input,textarea"))return;
+
+  const position={
+    "1":0,"2":1,"3":2,
+    a:0,b:1,c:2
+  }[e.key.toLowerCase()];
+
+  if(position!==undefined){
+    $("choices").children[position]?.click();
+  }
+});
+</script>
+</body>
+</html>
