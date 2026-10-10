@@ -1,0 +1,180 @@
+
+name: Update Game Directory
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - '.github/workflows/update-game-directory.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-game-directory
+  cancel-in-progress: false
+
+jobs:
+  update-directory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository files
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Build game list
+        run: |
+          python3 - <<'PY'
+          import os
+          import re
+          import subprocess
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from urllib.parse import quote
+
+          owner, repo = os.environ['GITHUB_REPOSITORY'].split('/')
+          base = f'https://{owner}.github.io/{repo}/'
+          start = '<!-- AUTO-GAMES:START -->'
+          end = '<!-- AUTO-GAMES:END -->'
+
+          names = {
+              'eng-jumble-environment': 'Sentence Jumble — Environment',
+              'eng-preposition': 'Prepositions',
+              'eng-spell-environment': 'Environment Spelling',
+              'eng-spell-technology': 'Technology Spelling',
+              'eng-verbtonoun': 'Verb to Noun',
+              'eng-vocab-environment': 'Environment Vocabulary',
+              'eng-vocab-technology': 'Technology Vocabulary',
+              'jpn-spelling-kanji-katakana': 'Kanji & Katakana Spell-Off',
+              'n5-adj': 'N5 Adjectives',
+              'n5-sentence': 'N5 Sentence Jumble',
+              'n5-verb': 'N5 Verbs',
+              'n5-vocabulary': 'N5 Vocabulary',
+              'teform': 'て-form Builder',
+          }
+
+          def title(path):
+              stem = path.stem
+              match = re.fullmatch(r'(.+)-(\d+)', stem)
+              key = match.group(1) if match else stem
+              label = names.get(key, key.replace('-', ' ').title())
+              if key.startswith('eng-') and key not in names:
+                  label = label.removeprefix('Eng ')
+              if key.startswith('jpn-') and key not in names:
+                  label = label.removeprefix('Jpn ')
+              if match:
+                  label += f' (Set {match.group(2)})'
+              return label
+
+          def first_added(path):
+              command = ['git', 'log', '--follow', '--diff-filter=A',
+                         '--format=%ct', '--', str(path)]
+              result = subprocess.run(
+                  command, capture_output=True,
+                  text=True, check=True
+              ).stdout.strip()
+              if not result:
+                  result = subprocess.run(
+                      ['git', 'log', '-1', '--format=%ct', '--', str(path)],
+                      capture_output=True, text=True, check=True
+                  ).stdout.strip()
+              return int(result.splitlines()[-1]) if result else 0
+
+          groups = {'English': [], 'Japanese': [], 'Other': []}
+
+          for path in Path('.').rglob('*.html'):
+              if path.name.lower() in {'index.html', '404.html'}:
+                  continue
+              if '.git' in path.parts:
+                  continue
+
+              filename = path.name.lower()
+              if filename.startswith('eng-'):
+                  group = 'English'
+              elif filename.startswith(('jpn-', 'n5-', 'teform-')):
+                  group = 'Japanese'
+              else:
+                  group = 'Other'
+
+              groups[group].append((first_added(path), path))
+
+          total = sum(map(len, groups.values()))
+          lines = [
+              start,
+              '## 🎮 Play My Language Games',
+              f'**{total} games** — automatically updated when an HTML game is added.',
+              'Newest additions appear first in each category.'
+          ]
+
+          for group, emoji in [
+              ('English', '🇬🇧'),
+              ('Japanese', '🇯🇵'),
+              ('Other', '🎲')
+          ]:
+              items = sorted(
+                  groups[group],
+                  key=lambda x: (x[0], str(x[1])),
+                  reverse=True
+              )
+              if not items:
+                  continue
+
+              lines += ['', f'### {emoji} {group} Games']
+
+              for added, path in items:
+                  url = base + quote(path.as_posix(), safe='/')
+                  date = (
+                      datetime.fromtimestamp(
+                          added, timezone.utc
+                      ).strftime('%d %b %Y')
+                      if added else ''
+                  )
+                  lines.append(
+                      f'- [{title(path)}]({url})' +
+                      (f' — added {date}' if date else '')
+                  )
+
+          lines += [
+              '',
+              '_This directory is maintained by GitHub Actions._',
+              end
+          ]
+
+          directory = '\n'.join(lines)
+          readme = Path('README.md')
+          old = (
+              readme.read_text(encoding='utf-8')
+              if readme.exists() else ''
+          )
+
+          if start in old and end in old:
+              before = old.split(start, 1)[0].rstrip()
+              after = old.split(end, 1)[1].lstrip('\n')
+              new = (
+                  (before + '\n\n' if before else '') +
+                  directory + '\n' + after
+              )
+          else:
+              new = (
+                  (old.rstrip() + '\n\n' if old.strip() else '') +
+                  directory + '\n'
+              )
+
+          readme.write_text(new, encoding='utf-8')
+          PY
+
+      - name: Save updated README
+        run: |
+          if git diff --quiet -- README.md; then
+            echo 'Directory already up to date.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git commit -m 'Automatically update game directory'
+          git push
