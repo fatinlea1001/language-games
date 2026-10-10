@@ -1,0 +1,1225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Japanese Picture Quiz — Library</title>
+
+<style>
+:root {
+  --pink: #e875a9;
+  --lightpink: #fff0f7;
+  --purple: #8261b1;
+  --green: #299565;
+  --red: #d94e6b;
+  --ink: #4f3c50;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 15px;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(
+    135deg,
+    #ffe7f1,
+    #f3efff,
+    #e8fff3
+  );
+}
+
+.app {
+  width: min(100%, 850px);
+  margin: 0 auto;
+  padding: 24px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px #c89caf55;
+}
+
+h1 {
+  text-align: center;
+  color: #d9508e;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.center {
+  text-align: center;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* IMAGE */
+
+.picture {
+  width: 100%;
+  max-height: 390px;
+  object-fit: contain;
+  background: #fff8fc;
+  border: 3px solid #f3c4dc;
+  border-radius: 18px;
+  display: block;
+  margin: 15px auto;
+}
+
+.picture-note {
+  text-align: center;
+  color: #92758a;
+  font-size: 12px;
+}
+
+/* INPUT */
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 15px 0;
+  font: inherit;
+  border: 2px solid #edc2d8;
+  border-radius: 12px;
+}
+
+/* BUTTONS */
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.action {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 13px;
+  background: var(--pink);
+  color: white;
+  font-weight: 800;
+  margin-top: 12px;
+}
+
+.action:hover {
+  background: #d45191;
+}
+
+.action.secondary {
+  background: #ac8eb9;
+}
+
+/* TOP BAR */
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pill {
+  background: #ffe9f3;
+  color: #9d4775;
+  padding: 8px 13px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.progress {
+  height: 10px;
+  background: #f8deec;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--pink);
+  transition: width .3s;
+}
+
+/* JAPANESE SENTENCE */
+
+.question-box {
+  background: #fff2f8;
+  border: 2px solid #efc8de;
+  border-radius: 18px;
+  padding: 22px 14px;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.question-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: #aa5485;
+  margin-bottom: 12px;
+}
+
+.japanese {
+  font-family:
+    "Yu Gothic",
+    "Meiryo",
+    "Noto Sans JP",
+    sans-serif;
+  font-size: clamp(22px, 4.5vw, 30px);
+  line-height: 2.3;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+ruby {
+  ruby-position: over;
+}
+
+rt {
+  font-size: 11px;
+  font-weight: 400;
+  color: #876c9e;
+}
+
+/* TRUE FALSE */
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+  margin-top: 20px;
+}
+
+.answer {
+  border: 2px solid #edc5db;
+  background: white;
+  border-radius: 16px;
+  padding: 18px 10px;
+  font-weight: 800;
+  color: var(--ink);
+  transition: .15s;
+}
+
+.answer:hover:not(:disabled) {
+  border-color: var(--pink);
+  background: #fff0f7;
+}
+
+.answer:disabled {
+  cursor: default;
+}
+
+.symbol {
+  display: block;
+  font-size: 37px;
+  margin-bottom: 7px;
+}
+
+.answer.correct {
+  background: #e1f8ea;
+  color: #176b43;
+  border-color: #5ebc86;
+}
+
+.answer.wrong {
+  background: #ffe1e7;
+  color: #a42e4c;
+  border-color: #e5758b;
+  animation: shake .4s;
+}
+
+/* FEEDBACK */
+
+.feedback {
+  padding: 15px;
+  border-radius: 15px;
+  margin-top: 16px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.feedback.good {
+  background: #e2f8eb;
+  color: #1b7448;
+}
+
+.feedback.bad {
+  background: #ffe5ec;
+  color: #a42a48;
+}
+
+.feedback small {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+/* RESULTS */
+
+.big-score {
+  font-size: 65px;
+  font-weight: 900;
+  color: #d84b92;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.review-item {
+  background: #fff7fb;
+  border: 1px solid #edd0df;
+  border-radius: 13px;
+  padding: 14px;
+  margin-top: 10px;
+}
+
+.review-item .japanese {
+  font-size: 18px;
+}
+
+/* ANIMATION */
+
+@keyframes shake {
+  0%,100% {transform: translateX(0)}
+  20%,60% {transform: translateX(-7px)}
+  40%,80% {transform: translateX(7px)}
+}
+
+#effects {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.effect {
+  position: absolute;
+  font-size: 27px;
+  animation: floatAway 1s ease-out forwards;
+}
+
+@keyframes floatAway {
+  0% {
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(.3);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(-50% + var(--dx)),
+      calc(-50% + var(--dy))
+    );
+  }
+}
+
+@media(max-width:550px) {
+  body {
+    padding: 8px;
+  }
+
+  .app {
+    padding: 17px 12px;
+  }
+
+  .picture {
+    max-height: 260px;
+  }
+
+  .question-box {
+    padding: 15px 10px;
+  }
+
+  .answer {
+    padding: 13px 7px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="effects"></div>
+
+<main class="app">
+
+<!-- START SCREEN -->
+
+<section id="start">
+
+  <div class="center" style="font-size:48px">
+    📚🌸🇯🇵
+  </div>
+
+  <h1>Japanese Picture Quiz!</h1>
+
+  <p class="center">
+    図書館（としょかん）
+    <br>
+    <b>Library Edition — Set 1</b>
+  </p>
+
+  <p class="center">
+    Look carefully at the picture.
+    Read each Japanese sentence.
+    Decide whether it is TRUE or FALSE.
+  </p>
+
+  <p class="center">
+    🌸 N5–Early N4
+    <br>
+    ⭐ 20 questions
+    <br>
+    📸 Screenshot your final score
+  </p>
+
+  <form id="nameForm">
+
+    <input
+      id="nameInput"
+      placeholder="Enter your name"
+      maxlength="60"
+      required
+    >
+
+    <button class="action">
+      Start Quiz ✨
+    </button>
+
+  </form>
+
+</section>
+
+
+<!-- GAME SCREEN -->
+
+<section id="game" hidden>
+
+  <div class="stats">
+
+    <span class="pill" id="playerLabel">
+      👤 Player
+    </span>
+
+    <span class="pill" id="numberLabel">
+      Question 1/20
+    </span>
+
+    <span class="pill" id="scoreLabel">
+      ⭐ 0/20
+    </span>
+
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="bar"></div>
+  </div>
+
+  <!-- SAME STATIC IMAGE FOR ALL QUESTIONS -->
+
+  <img
+    class="picture"
+    src="https://fatinlea1001.github.io/language-games/images/LIBRARY.png"
+    alt="Malaysian teenagers reading and studying in a library"
+  >
+
+  <div class="picture-note">
+    👀 Look carefully at the picture.
+  </div>
+
+  <div class="question-box">
+
+    <div class="question-label">
+      この文は正しいですか。
+      <br>
+      Is this sentence true?
+    </div>
+
+    <div class="japanese" id="sentence"></div>
+
+  </div>
+
+  <div class="answers">
+
+    <button class="answer" id="trueBtn">
+
+      <span class="symbol">〇</span>
+
+      TRUE
+      <br>
+      <small>ただしい</small>
+
+    </button>
+
+    <button class="answer" id="falseBtn">
+
+      <span class="symbol">×</span>
+
+      FALSE
+      <br>
+      <small>ちがう</small>
+
+    </button>
+
+  </div>
+
+  <div class="feedback" id="feedback" hidden></div>
+
+  <button
+    class="action secondary"
+    id="nextBtn"
+    hidden
+  >
+    Next Sentence →
+  </button>
+
+</section>
+
+
+<!-- RESULT SCREEN -->
+
+<section id="result" hidden>
+
+  <div class="center" style="font-size:52px">
+    🏆🌸🎉
+  </div>
+
+  <h1>Quiz Completed!</h1>
+
+  <h2 class="center" id="resultName"></h2>
+
+  <p class="center">Your final score</p>
+
+  <div class="big-score" id="finalScore"></div>
+
+  <p class="center">
+    <span class="pill" id="percentage"></span>
+  </p>
+
+  <p class="center" id="message"></p>
+
+  <button
+    class="action secondary"
+    id="reviewBtn"
+  >
+    Review My Mistakes 📖
+  </button>
+
+  <div id="review" hidden></div>
+
+  <button class="action" id="replayBtn">
+    Play Again 🔀
+  </button>
+
+  <button
+    class="action secondary"
+    id="changeNameBtn"
+  >
+    Change Name
+  </button>
+
+  <p class="center">
+    📸 Screenshot your score to share!
+  </p>
+
+</section>
+
+</main>
+
+
+<script>
+
+// ==================================================
+// JAPANESE QUESTIONS
+// 10 TRUE + 10 FALSE
+// All statements refer to the SAME library picture.
+// ==================================================
+
+const QUESTIONS = [
+
+{
+jp:`ここは<ruby>図書館<rt>としょかん</rt></ruby>です。`,
+en:"This is a library.",
+truth:true,
+clue:"The picture shows a library with bookshelves and students."
+},
+
+{
+jp:`<ruby>図書館<rt>としょかん</rt></ruby>には<ruby>学生<rt>がくせい</rt></ruby>が<ruby>一人<rt>ひとり</rt></ruby>しかいません。`,
+en:"There is only one student in the library.",
+truth:false,
+clue:"Many students are visible."
+},
+
+{
+jp:`<ruby>本棚<rt>ほんだな</rt></ruby>には<ruby>本<rt>ほん</rt></ruby>がたくさんあります。`,
+en:"There are many books on the bookshelves.",
+truth:true,
+clue:"The bookshelves are full of books."
+},
+
+{
+jp:`<ruby>右<rt>みぎ</rt></ruby>の<ruby>女<rt>おんな</rt></ruby>の<ruby>子<rt>こ</rt></ruby>は<ruby>赤<rt>あか</rt></ruby>い<ruby>帽子<rt>ぼうし</rt></ruby>をかぶっています。`,
+en:"The girl on the right is wearing a red hat.",
+truth:false,
+clue:"The girl beside the bookshelf is wearing a white hijab."
+},
+
+{
+jp:`めがねをかけている<ruby>男<rt>おとこ</rt></ruby>の<ruby>子<rt>こ</rt></ruby>がいます。`,
+en:"There is a boy wearing glasses.",
+truth:true,
+clue:"A boy with glasses is sitting at the front table."
+},
+
+{
+jp:`<ruby>左<rt>ひだり</rt></ruby>の<ruby>女<rt>おんな</rt></ruby>の<ruby>子<rt>こ</rt></ruby>は<ruby>寝<rt>ね</rt></ruby>ています。`,
+en:"The girl on the left is sleeping.",
+truth:false,
+clue:"She is writing in a notebook."
+},
+
+{
+jp:`<ruby>左<rt>ひだり</rt></ruby>の<ruby>女<rt>おんな</rt></ruby>の<ruby>子<rt>こ</rt></ruby>はノートに<ruby>字<rt>じ</rt></ruby>を<ruby>書<rt>か</rt></ruby>いています。`,
+en:"The girl on the left is writing in a notebook.",
+truth:true,
+clue:"She is sitting at a table and writing."
+},
+
+{
+jp:`<ruby>学生<rt>がくせい</rt></ruby>はみんな<ruby>立<rt>た</rt></ruby>っています。`,
+en:"All the students are standing.",
+truth:false,
+clue:"Several students are sitting at tables."
+},
+
+{
+jp:`<ruby>窓<rt>まど</rt></ruby>の<ruby>外<rt>そと</rt></ruby>には<ruby>木<rt>き</rt></ruby>が<ruby>見<rt>み</rt></ruby>えます。`,
+en:"Trees can be seen outside the windows.",
+truth:true,
+clue:"Green trees are visible through the windows."
+},
+
+{
+jp:`<ruby>机<rt>つくえ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>には<ruby>本<rt>ほん</rt></ruby>がありません。`,
+en:"There are no books on the tables.",
+truth:false,
+clue:"There are several books on the tables."
+},
+
+{
+jp:`<ruby>右<rt>みぎ</rt></ruby>の<ruby>女<rt>おんな</rt></ruby>の<ruby>子<rt>こ</rt></ruby>は<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>んでいます。`,
+en:"The girl on the right is reading a book.",
+truth:true,
+clue:"The girl in the white hijab near the right bookshelf is reading."
+},
+
+{
+jp:`<ruby>左<rt>ひだり</rt></ruby>の<ruby>男<rt>おとこ</rt></ruby>の<ruby>子<rt>こ</rt></ruby>は<ruby>椅子<rt>いす</rt></ruby>に<ruby>座<rt>すわ</rt></ruby>っています。`,
+en:"The boy on the left is sitting on a chair.",
+truth:false,
+clue:"The boy at the left bookshelf is standing."
+},
+
+{
+jp:`<ruby>手前<rt>てまえ</rt></ruby>の<ruby>机<rt>つくえ</rt></ruby>には<ruby>四人<rt>よにん</rt></ruby>の<ruby>学生<rt>がくせい</rt></ruby>がいます。`,
+en:"There are four students at the front table.",
+truth:true,
+clue:"Four students are studying together around the front table."
+},
+
+{
+jp:`<ruby>窓<rt>まど</rt></ruby>の<ruby>外<rt>そと</rt></ruby>は<ruby>夜<rt>よる</rt></ruby>です。`,
+en:"It is night outside the windows.",
+truth:false,
+clue:"Sunlight is coming through the windows."
+},
+
+{
+jp:`<ruby>左<rt>ひだり</rt></ruby>の<ruby>男<rt>おとこ</rt></ruby>の<ruby>子<rt>こ</rt></ruby>は<ruby>本棚<rt>ほんだな</rt></ruby>から<ruby>本<rt>ほん</rt></ruby>を<ruby>取<rt>と</rt></ruby>っています。`,
+en:"The boy on the left is taking a book from the bookshelf.",
+truth:true,
+clue:"He is reaching towards a book on the shelf."
+},
+
+{
+jp:`<ruby>図書館<rt>としょかん</rt></ruby>には<ruby>机<rt>つくえ</rt></ruby>がありません。`,
+en:"There are no tables in the library.",
+truth:false,
+clue:"Several wooden tables are visible."
+},
+
+{
+jp:`<ruby>奥<rt>おく</rt></ruby>の<ruby>机<rt>つくえ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>にパソコンがあります。`,
+en:"There is a computer on a table towards the back.",
+truth:true,
+clue:"A laptop is on a table behind the front group."
+},
+
+{
+jp:`めがねをかけている<ruby>男<rt>おとこ</rt></ruby>の<ruby>子<rt>こ</rt></ruby>は<ruby>立<rt>た</rt></ruby>っています。`,
+en:"The boy wearing glasses is standing.",
+truth:false,
+clue:"The boy with glasses is sitting at the front table."
+},
+
+{
+jp:`<ruby>図書館<rt>としょかん</rt></ruby>には<ruby>緑<rt>みどり</rt></ruby>の<ruby>植物<rt>しょくぶつ</rt></ruby>があります。`,
+en:"There are green plants in the library.",
+truth:true,
+clue:"Several green plants decorate the room."
+},
+
+{
+jp:`<ruby>図書館<rt>としょかん</rt></ruby>には<ruby>窓<rt>まど</rt></ruby>がありません。`,
+en:"There are no windows in the library.",
+truth:false,
+clue:"Large windows are clearly visible in the background."
+}
+
+];
+
+
+// ==================================================
+// GAME VARIABLES
+// ==================================================
+
+const $ = id => document.getElementById(id);
+
+let player = "";
+let round = [];
+let index = 0;
+let score = 0;
+let locked = false;
+let mistakes = [];
+let timer = null;
+
+
+// ==================================================
+// SHUFFLE FUNCTIONS
+// ==================================================
+
+function shuffle(items) {
+
+  const a = [...items];
+
+  for (let i = a.length - 1; i > 0; i--) {
+
+    const j = Math.floor(
+      Math.random() * (i + 1)
+    );
+
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+
+  return a;
+}
+
+// Mix 10 TRUE and 10 FALSE while avoiding
+// three identical answers in a row.
+
+function makeRound() {
+
+  for (let attempt = 0; attempt < 500; attempt++) {
+
+    const questions = shuffle(QUESTIONS);
+
+    let valid = true;
+
+    for (let i = 2; i < questions.length; i++) {
+
+      if (
+        questions[i].truth === questions[i-1].truth &&
+        questions[i].truth === questions[i-2].truth
+      ) {
+        valid = false;
+        break;
+      }
+
+    }
+
+    if (valid) return questions;
+
+  }
+
+  // Guaranteed balanced fallback
+
+  const yes = shuffle(
+    QUESTIONS.filter(q => q.truth)
+  );
+
+  const no = shuffle(
+    QUESTIONS.filter(q => !q.truth)
+  );
+
+  const firstTrue = Math.random() < 0.5;
+
+  const result = [];
+
+  for (let i = 0; i < 10; i++) {
+
+    if (firstTrue) {
+      result.push(yes[i], no[i]);
+    } else {
+      result.push(no[i], yes[i]);
+    }
+
+  }
+
+  return result;
+}
+
+
+// ==================================================
+// SCREENS
+// ==================================================
+
+function show(id) {
+
+  ["start", "game", "result"].forEach(s => {
+
+    $(s).hidden = s !== id;
+
+  });
+
+}
+
+
+// ==================================================
+// START GAME
+// ==================================================
+
+function startGame() {
+
+  clearTimeout(timer);
+
+  round = makeRound();
+
+  index = 0;
+  score = 0;
+  locked = false;
+  mistakes = [];
+
+  show("game");
+  render();
+
+}
+
+
+// ==================================================
+// DISPLAY QUESTION
+// ==================================================
+
+function render() {
+
+  clearTimeout(timer);
+
+  locked = false;
+
+  const q = round[index];
+
+  $("playerLabel").textContent =
+    "👤 " + player;
+
+  $("numberLabel").textContent =
+    `Question ${index + 1}/${round.length}`;
+
+  $("scoreLabel").textContent =
+    `⭐ ${score}/${round.length}`;
+
+  $("bar").style.width =
+    (index / round.length * 100) + "%";
+
+  $("sentence").innerHTML = q.jp;
+
+  $("feedback").hidden = true;
+  $("feedback").className = "feedback";
+
+  $("nextBtn").hidden = true;
+
+  $("trueBtn").disabled = false;
+  $("falseBtn").disabled = false;
+
+  $("trueBtn").className = "answer";
+  $("falseBtn").className = "answer";
+
+}
+
+
+// ==================================================
+// CHECK ANSWER
+// ==================================================
+
+function answer(value) {
+
+  if (locked) return;
+
+  locked = true;
+
+  const q = round[index];
+
+  const correct = value === q.truth;
+
+  $("trueBtn").disabled = true;
+  $("falseBtn").disabled = true;
+
+  const chosenButton = value
+    ? $("trueBtn")
+    : $("falseBtn");
+
+  const correctButton = q.truth
+    ? $("trueBtn")
+    : $("falseBtn");
+
+  correctButton.classList.add("correct");
+
+  const box = $("feedback");
+  box.hidden = false;
+
+  if (correct) {
+
+    score++;
+
+    box.classList.add("good");
+
+    box.innerHTML =
+      "<b>✅ せいかい！ Correct! +1 mark</b>";
+
+    celebrate(chosenButton);
+
+  } else {
+
+    chosenButton.classList.add("wrong");
+
+    box.classList.add("bad");
+
+    box.innerHTML =
+      "<b>❌ ざんねん！ Not quite!</b>";
+
+    mistakes.push(q);
+
+    if (
+      typeof navigator.vibrate === "function"
+    ) {
+      navigator.vibrate(100);
+    }
+
+  }
+
+  const meaning = document.createElement("small");
+
+  meaning.textContent =
+    "Meaning: " + q.en;
+
+  const clue = document.createElement("small");
+
+  clue.textContent =
+    "Picture clue: " + q.clue;
+
+  box.append(meaning, clue);
+
+  $("scoreLabel").textContent =
+    `⭐ ${score}/${round.length}`;
+
+  $("bar").style.width =
+    ((index + 1) / round.length * 100) + "%";
+
+  $("nextBtn").hidden = false;
+
+  $("nextBtn").textContent =
+    index === round.length - 1
+      ? "See Final Score 🏆"
+      : "Next Sentence →";
+
+  // Automatically move after 3.2 seconds.
+  // Students can also press Next immediately.
+
+  timer = setTimeout(nextQuestion, 3200);
+
+}
+
+
+// ==================================================
+// NEXT QUESTION
+// ==================================================
+
+function nextQuestion() {
+
+  if (!locked) return;
+
+  clearTimeout(timer);
+
+  index++;
+
+  if (index >= round.length) {
+
+    showResult();
+
+  } else {
+
+    render();
+
+  }
+
+}
+
+
+// ==================================================
+// FINAL RESULT
+// ==================================================
+
+function showResult() {
+
+  show("result");
+
+  const percent = Math.round(
+    score / round.length * 100
+  );
+
+  $("resultName").textContent = player;
+
+  $("finalScore").textContent =
+    `${score} / ${round.length}`;
+
+  $("percentage").textContent =
+    percent + "% correct";
+
+  let message;
+
+  if (score === 20) {
+
+    message =
+      "🌟 すばらしい！ Perfect score!";
+
+  } else if (score >= 16) {
+
+    message =
+      "👏 よくできました！ Excellent work!";
+
+  } else if (score >= 12) {
+
+    message =
+      "💗 がんばりました！ Good effort!";
+
+  } else {
+
+    message =
+      "🌸 もういちど！ Keep practising!";
+
+  }
+
+  $("message").textContent = message;
+
+  $("reviewBtn").textContent =
+    `Review My Mistakes (${mistakes.length}) 📖`;
+
+  $("review").hidden = true;
+  $("review").replaceChildren();
+
+  if (mistakes.length === 0) {
+
+    const p = document.createElement("p");
+
+    p.textContent =
+      "Perfect! No mistakes to review! 🎉";
+
+    $("review").appendChild(p);
+
+    return;
+  }
+
+  mistakes.forEach((q, i) => {
+
+    const card = document.createElement("div");
+    card.className = "review-item";
+
+    const number = document.createElement("b");
+
+    number.textContent =
+      `Question ${i + 1}`;
+
+    const jp = document.createElement("div");
+    jp.className = "japanese";
+
+    jp.innerHTML = q.jp;
+
+    const en = document.createElement("p");
+
+    en.textContent =
+      "Meaning: " + q.en;
+
+    const answer = document.createElement("p");
+
+    answer.textContent =
+      "Correct answer: " +
+      (q.truth ? "〇 TRUE" : "× FALSE");
+
+    const clue = document.createElement("p");
+
+    clue.textContent =
+      "Picture clue: " + q.clue;
+
+    card.append(
+      number,
+      jp,
+      en,
+      answer,
+      clue
+    );
+
+    $("review").appendChild(card);
+
+  });
+
+}
+
+
+// ==================================================
+// FLOATING CLAPS
+// ==================================================
+
+function celebrate(button) {
+
+  const r = button.getBoundingClientRect();
+
+  const x = r.left + r.width / 2;
+  const y = r.top + r.height / 2;
+
+  const emojis = [
+    "👏", "✅", "🌸",
+    "✨", "👏", "⭐"
+  ];
+
+  emojis.forEach((emoji, i) => {
+
+    const particle = document.createElement("span");
+
+    const angle =
+      (Math.PI * 2 * i) / emojis.length;
+
+    const distance = 70 + Math.random() * 60;
+
+    particle.className = "effect";
+    particle.textContent = emoji;
+
+    particle.style.left = x + "px";
+    particle.style.top = y + "px";
+
+    particle.style.setProperty(
+      "--dx",
+      Math.cos(angle) * distance + "px"
+    );
+
+    particle.style.setProperty(
+      "--dy",
+      Math.sin(angle) * distance + "px"
+    );
+
+    $("effects").appendChild(particle);
+
+    setTimeout(() => {
+
+      particle.remove();
+
+    }, 1100);
+
+  });
+
+}
+
+
+// ==================================================
+// BUTTON EVENTS
+// ==================================================
+
+$("nameForm").addEventListener("submit", e => {
+
+  e.preventDefault();
+
+  player = $("nameInput").value.trim();
+
+  if (player) {
+
+    startGame();
+
+  }
+
+});
+
+$("trueBtn").addEventListener("click", () => {
+
+  answer(true);
+
+});
+
+$("falseBtn").addEventListener("click", () => {
+
+  answer(false);
+
+});
+
+$("nextBtn").addEventListener("click", nextQuestion);
+
+$("replayBtn").addEventListener("click", startGame);
+
+$("changeNameBtn").addEventListener("click", () => {
+
+  clearTimeout(timer);
+
+  show("start");
+
+});
+
+$("reviewBtn").addEventListener("click", () => {
+
+  $("review").hidden =
+    !$("review").hidden;
+
+});
+
+// Keyboard shortcuts
+// T = True, F = False
+
+document.addEventListener("keydown", e => {
+
+  if ($("game").hidden || locked) return;
+
+  if (e.target.matches("input,textarea")) return;
+
+  if (e.key.toLowerCase() === "t") {
+
+    answer(true);
+
+  }
+
+  if (e.key.toLowerCase() === "f") {
+
+    answer(false);
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
