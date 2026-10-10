@@ -1,0 +1,579 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tech Spell-Off!</title>
+<style>
+:root {
+  --pink:#ee73a7;
+  --dark:#48364b;
+  --green:#39a56c;
+  --red:#e74b65;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  padding:20px;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  font-family:Arial,sans-serif;
+  color:var(--dark);
+  background:linear-gradient(135deg,#ffe5f1,#e3f1ff);
+}
+.app {
+  position:relative;
+  width:min(100%,620px);
+  background:white;
+  padding:30px;
+  border-radius:25px;
+  box-shadow:0 12px 35px #bc8eab55;
+  text-align:center;
+}
+h1 {color:#d94c8d}
+p {line-height:1.6}
+input {
+  width:100%;
+  padding:16px;
+  font-size:17px;
+  border:2px solid #f4c5da;
+  border-radius:13px;
+  margin:15px 0;
+}
+button {
+  font-family:inherit;
+  cursor:pointer;
+  transition:background .15s;
+}
+.main-btn {
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:14px;
+  color:white;
+  background:var(--pink);
+  font-size:17px;
+  font-weight:bold;
+  margin-top:17px;
+}
+.main-btn:hover {background:#d64d8b}
+.main-btn:focus-visible,
+.choice:focus-visible {
+  outline:3px solid #6952c9;
+  outline-offset:3px;
+}
+.stats {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  font-weight:bold;
+  font-size:14px;
+}
+.progress {
+  background:#f7d8e7;
+  height:11px;
+  border-radius:20px;
+  margin:22px 0 30px;
+  overflow:hidden;
+}
+.bar {
+  width:0;
+  height:100%;
+  background:linear-gradient(90deg,#f59ac3,#ee73a7);
+  transition:width .3s;
+}
+.choices {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin:27px 0;
+}
+.choice {
+  position:relative;
+  min-height:115px;
+  padding:20px 10px;
+  font-size:clamp(15px,3vw,21px);
+  font-weight:bold;
+  overflow-wrap:anywhere;
+  border:3px solid #f4c3d9;
+  border-radius:18px;
+  background:#fff0f7;
+  color:#704c65;
+}
+.choice:hover:not(:disabled) {
+  border-color:var(--pink);
+  background:#ffe0ef;
+}
+.choice:disabled {cursor:default}
+.choice.correct {
+  background:#d6fae5;
+  border-color:var(--green);
+  color:#197044;
+}
+.choice.wrong {
+  background:#ffb9c5;
+  border-color:var(--red);
+  color:#a01837;
+}
+.shake {
+  animation:shake .48s ease-in-out;
+}
+@keyframes shake {
+  0%,100% {transform:translateX(0)}
+  15% {transform:translateX(-10px)}
+  30% {transform:translateX(10px)}
+  45% {transform:translateX(-9px)}
+  60% {transform:translateX(9px)}
+  75% {transform:translateX(-5px)}
+  90% {transform:translateX(4px)}
+}
+.pop {
+  animation:correctPop .5s ease;
+}
+@keyframes correctPop {
+  0% {transform:scale(1)}
+  40% {transform:scale(1.09)}
+  70% {transform:scale(.97)}
+  100% {transform:scale(1)}
+}
+.feedback {
+  padding:16px;
+  border-radius:14px;
+  background:#fff0f6;
+  font-weight:bold;
+  line-height:1.6;
+}
+.feedback.good {
+  background:#e1f8e9;
+  color:#247345;
+}
+.feedback.bad {
+  background:#ffe2e8;
+  color:#a62b4c;
+}
+.score-big {
+  font-size:65px;
+  font-weight:900;
+  color:#e25898;
+  margin:16px 0;
+}
+.percent {
+  display:inline-block;
+  border-radius:30px;
+  background:#ffe4f0;
+  padding:12px 23px;
+  color:#a33b70;
+  font-weight:bold;
+}
+#effects {
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:999;
+}
+.particle {
+  position:absolute;
+  font-size:32px;
+  animation:floatBurst 1.15s ease-out forwards;
+  will-change:transform,opacity;
+}
+@keyframes floatBurst {
+  0% {
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.3);
+  }
+  20% {opacity:1}
+  100% {
+    opacity:0;
+    transform:
+      translate(calc(-50% + var(--dx)),
+                calc(-50% + var(--dy)))
+      rotate(var(--rot))
+      scale(1.3);
+  }
+}
+footer {
+  margin-top:25px;
+  font-size:12px;
+  color:#ac8ca0;
+}
+[hidden] {display:none!important}
+@media(max-width:360px) {
+  .choices {grid-template-columns:1fr}
+  .choice {min-height:75px}
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="effects" aria-hidden="true"></div>
+
+<main class="app">
+
+<section id="start">
+  <div style="font-size:55px">💻🎮📱</div>
+  <h1>Tech Spell-Off!</h1>
+  <p>Can you spot the correct spelling?</p>
+  <p>
+    🌐 Technology, Gaming & Social Media<br>
+    📚 B1–C1 Vocabulary<br>
+    ⭐ 25 Questions<br>
+    👏 Animated Rewards!
+  </p>
+  <form id="nameForm">
+    <input id="nameInput"
+      placeholder="Enter your name"
+      maxlength="60" required>
+    <button class="main-btn">Start Game ✨</button>
+  </form>
+</section>
+
+<section id="game" hidden>
+  <div class="stats">
+    <span id="player"></span>
+    <span id="score">⭐ 0</span>
+  </div>
+
+  <div class="progress">
+    <div id="bar" class="bar"></div>
+  </div>
+
+  <p id="counter"></p>
+  <h2>Which spelling is correct? 🤔</h2>
+  <p>Choose the correctly spelled word.</p>
+
+  <div id="choices" class="choices"></div>
+
+  <div id="feedback" class="feedback"
+    role="status" aria-live="polite" hidden>
+  </div>
+
+  <button id="next" class="main-btn" hidden>
+    Next Question →
+  </button>
+</section>
+
+<section id="result" hidden>
+  <div style="font-size:60px">🏆👏🌸</div>
+  <h1>Game Completed!</h1>
+  <h2 id="resultName"></h2>
+  <p>Your Technology Spelling Score</p>
+  <div id="finalScore" class="score-big"></div>
+  <div id="percentage" class="percent"></div>
+  <p id="message"></p>
+
+  <button id="replay" class="main-btn">
+    Play Again 🔀
+  </button>
+  <button id="changeName" class="main-btn"
+    style="background:#b392b3">
+    Change Name
+  </button>
+
+  <p>📸 Screenshot your result and submit it!</p>
+</section>
+
+<footer>English Learning Games 🌷</footer>
+</main>
+
+<script>
+
+// Correct spelling first, incorrect spelling second.
+const words = [
+["technology","technolgy"],
+["algorithm","algorythm"],
+["innovation","innnovation"],
+["application","aplication"],
+["notification","notificaton"],
+["subscription","subscribtion"],
+["streaming","streeming"],
+["download","downlaod"],
+["upload","uppload"],
+["interface","interfase"],
+["software","softwear"],
+["hardware","hardwear"],
+["processor","proccessor"],
+["bandwidth","bandwith"],
+["connectivity","connectivty"],
+["compatibility","compatabilty"],
+["accessibility","accessibilty"],
+["authentication","authentificaton"],
+["encryption","encription"],
+["cybersecurity","cybersecurty"],
+["privacy","privacey"],
+["surveillance","surveilance"],
+["vulnerability","vunerability"],
+["phishing","phising"],
+["malware","malwear"],
+["firewall","firewal"],
+["misinformation","missinformation"],
+["disinformation","disinformasion"],
+["influencer","influancer"],
+["engagement","engagment"],
+["recommendation","reccomendation"],
+["analytics","analitics"],
+["database","databaze"],
+["automation","autommation"],
+["artificial","artifical"],
+["intelligence","inteligence"],
+["augmented","augmantedd"],
+["simulation","simullation"],
+["immersive","imerrsive"],
+["multiplayer","multiplayerr"],
+["achievement","acheivement"],
+["competitive","competetive"],
+["maintenance","maintainance"],
+["configuration","configurasion"],
+["resolution","resollution"],
+["reliability","relyability"],
+["infrastructure","infrastucture"],
+["virtual","virtuall"],
+["communication","comunication"],
+["personalisation","personalisasion"],
+["advertisement","advertisment"],
+["information","informasion"],
+["revolutionary","revolusionary"],
+["technological","technologial"],
+["interoperability","interoperabilty"]
+];
+
+const TOTAL = 25;
+const el = id => document.getElementById(id);
+
+let questions = [];
+let index = 0;
+let points = 0;
+let playerName = "";
+let answered = false;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i=a.length-1;i>0;i--) {
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function showScreen(id) {
+  ["start","game","result"].forEach(s=>{
+    el(s).hidden = s !== id;
+  });
+}
+
+// Floating claps and ticks!
+function celebrate(target) {
+  const rect=target.getBoundingClientRect();
+  const x=rect.left+rect.width/2;
+  const y=rect.top+rect.height/2;
+
+  const symbols=[
+    "👏","✅","👏","✅",
+    "✨","🌟","✅","👏",
+    "💖","✅","🎉","👏"
+  ];
+
+  symbols.forEach((symbol,i)=>{
+    const particle=document.createElement("span");
+    particle.className="particle";
+    particle.textContent=symbol;
+
+    const angle=(Math.PI*2*i/symbols.length);
+    const distance=95+Math.random()*125;
+    const dx=Math.cos(angle)*distance;
+    const dy=Math.sin(angle)*distance;
+
+    particle.style.left=x+"px";
+    particle.style.top=y+"px";
+    particle.style.setProperty("--dx",dx+"px");
+    particle.style.setProperty("--dy",dy+"px");
+    particle.style.setProperty(
+      "--rot",(Math.random()*100-50)+"deg"
+    );
+
+    el("effects").appendChild(particle);
+    particle.addEventListener("animationend",()=>{
+      particle.remove();
+    },{once:true});
+
+    // Fallback cleanup if animations are disabled.
+    setTimeout(()=>particle.remove(),1500);
+  });
+}
+
+function startGame() {
+  questions=shuffle(words).slice(0,TOTAL).map(pair=>({
+    correct:pair[0],
+    options:shuffle(pair)
+  }));
+
+  index=0;
+  points=0;
+  answered=false;
+
+  el("player").textContent="👤 "+playerName;
+  el("effects").innerHTML="";
+  showScreen("game");
+  showQuestion();
+}
+
+function showQuestion() {
+  answered=false;
+  const q=questions[index];
+
+  el("counter").textContent=
+    "Question "+(index+1)+" of "+TOTAL;
+
+  el("score").textContent="⭐ "+points+" points";
+
+  el("bar").style.width=
+    (index/TOTAL*100)+"%";
+
+  el("feedback").hidden=true;
+  el("feedback").className="feedback";
+  el("next").hidden=true;
+
+  const box=el("choices");
+  box.innerHTML="";
+
+  q.options.forEach(word=>{
+    const button=document.createElement("button");
+    button.className="choice";
+    button.textContent=word;
+    button.dataset.word=word;
+    button.addEventListener("click",()=>{
+      checkAnswer(word,button);
+    });
+    box.appendChild(button);
+  });
+}
+
+function checkAnswer(choice,clickedButton) {
+  if(answered)return;
+  answered=true;
+
+  const correct=questions[index].correct;
+  const isCorrect=choice===correct;
+
+  document.querySelectorAll(".choice").forEach(btn=>{
+    btn.disabled=true;
+
+    if(btn.dataset.word===correct) {
+      btn.classList.add("correct");
+    }
+
+    if(btn===clickedButton && !isCorrect) {
+      btn.classList.add("wrong","shake");
+    }
+  });
+
+  const feedback=el("feedback");
+  feedback.hidden=false;
+
+  if(isCorrect) {
+    points++;
+    clickedButton.classList.add("pop");
+    feedback.classList.add("good");
+    feedback.textContent=
+      "✅ Excellent! "+correct+
+      " is spelled correctly. +1 point! 👏";
+
+    celebrate(clickedButton);
+  } else {
+    feedback.classList.add("bad");
+    feedback.textContent=
+      "❌ Oops! The correct spelling is: "+correct;
+
+    // Physical vibration when supported.
+    if("vibrate" in navigator) {
+      navigator.vibrate([100,60,100]);
+    }
+  }
+
+  el("score").textContent=
+    "⭐ "+points+" points";
+
+  el("next").textContent=
+    index===TOTAL-1
+      ?"See My Result 🏆"
+      :"Next Question →";
+
+  el("next").hidden=false;
+}
+
+function showResult() {
+  showScreen("result");
+
+  const percent=Math.round(points/TOTAL*100);
+
+  el("resultName").textContent=playerName;
+  el("finalScore").textContent=points+" / "+TOTAL;
+  el("percentage").textContent=percent+"% Correct";
+
+  let message;
+
+  if(percent===100) {
+    message="🏆 PERFECT SCORE! You are a Tech Spelling Legend!";
+  } else if(percent>=80) {
+    message="🌟 Amazing work! Your spelling skills are impressive!";
+  } else if(percent>=60) {
+    message="👏 Well done! Keep practising to become a champion!";
+  } else if(percent>=40) {
+    message="🌷 Good effort! A little more practice will help!";
+  } else {
+    message="💗 Keep learning! Every attempt makes you better!";
+  }
+
+  el("message").textContent=message;
+
+  if(percent>=80) {
+    celebrate(el("finalScore"));
+  }
+}
+
+el("nameForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  playerName=el("nameInput").value.trim();
+  if(playerName)startGame();
+});
+
+el("next").addEventListener("click",()=>{
+  if(!answered)return;
+
+  index++;
+
+  if(index>=TOTAL) {
+    showResult();
+  } else {
+    showQuestion();
+  }
+});
+
+el("replay").addEventListener("click",startGame);
+
+el("changeName").addEventListener("click",()=>{
+  showScreen("start");
+});
+
+document.addEventListener("keydown",e=>{
+  if(el("game").hidden || answered || e.repeat)return;
+
+  if(e.key==="1" || e.key==="2") {
+    const btn=el("choices")
+      .children[Number(e.key)-1];
+    if(btn)btn.click();
+  }
+});
+</script>
+</body>
+</html>
