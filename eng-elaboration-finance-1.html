@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paragraph Makeover | SPM Writing Challenge</title>
+<style>
+  :root {
+    --ink:#203047; --muted:#637187; --paper:#f5f7fb; --card:#fff;
+    --line:#dfe5ef; --accent:#4169e1; --accent-soft:#edf1ff;
+    --good:#176b45; --good-bg:#e9f7ef; --bad:#9d352d; --bad-bg:#fff0ee;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+  .wrap { max-width:900px; margin:0 auto; padding:24px 16px 48px; }
+  header { background:linear-gradient(135deg,#243c70,#4169e1); color:white; border-radius:22px; padding:28px; margin-bottom:18px; }
+  .eyebrow { text-transform:uppercase; letter-spacing:.12em; font-size:.76rem; font-weight:800; opacity:.82; }
+  h1 { margin:7px 0 8px; font-size:clamp(1.8rem,5vw,2.6rem); line-height:1.1; }
+  header p { margin:0; max-width:680px; opacity:.92; }
+  .meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+  .pill { border:1px solid #ffffff55; background:#ffffff18; padding:5px 10px; border-radius:999px; font-size:.84rem; }
+  .progress-shell { height:7px; background:#e3e8f3; border-radius:99px; overflow:hidden; margin:14px 0 18px; }
+  .progress { height:100%; width:25%; background:var(--accent); transition:width .2s ease; }
+  .stepnav { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:16px; }
+  .stepnav button { background:white; color:var(--muted); border:1px solid var(--line); border-radius:12px; padding:10px 6px; cursor:pointer; font-weight:700; }
+  .stepnav button.active { background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:clamp(18px,4vw,28px); box-shadow:0 6px 24px #253b6410; }
+  .stage { display:none; } .stage.active { display:block; }
+  .tag { display:inline-block; border-radius:999px; padding:4px 10px; background:var(--accent-soft); color:var(--accent); font-size:.78rem; font-weight:800; }
+  h2 { margin:12px 0 8px; font-size:1.55rem; }
+  h3 { margin:20px 0 8px; font-size:1.05rem; }
+  p { margin:8px 0 12px; }
+  .passage { background:#f2f5fa; border-left:4px solid #8ba0ce; border-radius:10px; padding:15px 17px; margin:14px 0; }
+  .option { display:flex; gap:10px; align-items:flex-start; border:1px solid var(--line); padding:12px; border-radius:12px; margin:8px 0; cursor:pointer; }
+  .option:hover { border-color:#9eafe9; background:#fafbff; }
+  .option input { margin-top:5px; accent-color:var(--accent); }
+  textarea { display:block; width:100%; min-height:130px; resize:vertical; padding:13px; font:inherit; color:var(--ink); border:1px solid #cbd4e3; border-radius:12px; background:white; }
+  textarea:focus { outline:3px solid #4169e128; border-color:var(--accent); }
+  .row { display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-top:12px; }
+  button.action { border:0; border-radius:11px; padding:11px 16px; font:inherit; font-weight:750; cursor:pointer; background:var(--accent); color:white; }
+  button.secondary { border:1px solid var(--line); background:white; color:var(--ink); }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+  .feedback { display:none; border-radius:12px; padding:12px 14px; margin-top:12px; }
+  .feedback.show { display:block; }
+  .feedback.good { background:var(--good-bg); color:var(--good); }
+  .feedback.bad { background:var(--bad-bg); color:var(--bad); }
+  .small { color:var(--muted); font-size:.9rem; }
+  .count { color:var(--muted); font-size:.88rem; font-variant-numeric:tabular-nums; }
+  .checklist label { display:flex; gap:10px; align-items:flex-start; padding:10px 0; border-bottom:1px solid #edf0f5; }
+  .checklist input { margin-top:6px; accent-color:var(--accent); }
+  details { border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin-top:14px; }
+  summary { cursor:pointer; font-weight:750; }
+  .footer-note { text-align:center; color:var(--muted); font-size:.84rem; padding:18px 0 0; }
+  @media (max-width:520px) { .wrap{padding:14px 10px 30px} header{padding:22px 18px} .stepnav{gap:5px} .stepnav button{font-size:.78rem;padding:9px 3px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SPM English · Writing Skills</div>
+    <h1>Paragraph Makeover</h1>
+    <p>From basic ideas to a clear, connected paragraph. Diagnose, connect, rewrite and review.</p>
+    <div class="meta"><span class="pill">Form 4 &amp; Form 5</span><span class="pill">Intermediate–Advanced</span><span class="pill">30 minutes</span></div>
+  </header>
+
+  <div class="progress-shell" aria-label="Activity progress"><div class="progress" id="progress"></div></div>
+  <nav class="stepnav" aria-label="Missions">
+    <button class="active" data-step="0">1 · Diagnose</button>
+    <button data-step="1">2 · Connect</button>
+    <button data-step="2">3 · Rewrite</button>
+    <button data-step="3">4 · Review</button>
+  </nav>
+
+  <main class="panel">
+    <section class="stage active" data-stage="0">
+      <span class="tag">MISSION 1 · 5 MINUTES</span>
+      <h2>Spot the problem</h2>
+      <p class="small">Theme: Financial Awareness</p>
+      <div class="passage">Teenagers should learn to save money. Saving money is very important. For example, teenagers can save their pocket money. This is a good thing because saving money is important for the future.</div>
+      <h3>What is the biggest weakness in this paragraph?</h3>
+      <label class="option"><input type="radio" name="diagnosis" value="A"> <span>A. It contains too many examples and statistics.</span></label>
+      <label class="option"><input type="radio" name="diagnosis" value="B"> <span>B. The ideas are repetitive and do not develop the point sufficiently.</span></label>
+      <label class="option"><input type="radio" name="diagnosis" value="C"> <span>C. It uses too many complex sentence structures.</span></label>
+      <label class="option"><input type="radio" name="diagnosis" value="D"> <span>D. The paragraph discusses an irrelevant topic.</span></label>
+      <div id="diagnosisFeedback" class="feedback" role="status"></div>
+      <div class="row"><span class="small">Tip: Look for ideas that repeat rather than develop.</span><button class="action" id="checkDiagnosis">Check answer</button></div>
+    </section>
+
+    <section class="stage" data-stage="1">
+      <span class="tag">MISSION 2 · 8 MINUTES</span>
+      <h2>Repair the flow</h2>
+      <p class="small">Theme: People &amp; Culture</p>
+      <div class="passage"><strong>Idea A:</strong> School cultural events allow students to experience different traditions.<br><br><strong>Idea B:</strong> Students may become more respectful of people from different backgrounds.</div>
+      <h3>1. Which connection best shows the relationship between A and B?</h3>
+      <label class="option"><input type="radio" name="connection" value="A"> <span>A. In addition, these events are enjoyable.</span></label>
+      <label class="option"><input type="radio" name="connection" value="B"> <span>B. As a result, students may develop greater respect for cultural differences.</span></label>
+      <label class="option"><input type="radio" name="connection" value="C"> <span>C. On the other hand, students attend school every day.</span></label>
+      <label class="option"><input type="radio" name="connection" value="D"> <span>D. For instance, many traditions exist around the world.</span></label>
+      <div id="connectionFeedback" class="feedback" role="status"></div>
+      <button class="action" id="checkConnection">Check answer</button>
+      <h3>2. Connect these ideas in one or two natural sentences.</h3>
+      <p>Learning about other cultures helps teenagers understand different ways of life. This understanding can reduce prejudice and encourage mutual respect.</p>
+      <textarea id="connectionWriting" placeholder="Write your connected sentences here. Avoid starting with “This is because”..." aria-label="Your connected sentences"></textarea>
+      <div class="row"><span class="count" id="connectionCount">0 words</span><button class="action" data-next="2">Continue to Mission 3 →</button></div>
+    </section>
+
+    <section class="stage" data-stage="2">
+      <span class="tag">MISSION 3 · 12 MINUTES</span>
+      <h2>The Paragraph Makeover</h2>
+      <p class="small">Theme: Health &amp; Environment</p>
+      <p>Rewrite the paragraph below in approximately <strong>80–100 words</strong>. Make the ideas flow naturally and explain why the issue matters.</p>
+      <div class="passage">People should reduce plastic waste. Plastic waste is bad for the environment. For example, people can use reusable bags. Reusable bags are good. This will help the environment. The environment is important for everyone.</div>
+      <h3>Your mission</h3>
+      <ul>
+        <li>Develop the main idea instead of repeating it.</li>
+        <li>Include a specific, relevant example.</li>
+        <li>Connect the example to its wider impact.</li>
+        <li>Vary sentence structures and vocabulary.</li>
+        <li>Finish with a meaningful concluding thought.</li>
+      </ul>
+      <textarea id="mainWriting" placeholder="Write your improved paragraph here (aim for 80–100 words)..." aria-label="Your improved paragraph"></textarea>
+      <div class="row"><span class="count" id="mainCount">0 words</span><button class="action secondary" id="toggleModel">Show model answer</button></div>
+      <details id="modelAnswer" hidden>
+        <summary>Model paragraph</summary>
+        <p>Reducing plastic waste is essential to protecting the environment, as discarded plastic can pollute waterways and threaten wildlife. One practical way to address this problem is to replace single-use plastic bags with reusable alternatives when shopping. If more people adopt this habit, fewer plastic bags will end up in landfills or natural habitats. Although individual actions may seem insignificant, collective efforts can make a meaningful difference. By making sustainable choices part of daily life, communities can help preserve the environment for future generations.</p>
+        <button class="action secondary" id="copyModel">Copy model paragraph</button>
+      </details>
+      <div class="row"><span class="small">Write in your own words before opening the model.</span><button class="action" data-next="3">Continue to final review →</button></div>
+    </section>
+
+    <section class="stage" data-stage="3">
+      <span class="tag">MISSION 4 · 5 MINUTES</span>
+      <h2>Final quality check</h2>
+      <p>Read your paragraph again. Tick each statement you can confidently meet.</p>
+      <div class="checklist" id="checklist">
+        <label><input type="checkbox"> <span>My ideas follow a logical order.</span></label>
+        <label><input type="checkbox"> <span>My explanation adds meaningful detail instead of repeating the point.</span></label>
+        <label><input type="checkbox"> <span>My example clearly supports the main idea.</span></label>
+        <label><input type="checkbox"> <span>My sentences connect naturally without overusing linking phrases.</span></label>
+        <label><input type="checkbox"> <span>My vocabulary and sentence structures are varied and accurate.</span></label>
+      </div>
+      <h3>Reflection</h3>
+      <label for="reflection">What is one change that made your paragraph flow better?</label>
+      <textarea id="reflection" placeholder="Write one sentence about what you improved..." style="min-height:85px"></textarea>
+      <div class="row"><span class="count" id="reviewCount">0 of 5 checks completed</span><button class="action" id="downloadWork">Download my work (.txt)</button></div>
+      <div class="row"><button class="action secondary" data-prev="2">← Back to rewrite</button><button class="action" id="restart">Restart activity</button></div>
+      <p class="small">Before submitting, follow your teacher’s instructions for sharing your work.</p>
+    </section>
+  </main>
+  <div class="footer-note">Paragraph Makeover · Practise cohesion, development and sentence variety.</div>
+</div>
+
+<script>
+(() => {
+  const stages = [...document.querySelectorAll('.stage')];
+  const navButtons = [...document.querySelectorAll('.stepnav button')];
+  const progress = document.getElementById('progress');
+  let current = 0;
+
+  function showStage(index) {
+    current = Math.max(0, Math.min(3, index));
+    stages.forEach((stage, i) => stage.classList.toggle('active', i === current));
+    navButtons.forEach((button, i) => button.classList.toggle('active', i === current));
+    progress.style.width = ((current + 1) * 25) + '%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  navButtons.forEach(button => button.addEventListener('click', () => showStage(Number(button.dataset.step))));
+  document.querySelectorAll('[data-next]').forEach(button => button.addEventListener('click', () => showStage(Number(button.dataset.next))));
+  document.querySelectorAll('[data-prev]').forEach(button => button.addEventListener('click', () => showStage(Number(button.dataset.prev))));
+
+  function feedback(id, isCorrect, message) {
+    const el = document.getElementById(id);
+    el.className = 'feedback show ' + (isCorrect ? 'good' : 'bad');
+    el.textContent = message;
+  }
+  document.getElementById('checkDiagnosis').addEventListener('click', () => {
+    const answer = document.querySelector('input[name="diagnosis"]:checked');
+    if (!answer) return feedback('diagnosisFeedback', false, 'Choose an answer first.');
+    feedback('diagnosisFeedback', answer.value === 'B',
+      answer.value === 'B'
+        ? 'Correct! The paragraph repeats the importance of saving without explaining a specific benefit or developing the example.'
+        : 'Not quite. Look for the option that identifies repetition and weak development.');
+  });
+  document.getElementById('checkConnection').addEventListener('click', () => {
+    const answer = document.querySelector('input[name="connection"]:checked');
+    if (!answer) return feedback('connectionFeedback', false, 'Choose an answer first.');
+    feedback('connectionFeedback', answer.value === 'B',
+      answer.value === 'B'
+        ? 'Correct! “As a result” expresses a logical consequence: experiencing other traditions can encourage respect.'
+        : 'Try again. Decide whether the relationship is a result, addition, contrast or example.');
+  });
+
+  function countWords(text) {
+    const trimmed = text.trim();
+    return trimmed ? trimmed.split(/\s+/).length : 0;
+  }
+  const connectionWriting = document.getElementById('connectionWriting');
+  const mainWriting = document.getElementById('mainWriting');
+  connectionWriting.addEventListener('input', () => document.getElementById('connectionCount').textContent = countWords(connectionWriting.value) + ' words');
+  mainWriting.addEventListener('input', () => document.getElementById('mainCount').textContent = countWords(mainWriting.value) + ' words');
+
+  const model = document.getElementById('modelAnswer');
+  document.getElementById('toggleModel').addEventListener('click', () => {
+    model.hidden = !model.hidden;
+    document.getElementById('toggleModel').textContent = model.hidden ? 'Show model answer' : 'Hide model answer';
+  });
+  const modelText = 'Reducing plastic waste is essential to protecting the environment, as discarded plastic can pollute waterways and threaten wildlife. One practical way to address this problem is to replace single-use plastic bags with reusable alternatives when shopping. If more people adopt this habit, fewer plastic bags will end up in landfills or natural habitats. Although individual actions may seem insignificant, collective efforts can make a meaningful difference. By making sustainable choices part of daily life, communities can help preserve the environment for future generations.';
+  document.getElementById('copyModel').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(modelText);
+      document.getElementById('copyModel').textContent = 'Copied!';
+    } catch {
+      window.prompt('Copy the model paragraph below:', modelText);
+    }
+  });
+
+  const checks = [...document.querySelectorAll('#checklist input[type="checkbox"]')];
+  function updateChecks() {
+    const done = checks.filter(c => c.checked).length;
+    document.getElementById('reviewCount').textContent = done + ' of 5 checks completed';
+  }
+  checks.forEach(c => c.addEventListener('change', updateChecks));
+
+  document.getElementById('downloadWork').addEventListener('click', () => {
+    const checklistText = checks.map(c => (c.checked ? '[x] ' : '[ ] ') + c.parentElement.innerText.trim()).join('\n');
+    const content = [
+      'PARAGRAPH MAKEOVER — STUDENT WORK',
+      '',
+      'Mission 2: People & Culture — connected sentences',
+      connectionWriting.value || '(No response entered)',
+      '',
+      'Mission 3: Health & Environment — paragraph rewrite',
+      mainWriting.value || '(No response entered)',
+      '',
+      'Mission 4: Self-check',
+      checklistText,
+      '',
+      'Reflection',
+      document.getElementById('reflection').value || '(No response entered)'
+    ].join('\n');
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'paragraph-makeover-work.txt';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('restart').addEventListener('click', () => {
+    if (!confirm('Restart the activity? Your current answers will be cleared.')) return;
+    document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+    document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
+    connectionWriting.value = '';
+    mainWriting.value = '';
+    document.getElementById('reflection').value = '';
+    ['diagnosisFeedback', 'connectionFeedback'].forEach(id => {
+      const el = document.getElementById(id); el.className = 'feedback'; el.textContent = '';
+    });
+    document.getElementById('connectionCount').textContent = '0 words';
+    document.getElementById('mainCount').textContent = '0 words';
+    document.getElementById('reviewCount').textContent = '0 of 5 checks completed';
+    model.hidden = true;
+    document.getElementById('toggleModel').textContent = 'Show model answer';
+    showStage(0);
+  });
+})();
+</script>
+</body>
+</html>
