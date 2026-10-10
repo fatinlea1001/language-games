@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Paragraph Builder — AI Set 1</title>
+<style>
+:root{--pink:#df629f;--dark:#553e52;--line:#f0cfe0;--lavender:#eee7fb;--good:#e5f8ee;--bad:#ffedf1}
+*{box-sizing:border-box}
+body{margin:0;padding:16px;background:linear-gradient(135deg,#ffe4f0,#f3ecff,#effff7);font-family:'Segoe UI',Arial,sans-serif;color:var(--dark);min-height:100vh}
+main{max-width:820px;margin:auto;padding:23px;background:white;border-radius:24px;box-shadow:0 10px 35px #ad7c9750}
+[hidden]{display:none!important}h1,h2{color:#c34685}h1{text-align:center;font-size:clamp(24px,5vw,33px)}p{line-height:1.6}.center{text-align:center}.emoji{text-align:center;font-size:46px}
+.instructions{background:#fff3f9;border:1px solid var(--line);padding:15px;border-radius:15px;line-height:1.85}
+input{width:100%;padding:15px;font:inherit;border:2px solid var(--line);border-radius:12px;margin:10px 0}
+button{cursor:pointer;font:inherit}.btn{width:100%;border:0;border-radius:13px;padding:15px;background:var(--pink);color:white;font-weight:800;margin-top:13px}.btn.secondary{background:#ede2f5;color:#69507e}.btn:hover{filter:brightness(.97)}
+.top{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}.pill{background:#fff0f7;color:#9e4175;border-radius:100px;padding:8px 11px;font-size:13px;font-weight:800}
+.track{height:10px;border-radius:20px;background:#f4dbea;overflow:hidden;margin:15px 0 19px}.fill{width:0;height:100%;background:linear-gradient(90deg,#e86aa7,#ae8cde);transition:width .2s}
+.level{text-align:center;font-weight:800;color:#7656a2;margin-bottom:14px}
+.point{padding:16px;background:#fff0f7;border:2px solid var(--line);border-radius:16px}.point small{font-weight:800;letter-spacing:.6px;color:#99577b}.point p{margin:8px 0 0;font-weight:800;font-size:19px}
+.build{margin:15px 0;padding:15px;border:2px solid #dbcbf2;background:#f8f4ff;border-radius:15px}.build h3{font-size:15px;color:#72549c;margin:0 0 10px}.line{margin:7px 0;padding:10px 12px;background:white;border-radius:10px;border-left:4px solid #a68cca;line-height:1.5}.line.correct{border-left-color:#3da979}.line.improve{border-left-color:#df7290}.line small{display:block;color:#79677a;font-weight:700;margin-bottom:3px}
+.step{background:var(--lavender);padding:12px 14px;border-radius:11px;color:#684e90;font-weight:800;margin-top:16px}.instruction{font-size:15px;margin:11px 0}
+.choices{display:grid;gap:10px}.choice{width:100%;border:2px solid var(--line);text-align:left;background:white;border-radius:13px;padding:14px;line-height:1.5;color:var(--dark)}.choice:hover:not(:disabled){background:#fff0f7;border-color:#dc7eae}.choice:disabled{cursor:default}.letter{display:inline-flex;background:#f6e4ef;color:#a04c7a;border-radius:8px;min-width:29px;height:29px;align-items:center;justify-content:center;font-weight:900;margin-right:9px}.choice.correct{border-color:#55b784;background:var(--good)}.choice.wrong{border-color:#e97d96;background:var(--bad);animation:shake .35s}
+.feedback{border-radius:14px;padding:14px;margin-top:14px;line-height:1.65}.feedback.good{background:var(--good);color:#246c4b}.feedback.bad{background:var(--bad);color:#a43d59}
+.model{background:#f7f2ff;border:2px solid #dbcdf2;border-radius:16px;padding:17px;margin:15px 0;line-height:1.9}.model h3{color:#7656a2;margin:0}.model p{margin:10px 0}.model.best{background:#ecfbf2;border-color:#b4e4c9}.model.best h3{color:#297957}
+.big{font-size:65px;font-weight:900;color:#d14b90;text-align:center}.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:17px 0}.levels div{text-align:center;background:#fff1f8;border-radius:12px;padding:10px 5px}.levels strong{display:block;font-size:22px;color:#be4585}
+.review{padding:14px;border:1px solid var(--line);border-radius:13px;margin:10px 0;background:#fff8fc}.review p{margin:6px 0;font-size:14px}.review b{color:#9e4175}
+#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}.spark{position:absolute;font-size:26px;animation:fly .9s ease-out forwards}@keyframes fly{from{opacity:1;transform:translate(0,0) scale(.4)}to{opacity:0;transform:translate(var(--x),-110px) scale(1.3)}}@keyframes shake{0%,100%{transform:translateX(0)}25%,75%{transform:translateX(-5px)}50%{transform:translateX(5px)}}
+@media(max-width:540px){body{padding:7px}main{padding:16px 12px;border-radius:16px}.point p{font-size:17px}.choice{padding:12px}.top{gap:5px}.pill{font-size:12px}.model{padding:12px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="confetti"></div>
+<main>
+<section id="start">
+ <div class="emoji">🤖🌸📝</div>
+ <h1>English Elaboration Master</h1>
+ <p class="center"><b>Paragraph Builder — Artificial Intelligence (Set 1)</b><br>A2–B1 English · Some easy B2 words</p>
+ <div class="instructions"><b>How to play</b><br>1. Read the main point.<br>2. Choose the best <b>Explanation</b>.<br>3. Choose the best <b>Example</b>.<br>4. Choose the best <b>Result / Effect</b>.<br>✨ Watch <b>your paragraph grow</b> as you choose each sentence.<br>🏆 10 paragraphs × 3 steps = <b>30 marks</b>.</div>
+ <form id="nameForm"><p><b>Your name</b></p><input id="nameInput" maxlength="60" required placeholder="Enter your name"><button class="btn" type="submit">Start Building! 🚀</button></form>
+</section>
+<section id="game" hidden>
+ <div class="top"><span class="pill" id="nameTag"></span><span class="pill" id="questionTag"></span><span class="pill" id="scoreTag"></span></div>
+ <div class="track"><div class="fill" id="progress"></div></div>
+ <div class="level" id="levelTitle"></div>
+ <div id="questionPanel">
+  <div class="point"><small id="pointNumber"></small><p id="mainPoint"></p></div>
+  <div class="build" id="buildBox" hidden><h3>🧩 Your paragraph so far</h3><div id="builtSentences"></div></div>
+  <div class="step" id="stepTitle"></div>
+  <p class="instruction">Choose the sentence that connects BEST with the paragraph above.</p>
+  <div class="choices" id="choices"></div>
+  <div class="feedback" id="feedback" aria-live="polite" hidden></div>
+  <button class="btn" id="continueBtn" type="button" hidden>Continue →</button>
+ </div>
+ <div id="modelPanel" hidden>
+  <h2>✨ Paragraph Completed!</h2>
+  <div class="model"><h3>📝 Your paragraph</h3><p id="myParagraph"></p></div>
+  <div class="model best"><h3>🌟 Suggested model paragraph</h3><p id="bestParagraph"></p></div>
+  <p class="center" id="completedTag"></p>
+  <button class="btn" id="nextParagraphBtn" type="button">Next Paragraph →</button>
+ </div>
+</section>
+<section id="result" hidden>
+ <div class="emoji">🏆🌸🎉</div><h1>Challenge Completed!</h1>
+ <h2 class="center" id="resultName"></h2><p class="center">Final score</p><div class="big" id="finalScore"></div><p class="center" id="percentage"></p><p class="center" id="message"></p>
+ <div class="levels"><div>Level 1<strong id="lv1"></strong><small>/ 12</small></div><div>Level 2<strong id="lv2"></strong><small>/ 9</small></div><div>Level 3<strong id="lv3"></strong><small>/ 9</small></div></div>
+ <p class="center">📸 Screenshot your result to share with friends!</p>
+ <button class="btn secondary" id="reviewBtn" type="button">Review My Mistakes 📖</button><div id="reviewBox" hidden></div>
+ <button class="btn" id="replayBtn" type="button">Play Again 🔀</button><button class="btn secondary" id="changeNameBtn" type="button">Change Name</button>
+</section>
+</main>
+<script>
+// Each set contains: 1 correct sentence, 2 distractors, and a short tip.
+// A2–B1 with a little B2; 10 different AI topics.
+const DATA = [
+{level:0,point:"AI can help students understand difficult lessons.",steps:[
+ ["It can explain a hard topic using simpler words.","It can give students a longer school holiday.","It can tell students which subject is popular.","A good explanation shows HOW AI helps students understand."],
+ ["For example, a student can ask AI to explain a difficult maths question step by step.","For example, a student can use AI to choose a new phone wallpaper.","For example, a student can ask AI to list the school holidays.","Give a clear example of someone learning something."],
+ ["As a result, students may understand the lesson better and feel more confident.","As a result, students will no longer need to study for tests.","As a result, schools may need to buy more computers.","The result should show what happens AFTER the student understands the lesson."]]},
+{level:0,point:"AI can help teachers prepare lessons more quickly.",steps:[
+ ["It can suggest exercises and questions for teachers to check and use.","It can make all students enjoy every subject.","It can help teachers choose their own holiday plans.","Explain how the AI tool saves preparation time."],
+ ["For example, a teacher can ask AI to suggest ten vocabulary questions for a class.","For example, a teacher can ask AI to write a birthday message to a friend.","For example, a teacher can use AI to find the fastest route home.","Choose an example about planning teaching materials."],
+ ["Therefore, teachers may have more time to help students who need support.","Therefore, teachers will never need to check their worksheets.","Therefore, students will not have any homework.","The result should connect saved time to teaching and learning."]]},
+{level:0,point:"AI can help students learn in different ways.",steps:[
+ ["It can give explanations, short notes or practice questions to suit their needs.","It can decide which students should become class monitors.","It can make every student learn at exactly the same speed.","Different learners may need different types of help."],
+ ["For example, one student can ask AI for short notes while another asks for a practice quiz.","For example, two students can buy the same exercise book.","For example, two students can choose the same seat in class.","The example should show TWO different ways of learning."],
+ ["As a result, more students may find a way of studying that works for them.","As a result, every student will get the same examination mark.","As a result, teachers will have to teach every lesson twice.","A useful result is better support for students with different needs."]]},
+{level:0,point:"AI can help students think of ideas for school projects.",steps:[
+ ["It can suggest ideas when students do not know how to start.","It can buy all the materials for a school project.","It can make students finish their projects without any effort.","Explain how students can get ideas from AI."],
+ ["For example, a group can ask AI for ideas for a recycling campaign.","For example, a group can ask AI to check tomorrow's weather.","For example, a group can use AI to choose a song for their alarm.","The example must be about finding PROJECT ideas."],
+ ["As a result, students can start their projects more easily and add their own ideas.","As a result, students will never have to work with group members.","As a result, the school will have to cancel its activities.","The result should show a helpful start, not that AI does all the work."]]},
+{level:1,point:"AI does not always give correct information.",steps:[
+ ["Sometimes it gives an answer that sounds right but contains mistakes.","Sometimes it takes a few seconds to answer a question.","Sometimes it gives people ideas for new hobbies.","Explain why an AI answer may not be safe to trust."],
+ ["For example, AI might give a student the wrong date for a history event.","For example, AI might help a student make a study timetable.","For example, AI might suggest a title for a class poster.","Show a specific example of WRONG information."],
+ ["Therefore, students should check important facts with reliable sources.","Therefore, students should believe an answer if it is long.","Therefore, students should stop reading all school textbooks.","The result should tell students what to do about possible mistakes."]]},
+{level:1,point:"Using AI too much can make students depend on it.",steps:[
+ ["If students copy every AI answer, they may stop trying to think for themselves.","If students read AI answers carefully, they can learn new ideas.","If students practise writing often, their writing may improve.","Explain what happens when students let AI do all their thinking."],
+ ["For example, a student may copy an AI essay without trying to write it alone.","For example, a student may ask AI for ideas and then write an original essay.","For example, a student may use a dictionary to check one word.","Pick an example of depending TOO MUCH on AI."],
+ ["As a result, the student may find it harder to write during an examination.","As a result, the student will always get a higher examination mark.","As a result, the student may become better at checking facts.","The result should show the problem caused by a lack of practice."]]},
+{level:1,point:"Students should be careful with personal information when using AI.",steps:[
+ ["Some AI tools may keep the information that users type into them.","Some AI tools can suggest ideas for classroom games.","Some AI tools can help users correct spelling mistakes.","Explain WHY sharing private details may be risky."],
+ ["For example, students should avoid entering their home address or password into a chatbot.","For example, students can ask a chatbot for general study tips.","For example, students can ask a chatbot to explain a grammar rule.","The example should be about protecting PRIVATE details."],
+ ["Therefore, students can protect their privacy by sharing less personal information.","Therefore, students should share their passwords with more people.","Therefore, students can stop checking who receives their information.","The result should show a safer way to use AI tools."]]},
+{level:2,point:"AI may treat some people unfairly.",steps:[
+ ["An AI tool can make unfair choices if it learns from unfair examples.","An AI tool may take less time to finish some jobs.","An AI tool can help people learn new computer skills.","Explain HOW unfair results can happen, using simple words."],
+ ["For example, an AI hiring tool might reject a good worker for an unfair reason.","For example, an AI app can help workers prepare for an interview.","For example, a company can use AI to sort its office files.","Choose an example of an UNFAIR decision about a person."],
+ ["Therefore, people should check important AI decisions instead of trusting them blindly.","Therefore, companies should accept every AI decision without checking.","Therefore, everyone should stop applying for jobs.","The result should suggest a fairer and more careful action."]]},
+{level:2,point:"AI is changing the way people work.",steps:[
+ ["It can complete some simple tasks, so workers may need to learn new skills.","It can make all workers finish their jobs at the same time.","It can stop people from choosing jobs they enjoy.","Explain how AI changes tasks or the skills workers need."],
+ ["For example, an office worker may use AI to write a first draft and then check it.","For example, an office worker may take a longer lunch break every day.","For example, an office worker may buy a new desk for the office.","The example must show a CHANGE in how work is done."],
+ ["As a result, learning new skills can help workers do their jobs well.","As a result, people will never need to work with others again.","As a result, everyone will have to choose the same career.","The result should connect changes at work to learning skills."]]},
+{level:2,point:"Students should use AI honestly when doing homework.",steps:[
+ ["They should use AI for help but still do their own thinking and writing.","They should copy every AI answer because it saves time.","They should ask AI to hide mistakes from their teachers.","Explain what HONEST AI use looks like."],
+ ["For example, a student can use AI to get essay ideas and then write the essay alone.","For example, a student can hand in an AI essay and say it is all their own work.","For example, a student can ask AI to do an entire test without reading it.","The example should show AI as HELP, not a replacement for effort."],
+ ["As a result, students can learn useful skills while being honest about their work.","As a result, students will never need feedback from teachers.","As a result, students can get good marks without learning anything.","The result should connect honest AI use with real learning."]]}
+];
+
+const $=id=>document.getElementById(id);
+const LEVELS=["LEVEL 1 · SIMPLE BENEFITS","LEVEL 2 · PROBLEMS TO WATCH","LEVEL 3 · USING AI WISELY"];
+const LEVEL_SIZES=[4,3,3];
+const LABELS=["Explanation","Example","Result / Effect"];
+const shuffle=items=>{const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let name="",session=[],level=0,paragraph=0,step=0,done=0,score=0,levelScores=[0,0,0],chosen=[],mistakes=[],locked=false;
+function screen(id){["start","game","result"].forEach(x=>$(x).hidden=x!==id);}
+function newSession(){return [0,1,2].map(l=>{const ps=shuffle(DATA.filter(p=>p.level===l));const positions=shuffle(Array.from({length:ps.length*3},(_,i)=>i%3));let k=0;return ps.map(p=>({...p,options:p.steps.map(s=>{const opts=shuffle([{text:s[1],correct:false},{text:s[2],correct:false}]);opts.splice(positions[k++],0,{text:s[0],correct:true});return opts;})}));});}
+function current(){return session[level][paragraph];}
+function startGame(){session=newSession();level=paragraph=step=done=score=0;levelScores=[0,0,0];chosen=[];mistakes=[];locked=false;$("nameTag").textContent="👤 "+name;screen("game");showQuestion();}
+function drawChosen(){const box=$("buildBox"),target=$("builtSentences");target.replaceChildren();box.hidden=chosen.length===0;if(!chosen.length)return;const p=current();const main=document.createElement("div");main.className="line";main.textContent=p.point;target.append(main);chosen.forEach((c,i)=>{const div=document.createElement("div");div.className="line "+(c.correct?"correct":"improve");const label=document.createElement("small");label.textContent=(c.correct?"✅ ":"🔁 ")+LABELS[i]+" — your choice";div.append(label,document.createTextNode(c.text));target.append(div);});}
+function showQuestion(){locked=false;const p=current();$("questionPanel").hidden=false;$("modelPanel").hidden=true;$("levelTitle").textContent=LEVELS[level];$("pointNumber").textContent="MAIN POINT · "+(LEVEL_SIZES.slice(0,level).reduce((a,b)=>a+b,0)+paragraph+1)+" / 10";$("mainPoint").textContent=p.point;drawChosen();$("stepTitle").textContent="Step "+(step+1)+" / 3 · "+LABELS[step];$("questionTag").textContent="Question "+(done+1)+" / 30";$("scoreTag").textContent="⭐ "+score+" / 30";$("progress").style.width=(done/30*100)+"%";$("feedback").hidden=true;$("feedback").className="feedback";$("continueBtn").hidden=true;$("choices").replaceChildren();p.options[step].forEach((o,i)=>{const b=document.createElement("button");b.type="button";b.className="choice";const label=document.createElement("span");label.className="letter";label.textContent="ABC"[i];b.append(label,document.createTextNode(o.text));b.addEventListener("click",()=>choose(i));$("choices").append(b);});}
+function confetti(button){const r=button.getBoundingClientRect();["👏","✅","🌸","✨","⭐"].forEach((s,i)=>{const e=document.createElement("span");e.className="spark";e.textContent=s;e.style.left=(r.left+r.width/2+(i-2)*12)+"px";e.style.top=(r.top+r.height/2)+"px";e.style.setProperty("--x",(i-2)*38+"px");$("confetti").append(e);setTimeout(()=>e.remove(),1000);});}
+function choose(i){if(locked)return;locked=true;const p=current(),s=p.steps[step],o=p.options[step],pick=o[i];chosen.push({text:pick.text,correct:pick.correct});done++;const bs=[...$("choices").children];bs.forEach((b,j)=>{b.disabled=true;if(o[j].correct)b.classList.add("correct");});const f=$("feedback");f.hidden=false;if(pick.correct){score++;levelScores[level]++;f.classList.add("good");f.textContent="✅ Great choice! "+s[3];confetti(bs[i]);}else{bs[i].classList.add("wrong");f.classList.add("bad");f.textContent="❌ Not the best choice. "+s[3]+" Best sentence: "+s[0];mistakes.push({point:p.point,step:LABELS[step],yours:pick.text,best:s[0]});}$("scoreTag").textContent="⭐ "+score+" / 30";$("progress").style.width=done/30*100+"%";$("continueBtn").hidden=false;$("continueBtn").textContent=step===2?"Compare Paragraphs 📖":"Continue →";}
+function next(){if(!locked)return;if(step<2){step++;showQuestion();}else showModel();}
+function showModel(){const p=current();$("questionPanel").hidden=true;$("modelPanel").hidden=false;$("myParagraph").textContent=[p.point,...chosen.map(c=>c.text)].join(" ");$("bestParagraph").textContent=[p.point,...p.steps.map(s=>s[0])].join(" ");const count=LEVEL_SIZES.slice(0,level).reduce((a,b)=>a+b,0)+paragraph+1;$("completedTag").textContent="Paragraph "+count+" / 10 complete";$("nextParagraphBtn").textContent=count===10?"See Final Score 🏆":paragraph===session[level].length-1?"Next Level ✨":"Next Paragraph →";}
+function nextParagraph(){chosen=[];step=0;if(paragraph+1<session[level].length){paragraph++;showQuestion();}else if(level<2){level++;paragraph=0;showQuestion();}else showResult();}
+function showResult(){screen("result");$("resultName").textContent=name;$("finalScore").textContent=score+" / 30";$("percentage").textContent=Math.round(score/30*100)+"% correct";$("lv1").textContent=levelScores[0];$("lv2").textContent=levelScores[1];$("lv3").textContent=levelScores[2];$("message").textContent=score===30?"🌟 Perfect! You are a paragraph star!":score>=24?"👏 Excellent work!":score>=18?"💗 Good job! Keep practising.":"🌱 Keep trying. You are learning!";$("reviewBtn").textContent="Review My Mistakes ("+mistakes.length+") 📖";$("reviewBox").hidden=true;$("reviewBox").replaceChildren();if(!mistakes.length){$("reviewBox").textContent="Perfect! No mistakes to review. 🎉";return;}mistakes.forEach((m,i)=>{const box=document.createElement("div");box.className="review";const h=document.createElement("b");h.textContent=(i+1)+". "+m.step;box.append(h);[["Main point",m.point],["Your choice",m.yours],["Best sentence",m.best]].forEach(([label,value])=>{const line=document.createElement("p");const strong=document.createElement("b");strong.textContent=label+": ";line.append(strong,document.createTextNode(value));box.append(line);});$("reviewBox").append(box);});}
+$("nameForm").addEventListener("submit",e=>{e.preventDefault();name=$("nameInput").value.trim();if(name)startGame();});
+$("continueBtn").addEventListener("click",next);
+$("nextParagraphBtn").addEventListener("click",nextParagraph);
+$("replayBtn").addEventListener("click",startGame);
+$("changeNameBtn").addEventListener("click",()=>{screen("start");$("nameInput").focus();});
+$("reviewBtn").addEventListener("click",()=>{$("reviewBox").hidden=!$("reviewBox").hidden;});
+</script>
+</body>
+</html>
