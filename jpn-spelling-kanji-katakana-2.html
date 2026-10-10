@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Japanese Spell-Off! — Set 2</title>
+<style>
+:root{--pink:#e86d9f;--ink:#514258;--green:#239b66;--red:#e34968}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:18px;display:grid;place-items:center;font-family:Arial,"Noto Sans JP",sans-serif;color:var(--ink);background:linear-gradient(135deg,#ffe0ef,#f2eaff,#e4f8f0)}
+.app{width:min(100%,630px);padding:28px 22px;text-align:center;background:white;border-radius:25px;box-shadow:0 14px 35px #b886a544}
+h1{color:#d84988}p{line-height:1.6}
+input{width:100%;padding:15px;font:inherit;border:2px solid #f4c5db;border-radius:12px;margin:14px 0}
+button{font:inherit;cursor:pointer}
+.primary{width:100%;padding:15px;margin-top:15px;border:0;border-radius:14px;background:var(--pink);color:white;font-weight:bold;font-size:17px}
+.primary:hover{background:#d74f8b}
+.primary:focus-visible,.choice:focus-visible{outline:3px solid #7455c6;outline-offset:3px}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:bold;font-size:14px}
+.track{height:10px;border-radius:20px;background:#f7dfeb;overflow:hidden;margin:22px 0 27px}
+.fill{height:100%;width:0;background:var(--pink);transition:width .3s}
+.pill{display:inline-block;border-radius:30px;padding:8px 15px;background:#ffe4f0;color:#a44178;font-weight:bold;font-size:14px}
+.meaning{font-size:clamp(25px,5vw,36px);font-weight:900;margin:12px 0}
+.reading{min-height:25px;color:#8b738a;margin-top:0}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:25px 0 18px}
+.choice{min-height:115px;border-radius:18px;border:3px solid #f2bfd6;background:#fff0f7;color:#68495e;padding:14px 8px;font-size:clamp(23px,5vw,31px);font-weight:bold;overflow-wrap:anywhere}
+.choice:hover:not(:disabled){background:#ffe1ef;border-color:var(--pink)}
+.choice:disabled{cursor:default}
+.choice.correct{background:#dcf9e9;border-color:var(--green);color:#17754a;animation:pop .45s ease}
+.choice.wrong{background:#ffcbd7;border-color:var(--red);color:#a72040;animation:shake .48s ease}
+.feedback{padding:15px;border-radius:14px;font-weight:bold;line-height:1.6}
+.feedback.good{background:#e2f9eb;color:#21784b}
+.feedback.bad{background:#ffe2e8;color:#ac2848}
+.flash-good{animation:greenFlash .55s ease}
+.flash-bad{animation:redFlash .55s ease}
+@keyframes greenFlash{40%{background:#def9e8}}
+@keyframes redFlash{40%{background:#ffdce3}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+@keyframes pop{0%,100%{transform:scale(1)}45%{transform:scale(1.09)}}
+#effects{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}
+.particle{position:fixed;font-size:29px;animation:floatOut 1.2s ease-out forwards}
+@keyframes floatOut{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}20%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--rot)) scale(1.3)}}
+.big{font-size:62px;font-weight:900;color:#dc4d90;margin:15px 0}
+footer{color:#ad90a1;font-size:12px;margin-top:25px}
+[hidden]{display:none!important}
+@media(max-width:380px){.app{padding:22px 13px}.choice{min-height:100px;font-size:22px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div id="effects" aria-hidden="true"></div>
+<main class="app" id="app">
+<section id="start">
+  <div style="font-size:52px">🌸🇯🇵✨</div>
+  <h1>Japanese Spell-Off!</h1>
+  <span class="pill">SET 2</span>
+  <p>Kanji + Katakana Challenge</p>
+  <p>📚 JLPT N5–N4 practice<br>🈶 12 Kanji + 13 Katakana<br>⭐ 25 questions per round</p>
+  <form id="startForm">
+    <input id="name" maxlength="50" placeholder="Enter your name" required>
+    <button class="primary">Start Game 🎮</button>
+  </form>
+</section>
+<section id="game" hidden>
+  <div class="top"><span id="player"></span><span id="score">⭐ 0 / 25</span></div>
+  <div class="track"><div class="fill" id="progress"></div></div>
+  <span class="pill" id="category"></span>
+  <p id="counter"></p>
+  <p>Choose the correct Japanese word for:</p>
+  <div class="meaning" id="meaning"></div>
+  <p class="reading" id="reading"></p>
+  <div class="choices" id="choices"></div>
+  <div id="feedback" class="feedback" aria-live="polite" hidden></div>
+  <button id="next" class="primary" hidden>Next Question →</button>
+</section>
+<section id="result" hidden>
+  <div style="font-size:55px">🏆🌸👏</div>
+  <h1>Well Done!</h1>
+  <span class="pill">SET 2 COMPLETE</span>
+  <h2 id="resultName"></h2>
+  <p>Your Japanese Score</p>
+  <div class="big" id="finalScore"></div>
+  <span class="pill" id="percent"></span>
+  <p id="message"></p>
+  <button id="replay" class="primary">Play Again 🔀</button>
+  <button id="change" class="primary" style="background:#ac8eaf">Change Name</button>
+  <p>📸 Screenshot your result!</p>
+</section>
+<footer>Japanese Learning Games 🌷</footer>
+</main>
+<script>
+// Kanji: [English meaning, hiragana reading, correct, distractor]
+// All vocabulary is different from Set 1.
+const kanjiWords=[
+["family","かぞく","家族","兄弟"],
+["parents","りょうしん","両親","友達"],
+["older brother","あに","兄","弟"],
+["older sister","あね","姉","妹"],
+["younger brother","おとうと","弟","兄"],
+["younger sister","いもうと","妹","姉"],
+["friend","ともだち","友達","友情"],
+["mountain","やま","山","川"],
+["river","かわ","川","山"],
+["sea","うみ","海","湖"],
+["forest","もり","森","海"],
+["flower","はな","花","草"],
+["tree","き","木","気"],
+["sky","そら","空","雨"],
+["rain","あめ","雨","雪"],
+["snow","ゆき","雪","雲"],
+["wind","かぜ","風","雲"],
+["spring (season)","はる","春","秋"],
+["summer","なつ","夏","冬"],
+["autumn","あき","秋","春"],
+["winter","ふゆ","冬","夏"],
+["morning","あさ","朝","夜"],
+["daytime","ひる","昼","夜"],
+["night","よる","夜","昼"],
+["entrance","いりぐち","入口","出口"],
+["exit","でぐち","出口","入口"],
+["map","ちず","地図","図書"],
+["address","じゅうしょ","住所","住宅"],
+["station","えき","駅","道"],
+["airport","くうこう","空港","航空"],
+["ticket","きっぷ","切符","切手"],
+["postage stamp","きって","切手","切符"],
+["question","しつもん","質問","問題"],
+["answer","こたえ","答え","質問"],
+["practice","れんしゅう","練習","試験"],
+["exam","しけん","試験","経験"],
+["promise","やくそく","約束","予定"],
+["plan / schedule","よてい","予定","約束"],
+["hobby","しゅみ","趣味","興味"],
+["birthday","たんじょうび","誕生日","休日"],
+["vegetables","やさい","野菜","果物"],
+["fruit","くだもの","果物","野菜"],
+["homework","しゅくだい","宿題","問題"],
+["medicine","くすり","薬","病気"],
+["shoes","くつ","靴","服"],
+["clothes","ふく","服","靴"],
+["garden","にわ","庭","池"],
+["pond","いけ","池","湖"],
+["reading books","どくしょ","読書","読者"],
+["diary","にっき","日記","記事"],
+["beef","ぎゅうにく","牛肉","鶏肉"],
+["chicken meat","とりにく","鶏肉","牛肉"]
+];
+
+// Katakana: [English meaning, correct spelling, incorrect spelling]
+const katakanaWords=[
+["smartphone (short form)","スマホ","スマポ"],
+["headphones","ヘッドホン","ヘドホン"],
+["earphones","イヤホン","イアホン"],
+["keyboard","キーボード","キボード"],
+["computer mouse","マウス","マウズ"],
+["monitor","モニター","モニータ"],
+["tablet","タブレット","タブレト"],
+["robot","ロボット","ロポット"],
+["screen","スクリーン","スクリン"],
+["online","オンライン","オンライソ"],
+["offline","オフライン","オフライソ"],
+["account","アカウント","アカント"],
+["profile","プロフィール","プロフイール"],
+["login","ログイン","ロクイン"],
+["website","ウェブサイト","ウェブサイド"],
+["link","リンク","リング"],
+["icon","アイコン","アイコソ"],
+["avatar","アバター","アパター"],
+["chat","チャット","チヤット"],
+["comment","コメント","コメソト"],
+["channel","チャンネル","チヤンネル"],
+["video","ビデオ","ビデヨ"],
+["animation","アニメーション","アニメーシヨン"],
+["podcast","ポッドキャスト","ポドキャスト"],
+["microphone","マイク","マイグ"],
+["speaker","スピーカー","スピカ"],
+["remote control","リモコン","リモゴン"],
+["charger","チャージャー","チャジャー"],
+["update","アップデート","アプデート"],
+["file","ファイル","ファイロ"],
+["folder","フォルダー","フオルダー"],
+["browser","ブラウザー","ブラウサー"],
+["virus","ウイルス","ウイルズ"],
+["digital","デジタル","デシタル"],
+["data","データ","デタ"],
+["system","システム","シズテム"],
+["network","ネットワーク","ネトワーク"],
+["service","サービス","サビス"],
+["security","セキュリティ","セキュリテイ"],
+["sensor","センサー","センサア"],
+["button","ボタン","ポタン"],
+["touch","タッチ","タチ"],
+["click","クリック","クリク"],
+["search (noun)","サーチ","サチ"],
+["scroll","スクロール","スクロル"],
+["download","ダウンロード","ダウンロド"],
+["Wi-Fi","ワイファイ","ワイハイ"],
+["gamer","ゲーマー","ゲマ"],
+["game controller","コントローラー","コントロラー"],
+["event","イベント","イペント"],
+["sale","セール","セル"],
+["card","カード","カド"],
+["ticket","チケット","チケト"],
+["schedule","スケジュール","スケジュル"],
+["volunteer","ボランティア","ボランテイア"],
+["campaign","キャンペーン","キャンペン"],
+["energy","エネルギー","エネルキー"],
+["bottle","ボトル","ボドル"],
+["bag","バッグ","バック"],
+["passport","パスポート","パスポト"],
+["suitcase","スーツケース","スツケース"],
+["elevator","エレベーター","エレベタ"],
+["escalator","エスカレーター","エスカレタ"]
+];
+
+const TOTAL=25;
+const $=id=>document.getElementById(id);
+let questions=[],index=0,score=0,name="",answered=false;
+
+function shuffle(list){
+  const a=[...list];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function screen(id){
+  for(const s of ["start","game","result"]) $(s).hidden=s!==id;
+}
+function startGame(){
+  const kanji=shuffle(kanjiWords).slice(0,12).map(w=>({
+    type:"🈶 Kanji",meaning:w[0],reading:w[1],correct:w[2],wrong:w[3]
+  }));
+  const kata=shuffle(katakanaWords).slice(0,13).map(w=>({
+    type:"🔤 Katakana",meaning:w[0],reading:"",correct:w[1],wrong:w[2]
+  }));
+  questions=shuffle([...kanji,...kata]);
+  index=0;score=0;answered=false;
+  $("effects").replaceChildren();
+  $("player").textContent="👤 "+name;
+  screen("game");render();
+}
+function render(){
+  answered=false;
+  const q=questions[index];
+  $("category").textContent=q.type;
+  $("counter").textContent=`Question ${index+1} of ${TOTAL}`;
+  $("meaning").textContent=q.meaning;
+  $("reading").textContent=q.reading?`Reading: ${q.reading}`:"Katakana spelling";
+  $("score").textContent=`⭐ ${score} / ${TOTAL}`;
+  $("progress").style.width=(index/TOTAL*100)+"%";
+  $("feedback").hidden=true;
+  $("feedback").className="feedback";
+  $("next").hidden=true;
+  $("choices").replaceChildren();
+  shuffle([q.correct,q.wrong]).forEach(word=>{
+    const btn=document.createElement("button");
+    btn.className="choice";
+    btn.textContent=word;
+    btn.addEventListener("click",()=>choose(word,btn));
+    $("choices").appendChild(btn);
+  });
+}
+function celebrate(target){
+  const r=target.getBoundingClientRect();
+  const x=r.left+r.width/2,y=r.top+r.height/2;
+  ["👏","✅","✨","🌸","👏","✅","💖","🎉","👏","✅"].forEach((symbol,i,all)=>{
+    const particle=document.createElement("span");
+    const angle=i*Math.PI*2/all.length;
+    const distance=85+Math.random()*110;
+    particle.className="particle";
+    particle.textContent=symbol;
+    particle.style.left=x+"px";
+    particle.style.top=y+"px";
+    particle.style.setProperty("--dx",Math.cos(angle)*distance+"px");
+    particle.style.setProperty("--dy",Math.sin(angle)*distance+"px");
+    particle.style.setProperty("--rot",(Math.random()*90-45)+"deg");
+    $("effects").appendChild(particle);
+    particle.addEventListener("animationend",()=>particle.remove(),{once:true});
+    setTimeout(()=>particle.remove(),1400);
+  });
+}
+function choose(word,selected){
+  if(answered)return;
+  answered=true;
+  const q=questions[index],correct=word===q.correct;
+  for(const btn of $("choices").children){
+    btn.disabled=true;
+    if(btn.textContent===q.correct)btn.classList.add("correct");
+    if(btn===selected&&!correct)btn.classList.add("wrong");
+  }
+  $("app").classList.remove("flash-good","flash-bad");
+  void $("app").offsetWidth;
+  $("app").classList.add(correct?"flash-good":"flash-bad");
+  const feedback=$("feedback");
+  feedback.hidden=false;
+  if(correct){
+    score++;
+    feedback.classList.add("good");
+    feedback.textContent=`✅ せいかい！ ${q.correct}  +1 point! 👏`;
+    celebrate(selected);
+  }else{
+    feedback.classList.add("bad");
+    feedback.textContent=`❌ The correct answer is ${q.correct}${q.reading?` (${q.reading})`:""}.`;
+    if(typeof navigator.vibrate==="function")navigator.vibrate([90,55,90]);
+  }
+  $("score").textContent=`⭐ ${score} / ${TOTAL}`;
+  $("progress").style.width=((index+1)/TOTAL*100)+"%";
+  $("next").textContent=index===TOTAL-1?"See Results 🏆":"Next Question →";
+  $("next").hidden=false;
+}
+function results(){
+  screen("result");
+  const percent=Math.round(score/TOTAL*100);
+  $("resultName").textContent=name;
+  $("finalScore").textContent=`${score} / ${TOTAL}`;
+  $("percent").textContent=percent+"% correct";
+  $("message").textContent=percent>=80?"すごい！ 🌟 Amazing work!":percent>=60?"よくできました！ 🌷 Keep practising!":"がんばって！ 💗 Try again!";
+  if(percent>=80)celebrate($("finalScore"));
+}
+$("startForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  name=$("name").value.trim();
+  if(name)startGame();
+});
+$("next").addEventListener("click",()=>{
+  if(!answered)return;
+  index++;
+  index===TOTAL?results():render();
+});
+$("replay").addEventListener("click",startGame);
+$("change").addEventListener("click",()=>screen("start"));
+document.addEventListener("keydown",e=>{
+  if($("game").hidden||answered||e.repeat)return;
+  if(e.key==="1"||e.key==="2")$("choices").children[Number(e.key)-1]?.click();
+});
+</script>
+</body>
+</html>
