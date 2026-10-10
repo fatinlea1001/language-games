@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Confidence Match-Up! — Set 2</title>
+<style>
+:root{
+  --pink:#e76fa1;
+  --ink:#503e52;
+  --purple:#8462bd;
+  --green:#329d69;
+  --red:#db4c6a;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:16px;
+  font-family:"Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(135deg,#ffe8f1,#f3efff,#e8fff2);
+}
+.app{
+  max-width:1040px;margin:0 auto;padding:24px 18px;
+  background:white;border-radius:24px;
+  box-shadow:0 12px 35px #ac86a53a;
+}
+h1{color:#d64d8e;text-align:center;margin:10px 0}
+p{line-height:1.55}
+.center{text-align:center}
+button,input{font:inherit}
+button{cursor:pointer}
+input{
+  width:100%;padding:14px;margin:14px 0;
+  border:2px solid #edbad2;border-radius:13px;
+}
+.action{
+  border:0;border-radius:14px;background:var(--pink);
+  color:white;padding:15px 18px;font-weight:750;
+  width:100%;margin-top:14px;
+}
+.action:hover{background:#d4508d}
+.action.secondary{background:#b090b6}
+.action:focus-visible,.word:focus-visible{
+  outline:3px solid #7550c5;outline-offset:3px;
+}
+.pill{
+  display:inline-block;background:#ffecf4;
+  color:#a64775;padding:8px 12px;
+  border-radius:999px;font-size:13px;font-weight:700;
+}
+.stats{
+  display:flex;flex-wrap:wrap;gap:8px;
+  justify-content:space-between;margin:12px 0 18px;
+}
+.instructions{
+  text-align:center;background:#fff2f8;
+  padding:12px;border-radius:14px;margin-bottom:14px;
+}
+.board{
+  position:relative;border-radius:20px;
+  background:#fffcfe;padding:12px 10px;
+}
+#ropes{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:1;pointer-events:none;
+}
+.columns{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:80px;
+}
+.heading{
+  text-align:center;font-weight:800;
+  color:#8058a6;margin-bottom:12px;
+}
+.items{display:flex;flex-direction:column;gap:10px}
+.word{
+  position:relative;width:100%;min-height:66px;
+  padding:10px 14px;display:flex;
+  justify-content:center;align-items:center;
+  text-align:center;line-height:1.3;
+  font-size:15px;font-weight:650;color:#604a63;
+  border:2px solid #f1c3d9;border-radius:15px;
+  background:#fff1f7;overflow:visible;
+  transition:border-color .15s,background .15s;
+}
+.word:hover:not(:disabled){
+  border-color:var(--pink);background:#ffe4f0;
+}
+.word.selected{
+  border-color:var(--purple);background:#f0eaff;
+  box-shadow:0 0 0 3px #bca3eb55;
+}
+.word.matched{
+  border-color:var(--green);
+  background:#e1f7ea;color:#196f46;
+}
+.word.wrong{
+  border-color:var(--red);
+  background:#ffe1e7;color:#a52b48;
+  animation:shake .4s ease;
+}
+.dot{
+  position:absolute;top:50%;
+  width:15px;height:15px;border-radius:50%;
+  background:#aa8bcc;border:3px solid #fff;
+  transform:translateY(-50%);
+  box-shadow:0 0 0 2px #c4aee0;
+}
+.left .dot{right:-8px}
+.right .dot{left:-8px}
+.matched .dot{background:var(--green)}
+.notice{
+  padding:13px;border-radius:13px;
+  background:#fff0f6;text-align:center;
+  margin-top:14px;font-weight:700;min-height:48px;
+}
+.notice.good{color:#187044;background:#ddf8e8}
+.notice.bad{color:#ab2948;background:#ffe0e7}
+.big{
+  font-size:65px;color:#d95094;
+  font-weight:900;text-align:center;margin:13px 0;
+}
+#effects{
+  position:fixed;inset:0;z-index:99;
+  pointer-events:none;overflow:hidden;
+}
+.effect{
+  position:absolute;font-size:29px;
+  animation:burst 1s ease-out forwards;
+}
+@keyframes burst{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.3);
+  }
+  20%{opacity:1}
+  100%{
+    opacity:0;
+    transform:translate(
+      calc(-50% + var(--x)),
+      calc(-50% + var(--y))
+    ) rotate(35deg);
+  }
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%,60%{transform:translateX(-8px)}
+  40%,80%{transform:translateX(8px)}
+}
+[hidden]{display:none!important}
+@media(max-width:700px){
+  .columns{gap:30px}
+  .word{font-size:13px;min-height:66px;padding:9px 7px}
+  .board{padding:9px 6px}
+  .app{padding:20px 11px}
+}
+@media(max-width:400px){
+  .columns{gap:18px}
+  .word{font-size:12px;min-height:70px}
+  .heading{font-size:13px}
+  .dot{width:12px;height:12px}
+  .left .dot{right:-6px}
+  .right .dot{left:-6px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+  }
+}
+</style>
+</head>
+<body>
+<div id="effects" aria-hidden="true"></div>
+<main class="app">
+
+<section id="start">
+  <div class="center" style="font-size:50px">
+    🌸🪞💖
+  </div>
+  <h1>Confidence Match-Up!</h1>
+  <p class="center">
+    <span class="pill">SET 2 · B1–C1</span>
+  </p>
+  <p class="center">
+    Match English words and phrases with their
+    Bahasa Melayu meanings.<br>
+    Self-confidence · Body image · Personal growth
+  </p>
+  <p class="center">
+    <b>3 levels × 10 pairs = 30 matches</b>
+  </p>
+
+  <form id="startForm">
+    <input id="name" maxlength="60"
+      placeholder="Enter your name" required>
+    <button class="action">Start Playing ✨</button>
+  </form>
+</section>
+
+<section id="game" hidden>
+  <div class="stats">
+    <span class="pill" id="player"></span>
+    <span class="pill" id="level"></span>
+    <span class="pill" id="progress"></span>
+    <span class="pill" id="score"></span>
+  </div>
+
+  <div class="instructions">
+    Tap an <b>English word</b>, then tap its
+    matching <b>BM meaning</b> to connect them!
+    <br>
+    Earn 1 mark when you get a pair right on
+    your <b>first try</b>.
+  </div>
+
+  <div class="board" id="board">
+    <svg id="ropes" aria-hidden="true"></svg>
+    <div class="columns">
+      <div>
+        <div class="heading">🇬🇧 English</div>
+        <div class="items" id="english"></div>
+      </div>
+      <div>
+        <div class="heading">🇲🇾 Bahasa Melayu</div>
+        <div class="items" id="malay"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice" id="feedback"
+    role="status" aria-live="polite">
+    Choose your first word 💗
+  </div>
+  <button id="restart" class="action secondary">
+    Restart This Level 🔀
+  </button>
+</section>
+
+<section id="between" hidden>
+  <div class="center" style="font-size:56px">🎉👏💗</div>
+  <h1 id="levelDone"></h1>
+  <p class="center" id="levelResult"></p>
+  <p class="center">Ready for ten more words?</p>
+  <button class="action" id="nextLevel">
+    Next Level →
+  </button>
+</section>
+
+<section id="end" hidden>
+  <div class="center" style="font-size:56px">🏆🌸✨</div>
+  <h1>Set 2 Completed!</h1>
+  <h2 id="winner" class="center"></h2>
+  <p class="center">Your final score</p>
+  <div id="finalScore" class="big"></div>
+  <p class="center">
+    <span class="pill" id="percentage"></span>
+  </p>
+  <p class="center" id="message"></p>
+  <button class="action" id="replay">
+    Play Again 🔀
+  </button>
+  <button class="action secondary" id="changeName">
+    Change Name
+  </button>
+  <p class="center">📸 Screenshot your result!</p>
+</section>
+
+</main>
+
+<script>
+// 30 NEW vocabulary pairs, grouped by difficulty.
+const LEVELS = [
+  // LEVEL 1 — Building Confidence (B1–B2)
+  [
+    ["self-awareness","kesedaran kendiri"],
+    ["courage","keberanian"],
+    ["empathy","empati"],
+    ["compliment","pujian"],
+    ["role model","suri teladan"],
+    ["personal boundaries","batasan peribadi"],
+    ["sense of belonging","rasa kekitaan"],
+    ["body confidence","keyakinan terhadap tubuh sendiri"],
+    ["independence","kemandirian"],
+    ["optimism","sikap optimis"]
+  ],
+
+  // LEVEL 2 — Body Image & Social Pressure (B2)
+  [
+    ["beauty standards","piawaian kecantikan"],
+    ["body shaming","perbuatan menghina bentuk tubuh"],
+    ["self-perception","persepsi terhadap diri sendiri"],
+    ["social expectations","jangkaan masyarakat"],
+    ["external validation","pengiktirafan daripada orang lain"],
+    ["coping mechanisms","mekanisme daya tindak"],
+    ["personal growth","perkembangan diri"],
+    ["self-consciousness","rasa terlalu sedar akan penilaian orang"],
+    ["emotional triggers","pencetus reaksi emosi"],
+    ["sense of identity","jati diri"]
+  ],
+
+  // LEVEL 3 — Personal Growth (B2–C1)
+  [
+    ["authenticity","keaslian diri"],
+    ["assertiveness","ketegasan dalam menyuarakan pendapat"],
+    ["self-compassion","belas ihsan terhadap diri sendiri"],
+    ["imposter syndrome","perasaan tidak layak walaupun berjaya"],
+    ["emotional regulation","pengawalan emosi"],
+    ["limiting beliefs","kepercayaan yang mengehadkan potensi diri"],
+    ["perfectionism","sikap terlalu mengejar kesempurnaan"],
+    ["self-sabotage","tindakan yang menggagalkan usaha sendiri"],
+    ["self-advocacy","usaha memperjuangkan kepentingan diri"],
+    ["distorted self-image","gambaran diri yang tidak tepat"]
+  ]
+];
+
+const $ = id => document.getElementById(id);
+
+let player = "";
+let stage = 0;
+let total = 0;
+let levelPoints = 0;
+let matched = 0;
+
+let left = null;
+let right = null;
+let locked = false;
+let roundId = 0;
+let timeoutId = null;
+
+let pairs = [];
+let connections = [];
+let lostPoints = new Set();
+
+function shuffle(a){
+  let b = [...a];
+  for(let i=b.length-1;i>0;i--){
+    let j = Math.floor(Math.random()*(i+1));
+    [b[i],b[j]] = [b[j],b[i]];
+  }
+  return b;
+}
+
+function show(id){
+  ["start","game","between","end"].forEach(s=>{
+    $(s).hidden = s !== id;
+  });
+}
+
+function label(){
+  $("player").textContent = "👤 " + player;
+  $("level").textContent = `🌷 Level ${stage+1} / 3`;
+  $("progress").textContent = `🧩 Matched ${matched} / 10`;
+  $("score").textContent = `⭐ ${total} / 30`;
+}
+
+function say(message,type=""){
+  $("feedback").textContent = message;
+  $("feedback").className =
+    "notice" + (type ? " " + type : "");
+}
+
+function makeCard(side,item){
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "word " + side;
+  btn.dataset.id = item.id;
+
+  const text = document.createElement("span");
+  text.textContent = item.text;
+
+  const dot = document.createElement("span");
+  dot.className = "dot";
+
+  if(side === "left"){
+    btn.append(text,dot);
+  }else{
+    btn.append(dot,text);
+  }
+
+  btn.addEventListener("click",()=>{
+    select(side,btn);
+  });
+
+  return btn;
+}
+
+function begin(){
+  player = $("name").value.trim();
+  if(!player)return;
+
+  stage = 0;
+  total = 0;
+  startLevel();
+}
+
+function startLevel(){
+  clearTimeout(timeoutId);
+  roundId++;
+
+  left = null;
+  right = null;
+  locked = false;
+  matched = 0;
+  levelPoints = 0;
+
+  lostPoints = new Set();
+  connections = [];
+
+  pairs = LEVELS[stage].map(([en,bm],id)=>({
+    id,en,bm
+  }));
+
+  $("english").replaceChildren();
+  $("malay").replaceChildren();
+  $("ropes").replaceChildren();
+
+  shuffle(pairs).forEach(p=>{
+    $("english").appendChild(
+      makeCard("left",{id:p.id,text:p.en})
+    );
+  });
+
+  shuffle(pairs).forEach(p=>{
+    $("malay").appendChild(
+      makeCard("right",{id:p.id,text:p.bm})
+    );
+  });
+
+  label();
+  say("Choose your first English word 💗");
+  show("game");
+
+  requestAnimationFrame(drawRopes);
+}
+
+function clearSelected(){
+  if(left)left.classList.remove("selected");
+  if(right)right.classList.remove("selected");
+
+  left = null;
+  right = null;
+}
+
+function select(side,btn){
+  if(locked || btn.disabled)return;
+
+  const prev = side === "left" ? left : right;
+
+  if(prev === btn){
+    btn.classList.remove("selected");
+
+    if(side === "left")left = null;
+    else right = null;
+
+    return;
+  }
+
+  if(prev)prev.classList.remove("selected");
+
+  btn.classList.add("selected");
+
+  if(side === "left")left = btn;
+  else right = btn;
+
+  if(left && right)checkMatch();
+}
+
+function checkMatch(){
+  locked = true;
+
+  const a = left;
+  const b = right;
+  const id = Number(a.dataset.id);
+
+  if(a.dataset.id === b.dataset.id){
+
+    // Correct match
+    a.classList.remove("selected");
+    b.classList.remove("selected");
+
+    a.classList.add("matched");
+    b.classList.add("matched");
+
+    a.disabled = true;
+    b.disabled = true;
+
+    connections.push([a,b]);
+    matched++;
+
+    if(!lostPoints.has(id)){
+      levelPoints++;
+      total++;
+      say("✅ Great match! +1 point 👏","good");
+    }else{
+      say(
+        "✅ Matched! No point this time because of an earlier incorrect try.",
+        "good"
+      );
+    }
+
+    celebrate(b);
+    clearSelected();
+    locked = false;
+
+    label();
+    drawRopes();
+
+    if(matched === 10){
+      const token = roundId;
+
+      timeoutId = setTimeout(()=>{
+        if(roundId === token)completeLevel();
+      },850);
+    }
+
+  }else{
+
+    // Wrong match
+    lostPoints.add(id);
+
+    a.classList.add("wrong");
+    b.classList.add("wrong");
+
+    say(
+      "❌ Not a match! Try again. This English word can no longer earn a mark.",
+      "bad"
+    );
+
+    if(typeof navigator.vibrate === "function"){
+      navigator.vibrate([80,40,80]);
+    }
+
+    const token = roundId;
+
+    timeoutId = setTimeout(()=>{
+      if(roundId !== token)return;
+
+      a.classList.remove("wrong");
+      b.classList.remove("wrong");
+
+      clearSelected();
+      locked = false;
+    },470);
+  }
+}
+
+// DRAW ROPES RELATIVE TO THE SAME GAME BOARD
+function drawRopes(){
+  if($("game").hidden)return;
+
+  const svg = $("ropes");
+  const board = $("board");
+  const rect = board.getBoundingClientRect();
+
+  svg.setAttribute(
+    "viewBox",
+    `0 0 ${board.clientWidth} ${board.clientHeight}`
+  );
+
+  svg.replaceChildren();
+
+  for(const [a,b] of connections){
+
+    const r1 = a.querySelector(".dot")
+      .getBoundingClientRect();
+
+    const r2 = b.querySelector(".dot")
+      .getBoundingClientRect();
+
+    const x1 = r1.left + r1.width/2 - rect.left;
+    const y1 = r1.top + r1.height/2 - rect.top;
+
+    const x2 = r2.left + r2.width/2 - rect.left;
+    const y2 = r2.top + r2.height/2 - rect.top;
+
+    const bend = (x2-x1)*.40;
+
+    const path = document.createElementNS(
+      "http://www.w3.org/2000/svg","path"
+    );
+
+    path.setAttribute(
+      "d",
+      `M ${x1} ${y1}
+       C ${x1+bend} ${y1},
+         ${x2-bend} ${y2},
+         ${x2} ${y2}`
+    );
+
+    path.setAttribute("fill","none");
+    path.setAttribute("stroke","#46aa7c");
+    path.setAttribute("stroke-width","4");
+    path.setAttribute("stroke-linecap","round");
+
+    svg.appendChild(path);
+  }
+}
+
+// FLOATING CLAPS AND TICKS
+function celebrate(btn){
+  const r = btn.getBoundingClientRect();
+  const x = r.left + r.width/2;
+  const y = r.top + r.height/2;
+
+  [
+    "👏","✅","✨","🌸",
+    "👏","✅","💖","⭐"
+  ].forEach((emoji,i)=>{
+
+    const node = document.createElement("span");
+    node.className = "effect";
+    node.textContent = emoji;
+
+    const angle = i*Math.PI/4;
+    const dist = 70 + Math.random()*70;
+
+    node.style.left = x+"px";
+    node.style.top = y+"px";
+
+    node.style.setProperty(
+      "--x",Math.cos(angle)*dist+"px"
+    );
+
+    node.style.setProperty(
+      "--y",Math.sin(angle)*dist+"px"
+    );
+
+    $("effects").appendChild(node);
+
+    setTimeout(()=>node.remove(),1200);
+  });
+}
+
+function completeLevel(){
+  if(stage === 2){
+    finish();
+    return;
+  }
+
+  $("levelDone").textContent =
+    `Level ${stage+1} Complete!`;
+
+  $("levelResult").textContent =
+    `You earned ${levelPoints} / 10 marks this level.
+     Total: ${total} / 30.`;
+
+  show("between");
+}
+
+function finish(){
+  show("end");
+
+  $("winner").textContent = player;
+
+  $("finalScore").textContent =
+    `${total} / 30`;
+
+  $("percentage").textContent =
+    `${Math.round(total/30*100)}%`;
+
+  $("message").textContent =
+    total === 30
+    ? "🌟 Perfect! You're a confidence vocabulary champion!"
+    : total >= 24
+    ? "👏 Excellent vocabulary skills!"
+    : total >= 18
+    ? "💗 Nice work! Keep practising!"
+    : "🌱 Keep learning. Every attempt helps!";
+}
+
+// GAME BUTTONS
+$("startForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  begin();
+});
+
+$("nextLevel").onclick = ()=>{
+  stage++;
+  startLevel();
+};
+
+$("restart").onclick = ()=>{
+  total -= levelPoints;
+  startLevel();
+};
+
+$("replay").onclick = ()=>{
+  stage = 0;
+  total = 0;
+  startLevel();
+};
+
+$("changeName").onclick = ()=>show("start");
+
+// KEEP ROPES ALIGNED WHEN SCREEN SIZE CHANGES
+window.addEventListener("resize",drawRopes);
+
+if("ResizeObserver" in window){
+  new ResizeObserver(()=>{
+    drawRopes();
+  }).observe($("board"));
+}
+</script>
+</body>
+</html>
