@@ -1,0 +1,696 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Elaboration Master! — Playing Sports</title>
+<style>
+:root{--pink:#e96da1;--dark:#4e3a53;--purple:#8662b3;--green:#218556;--red:#c63856}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:18px;background:linear-gradient(135deg,#ffe7f1,#f2eeff,#eafbf3);font-family:"Segoe UI",Arial,sans-serif;color:var(--dark)}
+.app{width:min(100%,730px);margin:0 auto;background:white;border-radius:25px;padding:28px 24px;box-shadow:0 15px 40px #ae88a544;position:relative}
+h1{color:#d95090;margin:8px 0 14px;text-align:center}
+h2{line-height:1.35}
+p{line-height:1.55}
+.center{text-align:center}
+.hero{font-size:48px;text-align:center}
+.pill{display:inline-block;background:#ffebf3;color:#9d4774;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700}
+input{width:100%;border:2px solid #efbfd5;border-radius:13px;padding:15px;font:inherit;margin:12px 0}
+button{cursor:pointer;font:inherit}
+.btn{width:100%;border:0;border-radius:13px;padding:15px;background:var(--pink);color:#fff;font-size:16px;font-weight:700;margin-top:15px}
+.btn:hover{background:#d34f8a}
+.btn.secondary{background:#a18aac}
+.btn:focus-visible,.option:focus-visible{outline:3px solid #7256bf;outline-offset:3px}
+.stats{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;font-weight:700;font-size:13px}
+.track{height:11px;background:#f8dce9;border-radius:100px;overflow:hidden;margin:17px 0 25px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#ee9bc4,#df6197);transition:width .25s}
+.point{background:#fff3f8;border:2px solid #f6d8e6;border-radius:16px;padding:18px;text-align:left;margin:15px 0}
+.point small{font-weight:800;color:#a75583;display:block;margin-bottom:7px;letter-spacing:.06em}
+.point strong{font-size:20px;line-height:1.5;display:block}
+.prompt{font-weight:700;text-align:center;margin:17px 0 14px}
+.options{display:grid;gap:11px}
+.option{display:flex;align-items:flex-start;text-align:left;gap:12px;width:100%;padding:15px;border-radius:15px;background:#fff9fc;border:2px solid #f1cada;color:var(--dark);font-size:15px;line-height:1.48;transition:background .15s,border .15s}
+.option:hover:not(:disabled){background:#ffe7f1;border-color:var(--pink)}
+.option:disabled{cursor:default}
+.letter{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:#f7d9e9;color:#864b6b;font-weight:800}
+.option.correct{background:#e1f8e9;border-color:#4aaf79;color:#185b3d}
+.option.correct .letter{background:#c2eed4;color:#216c43}
+.option.wrong{background:#ffe0e7;border-color:#e45879;color:#9e2442;animation:shake .42s ease}
+.option.wrong .letter{background:#f9bccb;color:#9e2442}
+.feedback{margin-top:16px;border-radius:13px;padding:15px;text-align:left;line-height:1.6;background:#fff2f8}
+.feedback.good{background:#e5f8ec;color:#1d734a}
+.feedback.bad{background:#ffe5eb;color:#9b2b48}
+.big{font-size:62px;font-weight:900;color:#dc5295;margin:10px 0}
+.score-row{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:18px 0}
+.score-chip{background:#fff0f6;padding:11px 14px;border-radius:13px;font-size:14px;font-weight:700}
+.review-card{background:#fff7fb;border:1px solid #f0d5e2;border-radius:14px;padding:13px;margin-top:11px;text-align:left;line-height:1.55;font-size:14px}
+.review-card strong{display:block;margin-bottom:5px}
+#effects{position:fixed;inset:0;z-index:100;pointer-events:none;overflow:hidden}
+.confetti{position:absolute;font-size:27px;animation:burst 1.1s ease-out forwards}
+@keyframes burst{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}
+  20%{opacity:1}
+  100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--rotation)) scale(1.2)}
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%,60%{transform:translateX(-8px)}
+  40%,80%{transform:translateX(8px)}
+}
+@keyframes wrongFlash{40%{background:#ffe3e9}}
+@keyframes goodFlash{40%{background:#e4faec}}
+.flash-wrong{animation:wrongFlash .45s ease}
+.flash-good{animation:goodFlash .45s ease}
+[hidden]{display:none!important}
+@media(max-width:520px){
+  body{padding:9px}
+  .app{padding:22px 14px;border-radius:19px}
+  .point strong{font-size:18px}
+  .option{padding:12px;font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="effects" aria-hidden="true"></div>
+
+<main class="app" id="app">
+
+<section id="start">
+  <div class="hero">🏸⚽🏀</div>
+  <h1>Elaboration Master!</h1>
+  <p class="center">
+    <span class="pill">PLAYING SPORTS · WRITING PRACTICE</span>
+  </p>
+  <p class="center">
+    Read a <b>main point</b> and choose the sentence
+    that <b>best explains how or why</b> it is true.
+  </p>
+  <p class="center">
+    🌷 Level 1: Benefits<br>
+    🛡️ Level 2: Risks &amp; Challenges<br>
+    🏆 Level 3: Improving Your Skills
+  </p>
+  <p class="center">
+    <b>3 levels × 10 questions = 30 marks</b><br>
+    One mark for each correct first answer.
+  </p>
+  <form id="nameForm">
+    <input id="nameInput" maxlength="60"
+      placeholder="Enter your name" required>
+    <button class="btn">Start Game ✨</button>
+  </form>
+</section>
+
+<section id="game" hidden>
+  <div class="stats">
+    <span class="pill" id="player"></span>
+    <span class="pill" id="levelLabel"></span>
+    <span class="pill" id="scoreLabel"></span>
+  </div>
+
+  <div class="track">
+    <div class="bar" id="bar"></div>
+  </div>
+
+  <p class="center" id="counter"></p>
+
+  <div class="point">
+    <small>MAIN POINT</small>
+    <strong id="mainPoint"></strong>
+  </div>
+
+  <p class="prompt">
+    Which sentence BEST elaborates on this point?
+  </p>
+
+  <div class="options" id="options"></div>
+
+  <div class="feedback" id="feedback"
+    role="status" aria-live="polite" hidden></div>
+
+  <button class="btn" id="next" hidden>
+    Next Question →
+  </button>
+</section>
+
+<section id="between" hidden>
+  <div class="hero">👏🌸🎉</div>
+  <h1 id="completedLevel"></h1>
+  <p class="center" id="levelScore"></p>
+  <p class="center" id="nextMessage"></p>
+  <button class="btn" id="nextLevel">
+    Continue to Next Level →
+  </button>
+</section>
+
+<section id="result" hidden>
+  <div class="hero">🏆💗✨</div>
+  <h1>Elaboration Master Completed!</h1>
+  <h2 class="center" id="resultName"></h2>
+  <p class="center">Your writing practice score</p>
+  <div class="big center" id="finalScore"></div>
+  <p class="center">
+    <span class="pill" id="percent"></span>
+  </p>
+  <div class="score-row" id="breakdown"></div>
+  <p class="center" id="finalMessage"></p>
+
+  <button class="btn secondary" id="reviewButton">
+    Review My Mistakes 📚
+  </button>
+  <div id="review" hidden></div>
+
+  <button class="btn" id="replay">Play Again 🔀</button>
+  <button class="btn secondary" id="changeName">
+    Change Name
+  </button>
+  <p class="center" style="font-size:13px;color:#947c90">
+    📸 Screenshot your score and submit it to your teacher!
+  </p>
+</section>
+</main>
+
+<script>
+// Each question has:
+// Main point, correct elaboration, 2 distractors, explanation.
+
+const LEVELS = [
+  {
+    title:"Benefits of Playing Sports",
+    questions:[
+      [
+        "Playing sports helps students become physically fitter.",
+        "Regular movement strengthens their muscles and improves their stamina over time.",
+        "Schools usually provide different sports for students to choose from.",
+        "Many students prefer outdoor activities to indoor activities.",
+        "It explains the physical changes that lead to better fitness."
+      ],
+      [
+        "Team sports can improve students' communication skills.",
+        "Players must share instructions and listen carefully to teammates during a game.",
+        "Football and netball are popular team sports in many schools.",
+        "A school team may practise several times before an important match.",
+        "It explains how teamwork creates opportunities to communicate."
+      ],
+      [
+        "Playing sports can help students reduce stress.",
+        "Physical activity gives them a break from worries and helps them release tension.",
+        "Some students enjoy playing sports after their final lesson.",
+        "Different people have different favourite ways to spend their free time.",
+        "It connects physical activity with a specific reason stress may decrease."
+      ],
+      [
+        "Joining a sports club helps students make new friends.",
+        "Regular training brings students together, allowing them to get to know one another.",
+        "Sports clubs usually have a teacher who supervises their activities.",
+        "Students may need to bring suitable clothes when attending club meetings.",
+        "It explains how repeated interaction can build friendships."
+      ],
+      [
+        "Playing sports teaches students discipline.",
+        "They learn to follow training schedules and practise even when they feel unmotivated.",
+        "Some students train in the morning while others train in the afternoon.",
+        "Many sporting events take place on school fields or indoor courts.",
+        "It links regular commitment and self-control to discipline."
+      ],
+      [
+        "Taking part in sports can build students' self-confidence.",
+        "As they master new skills, they become more willing to trust their own abilities.",
+        "Confidence is an important quality for both children and adults.",
+        "Many professional athletes began practising their sports at a young age.",
+        "It explains how visible improvement develops confidence."
+      ],
+      [
+        "Team sports teach students to cooperate with others.",
+        "Each player must carry out their role and work with teammates towards a shared goal.",
+        "Team sports may use different numbers of players depending on the game.",
+        "Sports teams often wear matching uniforms during competitions.",
+        "It describes the shared responsibilities that require cooperation."
+      ],
+      [
+        "Playing sports can help students develop leadership skills.",
+        "They may need to guide teammates, make decisions and encourage others under pressure.",
+        "Students can watch famous team captains playing on television.",
+        "Some sports are played individually while others are played in teams.",
+        "It explains which leadership actions students practise."
+      ],
+      [
+        "Sports can encourage students to use their free time productively.",
+        "Scheduled practice gives them a purposeful activity instead of spending hours without a plan.",
+        "Some sports are easier to play when the weather is good.",
+        "Students may buy equipment from shops near their homes.",
+        "It shows how a planned activity gives structure and purpose to free time."
+      ],
+      [
+        "Playing sports can improve students' concentration.",
+        "They have to stay alert, follow changing situations and make decisions during play.",
+        "Students should choose a sport that matches their personal interests.",
+        "Many school tournaments are held before the end of the academic year.",
+        "It identifies the attention skills students use when participating in sports."
+      ]
+    ]
+  },
+
+  {
+    title:"Risks and Challenges",
+    questions:[
+      [
+        "Skipping a warm-up can increase the risk of injury.",
+        "Sudden intense movements may strain muscles that have not been prepared for exercise.",
+        "Warm-up routines may look different for football and badminton players.",
+        "Some athletes arrive at the field earlier than their teammates.",
+        "It explains why unprepared muscles are more vulnerable during sudden movements."
+      ],
+      [
+        "Training too intensely without breaks can be harmful.",
+        "When the body has too little time to recover, tiredness and overuse injuries may develop.",
+        "Some students prefer training with friends rather than practising alone.",
+        "Training sessions may take place at different times during the week.",
+        "It explains the effects of insufficient recovery."
+      ],
+      [
+        "Playing sports in very hot weather requires extra care.",
+        "Sweating causes the body to lose water, so players need drinks and rest breaks to avoid overheating.",
+        "Outdoor competitions are sometimes held on school fields.",
+        "Many students enjoy sunny weather during their school holidays.",
+        "It explains the specific danger of heat and why precautions matter."
+      ],
+      [
+        "Sports competitions can put pressure on students.",
+        "Fear of disappointing teammates may make them anxious about every mistake they make.",
+        "Competitions often have rules and a fixed time limit.",
+        "Students may wear their school's colours when representing a team.",
+        "It shows how expectations can lead to emotional pressure."
+      ],
+      [
+        "Using damaged sports equipment may cause accidents.",
+        "Worn shoes or broken protective gear may fail to provide the support players need.",
+        "Students sometimes keep their equipment in a school storeroom.",
+        "Different sports require different types of equipment.",
+        "It identifies how damaged equipment creates a safety risk."
+      ],
+      [
+        "Ignoring pain while playing sports can make an injury worse.",
+        "Continuing to stress an injured area may cause further damage before it has healed.",
+        "Some athletes take part in competitions several times a year.",
+        "Students often practise with a coach before a big match.",
+        "It explains the physical consequence of continuing despite pain."
+      ],
+      [
+        "Poor sportsmanship can weaken team relationships.",
+        "Blaming teammates for mistakes creates resentment and reduces trust within the group.",
+        "A team's uniform often includes the names or numbers of its players.",
+        "Students usually shake hands before or after certain matches.",
+        "It shows how negative behaviour damages teamwork."
+      ],
+      [
+        "Balancing sports and schoolwork can be difficult.",
+        "Training and competitions may take up hours that students also need for revision and homework.",
+        "School sports clubs normally have their own activity schedules.",
+        "Many students enjoy both practical activities and classroom lessons.",
+        "It explains the competition for students' limited time."
+      ],
+      [
+        "Contact sports can involve accidental injuries.",
+        "Players move close to one another at speed, increasing the chance of collisions and falls.",
+        "Some contact sports are watched by large audiences.",
+        "Team members sometimes practise together for several months.",
+        "It identifies the movements that create a higher risk of collision."
+      ],
+      [
+        "Constantly comparing sporting achievements online can harm self-confidence.",
+        "Seeing only other athletes' best moments may make students overlook their own progress.",
+        "Many athletes share photos and videos from their training sessions.",
+        "Sports content can be found on several social media platforms.",
+        "It explains how selective online comparisons may affect self-belief."
+      ]
+    ]
+  },
+
+  {
+    title:"How to Become Better at Sports",
+    questions:[
+      [
+        "Setting realistic goals helps students improve in sports.",
+        "Smaller targets allow them to track progress and focus on skills they can improve step by step.",
+        "Different schools may set different goals for their sports teams.",
+        "Some athletes write their goals in colourful notebooks.",
+        "It explains how achievable targets guide improvement."
+      ],
+      [
+        "Practising basic techniques regularly improves performance.",
+        "Repeating correct movements helps players gain control and make fewer mistakes during games.",
+        "Basic techniques vary between sports such as tennis and basketball.",
+        "Athletes can practise indoors or outdoors depending on the sport.",
+        "It shows how repetition improves the quality of a player's movements."
+      ],
+      [
+        "Listening to constructive feedback can make an athlete better.",
+        "A coach can point out weaknesses and suggest specific ways to correct them.",
+        "Coaches may have different personalities and teaching styles.",
+        "Some players enjoy talking with their coaches after training.",
+        "It explains how useful feedback leads to targeted improvement."
+      ],
+      [
+        "Watching skilled players can help students understand game strategies.",
+        "By studying their positioning and decisions, learners discover better responses to match situations.",
+        "International competitions are often shown on television or online.",
+        "Famous players sometimes become ambassadors for sports brands.",
+        "It connects observation to learning practical game decisions."
+      ],
+      [
+        "A balanced diet can support better sporting performance.",
+        "Nutritious meals provide the energy and nutrients needed for training and recovery.",
+        "Athletes may enjoy eating different dishes from their home countries.",
+        "Many school canteens sell a range of meals and snacks.",
+        "It explains the role of nutrition in sporting performance."
+      ],
+      [
+        "Practising under match-like conditions helps students prepare for competitions.",
+        "Realistic drills train them to make quick decisions while facing time pressure and opponents.",
+        "Competitions often take place in front of teachers and supporters.",
+        "Some students prefer training in the evening rather than the morning.",
+        "It explains why realistic practice develops competition-ready decisions."
+      ],
+      [
+        "Learning from a defeat helps athletes improve.",
+        "Reviewing what went wrong shows them which strategies or techniques to change next time.",
+        "Many famous athletes have lost important matches during their careers.",
+        "Defeats can happen in both individual sports and team sports.",
+        "It explains how reflecting on mistakes leads to a better future approach."
+      ],
+      [
+        "Keeping a training journal can help students make steady progress.",
+        "Recording practice results lets them spot patterns and decide which skills need extra attention.",
+        "Training journals may be written in notebooks or digital applications.",
+        "Some students enjoy decorating the covers of their journals.",
+        "It explains how records can guide future training decisions."
+      ],
+      [
+        "Supporting less-experienced teammates can improve the whole team.",
+        "Sharing advice and encouragement helps newer players develop skills and contribute more confidently.",
+        "Some teams include students of different ages and abilities.",
+        "School teams may choose different players for different matches.",
+        "It explains how helping weaker players improves collective performance."
+      ],
+      [
+        "Choosing a sport they enjoy can help students remain active for years.",
+        "Enjoyment makes them more motivated to keep practising, even when improvement takes time.",
+        "Students can choose from a variety of sports at school.",
+        "Some sports require more expensive equipment than others.",
+        "It explains how enjoyment encourages long-term participation."
+      ]
+    ]
+  }
+];
+
+const $=id=>document.getElementById(id);
+const PER_LEVEL=10;
+
+let playerName="",level=0,index=0;
+let totalScore=0,levelScore=0,answered=false;
+let stageQuestions=[],stageScores=[],mistakes=[];
+
+function shuffle(items){
+  const a=[...items];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function show(id){
+  for(const screen of ["start","game","between","result"]){
+    $(screen).hidden=screen!==id;
+  }
+}
+
+function startGame(){
+  level=0;
+  totalScore=0;
+  stageScores=[];
+  mistakes=[];
+  beginLevel();
+}
+
+function beginLevel(){
+  index=0;
+  levelScore=0;
+  answered=false;
+  stageQuestions=shuffle(LEVELS[level].questions);
+  show("game");
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered=false;
+  const [point,correct,wrong1,wrong2]=stageQuestions[index];
+
+  $("player").textContent="👤 "+playerName;
+  $("levelLabel").textContent=`Level ${level+1} / 3`;
+  $("scoreLabel").textContent=`⭐ ${totalScore} / 30`;
+  $("counter").textContent=
+    `${LEVELS[level].title} · Question ${index+1} of ${PER_LEVEL}`;
+  $("bar").style.width=`${(index/PER_LEVEL)*100}%`;
+  $("mainPoint").textContent=point;
+
+  $("feedback").hidden=true;
+  $("feedback").className="feedback";
+  $("next").hidden=true;
+
+  const box=$("options");
+  box.replaceChildren();
+
+  shuffle([
+    {text:correct,isCorrect:true},
+    {text:wrong1,isCorrect:false},
+    {text:wrong2,isCorrect:false}
+  ]).forEach((option,i)=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="option";
+
+    const badge=document.createElement("span");
+    badge.className="letter";
+    badge.textContent="ABC"[i];
+
+    const label=document.createElement("span");
+    label.textContent=option.text;
+
+    button.append(badge,label);
+    button.addEventListener("click",()=>choose(option,button));
+    box.appendChild(button);
+  });
+}
+
+function flash(type){
+  const app=$("app");
+  app.classList.remove("flash-good","flash-wrong");
+  void app.offsetWidth;
+  app.classList.add(type);
+}
+
+function celebrate(target){
+  const r=target.getBoundingClientRect();
+  const x=r.left+r.width/2,y=r.top+r.height/2;
+
+  ["👏","✅","✨","🌸","👏","✅","⭐","🎉","👏","✅"]
+  .forEach((symbol,i,all)=>{
+    const particle=document.createElement("span");
+    particle.className="confetti";
+    particle.textContent=symbol;
+
+    const a=2*Math.PI*i/all.length;
+    const d=80+Math.random()*95;
+
+    particle.style.left=x+"px";
+    particle.style.top=y+"px";
+    particle.style.setProperty("--dx",Math.cos(a)*d+"px");
+    particle.style.setProperty("--dy",Math.sin(a)*d+"px");
+    particle.style.setProperty(
+      "--rotation",(Math.random()*80-40)+"deg"
+    );
+
+    $("effects").appendChild(particle);
+    particle.addEventListener(
+      "animationend",()=>particle.remove(),{once:true}
+    );
+    setTimeout(()=>particle.remove(),1400);
+  });
+}
+
+function choose(option,selected){
+  if(answered)return;
+  answered=true;
+
+  const [point,correct,,,reason]=stageQuestions[index];
+
+  for(const button of $("options").children){
+    button.disabled=true;
+    if(button.querySelector("span:last-child").textContent===correct){
+      button.classList.add("correct");
+    }
+  }
+
+  const feedback=$("feedback");
+  feedback.hidden=false;
+
+  if(option.isCorrect){
+    levelScore++;
+    totalScore++;
+    feedback.classList.add("good");
+    feedback.textContent=`✅ Correct! +1 mark. ${reason}`;
+    flash("flash-good");
+    celebrate(selected);
+  }else{
+    selected.classList.add("wrong");
+    mistakes.push({
+      point,
+      chosen:option.text,
+      correct,
+      reason,
+      level:level+1
+    });
+
+    feedback.classList.add("bad");
+    feedback.textContent=
+      `❌ Not quite. Best explanation: ${correct}  💡 ${reason}`;
+
+    flash("flash-wrong");
+
+    if(typeof navigator.vibrate==="function"){
+      navigator.vibrate([90,50,90]);
+    }
+  }
+
+  $("scoreLabel").textContent=`⭐ ${totalScore} / 30`;
+  $("bar").style.width=`${((index+1)/PER_LEVEL)*100}%`;
+
+  $("next").textContent=index===PER_LEVEL-1
+    ?"Finish This Level →":"Next Question →";
+  $("next").hidden=false;
+}
+
+function completeLevel(){
+  stageScores[level]=levelScore;
+
+  if(level<2){
+    $("completedLevel").textContent=
+      `Level ${level+1} Completed!`;
+
+    $("levelScore").textContent=
+      `You earned ${levelScore} / 10 marks in this level. Total: ${totalScore} / 30.`;
+
+    $("nextMessage").textContent=
+      `Next up: ${LEVELS[level+1].title}`;
+
+    show("between");
+  }else{
+    showResults();
+  }
+}
+
+function showResults(){
+  show("result");
+  const pct=Math.round(totalScore/30*100);
+
+  $("resultName").textContent=playerName;
+  $("finalScore").textContent=`${totalScore} / 30`;
+  $("percent").textContent=`${pct}% correct`;
+
+  $("finalMessage").textContent=
+    pct>=90
+    ?"🌟 Excellent! You can recognise strong elaborations!"
+    :pct>=70
+    ?"👏 Good work! Keep noticing how explanations support main points."
+    :"🌱 Keep practising! Ask HOW or WHY after every main point.";
+
+  const breakdown=$("breakdown");
+  breakdown.replaceChildren();
+
+  stageScores.forEach((score,i)=>{
+    const chip=document.createElement("span");
+    chip.className="score-chip";
+    chip.textContent=`Level ${i+1}: ${score}/10`;
+    breakdown.appendChild(chip);
+  });
+
+  $("reviewButton").textContent=
+    `Review My Mistakes (${mistakes.length}) 📚`;
+  $("review").hidden=true;
+  $("review").replaceChildren();
+
+  if(!mistakes.length){
+    const p=document.createElement("p");
+    p.textContent="Perfect! No mistakes to review. 🎉";
+    $("review").appendChild(p);
+    return;
+  }
+
+  mistakes.forEach((m,i)=>{
+    const card=document.createElement("div");
+    card.className="review-card";
+
+    const heading=document.createElement("strong");
+    heading.textContent=`${i+1}. Level ${m.level} — ${m.point}`;
+
+    const correct=document.createElement("p");
+    correct.textContent="✅ Best explanation: "+m.correct;
+
+    const tip=document.createElement("p");
+    tip.textContent="💡 "+m.reason;
+
+    card.append(heading,correct,tip);
+    $("review").appendChild(card);
+  });
+}
+
+$("nameForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  playerName=$("nameInput").value.trim();
+  if(playerName)startGame();
+});
+
+$("next").addEventListener("click",()=>{
+  if(!answered)return;
+  index++;
+  if(index>=PER_LEVEL)completeLevel();
+  else renderQuestion();
+});
+
+$("nextLevel").addEventListener("click",()=>{
+  level++;
+  beginLevel();
+});
+
+$("replay").addEventListener("click",startGame);
+
+$("changeName").addEventListener("click",()=>{
+  show("start");
+});
+
+$("reviewButton").addEventListener("click",()=>{
+  $("review").hidden=!$("review").hidden;
+});
+
+// Laptop keyboard shortcuts: 1, 2, 3 or A, B, C.
+document.addEventListener("keydown",e=>{
+  if($("game").hidden||answered||e.repeat)return;
+  const n={
+    "1":0,"2":1,"3":2,
+    a:0,b:1,c:2
+  }[e.key.toLowerCase()];
+  if(n!==undefined)$("options").children[n]?.click();
+});
+</script>
+</body>
+</html>
