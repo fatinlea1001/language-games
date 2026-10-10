@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Paragraph Builder — AI Set 2</title>
+<style>
+:root{--pink:#df629f;--dark:#553e52;--line:#f0cfe0;--lavender:#eee7fb;--good:#e5f8ee;--bad:#ffedf1}
+*{box-sizing:border-box}
+body{margin:0;padding:16px;background:linear-gradient(135deg,#ffe4f0,#f3ecff,#effff7);font-family:'Segoe UI',Arial,sans-serif;color:var(--dark);min-height:100vh}
+main{max-width:820px;margin:auto;padding:23px;background:white;border-radius:24px;box-shadow:0 10px 35px #ad7c9750}
+[hidden]{display:none!important}h1,h2{color:#c34685}h1{text-align:center;font-size:clamp(24px,5vw,33px)}p{line-height:1.6}.center{text-align:center}.emoji{text-align:center;font-size:46px}
+.instructions{background:#fff3f9;border:1px solid var(--line);padding:15px;border-radius:15px;line-height:1.85}
+input{width:100%;padding:15px;font:inherit;border:2px solid var(--line);border-radius:12px;margin:10px 0}
+button{cursor:pointer;font:inherit}.btn{width:100%;border:0;border-radius:13px;padding:15px;background:var(--pink);color:white;font-weight:800;margin-top:13px}.btn.secondary{background:#ede2f5;color:#69507e}.btn:hover{filter:brightness(.97)}
+.top{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}.pill{background:#fff0f7;color:#9e4175;border-radius:100px;padding:8px 11px;font-size:13px;font-weight:800}
+.track{height:10px;border-radius:20px;background:#f4dbea;overflow:hidden;margin:15px 0 19px}.fill{width:0;height:100%;background:linear-gradient(90deg,#e86aa7,#ae8cde);transition:width .2s}
+.level{text-align:center;font-weight:800;color:#7656a2;margin-bottom:14px}
+.point{padding:16px;background:#fff0f7;border:2px solid var(--line);border-radius:16px}.point small{font-weight:800;letter-spacing:.6px;color:#99577b}.point p{margin:8px 0 0;font-weight:800;font-size:19px}
+.build{margin:15px 0;padding:15px;border:2px solid #dbcbf2;background:#f8f4ff;border-radius:15px}.build h3{font-size:15px;color:#72549c;margin:0 0 10px}.line{margin:7px 0;padding:10px 12px;background:white;border-radius:10px;border-left:4px solid #a68cca;line-height:1.5}.line.correct{border-left-color:#3da979}.line.improve{border-left-color:#df7290}.line small{display:block;color:#79677a;font-weight:700;margin-bottom:3px}
+.step{background:var(--lavender);padding:12px 14px;border-radius:11px;color:#684e90;font-weight:800;margin-top:16px}.instruction{font-size:15px;margin:11px 0}
+.choices{display:grid;gap:10px}.choice{width:100%;border:2px solid var(--line);text-align:left;background:white;border-radius:13px;padding:14px;line-height:1.5;color:var(--dark)}.choice:hover:not(:disabled){background:#fff0f7;border-color:#dc7eae}.choice:disabled{cursor:default}.letter{display:inline-flex;background:#f6e4ef;color:#a04c7a;border-radius:8px;min-width:29px;height:29px;align-items:center;justify-content:center;font-weight:900;margin-right:9px}.choice.correct{border-color:#55b784;background:var(--good)}.choice.wrong{border-color:#e97d96;background:var(--bad);animation:shake .35s}
+.feedback{border-radius:14px;padding:14px;margin-top:14px;line-height:1.65}.feedback.good{background:var(--good);color:#246c4b}.feedback.bad{background:var(--bad);color:#a43d59}
+.model{background:#f7f2ff;border:2px solid #dbcdf2;border-radius:16px;padding:17px;margin:15px 0;line-height:1.9}.model h3{color:#7656a2;margin:0}.model p{margin:10px 0}.model.best{background:#ecfbf2;border-color:#b4e4c9}.model.best h3{color:#297957}
+.big{font-size:65px;font-weight:900;color:#d14b90;text-align:center}.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:17px 0}.levels div{text-align:center;background:#fff1f8;border-radius:12px;padding:10px 5px}.levels strong{display:block;font-size:22px;color:#be4585}
+.review{padding:14px;border:1px solid var(--line);border-radius:13px;margin:10px 0;background:#fff8fc}.review p{margin:6px 0;font-size:14px}.review b{color:#9e4175}
+#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}.spark{position:absolute;font-size:26px;animation:fly .9s ease-out forwards}@keyframes fly{from{opacity:1;transform:translate(0,0) scale(.4)}to{opacity:0;transform:translate(var(--x),-110px) scale(1.3)}}@keyframes shake{0%,100%{transform:translateX(0)}25%,75%{transform:translateX(-5px)}50%{transform:translateX(5px)}}
+@media(max-width:540px){body{padding:7px}main{padding:16px 12px;border-radius:16px}.point p{font-size:17px}.choice{padding:12px}.top{gap:5px}.pill{font-size:12px}.model{padding:12px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="confetti"></div>
+<main>
+<section id="start">
+ <div class="emoji">🤖🌸📝</div>
+ <h1>English Elaboration Master</h1>
+ <p class="center"><b>Paragraph Builder — Artificial Intelligence (Set 2)</b><br>B1 English · Later questions stretch towards B2</p>
+ <div class="instructions"><b>How to play</b><br>1. Read the main point.<br>2. Choose the best <b>Explanation</b>.<br>3. Choose the best <b>Example</b>.<br>4. Choose the best <b>Result / Effect</b>.<br>✨ Watch <b>your paragraph grow</b> as you choose each sentence.<br>🌷 The final five paragraphs have closer answer choices.<br>🏆 10 paragraphs × 3 steps = <b>30 marks</b>.</div>
+ <form id="nameForm"><p><b>Your name</b></p><input id="nameInput" maxlength="60" required placeholder="Enter your name"><button class="btn" type="submit">Start Building! 🚀</button></form>
+</section>
+<section id="game" hidden>
+ <div class="top"><span class="pill" id="nameTag"></span><span class="pill" id="questionTag"></span><span class="pill" id="scoreTag"></span></div>
+ <div class="track"><div class="fill" id="progress"></div></div>
+ <div class="level" id="levelTitle"></div>
+ <div id="questionPanel">
+  <div class="point"><small id="pointNumber"></small><p id="mainPoint"></p></div>
+  <div class="build" id="buildBox" hidden><h3>🧩 Your paragraph so far</h3><div id="builtSentences"></div></div>
+  <div class="step" id="stepTitle"></div>
+  <p class="instruction">Choose the BEST sentence. In later paragraphs, several options may sound related, so read carefully.</p>
+  <div class="choices" id="choices"></div>
+  <div class="feedback" id="feedback" aria-live="polite" hidden></div>
+  <button class="btn" id="continueBtn" type="button" hidden>Continue →</button>
+ </div>
+ <div id="modelPanel" hidden>
+  <h2>✨ Paragraph Completed!</h2>
+  <div class="model"><h3>📝 Your paragraph</h3><p id="myParagraph"></p></div>
+  <div class="model best"><h3>🌟 Suggested model paragraph</h3><p id="bestParagraph"></p></div>
+  <p class="center" id="completedTag"></p>
+  <button class="btn" id="nextParagraphBtn" type="button">Next Paragraph →</button>
+ </div>
+</section>
+<section id="result" hidden>
+ <div class="emoji">🏆🌸🎉</div><h1>Challenge Completed!</h1>
+ <h2 class="center" id="resultName"></h2><p class="center">Final score</p><div class="big" id="finalScore"></div><p class="center" id="percentage"></p><p class="center" id="message"></p>
+ <div class="levels"><div>Level 1<strong id="lv1"></strong><small>/ 15</small></div><div>Level 2<strong id="lv2"></strong><small>/ 9</small></div><div>Level 3<strong id="lv3"></strong><small>/ 6</small></div></div>
+ <p class="center">📸 Screenshot your result to share with friends!</p>
+ <button class="btn secondary" id="reviewBtn" type="button">Review My Mistakes 📖</button><div id="reviewBox" hidden></div>
+ <button class="btn" id="replayBtn" type="button">Play Again 🔀</button><button class="btn secondary" id="changeNameBtn" type="button">Change Name</button>
+</section>
+</main>
+<script>
+// Each set contains: 1 correct sentence, 2 distractors, and a short tip.
+// A2–B1 with a little B2; 10 different AI topics.
+const DATA = [
+  {
+    "level": 0,
+    "point": "AI can help tourists understand signs written in another language.",
+    "steps": [
+      [
+        "It can translate the words on signs so visitors know what they mean.",
+        "It can suggest interesting places for visitors to see during a trip.",
+        "It can describe the history of famous buildings near the signs.",
+        "Explain how AI helps visitors UNDERSTAND the words on signs."
+      ],
+      [
+        "For example, a visitor can use a translation app to read a notice at a train station.",
+        "For example, a visitor can ask AI to find a hotel near the train station.",
+        "For example, a visitor can use AI to plan a walking route around the city.",
+        "Your example should involve reading a sign or notice, not just travelling."
+      ],
+      [
+        "Therefore, visitors may find their way more easily in an unfamiliar place.",
+        "Therefore, visitors may learn more about the history of the town.",
+        "Therefore, visitors may find cheaper rooms for their holiday.",
+        "Show the benefit of UNDERSTANDING signs while travelling."
+      ]
+    ]
+  },
+  {
+    "level": 0,
+    "point": "AI can help students organise their study time.",
+    "steps": [
+      [
+        "It can help students plan when to revise each subject before a test.",
+        "It can explain a science lesson using simple words.",
+        "It can suggest topics for an English writing exercise.",
+        "A good explanation focuses on planning TIME, not learning content."
+      ],
+      [
+        "For example, a student can use AI to make a revision timetable for exam week.",
+        "For example, a student can ask AI to check the spelling in an essay.",
+        "For example, a student can ask AI to explain a difficult maths question.",
+        "Choose an example of making a study PLAN."
+      ],
+      [
+        "As a result, students may manage their time better and feel more prepared.",
+        "As a result, students may learn the meanings of more English words.",
+        "As a result, students may find more interesting books to read.",
+        "Connect a timetable with better time management."
+      ]
+    ]
+  },
+  {
+    "level": 0,
+    "point": "AI can help students practise speaking English.",
+    "steps": [
+      [
+        "Some AI tools can ask questions and give feedback on spoken answers.",
+        "Some AI tools can help students correct mistakes in written essays.",
+        "Some AI tools can suggest creative titles for English projects.",
+        "The explanation should focus on SPEAKING practice."
+      ],
+      [
+        "For example, a student can answer an AI interview question aloud and try again.",
+        "For example, a student can ask AI to check the grammar in an email.",
+        "For example, a student can use AI to make vocabulary flashcards.",
+        "The student must actually practise speaking, not just writing or reading."
+      ],
+      [
+        "With regular practice, students may speak more confidently in class.",
+        "With regular practice, students may write longer stories in their notebooks.",
+        "With regular practice, students may read books more quickly.",
+        "The result should describe an improvement in SPOKEN English."
+      ]
+    ]
+  },
+  {
+    "level": 0,
+    "point": "AI can help readers choose books they might enjoy.",
+    "steps": [
+      [
+        "It can suggest books based on the topics or stories a reader likes.",
+        "It can make a long book easier to understand by giving a summary.",
+        "It can explain the meanings of difficult words found in a book.",
+        "Explain how AI helps someone CHOOSE a book."
+      ],
+      [
+        "For example, a reader who likes mysteries can ask AI to suggest easy mystery books.",
+        "For example, a reader can ask AI to explain the ending of a mystery novel.",
+        "For example, a reader can use AI to find the meaning of a word in a novel.",
+        "The reader should be looking for a book to READ NEXT."
+      ],
+      [
+        "Consequently, readers may discover more books that match their interests.",
+        "Consequently, readers may understand every sentence in a difficult book.",
+        "Consequently, readers may remember the endings of books more clearly.",
+        "Connect recommendations with finding suitable new books."
+      ]
+    ]
+  },
+  {
+    "level": 0,
+    "point": "AI can help people who find it difficult to read small words on a screen.",
+    "steps": [
+      [
+        "Some tools can read messages aloud, so users do not have to read every word.",
+        "Some tools can translate messages from one language into another.",
+        "Some tools can suggest different articles about the same subject.",
+        "Focus on hearing text when reading small print is difficult."
+      ],
+      [
+        "For example, a person with poor eyesight can listen while a phone reads a message aloud.",
+        "For example, a person can ask AI to translate a message into English.",
+        "For example, a person can ask AI to find a shorter article to read.",
+        "The example should show text being READ ALOUD."
+      ],
+      [
+        "This may help users understand messages without looking closely at the screen.",
+        "This may help users learn the same message in several languages.",
+        "This may help users find more articles about their favourite subjects.",
+        "The effect must solve the difficulty of seeing small words."
+      ]
+    ]
+  },
+  {
+    "level": 1,
+    "point": "AI summaries can save time, but they may leave out important details.",
+    "steps": [
+      [
+        "A summary gives the main ideas quickly, but some smaller facts may be missing.",
+        "A summary uses fewer words, so it is always easier to share with friends.",
+        "A summary can explain difficult words and make a long article easier to read.",
+        "A strong explanation covers BOTH saving time and missing details."
+      ],
+      [
+        "For example, a student reads a short AI summary but misses a rule found in the full article.",
+        "For example, a student asks AI to shorten an article before putting it on a poster.",
+        "For example, a student asks AI to explain three new words in an article.",
+        "Look for an example that shows what happens when a summary LEAVES SOMETHING OUT."
+      ],
+      [
+        "Therefore, readers should check the original text when small details matter.",
+        "Therefore, readers should compare two short summaries instead of reading the full article.",
+        "Therefore, readers should choose the shortest summary whenever they have little time.",
+        "The result should offer a sensible response to missing information."
+      ]
+    ]
+  },
+  {
+    "level": 1,
+    "point": "AI recommendations can encourage people to spend too much time on social media.",
+    "steps": [
+      [
+        "Apps may keep suggesting videos similar to the ones a person enjoys watching.",
+        "Apps may help users write captions that match the pictures they post.",
+        "Apps may suggest new friends who share similar interests with a user.",
+        "Explain how RECOMMENDED CONTENT can keep people watching."
+      ],
+      [
+        "For example, someone watches one cooking clip and then keeps scrolling through similar videos.",
+        "For example, someone uses AI to make subtitles for a cooking video.",
+        "For example, someone asks AI to write a caption before posting a cooking video.",
+        "Your example should show a person watching MORE suggested content."
+      ],
+      [
+        "As a result, users may lose track of time unless they set limits for themselves.",
+        "As a result, users may learn how to edit their own videos more quickly.",
+        "As a result, users may get more comments on the videos they post.",
+        "The result should connect repeated recommendations to TIME SPENT ONLINE."
+      ]
+    ]
+  },
+  {
+    "level": 1,
+    "point": "AI-made pictures can sometimes spread false stories online.",
+    "steps": [
+      [
+        "AI can create pictures of events that look real even when they never happened.",
+        "AI can improve the colours of a real photo before someone shares it.",
+        "AI can resize a picture so it fits nicely on a phone screen.",
+        "The important issue is a picture that MISLEADS people about an event."
+      ],
+      [
+        "For example, a fake picture of a flooded school may make people believe there was a real flood.",
+        "For example, a student creates an AI drawing for the cover of a storybook.",
+        "For example, a shop uses AI to improve the lighting in a picture of its products.",
+        "Choose a made-up picture that people might mistake for REAL NEWS."
+      ],
+      [
+        "Therefore, people should check where pictures came from before sharing them as news.",
+        "Therefore, people should edit more photos to make them look professional.",
+        "Therefore, people should share pictures while the story is still popular.",
+        "The safest result is to CHECK the source of a doubtful picture."
+      ]
+    ]
+  },
+  {
+    "level": 2,
+    "point": "AI can help small shops answer customers, but staff should check its replies.",
+    "steps": [
+      [
+        "It can prepare replies quickly, although details such as prices may still be wrong.",
+        "It can send quick messages to customers and keep the shop active online.",
+        "It can study sales records to help a shop decide which products to sell next.",
+        "The best explanation must include BOTH speed and the need to check details."
+      ],
+      [
+        "For example, AI drafts a reply about delivery fees, and a worker checks the amount before sending it.",
+        "For example, AI replies to every question about delivery fees without anyone checking the amounts.",
+        "For example, a worker asks AI to compare different companies that deliver parcels.",
+        "Find an example showing a QUICK DRAFT followed by a HUMAN CHECK."
+      ],
+      [
+        "In this way, customers may get faster answers without receiving unchecked information.",
+        "In this way, customers may receive replies at any hour, even if some details are wrong.",
+        "In this way, workers may no longer need to read the messages AI prepares.",
+        "A good result combines helpful service with ACCURATE replies."
+      ]
+    ]
+  },
+  {
+    "level": 2,
+    "point": "Giving clear instructions helps people get more useful answers from AI.",
+    "steps": [
+      [
+        "AI can respond more closely to a person's needs when the question includes enough detail.",
+        "AI can give detailed replies to many questions, even when the instructions are short.",
+        "AI can offer several possible answers so users can decide which sounds best.",
+        "Explain WHY adding helpful details to a question improves the answer."
+      ],
+      [
+        "For example, asking for \"five cheap lunch ideas under RM10\" is clearer than asking for \"food ideas\".",
+        "For example, asking for \"food ideas\" may lead to many different suggestions.",
+        "For example, asking AI to create pictures of meals may help someone design a menu.",
+        "Choose an example that shows the DIFFERENCE between a clear and a vague request."
+      ],
+      [
+        "As a result, users may spend less time changing answers that do not meet their needs.",
+        "As a result, users may receive extra information that is not useful to them.",
+        "As a result, users may get more answers to compare, even with unclear questions.",
+        "The outcome should connect CLEAR instructions with LESS time correcting answers."
+      ]
+    ]
+  }
+];
+
+const $=id=>document.getElementById(id);
+const LEVELS=["LEVEL 1 · EVERYDAY AI (B1)","LEVEL 2 · THINK MORE CAREFULLY (B1+)","LEVEL 3 · BEST ELABORATION (B1–B2)"];
+const LEVEL_SIZES=[5,3,2]; // First 5 easier; final 5 more demanding
+const LABELS=["Explanation","Example","Result / Effect"];
+const shuffle=items=>{const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let name="",session=[],level=0,paragraph=0,step=0,done=0,score=0,levelScores=[0,0,0],chosen=[],mistakes=[],locked=false;
+function screen(id){["start","game","result"].forEach(x=>$(x).hidden=x!==id);}
+function newSession(){return [0,1,2].map(l=>{const ps=shuffle(DATA.filter(p=>p.level===l));const positions=shuffle(Array.from({length:ps.length*3},(_,i)=>i%3));let k=0;return ps.map(p=>({...p,options:p.steps.map(s=>{const opts=shuffle([{text:s[1],correct:false},{text:s[2],correct:false}]);opts.splice(positions[k++],0,{text:s[0],correct:true});return opts;})}));});}
+function current(){return session[level][paragraph];}
+function startGame(){session=newSession();level=paragraph=step=done=score=0;levelScores=[0,0,0];chosen=[];mistakes=[];locked=false;$("nameTag").textContent="👤 "+name;screen("game");showQuestion();}
+function drawChosen(){const box=$("buildBox"),target=$("builtSentences");target.replaceChildren();box.hidden=chosen.length===0;if(!chosen.length)return;const p=current();const main=document.createElement("div");main.className="line";main.textContent=p.point;target.append(main);chosen.forEach((c,i)=>{const div=document.createElement("div");div.className="line "+(c.correct?"correct":"improve");const label=document.createElement("small");label.textContent=(c.correct?"✅ ":"🔁 ")+LABELS[i]+" — your choice";div.append(label,document.createTextNode(c.text));target.append(div);});}
+function showQuestion(){locked=false;const p=current();$("questionPanel").hidden=false;$("modelPanel").hidden=true;$("levelTitle").textContent=LEVELS[level];$("pointNumber").textContent="MAIN POINT · "+(LEVEL_SIZES.slice(0,level).reduce((a,b)=>a+b,0)+paragraph+1)+" / 10";$("mainPoint").textContent=p.point;drawChosen();$("stepTitle").textContent="Step "+(step+1)+" / 3 · "+LABELS[step];$("questionTag").textContent="Question "+(done+1)+" / 30";$("scoreTag").textContent="⭐ "+score+" / 30";$("progress").style.width=(done/30*100)+"%";$("feedback").hidden=true;$("feedback").className="feedback";$("continueBtn").hidden=true;$("choices").replaceChildren();p.options[step].forEach((o,i)=>{const b=document.createElement("button");b.type="button";b.className="choice";const label=document.createElement("span");label.className="letter";label.textContent="ABC"[i];b.append(label,document.createTextNode(o.text));b.addEventListener("click",()=>choose(i));$("choices").append(b);});}
+function confetti(button){const r=button.getBoundingClientRect();["👏","✅","🌸","✨","⭐"].forEach((s,i)=>{const e=document.createElement("span");e.className="spark";e.textContent=s;e.style.left=(r.left+r.width/2+(i-2)*12)+"px";e.style.top=(r.top+r.height/2)+"px";e.style.setProperty("--x",(i-2)*38+"px");$("confetti").append(e);setTimeout(()=>e.remove(),1000);});}
+function choose(i){if(locked)return;locked=true;const p=current(),s=p.steps[step],o=p.options[step],pick=o[i];chosen.push({text:pick.text,correct:pick.correct});done++;const bs=[...$("choices").children];bs.forEach((b,j)=>{b.disabled=true;if(o[j].correct)b.classList.add("correct");});const f=$("feedback");f.hidden=false;if(pick.correct){score++;levelScores[level]++;f.classList.add("good");f.textContent="✅ Great choice! "+s[3];confetti(bs[i]);}else{bs[i].classList.add("wrong");f.classList.add("bad");f.textContent="❌ Not the best choice. "+s[3]+" Best sentence: "+s[0];mistakes.push({point:p.point,step:LABELS[step],yours:pick.text,best:s[0]});}$("scoreTag").textContent="⭐ "+score+" / 30";$("progress").style.width=done/30*100+"%";$("continueBtn").hidden=false;$("continueBtn").textContent=step===2?"Compare Paragraphs 📖":"Continue →";}
+function next(){if(!locked)return;if(step<2){step++;showQuestion();}else showModel();}
+function showModel(){const p=current();$("questionPanel").hidden=true;$("modelPanel").hidden=false;$("myParagraph").textContent=[p.point,...chosen.map(c=>c.text)].join(" ");$("bestParagraph").textContent=[p.point,...p.steps.map(s=>s[0])].join(" ");const count=LEVEL_SIZES.slice(0,level).reduce((a,b)=>a+b,0)+paragraph+1;$("completedTag").textContent="Paragraph "+count+" / 10 complete";$("nextParagraphBtn").textContent=count===10?"See Final Score 🏆":paragraph===session[level].length-1?"Next Level ✨":"Next Paragraph →";}
+function nextParagraph(){chosen=[];step=0;if(paragraph+1<session[level].length){paragraph++;showQuestion();}else if(level<2){level++;paragraph=0;showQuestion();}else showResult();}
+function showResult(){screen("result");$("resultName").textContent=name;$("finalScore").textContent=score+" / 30";$("percentage").textContent=Math.round(score/30*100)+"% correct";$("lv1").textContent=levelScores[0];$("lv2").textContent=levelScores[1];$("lv3").textContent=levelScores[2];$("message").textContent=score===30?"🌟 Perfect! You are a paragraph star!":score>=24?"👏 Excellent work!":score>=18?"💗 Good job! Keep practising.":"🌱 Keep trying. You are learning!";$("reviewBtn").textContent="Review My Mistakes ("+mistakes.length+") 📖";$("reviewBox").hidden=true;$("reviewBox").replaceChildren();if(!mistakes.length){$("reviewBox").textContent="Perfect! No mistakes to review. 🎉";return;}mistakes.forEach((m,i)=>{const box=document.createElement("div");box.className="review";const h=document.createElement("b");h.textContent=(i+1)+". "+m.step;box.append(h);[["Main point",m.point],["Your choice",m.yours],["Best sentence",m.best]].forEach(([label,value])=>{const line=document.createElement("p");const strong=document.createElement("b");strong.textContent=label+": ";line.append(strong,document.createTextNode(value));box.append(line);});$("reviewBox").append(box);});}
+$("nameForm").addEventListener("submit",e=>{e.preventDefault();name=$("nameInput").value.trim();if(name)startGame();});
+$("continueBtn").addEventListener("click",next);
+$("nextParagraphBtn").addEventListener("click",nextParagraph);
+$("replayBtn").addEventListener("click",startGame);
+$("changeNameBtn").addEventListener("click",()=>{screen("start");$("nameInput").focus();});
+$("reviewBtn").addEventListener("click",()=>{$("reviewBox").hidden=!$("reviewBox").hidden;});
+</script>
+</body>
+</html>
