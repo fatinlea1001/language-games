@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Paragraph Builder | English Elaboration Master</title>
+<style>
+:root{--pink:#df5f9e;--light:#fff0f7;--purple:#7652a2;--ink:#47394b;--green:#24845c;--red:#c94061;--line:#efd3e3}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:16px;font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#ffe2ef,#f2eafd 55%,#f0fff7)}
+.app{max-width:790px;margin:0 auto;padding:23px;background:white;border-radius:25px;box-shadow:0 12px 35px #b57e9a37}
+[hidden]{display:none!important}
+h1,h2,h3{color:#bb4282}h1{font-size:clamp(25px,5vw,34px);margin:12px 0}p{line-height:1.65}.center{text-align:center}
+.intro-icon{font-size:48px;text-align:center}.subtitle{color:#80647b;text-align:center;margin-top:0}
+input{width:100%;padding:15px;border:2px solid var(--line);border-radius:12px;font:inherit;outline-color:var(--pink)}
+button{font:inherit;cursor:pointer}.primary,.secondary{width:100%;border:0;border-radius:14px;padding:15px 18px;margin-top:15px;font-weight:800}.primary{color:#fff;background:var(--pink)}.primary:hover{background:#c94588}.secondary{background:#e9dbf2;color:#61447a}.secondary:hover{background:#dbc7e9}
+.features{background:#fff6fb;border:1px solid var(--line);border-radius:14px;padding:15px;margin:20px 0;line-height:1.9}
+.topbar{display:flex;justify-content:space-between;gap:7px;flex-wrap:wrap;margin-bottom:12px}.pill{background:#ffecf6;border-radius:100px;padding:8px 12px;font-size:13px;font-weight:700;color:#9b407b}
+.track{width:100%;height:11px;background:#f5d9e8;border-radius:20px;overflow:hidden;margin:14px 0 21px}.fill{height:100%;width:0%;background:linear-gradient(90deg,#e46aaa,#9e81db);transition:width .25s}
+.level{font-weight:800;color:var(--purple);font-size:14px;text-align:center;letter-spacing:.3px}
+.point{background:#fff1f8;border:2px solid #f3ccdf;border-radius:16px;padding:17px;margin:15px 0}.point .tag{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#a65987;font-weight:900}.point p{font-size:19px;font-weight:700;margin:8px 0 0}
+.stephead{background:#f0eafa;color:#665093;padding:12px 15px;border-radius:12px;font-weight:800;margin:18px 0 12px}.prompt{font-size:15px;margin-bottom:12px}
+.choices{display:grid;gap:10px}.choice{width:100%;text-align:left;border:2px solid #ead3e5;border-radius:14px;background:#fff;padding:14px 15px;line-height:1.5;color:var(--ink)}.choice:hover:not(:disabled){background:#fff2f9;border-color:#e48bb6}.choice:disabled{cursor:default}.letter{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;margin-right:8px;border-radius:9px;background:#f7e5f0;font-weight:900;color:#ac477d}.choice.correct{border-color:#63b790;background:#e9f9ee}.choice.wrong{border-color:#e37c96;background:#fff0f3;animation:shake .35s}
+.feedback{border-radius:14px;padding:14px 17px;line-height:1.6;margin-top:14px}.feedback.good{background:#e8f8ed;color:#1e6948}.feedback.bad{background:#fff0f3;color:#9a3452}.feedback .correct-text{display:block;margin-top:8px;font-weight:700}
+.model{background:#f5f0fd;border:2px solid #dcd0f3;border-radius:16px;padding:19px;margin-top:15px}.model p{line-height:1.85}.model .label{font-size:12px;letter-spacing:.8px;text-transform:uppercase;font-weight:800;color:#71539d}.model .summary{font-size:14px;color:#705b7a}
+.score{font-size:66px;font-weight:900;color:#ca4a8d;line-height:1.2}.breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:21px 0}.breakdown div{border-radius:14px;background:#fff0f7;padding:12px 6px;text-align:center}.breakdown strong{display:block;font-size:23px;color:#bc4281}.breakdown small{color:#86667a}
+.review{background:#fff7fb;border:1px solid #f0d7e4;border-radius:13px;padding:13px;margin:12px 0}.review h4{margin:0 0 8px;color:#8e4377}.review p{margin:6px 0;font-size:14px}.review .correct-answer{color:#237f58}
+#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}.spark{position:absolute;font-size:26px;animation:rise 1s ease-out forwards}@keyframes rise{from{opacity:1;transform:translate(0,0) scale(.5)}to{opacity:0;transform:translate(var(--dx),-115px) scale(1.4)}}@keyframes shake{0%,100%{transform:translateX(0)}25%,75%{transform:translateX(-5px)}50%{transform:translateX(5px)}}
+@media(max-width:540px){body{padding:7px}.app{padding:15px 12px;border-radius:17px}.point p{font-size:17px}.choice{padding:12px}.breakdown{gap:5px}.breakdown div{padding:9px 4px}.breakdown strong{font-size:19px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="confetti"></div>
+<main class="app">
+<section id="startScreen">
+<div class="intro-icon">🤖🌸📝</div>
+<h1 class="center">English Elaboration Master</h1>
+<p class="subtitle">Paragraph Builder — Artificial Intelligence (Set 1)</p>
+<div class="features"><b>How to play</b><br>💡 Read the main point.<br>🧠 Choose the best <b>Explanation</b>.<br>📌 Choose the most suitable <b>Example</b>.<br>✨ Choose the logical <b>Result / Effect</b>.<br>📖 Read the completed model paragraph after each challenge.<br>🏆 10 paragraphs × 3 choices = <b>30 marks</b>.</div>
+<form id="nameForm"><label for="playerName"><b>Your name</b></label><input id="playerName" required maxlength="60" placeholder="Type your name here" autocomplete="name"><button class="primary" type="submit">Start Building! 🚀</button></form>
+</section>
+<section id="gameScreen" hidden>
+<div class="topbar"><span class="pill" id="playerTag">👤 Player</span><span class="pill" id="qTag">Question 1 / 30</span><span class="pill" id="scoreTag">⭐ 0 / 30</span></div>
+<div class="track"><div class="fill" id="progressFill"></div></div>
+<div class="level" id="levelTitle"></div>
+<div id="questionPanel">
+<div class="point"><div class="tag">Main point · <span id="paragraphNum"></span> / 10</div><p id="mainPoint"></p></div>
+<div class="stephead" id="stepTitle"></div>
+<p class="prompt" id="stepPrompt"></p>
+<div class="choices" id="choices"></div>
+<div class="feedback" id="feedback" aria-live="polite" hidden></div>
+<button class="primary" id="continueBtn" hidden type="button">Continue →</button>
+</div>
+<div id="modelPanel" hidden>
+<h2>✨ Paragraph Completed!</h2>
+<p>You have built a paragraph with a main point, explanation, example and result.</p>
+<div class="model"><div class="label">Complete model paragraph</div><p id="fullParagraph"></p></div>
+<p class="center" id="paragraphStatus"></p>
+<button class="primary" id="nextParagraphBtn" type="button">Next Paragraph →</button>
+</div>
+</section>
+<section id="resultScreen" hidden>
+<div class="intro-icon">🏆🌸🎉</div>
+<h1 class="center">Challenge Completed!</h1>
+<h2 class="center" id="resultName"></h2>
+<p class="center">Your final score</p>
+<div class="score center" id="finalScore"></div>
+<p class="center" id="finalPercentage"></p>
+<p class="center" id="achievement"></p>
+<div class="breakdown"><div><small>Level 1</small><strong id="level1Score"></strong><small>/ 12</small></div><div><small>Level 2</small><strong id="level2Score"></strong><small>/ 9</small></div><div><small>Level 3</small><strong id="level3Score"></strong><small>/ 9</small></div></div>
+<p class="center">📸 Screenshot your result and challenge a friend!</p>
+<button class="secondary" id="reviewBtn" type="button">Review My Mistakes 📖</button>
+<div id="reviewPanel" hidden></div>
+<button class="primary" id="replayBtn" type="button">Play Again — New Questions Order 🔀</button>
+<button class="secondary" id="changePlayerBtn" type="button">Change Player</button>
+</section>
+</main>
+<script>
+// Each paragraph contains THREE decisions: explanation, example and result.
+// There are FOUR paragraphs in Level 1, THREE in Level 2 and THREE in Level 3.
+const PARAGRAPHS = [
+{
+ level:0,
+ point:"AI can help students understand difficult lessons.",
+ steps:[
+  {label:"Explanation",good:"This is because AI tools can rephrase complicated ideas and offer explanations suited to a student's questions.",why:"It explains how AI supports understanding rather than merely repeating the point.",bad:[
+   ["This is because every AI answer is guaranteed to be accurate.","AI can make mistakes, so accuracy is not guaranteed."],
+   ["This means students never need to ask teachers for help again.","AI is a learning aid, not a complete replacement for teachers."]]},
+  {label:"Example",good:"For example, a student who struggles with conditional sentences can ask for a simpler explanation and extra practice sentences.",why:"It shows a specific learner using AI to understand an actual lesson.",bad:[
+   ["For example, a student can ask AI to choose a new ringtone.","Choosing a ringtone is not an example of understanding a lesson."],
+   ["For example, a school can use AI to check electricity usage.","Energy management does not illustrate this learning benefit."]]},
+  {label:"Result / Effect",good:"As a result, students may become more confident when revising independently.",why:"Greater confidence in independent revision follows logically from better understanding.",bad:[
+   ["As a result, students will never make another grammar mistake.","Improved understanding does not eliminate all mistakes."],
+   ["As a result, every classroom will immediately become fully automated.","Classroom automation does not follow from one student understanding a lesson."]]}
+ ]
+},
+{
+ level:0,
+ point:"AI can save teachers time on routine tasks.",
+ steps:[
+  {label:"Explanation",good:"It can produce first drafts of simple materials, allowing teachers to spend less time on repetitive preparation.",why:"It describes a realistic time-saving process while keeping teachers involved.",bad:[
+   ["It can make every important teaching decision without human judgement.","Saving time on routine work is different from replacing teachers' professional judgement."],
+   ["It forces teachers to stop planning lessons altogether.","AI assistance does not mean lesson planning is unnecessary."]]},
+  {label:"Example",good:"For instance, a teacher might use AI to draft vocabulary questions before checking and improving them.",why:"Drafting revision questions is a concrete routine teaching task.",bad:[
+   ["For instance, students may use AI to recommend movies for the weekend.","Movie recommendations do not show how teachers save time."],
+   ["For instance, a teacher might buy a faster printer for the staffroom.","A faster printer does not demonstrate the use of AI."]]},
+  {label:"Result / Effect",good:"Consequently, teachers can devote more attention to giving feedback and supporting individual students.",why:"Time saved during preparation can be redirected towards teaching support.",bad:[
+   ["Consequently, students no longer need to complete any homework.","Saving preparation time does not remove the need for practice."],
+   ["Consequently, schools can stop checking whether learning materials are correct.","AI-generated materials still require careful review."]]}
+ ]
+},
+{
+ level:0,
+ point:"AI can make learning more accessible to students with different needs.",
+ steps:[
+  {label:"Explanation",good:"Features such as text-to-speech and speech recognition can offer different ways to access information.",why:"It identifies specific accessibility tools and explains their purpose.",bad:[
+   ["All students must use exactly the same AI settings to learn effectively.","Accessibility means adapting support to different learners, not using identical settings."],
+   ["AI makes school buildings physically accessible without any changes.","Software alone cannot remove every physical barrier."]]},
+  {label:"Example",good:"For example, a student who finds printed text difficult to read can listen to an article using text-to-speech.",why:"The example matches an accessibility feature to a specific learning need.",bad:[
+   ["For example, a student can use an app to predict tomorrow's weather.","A weather forecast does not illustrate accessible learning."],
+   ["For example, the school can paint the library walls a brighter colour.","Repainting a room is not an example of AI-based learning support."]]},
+  {label:"Result / Effect",good:"Therefore, more learners may participate in lessons with greater independence.",why:"Better access to learning materials can support participation and independence.",bad:[
+   ["Therefore, every learner will achieve exactly the same examination score.","Accessible materials do not guarantee identical results."],
+   ["Therefore, students will stop using books in all subjects.","Accessibility features can work with books rather than replace them."]]}
+ ]
+},
+{
+ level:0,
+ point:"AI can help young people generate creative ideas.",
+ steps:[
+  {label:"Explanation",good:"It can suggest fresh angles and possible starting points when someone is unsure how to begin a task.",why:"It explains AI's role in brainstorming without claiming it replaces original thinking.",bad:[
+   ["It guarantees that anything created with AI is completely original.","AI suggestions are not guaranteed to be original."],
+   ["It proves that creative people no longer need imagination.","Brainstorming support does not replace human imagination."]]},
+  {label:"Example",good:"For instance, students preparing a recycling campaign could ask AI for slogan ideas before writing their own.",why:"A recycling campaign provides a clear and relevant brainstorming situation.",bad:[
+   ["For instance, students could use a stopwatch to time a football match.","Timing a match does not illustrate AI-assisted creativity."],
+   ["For instance, students could copy an entire AI-generated story and claim they wrote it alone.","Passing off generated work as one's own is dishonest, not a good creative practice."]]},
+  {label:"Result / Effect",good:"As a result, they may overcome writer's block while still developing ideas in their own voice.",why:"The result connects brainstorming to progress and independent creativity.",bad:[
+   ["As a result, there will be no need to practise writing skills.","AI brainstorming does not remove the value of writing practice."],
+   ["As a result, all school campaigns will use exactly the same slogan.","Brainstorming should support varied ideas rather than identical slogans."]]}
+ ]
+},
+{
+ level:1,
+ point:"AI-generated information can sometimes be inaccurate.",
+ steps:[
+  {label:"Explanation",good:"This happens because AI can produce convincing responses without verifying every claim against reliable evidence.",why:"It identifies the reason apparently fluent AI responses may still contain errors.",bad:[
+   ["This happens because computers cannot display complete sentences.","AI can produce fluent sentences; the problem is factual reliability."],
+   ["This happens only when users type questions in another language.","Inaccuracies can occur in many languages and subjects."]]},
+  {label:"Example",good:"For example, a student might include an invented historical date from a chatbot in an essay without checking it.",why:"An invented date is a concrete example of AI misinformation affecting schoolwork.",bad:[
+   ["For example, a student checks a date in two history books before submitting an essay.","Verifying facts is a safeguard against misinformation, not an example of being misled by it."],
+   ["For example, a student uses a calculator to check the total cost of stationery.","Checking arithmetic with a calculator is not an example of AI inventing facts."]]},
+  {label:"Result / Effect",good:"Consequently, students who accept answers uncritically may spread misinformation or lose marks for factual errors.",why:"Incorrect information can cause both wider misunderstanding and errors in assessment.",bad:[
+   ["Consequently, all online information becomes completely trustworthy.","An AI error does not make information more trustworthy."],
+   ["Consequently, students are guaranteed to remember every fact they read.","Remembering facts is unrelated to whether the AI information is accurate."]]}
+ ]
+},
+{
+ level:1,
+ point:"Overdependence on AI may weaken students' critical-thinking skills.",
+ steps:[
+  {label:"Explanation",good:"When students accept ready-made answers without evaluating them, they miss chances to analyse evidence and form their own judgements.",why:"It directly links passive AI use to reduced practice in reasoning.",bad:[
+   ["Using AI always requires more independent reasoning than solving a problem alone.","Simply accepting generated answers may involve less independent reasoning."],
+   ["Critical thinking means memorising every answer that a chatbot produces.","Critical thinking involves evaluation, not unquestioning memorisation."]]},
+  {label:"Example",good:"For example, a student might submit an AI-written argument without checking whether its evidence supports the conclusion.",why:"This demonstrates dependence without examining the logic of an argument.",bad:[
+   ["For example, a student compares several sources and challenges an AI-generated claim.","Checking and challenging a claim demonstrates critical thinking rather than dependence."],
+   ["For example, a student revises an essay after receiving detailed teacher feedback.","Responding to teacher feedback is not an example of relying uncritically on AI."]]},
+  {label:"Result / Effect",good:"As a result, the student may struggle to explain ideas independently during examinations or discussions.",why:"Limited reasoning practice can make independent explanations more difficult.",bad:[
+   ["As a result, the student automatically becomes better at defending every opinion.","Unquestioning use does not automatically strengthen the ability to defend ideas."],
+   ["As a result, the student will never need to evaluate information again.","Students still need to evaluate information inside and outside school."]]}
+ ]
+},
+{
+ level:1,
+ point:"Using AI carelessly can put personal information at risk.",
+ steps:[
+  {label:"Explanation",good:"Some AI services process or retain information users submit, so private details should not be shared without understanding the risks.",why:"It explains how entering sensitive information into a service can create privacy concerns.",bad:[
+   ["Personal details become private automatically whenever they are typed into a chatbot.","Submitting data does not automatically guarantee its privacy."],
+   ["Privacy risks disappear as long as the AI response sounds friendly.","The tone of a response says nothing about how information is handled."]]},
+  {label:"Example",good:"For instance, uploading classmates' addresses and phone numbers to a public AI service may expose information they did not agree to share.",why:"The example shows a realistic privacy problem involving identifiable student data.",bad:[
+   ["For instance, a student asks AI to suggest general revision strategies without sharing personal details.","A general question without private details is not an example of careless disclosure."],
+   ["For instance, a student borrows a dictionary to check the meaning of a word.","Using a dictionary does not involve disclosing data to an AI service."]]},
+  {label:"Result / Effect",good:"Therefore, users should avoid submitting sensitive data and respect other people's consent.",why:"Protecting information and obtaining consent are sensible responses to privacy risks.",bad:[
+   ["Therefore, users should publish more personal data to prove that they trust AI.","Publishing extra private data would increase rather than reduce the risk."],
+   ["Therefore, checking the privacy settings of an AI service is unnecessary.","Privacy settings and service policies can be relevant to safe use."]]}
+ ]
+},
+{
+ level:2,
+ point:"AI systems may reinforce unfair bias in important decisions.",
+ steps:[
+  {label:"Explanation",good:"If an AI model learns from unbalanced historical data, its recommendations may repeat disadvantages faced by certain groups.",why:"It explains a plausible mechanism through which bias can appear in AI outputs.",bad:[
+   ["AI removes every social prejudice simply because it uses mathematics.","Algorithms can reflect biases in their data and design."],
+   ["Unfair results can occur only when a human ignores all computer recommendations.","Computer-generated recommendations can themselves be unfair."]]},
+  {label:"Example",good:"For instance, a recruitment system trained on past hiring records might unfairly favour applicants from backgrounds previously preferred by employers.",why:"Recruitment based on biased historical data illustrates the point clearly.",bad:[
+   ["For instance, an employer reviews AI recommendations and checks them for unfair patterns.","Reviewing results for bias is a protective action, not an example of reinforcing bias."],
+   ["For instance, a calculator adds the same two numbers and gets the same answer each time.","Basic arithmetic does not demonstrate biased social decision-making."]]},
+  {label:"Result / Effect",good:"Consequently, organisations need human oversight and regular fairness checks before relying on AI-assisted decisions.",why:"Oversight and testing follow logically from the possibility of biased recommendations.",bad:[
+   ["Consequently, organisations should accept every AI ranking without question.","Blind acceptance could allow unfair patterns to continue."],
+   ["Consequently, the historical data used to train a model must always be perfectly fair.","Historical records can contain unfair patterns; fairness cannot simply be assumed."]]}
+ ]
+},
+{
+ level:2,
+ point:"AI is changing the skills people need in the workplace.",
+ steps:[
+  {label:"Explanation",good:"As automated tools take over some repetitive tasks, workers increasingly need to adapt, solve problems and supervise new technologies.",why:"It describes how automation can shift the kinds of skills that jobs require.",bad:[
+   ["Every occupation will disappear at the same time because AI can complete all tasks.","AI affects jobs differently and cannot perform all work."],
+   ["Digital skills become less useful as workplaces introduce more automated systems.","Automation often increases the importance of relevant digital skills."]]},
+  {label:"Example",good:"For example, an office worker may spend less time entering data manually and more time checking AI-generated reports for mistakes.",why:"The worker's responsibilities change from routine entry to reviewing outputs.",bad:[
+   ["For example, an office worker might continue using only paper forms without any new tools.","An unchanged paper-based routine does not illustrate AI-driven changes."],
+   ["For example, a student chooses a new notebook because its cover looks attractive.","Buying stationery does not demonstrate changing workplace skills."]]},
+  {label:"Result / Effect",good:"Therefore, lifelong learning and retraining are important for workers who want to remain adaptable.",why:"Training helps people respond to changes in tasks and expectations.",bad:[
+   ["Therefore, employees should avoid learning new skills once they get a job.","Avoiding new skills would make adapting to workplace change harder."],
+   ["Therefore, every job will soon require exactly the same qualifications.","Different occupations continue to require different combinations of skills."]]}
+ ]
+},
+{
+ level:2,
+ point:"Responsible AI use requires honesty and independent fact-checking.",
+ steps:[
+  {label:"Explanation",good:"Users should verify important claims and be transparent about AI assistance instead of presenting generated work as entirely their own.",why:"It explains two practical principles of responsible AI use: verification and honesty.",bad:[
+   ["Responsible use means copying AI responses without reading them carefully.","Copying without checking conflicts with independent verification."],
+   ["Being transparent about AI use is unnecessary whenever the output sounds impressive.","A convincing style does not remove the need for honesty."]]},
+  {label:"Example",good:"For instance, a student can use AI to brainstorm essay ideas, check the facts in reliable sources and write the final paragraph independently.",why:"This shows assistance, verification and original student work in one realistic example.",bad:[
+   ["For instance, a student submits an AI-generated essay unchanged and claims every sentence was written alone.","Concealing AI authorship conflicts with the point about honesty."],
+   ["For instance, a student chooses whichever chatbot answer appears first without checking any evidence.","Relying on the first output contradicts the need for fact-checking."]]},
+  {label:"Result / Effect",good:"As a result, AI can support learning without undermining academic integrity or trust in the student's work.",why:"Honest, verified assistance helps preserve trust and supports genuine learning.",bad:[
+   ["As a result, students no longer need to understand the assignments they submit.","Responsible use still requires students to understand their work."],
+   ["As a result, AI-generated information will become accurate even when nobody checks it.","Accuracy cannot be guaranteed by simply using AI."]]}
+ ]
+}
+];
+
+const LEVEL_TITLES=["LEVEL 1 · EVERYDAY BENEFITS","LEVEL 2 · RISKS AND CHALLENGES","LEVEL 3 · CRITICAL PERSPECTIVES"];
+const LEVEL_SIZES=[4,3,3];
+const STEP_LABELS=["Explanation","Example","Result / Effect"];
+const $=id=>document.getElementById(id);
+function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+let player="",session=[],levelIndex=0,paragraphIndex=0,stepIndex=0,answeredCount=0,score=0,levelScores=[0,0,0],mistakes=[],locked=false;
+function showScreen(screen){["startScreen","gameScreen","resultScreen"].forEach(id=>$(id).hidden=id!==screen);}
+function makeSession(){
+ return [0,1,2].map(level=>{
+  const group=shuffle(PARAGRAPHS.filter(p=>p.level===level));
+  // Exactly equal A/B/C correct positions WITHIN EACH LEVEL.
+  const positions=shuffle(Array.from({length:group.length*3},(_,i)=>i%3));
+  let k=0;
+  return group.map(p=>({
+   ...p,
+   choices:p.steps.map(s=>{
+    const options=shuffle(s.bad.map(([text,why])=>({text,why,correct:false})));
+    options.splice(positions[k++],0,{text:s.good,why:s.why,correct:true});
+    return options;
+   })
+  }));
+ });
+}
+function current(){return session[levelIndex][paragraphIndex];}
+function startGame(){
+ session=makeSession();levelIndex=paragraphIndex=stepIndex=answeredCount=score=0;levelScores=[0,0,0];mistakes=[];locked=false;
+ $("playerTag").textContent="👤 "+player;showScreen("gameScreen");renderQuestion();
+}
+function renderQuestion(){
+ locked=false;
+ const p=current(),s=p.steps[stepIndex];
+ $("questionPanel").hidden=false;$("modelPanel").hidden=true;
+ $("levelTitle").textContent=LEVEL_TITLES[levelIndex];
+ $("paragraphNum").textContent=LEVEL_SIZES.slice(0,levelIndex).reduce((a,b)=>a+b,0)+paragraphIndex+1;
+ $("mainPoint").textContent=p.point;
+ $("stepTitle").textContent=`Step ${stepIndex+1}/3 · ${s.label}`;
+ $("stepPrompt").textContent=`Choose the BEST ${s.label.toLowerCase()} to develop the main point.`;
+ $("qTag").textContent=`Question ${answeredCount+1} / 30`;
+ $("scoreTag").textContent=`⭐ ${score} / 30`;
+ $("progressFill").style.width=(answeredCount/30*100)+"%";
+ $("feedback").hidden=true;$("feedback").className="feedback";$("continueBtn").hidden=true;
+ $("choices").replaceChildren();
+ p.choices[stepIndex].forEach((option,i)=>{
+  const btn=document.createElement("button");btn.type="button";btn.className="choice";
+  const label=document.createElement("span");label.className="letter";label.textContent="ABC"[i];
+  btn.append(label,document.createTextNode(option.text));
+  btn.addEventListener("click",()=>choose(i));$("choices").appendChild(btn);
+ });
+}
+function celebrate(btn){const r=btn.getBoundingClientRect();const symbols=["👏","✅","🌸","✨","⭐"];
+ symbols.forEach((s,i)=>{const el=document.createElement("span");el.className="spark";el.textContent=s;el.style.left=(r.left+r.width/2+(i-2)*20)+"px";el.style.top=(r.top+r.height/2)+"px";el.style.setProperty("--dx",(i-2)*35+"px");$("confetti").appendChild(el);setTimeout(()=>el.remove(),1050);});
+}
+function choose(choiceIndex){
+ if(locked)return;locked=true;
+ const p=current(),s=p.steps[stepIndex],options=p.choices[stepIndex],choice=options[choiceIndex];
+ answeredCount++;
+ const buttons=[...$("choices").querySelectorAll("button")];buttons.forEach((b,i)=>{b.disabled=true;if(options[i].correct)b.classList.add("correct");});
+ const fb=$("feedback");fb.hidden=false;
+ if(choice.correct){score++;levelScores[levelIndex]++;buttons[choiceIndex].classList.add("correct");fb.classList.add("good");fb.textContent="✅ Excellent! "+choice.why;celebrate(buttons[choiceIndex]);}
+ else{buttons[choiceIndex].classList.add("wrong");fb.classList.add("bad");fb.textContent="❌ Not quite. "+choice.why;
+ const answer=document.createElement("span");answer.className="correct-text";answer.textContent="Best answer: "+s.good;fb.appendChild(answer);
+ mistakes.push({point:p.point,step:s.label,selected:choice.text,correct:s.good,reason:choice.why});
+ if(typeof navigator.vibrate==="function")navigator.vibrate(80);
+ }
+ $("scoreTag").textContent=`⭐ ${score} / 30`;$("progressFill").style.width=(answeredCount/30*100)+"%";
+ $("continueBtn").hidden=false;$("continueBtn").textContent=stepIndex===2?"See Model Paragraph 📖":"Continue →";
+}
+function continueGame(){if(!locked)return;if(stepIndex<2){stepIndex++;renderQuestion();}else{showModel();}}
+function showModel(){
+ $("questionPanel").hidden=true;$("modelPanel").hidden=false;
+ const p=current();$("fullParagraph").textContent=[p.point,...p.steps.map(s=>s.good)].join(" ");
+ const completed=LEVEL_SIZES.slice(0,levelIndex).reduce((a,b)=>a+b,0)+paragraphIndex+1;
+ $("paragraphStatus").textContent=`${completed} of 10 paragraphs completed`;
+ $("nextParagraphBtn").textContent=completed===10?"See Final Score 🏆":paragraphIndex===session[levelIndex].length-1?"Unlock Next Level ✨":"Next Paragraph →";
+}
+function nextParagraph(){
+ if(paragraphIndex+1<session[levelIndex].length){paragraphIndex++;stepIndex=0;renderQuestion();return;}
+ if(levelIndex<2){levelIndex++;paragraphIndex=0;stepIndex=0;renderQuestion();return;}
+ showResult();
+}
+function showResult(){
+ showScreen("resultScreen");$("resultName").textContent=player;
+ $("finalScore").textContent=`${score} / 30`;
+ $("finalPercentage").textContent=Math.round(score/30*100)+"% correct";
+ $("level1Score").textContent=levelScores[0];$("level2Score").textContent=levelScores[1];$("level3Score").textContent=levelScores[2];
+ $("achievement").textContent=score===30?"🌟 Perfect! Elaboration expert!":score>=25?"👏 Outstanding paragraph-building skills!":score>=19?"💗 Good progress — keep practising!":"🌱 Keep building your ideas, one step at a time!";
+ $("reviewBtn").textContent=`Review My Mistakes (${mistakes.length}) 📖`;
+ $("reviewPanel").hidden=true;$("reviewPanel").replaceChildren();
+ if(!mistakes.length){const p=document.createElement("p");p.className="center";p.textContent="Wonderful! No mistakes to review. 🎉";$("reviewPanel").appendChild(p);return;}
+ mistakes.forEach((m,i)=>{
+  const box=document.createElement("div");box.className="review";
+  const heading=document.createElement("h4");heading.textContent=`${i+1}. ${m.step}`;box.appendChild(heading);
+  [["Main point",m.point],["Your choice",m.selected],["Why it needs improvement",m.reason],["Best answer",m.correct]].forEach(([label,value],j)=>{
+   const p=document.createElement("p");if(j===3)p.className="correct-answer";
+   const b=document.createElement("b");b.textContent=label+": ";p.append(b,document.createTextNode(value));box.appendChild(p);
+  });$("reviewPanel").appendChild(box);
+ });
+}
+$("nameForm").addEventListener("submit",e=>{e.preventDefault();player=$("playerName").value.trim();if(player)startGame();});
+$("continueBtn").addEventListener("click",continueGame);
+$("nextParagraphBtn").addEventListener("click",nextParagraph);
+$("reviewBtn").addEventListener("click",()=>{$("reviewPanel").hidden=!$("reviewPanel").hidden;});
+$("replayBtn").addEventListener("click",startGame);
+$("changePlayerBtn").addEventListener("click",()=>{showScreen("startScreen");$("playerName").focus();});
+</script>
+</body>
+</html>
