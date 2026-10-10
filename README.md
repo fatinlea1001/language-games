@@ -3,11 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**28 games** — automatically updated when an HTML game is added.
+**29 games** — automatically updated when an HTML game is added.
 Newest additions appear first in each category.
 
 ### 🇬🇧 English Games
 - [Elaboration Finance (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-finance-1.html) — added 10 Oct 2026
+- [Elaboration Ai (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-ai-2.html) — added 10 Oct 2026
 - [Elaboration Ai (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-ai-1.html) — added 10 Oct 2026
 - [Elaboration Socialmedia (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-socialmedia-2.html) — added 10 Oct 2026
 - [Elaboration Socialmedia (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-socialmedia-1.html) — added 10 Oct 2026
