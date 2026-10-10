@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confidence Match-Up!</title>
+<style>
+:root{
+  --pink:#ea74a5;
+  --pink-light:#fff1f7;
+  --purple:#8a6bc2;
+  --green:#35a56f;
+  --green-light:#e5f8ed;
+  --red:#e35a77;
+  --red-light:#ffe5eb;
+  --text:#4b3b50;
+  --line:#4aa177;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  padding:18px;
+  min-height:100vh;
+  font-family:"Segoe UI", Arial, sans-serif;
+  color:var(--text);
+  background:linear-gradient(135deg,#ffe7f1,#eef3ff,#ecfff4);
+}
+.app{
+  width:min(100%,1100px);
+  margin:auto;
+  background:#fff;
+  border-radius:24px;
+  box-shadow:0 14px 40px rgba(183,132,156,.24);
+  padding:28px 20px;
+}
+h1{
+  text-align:center;
+  color:#d84e8f;
+  margin:8px 0 10px;
+}
+h2,h3{
+  margin:0;
+}
+.center{text-align:center}
+.sub{
+  text-align:center;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+input{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:2px solid #f2c6db;
+  font:inherit;
+  margin:14px 0;
+}
+button{
+  font:inherit;
+  cursor:pointer;
+  border:none;
+  border-radius:14px;
+}
+.main-btn{
+  width:100%;
+  padding:15px;
+  background:var(--pink);
+  color:white;
+  font-weight:700;
+  font-size:16px;
+}
+.main-btn:hover{background:#d95893}
+.soft-btn{
+  width:100%;
+  padding:14px;
+  background:#b392b8;
+  color:white;
+  font-weight:700;
+  margin-top:12px;
+}
+.topbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:space-between;
+  margin-bottom:16px;
+}
+.pill{
+  background:#ffe8f2;
+  color:#9c4f75;
+  padding:9px 14px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:14px;
+}
+.instructions{
+  background:#fff5fa;
+  border-radius:16px;
+  padding:13px 14px;
+  text-align:center;
+  line-height:1.55;
+  margin-bottom:16px;
+}
+.board{
+  position:relative;
+  min-height:650px;
+  border-radius:20px;
+  background:linear-gradient(180deg,#fffdfd,#fffafb);
+  padding:14px 10px;
+}
+.columns{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:start;
+}
+.column-title{
+  text-align:center;
+  font-weight:800;
+  color:#8057a5;
+  margin-bottom:12px;
+}
+.card-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.card{
+  position:relative;
+  min-height:62px;
+  padding:14px 18px;
+  background:#fff5fa;
+  border:2px solid #f1c8db;
+  border-radius:16px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1.35;
+  transition:.15s;
+  user-select:none;
+}
+.card:hover:not(.matched){
+  background:#ffeaf3;
+  border-color:#e78cb7;
+}
+.card.selected{
+  background:#f3ebff;
+  border-color:#9573d3;
+  box-shadow:0 0 0 4px rgba(149,115,211,.14);
+  transform:scale(1.01);
+}
+.card.matched{
+  background:var(--green-light);
+  border-color:#5bbc85;
+  color:#1c7548;
+}
+.card.wrong{
+  background:var(--red-light);
+  border-color:#eb7890;
+  color:#ac2f4c;
+  animation:shake .38s ease;
+}
+.dot{
+  position:absolute;
+  top:50%;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#d5c1ec;
+  border:3px solid #fff;
+  box-shadow:0 0 0 2px rgba(137,108,194,.16);
+  transform:translateY(-50%);
+}
+.left-card .dot{right:-8px}
+.right-card .dot{left:-8px}
+#lines{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+  pointer-events:none;
+  overflow:visible;
+}
+.feedback{
+  margin-top:16px;
+  padding:14px;
+  border-radius:14px;
+  text-align:center;
+  font-weight:700;
+  background:#fff2f7;
+  line-height:1.5;
+}
+.feedback.good{
+  background:#e4f8ec;
+  color:#237749;
+}
+.feedback.bad{
+  background:#ffe4ea;
+  color:#ab3050;
+}
+.feedback.neutral{
+  background:#fff2f7;
+  color:#7d5c70;
+}
+.stage-box{
+  text-align:center;
+  padding:28px 16px;
+}
+.stage-badge{
+  display:inline-block;
+  background:#ffe7f1;
+  color:#a64874;
+  border-radius:999px;
+  padding:10px 20px;
+  font-weight:800;
+  margin-bottom:14px;
+}
+.big-score{
+  text-align:center;
+  font-size:64px;
+  font-weight:900;
+  color:#dd4f95;
+  margin:14px 0;
+}
+.small-note{
+  font-size:13px;
+  color:#8c7889;
+}
+[hidden]{display:none !important}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  50%{transform:translateX(6px)}
+  75%{transform:translateX(-5px)}
+}
+
+@media(max-width:900px){
+  .columns{
+    gap:34px;
+  }
+  .board{
+    min-height:620px;
+  }
+}
+@media(max-width:700px){
+  .columns{
+    gap:20px;
+  }
+  .card{
+    min-height:58px;
+    padding:12px 12px;
+    font-size:14px;
+  }
+  .column-title{
+    font-size:15px;
+  }
+  .board{
+    min-height:590px;
+    padding:10px 8px;
+  }
+}
+@media(max-width:520px){
+  .app{
+    padding:22px 12px;
+  }
+  .pill{
+    font-size:13px;
+  }
+  .columns{
+    gap:14px;
+  }
+  .dot{
+    width:13px;
+    height:13px;
+  }
+  .left-card .dot{right:-6px}
+  .right-card .dot{left:-6px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <section id="startScreen">
+    <div class="center" style="font-size:52px">💗🪞✨</div>
+    <h1>Confidence Match-Up!</h1>
+    <div class="sub">
+      Match the <b>English words</b> with the correct <b>Bahasa Melayu meanings</b>.<br>
+      Topic: <b>Self-confidence, body image, self-esteem, emotions & wellbeing</b>
+    </div>
+
+    <form id="startForm">
+      <input id="playerName" maxlength="60" placeholder="Enter your name" required>
+      <button class="main-btn">Start Game ✨</button>
+    </form>
+
+    <p class="small-note center" style="margin-top:14px">
+      3 Levels • 10 pairs each • 30 pairs total
+    </p>
+  </section>
+
+  <section id="gameScreen" hidden>
+    <div class="topbar">
+      <span class="pill" id="nameLabel">👤 Player</span>
+      <span class="pill" id="levelLabel">🌟 Level 1 / 3</span>
+      <span class="pill" id="levelScoreLabel">🧩 Level Score: 0 / 10</span>
+      <span class="pill" id="totalScoreLabel">⭐ Total Score: 0 / 30</span>
+    </div>
+
+    <div class="instructions">
+      Click one <b>English word</b>, then click the correct <b>BM meaning</b>.<br>
+      Correct matches stay connected with a rope line.
+    </div>
+
+    <div class="board" id="board">
+      <svg id="lines"></svg>
+
+      <div class="columns">
+        <div>
+          <div class="column-title">English Words</div>
+          <div class="card-list" id="englishList"></div>
+        </div>
+
+        <div>
+          <div class="column-title">Bahasa Melayu Meanings</div>
+          <div class="card-list" id="bmList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="feedback" class="feedback neutral">
+      Choose a word to start 💗
+    </div>
+
+    <button id="restartLevelBtn" class="soft-btn">Restart Current Level 🔀</button>
+  </section>
+
+  <section id="stageCompleteScreen" hidden>
+    <div class="stage-box">
+      <div style="font-size:54px">🎉💖</div>
+      <div class="stage-badge" id="stageBadge">LEVEL 1 COMPLETE</div>
+      <h1 style="margin-top:10px">Well done!</h1>
+      <p id="stageMsg" style="line-height:1.6;margin:12px 0 18px">
+        You completed the level.
+      </p>
+      <div class="center"><span class="pill" id="stageScoreInfo">Level score: 10 / 10</span></div>
+      <button id="nextLevelBtn" class="main-btn" style="margin-top:20px">Next Level →</button>
+    </div>
+  </section>
+
+  <section id="resultScreen" hidden>
+    <div class="center" style="font-size:56px">🏆💗</div>
+    <h1>Game Completed!</h1>
+    <h2 class="center" id="resultName"></h2>
+    <p class="center">Your final score</p>
+    <div class="big-score" id="finalScore"></div>
+    <div class="center"><span class="pill" id="percentBadge"></span></div>
+    <p class="center" id="resultMsg" style="margin-top:16px;line-height:1.6"></p>
+    <button id="playAgainBtn" class="main-btn" style="margin-top:20px">Play Again 🔀</button>
+    <button id="changeNameBtn" class="soft-btn">Change Name</button>
+    <p class="small-note center" style="margin-top:14px">📸 Screenshot your result if needed</p>
+  </section>
+
+</div>
+
+<script>
+const LEVELS = [
+  [
+    {en:"self-confidence", bm:"keyakinan diri"},
+    {en:"self-esteem", bm:"harga diri"},
+    {en:"body image", bm:"imej tubuh badan"},
+    {en:"insecurity", bm:"rasa tidak yakin"},
+    {en:"peer pressure", bm:"tekanan rakan sebaya"},
+    {en:"mental health", bm:"kesihatan mental"},
+    {en:"emotional wellbeing", bm:"kesejahteraan emosi"},
+    {en:"positive mindset", bm:"pemikiran positif"},
+    {en:"self-worth", bm:"nilai diri"},
+    {en:"self-care", bm:"penjagaan diri"}
+  ],
+  [
+    {en:"comparison", bm:"perbandingan"},
+    {en:"criticism", bm:"kritikan"},
+    {en:"encouragement", bm:"galakan"},
+    {en:"motivation", bm:"motivasi"},
+    {en:"stress", bm:"tekanan"},
+    {en:"anxiety", bm:"kebimbangan"},
+    {en:"bullying", bm:"perbuatan membuli"},
+    {en:"support system", bm:"sistem sokongan"},
+    {en:"healthy habits", bm:"amalan sihat"},
+    {en:"resilience", bm:"daya tahan diri"}
+  ],
+  [
+    {en:"confidence booster", bm:"peningkat keyakinan"},
+    {en:"self-acceptance", bm:"penerimaan diri"},
+    {en:"appearance", bm:"penampilan"},
+    {en:"self-respect", bm:"penghormatan terhadap diri"},
+    {en:"self-doubt", bm:"keraguan terhadap diri"},
+    {en:"inner strength", bm:"kekuatan dalaman"},
+    {en:"self-expression", bm:"ekspresi diri"},
+    {en:"social pressure", bm:"tekanan sosial"},
+    {en:"negative thoughts", bm:"fikiran negatif"},
+    {en:"emotional support", bm:"sokongan emosi"}
+  ]
+];
+
+const TOTAL_LEVELS = LEVELS.length;
+const PER_LEVEL = 10;
+const TOTAL_SCORE = TOTAL_LEVELS * PER_LEVEL;
+
+let playerName = "";
+let currentLevel = 0;
+let totalScore = 0;
+let levelScore = 0;
+let selectedLeft = null;
+let selectedRight = null;
+let currentPairs = [];
+let matchedPairs = [];
+
+const $ = id => document.getElementById(id);
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function showScreen(id){
+  ["startScreen","gameScreen","stageCompleteScreen","resultScreen"].forEach(s=>{
+    $(s).hidden = s !== id;
+  });
+}
+
+function startWholeGame(){
+  currentLevel = 0;
+  totalScore = 0;
+  startLevel();
+}
+
+function startLevel(){
+  levelScore = 0;
+  selectedLeft = null;
+  selectedRight = null;
+  matchedPairs = [];
+
+  const source = LEVELS[currentLevel];
+  currentPairs = source.map((item,index)=>({
+    id:index,
+    en:item.en,
+    bm:item.bm
+  }));
+
+  const english = shuffle(currentPairs.map(item=>({
+    id:item.id,
+    text:item.en
+  })));
+
+  const bm = shuffle(currentPairs.map(item=>({
+    id:item.id,
+    text:item.bm
+  })));
+
+  $("englishList").innerHTML = "";
+  $("bmList").innerHTML = "";
+  $("lines").innerHTML = "";
+
+  english.forEach(item=>{
+    const btn = document.createElement("button");
+    btn.className = "card left-card";
+    btn.id = "left-" + item.id;
+    btn.dataset.id = item.id;
+    btn.innerHTML = `<span>${item.text}</span><span class="dot"></span>`;
+    btn.addEventListener("click", ()=>selectLeft(btn));
+    $("englishList").appendChild(btn);
+  });
+
+  bm.forEach(item=>{
+    const btn = document.createElement("button");
+    btn.className = "card right-card";
+    btn.id = "right-" + item.id;
+    btn.dataset.id = item.id;
+    btn.innerHTML = `<span class="dot"></span><span>${item.text}</span>`;
+    btn.addEventListener("click", ()=>selectRight(btn));
+    $("bmList").appendChild(btn);
+  });
+
+  $("nameLabel").textContent = "👤 " + playerName;
+  $("levelLabel").textContent = `🌟 Level ${currentLevel + 1} / ${TOTAL_LEVELS}`;
+  updateScoreLabels();
+  setFeedback("Choose a word to start 💗","neutral");
+  showScreen("gameScreen");
+
+  requestAnimationFrame(drawAllLines);
+}
+
+function updateScoreLabels(){
+  $("levelScoreLabel").textContent = `🧩 Level Score: ${levelScore} / ${PER_LEVEL}`;
+  $("totalScoreLabel").textContent = `⭐ Total Score: ${totalScore} / ${TOTAL_SCORE}`;
+}
+
+function setFeedback(text,type){
+  const box = $("feedback");
+  box.textContent = text;
+  box.className = "feedback";
+  box.classList.add(type || "neutral");
+}
+
+function clearSelections(){
+  document.querySelectorAll(".card.selected").forEach(card=>{
+    card.classList.remove("selected");
+  });
+  selectedLeft = null;
+  selectedRight = null;
+}
+
+function selectLeft(btn){
+  if(btn.classList.contains("matched")) return;
+  if(selectedLeft === btn){
+    btn.classList.remove("selected");
+    selectedLeft = null;
+    return;
+  }
+  document.querySelectorAll(".left-card.selected").forEach(el=>el.classList.remove("selected"));
+  selectedLeft = btn;
+  btn.classList.add("selected");
+  tryMatch();
+}
+
+function selectRight(btn){
+  if(btn.classList.contains("matched")) return;
+  if(selectedRight === btn){
+    btn.classList.remove("selected");
+    selectedRight = null;
+    return;
+  }
+  document.querySelectorAll(".right-card.selected").forEach(el=>el.classList.remove("selected"));
+  selectedRight = btn;
+  btn.classList.add("selected");
+  tryMatch();
+}
+
+function tryMatch(){
+  if(!selectedLeft || !selectedRight) return;
+
+  const leftId = selectedLeft.dataset.id;
+  const rightId = selectedRight.dataset.id;
+
+  if(leftId === rightId){
+    selectedLeft.classList.remove("selected");
+    selectedRight.classList.remove("selected");
+    selectedLeft.classList.add("matched");
+    selectedRight.classList.add("matched");
+
+    matchedPairs.push({
+      leftId:selectedLeft.id,
+      rightId:selectedRight.id
+    });
+
+    levelScore++;
+    totalScore++;
+    updateScoreLabels();
+    setFeedback("✅ Correct match! Well done!","good");
+    clearSelections();
+    drawAllLines();
+
+    if(levelScore === PER_LEVEL){
+      setTimeout(handleLevelComplete, 500);
+    }
+
+  } else {
+    selectedLeft.classList.add("wrong");
+    selectedRight.classList.add("wrong");
+    setFeedback("❌ Not a match. Try again!","bad");
+
+    setTimeout(()=>{
+      if(selectedLeft) selectedLeft.classList.remove("wrong");
+      if(selectedRight) selectedRight.classList.remove("wrong");
+      clearSelections();
+    }, 420);
+  }
+}
+
+function getDotCenter(card){
+  const boardRect = $("board").getBoundingClientRect();
+  const dot = card.querySelector(".dot");
+  const rect = dot.getBoundingClientRect();
+
+  return {
+    x: rect.left - boardRect.left + rect.width / 2,
+    y: rect.top - boardRect.top + rect.height / 2
+  };
+}
+
+function drawLine(leftEl,rightEl){
+  const svg = $("lines");
+  const start = getDotCenter(leftEl);
+  const end = getDotCenter(rightEl);
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg","path");
+  const curve = (end.x - start.x) * 0.35;
+
+  path.setAttribute(
+    "d",
+    `M ${start.x} ${start.y} C ${start.x + curve} ${start.y}, ${end.x - curve} ${end.y}, ${end.x} ${end.y}`
+  );
+  path.setAttribute("fill","none");
+  path.setAttribute("stroke","var(--line)");
+  path.setAttribute("stroke-width","5");
+  path.setAttribute("stroke-linecap","round");
+  path.setAttribute("opacity","0.95");
+
+  svg.appendChild(path);
+}
+
+function drawAllLines(){
+  const svg = $("lines");
+  svg.innerHTML = "";
+
+  matchedPairs.forEach(pair=>{
+    const leftEl = document.getElementById(pair.leftId);
+    const rightEl = document.getElementById(pair.rightId);
+    if(leftEl && rightEl){
+      drawLine(leftEl,rightEl);
+    }
+  });
+}
+
+function handleLevelComplete(){
+  if(currentLevel < TOTAL_LEVELS - 1){
+    $("stageBadge").textContent = `LEVEL ${currentLevel + 1} COMPLETE`;
+    $("stageScoreInfo").textContent = `Level score: ${levelScore} / ${PER_LEVEL} • Total score: ${totalScore} / ${TOTAL_SCORE}`;
+    $("stageMsg").textContent = `Great job, ${playerName}! You completed Level ${currentLevel + 1}. Ready for the next stage?`;
+    showScreen("stageCompleteScreen");
+  } else {
+    showFinalResult();
+  }
+}
+
+function showFinalResult(){
+  showScreen("resultScreen");
+  $("resultName").textContent = playerName;
+  $("finalScore").textContent = `${totalScore} / ${TOTAL_SCORE}`;
+
+  const percent = Math.round((totalScore / TOTAL_SCORE) * 100);
+  $("percentBadge").textContent = `${percent}% correct`;
+
+  let msg = "";
+  if(percent === 100){
+    msg = "🌟 Amazing! Perfect score! You matched every word correctly!";
+  } else if(percent >= 80){
+    msg = "👏 Excellent work! You understand the vocabulary very well!";
+  } else if(percent >= 60){
+    msg = "💗 Good job! Keep practising and you’ll improve even more!";
+  } else {
+    msg = "🌱 Nice try! Keep practising the words and try again!";
+  }
+  $("resultMsg").textContent = msg;
+}
+
+$("startForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  playerName = $("playerName").value.trim();
+  if(!playerName) return;
+  startWholeGame();
+});
+
+$("restartLevelBtn").addEventListener("click", startLevel);
+
+$("nextLevelBtn").addEventListener("click", ()=>{
+  currentLevel++;
+  startLevel();
+});
+
+$("playAgainBtn").addEventListener("click", startWholeGame);
+
+$("changeNameBtn").addEventListener("click", ()=>{
+  showScreen("startScreen");
+});
+
+window.addEventListener("resize", drawAllLines);
+</script>
+</body>
+</html>
