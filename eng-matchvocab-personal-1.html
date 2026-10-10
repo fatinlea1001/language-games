@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Confidence Match-Up!</title>
+<style>
+:root{
+  --pink:#eb74a5;
+  --pink2:#fff0f6;
+  --purple:#7b5ea7;
+  --green:#2f9a68;
+  --red:#d94b68;
+  --text:#4a3a4d;
+  --line:#caa7d8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:linear-gradient(135deg,#ffe7f1,#eef4ff,#ecfff4);
+  color:var(--text);
+  padding:18px;
+}
+.app{
+  width:min(100%,1000px);
+  margin:auto;
+  background:#fff;
+  border-radius:24px;
+  box-shadow:0 14px 40px rgba(172,118,145,.25);
+  padding:28px 22px;
+}
+h1{
+  margin:8px 0;
+  text-align:center;
+  color:#d74e8f;
+}
+.subtitle{
+  text-align:center;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+input{
+  width:100%;
+  padding:14px 15px;
+  border-radius:12px;
+  border:2px solid #f0bfd7;
+  font:inherit;
+  margin:14px 0;
+}
+button{
+  font:inherit;
+  cursor:pointer;
+  border:none;
+  border-radius:14px;
+}
+.main-btn{
+  width:100%;
+  padding:15px;
+  background:var(--pink);
+  color:#fff;
+  font-weight:700;
+  font-size:16px;
+}
+.main-btn:hover{background:#d95691}
+.stats{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  font-weight:700;
+  font-size:14px;
+  margin-bottom:14px;
+}
+.info-pill{
+  background:#ffe8f2;
+  color:#9e4b74;
+  padding:8px 14px;
+  border-radius:999px;
+}
+.instructions{
+  text-align:center;
+  background:#fff5fa;
+  border-radius:14px;
+  padding:12px;
+  margin:14px 0 18px;
+  line-height:1.5;
+}
+.match-wrapper{
+  position:relative;
+  margin-top:6px;
+}
+.columns{
+  display:grid;
+  grid-template-columns:1fr 120px 1fr;
+  gap:14px;
+  align-items:start;
+}
+.col-title{
+  text-align:center;
+  font-weight:800;
+  color:#7f4f9b;
+  margin-bottom:10px;
+}
+.card-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.card{
+  position:relative;
+  min-height:66px;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:#fff5fa;
+  border:2px solid #f2c7db;
+  border-radius:16px;
+  font-weight:700;
+  line-height:1.4;
+  transition:.15s;
+  user-select:none;
+}
+.card:hover:not(.matched){
+  background:#ffe9f2;
+  border-color:#e987b4;
+}
+.card.selected{
+  background:#f3eaff;
+  border-color:#9873d7;
+  transform:scale(1.02);
+  box-shadow:0 0 0 4px rgba(153,119,208,.14);
+}
+.card.matched{
+  background:#e4f9ee;
+  border-color:#5abb84;
+  color:#1e7248;
+}
+.card.wrong{
+  background:#ffe2e8;
+  border-color:#e36d88;
+  color:#a12f4a;
+  animation:shake .4s ease;
+}
+.dot{
+  position:absolute;
+  top:50%;
+  width:16px;height:16px;
+  border-radius:50%;
+  background:#d2b9e7;
+  transform:translateY(-50%);
+  border:3px solid #fff;
+  box-shadow:0 0 0 2px rgba(124,94,167,.2);
+}
+.left .dot{right:-8px}
+.right .dot{left:-8px}
+.center-zone{
+  position:relative;
+  min-height:100%;
+}
+svg#lines{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:visible;
+  pointer-events:none;
+}
+.feedback{
+  margin-top:16px;
+  padding:14px;
+  border-radius:14px;
+  text-align:center;
+  font-weight:700;
+  line-height:1.5;
+  background:#fff3f8;
+}
+.feedback.good{
+  background:#e5f8ed;
+  color:#1f7a4a;
+}
+.feedback.bad{
+  background:#ffe3e8;
+  color:#af3150;
+}
+.score-big{
+  font-size:64px;
+  font-weight:900;
+  color:#dd4f94;
+  margin:16px 0;
+  text-align:center;
+}
+.center{text-align:center}
+.badge{
+  display:inline-block;
+  padding:10px 20px;
+  background:#ffe8f2;
+  border-radius:999px;
+  color:#9f4670;
+  font-weight:700;
+}
+.small{
+  font-size:13px;
+  color:#8a7489;
+}
+[hidden]{display:none !important}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-6px)}
+  40%{transform:translateX(6px)}
+  60%{transform:translateX(-5px)}
+  80%{transform:translateX(5px)}
+}
+
+@media(max-width:800px){
+  .columns{
+    grid-template-columns:1fr;
+  }
+  .center-zone{
+    display:none;
+  }
+  .card{
+    min-height:60px;
+  }
+  .left .dot,.right .dot{
+    display:none;
+  }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <section id="startScreen">
+    <div class="center" style="font-size:52px">💗🪞✨</div>
+    <h1>Confidence Match-Up!</h1>
+    <div class="subtitle">
+      Match the <b>English words</b> with the correct <b>Bahasa Melayu meanings</b>.<br>
+      Topic: <b>Self-confidence, body image, self-esteem & emotional wellbeing</b>
+    </div>
+
+    <form id="startForm">
+      <input id="playerName" maxlength="60" placeholder="Enter your name" required>
+      <button class="main-btn">Start Game ✨</button>
+    </form>
+
+    <p class="small center" style="margin-top:14px">
+      12 matches per round • 1 point for each correct match • Replayable
+    </p>
+  </section>
+
+  <section id="gameScreen" hidden>
+    <div class="stats">
+      <span class="info-pill" id="nameLabel">👤 Player</span>
+      <span class="info-pill" id="scoreLabel">⭐ Score: 0 / 12</span>
+      <span class="info-pill" id="leftLabel">🧩 Left: 12 pairs</span>
+    </div>
+
+    <div class="instructions">
+      Tap/click one <b>English word</b>, then tap/click the correct <b>BM meaning</b>.<br>
+      A rope line will connect them. Wrong matches will shake and disappear.
+    </div>
+
+    <div class="match-wrapper" id="matchWrapper">
+      <div class="columns">
+        <div>
+          <div class="col-title">English Words</div>
+          <div class="card-list" id="englishList"></div>
+        </div>
+
+        <div class="center-zone">
+          <svg id="lines"></svg>
+        </div>
+
+        <div>
+          <div class="col-title">Bahasa Melayu Meanings</div>
+          <div class="card-list" id="bmList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="feedback" class="feedback">Choose a word to start matching 💗</div>
+    <button id="finishEarlyBtn" class="main-btn" style="margin-top:14px;background:#b18bb5">
+      Restart Round 🔀
+    </button>
+  </section>
+
+  <section id="resultScreen" hidden>
+    <div class="center" style="font-size:54px">🏆💖</div>
+    <h1>Round Completed!</h1>
+    <h2 class="center" id="resultName"></h2>
+    <p class="center">Your matching score</p>
+    <div class="score-big" id="finalScore"></div>
+    <div class="center"><span class="badge" id="percentBadge"></span></div>
+    <p class="center" id="resultMsg" style="margin-top:18px"></p>
+
+    <button id="playAgainBtn" class="main-btn" style="margin-top:18px">Play Again 🔀</button>
+    <button id="changeNameBtn" class="main-btn" style="margin-top:12px;background:#af91b0">Change Name</button>
+
+    <p class="small center" style="margin-top:14px">
+      📸 Screenshot your result if needed
+    </p>
+  </section>
+
+</div>
+
+<script>
+const POOL = [
+  { en:"self-confidence", bm:"keyakinan diri" },
+  { en:"self-esteem", bm:"harga diri" },
+  { en:"body image", bm:"imej tubuh badan" },
+  { en:"insecurity", bm:"rasa tidak yakin" },
+  { en:"confidence", bm:"keyakinan" },
+  { en:"peer pressure", bm:"tekanan rakan sebaya" },
+  { en:"mental health", bm:"kesihatan mental" },
+  { en:"emotional wellbeing", bm:"kesejahteraan emosi" },
+  { en:"resilience", bm:"daya tahan diri" },
+  { en:"positive mindset", bm:"pemikiran positif" },
+  { en:"self-acceptance", bm:"penerimaan diri" },
+  { en:"self-worth", bm:"nilai diri" },
+  { en:"appearance", bm:"penampilan" },
+  { en:"comparison", bm:"perbandingan" },
+  { en:"criticism", bm:"kritikan" },
+  { en:"encouragement", bm:"galakan" },
+  { en:"motivation", bm:"motivasi" },
+  { en:"stress", bm:"tekanan" },
+  { en:"anxiety", bm:"kebimbangan" },
+  { en:"bullying", bm:"perbuatan membuli" },
+  { en:"support system", bm:"sistem sokongan" },
+  { en:"healthy habits", bm:"amalan sihat" },
+  { en:"self-care", bm:"penjagaan diri" },
+  { en:"confidence booster", bm:"peningkat keyakinan" }
+];
+
+const TOTAL = 12;
+
+let selectedLeft = null;
+let selectedRight = null;
+let matches = [];
+let score = 0;
+let playerName = "";
+let roundData = [];
+let matchedCount = 0;
+
+const $ = id => document.getElementById(id);
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function showScreen(id){
+  ["startScreen","gameScreen","resultScreen"].forEach(screen=>{
+    $(screen).hidden = screen !== id;
+  });
+}
+
+function makeId(prefix, index){
+  return prefix + "-" + index;
+}
+
+function startGame(){
+  roundData = shuffle(POOL).slice(0, TOTAL);
+  const englishData = shuffle(roundData.map((item, index)=>({
+    id:index,
+    text:item.en
+  })));
+  const bmData = shuffle(roundData.map((item, index)=>({
+    id:index,
+    text:item.bm
+  })));
+
+  selectedLeft = null;
+  selectedRight = null;
+  matches = [];
+  score = 0;
+  matchedCount = 0;
+
+  $("englishList").innerHTML = "";
+  $("bmList").innerHTML = "";
+  $("lines").innerHTML = "";
+
+  englishData.forEach(item=>{
+    const btn = document.createElement("button");
+    btn.className = "card left";
+    btn.id = makeId("left", item.id);
+    btn.dataset.id = item.id;
+    btn.innerHTML = `<span>${item.text}</span><span class="dot"></span>`;
+    btn.addEventListener("click", ()=>selectLeft(btn));
+    $("englishList").appendChild(btn);
+  });
+
+  bmData.forEach(item=>{
+    const btn = document.createElement("button");
+    btn.className = "card right";
+    btn.id = makeId("right", item.id);
+    btn.dataset.id = item.id;
+    btn.innerHTML = `<span class="dot"></span><span>${item.text}</span>`;
+    btn.addEventListener("click", ()=>selectRight(btn));
+    $("bmList").appendChild(btn);
+  });
+
+  $("nameLabel").textContent = "👤 " + playerName;
+  updateStats();
+  setFeedback("Choose a word to start matching 💗", "");
+  showScreen("gameScreen");
+
+  requestAnimationFrame(drawAllLines);
+  window.addEventListener("resize", drawAllLines);
+}
+
+function updateStats(){
+  $("scoreLabel").textContent = `⭐ Score: ${score} / ${TOTAL}`;
+  $("leftLabel").textContent = `🧩 Left: ${TOTAL - matchedCount} pairs`;
+}
+
+function clearSelections(){
+  document.querySelectorAll(".card.selected").forEach(card=>card.classList.remove("selected"));
+  selectedLeft = null;
+  selectedRight = null;
+}
+
+function selectLeft(btn){
+  if(btn.classList.contains("matched")) return;
+  if(selectedLeft === btn){
+    btn.classList.remove("selected");
+    selectedLeft = null;
+    return;
+  }
+  document.querySelectorAll(".left.selected").forEach(el=>el.classList.remove("selected"));
+  selectedLeft = btn;
+  btn.classList.add("selected");
+  tryMatch();
+}
+
+function selectRight(btn){
+  if(btn.classList.contains("matched")) return;
+  if(selectedRight === btn){
+    btn.classList.remove("selected");
+    selectedRight = null;
+    return;
+  }
+  document.querySelectorAll(".right.selected").forEach(el=>el.classList.remove("selected"));
+  selectedRight = btn;
+  btn.classList.add("selected");
+  tryMatch();
+}
+
+function tryMatch(){
+  if(!selectedLeft || !selectedRight) return;
+
+  const leftId = selectedLeft.dataset.id;
+  const rightId = selectedRight.dataset.id;
+
+  if(leftId === rightId){
+    selectedLeft.classList.remove("selected");
+    selectedRight.classList.remove("selected");
+    selectedLeft.classList.add("matched");
+    selectedRight.classList.add("matched");
+
+    matches.push({
+      leftId: selectedLeft.id,
+      rightId: selectedRight.id,
+      color: "#5abb84"
+    });
+
+    score++;
+    matchedCount++;
+    updateStats();
+    setFeedback("✅ Correct match! Well done!", "good");
+    clearSelections();
+    drawAllLines();
+
+    if(matchedCount === TOTAL){
+      setTimeout(showResult, 500);
+    }
+  } else {
+    selectedLeft.classList.add("wrong");
+    selectedRight.classList.add("wrong");
+    setFeedback("❌ Not a match. Try again!", "bad");
+
+    setTimeout(()=>{
+      selectedLeft?.classList.remove("wrong");
+      selectedRight?.classList.remove("wrong");
+      clearSelections();
+    }, 500);
+  }
+}
+
+function setFeedback(text, type){
+  const box = $("feedback");
+  box.textContent = text;
+  box.className = "feedback";
+  if(type) box.classList.add(type);
+}
+
+function getDotCenter(card, side){
+  const wrapperRect = $("matchWrapper").getBoundingClientRect();
+  const dot = card.querySelector(".dot");
+  const rect = dot.getBoundingClientRect();
+
+  return {
+    x: rect.left - wrapperRect.left + rect.width / 2,
+    y: rect.top - wrapperRect.top + rect.height / 2
+  };
+}
+
+function drawLine(fromEl, toEl, color){
+  const svg = $("lines");
+  const start = getDotCenter(fromEl, "left");
+  const end = getDotCenter(toEl, "right");
+
+  const curveX = (end.x - start.x) * 0.35;
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg","path");
+  path.setAttribute(
+    "d",
+    `M ${start.x} ${start.y} C ${start.x + curveX} ${start.y}, ${end.x - curveX} ${end.y}, ${end.x} ${end.y}`
+  );
+  path.setAttribute("fill","none");
+  path.setAttribute("stroke", color || "#b38dd0");
+  path.setAttribute("stroke-width","5");
+  path.setAttribute("stroke-linecap","round");
+  path.setAttribute("opacity","0.95");
+  svg.appendChild(path);
+}
+
+function drawAllLines(){
+  const svg = $("lines");
+  svg.innerHTML = "";
+
+  if(window.innerWidth <= 800) return;
+
+  matches.forEach(line=>{
+    const leftEl = document.getElementById(line.leftId);
+    const rightEl = document.getElementById(line.rightId);
+    if(leftEl && rightEl){
+      drawLine(leftEl, rightEl, line.color);
+    }
+  });
+}
+
+function showResult(){
+  showScreen("resultScreen");
+  $("resultName").textContent = playerName;
+  $("finalScore").textContent = `${score} / ${TOTAL}`;
+  const percent = Math.round(score / TOTAL * 100);
+  $("percentBadge").textContent = `${percent}% correct`;
+
+  let message = "";
+  if(percent === 100){
+    message = "🌟 Excellent! You matched every word correctly!";
+  } else if(percent >= 75){
+    message = "👏 Great job! You understand the vocabulary well!";
+  } else if(percent >= 50){
+    message = "💗 Good effort! Keep practising these words!";
+  } else {
+    message = "🌱 Keep trying! Practice will help you improve!";
+  }
+  $("resultMsg").textContent = message;
+}
+
+$("startForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  playerName = $("playerName").value.trim();
+  if(!playerName) return;
+  startGame();
+});
+
+$("playAgainBtn").addEventListener("click", startGame);
+$("changeNameBtn").addEventListener("click", ()=>showScreen("startScreen"));
+$("finishEarlyBtn").addEventListener("click", startGame);
+</script>
+</body>
+</html>
