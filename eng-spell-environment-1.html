@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eco Spell-Off!</title>
+<style>
+:root{
+  --pink:#ec74a3;--light:#fff0f6;
+  --text:#463547;--green:#36855c;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;padding:20px;min-height:100vh;
+  display:grid;place-items:center;
+  font-family:Arial,sans-serif;color:var(--text);
+  background:linear-gradient(135deg,#ffe6f0,#eaf8ed);
+}
+.app{
+  width:min(100%,610px);background:white;
+  border-radius:25px;padding:30px;
+  box-shadow:0 12px 35px #ce9aaf55;
+  text-align:center;
+}
+h1{color:#d94f8c;margin:10px 0}
+p{line-height:1.6}
+input{
+  width:100%;padding:15px;border-radius:12px;
+  border:2px solid #f5c7da;font-size:17px;
+  margin:15px 0;
+}
+button{
+  cursor:pointer;font-family:inherit;
+  transition:.15s;
+}
+.main-btn{
+  width:100%;padding:16px;border:none;
+  border-radius:14px;background:var(--pink);
+  color:white;font-size:17px;font-weight:bold;
+  margin-top:15px;
+}
+.main-btn:hover{background:#d94f8c}
+.choices{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin-top:25px;
+}
+.choice{
+  padding:25px 8px;min-height:110px;
+  background:var(--light);
+  border:2px solid #f2c4d8;
+  border-radius:16px;
+  font-size:clamp(15px,3vw,20px);
+  font-weight:bold;
+  overflow-wrap:anywhere;
+}
+.choice:hover:not(:disabled){
+  border-color:var(--pink);
+  background:#ffe0ed;
+}
+.choice.correct{
+  background:#dff7e8;border-color:#52ba7a;
+  color:#21683e;
+}
+.choice.wrong{
+  background:#ffe0e8;border-color:#ed7298;
+  color:#a62e54;
+}
+.choice:disabled{cursor:default}
+.stats{
+  display:flex;justify-content:space-between;
+  gap:10px;font-weight:bold;
+  flex-wrap:wrap;font-size:14px;
+}
+.progress{
+  height:10px;border-radius:20px;
+  background:#f8dce8;margin:20px 0 30px;
+  overflow:hidden;
+}
+.bar{
+  height:100%;width:0;
+  background:var(--pink);transition:.2s;
+}
+.feedback{
+  margin-top:20px;padding:15px;
+  background:#fff1f6;border-radius:12px;
+  font-weight:bold;line-height:1.5;
+}
+.big-score{
+  font-size:65px;font-weight:900;
+  color:#d94f8c;margin:15px;
+}
+.badge{
+  display:inline-block;background:#ffe4ef;
+  padding:10px 20px;border-radius:30px;
+  color:#aa4272;font-weight:bold;
+}
+footer{
+  font-size:12px;color:#a78a9b;
+  margin-top:25px;
+}
+[hidden]{display:none!important}
+@media(max-width:350px){
+  .choices{grid-template-columns:1fr}
+  .choice{min-height:70px}
+}
+</style>
+</head>
+<body>
+<main class="app">
+
+<section id="start">
+  <div style="font-size:55px">🌱🌸</div>
+  <h1>Eco Spell-Off!</h1>
+  <p>Choose the correct spelling and collect points!</p>
+  <p>🌍 Environment Vocabulary<br>
+  📚 B1–C1 Level<br>
+  ⭐ 25 Questions</p>
+  <form id="nameForm">
+    <input id="nameInput" required maxlength="60"
+      placeholder="Enter your name">
+    <button class="main-btn">Start Game ✨</button>
+  </form>
+</section>
+
+<section id="game" hidden>
+  <div class="stats">
+    <span id="player"></span>
+    <span id="score">⭐ 0 points</span>
+  </div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <p id="counter"></p>
+  <h2>Which spelling is correct?</h2>
+  <div id="choices" class="choices"></div>
+  <div id="feedback" class="feedback" hidden></div>
+  <button id="next" class="main-btn" hidden>
+    Next Question →
+  </button>
+</section>
+
+<section id="result" hidden>
+  <div style="font-size:55px">🏆🌸</div>
+  <h1>Quiz Completed!</h1>
+  <h2 id="resultName"></h2>
+  <p>Your Spelling Score</p>
+  <div class="big-score" id="finalScore"></div>
+  <div class="badge" id="percentage"></div>
+  <p id="message"></p>
+  <button id="replay" class="main-btn">
+    Play Again 🔀
+  </button>
+  <button id="changeName" class="main-btn"
+    style="background:#b68da5">
+    Change Name
+  </button>
+  <p>📸 Screenshot your result and submit it to your teacher!</p>
+</section>
+
+<footer>English Learning Games 🌷</footer>
+</main>
+
+<script>
+// Each pair: [correct spelling, incorrect spelling]
+const words=[
+["environment","enviroment"],
+["pollution","polution"],
+["recycling","recyling"],
+["conservation","conservasion"],
+["biodiversity","biodiveristy"],
+["deforestation","deforrestation"],
+["renewable","renuable"],
+["ecosystem","ecosystum"],
+["atmosphere","atmosfere"],
+["sustainability","sustainabilty"],
+["biodegradable","biodegradeable"],
+["greenhouse","greenhousse"],
+["emissions","emisions"],
+["contamination","contaimination"],
+["extinction","extintion"],
+["endangered","endagered"],
+["habitat","habbitat"],
+["resources","resourses"],
+["ecological","ecoligical"],
+["preservation","preservasion"],
+["degradation","degredation"],
+["desertification","desertfication"],
+["precipitation","precipitaion"],
+["drought","drougt"],
+["erosion","erossion"],
+["landfill","landfil"],
+["microplastics","microplasticcs"],
+["composting","compostting"],
+["restoration","restorasion"],
+["scarcity","scarcety"],
+["overconsumption","overcomsumption"],
+["reforestation","reforestasion"],
+["efficiency","effeciency"],
+["resilience","resiliance"],
+["awareness","awarenes"],
+["depletion","depleation"],
+["sustainable","sustainible"],
+["agriculture","agriculuture"],
+["fertiliser","fertilliser"],
+["pesticide","pestiside"],
+["vegetation","vegatation"],
+["irrigation","irragation"],
+["vulnerable","vunerable"],
+["infrastructure","infrastucture"],
+["consequence","consiquence"]
+];
+
+const TOTAL=25;
+let questions=[],index=0,points=0;
+let playerName="",answered=false;
+const el=id=>document.getElementById(id);
+
+function shuffle(arr){
+  let a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    let j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function screen(id){
+  ["start","game","result"].forEach(s=>{
+    el(s).hidden=s!==id;
+  });
+}
+
+function startGame(){
+  questions=shuffle(words).slice(0,TOTAL).map(pair=>({
+    correct:pair[0],
+    options:shuffle(pair)
+  }));
+  index=0;points=0;
+  el("player").textContent="🌱 "+playerName;
+  screen("game");
+  showQuestion();
+}
+
+function showQuestion(){
+  answered=false;
+  let q=questions[index];
+  el("counter").textContent=
+    "Question "+(index+1)+" of "+TOTAL;
+  el("score").textContent="⭐ "+points+" points";
+  el("bar").style.width=(index/TOTAL*100)+"%";
+  el("feedback").hidden=true;
+  el("next").hidden=true;
+  el("choices").innerHTML="";
+
+  q.options.forEach(word=>{
+    let btn=document.createElement("button");
+    btn.className="choice";
+    btn.textContent=word;
+    btn.onclick=()=>checkAnswer(word);
+    el("choices").appendChild(btn);
+  });
+}
+
+function checkAnswer(choice){
+  if(answered)return;
+  answered=true;
+  let correct=questions[index].correct;
+  let right=choice===correct;
+
+  if(right)points++;
+
+  document.querySelectorAll(".choice").forEach(btn=>{
+    btn.disabled=true;
+    if(btn.textContent===correct){
+      btn.classList.add("correct");
+    }else if(btn.textContent===choice){
+      btn.classList.add("wrong");
+    }
+  });
+
+  el("feedback").hidden=false;
+  el("feedback").textContent=right
+    ?"✅ Excellent! "+correct+" is correct. +1 point!"
+    :"💗 Not quite! Correct spelling: "+correct;
+
+  el("score").textContent="⭐ "+points+" points";
+  el("next").textContent=index===TOTAL-1
+    ?"See My Result 🏆":"Next Question →";
+  el("next").hidden=false;
+}
+
+function showResult(){
+  screen("result");
+  let percent=Math.round(points/TOTAL*100);
+  el("resultName").textContent=playerName;
+  el("finalScore").textContent=points+" / "+TOTAL;
+  el("percentage").textContent=percent+"% Correct";
+  el("message").textContent=
+    percent>=80?"🌟 Amazing! You are an Eco Spelling Champion!":
+    percent>=50?"🌷 Good effort! Keep improving your spelling!":
+    "🌱 Keep practising! You can do better next time!";
+}
+
+el("nameForm").onsubmit=e=>{
+  e.preventDefault();
+  playerName=el("nameInput").value.trim();
+  if(playerName)startGame();
+};
+
+el("next").onclick=()=>{
+  if(!answered)return;
+  index++;
+  if(index>=TOTAL)showResult();
+  else showQuestion();
+};
+
+el("replay").onclick=startGame;
+el("changeName").onclick=()=>screen("start");
+
+document.addEventListener("keydown",e=>{
+  if(el("game").hidden||answered||e.repeat)return;
+  if(e.key==="1"||e.key==="2"){
+    let button=el("choices").children[Number(e.key)-1];
+    if(button)button.click();
+  }
+});
+</script>
+</body>
+</html>
