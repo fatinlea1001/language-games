@@ -3,7 +3,7 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**31 games** — automatically updated when an HTML game is added.
+**32 games** — automatically updated when an HTML game is added.
 Newest additions appear first in each category.
 
 ### 🇬🇧 English Games
@@ -31,6 +31,7 @@ Newest additions appear first in each category.
 
 ### 🇯🇵 Japanese Games
 - [Truefalse Library (Set 2)](https://fatinlea1001.github.io/language-games/jpn-truefalse-library-2.html) — added 11 Oct 2026
+- [Truefalse Classroom (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-classroom-1.html) — added 11 Oct 2026
 - [Truefalse Cinema (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-cinema-1.html) — added 11 Oct 2026
 - [Truefalse Library (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-library-1.html) — added 10 Oct 2026
 - [Kanji & Katakana Spell-Off (Set 2)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-2.html) — added 10 Oct 2026
