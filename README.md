@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**42 games** — automatically updated when an HTML game is added or changed.
+**43 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Elaboration Smartphoneaddiction (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-smartphoneaddiction-1.html) — updated 12 Oct 2026
 - [Elaboration Managetime (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-managetime-2.html) — updated 12 Oct 2026
 - [Elaboration Managetime (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-managetime-1.html) — updated 12 Oct 2026
 - [Elaboration Spendmoneywisely (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-spendmoneywisely-2.html) — updated 12 Oct 2026
