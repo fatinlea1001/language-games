@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paragraph Builder — Managing Time (A1–B2)</title>
+<title>Paragraph Builder — Managing Time</title>
 <style>
 :root{
   --primary:#0284c7;
@@ -152,9 +152,9 @@ input:focus{outline:none;border-color:var(--primary)}
   <p class="center">Practise writing paragraphs about <b>managing time</b> using Explanation → Example → Result / Effect.</p>
   <p class="center"><b>10 paragraphs · 3 steps each · 30 marks</b></p>
   <p class="center">🌱 L1: Daily Schedules (A1–A2) · 📘 L2: Meeting Deadlines (B1) · 🎯 L3: Stopping Procrastination (B1–B2)</p>
-  <form id="nameForm">
+  <form id="nameForm" action="javascript:void(0);">
     <input id="nameInput" maxlength="60" placeholder="Enter your name" required>
-    <button class="btn">Start Building ✨</button>
+    <button type="button" id="startBtn" class="btn">Start Building ✨</button>
   </form>
 </section>
 
@@ -414,3 +414,367 @@ const LEVELS=[
           ]
         ]
       ],
+      [
+        "Starting assignments on the day they are given prevents a backlog of work.",
+        [
+          [
+            "Taking action right away uses fresh instructions and keeps homework from piling up.",
+            "Delaying new tasks gives students extra leisure time early in the week.",
+            "Asking classmates for answers on the due date saves research effort.",
+            "Early momentum prevents a heavy backlog later.",
+            "Delaying tasks creates a stressful pile-up later.",
+            "Copying answers is academic dishonesty, not time management."
+          ],
+          [
+            "For example, a student outlines an essay topic on the afternoon it is assigned by the teacher.",
+            "For example, a student puts a new project sheet away in a drawer for two weeks.",
+            "For example, a student messages friends asking to copy homework ten minutes before class.",
+            "Immediate outlining on day one demonstrates prompt action.",
+            "Hiding assignment sheets in drawers is active delay.",
+            "Copying work at the last minute shows failure to plan."
+          ],
+          [
+            "Therefore, the overall workload remains balanced and stress levels stay low.",
+            "Therefore, a mountain of overdue assignments accumulates by the weekend.",
+            "Therefore, the student faces penalties for late or copied work.",
+            "A balanced workload is the reward for prompt action.",
+            "Accumulated overdue work stems from procrastination.",
+            "Penalties result from last-minute copying."
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "title": "Level 3: Stopping Procrastination (B1–B2)",
+    "items": [
+      [
+        "Using the 'Five-Minute Rule' helps students overcome laziness and start working.",
+        [
+          [
+            "Promising to work for just five minutes lowers hesitation and builds good mental momentum.",
+            "Studying in five-minute bursts with long breaks in between is the fastest way to learn.",
+            "Ignoring difficult tasks for five days allows problems to solve themselves.",
+            "Lowering hesitation makes starting easy, leading to continued effort.",
+            "Five-minute study bursts are too short for deep focus.",
+            "Ignoring problems leads to accumulated failure."
+          ],
+          [
+            "For example, a student hesitant to study tells themselves to read for just five minutes, but ends up continuing for an hour.",
+            "For example, a student reads for 5 minutes and watches television for 2 hours.",
+            "For example, a student ignores an assignment sheet for five days straight.",
+            "Starting small and continuing long past 5 minutes illustrates overcoming hesitation.",
+            "Two hours of TV represents severe distraction.",
+            "Ignoring tasks for days is chronic procrastination."
+          ],
+          [
+            "As a result, the hard part of starting is over and meaningful progress is made.",
+            "As a result, very little studying is done during the session.",
+            "As a result, the student falls far behind in school lessons.",
+            "Overcoming the hard start creates productive momentum.",
+            "Very little work comes from TV distractions.",
+            "Falling behind is the consequence of total avoidance."
+          ]
+        ]
+      ],
+      [
+        "Removing digital distractions helps students maintain uninterrupted focus.",
+        [
+          [
+            "Putting away mobile devices prevents pop-up notifications from breaking concentration.",
+            "Leaving phone ringers on high volume ensures urgent emergency calls are never missed.",
+            "Playing mobile games during study breaks keeps hand-eye coordination sharp.",
+            "Eliminating alerts protects uninterrupted attention.",
+            "High volume ringtones invite non-urgent interruptions.",
+            "Mobile games mentally fatigue the brain during breaks."
+          ],
+          [
+            "For example, a student puts their smartphone on silent and hides it in a drawer while studying.",
+            "For example, a student keeps their phone next to their textbook to reply to messages instantly.",
+            "For example, a student plays a mobile game after reading each paragraph.",
+            "Storing a silenced phone away in a drawer stops distractions.",
+            "Replying to messages continuously fragments focus.",
+            "Gaming between paragraphs prevents deep concentration."
+          ],
+          [
+            "Consequently, study time remains smooth and tasks are completed much faster.",
+            "Consequently, assignments take three times longer due to constant pauses.",
+            "Consequently, information read is quickly forgotten.",
+            "Uninterrupted study sessions increase speed and comprehension.",
+            "Tripled homework time comes from mobile phone checks.",
+            "Forgetting material happens when focus is fragmented."
+          ]
+        ]
+      ],
+      [
+        "Rewarding oneself after finishing planned study targets builds long-term self-discipline.",
+        [
+          [
+            "Connecting completed tasks with enjoyable activities motivates the brain to stay disciplined.",
+            "Giving oneself rewards before starting work provides early encouragement.",
+            "Stopping all hobbies completely ensures 100% focus on academic success.",
+            "Post-task rewards reinforce self-discipline through positive habits.",
+            "Rewarding early removes the incentive to complete the work.",
+            "Eliminating all hobbies leads to severe burnout and unhappiness."
+          ],
+          [
+            "For example, a student enjoys a 15-minute snack break only after completing two pages of Science notes.",
+            "For example, a student eats a treat and watches a show before opening their textbook.",
+            "For example, a student stops playing sports entirely for the whole year to study non-stop.",
+            "Treating oneself only after completing two pages applies structured rewards.",
+            "Treating oneself before starting work eliminates motivation.",
+            "Quitting sports for a year causes unhappiness and burnout."
+          ],
+          [
+            "Therefore, motivation stays high and studying becomes a satisfying daily routine.",
+            "Therefore, the student lacks motivation to finish reading after getting the treat early.",
+            "Therefore, the student grows tired and unhappy with school.",
+            "High motivation and sustainable routines follow post-work rewards.",
+            "Pre-rewarding leads to lost motivation.",
+            "Total deprivation causes resentment and eventual burnout."
+          ]
+        ]
+      ]
+    ]
+  }
+];
+
+const $=id=>document.getElementById(id);
+const NAMES=['Explanation','Example','Result / Effect'];
+const MALAY_STEPS=['Penjelasan','Contoh','Kesan'];
+const MAX=LEVELS.reduce((n,l)=>n+l.items.length*3,0);
+
+let player='',rounds=[],level=0,challenge=0,step=0,score=0,answeredCount=0,challengeScore=0,levelScores=[],mistakes=[],answered=false;
+
+function shuffle(items){
+  let a=[...items];
+  for(let i=a.length-1;i>0;i--){
+    let j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function screen(name){
+  for(const s of ['start','play','built','between','end']) $(s).hidden = s !== name;
+}
+
+function current(){ return rounds[level].items[challenge]; }
+
+function startGame(){
+  rounds = LEVELS.map(group => {
+    const items = shuffle(group.items).map(([point,parts]) => ({
+      point,
+      parts: parts.map(([correct,w1,w2,why,why1,why2]) => ({
+        correct,
+        why,
+        wrong:[{text:w1,reason:why1},{text:w2,reason:why2}],
+        options:[]
+      }))
+    }));
+    
+    const positions = shuffle(Array.from({length: items.length*3}, (_,i) => i%3));
+    let k=0;
+    for(const item of items){
+      for(const part of item.parts){
+        part.options = shuffle(part.wrong).map(x => ({...x, correct:false}));
+        part.options.splice(positions[k++], 0, {text: part.correct, correct:true});
+      }
+    }
+    return {title: group.title, items};
+  });
+  
+  level=0; challenge=0; score=0; answeredCount=0;
+  levelScores = LEVELS.map(()=>0);
+  mistakes = [];
+  startChallenge();
+}
+
+function startChallenge(){ step=0; challengeScore=0; screen('play'); render(); }
+
+function render(){
+  answered=false;
+  const item=current();
+  $('player').textContent='👤 '+player;
+  $('level').textContent=`${rounds[level].title}`;
+  $('score').textContent=`⭐ ${score}/${MAX}`;
+  
+  const before = rounds.slice(0,level).reduce((n,g)=>n+g.items.length,0);
+  $('progress').textContent=`Paragraph ${before+challenge+1} of 10 · Step ${step+1} of 3`;
+  $('bar').style.width=(answeredCount/MAX*100)+'\%';$('point').textContent=item.point;
+  
+  NAMES.forEach((_,i)=>{
+    $('step'+i).className='step '+(i<step?'done':i===step?'active':'');
+  });
+  
+  $('draft').hidden=step===0;
+  $('draftText').textContent=[item.point,...item.parts.slice(0,step).map(p=>p.correct)].join(' ');$('prompt').textContent=`Choose the best ${NAMES[step].toLowerCase()} sentence.`;
+  $('feedback').hidden=true;
+  $('feedback').className='feedback';
+  $('feedback').replaceChildren();$('next').hidden=true;
+  $('choices').replaceChildren();
+  
+  item.parts[step].options.forEach((opt,i)=>{
+    let b=document.createElement('button');
+    b.type='button';
+    b.className='choice';
+    let l=document.createElement('span');
+    l.className='letter';
+    l.textContent='ABC'[i];
+    let t=document.createElement('span');
+    t.textContent=opt.text;
+    b.append(l,t);
+    b.addEventListener('click',()=>choose(opt,b));
+    $('choices').append(b);
+  });
+}
+
+function feedbackLine(label,content){
+  let p=document.createElement('p');
+  let strong=document.createElement('strong');
+  strong.textContent=label;
+  p.append(strong,document.createTextNode(content));
+  $('feedback').append(p);
+}
+
+function choose(opt,button){
+  if(answered) return;
+  answered=true;
+  answeredCount++;
+  
+  let part=current().parts[step];
+  for(let b of $('choices').children){
+    b.disabled=true;
+    if(b.querySelector('span:last-child').textContent===part.correct) b.classList.add('correct');
+  }
+  
+  const fb=$('feedback');
+  fb.hidden=false;
+  
+  if(opt.correct){
+    score++; levelScores[level]++; challengeScore++;
+    fb.classList.add('good');
+    feedbackLine('✅ Correct! +1 mark', part.why);
+    feedbackLine('🇲🇾 Penjelasan:', `Ayat ini ${step===0?'menerangkan sebab atau cara':step===1?'memberikan contoh yang tepat':'menunjukkan kesan yang sesuai'} berdasarkan isi utama.`);
+  }else{
+    button.classList.add('wrong');
+    fb.classList.add('bad');
+    feedbackLine('❌ 0 marks — Why your choice is wrong:', opt.reason);
+    feedbackLine('🇲🇾 Mengapa salah:', `Ayat pilihan anda tidak memenuhi tugas ${MALAY_STEPS[step].toLowerCase()} bagi isi utama. Walaupun berkaitan dengan topik mengurus masa, ayat tersebut membincangkan idea yang kurang tepat.`);
+    feedbackLine('✅ Correct sentence:', part.correct);
+    feedbackLine('💡 Why this is correct:', part.why);
+    feedbackLine('🇲🇾 Mengapa jawapan ini betul:', `Ayat yang betul ${step===0?'menerangkan bagaimana atau mengapa isi utama berlaku':step===1?'memberi contoh yang khusus dan sepadan dengan isi utama':'menunjukkan kesan yang logik daripada isi dan contoh sebelumnya'}.`);
+    
+    mistakes.push({
+      point: current().point,
+      kind: NAMES[step],
+      chosen: opt.text,
+      whyWrong: opt.reason,
+      correct: part.correct,
+      whyCorrect: part.why
+    });
+  }
+  
+  $('score').textContent=`⭐ ${score}/${MAX}`;
+  $('bar').style.width=(answeredCount/MAX*100)+'\%';$('next').textContent=step<2 ? `Continue to ${NAMES[step+1]} →` : 'See Complete Paragraph 📝';
+  $('next').hidden=false;
+}
+
+function showParagraph(){
+  screen('built');
+  let item=current();
+  $('challengeResult').textContent=`You earned ${challengeScore}/3 marks for this paragraph.`;
+  $('paragraph').textContent=[item.point,...item.parts.map(p=>p.correct)].join(' ');
+  let last = challenge === rounds[level].items.length-1;
+  $('nextChallenge').textContent = last ? (level===2 ? 'See Final Score 🏆' : 'Finish This Level →') : 'Next Paragraph →';
+}
+
+function nextChallenge(){
+  challenge++;
+  if(challenge < rounds[level].items.length){
+    startChallenge();
+    return;
+  }
+  if(level === rounds.length-1){
+    finish();
+    return;
+  }
+  $('levelFinished').textContent=`Level ${level+1} Completed!`;
+  $('levelSummary').textContent=`You scored ${levelScores[level]}/${rounds[level].items.length*3} in ${rounds[level].title}.`;
+  screen('between');
+}
+
+function finish(){
+  screen('end');
+  $('resultName').textContent=player;
+  $('finalScore').textContent=`${score} / ${MAX}`;
+  $('percentage').textContent=Math.round(score/MAX*100)+'\% correct';$('breakdown').replaceChildren();
+  
+  rounds.forEach((g,i)=>{
+    let c=document.createElement('span');
+    c.className='chip';
+    c.textContent=`Level ${i+1}: ${levelScores[i]}/${g.items.length*3}`;
+    $('breakdown').append(c);
+  });
+  
+  $('message').textContent = score>=27 ? '🌟 Outstanding time management and writing skills!' : score>=21 ? '👏 Great job! Keep building structured paragraphs.' : '🌱 Keep practising how sentences support the main idea.';
+  $('reviewButton').textContent=`Review My Mistakes (${mistakes.length}) 📚`;
+  $('review').hidden=true;
+  $('review').replaceChildren();
+  
+  if(!mistakes.length){
+    $('review').textContent='Perfect! No mistakes to review. 🎉';
+  }
+  
+  mistakes.forEach((m,i)=>{
+    let box=document.createElement('div');
+    box.className='review';
+    for(const [label,val] of [
+      [`${i+1}. ${m.kind} — Main point:`, m.point],
+      ['❌ Your choice:', m.chosen],
+      ['Why it does not fit:', m.whyWrong],
+      ['✅ Correct sentence:', m.correct],
+      ['Why it fits:', m.whyCorrect]
+    ]){
+      let p=document.createElement('p');
+      let s=document.createElement('strong');
+      s.textContent=label+' ';
+      p.append(s, document.createTextNode(val));
+      box.append(p);
+    }
+    $('review').append(box);
+  });
+}
+
+function handleStart(e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  player = $('nameInput').value.trim();
+  if (player) {
+    startGame();
+  }
+  return false;
+}
+
+$('startBtn').addEventListener('click', handleStart);$('nameForm').addEventListener('submit', handleStart);
+
+$('next').addEventListener('click',()=>{
+  if(!answered) return;
+  if(step<2){ step++; render(); }
+  else showParagraph();
+});
+
+$('nextChallenge').addEventListener('click', nextChallenge);
+$('continueLevel').addEventListener('click', ()=>{ level++; challenge=0; startChallenge(); });$('reviewButton').addEventListener('click', ()=>{ $('review').hidden = !$('review').hidden; });
+$('replay').addEventListener('click', startGame);$('changeName').addEventListener('click', ()=>screen('start'));
+
+document.addEventListener('keydown', e=>{
+  if($('play').hidden || answered || e.repeat || e.target.matches('input,textarea')) return;
+  let i = {'1':0,'2':1,'3':2,a:0,b:1,c:2}[e.key.toLowerCase()];
+  if(i!==undefined) $('choices').children[i]?.click();
+});
+</script>
+</body>
+</html>
