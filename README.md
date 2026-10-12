@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**47 games** — automatically updated when an HTML game is added or changed.
+**48 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Elaboration Robloxreview (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-robloxreview-2.html) — updated 12 Oct 2026
 - [Elaboration Robloxreview (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-robloxreview-1.html) — updated 12 Oct 2026
 - [Elaboration Hotelreview (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-hotelreview-2.html) — updated 12 Oct 2026
 - [Elaboration Hotelreview (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-hotelreview-1.html) — updated 12 Oct 2026
