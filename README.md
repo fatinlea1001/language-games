@@ -3,7 +3,7 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**34 games** — automatically updated when an HTML game is added.
+**35 games** — automatically updated when an HTML game is added.
 Newest additions appear first in each category.
 
 ### 🇬🇧 English Games
@@ -13,6 +13,7 @@ Newest additions appear first in each category.
 - [Elaboration Socialmedia (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-socialmedia-2.html) — added 10 Oct 2026
 - [Elaboration Socialmedia (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-socialmedia-1.html) — added 10 Oct 2026
 - [Elaboration Sports (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-sports-2.html) — added 10 Oct 2026
+- [Elaboration Mentalhealth (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-mentalhealth-1.html) — added 10 Oct 2026
 - [Elaboration Sports (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-sports-1.html) — added 10 Oct 2026
 - [Elaboration Bullying (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-bullying-2.html) — added 10 Oct 2026
 - [Elaboration Bullying (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-bullying-1.html) — added 10 Oct 2026
