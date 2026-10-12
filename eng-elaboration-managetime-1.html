@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paragraph Builder — Managing Time</title>
+<style>
+:root{
+  --primary:#0284c7;
+  --primary-dark:#0369a1;
+  --primary-light:#e0f2fe;
+  --accent:#38bdf8;
+  --ink:#0f172a;
+  --red:#dc2626;
+  --green:#16a34a;
+  --bg-gradient:linear-gradient(135deg, #f0f9ff, #e0f2fe, #bae6fd);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  padding:15px;
+  min-height:100vh;
+  background:var(--bg-gradient);
+  font:16px/1.55 "Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+}
+main{
+  max-width:780px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:23px;
+  box-shadow:0 14px 38px rgba(2, 132, 199, 0.18);
+}
+h1{text-align:center;color:var(--primary-dark);margin-top:10px}
+h2{text-align:center;color:var(--primary-dark)}
+p{line-height:1.6}
+.center{text-align:center}
+.svg-hero{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:10px 0;
+}
+.svg-hero svg{
+  width:110px;
+  height:110px;
+}
+.pill{
+  display:inline-block;
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  border-radius:30px;
+  padding:7px 14px;
+  font-weight:750;
+  font-size:13px;
+}
+.stats{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}
+.track{height:10px;border-radius:20px;background:#bae6fd;margin:18px 0;overflow:hidden}
+.bar{height:100%;width:0;background:var(--primary);transition:width 0.3s ease}
+.steps{display:flex;gap:6px;margin:15px 0}
+.step{flex:1;background:#f1f5f9;padding:8px 3px;border-radius:10px;text-align:center;font-size:12px;font-weight:700;color:#64748b}
+.step.active{background:#bae6fd;color:var(--primary-dark)}
+.step.done{background:#dcfce7;color:#15803d}
+.point,.draft,.model{padding:16px;border-radius:15px;margin:14px 0}
+.point{background:#f0f9ff;border:2px solid #bae6fd}
+.point small{display:block;color:var(--primary-dark);font-weight:800}
+.point strong{font-size:19px;color:var(--ink)}
+.draft{background:#f8fafc;border:1px dashed #94a3b8}
+.draft small{font-weight:750;color:#475569}
+.draft p{margin:6px 0}
+.model{background:#f0f9ff;border:2px solid #bae6fd}
+.prompt{text-align:center;font-weight:800;color:var(--primary-dark)}
+.choices{display:grid;gap:10px}
+.choice{
+  width:100%;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:14px;
+  background:#f8fafc;
+  border:2px solid #bae6fd;
+  border-radius:14px;
+  text-align:left;
+  color:var(--ink);
+  font:inherit;
+  cursor:pointer;
+  transition:all 0.2s ease;
+}
+.choice:hover:not(:disabled){border-color:var(--primary);background:var(--primary-light)}
+.choice:disabled{cursor:default}
+.choice.correct{border-color:#22c55e;background:#f0fdf4}
+.choice.wrong{border-color:#ef4444;background:#fef2f2}
+.letter{
+  flex:0 0 29px;
+  height:29px;
+  background:#bae6fd;
+  color:var(--primary-dark);
+  border-radius:8px;
+  display:grid;
+  place-items:center;
+  font-weight:bold;
+}
+.feedback{padding:15px;border-radius:13px;margin-top:14px}
+.feedback.good{background:#dcfce7;color:var(--green)}
+.feedback.bad{background:#fee2e2;color:var(--red)}
+.feedback p{margin:7px 0}
+.feedback strong{display:block}
+.btn{
+  display:block;
+  width:100%;
+  margin-top:15px;
+  padding:14px;
+  background:var(--primary);
+  border:0;
+  border-radius:13px;
+  color:white;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+  transition:background 0.2s ease;
+}
+.btn:hover{background:var(--primary-dark)}
+.btn.alt{background:#64748b}
+.btn.alt:hover{background:#475569}
+.btn:focus-visible,.choice:focus-visible{outline:3px solid var(--primary);outline-offset:3px}
+input{display:block;width:100%;padding:14px;border:2px solid #bae6fd;border-radius:12px;font:inherit}
+input:focus{outline:none;border-color:var(--primary)}
+.big{text-align:center;font-size:64px;font-weight:900;color:var(--primary-dark)}
+.chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.chip{background:var(--primary-light);color:var(--primary-dark);padding:8px 12px;border-radius:12px;font-size:13px;font-weight:bold}
+.review{border:1px solid #e2e8f0;background:#f8fafc;border-radius:12px;padding:13px;margin-top:10px}
+.review p{margin:6px 0}
+[hidden]{display:none!important}
+@media(max-width:520px){body{padding:7px}main{padding:17px 13px}.choice{padding:11px;font-size:14px}.step{font-size:11px}}
+</style>
+</head>
+<body>
+<main>
+
+<section id="start">
+  <div class="svg-hero">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="45" fill="#e0f2fe" stroke="#0284c7" stroke-width="4"/>
+      <circle cx="50" cy="50" r="38" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 3"/>
+      <path d="M50 20V50L68 62" stroke="#0369a1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="50" cy="50" r="4" fill="#0369a1"/>
+    </svg>
+  </div>
+  <h1>Paragraph Builder!</h1>
+  <p class="center"><span class="pill">MANAGING TIME · SET 1</span></p>
+  <p class="center">Practise developing ideas about <b>effective time management</b> using Explanation → Example → Result / Effect.</p>
+  <p class="center"><b>10 paragraphs · 3 steps each · 30 marks</b></p>
+  <p class="center">🗓️ Daily Scheduling (4) · ⏳ Handling Deadlines (3) · ⚡ Avoiding Procrastination (3)</p>
+  <form id="nameForm">
+    <input id="nameInput" maxlength="60" placeholder="Enter your name" required>
+    <button class="btn">Start Building ✨</button>
+  </form>
+</section>
+
+<section id="play" hidden>
+  <div class="stats">
+    <span class="pill" id="player"></span>
+    <span class="pill" id="level"></span>
+    <span class="pill" id="score"></span>
+  </div>
+  <div class="track"><div class="bar" id="bar"></div></div>
+  <p class="center" id="progress"></p>
+  <div class="steps">
+    <span class="step" id="step0">1 · Explanation</span>
+    <span class="step" id="step1">2 · Example</span>
+    <span class="step" id="step2">3 · Result</span>
+  </div>
+  <div class="point"><small>MAIN POINT</small><strong id="point"></strong></div>
+  <div class="draft" id="draft" hidden><small>YOUR CORRECT PARAGRAPH SO FAR</small><p id="draftText"></p></div>
+  <p class="prompt" id="prompt"></p>
+  <div class="choices" id="choices"></div>
+  <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+  <button class="btn" id="next" hidden>Continue →</button>
+</section>
+
+<section id="built" hidden>
+  <div class="svg-hero">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="15" y="10" width="70" height="80" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="4"/>
+      <path d="M30 30H70M30 45H70M30 60H50" stroke="#0369a1" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="68" cy="68" r="16" fill="#22c55e"/>
+      <path d="M60 68L66 74L76 62" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <h1>Paragraph Complete!</h1>
+  <p class="center" id="challengeResult"></p>
+  <div class="model" id="paragraph"></div>
+  <button class="btn" id="nextChallenge">Next Paragraph →</button>
+</section>
+
+<section id="between" hidden>
+  <div class="svg-hero">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 15L61 38L86 41L67 59L72 84L50 71L28 84L33 59L14 41L39 38L50 15Z" fill="#38bdf8" stroke="#0284c7" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="50" cy="50" r="10" fill="#e0f2fe"/>
+    </svg>
+  </div>
+  <h1 id="levelFinished"></h1>
+  <p class="center" id="levelSummary"></p>
+  <button class="btn" id="continueLevel">Next Level →</button>
+</section>
+
+<section id="end" hidden>
+  <div class="svg-hero">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M25 25H75V40C75 55 60 65 50 65C40 65 25 55 25 40V25Z" fill="#bae6fd" stroke="#0284c7" stroke-width="4"/>
+      <path d="M50 65V80M35 80H65" stroke="#0284c7" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="50" cy="38" r="8" fill="#0369a1"/>
+    </svg>
+  </div>
+  <h1>Challenge Completed!</h1>
+  <h2 id="resultName"></h2>
+  <p class="center">Your score</p>
+  <div class="big" id="finalScore"></div>
+  <p class="center" id="percentage"></p>
+  <div class="chips" id="breakdown"></div>
+  <p class="center" id="message"></p>
+  <button class="btn alt" id="reviewButton">Review My Mistakes 📚</button>
+  <div id="review" hidden></div>
+  <button class="btn" id="replay">Play Again 🔀</button>
+  <button class="btn alt" id="changeName">Change Name</button>
+  <p class="center">📸 Screenshot your score to submit!</p>
+</section>
+
+</main>
+
+<script>
+const LEVELS=[
+  {
+    "title": "Daily Scheduling",
+    "items": [
+      [
+        "Creating a detailed daily schedule helps students manage their time efficiently.",
+        [
+          [
+            "Allocating dedicated time slots for study, meals, and rest keeps tasks structured throughout the day.",
+            "Buying a colorful paper planner makes a study desk look organized and appealing.",
+            "Sleeping extra hours in the morning provides more physical energy for night study.",
+            "Structuring daily tasks prevents wasted time and confusion.",
+            "Buying planners is decorative, not an explanation of scheduling.",
+            "Sleeping late changes sleep hours, not daily scheduling."
+          ],
+          [
+            "For example, a student can assign 4:00 PM to 5:30 PM specifically for completing homework before dinner.",
+            "For example, a student can purchase a blue leather notebook at a stationer's shop.",
+            "For example, a student can turn off their morning alarm to sleep until noon.",
+            "Assigning a specific time window illustrates daily time allocation.",
+            "Purchasing a notebook is buying stationery, not scheduling.",
+            "Sleeping in does not show daily schedule planning."
+          ],
+          [
+            "As a result, tasks are completed systematically without constant stress or rushing.",
+            "As a result, the student has a nice book to show to their classmates.",
+            "As a result, the student misses their morning classes.",
+            "Completing work stress-free is the direct benefit of good scheduling.",
+            "Showing off stationery is unrelated to productivity.",
+            "Missing class is a negative outcome of poor sleep habits."
+          ]
+        ]
+      ],
+      [
+        "Setting strict time limits for individual tasks prevents work from dragging on.",
+        [
+          [
+            "Enforcing a fixed duration creates urgency and maintains high concentration.",
+            "Working on a single task all day ensures that no other subject is touched.",
+            "Taking frequent long breaks allows students to spend hours playing online games.",
+            "Fixed durations build healthy urgency and focus.",
+            "Spending all day on one task shows poor time balancing.",
+            "Long gaming breaks lead to wasted time."
+          ],
+          [
+            "For example, a student may set a timer for 45 minutes to finish writing an essay draft.",
+            "For example, a student may write an essay continuously for 8 hours without stopping.",
+            "For example, a student may play games for 2 hours before opening their textbook.",
+            "Using a timer exemplifies time-boxing a specific task.",
+            "Eight non-stop hours leads to fatigue, not effective limits.",
+            "Gaming before study is procrastination."
+          ],
+          [
+            "Consequently, the student finishes the task on time and frees up hours for other activities.",
+            "Consequently, the student experiences extreme mental exhaustion and headaches.",
+            "Consequently, the essay remains unwritten until the next morning.",
+            "Finishing promptly opens up time for rest and balance.",
+            "Exhaustion comes from missing time limits.",
+            "Unwritten essays result from procrastination."
+          ]
+        ]
+      ],
+      [
+        "Planning tasks around personal energy levels maximizes daily productivity.",
+        [
+          [
+            "Doing demanding work during peak energy hours ensures maximum focus and faster comprehension.",
+            "Studying late at night when exhausted builds strong willpower and mental toughness.",
+            "Ignoring personal energy patterns allows students to study whenever they feel like it.",
+            "Aligning hard work with high energy improves speed and focus.",
+            "Studying while exhausted leads to poor recall and slow progress.",
+            "Ignoring energy patterns leads to inconsistent output."
+          ],
+          [
+            "For example, a morning person can tackle difficult Mathematics problems right after breakfast.",
+            "For example, a tired student can try solving complex Physics equations past midnight.",
+            "For example, a student can wait until late evening to start all daily tasks.",
+            "Morning math study aligns hard subjects with morning peak energy.",
+            "Late-night Physics when tired ignores energy management.",
+            "Delaying tasks until evening wastes peak energy periods."
+          ],
+          [
+            "Therefore, challenging concepts are mastered with less effort and fewer mistakes.",
+            "Therefore, solving problems takes twice as long due to fatigue.",
+            "Therefore, the student feels too sleepy to complete the assignment.",
+            "Faster mastery is the benefit of energy-aligned planning.",
+            "Slower problem solving is the result of fatigue.",
+            "Feeling too sleepy is the penalty of late-night study."
+          ]
+        ]
+      ],
+      [
+        "Reviewing the next day's timetable every evening prepares students for a smooth start.",
+        [
+          [
+            "Knowing what to expect prevents morning panic and ensures all necessary materials are ready.",
+            "Packing school bags right before leaving the house builds quick thinking skills.",
+            "Staying up late reading timetable charts helps students memorise schedules.",
+            "Evening preparation ensures calm and readiness.",
+            "Rushing in the morning causes missed items and stress.",
+            "Staying up late examining charts causes sleep loss."
+          ],
+          [
+            "For example, a student packs their school bag and lays out uniform items before going to bed.",
+            "For example, a student searches for lost textbooks minutes before the school bus arrives.",
+            "For example, a student checks their schedule continuously until 1 AM.",
+            "Preparing bags and clothes at night exemplifies evening readiness.",
+            "Panicking in the morning shows a lack of preparation.",
+            "Over-checking schedules late at night disrupts sleep."
+          ],
+          [
+            "As a result, mornings are calm and punctual, setting a positive tone for the entire day.",
+            "As a result, the student frequently forgets important homework at home.",
+            "As a result, the student wakes up tired and unprepared.",
+            "Punctual, calm mornings follow evening prep.",
+            "Forgetting homework is the result of morning rushing.",
+            "Waking up tired follows late-night schedule checking."
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "title": "Handling Deadlines",
+    "items": [
+      [
+        "Breaking large assignments into smaller milestones ensures steady deadline management.",
+        [
+          [
+            "Dividing a project into smaller steps makes the overall workload feel manageable and less daunting.",
+            "Submitting assignments early allows students to brag about speed to friends.",
+            "Waiting until the day before a deadline creates intense pressure that forces creativity.",
+            "Sub-dividing tasks reduces intimidation and maintains progress.",
+            "Bragging is social behavior, not task strategy.",
+            "Last-minute pressure causes anxiety, not better quality."
+          ],
+          [
+            "For example, a student writing a research paper completes the outline on Monday, research on Wednesday, and draft on Friday.",
+            "For example, a student posts on social media that they finished a paper in two hours.",
+            "For example, a student starts a two-week research project at midnight before the due date.",
+            "Stagged completion dates show step-by-step milestone tracking.",
+            "Social media posts do not demonstrate task breakdown.",
+            "Starting at midnight is last-minute cramming."
+          ],
+          [
+            "Consequently, the assignment is completed thoroughly without last-minute panic.",
+            "Consequently, the student receives comments on their social media post.",
+            "Consequently, the paper contains numerous errors and missing sections.",
+            "Thorough work without panic is the outcome of milestone planning.",
+            "Social media comments are irrelevant to academic quality.",
+            "Rushed work leads to poor grades and mistakes."
+          ]
+        ]
+      ],
+      [
+        "Tracking upcoming deadlines on a visible calendar prevents forgotten tasks.",
+        [
+          [
+            "Visual reminders ensure that submission dates are continuously kept in mind.",
+            "Drawing elaborate pictures on wall calendars makes room walls look attractive.",
+            "Relying on memory alone trains the brain to retain date information better.",
+            "Visual cues prevent surprise deadlines.",
+            "Drawing pictures is artistic decoration.",
+            "Relying purely on memory often causes forgotten dates."
+          ],
+          [
+            "For example, a student writes project submission dates in bold red marker on a desk calendar.",
+            "For example, a student draws anime characters around calendar numbers.",
+            "For example, a student tries to remember five exam dates without writing them down.",
+            "Marking due dates in bold red provides a clear visual reminder.",
+            "Drawing anime does not track academic deadlines.",
+            "Forgoing written dates risks forgetting deadlines."
+          ],
+          [
+            "As a result, preparation begins early and submission deadlines are never missed.",
+            "As a result, the desk area looks nicely decorated.",
+            "As a result, the student forgets an important test date.",
+            "Early preparation and zero missed dates result from visual calendar tracking.",
+            "Decorated desks are non-academic outcomes.",
+            "Forgetting test dates is the risk of memory reliance."
+          ]
+        ]
+      ],
+      [
+        "Starting assignments on the day they are given saves time in the long run.",
+        [
+          [
+            "Immediate action takes advantage of fresh instructions and avoids building up a backlog of tasks.",
+            "Delaying new tasks gives students extra leisure time early in the week.",
+            "Asking classmates for answers on the due date saves research effort.",
+            "Early momentum capitalizes on fresh instructions.",
+            "Delaying tasks creates a stressful pile-up later.",
+            "Copying answers is academic dishonesty, not time management."
+          ],
+          [
+            "For example, a student outlines an essay topic on the afternoon it is assigned by the teacher.",
+            "For example, a student puts a new project sheet away in a drawer for two weeks.",
+            "For example, a student messages friends asking to copy homework ten minutes before class.",
+            "Immediate outlining on day one demonstrates prompt action.",
+            "Hiding assignment sheets in drawers is active delay.",
+            "Copying work at the last minute shows failure to plan."
+          ],
+          [
+            "Therefore, the workload remains balanced and stress levels stay low.",
+            "Therefore, a mountain of overdue assignments accumulates by the weekend.",
+            "Therefore, the student faces penalties for late or copied work.",
+            "A balanced workload is the reward for prompt action.",
+            "Accumulated overdue work stems from procrastination.",
+            "Penalties result from last-minute copying."
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "title": "Avoiding Procrastination",
+    "items": [
+      [
+        "Using the 'Five-Minute Rule' helps overcome initial resistance to starting work.",
+        [
+          [
+            "Promising to work for just five minutes lowers mental friction and builds starting momentum.",
+            "Studying in five-minute bursts with long breaks in between is the fastest way to learn.",
+            "Ignoring difficult tasks for five days allows problems to solve themselves.",
+            "Lowering mental friction makes starting easy, leading to continued effort.",
+            "Five-minute study bursts are too short for deep focus.",
+            "Ignoring problems leads to accumulated failure."
+          ],
+          [
+            "For example, a student hesitating to study tells themselves to read just one page for five minutes, but ends up continuing for an hour.",
+            "For example, a student reads for 5 minutes and watches television for 50 minutes.",
+            "For example, a student ignores an assignment for five days straight.",
+            "Starting small and continuing long past 5 minutes illustrates the rule.",
+            "50 minutes of TV is distraction, not momentum.",
+            "Ignoring tasks for days is procrastination."
+          ],
+          [
+            "As a result, the barrier of starting is broken and meaningful progress is made.",
+            "As a result, very little revision is accomplished during the day.",
+            "As a result, the student falls far behind in class work.",
+            "Breaking the start barrier creates productive momentum.",
+            "Little progress comes from TV distractions.",
+            "Falling behind is the consequence of total avoidance."
+          ]
+        ]
+      ],
+      [
+        "Removing digital distractions helps maintain focus during dedicated study periods.",
+        [
+          [
+            "Putting away devices eliminates notifications that trigger mindless urge-checking.",
+            "Leaving phone ringers on high volume ensures urgent emergency calls are never missed.",
+            "Playing mobile games during study breaks keeps hand-eye coordination sharp.",
+            "Eliminating alerts prevents attention fragmentation.",
+            "High volume ringers invite non-urgent interruptions.",
+            "Mobile games mentally fatigue the brain during breaks."
+          ],
+          [
+            "For example, a student puts their smartphone in Do Not Disturb mode inside a drawer while studying.",
+            "For example, a student keeps their phone next to their textbook to check every text immediately.",
+            "For example, a student plays a mobile game between reading paragraphs.",
+            "Storing a silenced phone away in a drawer stops distractions.",
+            "Checking texts next to books breaks focus repeatedly.",
+            "Gaming between paragraphs prevents deep concentration."
+          ],
+          [
+            "Consequently, study time remains uninterrupted and tasks are completed much faster.",
+            "Consequently, homework takes three times longer due to constant pauses.",
+            "Consequently, information read is quickly forgotten.",
+            "Uninterrupted study sessions increase speed and comprehension.",
+            "Tripled homework time comes from mobile phone checks.",
+            "Forgetting material happens when focus is fragmented."
+          ]
+        ]
+      ],
+      [
+        "Rewarding oneself after completing planned study targets builds positive habits.",
+        [
+          [
+            "Associating task completion with pleasant rewards motivates the brain to stay disciplined.",
+            "Rewarding oneself before finishing work provides early encouragement to start.",
+            "Giving up all hobbies completely ensures 100% focus on academic success.",
+            "Post-task rewards reinforce self-discipline through positive reinforcement.",
+            "Rewarding early removes the incentive to complete the work.",
+            "Eliminating all hobbies leads to burnout and unhappiness."
+          ],
+          [
+            "For example, a student enjoys a 20-minute walk or snack only after finishing two chapters of Science.",
+            "For example, a student eats a treat and watches a show before opening their textbook.",
+            "For example, a student stops playing football entirely for the whole year to study non-stop.",
+            "Treating oneself only after completing two chapters applies contingent rewards.",
+            "Treating oneself before starting work eliminates motivation.",
+            "Quitting all hobbies leads to severe fatigue."
+          ],
+          [
+            "Therefore, motivation remains high and studying becomes a satisfying routine.",
+            "Therefore, the student lacks motivation to finish the reading after the reward.",
+            "Therefore, the student grows resentful and tired of studying.",
+            "High motivation and sustainable routines follow post-work rewards.",
+            "Pre-rewarding leads to lost motivation.",
+            "Total deprivation causes resentment and eventual burnout."
+          ]
+        ]
+      ]
+    ]
+  }
+];
+
+const $=id=>document.getElementById(id);
+const NAMES=['Explanation','Example','Result / Effect'];
+const MALAY_STEPS=['Penjelasan','Contoh','Kesan'];
+const MAX=LEVELS.reduce((n,l)=>n+l.items.length*3,0);
+
+let player='',rounds=[],level=0,challenge=0,step=0,score=0,answeredCount=0,challengeScore=0,levelScores=[],mistakes=[],answered=false;
+
+function shuffle(items){
+  let a=[...items];
+  for(let i=a.length-1;i>0;i--){
+    let j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function screen(name){
+  for(const s of ['start','play','built','between','end']) $(s).hidden = s !== name;
+}
+
+function current(){ return rounds[level].items[challenge]; }
+
+function startGame(){
+  rounds = LEVELS.map(group => {
+    const items = shuffle(group.items).map(([point,parts]) => ({
+      point,
+      parts: parts.map(([correct,w1,w2,why,why1,why2]) => ({
+        correct,
+        why,
+        wrong:[{text:w1,reason:why1},{text:w2,reason:why2}],
+        options:[]
+      }))
+    }));
+    
+    const positions = shuffle(Array.from({length: items.length*3}, (_,i) => i%3));
+    let k=0;
+    for(const item of items){
+      for(const part of item.parts){
+        part.options = shuffle(part.wrong).map(x => ({...x, correct:false}));
+        part.options.splice(positions[k++], 0, {text: part.correct, correct:true});
+      }
+    }
+    return {title: group.title, items};
+  });
+  
+  level=0; challenge=0; score=0; answeredCount=0;
+  levelScores = LEVELS.map(()=>0);
+  mistakes = [];
+  startChallenge();
+}
+
+function startChallenge(){ step=0; challengeScore=0; screen('play'); render(); }
+
+function render(){
+  answered=false;
+  const item=current();
+  $('player').textContent='👤 '+player;
+  $('level').textContent=`Level ${level+1}/3 · ${rounds[level].title}`;
+  $('score').textContent=`⭐ ${score}/${MAX}`;
+  
+  const before = rounds.slice(0,level).reduce((n,g)=>n+g.items.length,0);
+  $('progress').textContent=`Paragraph ${before+challenge+1} of 10 · Step ${step+1} of 3`;
+  $('bar').style.width=(answeredCount/MAX*100)+'\%';$('point').textContent=item.point;
+  
+  NAMES.forEach((_,i)=>{
+    $('step'+i).className='step '+(i<step?'done':i===step?'active':'');
+  });
+  
+  $('draft').hidden=step===0;
+  $('draftText').textContent=[item.point,...item.parts.slice(0,step).map(p=>p.correct)].join(' ');$('prompt').textContent=`Choose the best ${NAMES[step].toLowerCase()} sentence.`;
+  $('feedback').hidden=true;
+  $('feedback').className='feedback';
+  $('feedback').replaceChildren();$('next').hidden=true;
+  $('choices').replaceChildren();
+  
+  item.parts[step].options.forEach((opt,i)=>{
+    let b=document.createElement('button');
+    b.type='button';
+    b.className='choice';
+    let l=document.createElement('span');
+    l.className='letter';
+    l.textContent='ABC'[i];
+    let t=document.createElement('span');
+    t.textContent=opt.text;
+    b.append(l,t);
+    b.addEventListener('click',()=>choose(opt,b));
+    $('choices').append(b);
+  });
+}
+
+function feedbackLine(label,content){
+  let p=document.createElement('p');
+  let strong=document.createElement('strong');
+  strong.textContent=label;
+  p.append(strong,document.createTextNode(content));
+  $('feedback').append(p);
+}
+
+function choose(opt,button){
+  if(answered) return;
+  answered=true;
+  answeredCount++;
+  
+  let part=current().parts[step];
+  for(let b of $('choices').children){
+    b.disabled=true;
+    if(b.querySelector('span:last-child').textContent===part.correct) b.classList.add('correct');
+  }
+  
+  const fb=$('feedback');
+  fb.hidden=false;
+  
+  if(opt.correct){
+    score++; levelScores[level]++; challengeScore++;
+    fb.classList.add('good');
+    feedbackLine('✅ Correct! +1 mark', part.why);
+    feedbackLine('🇲🇾 Penjelasan:', `Ayat ini ${step===0?'menerangkan sebab atau cara':step===1?'memberikan contoh yang tepat':'menunjukkan kesan yang sesuai'} berdasarkan isi utama.`);
+  }else{
+    button.classList.add('wrong');
+    fb.classList.add('bad');
+    feedbackLine('❌ 0 marks — Why your choice is wrong:', opt.reason);
+    feedbackLine('🇲🇾 Mengapa salah:', `Ayat pilihan anda tidak memenuhi tugas ${MALAY_STEPS[step].toLowerCase()} bagi isi utama. Walaupun berkaitan dengan topik mengurus masa, ayat tersebut membincangkan idea yang kurang tepat.`);
+    feedbackLine('✅ Correct sentence:', part.correct);
+    feedbackLine('💡 Why this is correct:', part.why);
+    feedbackLine('🇲🇾 Mengapa jawapan ini betul:', `Ayat yang betul ${step===0?'menerangkan bagaimana atau mengapa isi utama berlaku':step===1?'memberi contoh yang khusus dan sepadan dengan isi utama':'menunjukkan kesan yang logik daripada isi dan contoh sebelumnya'}.`);
+    
+    mistakes.push({
+      point: current().point,
+      kind: NAMES[step],
+      chosen: opt.text,
+      whyWrong: opt.reason,
+      correct: part.correct,
+      whyCorrect: part.why
+    });
+  }
+  
+  $('score').textContent=`⭐ ${score}/${MAX}`;
+  $('bar').style.width=(answeredCount/MAX*100)+'\%';$('next').textContent=step<2 ? `Continue to ${NAMES[step+1]} →` : 'See Complete Paragraph 📝';
+  $('next').hidden=false;
+}
+
+function showParagraph(){
+  screen('built');
+  let item=current();
+  $('challengeResult').textContent=`You earned ${challengeScore}/3 marks for this paragraph.`;
+  $('paragraph').textContent=[item.point,...item.parts.map(p=>p.correct)].join(' ');
+  let last = challenge === rounds[level].items.length-1;
+  $('nextChallenge').textContent = last ? (level===2 ? 'See Final Score 🏆' : 'Finish This Level →') : 'Next Paragraph →';
+}
+
+function nextChallenge(){
+  challenge++;
+  if(challenge < rounds[level].items.length){
+    startChallenge();
+    return;
+  }
+  if(level === rounds.length-1){
+    finish();
+    return;
+  }
+  $('levelFinished').textContent=`Level ${level+1} Completed!`;
+  $('levelSummary').textContent=`You scored ${levelScores[level]}/${rounds[level].items.length*3} in ${rounds[level].title}.`;
+  screen('between');
+}
+
+function finish(){
+  screen('end');
+  $('resultName').textContent=player;
+  $('finalScore').textContent=`${score} / ${MAX}`;
+  $('percentage').textContent=Math.round(score/MAX*100)+'\% correct';$('breakdown').replaceChildren();
+  
+  rounds.forEach((g,i)=>{
+    let c=document.createElement('span');
+    c.className='chip';
+    c.textContent=`Level ${i+1}: ${levelScores[i]}/${g.items.length*3}`;
+    $('breakdown').append(c);
+  });
+  
+  $('message').textContent = score>=27 ? '🌟 Outstanding time management and writing skills!' : score>=21 ? '👏 Great job! Keep building structured paragraphs.' : '🌱 Keep practising how sentences support the main idea.';
+  $('reviewButton').textContent=`Review My Mistakes (${mistakes.length}) 📚`;
+  $('review').hidden=true;
+  $('review').replaceChildren();
+  
+  if(!mistakes.length){
+    $('review').textContent='Perfect! No mistakes to review. 🎉';
+  }
+  
+  mistakes.forEach((m,i)=>{
+    let box=document.createElement('div');
+    box.className='review';
+    for(const [label,val] of [
+      [`${i+1}. ${m.kind} — Main point:`, m.point],
+      ['❌ Your choice:', m.chosen],
+      ['Why it does not fit:', m.whyWrong],
+      ['✅ Correct sentence:', m.correct],
+      ['Why it fits:', m.whyCorrect]
+    ]){
+      let p=document.createElement('p');
+      let s=document.createElement('strong');
+      s.textContent=label+' ';
+      p.append(s, document.createTextNode(val));
+      box.append(p);
+    }
+    $('review').append(box);
+  });
+}
+
+$('nameForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  player=$('nameInput').value.trim();
+  if(player) startGame();
+});
+
+$('next').addEventListener('click',()=>{
+  if(!answered) return;
+  if(step<2){ step++; render(); }
+  else showParagraph();
+});
+
+$('nextChallenge').addEventListener('click', nextChallenge);
+$('continueLevel').addEventListener('click', ()=>{ level++; challenge=0; startChallenge(); });$('reviewButton').addEventListener('click', ()=>{ $('review').hidden = !$('review').hidden; });
+$('replay').addEventListener('click', startGame);$('changeName').addEventListener('click', ()=>screen('start'));
+
+document.addEventListener('keydown', e=>{
+  if($('play').hidden || answered || e.repeat || e.target.matches('input,textarea')) return;
+  let i = {'1':0,'2':1,'3':2,a:0,b:1,c:2}[e.key.toLowerCase()];
+  if(i!==undefined) $('choices').children[i]?.click();
+});
+</script>
+</body>
+</html>
