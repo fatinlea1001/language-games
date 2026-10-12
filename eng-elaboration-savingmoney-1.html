@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Paragraph Builder — Saving Money Set 1</title>
+<style>
+:root{--pink:#e76b9e;--ink:#48384d;--red:#a02e4b;--green:#226d49}*{box-sizing:border-box}body{margin:0;padding:15px;min-height:100vh;background:linear-gradient(135deg,#ffe6f0,#f1ecff,#eaf9f2);font:16px/1.55 "Segoe UI",Arial,sans-serif;color:var(--ink)}main{max-width:780px;margin:auto;background:white;padding:25px;border-radius:23px;box-shadow:0 14px 38px #9d719533}h1{text-align:center;color:#d24785}h2{text-align:center}p{line-height:1.6}.center{text-align:center}.hero{text-align:center;font-size:48px}.pill{display:inline-block;background:#ffe7f1;color:#943e6a;border-radius:30px;padding:7px 11px;font-weight:750;font-size:13px}.stats{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}.track{height:10px;border-radius:20px;background:#f5dbe6;margin:18px 0;overflow:hidden}.bar{height:100%;width:0;background:#e76b9e}.steps{display:flex;gap:6px;margin:15px 0}.step{flex:1;background:#f4f0f6;padding:8px 3px;border-radius:10px;text-align:center;font-size:12px;font-weight:700}.step.active{background:#fbd4e7;color:#923b6f}.step.done{background:#ddf4e5;color:#226d49}.point,.draft,.model{padding:16px;border-radius:15px;margin:14px 0}.point{background:#fff0f7;border:2px solid #f3cee0}.point small{display:block;color:#9a4775;font-weight:800}.point strong{font-size:19px}.draft{background:#f8f6ff;border:1px dashed #bfa5d5}.draft small{font-weight:750;color:#765a9e}.draft p{margin:6px 0}.model{background:#fff8fc;border:2px solid #f0cadd}.prompt{text-align:center;font-weight:800}.choices{display:grid;gap:10px}.choice{width:100%;display:flex;gap:12px;align-items:flex-start;padding:14px;background:#fffafd;border:2px solid #efc9dc;border-radius:14px;text-align:left;color:var(--ink);font:inherit;cursor:pointer}.choice:hover:not(:disabled){border-color:var(--pink);background:#ffeff6}.choice:disabled{cursor:default}.choice.correct{border-color:#61b78b;background:#e3f8ea}.choice.wrong{border-color:#e4728e;background:#ffe4e9}.letter{flex:0 0 29px;height:29px;background:#f6d8e6;border-radius:8px;display:grid;place-items:center;font-weight:bold}.feedback{padding:15px;border-radius:13px;margin-top:14px}.feedback.good{background:#e5f8ea;color:var(--green)}.feedback.bad{background:#ffe5eb;color:var(--red)}.feedback p{margin:7px 0}.feedback strong{display:block}.btn{display:block;width:100%;margin-top:15px;padding:14px;background:var(--pink);border:0;border-radius:13px;color:white;font-size:16px;font-weight:800;cursor:pointer}.btn.alt{background:#9e86ad}.btn:focus-visible,.choice:focus-visible{outline:3px solid #7056bc;outline-offset:3px}input{display:block;width:100%;padding:14px;border:2px solid #edbed3;border-radius:12px;font:inherit}.big{text-align:center;font-size:64px;font-weight:900;color:#d24785}.chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.chip{background:#fce9f2;padding:8px 12px;border-radius:12px;font-size:13px;font-weight:bold}.review{border:1px solid #ebd2e0;background:#fff8fc;border-radius:12px;padding:13px;margin-top:10px}.review p{margin:6px 0}[hidden]{display:none!important}@media(max-width:520px){body{padding:7px}main{padding:17px 13px}.choice{padding:11px;font-size:14px}.step{font-size:11px}}
+</style></head><body><main>
+<section id="start"><div class="hero">🐷💰🌸</div><h1>Paragraph Builder!</h1><p class="center"><span class="pill">SAVING MONEY · SET 1</span></p><p class="center">Practise developing ideas about <b>saving money in student life</b> using Explanation → Example → Result / Effect.</p><p class="center"><b>10 paragraphs · 3 steps each · 30 marks</b></p><p class="center">💗 Everyday spending (4) · 📚 School needs (3) · 🌱 Responsible choices (3)</p><form id="nameForm"><input id="nameInput" maxlength="60" placeholder="Enter your name" required><button class="btn">Start Building ✨</button></form></section>
+<section id="play" hidden><div class="stats"><span class="pill" id="player"></span><span class="pill" id="level"></span><span class="pill" id="score"></span></div><div class="track"><div class="bar" id="bar"></div></div><p class="center" id="progress"></p><div class="steps"><span class="step" id="step0">1 · Explanation</span><span class="step" id="step1">2 · Example</span><span class="step" id="step2">3 · Result</span></div><div class="point"><small>MAIN POINT</small><strong id="point"></strong></div><div class="draft" id="draft" hidden><small>YOUR CORRECT PARAGRAPH SO FAR</small><p id="draftText"></p></div><p class="prompt" id="prompt"></p><div class="choices" id="choices"></div><div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div><button class="btn" id="next" hidden>Continue →</button></section>
+<section id="built" hidden><div class="hero">📝💗</div><h1>Paragraph Complete!</h1><p class="center" id="challengeResult"></p><div class="model" id="paragraph"></div><button class="btn" id="nextChallenge">Next Paragraph →</button></section>
+<section id="between" hidden><div class="hero">🎉</div><h1 id="levelFinished"></h1><p class="center" id="levelSummary"></p><button class="btn" id="continueLevel">Next Level →</button></section>
+<section id="end" hidden><div class="hero">🏆🐷✨</div><h1>Challenge Completed!</h1><h2 id="resultName"></h2><p class="center">Your score</p><div class="big" id="finalScore"></div><p class="center" id="percentage"></p><div class="chips" id="breakdown"></div><p class="center" id="message"></p><button class="btn alt" id="reviewButton">Review My Mistakes 📚</button><div id="review" hidden></div><button class="btn" id="replay">Play Again 🔀</button><button class="btn alt" id="changeName">Change Name</button><p class="center">📸 Screenshot your score to submit!</p></section>
+</main><script>
+const LEVELS=[
+  {
+    "title": "Smart Everyday Spending",
+    "items": [
+      [
+        "Making a simple weekly budget helps students manage their pocket money.",
+        [
+          [
+            "It helps them decide how much to spend on necessities and how much to keep for later.",
+            "It allows them to compare the prices of snacks sold at different shops.",
+            "It encourages them to earn more pocket money by doing extra chores.",
+            "A budget divides existing money between spending and saving.",
+            "Comparing prices is useful, but it does not explain how a weekly budget organises money.",
+            "Earning extra money changes income, not how the student manages a weekly budget."
+          ],
+          [
+            "For example, a student with RM30 for the week may set aside RM10 and use the rest for transport and food.",
+            "For example, a student may buy a cheaper drink after comparing prices at two stalls.",
+            "For example, a student may help wash the family car to earn RM10.",
+            "This example shows money being allocated to different purposes.",
+            "Choosing a cheaper drink illustrates comparing prices, not preparing a weekly budget.",
+            "Earning RM10 is an example of increasing income, not dividing pocket money."
+          ],
+          [
+            "As a result, the student is less likely to spend everything before the end of the week.",
+            "As a result, the student may discover which shop sells the cheapest snacks.",
+            "As a result, the student may receive more money from family members.",
+            "The result follows from planning how to use a limited amount of money.",
+            "Finding cheap shops follows from price comparison, not necessarily weekly budgeting.",
+            "Receiving more money is not a direct effect of preparing a budget."
+          ]
+        ]
+      ],
+      [
+        "Bringing food from home can help students save money at school.",
+        [
+          [
+            "Preparing a meal at home can reduce how often they need to buy food during recess.",
+            "Writing down daily purchases can help students notice where their money goes.",
+            "Choosing a refillable water bottle can reduce spending on drinks.",
+            "The sentence explains how a packed meal replaces a school purchase.",
+            "Tracking spending is useful but does not explain bringing food from home.",
+            "Bringing water also saves money, but it is a different habit from packing a meal."
+          ],
+          [
+            "For example, a student might pack rice and an egg instead of buying a full meal at the canteen.",
+            "For example, a student might list every canteen purchase in a small notebook.",
+            "For example, a student might refill a water bottle before going to class.",
+            "This directly illustrates substituting a home-prepared meal for a purchased meal.",
+            "The notebook shows tracking expenses, not bringing lunch.",
+            "Refilling water illustrates saving on drinks, not meals."
+          ],
+          [
+            "As a result, the student can use the money saved for school supplies or future needs.",
+            "As a result, the student can identify which days involve the most spending.",
+            "As a result, the student may drink more water throughout the day.",
+            "Money not spent on meals becomes available for other needs.",
+            "Identifying expensive days results from recording expenses.",
+            "Drinking more water is a health outcome, not the financial effect of packed meals."
+          ]
+        ]
+      ],
+      [
+        "Avoiding unnecessary online purchases helps teenagers protect their savings.",
+        [
+          [
+            "Pausing before buying gives them time to decide whether an item is a need or only a temporary desire.",
+            "Checking seller reviews helps buyers avoid dishonest online shops.",
+            "Following discount accounts helps teenagers learn about upcoming sales.",
+            "The explanation focuses on resisting impulse purchases.",
+            "Seller reviews address shopping safety, not whether a purchase is necessary.",
+            "Knowing about sales might encourage buying rather than prevent unnecessary spending."
+          ],
+          [
+            "For example, a teenager may leave a trendy phone accessory in the shopping cart for two days and then decide not to buy it.",
+            "For example, a teenager may read customer complaints before paying for an online order.",
+            "For example, a teenager may save screenshots of flash-sale announcements.",
+            "Waiting allows the student to reconsider an impulse purchase.",
+            "Reading complaints checks seller reliability rather than purchase necessity.",
+            "Saving sale announcements does not show resisting unnecessary spending."
+          ],
+          [
+            "As a result, more of their pocket money remains available for genuinely important purchases.",
+            "As a result, they may be less likely to lose money to a fake seller.",
+            "As a result, they may hear about new products before their friends do.",
+            "Not buying unneeded items preserves savings.",
+            "Avoiding fraud results from checking sellers, not avoiding impulse purchases.",
+            "Finding out about products is unrelated to protecting savings from unnecessary spending."
+          ]
+        ]
+      ],
+      [
+        "Setting a savings goal can motivate students to spend more carefully.",
+        [
+          [
+            "Having a clear target reminds them what they are saving for whenever they are tempted to spend.",
+            "Borrowing an item from a friend can reduce the need to buy it.",
+            "Keeping receipts makes it easier to calculate how much was spent.",
+            "A specific target gives students a reason to control spending.",
+            "Borrowing saves money in a particular situation, but does not explain goal-setting.",
+            "Keeping receipts monitors spending, but does not describe motivation from a goal."
+          ],
+          [
+            "For example, a student saving RM150 for a school trip may put RM5 aside each week rather than buy extra snacks.",
+            "For example, a student may borrow a reference book instead of purchasing another copy.",
+            "For example, a student may keep canteen receipts in an envelope.",
+            "The weekly saving choice is guided by a defined financial goal.",
+            "Borrowing a book shows avoiding one purchase, not working towards a stated savings target.",
+            "Collecting receipts documents expenses without illustrating a savings goal."
+          ],
+          [
+            "As a result, the student is more likely to reach the target without asking for extra money.",
+            "As a result, the student can return the borrowed book after using it.",
+            "As a result, the student can see exactly how much was spent last month.",
+            "Consistent saving helps reach the stated goal.",
+            "Returning an item follows from borrowing, not savings goals.",
+            "Seeing monthly totals follows from receipt-keeping, not necessarily goal-setting."
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "title": "Saving for School Needs",
+    "items": [
+      [
+        "Comparing prices before buying school supplies can reduce students' expenses.",
+        [
+          [
+            "Looking at similar products from different sellers helps them find suitable items at a lower cost.",
+            "Buying supplies in attractive colours can make studying more enjoyable.",
+            "Making a shopping list prevents students from forgetting essential items.",
+            "Comparing equivalent products is the mechanism for finding a better price.",
+            "Colours concern preference rather than reducing expenses through comparison.",
+            "A list helps organisation, but does not explain comparing prices."
+          ],
+          [
+            "For example, a student may check notebook prices at two bookshops before choosing the less expensive option with the same number of pages.",
+            "For example, a student may select a bright pink notebook because it matches a pencil case.",
+            "For example, a student may list pens, files and exercise books before shopping.",
+            "The example controls for quality and compares prices.",
+            "Matching stationery demonstrates a style choice, not a price comparison.",
+            "Making a list shows planning purchases, but no comparison of costs."
+          ],
+          [
+            "As a result, the student can obtain the necessary supplies while keeping more money for other expenses.",
+            "As a result, the student's stationery may look more coordinated.",
+            "As a result, the student is less likely to forget a needed item.",
+            "Choosing less expensive equivalent supplies preserves money.",
+            "Coordinated stationery follows from colour choices.",
+            "Remembering items follows from writing a shopping list."
+          ]
+        ]
+      ],
+      [
+        "Saving a small amount regularly can build a useful emergency fund for students.",
+        [
+          [
+            "Frequent small deposits gradually create money that can be used when an unexpected expense arises.",
+            "Keeping banknotes in a wallet makes them easy to use during recess.",
+            "Asking parents for extra allowance can increase the money available for shopping.",
+            "Regular contributions build a reserve for surprises.",
+            "Easy access to spending money does not explain building an emergency fund.",
+            "Extra allowance increases income, but does not guarantee money is saved for emergencies."
+          ],
+          [
+            "For example, a student may keep RM2 from each school day in a savings jar for unexpected printing or transport costs.",
+            "For example, a student may carry RM2 in a pocket to buy food after school.",
+            "For example, a student may request RM10 extra allowance for a class outing.",
+            "The example shows small, repeated savings intended for unexpected needs.",
+            "Carrying RM2 for immediate use is spending money, not an emergency reserve.",
+            "Requesting extra allowance does not show consistent emergency saving."
+          ],
+          [
+            "As a result, the student can handle a minor urgent expense without using money set aside for other plans.",
+            "As a result, the student can pay for an afternoon snack more quickly.",
+            "As a result, the student may have more money to spend during the outing.",
+            "A reserve protects other planned funds from unexpected costs.",
+            "Buying snacks follows from carrying cash, not building an emergency fund.",
+            "More outing money follows from getting an extra allowance."
+          ]
+        ]
+      ],
+      [
+        "Using the school library instead of buying every reference book can save students money.",
+        [
+          [
+            "Borrowing suitable materials gives students access to information without paying for each book.",
+            "Reading regularly improves vocabulary and understanding of different topics.",
+            "Organising a study timetable helps students revise every subject.",
+            "Borrowing replaces the cost of purchasing books.",
+            "Reading is beneficial, but does not explain how library borrowing saves money.",
+            "Study schedules improve time management, not spending on books."
+          ],
+          [
+            "For example, a Form 5 student may borrow an SPM revision guide instead of purchasing a second guide for the same subject.",
+            "For example, a Form 5 student may learn five new words from a novel each day.",
+            "For example, a Form 5 student may revise Science every Tuesday evening.",
+            "This directly contrasts borrowing and buying the same kind of resource.",
+            "Learning words illustrates reading benefits, not money saved through borrowing.",
+            "A revision timetable does not show avoiding a book purchase."
+          ],
+          [
+            "As a result, the student can revise effectively while spending less on learning materials.",
+            "As a result, the student's reading comprehension may improve gradually.",
+            "As a result, the student may cover all subjects before an examination.",
+            "Library borrowing supports study while reducing purchases.",
+            "Reading comprehension follows from reading practice.",
+            "Covering subjects follows from study planning."
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "title": "Making Responsible Choices",
+    "items": [
+      [
+        "Planning spending before a school event can prevent students from running out of money.",
+        [
+          [
+            "Estimating the cost of transport, food and activities helps them decide what they can afford in advance.",
+            "Joining school events gives students opportunities to meet classmates outside lessons.",
+            "Keeping loose change in a purse makes small payments more convenient.",
+            "Advance cost estimates explain how planning prevents overspending.",
+            "Social benefits of events are unrelated to the spending plan.",
+            "Carrying change affects payment convenience, not total spending plans."
+          ],
+          [
+            "For example, before a school carnival, a student may set RM8 for food and RM7 for games instead of spending without a limit.",
+            "For example, at a school carnival, a student may talk to new friends while waiting for a game.",
+            "For example, at a school carnival, a student may bring coins to pay for a drink.",
+            "The example shows a spending limit assigned to different activities.",
+            "Making friends illustrates a social benefit, not budgeting.",
+            "Bringing coins helps pay but does not impose spending limits."
+          ],
+          [
+            "As a result, the student can enjoy the event without using money needed for the rest of the week.",
+            "As a result, the student may feel closer to classmates after the event.",
+            "As a result, the student may not need to ask for smaller change.",
+            "Staying within event limits protects the remaining weekly money.",
+            "Friendship results from socialising, not planning expenses.",
+            "Having change follows from carrying coins, not advance budgeting."
+          ]
+        ]
+      ],
+      [
+        "Learning to distinguish needs from wants can help students make wiser financial decisions.",
+        [
+          [
+            "Recognising which purchases are essential makes it easier to delay items that are merely appealing.",
+            "A shopping receipt provides a record of when and where money was spent.",
+            "Promotional posters encourage customers to notice newly released products.",
+            "Separating essentials from optional items explains better spending decisions.",
+            "Receipts record purchases after they happen, rather than distinguishing needs from wants.",
+            "Advertisements attract attention, not guide essential spending."
+          ],
+          [
+            "For example, a student may buy a replacement calculator for lessons but postpone purchasing a decorative phone charm.",
+            "For example, a student may file a receipt after buying a calculator.",
+            "For example, a student may photograph a poster advertising new phone accessories.",
+            "A calculator is linked to school needs while the charm can wait.",
+            "Saving the receipt does not show choosing between needs and wants.",
+            "Photographing an advert does not demonstrate prioritising needs."
+          ],
+          [
+            "As a result, the student can prioritise necessary items and avoid wasting a limited allowance.",
+            "As a result, the student can check the date of an earlier purchase.",
+            "As a result, the student may know which accessories are currently popular.",
+            "Prioritising essentials protects a limited allowance.",
+            "Checking dates follows from keeping receipts.",
+            "Knowing trends follows from viewing advertisements."
+          ]
+        ]
+      ],
+      [
+        "Recording daily expenses can help students identify habits that waste money.",
+        [
+          [
+            "A written record reveals repeated small purchases that are easy to forget at the time.",
+            "Putting money in a savings account can reduce the temptation to carry it around.",
+            "Shopping with friends can make buying school supplies more enjoyable.",
+            "Tracking repeated expenses allows students to notice wasteful patterns.",
+            "Moving money to savings changes where it is kept, not how spending habits are identified.",
+            "Enjoying shopping with friends does not explain identifying spending patterns."
+          ],
+          [
+            "For example, a student may discover from a spending log that buying a RM3 drink every school day costs RM15 a week.",
+            "For example, a student may transfer RM15 from a wallet to a savings account.",
+            "For example, a student may visit a stationery shop with classmates on Friday.",
+            "The calculation exposes the total cost of a repeated habit.",
+            "The bank transfer is a saving action, not evidence obtained from expense records.",
+            "A shopping trip says nothing about reviewing everyday expenses."
+          ],
+          [
+            "As a result, the student can decide which frequent purchases to reduce and save more consistently.",
+            "As a result, the student may have less cash available in the wallet.",
+            "As a result, the student may enjoy spending time with friends.",
+            "Seeing the pattern supports a specific change to spending habits.",
+            "Less cash in a wallet follows from transferring it to savings.",
+            "Enjoying time together follows from social shopping, not tracking expenses."
+          ]
+        ]
+      ]
+    ]
+  }
+];
+const $=id=>document.getElementById(id);
+const NAMES=['Explanation','Example','Result / Effect'];
+const MALAY_STEPS=['Penjelasan','Contoh','Kesan'];
+const MAX=LEVELS.reduce((n,l)=>n+l.items.length*3,0);
+let player='',rounds=[],level=0,challenge=0,step=0,score=0,answeredCount=0,challengeScore=0,levelScores=[],mistakes=[],answered=false;
+function shuffle(items){let a=[...items];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function screen(name){for(const s of ['start','play','built','between','end'])$(s).hidden=s!==name}
+function current(){return rounds[level].items[challenge]}
+function startGame(){rounds=LEVELS.map(group=>{const items=shuffle(group.items).map(([point,parts])=>({point,parts:parts.map(([correct,w1,w2,why,why1,why2])=>({correct,why,wrong:[{text:w1,reason:why1},{text:w2,reason:why2}],options:[]}))}));const positions=shuffle(Array.from({length:items.length*3},(_,i)=>i%3));let k=0;for(const item of items){for(const part of item.parts){part.options=shuffle(part.wrong).map(x=>({...x,correct:false}));part.options.splice(positions[k++],0,{text:part.correct,correct:true})}}return {title:group.title,items}});level=0;challenge=0;score=0;answeredCount=0;levelScores=LEVELS.map(()=>0);mistakes=[];startChallenge()}
+function startChallenge(){step=0;challengeScore=0;screen('play');render()}
+function render(){answered=false;const item=current();$('player').textContent='👤 '+player;$('level').textContent=`Level ${level+1}/3 · ${rounds[level].title}`;$('score').textContent=`⭐ ${score}/${MAX}`;const before=rounds.slice(0,level).reduce((n,g)=>n+g.items.length,0);$('progress').textContent=`Paragraph ${before+challenge+1} of 10 · Step ${step+1} of 3`;$('bar').style.width=(answeredCount/MAX*100)+'%';$('point').textContent=item.point;NAMES.forEach((_,i)=>{$('step'+i).className='step '+(i<step?'done':i===step?'active':'')});$('draft').hidden=step===0;$('draftText').textContent=[item.point,...item.parts.slice(0,step).map(p=>p.correct)].join(' ');$('prompt').textContent=`Choose the best ${NAMES[step].toLowerCase()} sentence.`;$('feedback').hidden=true;$('feedback').className='feedback';$('feedback').replaceChildren();$('next').hidden=true;$('choices').replaceChildren();item.parts[step].options.forEach((opt,i)=>{let b=document.createElement('button');b.type='button';b.className='choice';let l=document.createElement('span');l.className='letter';l.textContent='ABC'[i];let t=document.createElement('span');t.textContent=opt.text;b.append(l,t);b.addEventListener('click',()=>choose(opt,b));$('choices').append(b)})}
+function feedbackLine(label,content){let p=document.createElement('p');let strong=document.createElement('strong');strong.textContent=label;p.append(strong,document.createTextNode(content));$('feedback').append(p)}
+function choose(opt,button){if(answered)return;answered=true;answeredCount++;let part=current().parts[step];for(let b of $('choices').children){b.disabled=true;if(b.querySelector('span:last-child').textContent===part.correct)b.classList.add('correct')}const fb=$('feedback');fb.hidden=false;if(opt.correct){score++;levelScores[level]++;challengeScore++;fb.classList.add('good');feedbackLine('✅ Correct! +1 mark',part.why);feedbackLine('🇲🇾 Penjelasan:',`Ayat ini ${step===0?'menerangkan sebab atau cara':step===1?'memberikan contoh yang tepat':'menunjukkan kesan yang sesuai'} berdasarkan isi utama.`)}else{button.classList.add('wrong');fb.classList.add('bad');feedbackLine('❌ 0 marks — Why your choice is wrong:',opt.reason);feedbackLine('🇲🇾 Mengapa salah:',`Ayat pilihan anda tidak memenuhi tugas ${MALAY_STEPS[step].toLowerCase()} bagi isi utama. Walaupun ayat ini mungkin berkaitan dengan topik menyimpan wang, ayat tersebut membincangkan idea yang berbeza dan tidak mengembangkan isi utama secara langsung.`);feedbackLine('✅ Correct sentence:',part.correct);feedbackLine('💡 Why this is correct:',part.why);feedbackLine('🇲🇾 Mengapa jawapan ini betul:',`Ayat yang betul ${step===0?'menerangkan bagaimana atau mengapa isi utama berlaku':step===1?'memberi contoh yang khusus dan sepadan dengan isi utama':'menunjukkan kesan yang logik daripada isi dan contoh sebelumnya'}.`);mistakes.push({point:current().point,kind:NAMES[step],chosen:opt.text,whyWrong:opt.reason,correct:part.correct,whyCorrect:part.why})}$('score').textContent=`⭐ ${score}/${MAX}`;$('bar').style.width=(answeredCount/MAX*100)+'%';$('next').textContent=step<2?`Continue to ${NAMES[step+1]} →`:'See Complete Paragraph 📝';$('next').hidden=false}
+function showParagraph(){screen('built');let item=current();$('challengeResult').textContent=`You earned ${challengeScore}/3 marks for this paragraph.`;$('paragraph').textContent=[item.point,...item.parts.map(p=>p.correct)].join(' ');let last=challenge===rounds[level].items.length-1;$('nextChallenge').textContent=last?(level===2?'See Final Score 🏆':'Finish This Level →'):'Next Paragraph →'}
+function nextChallenge(){challenge++;if(challenge<rounds[level].items.length){startChallenge();return}if(level===rounds.length-1){finish();return}$('levelFinished').textContent=`Level ${level+1} Completed!`;$('levelSummary').textContent=`You scored ${levelScores[level]}/${rounds[level].items.length*3} in ${rounds[level].title}.` ;screen('between')}
+function finish(){screen('end');$('resultName').textContent=player;$('finalScore').textContent=`${score} / ${MAX}`;$('percentage').textContent=Math.round(score/MAX*100)+'% correct';$('breakdown').replaceChildren();rounds.forEach((g,i)=>{let c=document.createElement('span');c.className='chip';c.textContent=`Level ${i+1}: ${levelScores[i]}/${g.items.length*3}`;$('breakdown').append(c)});$('message').textContent=score>=27?'🌟 Excellent paragraph-building skills!':score>=21?'👏 Great work! Keep connecting your ideas.':'🌱 Keep practising how each sentence supports the main point.';$('reviewButton').textContent=`Review My Mistakes (${mistakes.length}) 📚`;$('review').hidden=true;$('review').replaceChildren();if(!mistakes.length){$('review').textContent='Perfect! No mistakes to review. 🎉'}mistakes.forEach((m,i)=>{let box=document.createElement('div');box.className='review';for(const [label,val] of [[`${i+1}. ${m.kind} — Main point:`,m.point],['❌ Your choice:',m.chosen],['Why it does not fit:',m.whyWrong],['✅ Correct sentence:',m.correct],['Why it fits:',m.whyCorrect]]){let p=document.createElement('p');let s=document.createElement('strong');s.textContent=label+' ';p.append(s,document.createTextNode(val));box.append(p)}$('review').append(box)})}
+$('nameForm').addEventListener('submit',e=>{e.preventDefault();player=$('nameInput').value.trim();if(player)startGame()});$('next').addEventListener('click',()=>{if(!answered)return;if(step<2){step++;render()}else showParagraph()});$('nextChallenge').addEventListener('click',nextChallenge);$('continueLevel').addEventListener('click',()=>{level++;challenge=0;startChallenge()});$('reviewButton').addEventListener('click',()=>{$('review').hidden=!$('review').hidden});$('replay').addEventListener('click',startGame);$('changeName').addEventListener('click',()=>screen('start'));document.addEventListener('keydown',e=>{if($('play').hidden||answered||e.repeat||e.target.matches('input,textarea'))return;let i={'1':0,'2':1,'3':2,a:0,b:1,c:2}[e.key.toLowerCase()];if(i!==undefined)$('choices').children[i]?.click()});
+</script></body></html>
