@@ -4,164 +4,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paragraph Builder — Playing Sports</title>
+<title>Paragraph Builder — Playing Sports Set 2</title>
 <style>
 :root{
-  --pink:#e96c9f;
-  --ink:#48384c;
-  --green:#238456;
-  --red:#c53c59;
-  --lavender:#8a68b4;
+  --pink:#ea71a4;--ink:#493b4d;
+  --green:#238358;--red:#c83859
 }
 *{box-sizing:border-box}
 body{
-  margin:0;padding:16px;min-height:100vh;
+  margin:0;min-height:100vh;padding:16px;
   font-family:"Segoe UI",Arial,sans-serif;
   color:var(--ink);
-  background:linear-gradient(135deg,#ffe9f2,#f1edff,#e9faef);
+  background:linear-gradient(135deg,#ffe5f0,#f1edff,#e8f9f2)
 }
 .app{
-  width:min(100%,760px);margin:auto;background:white;
-  border-radius:24px;padding:27px 23px;
-  box-shadow:0 16px 40px #aa84a533;
+  width:min(100%,760px);margin:auto;
+  padding:27px 23px;background:white;
+  border-radius:25px;
+  box-shadow:0 14px 38px #b789a440
 }
-h1{color:#d64d88;text-align:center;margin:9px 0 14px}
-h2{line-height:1.3}
-p{line-height:1.55}
+h1{text-align:center;color:#d64e8c;margin:9px 0 14px}
+h2{line-height:1.35}
+p{line-height:1.6}
 .center{text-align:center}
 .hero{font-size:50px;text-align:center}
 .pill{
-  display:inline-block;border-radius:99px;
-  background:#ffe8f2;color:#984671;
-  padding:8px 13px;font-weight:750;font-size:13px;
+  display:inline-block;background:#ffebf4;
+  color:#a04478;border-radius:99px;
+  padding:8px 12px;font-size:13px;font-weight:750
 }
 input{
-  width:100%;font:inherit;padding:15px;
-  border:2px solid #efbfd4;border-radius:13px;
-  margin:14px 0;
+  width:100%;font:inherit;
+  border:2px solid #efc0d6;
+  border-radius:13px;padding:15px;margin:14px 0
 }
 button{font:inherit;cursor:pointer}
-.action{
-  width:100%;border:0;border-radius:13px;
-  padding:15px;background:var(--pink);color:#fff;
-  font-weight:750;margin-top:15px;font-size:16px;
+.btn{
+  width:100%;border:0;border-radius:14px;
+  margin-top:15px;padding:15px;
+  background:var(--pink);color:white;
+  font-size:16px;font-weight:750
 }
-.action:hover{background:#d1508a}
-.action.secondary{background:#ae90b4}
-.action:focus-visible,.choice:focus-visible{
-  outline:3px solid #7352b9;outline-offset:3px;
+.btn:hover{background:#d74c8b}
+.btn.alt{background:#ae91b5}
+.btn:focus-visible,.choice:focus-visible{
+  outline:3px solid #7354b8;outline-offset:3px
 }
 .stats{
-  display:flex;flex-wrap:wrap;gap:8px;
-  align-items:center;justify-content:space-between;
+  display:flex;flex-wrap:wrap;
+  justify-content:space-between;gap:8px
 }
 .track{
-  height:10px;background:#f8ddea;border-radius:40px;
-  overflow:hidden;margin:19px 0;
+  height:11px;margin:20px 0;
+  background:#f9ddea;
+  border-radius:99px;overflow:hidden
 }
 .bar{
   height:100%;width:0;
-  background:linear-gradient(90deg,#f1a4c7,var(--pink));
-  transition:width .2s;
+  background:linear-gradient(90deg,#f1a8c9,#e46ca0);
+  transition:width .25s
 }
-.steps{
-  display:flex;gap:6px;justify-content:space-between;
-  margin:14px 0;
-}
+.steps{display:flex;gap:6px;margin:15px 0}
 .step{
-  flex:1;text-align:center;padding:9px 5px;
-  border-radius:12px;background:#f5f0f5;
-  color:#8d7a8e;font-size:12px;font-weight:800;
+  flex:1;border-radius:12px;
+  background:#f5f0f5;color:#88788b;
+  text-align:center;padding:10px 5px;
+  font-size:12px;font-weight:800;
+  border:2px solid transparent
 }
 .step.active{
-  background:#fce1ef;color:#a73771;
-  border:2px solid #ed95bd;
+  background:#fbe1ef;color:#a63876;
+  border-color:#ea95bc
 }
-.step.done{background:#e1f5e9;color:#247b4f}
+.step.done{background:#def6e8;color:#20734d}
 .point{
-  background:#fff2f8;border:2px solid #f5d3e3;
-  padding:17px;border-radius:16px;margin:15px 0;
+  background:#fff2f8;
+  border:2px solid #f3d4e3;
+  border-radius:16px;padding:17px;margin:16px 0
 }
 .point small{
   display:block;font-size:12px;font-weight:800;
-  color:#a44e7c;letter-spacing:.08em;margin-bottom:7px;
+  color:#a4497b;letter-spacing:.06em;
+  margin-bottom:8px
 }
 .point strong{font-size:19px;line-height:1.5}
 .draft{
-  background:#f9f7ff;border:1px dashed #c7afd9;
-  border-radius:14px;padding:13px 16px;margin:13px 0;
+  background:#f8f7ff;
+  border:1px dashed #c5afd9;
+  border-radius:14px;padding:13px 16px;
+  margin:13px 0
 }
-.draft-label{
-  font-size:12px;font-weight:800;color:#8062a8;
+.draft small{color:#8162a6;font-weight:800}
+.draft p{
+  font-size:14px;margin:7px 0;line-height:1.65
 }
-.draft p{margin:6px 0;font-size:14px;line-height:1.55}
 .prompt{
-  text-align:center;font-weight:800;margin:19px 0 13px;
+  text-align:center;font-weight:800;
+  margin:20px 0 14px
 }
-.choices{display:grid;gap:10px}
+.choices{display:grid;gap:11px}
 .choice{
   display:flex;align-items:flex-start;gap:12px;
+  width:100%;border:2px solid #f2cadd;
+  border-radius:15px;padding:14px;
   text-align:left;background:#fff9fc;
-  border:2px solid #f1c9da;border-radius:14px;
-  width:100%;padding:14px;color:var(--ink);
-  line-height:1.5;
+  color:var(--ink);line-height:1.5
 }
 .choice:hover:not(:disabled){
-  background:#ffe9f2;border-color:var(--pink);
+  background:#ffe8f1;border-color:var(--pink)
 }
 .choice:disabled{cursor:default}
 .letter{
-  flex:0 0 30px;min-height:30px;border-radius:9px;
-  background:#f8dce9;color:#85506d;
-  display:grid;place-items:center;font-weight:850;
+  flex:0 0 31px;min-height:31px;
+  display:grid;place-items:center;
+  background:#f8dce9;border-radius:9px;
+  color:#86516e;font-weight:850
 }
 .choice.correct{
-  background:#dff7e9;border-color:#4ab07b;color:#195f40;
-}
-.choice.wrong{
-  background:#ffe0e6;border-color:#e26983;
-  color:#9e2d48;animation:shake .42s ease;
+  background:#e0f8e9;
+  border-color:#47af79;color:#205e43
 }
 .choice.correct .letter{
-  background:#c7ecd7;color:#1c7649;
+  background:#c6efd8;color:#1b7047
+}
+.choice.wrong{
+  background:#ffe0e7;border-color:#e26182;
+  color:#a52a49;animation:shake .42s ease
 }
 .feedback{
-  border-radius:13px;padding:14px;margin-top:15px;
-  line-height:1.55;font-size:14px;font-weight:650;
+  padding:15px;border-radius:14px;
+  margin-top:15px;font-weight:650;
+  font-size:14px;line-height:1.6
 }
-.feedback.good{background:#e2f8ea;color:#1b6f45}
-.feedback.bad{background:#ffe2e9;color:#9d2c47}
-.paragraph{
-  border:2px solid #eec4d8;border-radius:16px;
-  padding:17px;background:#fff9fc;
-  line-height:1.75;font-size:16px;
+.feedback.good{background:#e4f8ed;color:#1d704a}
+.feedback.bad{background:#ffe3e9;color:#a52d4b}
+.model{
+  border:2px solid #edc9db;
+  background:#fffafd;border-radius:16px;
+  padding:19px;line-height:1.8;font-size:16px
 }
-.part{display:block;margin:10px 0}
-.part b{color:#aa4580}
+.model p{margin:0}
 .big{
-  font-size:66px;color:#d64d8b;font-weight:900;
-  text-align:center;margin:10px;
+  font-size:65px;font-weight:900;
+  color:#d74d90;margin:12px 0;text-align:center
 }
-.results{
-  display:flex;flex-wrap:wrap;
-  justify-content:center;gap:9px;
+.scorechips{
+  display:flex;justify-content:center;
+  flex-wrap:wrap;gap:8px
 }
-.result-chip{
-  padding:9px 12px;border-radius:11px;
-  background:#fdf0f6;font-weight:700;font-size:13px;
+.chip{
+  background:#fff0f6;border-radius:12px;
+  padding:9px 13px;font-size:13px;font-weight:700
 }
+.reviewitem{
+  text-align:left;padding:14px;
+  background:#fff9fc;
+  border:1px solid #ecd5e2;
+  border-radius:14px;margin-top:10px;
+  font-size:14px;line-height:1.6
+}
+.reviewitem strong{display:block}
 #effects{
-  position:fixed;inset:0;pointer-events:none;
-  z-index:99;overflow:hidden;
+  position:fixed;inset:0;
+  pointer-events:none;overflow:hidden;z-index:99
 }
 .particle{
   position:absolute;font-size:28px;
-  animation:burst 1.1s ease-out forwards;
+  animation:burst 1.12s ease-out forwards
 }
 @keyframes burst{
   0%{
     opacity:0;
-    transform:translate(-50%,-50%) scale(.25);
+    transform:translate(-50%,-50%) scale(.25)
   }
   20%{opacity:1}
   100%{
@@ -169,7 +183,7 @@ button{font:inherit;cursor:pointer}
     transform:translate(
       calc(-50% + var(--dx)),
       calc(-50% + var(--dy))
-    ) rotate(var(--r)) scale(1.25);
+    ) rotate(var(--r)) scale(1.2)
   }
 }
 @keyframes shake{
@@ -177,22 +191,22 @@ button{font:inherit;cursor:pointer}
   20%,60%{transform:translateX(-8px)}
   40%,80%{transform:translateX(8px)}
 }
-@keyframes redFlash{35%{background:#ffe1e8}}
-@keyframes greenFlash{35%{background:#e5f9ed}}
-.flash-red{animation:redFlash .45s}
-.flash-green{animation:greenFlash .45s}
+@keyframes flashRed{35%{background:#ffe0e7}}
+@keyframes flashGreen{35%{background:#e5faed}}
+.flash-red{animation:flashRed .45s}
+.flash-green{animation:flashGreen .45s}
 [hidden]{display:none!important}
 @media(max-width:520px){
   body{padding:8px}
   .app{padding:21px 14px}
   .point strong{font-size:17px}
-  .choice{padding:12px;font-size:14px}
+  .choice{font-size:14px;padding:12px}
   .step{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{
     animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
+    transition-duration:.01ms!important
   }
 }
 </style>
@@ -203,35 +217,32 @@ button{font:inherit;cursor:pointer}
 <main class="app" id="app">
 
 <section id="start">
-  <div class="hero">🏸⚽🏆</div>
+  <div class="hero">🏸⚽🏀</div>
   <h1>Paragraph Builder!</h1>
   <p class="center">
-    <span class="pill">
-      PLAYING SPORTS · WRITING PRACTICE
-    </span>
+    <span class="pill">PLAYING SPORTS · SET 2</span>
   </p>
   <p class="center">
-    Turn a <b>main point</b> into a full paragraph,
-    one sentence at a time!
+    Develop each main point with an
+    <b>Explanation → Example → Result / Effect</b>.
   </p>
   <div class="steps">
-    <span class="step active">1 · Explanation</span>
-    <span class="step active">2 · Example</span>
-    <span class="step active">3 · Result / Effect</span>
+    <div class="step active">1 · Explanation</div>
+    <div class="step active">2 · Example</div>
+    <div class="step active">3 · Result</div>
   </div>
   <p class="center">
-    <b>10 paragraphs · 3 choices each = 30 marks</b>
-    <br>
-    Benefits (4) · Risks (3) · Improving Skills (3)
+    🌟 Benefits and Opportunities (4 paragraphs)<br>
+    ⚠️ Challenges and Barriers (3 paragraphs)<br>
+    🏆 Healthy Training Habits (3 paragraphs)
   </p>
   <p class="center">
-    After every challenge, see the complete model
-    paragraph you have built.
+    <b>10 paragraphs × 3 steps = 30 marks</b>
   </p>
   <form id="nameForm">
     <input id="nameInput" maxlength="60"
       placeholder="Enter your name" required>
-    <button class="action">Start Building ✨</button>
+    <button class="btn">Start Building ✨</button>
   </form>
 </section>
 
@@ -244,7 +255,7 @@ button{font:inherit;cursor:pointer}
   <div class="track">
     <div class="bar" id="bar"></div>
   </div>
-  <p class="center" id="progress"></p>
+  <p id="progress" class="center"></p>
   <div class="steps">
     <div class="step" id="step0">1 · Explanation</div>
     <div class="step" id="step1">2 · Example</div>
@@ -255,16 +266,14 @@ button{font:inherit;cursor:pointer}
     <strong id="point"></strong>
   </div>
   <div class="draft" id="draft" hidden>
-    <span class="draft-label">
-      YOUR PARAGRAPH SO FAR
-    </span>
-    <div id="draftText"></div>
+    <small>CORRECT PARAGRAPH SO FAR (including corrected answers)</small>
+    <p id="draftText"></p>
   </div>
   <p class="prompt" id="prompt"></p>
   <div class="choices" id="choices"></div>
   <div class="feedback" id="feedback"
     role="status" aria-live="polite" hidden></div>
-  <button class="action" id="next" hidden>
+  <button class="btn" id="next" hidden>
     Continue →
   </button>
 </section>
@@ -272,13 +281,15 @@ button{font:inherit;cursor:pointer}
 <section id="built" hidden>
   <div class="hero">📝👏🌸</div>
   <h1>Paragraph Complete!</h1>
-  <p class="center" id="challengeResult"></p>
-  <div class="paragraph" id="paragraph"></div>
+  <p id="challengeResult" class="center"></p>
+  <div class="model">
+    <p id="modelText"></p>
+  </div>
   <p class="center" style="font-size:13px">
-    Read how the explanation, example and result
-    support the main point.
+    Notice how each sentence explains, illustrates
+    or develops the main point.
   </p>
-  <button class="action" id="nextChallenge">
+  <button class="btn" id="nextChallenge">
     Next Paragraph →
   </button>
 </section>
@@ -287,7 +298,7 @@ button{font:inherit;cursor:pointer}
   <div class="hero">🎉💗</div>
   <h1 id="levelFinished"></h1>
   <p class="center" id="levelSummary"></p>
-  <button class="action" id="continueLevel">
+  <button class="btn" id="continueLevel">
     Next Level →
   </button>
 </section>
@@ -296,629 +307,783 @@ button{font:inherit;cursor:pointer}
   <div class="hero">🏆💗✨</div>
   <h1>Writing Challenge Completed!</h1>
   <h2 class="center" id="resultName"></h2>
-  <p class="center">Your score</p>
+  <p class="center">Your final score</p>
   <div class="big" id="finalScore"></div>
   <p class="center">
     <span class="pill" id="percentage"></span>
   </p>
-  <div class="results" id="breakdown"></div>
-  <p class="center" id="message"></p>
-  <button class="action" id="replay">
+  <div class="scorechips" id="breakdown"></div>
+  <p id="message" class="center"></p>
+  <button class="btn alt" id="reviewButton">
+    Review My Mistakes 📚
+  </button>
+  <div id="review" hidden></div>
+  <button class="btn" id="replay">
     Play Again 🔀
   </button>
-  <button class="action secondary" id="changeName">
+  <button class="btn alt" id="changeName">
     Change Name
   </button>
   <p class="center" style="font-size:13px">
     📸 Screenshot your result to submit!
   </p>
 </section>
-
 </main>
 
 <script>
-// For each main point, every step has:
-// [best sentence, distractor 1, distractor 2, teaching note].
+// Each stage:
+// [correct, wrong 1, wrong 2, teaching explanation]
 
-const LEVELS = [
-  {
-    title:"Benefits of Sports",
-    items:[
-      {
-        point:"Playing sports regularly helps students improve their physical fitness.",
-        steps:[
-          [
-            "This is because active movements strengthen muscles and gradually increase stamina.",
-            "This is because joining a sports club gives students opportunities to meet new friends.",
-            "This is because team captains often make important decisions during matches.",
-            "The explanation shows HOW exercise improves fitness, rather than describing friendship or leadership."
-          ],
-          [
-            "For example, a student who plays badminton three times a week may find it easier to keep moving throughout a long match.",
-            "For example, the badminton club may organise a friendly tournament at the end of term.",
-            "For example, badminton players may learn to encourage teammates after losing a point.",
-            "This example shows a specific improvement in stamina."
-          ],
-          [
-            "As a result, students can take part in physical activities for longer without becoming tired as quickly.",
-            "As a result, students may build closer friendships with their teammates.",
-            "As a result, students may become better at accepting a referee's decision.",
-            "The result follows logically from improved fitness and stamina."
-          ]
-        ]
-      },
-      {
-        point:"Participating in team sports teaches students to cooperate with others.",
-        steps:[
-          [
-            "This is because players must coordinate their actions and support one another to achieve a shared goal.",
-            "This is because regular training can improve a player's flexibility and strength.",
-            "This is because competitions often require students to follow a training timetable.",
-            "A good explanation shows WHY team sports develop cooperation."
-          ],
-          [
-            "For example, netball players need to pass the ball and move into space so their teammates can score.",
-            "For example, a netball player may practise shooting alone to improve accuracy.",
-            "For example, netball players may drink water during breaks between matches.",
-            "Passing and moving together show cooperation in action."
-          ],
-          [
-            "As a result, students become better at sharing responsibilities and working with other people.",
-            "As a result, students may be able to run for longer without stopping.",
-            "As a result, students may feel more relaxed after physical exercise.",
-            "The result describes an improved ability to cooperate."
-          ]
-        ]
-      },
-      {
-        point:"Playing sports after school can help students manage stress.",
-        steps:[
-          [
-            "This is because exercise gives them a mental break from academic worries and helps them release tension.",
-            "This is because competitive matches teach players to follow a set of rules.",
-            "This is because physical activity may improve muscle strength over time.",
-            "The explanation connects physical activity with a reduction in stress."
-          ],
-          [
-            "For example, a student who feels overwhelmed by homework may feel more relaxed after playing futsal with friends.",
-            "For example, a futsal team may practise passing drills before an important match.",
-            "For example, a futsal player may score two goals and receive a medal.",
-            "The example shows an everyday situation in which sport eases stress."
-          ],
-          [
-            "As a result, students may return to their schoolwork with a clearer mind.",
-            "As a result, students may develop stronger leg muscles through regular running.",
-            "As a result, students may be chosen as team captains.",
-            "The effect continues the idea of improved emotional wellbeing."
-          ]
-        ]
-      },
-      {
-        point:"Learning a new sports skill can boost students' self-confidence.",
-        steps:[
-          [
-            "This is because mastering something that once seemed difficult gives them clear evidence of their progress.",
-            "This is because sports clubs usually include students from different classes.",
-            "This is because athletes need to wear suitable shoes during training.",
-            "The explanation identifies the link between improvement and confidence."
-          ],
-          [
-            "For example, a student who once missed every basketball shot may feel proud after learning to score consistently.",
-            "For example, a basketball team may practise defensive formations before a match.",
-            "For example, students may need to buy suitable shoes for basketball practice.",
-            "The example focuses on personal progress and the confidence it builds."
-          ],
-          [
-            "As a result, they may become more willing to try new challenges without fearing failure.",
-            "As a result, they may learn how to follow more complicated game rules.",
-            "As a result, they may develop stronger muscles in their arms and legs.",
-            "The result extends the main point: growing confidence encourages new attempts."
-          ]
-        ]
-      }
+const LEVELS=[
+ {
+  "title": "Benefits and Opportunities",
+  "items": [
+   {
+    "point": "Taking part in team sports can help shy students feel included.",
+    "topicIndex": 0,
+    "steps": [
+     [
+      "Working towards a shared target gives quieter students a reason to interact with teammates without having to start every conversation.",
+      "Preparing for competitions encourages students, teachers and families to support one another and celebrate shared efforts.",
+      "Different activities challenge different abilities, allowing students to notice which movements and roles suit them best.",
+      "It shows how shared activities help shy students join a group."
+     ],
+     [
+      "For example, a shy student may gradually feel comfortable talking to others while practising passing drills in a netball team.",
+      "For example, parents may volunteer at a school athletics day while teachers and students help organise the races.",
+      "For example, someone who struggles with long-distance running may discover excellent coordination while learning table tennis.",
+      "The student becomes more comfortable with teammates through a shared task."
+     ],
+     [
+      "As a result, students who once felt left out may develop a stronger sense of belonging at school.",
+      "As a result, people in the school community may feel more connected and willing to cooperate in future events.",
+      "Therefore, students can choose activities that match their abilities and feel more confident about participating.",
+      "The outcome is inclusion and belonging, not just better technique."
+     ]
     ]
-  },
-
-  {
-    title:"Risks and Challenges",
-    items:[
-      {
-        point:"Starting intense sports without warming up increases the risk of injury.",
-        steps:[
-          [
-            "This is because sudden, forceful movements can strain muscles that have not been prepared for intense activity.",
-            "This is because some students prefer playing indoor sports during rainy weather.",
-            "This is because competitive athletes may feel nervous before important events.",
-            "The explanation identifies the physical reason injuries may occur."
-          ],
-          [
-            "For example, a student who starts sprinting at full speed without preparation may pull a leg muscle.",
-            "For example, a football player might forget to bring a water bottle to training.",
-            "For example, a sprinter may feel nervous before an inter-school event.",
-            "The example illustrates a specific injury related to skipping a warm-up."
-          ],
-          [
-            "As a result, the student may need to stop training temporarily while the injury heals.",
-            "As a result, the student may learn to communicate better with teammates.",
-            "As a result, the student may become more interested in joining competitions.",
-            "The result shows a direct consequence of being injured."
-          ]
-        ]
-      },
-      {
-        point:"Spending too much time on sports training can affect students' studies.",
-        steps:[
-          [
-            "This is because long training sessions may leave students with less time and energy for homework and revision.",
-            "This is because training regularly may help students develop their physical stamina.",
-            "This is because sports teams often need to share equipment during practice.",
-            "The explanation focuses on the conflict between training time and study time."
-          ],
-          [
-            "For example, a student who trains until late evening may struggle to finish an assignment due the next morning.",
-            "For example, a student may learn several new football skills during a training session.",
-            "For example, a school team may organise friendly matches with nearby schools.",
-            "The example describes a realistic situation where training interrupts schoolwork."
-          ],
-          [
-            "As a result, academic performance may suffer if students do not manage their time carefully.",
-            "As a result, students may become more confident when speaking to teammates.",
-            "As a result, students may improve their ability to run long distances.",
-            "The consequence connects directly to reduced time for learning."
-          ]
-        ]
-      },
-      {
-        point:"Excessive pressure to win can negatively affect young athletes.",
-        steps:[
-          [
-            "This is because fear of disappointing others may make players anxious and afraid of making mistakes.",
-            "This is because experienced athletes often practise techniques to improve their speed.",
-            "This is because organised competitions require referees and clear rules.",
-            "This explanation shows how pressure affects a player's emotions."
-          ],
-          [
-            "For example, a player may hesitate to take a shot because they worry that teammates will blame them for missing.",
-            "For example, a player may spend extra time practising their shooting technique after school.",
-            "For example, a football team may travel by bus to a tournament in another town.",
-            "The example demonstrates anxiety caused by expectations to win."
-          ],
-          [
-            "As a result, players may lose enjoyment of the sport and become less confident during competitions.",
-            "As a result, players may become more familiar with the rules of the game.",
-            "As a result, players may strengthen their muscles through frequent practice.",
-            "The outcome continues the negative emotional effect of excessive pressure."
-          ]
-        ]
-      }
+   },
+   {
+    "point": "Regular sporting activities can help students establish healthier sleep routines.",
+    "topicIndex": 1,
+    "steps": [
+     [
+      "Physical activity can help students feel ready for rest, especially when they follow a consistent training and bedtime schedule.",
+      "Combining activities such as strength training, stretching and endurance work develops several skills instead of focusing on only one.",
+      "Recording small improvements makes their hard work visible even when major achievements take longer to reach.",
+      "It connects consistent exercise habits with a healthier sleep routine."
+     ],
+     [
+      "For instance, a student who plays volleyball after school and stops using a phone before bed may find it easier to fall asleep.",
+      "For instance, a basketball player may practise shooting but also include balance drills and short runs in weekly training.",
+      "For example, a swimmer may note the time taken for each lap and notice a gradual improvement over several weeks.",
+      "The example combines an active afternoon with habits that support sleep."
+     ],
+     [
+      "Consequently, better rest may leave students feeling more refreshed and alert during morning lessons.",
+      "Therefore, the player may become more adaptable and perform better in different situations during a match.",
+      "As a result, seeing measurable progress may encourage students to continue practising instead of giving up.",
+      "The outcome focuses on feeling rested after sleeping well."
+     ]
     ]
-  },
-
-  {
-    title:"How to Improve in Sports",
-    items:[
-      {
-        point:"Setting small, realistic goals helps students improve their sports skills.",
-        steps:[
-          [
-            "This is because clear, achievable targets show students what to practise and allow them to measure progress.",
-            "This is because players can enjoy spending time with their friends during training.",
-            "This is because schools sometimes offer prizes to successful athletes.",
-            "The explanation shows how specific goals guide skill development."
-          ],
-          [
-            "For example, a football player might aim to make eight accurate passes out of ten before increasing the difficulty.",
-            "For example, a football player may celebrate a teammate's birthday after training.",
-            "For example, a football club may order new uniforms before the season begins.",
-            "A measurable passing target is a concrete example of a realistic goal."
-          ],
-          [
-            "As a result, players can notice improvements more easily and stay motivated to continue practising.",
-            "As a result, players may become more interested in watching international tournaments.",
-            "As a result, players may learn about the history of different sports.",
-            "The result explains how goal-setting supports further progress."
-          ]
-        ]
-      },
-      {
-        point:"Listening to a coach's feedback can help students perform better in sports.",
-        steps:[
-          [
-            "This is because constructive comments identify specific mistakes and explain how to correct them.",
-            "This is because coaches usually arrange training sessions and organise equipment.",
-            "This is because joining a sports club allows students to meet people with similar interests.",
-            "The explanation clarifies why feedback helps improve performance."
-          ],
-          [
-            "For example, a swimming coach may show a student how to position their arms for a more effective stroke.",
-            "For example, a swimming coach may announce the date of the next school competition.",
-            "For example, a swimming club may welcome new students at the start of the year.",
-            "This example demonstrates feedback that leads to a specific technical correction."
-          ],
-          [
-            "As a result, the student can practise a more efficient technique instead of repeating the same mistake.",
-            "As a result, the student may spend more time socialising with other swimmers.",
-            "As a result, the student may become more interested in collecting swimming equipment.",
-            "The effect shows how using feedback leads to better technique."
-          ]
-        ]
-      },
-      {
-        point:"Getting enough rest between training sessions helps young athletes improve safely.",
-        steps:[
-          [
-            "This is because the body needs recovery time to repair stressed tissues and restore energy.",
-            "This is because sports training can introduce students to new teammates and coaches.",
-            "This is because most school competitions include athletes from different age groups.",
-            "The explanation focuses on what rest does for recovery."
-          ],
-          [
-            "For example, a school runner might schedule a lighter training day after a demanding race.",
-            "For example, a school runner might join a new athletics club to meet more friends.",
-            "For example, a school runner might watch a championship on television after school.",
-            "The example gives a practical way to allow recovery."
-          ],
-          [
-            "As a result, the runner can return to training feeling more prepared and may reduce the risk of overuse injuries.",
-            "As a result, the runner may become more interested in learning about famous athletes.",
-            "As a result, the runner may be asked to lead the school's sports parade.",
-            "The result links recovery to safer, more effective training."
-          ]
-        ]
-      }
+   },
+   {
+    "point": "School sports events can strengthen relationships within the school community.",
+    "topicIndex": 2,
+    "steps": [
+     [
+      "Preparing for competitions encourages students, teachers and families to support one another and celebrate shared efforts.",
+      "Working towards a shared target gives quieter students a reason to interact with teammates without having to start every conversation.",
+      "Different activities challenge different abilities, allowing students to notice which movements and roles suit them best.",
+      "It explains how a sports event brings different school groups together."
+     ],
+     [
+      "For example, parents may volunteer at a school athletics day while teachers and students help organise the races.",
+      "For example, a shy student may gradually feel comfortable talking to others while practising passing drills in a netball team.",
+      "For example, someone who struggles with long-distance running may discover excellent coordination while learning table tennis.",
+      "The example shows cooperation by students, teachers and families."
+     ],
+     [
+      "As a result, people in the school community may feel more connected and willing to cooperate in future events.",
+      "As a result, students who once felt left out may develop a stronger sense of belonging at school.",
+      "Therefore, students can choose activities that match their abilities and feel more confident about participating.",
+      "The result is a stronger school community, not an individual sports skill."
+     ]
     ]
-  }
+   },
+   {
+    "point": "Trying different sports can help students discover their personal strengths.",
+    "topicIndex": 3,
+    "steps": [
+     [
+      "Different activities challenge different abilities, allowing students to notice which movements and roles suit them best.",
+      "Combining activities such as strength training, stretching and endurance work develops several skills instead of focusing on only one.",
+      "Recording small improvements makes their hard work visible even when major achievements take longer to reach.",
+      "It explains how variety helps students identify their own abilities."
+     ],
+     [
+      "For example, someone who struggles with long-distance running may discover excellent coordination while learning table tennis.",
+      "For instance, a basketball player may practise shooting but also include balance drills and short runs in weekly training.",
+      "For example, a swimmer may note the time taken for each lap and notice a gradual improvement over several weeks.",
+      "The example contrasts performance in two sports to reveal a strength."
+     ],
+     [
+      "Therefore, students can choose activities that match their abilities and feel more confident about participating.",
+      "Therefore, the player may become more adaptable and perform better in different situations during a match.",
+      "As a result, seeing measurable progress may encourage students to continue practising instead of giving up.",
+      "The outcome is a better personal sporting choice."
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Challenges and Barriers",
+  "items": [
+   {
+    "point": "The cost of sports equipment can prevent some students from participating.",
+    "topicIndex": 4,
+    "steps": [
+     [
+      "Special shoes, protective gear and competition fees may be unaffordable for families with limited budgets.",
+      "Courts with damaged surfaces or poor lighting can make activities feel unsafe and less enjoyable.",
+      "Constant training, travel and pressure to perform can reduce the time available for relaxation and personal interests.",
+      "It identifies money as a barrier to taking part in sport."
+     ],
+     [
+      "For instance, a student may wish to join a badminton club but struggle to pay for a racket, shoes and tournament entry.",
+      "For instance, students may stop playing basketball after noticing uneven flooring and broken lights at their local court.",
+      "For example, a student attending training every evening and weekend competitions may have almost no time to unwind.",
+      "The example shows a student unable to afford several participation costs."
+     ],
+     [
+      "As a result, talented students may miss opportunities unless schools provide shared equipment or financial support.",
+      "As a result, fewer students may take part in regular exercise until the facilities are repaired.",
+      "Consequently, the student may lose enthusiasm for sport and need a more balanced routine.",
+      "The outcome concerns access to sporting opportunities."
+     ]
+    ]
+   },
+   {
+    "point": "An overloaded sports schedule may leave students mentally exhausted.",
+    "topicIndex": 5,
+    "steps": [
+     [
+      "Constant training, travel and pressure to perform can reduce the time available for relaxation and personal interests.",
+      "Special shoes, protective gear and competition fees may be unaffordable for families with limited budgets.",
+      "Recording small improvements makes their hard work visible even when major achievements take longer to reach.",
+      "It explains emotional tiredness caused by having too many sports commitments."
+     ],
+     [
+      "For example, a student attending training every evening and weekend competitions may have almost no time to unwind.",
+      "For instance, a student may wish to join a badminton club but struggle to pay for a racket, shoes and tournament entry.",
+      "For example, a swimmer may note the time taken for each lap and notice a gradual improvement over several weeks.",
+      "The example shows a packed schedule without adequate downtime."
+     ],
+     [
+      "Consequently, the student may lose enthusiasm for sport and need a more balanced routine.",
+      "As a result, talented students may miss opportunities unless schools provide shared equipment or financial support.",
+      "As a result, seeing measurable progress may encourage students to continue practising instead of giving up.",
+      "The result is reduced enthusiasm, not necessarily a physical injury."
+     ]
+    ]
+   },
+   {
+    "point": "Unsuitable sports facilities can discourage students from staying active.",
+    "topicIndex": 6,
+    "steps": [
+     [
+      "Courts with damaged surfaces or poor lighting can make activities feel unsafe and less enjoyable.",
+      "Special shoes, protective gear and competition fees may be unaffordable for families with limited budgets.",
+      "Constant training, travel and pressure to perform can reduce the time available for relaxation and personal interests.",
+      "It explains how the condition of facilities affects participation."
+     ],
+     [
+      "For instance, students may stop playing basketball after noticing uneven flooring and broken lights at their local court.",
+      "For instance, a student may wish to join a badminton club but struggle to pay for a racket, shoes and tournament entry.",
+      "For example, a student attending training every evening and weekend competitions may have almost no time to unwind.",
+      "The example illustrates students avoiding a poorly maintained court."
+     ],
+     [
+      "As a result, fewer students may take part in regular exercise until the facilities are repaired.",
+      "As a result, talented students may miss opportunities unless schools provide shared equipment or financial support.",
+      "Consequently, the student may lose enthusiasm for sport and need a more balanced routine.",
+      "The outcome concerns fewer opportunities for regular participation."
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Healthy Training Habits",
+  "items": [
+   {
+    "point": "Drinking enough water helps students maintain their performance during exercise.",
+    "topicIndex": 7,
+    "steps": [
+     [
+      "Replacing fluid lost through sweating helps the body manage heat and reduces the risk of dehydration.",
+      "Combining activities such as strength training, stretching and endurance work develops several skills instead of focusing on only one.",
+      "Courts with damaged surfaces or poor lighting can make activities feel unsafe and less enjoyable.",
+      "It connects hydration to the physical demands of exercise."
+     ],
+     [
+      "For example, players may drink water during planned breaks in a long outdoor football training session.",
+      "For instance, a basketball player may practise shooting but also include balance drills and short runs in weekly training.",
+      "For instance, students may stop playing basketball after noticing uneven flooring and broken lights at their local court.",
+      "The example describes drinking water while training, not another safety habit."
+     ],
+     [
+      "As a result, they may be able to continue exercising more comfortably and safely.",
+      "Therefore, the player may become more adaptable and perform better in different situations during a match.",
+      "As a result, fewer students may take part in regular exercise until the facilities are repaired.",
+      "The result concerns safe and comfortable performance during activity."
+     ]
+    ]
+   },
+   {
+    "point": "Training with different types of exercise can improve an athlete’s overall ability.",
+    "topicIndex": 8,
+    "steps": [
+     [
+      "Combining activities such as strength training, stretching and endurance work develops several skills instead of focusing on only one.",
+      "Replacing fluid lost through sweating helps the body manage heat and reduces the risk of dehydration.",
+      "Different activities challenge different abilities, allowing students to notice which movements and roles suit them best.",
+      "It explains how varied training develops a wider range of abilities."
+     ],
+     [
+      "For instance, a basketball player may practise shooting but also include balance drills and short runs in weekly training.",
+      "For example, players may drink water during planned breaks in a long outdoor football training session.",
+      "For example, someone who struggles with long-distance running may discover excellent coordination while learning table tennis.",
+      "The example clearly combines sport-specific and supporting exercises."
+     ],
+     [
+      "Therefore, the player may become more adaptable and perform better in different situations during a match.",
+      "As a result, they may be able to continue exercising more comfortably and safely.",
+      "Therefore, students can choose activities that match their abilities and feel more confident about participating.",
+      "The outcome is improved all-round performance."
+     ]
+    ]
+   },
+   {
+    "point": "Tracking personal progress can motivate students to keep practising sports.",
+    "topicIndex": 9,
+    "steps": [
+     [
+      "Recording small improvements makes their hard work visible even when major achievements take longer to reach.",
+      "Combining activities such as strength training, stretching and endurance work develops several skills instead of focusing on only one.",
+      "Physical activity can help students feel ready for rest, especially when they follow a consistent training and bedtime schedule.",
+      "It explains why evidence of improvement supports motivation."
+     ],
+     [
+      "For example, a swimmer may note the time taken for each lap and notice a gradual improvement over several weeks.",
+      "For instance, a basketball player may practise shooting but also include balance drills and short runs in weekly training.",
+      "For instance, a student who plays volleyball after school and stops using a phone before bed may find it easier to fall asleep.",
+      "The example uses personal records to show improvement over time."
+     ],
+     [
+      "As a result, seeing measurable progress may encourage students to continue practising instead of giving up.",
+      "Therefore, the player may become more adaptable and perform better in different situations during a match.",
+      "Consequently, better rest may leave students feeling more refreshed and alert during morning lessons.",
+      "The result concerns continued motivation through tracked progress."
+     ]
+    ]
+   }
+  ]
+ }
 ];
 
-const $ = id => document.getElementById(id);
-const labels = [
-  "Explanation",
-  "Example",
-  "Result / Effect"
+const TOPICS=[
+ [
+  "strengthening the school community",
+  "discovering strengths through varied sports",
+  "including shy students in a team",
+  "mengukuhkan hubungan warga sekolah",
+  "mengenali kekuatan diri melalui pelbagai sukan",
+  "membantu murid pemalu berasa diterima"
+ ],
+ [
+  "improving through varied training",
+  "motivation through progress tracking",
+  "supporting a healthy sleep routine",
+  "meningkatkan kebolehan melalui latihan pelbagai jenis",
+  "motivasi melalui rekod kemajuan",
+  "menyokong rutin tidur yang sihat"
+ ],
+ [
+  "including shy students in a team",
+  "discovering strengths through varied sports",
+  "strengthening the school community",
+  "membantu murid pemalu berasa diterima",
+  "mengenali kekuatan diri melalui pelbagai sukan",
+  "mengukuhkan hubungan warga sekolah"
+ ],
+ [
+  "improving through varied training",
+  "motivation through progress tracking",
+  "discovering strengths through varied sports",
+  "meningkatkan kebolehan melalui latihan pelbagai jenis",
+  "motivasi melalui rekod kemajuan",
+  "mengenali kekuatan diri melalui pelbagai sukan"
+ ],
+ [
+  "poor sports facilities and participation",
+  "mental exhaustion from overtraining commitments",
+  "financial barriers to participation",
+  "kemudahan sukan yang tidak sesuai",
+  "keletihan mental akibat jadual sukan yang padat",
+  "halangan kewangan untuk menyertai sukan"
+ ],
+ [
+  "financial barriers to participation",
+  "motivation through progress tracking",
+  "mental exhaustion from overtraining commitments",
+  "halangan kewangan untuk menyertai sukan",
+  "motivasi melalui rekod kemajuan",
+  "keletihan mental akibat jadual sukan yang padat"
+ ],
+ [
+  "financial barriers to participation",
+  "mental exhaustion from overtraining commitments",
+  "poor sports facilities and participation",
+  "halangan kewangan untuk menyertai sukan",
+  "keletihan mental akibat jadual sukan yang padat",
+  "kemudahan sukan yang tidak sesuai"
+ ],
+ [
+  "improving through varied training",
+  "poor sports facilities and participation",
+  "hydration during sports",
+  "meningkatkan kebolehan melalui latihan pelbagai jenis",
+  "kemudahan sukan yang tidak sesuai",
+  "pengambilan air yang mencukupi semasa bersukan"
+ ],
+ [
+  "hydration during sports",
+  "discovering strengths through varied sports",
+  "improving through varied training",
+  "pengambilan air yang mencukupi semasa bersukan",
+  "mengenali kekuatan diri melalui pelbagai sukan",
+  "meningkatkan kebolehan melalui latihan pelbagai jenis"
+ ],
+ [
+  "improving through varied training",
+  "supporting a healthy sleep routine",
+  "motivation through progress tracking",
+  "meningkatkan kebolehan melalui latihan pelbagai jenis",
+  "menyokong rutin tidur yang sihat",
+  "motivasi melalui rekod kemajuan"
+ ]
 ];
 
-let player = "";
-let rounds = [];
-let level = 0;
-let challenge = 0;
-let step = 0;
-let score = 0;
-let answeredCount = 0;
-let challengeScore = 0;
-let levelScores = [0,0,0];
-let answered = false;
-
-function shuffle(list){
-  const a = [...list];
-  for(let i=a.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [a[i],a[j]]=[a[j],a[i]];
-  }
-  return a;
+function whyWrong(part,choice){
+ const topic=part.topics[choice.wrongIndex];
+ return {
+  en:`Your choice is about ${topic.en}, but the main point is about ${part.topics.targetEn}. It introduces a different idea instead of developing this paragraph's point.`,
+  ms:`Ayat pilihan anda berkaitan ${topic.ms}, tetapi isi utama ialah ${part.topics.targetMs}. Ayat ini membawa idea lain dan tidak menghuraikan isi utama perenggan.`
+ };
 }
 
-function screen(id){
-  for(const name of [
-    "start","play","built","between","end"
-  ]){
-    $(name).hidden = name !== id;
-  }
+function feedbackLines(target,lines){
+ target.replaceChildren();
+ for(const line of lines){
+  const p=document.createElement("p");
+  p.textContent=line;
+  p.style.margin="5px 0";
+  target.appendChild(p);
+ }
+}
+
+const $=id=>document.getElementById(id);
+const NAMES=["Explanation","Example","Result / Effect"];
+const LEVEL_MAX=LEVELS.map(l=>l.items.length*3);
+const TOTAL=LEVEL_MAX.reduce((a,b)=>a+b,0);
+
+let player="",rounds=[],level=0,challenge=0,step=0;
+let score=0,answeredCount=0,challengeScore=0;
+let levelScores=[],mistakes=[],answered=false;
+
+function shuffle(items){
+ const a=[...items];
+ for(let i=a.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [a[i],a[j]]=[a[j],a[i]];
+ }
+ return a;
+}
+
+function screen(name){
+ for(const id of ["start","play","built","between","end"])
+  $(id).hidden=id!==name;
 }
 
 function current(){
-  return rounds[level].items[challenge];
+ return rounds[level].items[challenge];
 }
 
 function startGame(){
-  rounds = LEVELS.map(l=>({
-    title:l.title,
-    items:shuffle(l.items)
+ let topicOffset=0;
+ rounds=LEVELS.map(group=>{
+  const items=shuffle(group.items.map((item,i)=>({...item,topicIndex:topicOffset+i}))).map(item=>({
+   point:item.point,
+   steps:item.steps.map(([correct,w1,w2,tip])=>({
+    correct,
+    wrong:[w1,w2],
+    tip,
+    topics:{
+     0:{en:TOPICS[item.topicIndex][0],ms:TOPICS[item.topicIndex][3]},
+     1:{en:TOPICS[item.topicIndex][1],ms:TOPICS[item.topicIndex][4]},
+     targetEn:TOPICS[item.topicIndex][2],
+     targetMs:TOPICS[item.topicIndex][5]
+    },
+    options:[]
+   }))
   }));
-  level=0;
-  challenge=0;
-  score=0;
-  answeredCount=0;
-  levelScores=[0,0,0];
-  startChallenge();
+  topicOffset+=group.items.length;
+
+  // Balanced correct answers across A, B and C.
+  const positions=shuffle(
+   Array.from({length:items.length*3},(_,i)=>i%3)
+  );
+
+  let next=0;
+
+  for(const item of items){
+   for(const part of item.steps){
+    part.options=shuffle(part.wrong.map((text,wrongIndex)=>({text,correct:false,wrongIndex})));
+    part.options.splice(
+     positions[next++],0,
+     {text:part.correct,correct:true}
+    );
+   }
+  }
+  return {title:group.title,items};
+ });
+
+ level=0;
+ challenge=0;
+ score=0;
+ answeredCount=0;
+ levelScores=LEVELS.map(()=>0);
+ mistakes=[];
+ startChallenge();
 }
 
 function startChallenge(){
-  step=0;
-  challengeScore=0;
-  screen("play");
-  render();
+ step=0;
+ challengeScore=0;
+ screen("play");
+ render();
 }
 
 function render(){
-  answered=false;
-  const item=current();
+ answered=false;
+ const item=current();
 
-  $("player").textContent="👤 "+player;
-  $("level").textContent=
-    `Level ${level+1}/3 · ${rounds[level].title}`;
-  $("score").textContent=`⭐ ${score}/30`;
+ $("player").textContent="👤 "+player;
+ $("level").textContent=
+  `Level ${level+1}/3 · ${rounds[level].title}`;
+ $("score").textContent=`⭐ ${score}/${TOTAL}`;
 
-  const previous=rounds.slice(0,level)
-    .reduce((n,l)=>n+l.items.length,0);
+ const before=rounds.slice(0,level).reduce(
+  (n,g)=>n+g.items.length,0
+ );
 
-  $("progress").textContent=
-    `Paragraph ${previous+challenge+1} of 10 · Choice ${step+1} of 3`;
+ $("progress").textContent=
+  `Paragraph ${before+challenge+1} of 10 · Step ${step+1} of 3`;
 
-  $("bar").style.width=(answeredCount/30*100)+"%";
-  $("point").textContent=item.point;
+ $("bar").style.width=(answeredCount/TOTAL*100)+"%";
+ $("point").textContent=item.point;
 
-  labels.forEach((_,i)=>{
-    $("step"+i).className="step "+(
-      i<step?"done":i===step?"active":""
-    );
-  });
-
-  $("draft").hidden=step===0;
-  $("draftText").replaceChildren();
-
-  for(let i=0;i<step;i++){
-    const p=document.createElement("p");
-    p.textContent=item.steps[i][0];
-    $("draftText").appendChild(p);
-  }
-
-  $("prompt").textContent=
-    `Step ${step+1}: Choose the best ${labels[step].toLowerCase()} sentence.`;
-
-  $("choices").replaceChildren();
-  $("feedback").hidden=true;
-  $("feedback").className="feedback";
-  $("next").hidden=true;
-
-  const choices=shuffle(
-    item.steps[step].slice(0,3).map((text,i)=>({
-      text,
-      correct:i===0
-    }))
+ NAMES.forEach((_,i)=>{
+  $("step"+i).className="step "+(
+   i<step?"done":i===step?"active":""
   );
+ });
 
-  choices.forEach((c,i)=>{
-    const btn=document.createElement("button");
-    btn.type="button";
-    btn.className="choice";
+ $("draft").hidden=step===0;
+ $("draftText").textContent=[
+  item.point,
+  ...item.steps.slice(0,step).map(s=>s.correct)
+ ].join(" ");
 
-    const badge=document.createElement("span");
-    badge.className="letter";
-    badge.textContent="ABC"[i];
+ $("prompt").textContent=
+  `Step ${step+1}: Choose the best ${NAMES[step].toLowerCase()} sentence.`;
 
-    const label=document.createElement("span");
-    label.textContent=c.text;
+ $("feedback").hidden=true;
+ $("feedback").className="feedback";
+ $("next").hidden=true;
+ $("choices").replaceChildren();
 
-    btn.append(badge,label);
-    btn.addEventListener("click",()=>select(c,btn));
-    $("choices").appendChild(btn);
-  });
+ current().steps[step].options.forEach((option,i)=>{
+  const button=document.createElement("button");
+  button.type="button";
+  button.className="choice";
+
+  const letter=document.createElement("span");
+  letter.className="letter";
+  letter.textContent="ABC"[i];
+
+  const text=document.createElement("span");
+  text.textContent=option.text;
+
+  button.append(letter,text);
+  button.addEventListener("click",()=>choose(option,button));
+  $("choices").appendChild(button);
+ });
 }
 
-function flash(type){
-  $("app").classList.remove("flash-red","flash-green");
-  void $("app").offsetWidth;
-  $("app").classList.add(type);
+function flash(name){
+ $("app").classList.remove("flash-red","flash-green");
+ void $("app").offsetWidth;
+ $("app").classList.add(name);
 }
 
 function celebrate(target){
-  const r=target.getBoundingClientRect();
-  const x=r.left+r.width/2;
-  const y=r.top+r.height/2;
+ const box=target.getBoundingClientRect();
+ const x=box.left+box.width/2;
+ const y=box.top+box.height/2;
 
-  ["👏","✅","🌸","✨","👏","✅","💗","⭐"]
-  .forEach((emoji,i,a)=>{
-    const node=document.createElement("span");
-    const angle=i*Math.PI*2/a.length;
-    const d=75+Math.random()*85;
+ ["👏","✅","🌸","✨","👏","✅","💗","⭐"]
+ .forEach((emoji,i,arr)=>{
+  const node=document.createElement("span");
+  const a=i*2*Math.PI/arr.length;
+  const d=75+Math.random()*90;
 
-    node.className="particle";
-    node.textContent=emoji;
-    node.style.left=x+"px";
-    node.style.top=y+"px";
+  node.className="particle";
+  node.textContent=emoji;
+  node.style.left=x+"px";
+  node.style.top=y+"px";
+  node.style.setProperty("--dx",Math.cos(a)*d+"px");
+  node.style.setProperty("--dy",Math.sin(a)*d+"px");
+  node.style.setProperty("--r",(Math.random()*70-35)+"deg");
 
-    node.style.setProperty(
-      "--dx",Math.cos(angle)*d+"px"
-    );
-    node.style.setProperty(
-      "--dy",Math.sin(angle)*d+"px"
-    );
-    node.style.setProperty(
-      "--r",(Math.random()*80-40)+"deg"
-    );
-
-    $("effects").appendChild(node);
-    node.addEventListener("animationend",()=>{
-      node.remove();
-    },{once:true});
-
-    setTimeout(()=>node.remove(),1400);
-  });
+  $("effects").appendChild(node);
+  node.addEventListener("animationend",()=>node.remove(),{once:true});
+  setTimeout(()=>node.remove(),1400);
+ });
 }
 
-function select(choice,btn){
-  if(answered)return;
-  answered=true;
-  answeredCount++;
+function choose(choice,button){
+ if(answered)return;
+ answered=true;
+ answeredCount++;
 
-  const data=current().steps[step];
+ const part=current().steps[step];
 
-  for(const node of $("choices").children){
-    node.disabled=true;
-    if(
-      node.querySelector("span:last-child").textContent===data[0]
-    ){
-      node.classList.add("correct");
-    }
+ for(const optionButton of $("choices").children){
+  optionButton.disabled=true;
+  if(
+   optionButton.querySelector("span:last-child")
+    .textContent===part.correct
+  ){
+   optionButton.classList.add("correct");
   }
+ }
 
-  $("feedback").hidden=false;
+ const fb=$("feedback");
+ fb.hidden=false;
 
-  if(choice.correct){
-    score++;
-    levelScores[level]++;
-    challengeScore++;
+ if(choice.correct){
+  score++;
+  challengeScore++;
+  levelScores[level]++;
 
-    $("feedback").classList.add("good");
-    $("feedback").textContent=
-      "✅ Correct! +1 mark. "+data[3];
+  fb.classList.add("good");
+  fb.textContent="✅ Correct! +1 mark. "+part.tip;
 
-    flash("flash-green");
-    celebrate(btn);
-  }else{
-    btn.classList.add("wrong");
-    $("feedback").classList.add("bad");
-    $("feedback").textContent=
-      "❌ Best sentence: "+data[0]+"  💡 "+data[3];
+  flash("flash-green");
+  celebrate(button);
 
-    flash("flash-red");
+ }else{
+  button.classList.add("wrong");
+  fb.classList.add("bad");
+  const reason=whyWrong(part,choice);
+  feedbackLines(fb,[
+   "❌ Incorrect — 0 marks for this step.",
+   "Your answer: "+choice.text,
+   "WHY IT IS WRONG: "+reason.en,
+   "MENGAPA SALAH: "+reason.ms,
+   "✅ Correct sentence: "+part.correct,
+   "WHY IT FITS: "+part.tip,
+   "The correct sentence (not your wrong choice) will appear in the next step. / Ayat yang betul akan digunakan pada langkah seterusnya."
+  ]);
 
-    if(typeof navigator.vibrate==="function"){
-      navigator.vibrate([90,45,90]);
-    }
-  }
+  mistakes.push({
+   chosen:choice.text,
+   reasonEn:reason.en,
+   reasonMs:reason.ms,
+   point:current().point,
+   kind:NAMES[step],
+   correct:part.correct,
+   tip:part.tip
+  });
 
-  $("score").textContent=`⭐ ${score}/30`;
-  $("bar").style.width=(answeredCount/30*100)+"%";
+  flash("flash-red");
 
-  $("next").textContent=step<2
-    ?`Continue to ${labels[step+1]} →`
-    :"See Complete Paragraph 📝";
+  if(typeof navigator.vibrate==="function")
+   navigator.vibrate([90,45,90]);
+ }
 
-  $("next").hidden=false;
+ $("score").textContent=`⭐ ${score}/${TOTAL}`;
+ $("bar").style.width=(answeredCount/TOTAL*100)+"%";
+
+ $("next").textContent=step<2
+  ?`Continue to ${NAMES[step+1]} →`
+  :"See Complete Paragraph 📝";
+
+ $("next").hidden=false;
 }
 
 function showParagraph(){
-  screen("built");
+ screen("built");
 
-  const item=current();
-  $("challengeResult").textContent=
-    `You earned ${challengeScore}/3 marks for this paragraph.`;
+ const item=current();
 
-  $("paragraph").replaceChildren();
+ $("challengeResult").textContent=
+  `You earned ${challengeScore}/3 marks for this paragraph.`;
 
-  const point=document.createElement("div");
-  point.className="part";
-  point.textContent=item.point;
-  $("paragraph").appendChild(point);
+ $("modelText").textContent=[
+  item.point,
+  ...item.steps.map(s=>s.correct)
+ ].join(" ");
 
-  item.steps.forEach((data,i)=>{
-    const line=document.createElement("div");
-    line.className="part";
+ const last=challenge===rounds[level].items.length-1;
 
-    const tag=document.createElement("b");
-    tag.textContent=labels[i]+": ";
-
-    line.append(
-      tag,
-      document.createTextNode(data[0])
-    );
-
-    $("paragraph").appendChild(line);
-  });
-
-  const last=
-    challenge===rounds[level].items.length-1;
-
-  $("nextChallenge").textContent=last
-    ?(level===2
-      ?"See Final Score 🏆"
-      :"Finish This Level →")
-    :"Next Paragraph →";
+ $("nextChallenge").textContent=last
+  ?(level===2?"See Final Score 🏆":"Finish This Level →")
+  :"Next Paragraph →";
 }
 
 function nextChallenge(){
-  challenge++;
+ challenge++;
 
-  if(challenge<rounds[level].items.length){
-    startChallenge();
-    return;
-  }
+ if(challenge<rounds[level].items.length){
+  startChallenge();
+  return;
+ }
 
-  if(level===rounds.length-1){
-    finish();
-    return;
-  }
+ if(level===rounds.length-1){
+  finish();
+  return;
+ }
 
-  $("levelFinished").textContent=
-    `Level ${level+1} Completed!`;
+ $("levelFinished").textContent=
+  `Level ${level+1} Completed!`;
 
-  $("levelSummary").textContent=
-    `You scored ${levelScores[level]}/${rounds[level].items.length*3} in ${rounds[level].title}. Next: ${rounds[level+1].title}.`;
+ $("levelSummary").textContent=
+  `You earned ${levelScores[level]}/${LEVEL_MAX[level]} marks in ${rounds[level].title}. Next: ${rounds[level+1].title}.`;
 
-  screen("between");
+ screen("between");
 }
 
 function finish(){
-  screen("end");
-  $("resultName").textContent=player;
-  $("finalScore").textContent=score+" / 30";
-  $("percentage").textContent=
-    Math.round(score/30*100)+"% correct";
+ screen("end");
 
-  $("breakdown").replaceChildren();
+ $("resultName").textContent=player;
+ $("finalScore").textContent=`${score} / ${TOTAL}`;
+ $("percentage").textContent=
+  Math.round(score/TOTAL*100)+"% correct";
 
-  rounds.forEach((r,i)=>{
-    const chip=document.createElement("span");
-    chip.className="result-chip";
-    chip.textContent=
-      `Level ${i+1}: ${levelScores[i]}/${r.items.length*3}`;
-    $("breakdown").appendChild(chip);
-  });
+ $("breakdown").replaceChildren();
 
-  $("message").textContent=score>=27
-    ?"🌟 Excellent! You can recognise strong explanations, examples and results!"
-    :score>=21
-    ?"👏 Great effort! Keep building complete paragraphs."
-    :"🌱 Keep practising: ask WHY, give an example and explain the effect.";
+ rounds.forEach((r,i)=>{
+  const chip=document.createElement("span");
+  chip.className="chip";
+  chip.textContent=
+   `Level ${i+1}: ${levelScores[i]}/${LEVEL_MAX[i]}`;
+  $("breakdown").appendChild(chip);
+ });
+
+ $("message").textContent=score>=27
+  ?"🌟 Excellent! Your explanations, examples and results fit together beautifully!"
+  :score>=21
+  ?"👏 Great work! Keep building strong paragraphs."
+  :"🌱 Keep practising: explain WHY, give a fitting example and show the effect.";
+
+ $("reviewButton").textContent=
+  `Review My Mistakes (${mistakes.length}) 📚`;
+
+ $("review").hidden=true;
+ $("review").replaceChildren();
+
+ if(!mistakes.length){
+  const p=document.createElement("p");
+  p.textContent="Perfect! No mistakes to review. 🎉";
+  $("review").appendChild(p);
+ }
+
+ mistakes.forEach((m,i)=>{
+  const card=document.createElement("div");
+  card.className="reviewitem";
+
+  const heading=document.createElement("strong");
+  heading.textContent=
+   `${i+1}. ${m.kind} — ${m.point}`;
+
+  const selected=document.createElement("p");
+  selected.textContent="❌ Your answer (0 marks): "+m.chosen;
+  const en=document.createElement("p");
+  en.textContent="WHY IT IS WRONG: "+m.reasonEn;
+  const ms=document.createElement("p");
+  ms.textContent="MENGAPA SALAH: "+m.reasonMs;
+  const ans=document.createElement("p");
+  ans.textContent="✅ Correct sentence: "+m.correct;
+  const tip=document.createElement("p");
+  tip.textContent="💡 Why it fits: "+m.tip;
+
+  card.append(heading,selected,en,ms,ans,tip);
+  $("review").appendChild(card);
+ });
 }
 
 $("nameForm").addEventListener("submit",e=>{
-  e.preventDefault();
-  player=$("nameInput").value.trim();
-  if(player)startGame();
+ e.preventDefault();
+ player=$("nameInput").value.trim();
+ if(player)startGame();
 });
 
 $("next").addEventListener("click",()=>{
-  if(!answered)return;
-
-  if(step<2){
-    step++;
-    render();
-  }else{
-    showParagraph();
-  }
+ if(!answered)return;
+ if(step<2){
+  step++;
+  render();
+ }else showParagraph();
 });
 
-$("nextChallenge").addEventListener(
-  "click",nextChallenge
-);
+$("nextChallenge").addEventListener("click",nextChallenge);
 
 $("continueLevel").addEventListener("click",()=>{
-  level++;
-  challenge=0;
-  startChallenge();
+ level++;
+ challenge=0;
+ startChallenge();
+});
+
+$("reviewButton").addEventListener("click",()=>{
+ $("review").hidden=!$("review").hidden;
 });
 
 $("replay").addEventListener("click",startGame);
 
 $("changeName").addEventListener("click",()=>{
-  screen("start");
+ screen("start");
 });
 
-// Keyboard shortcuts: 1, 2, 3 or A, B, C.
+// Keyboard shortcuts: A, B, C or 1, 2, 3.
 document.addEventListener("keydown",e=>{
-  if($("play").hidden||answered||e.repeat)return;
+ if(
+  $("play").hidden ||
+  answered ||
+  e.repeat ||
+  e.target.matches("input,textarea")
+ )return;
 
-  const key=e.key.toLowerCase();
-  const n={
-    "1":0,"2":1,"3":2,
-    a:0,b:1,c:2
-  }[key];
+ const n={
+  "1":0,"2":1,"3":2,
+  a:0,b:1,c:2
+ }[e.key.toLowerCase()];
 
-  if(n!==undefined){
-    $("choices").children[n]?.click();
-  }
+ if(n!==undefined)
+  $("choices").children[n]?.click();
 });
 </script>
 </body>
