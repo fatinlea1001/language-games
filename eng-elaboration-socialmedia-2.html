@@ -266,7 +266,7 @@ button{font:inherit;cursor:pointer}
     <strong id="point"></strong>
   </div>
   <div class="draft" id="draft" hidden>
-    <small>YOUR PARAGRAPH SO FAR</small>
+    <small>CORRECT PARAGRAPH SO FAR (including corrected answers)</small>
     <p id="draftText"></p>
   </div>
   <p class="prompt" id="prompt"></p>
@@ -582,6 +582,49 @@ steps:[
 }
 ];
 
+// Wrong-option topics, in the order of the original 10 paragraphs.
+// Each pair matches wrong choice 1 and wrong choice 2 for all three steps.
+const TOPICS=[
+ ["keeping in touch with distant friends","protecting account privacy","discovering study and career opportunities",
+  "berhubung dengan rakan yang tinggal jauh","melindungi privasi akaun","mencari peluang pendidikan dan kerjaya"],
+ ["using online lessons for revision","getting distracted by online videos","reaching more customers for small businesses",
+  "menggunakan pelajaran dalam talian untuk ulang kaji","terganggu oleh video dalam talian","mendapatkan lebih ramai pelanggan bagi perniagaan kecil"],
+ ["promoting products and increasing sales","blocking suspicious accounts","inspiring others through personal achievements",
+  "mempromosikan produk dan meningkatkan jualan","menyekat akaun yang mencurigakan","memberi inspirasi melalui pencapaian peribadi"],
+ ["notifications interrupting homework","editing photos and beauty filters","learning about other cultures",
+  "notifikasi yang mengganggu kerja sekolah","suntingan gambar dan penapis kecantikan","mempelajari budaya lain"],
+ ["online study groups and revision","volunteering for community projects","the effect of late-night scrolling on sleep",
+  "kumpulan belajar dan ulang kaji dalam talian","kerja sukarela untuk masyarakat","kesan penggunaan media sosial lewat malam terhadap tidur"],
+ ["learning vocabulary online","improving artwork through feedback","the risk of online shopping scams",
+  "belajar kosa kata dalam talian","meningkatkan hasil seni melalui maklum balas","risiko penipuan pembelian dalam talian"],
+ ["account passwords and security","communicating with family overseas","seeing a limited range of opinions online",
+  "kata laluan dan keselamatan akaun","berhubung dengan keluarga di luar negara","melihat pandangan yang terhad dalam talian"],
+ ["learning new skills from tutorials","making friends through interest groups","protecting one's digital reputation",
+  "mempelajari kemahiran melalui tutorial","berkawan melalui kumpulan minat","menjaga reputasi digital"],
+ ["making passwords more secure","revising lessons through videos","crediting the creators of shared content",
+  "menjadikan kata laluan lebih selamat","mengulang kaji melalui video","memberikan penghargaan kepada pencipta kandungan yang dikongsi"],
+ ["advertising products for small businesses","algorithms showing similar opinions","choosing positive and reliable accounts to follow",
+  "mengiklankan produk perniagaan kecil","algoritma yang memaparkan pendapat serupa","memilih akaun positif dan boleh dipercayai untuk diikuti"]
+];
+
+function whyWrong(part,choice){
+ const topic=part.topics[choice.wrongIndex];
+ return {
+  en:`Your choice is about ${topic.en}, but the main point is about ${part.topics.targetEn}. It introduces a different idea instead of developing this paragraph's point.`,
+  ms:`Ayat pilihan anda berkaitan ${topic.ms}, tetapi isi utama ialah ${part.topics.targetMs}. Ayat ini membawa idea lain dan tidak menghuraikan isi utama perenggan.`
+ };
+}
+
+function feedbackLines(target,lines){
+ target.replaceChildren();
+ for(const line of lines){
+  const p=document.createElement("p");
+  p.textContent=line;
+  p.style.margin="5px 0";
+  target.appendChild(p);
+ }
+}
+
 const $=id=>document.getElementById(id);
 const NAMES=["Explanation","Example","Result / Effect"];
 const LEVEL_MAX=LEVELS.map(l=>l.items.length*3);
@@ -610,16 +653,24 @@ function current(){
 }
 
 function startGame(){
+ let topicOffset=0;
  rounds=LEVELS.map(group=>{
-  const items=shuffle(group.items).map(item=>({
+  const items=shuffle(group.items.map((item,i)=>({...item,topicIndex:topicOffset+i}))).map(item=>({
    point:item.point,
    steps:item.steps.map(([correct,w1,w2,tip])=>({
     correct,
     wrong:[w1,w2],
     tip,
+    topics:{
+     0:{en:TOPICS[item.topicIndex][0],ms:TOPICS[item.topicIndex][3]},
+     1:{en:TOPICS[item.topicIndex][1],ms:TOPICS[item.topicIndex][4]},
+     targetEn:TOPICS[item.topicIndex][2],
+     targetMs:TOPICS[item.topicIndex][5]
+    },
     options:[]
    }))
   }));
+  topicOffset+=group.items.length;
 
   // Balanced correct answers across A, B and C.
   const positions=shuffle(
@@ -630,9 +681,7 @@ function startGame(){
 
   for(const item of items){
    for(const part of item.steps){
-    part.options=shuffle(part.wrong).map(
-     text=>({text,correct:false})
-    );
+    part.options=shuffle(part.wrong.map((text,wrongIndex)=>({text,correct:false,wrongIndex})));
     part.options.splice(
      positions[next++],0,
      {text:part.correct,correct:true}
@@ -780,10 +829,21 @@ function choose(choice,button){
  }else{
   button.classList.add("wrong");
   fb.classList.add("bad");
-  fb.textContent=
-   "❌ Best sentence: "+part.correct+" 💡 "+part.tip;
+  const reason=whyWrong(part,choice);
+  feedbackLines(fb,[
+   "❌ Incorrect — 0 marks for this step.",
+   "Your answer: "+choice.text,
+   "WHY IT IS WRONG: "+reason.en,
+   "MENGAPA SALAH: "+reason.ms,
+   "✅ Correct sentence: "+part.correct,
+   "WHY IT FITS: "+part.tip,
+   "The correct sentence (not your wrong choice) will appear in the next step."
+  ]);
 
   mistakes.push({
+   chosen:choice.text,
+   reasonEn:reason.en,
+   reasonMs:reason.ms,
    point:current().point,
    kind:NAMES[step],
    correct:part.correct,
@@ -892,13 +952,18 @@ function finish(){
   heading.textContent=
    `${i+1}. ${m.kind} — ${m.point}`;
 
+  const selected=document.createElement("p");
+  selected.textContent="❌ Your answer (0 marks): "+m.chosen;
+  const en=document.createElement("p");
+  en.textContent="WHY IT IS WRONG: "+m.reasonEn;
+  const ms=document.createElement("p");
+  ms.textContent="MENGAPA SALAH: "+m.reasonMs;
   const ans=document.createElement("p");
-  ans.textContent="✅ Best sentence: "+m.correct;
-
+  ans.textContent="✅ Correct sentence: "+m.correct;
   const tip=document.createElement("p");
-  tip.textContent="💡 "+m.tip;
+  tip.textContent="💡 Why it fits: "+m.tip;
 
-  card.append(heading,ans,tip);
+  card.append(heading,selected,en,ms,ans,tip);
   $("review").appendChild(card);
  });
 }
