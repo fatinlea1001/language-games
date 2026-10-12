@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**37 games** — automatically updated when an HTML game is added or changed.
+**38 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Elaboration Savingmoney (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-savingmoney-2.html) — updated 12 Oct 2026
 - [Elaboration Savingmoney (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-savingmoney-1.html) — updated 12 Oct 2026
 - [Elaboration — Mental Health (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-mentalhealth-2.html) — updated 12 Oct 2026
 - [Elaboration — Mental Health (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-mentalhealth-1.html) — updated 12 Oct 2026
