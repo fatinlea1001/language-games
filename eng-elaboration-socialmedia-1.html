@@ -93,6 +93,9 @@ button{font:inherit;cursor:pointer}
   font-size:12px;font-weight:800;color:#8062a8
 }
 .draft p{margin:7px 0;font-size:14px;line-height:1.55}
+.draft .corrected{color:#166843;font-weight:700}
+.feedback p{margin:7px 0}
+.feedback .correct-answer{background:#fff;border-radius:9px;padding:10px;color:#195f40}
 .prompt{
   text-align:center;font-weight:800;margin:18px 0 13px
 }
@@ -253,7 +256,7 @@ button{font:inherit;cursor:pointer}
     <strong id="point"></strong>
   </div>
   <div class="draft" id="draft" hidden>
-    <span class="draft-label">YOUR PARAGRAPH SO FAR</span>
+    <span class="draft-label">CORRECT PARAGRAPH SO FAR (even if you answered wrongly)</span>
     <div id="draftText"></div>
   </div>
   <p class="prompt" id="prompt"></p>
@@ -726,14 +729,14 @@ function render(){
   if(step){
     const p=document.createElement("p");
 
-    p.textContent=[
-      item.point,
-      ...item.steps.slice(0,step).map(
-        part=>part.correct
-      )
-    ].join(" ");
-
+    p.textContent=item.point;
     $("draftText").appendChild(p);
+    for(const previous of item.steps.slice(0,step)){
+      const sentence=document.createElement("p");
+      sentence.className="corrected";
+      sentence.textContent="✅ "+previous.correct;
+      $("draftText").appendChild(sentence);
+    }
   }
 
   $("prompt").textContent=
@@ -829,6 +832,39 @@ function celebrate(target){
   });
 }
 
+// Give a specific reason for a distractor instead of only saying which answer is right.
+const OFF_TOPIC_REASONS=[
+  [/creativ|artist|artwork|drawing|animation|photograph.*attention|technique/i,"developing artistic talent","mengembangkan bakat seni"],
+  [/privacy|private|stranger|unknown user|unfamiliar user|personal information|personal photograph|account setting|hide their account|home address/i,"protecting privacy","melindungi privasi"],
+  [/volunteer|community|charity|fundrais|clean-up|neighbourhood|local project/i,"community or charity activities","aktiviti komuniti atau kebajikan"],
+  [/friend|cousin|relatives|overseas|living far|moved|different towns|keeping in touch|group chat|group conversation/i,"keeping in touch with others","mengekalkan hubungan dengan orang lain"],
+  [/lesson|tutorial|exam|revision|science|mathematics|grammar|vocabulary|classroom topic|learners|learning|assignment|schoolwork/i,"learning or schoolwork","pembelajaran atau kerja sekolah"],
+  [/rumour|false|untrue|unverified|fact.check|fake|mislead|closure notice|inaccurate|claim|official announcement/i,"false information and fact-checking","maklumat palsu dan semakan fakta"],
+  [/filtered|selfie|appearance|skin|body image|unrealistic|ordinary appearances/i,"appearance and self-image","penampilan dan imej diri"],
+  [/scroll|bedtime|sleep|tired|homework|notification|screen time|routine|physical activit/i,"screen time and daily routines","masa skrin dan rutin harian"],
+  [/insult|hurtful|cruel|embarrass|anxious|bully|online discussion/i,"hurtful comments and confidence","komen menyakitkan hati dan keyakinan diri"],
+  [/exercise|sport|exercise demonstration|sports club/i,"exercise and sports","senaman dan sukan"],
+  [/hobb|book club|similar interests/i,"shared hobbies","hobi yang sama"],
+  [/like|comment|edit.*photo|filter/i,"social media reactions or photo editing","reaksi media sosial atau suntingan gambar"]
+];
+function whyWrong(wrongSentence, mainPoint, stepIndex){
+  const hit=OFF_TOPIC_REASONS.find(([pattern])=>pattern.test(wrongSentence));
+  const topic=hit?hit[1]:"another topic";
+  const topicBM=hit?hit[2]:"topik yang berbeza";
+  const names=["explanation","example","result"];
+  const namesBM=["penjelasan","contoh","kesan"];
+  return {
+    en:`Your sentence focuses on ${topic}, so it does not support the main point: “${mainPoint}” The ${names[stepIndex]} must develop that main idea, not introduce a different one.`,
+    bm:`Ayat yang dipilih berkaitan ${topicBM}, jadi ayat itu tidak menyokong isi utama di atas. ${namesBM[stepIndex][0].toUpperCase()+namesBM[stepIndex].slice(1)} mesti mengembangkan isi utama, bukan membawa idea yang lain.`
+  };
+}
+function addFeedbackLine(container,text,cls=""){
+  const p=document.createElement("p");
+  p.textContent=text;
+  if(cls)p.className=cls;
+  container.appendChild(p);
+}
+
 function select(choice,button){
   if(answered)return;
 
@@ -870,15 +906,23 @@ function select(choice,button){
     button.classList.add("wrong");
     fb.classList.add("bad");
 
-    fb.textContent=
-      "❌ Best sentence: "+part.correct+
-      "  💡 "+part.tip;
+    const reason=whyWrong(choice.text,current().point,step);
+    fb.replaceChildren();
+    addFeedbackLine(fb,"❌ 0 marks for this step. Your chosen sentence does not fit.");
+    addFeedbackLine(fb,"🇬🇧 Why it is wrong: "+reason.en);
+    addFeedbackLine(fb,"🇲🇾 Mengapa salah: "+reason.bm);
+    addFeedbackLine(fb,"✅ Correct sentence: "+part.correct,"correct-answer");
+    addFeedbackLine(fb,"💡 "+part.tip);
+    addFeedbackLine(fb,"➡️ The CORRECT sentence will appear in the paragraph for the next step. Your mark remains 0.");
 
     errors.push({
       point:current().point,
       kind:STEP_NAMES[step],
+      chosen:choice.text,
       correct:part.correct,
-      tip:part.tip
+      tip:part.tip,
+      reason:reason.en,
+      reasonBM:reason.bm
     });
 
     flash("flash-red");
@@ -1013,16 +1057,17 @@ function finish(){
     heading.textContent=
       `${i+1}. ${error.kind} — ${error.point}`;
 
+    const chosen=document.createElement("p");
+    chosen.textContent="❌ Your answer (0 marks): "+error.chosen;
+    const why=document.createElement("p");
+    why.textContent="🇬🇧 "+error.reason;
+    const whyBM=document.createElement("p");
+    whyBM.textContent="🇲🇾 "+error.reasonBM;
     const answer=document.createElement("p");
-
-    answer.textContent=
-      "✅ Best sentence: "+error.correct;
-
+    answer.textContent="✅ Correct sentence: "+error.correct;
     const reason=document.createElement("p");
-
     reason.textContent="💡 "+error.tip;
-
-    card.append(heading,answer,reason);
+    card.append(heading,chosen,why,whyBM,answer,reason);
 
     $("review").appendChild(card);
   }
