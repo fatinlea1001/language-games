@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Paragraph Builder — Spending Money Wisely Set 1</title>
+<style>
+:root{--pink:#e76b9e;--ink:#48384d;--red:#a02e4b;--green:#226d49}*{box-sizing:border-box}body{margin:0;padding:15px;min-height:100vh;background:linear-gradient(135deg,#ffe6f0,#f1ecff,#eaf9f2);font:16px/1.55 "Segoe UI",Arial,sans-serif;color:var(--ink)}main{max-width:780px;margin:auto;background:white;padding:25px;border-radius:23px;box-shadow:0 14px 38px #9d719533}h1{text-align:center;color:#d24785}h2{text-align:center}p{line-height:1.6}.center{text-align:center}.hero{text-align:center;font-size:48px}.pill{display:inline-block;background:#ffe7f1;color:#943e6a;border-radius:30px;padding:7px 11px;font-weight:750;font-size:13px}.stats{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}.track{height:10px;border-radius:20px;background:#f5dbe6;margin:18px 0;overflow:hidden}.bar{height:100%;width:0;background:#e76b9e}.steps{display:flex;gap:6px;margin:15px 0}.step{flex:1;background:#f4f0f6;padding:8px 3px;border-radius:10px;text-align:center;font-size:12px;font-weight:700}.step.active{background:#fbd4e7;color:#923b6f}.step.done{background:#ddf4e5;color:#226d49}.point,.draft,.model{padding:16px;border-radius:15px;margin:14px 0}.point{background:#fff0f7;border:2px solid #f3cee0}.point small{display:block;color:#9a4775;font-weight:800}.point strong{font-size:19px}.draft{background:#f8f6ff;border:1px dashed #bfa5d5}.draft small{font-weight:750;color:#765a9e}.draft p{margin:6px 0}.model{background:#fff8fc;border:2px solid #f0cadd}.prompt{text-align:center;font-weight:800}.choices{display:grid;gap:10px}.choice{width:100%;display:flex;gap:12px;align-items:flex-start;padding:14px;background:#fffafd;border:2px solid #efc9dc;border-radius:14px;text-align:left;color:var(--ink);font:inherit;cursor:pointer}.choice:hover:not(:disabled){border-color:var(--pink);background:#ffeff6}.choice:disabled{cursor:default}.choice.correct{border-color:#61b78b;background:#e3f8ea}.choice.wrong{border-color:#e4728e;background:#ffe4e9}.letter{flex:0 0 29px;height:29px;background:#f6d8e6;border-radius:8px;display:grid;place-items:center;font-weight:bold}.feedback{padding:15px;border-radius:13px;margin-top:14px}.feedback.good{background:#e5f8ea;color:var(--green)}.feedback.bad{background:#ffe5eb;color:var(--red)}.feedback p{margin:7px 0}.feedback strong{display:block}.btn{display:block;width:100%;margin-top:15px;padding:14px;background:var(--pink);border:0;border-radius:13px;color:white;font-size:16px;font-weight:800;cursor:pointer}.btn.alt{background:#9e86ad}.btn:focus-visible,.choice:focus-visible{outline:3px solid #7056bc;outline-offset:3px}input{display:block;width:100%;padding:14px;border:2px solid #edbed3;border-radius:12px;font:inherit}.big{text-align:center;font-size:64px;font-weight:900;color:#d24785}.chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.chip{background:#fce9f2;padding:8px 12px;border-radius:12px;font-size:13px;font-weight:bold}.review{border:1px solid #ebd2e0;background:#fff8fc;border-radius:12px;padding:13px;margin-top:10px}.review p{margin:6px 0}[hidden]{display:none!important}@media(max-width:520px){body{padding:7px}main{padding:17px 13px}.choice{padding:11px;font-size:14px}.step{font-size:11px}}
+</style></head><body><main>
+<section id="start"><div class="hero">🛍️💸🌸</div><h1>Paragraph Builder!</h1><p class="center"><span class="pill">SPENDING MONEY WISELY · SET 1</span></p><p class="center">Practise developing ideas about <b>spending money wisely in student life</b> using Explanation → Example → Result / Effect.</p><p class="center"><b>10 paragraphs · 3 steps each · 30 marks</b></p><p class="center">🛍️ Thoughtful purchases (4) · 📱 Spending pressure (3) · ✅ Getting value (3)</p><form id="nameForm"><input id="nameInput" maxlength="60" placeholder="Enter your name" required><button class="btn">Start Building ✨</button></form></section>
+<section id="play" hidden><div class="stats"><span class="pill" id="player"></span><span class="pill" id="level"></span><span class="pill" id="score"></span></div><div class="track"><div class="bar" id="bar"></div></div><p class="center" id="progress"></p><div class="steps"><span class="step" id="step0">1 · Explanation</span><span class="step" id="step1">2 · Example</span><span class="step" id="step2">3 · Result</span></div><div class="point"><small>MAIN POINT</small><strong id="point"></strong></div><div class="draft" id="draft" hidden><small>YOUR CORRECT PARAGRAPH SO FAR</small><p id="draftText"></p></div><p class="prompt" id="prompt"></p><div class="choices" id="choices"></div><div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div><button class="btn" id="next" hidden>Continue →</button></section>
+<section id="built" hidden><div class="hero">📝💗</div><h1>Paragraph Complete!</h1><p class="center" id="challengeResult"></p><div class="model" id="paragraph"></div><button class="btn" id="nextChallenge">Next Paragraph →</button></section>
+<section id="between" hidden><div class="hero">🎉</div><h1 id="levelFinished"></h1><p class="center" id="levelSummary"></p><button class="btn" id="continueLevel">Next Level →</button></section>
+<section id="end" hidden><div class="hero">🏆🛍️✨</div><h1>Challenge Completed!</h1><h2 id="resultName"></h2><p class="center">Your score</p><div class="big" id="finalScore"></div><p class="center" id="percentage"></p><div class="chips" id="breakdown"></div><p class="center" id="message"></p><button class="btn alt" id="reviewButton">Review My Mistakes 📚</button><div id="review" hidden></div><button class="btn" id="replay">Play Again 🔀</button><button class="btn alt" id="changeName">Change Name</button><p class="center">📸 Screenshot your score to submit!</p></section>
+</main><script>
+const LEVELS=[
+  {
+    "title": "Making Thoughtful Purchases",
+    "items": [
+      [
+        "Students should compare prices before buying school supplies.",
+        [
+          [
+            "Checking several sellers helps them spot a fair price for the same quality of item.",
+            "Buying supplies early gives students enough time to prepare for lessons.",
+            "Choosing the most colourful design can make schoolwork feel more enjoyable.",
+            "Price comparison checks value across sellers.",
+            "Buying early concerns preparation time, not price comparison.",
+            "Colour preferences do not help compare prices."
+          ],
+          [
+            "For example, a student may check the price of the same calculator at two shops before purchasing it.",
+            "For example, a student may buy a calculator a week before classes begin.",
+            "For example, a student may choose a calculator with a colourful cover.",
+            "Two shops are compared for the same product.",
+            "Buying early does not compare sellers.",
+            "Choosing a colour is personal preference, not price comparison."
+          ],
+          [
+            "Consequently, the student can avoid paying unnecessarily more for an item needed at school.",
+            "Consequently, the student has enough time to learn how to use the calculator.",
+            "Consequently, the student may enjoy the appearance of the calculator.",
+            "The benefit is avoiding an unnecessarily high price.",
+            "Learning to use the item follows early purchase.",
+            "Appearance follows from design choice."
+          ]
+        ]
+      ],
+      [
+        "Checking product quality helps students spend money wisely.",
+        [
+          [
+            "A reliable item may last longer, reducing the need to replace it soon.",
+            "A fashionable product may attract more attention from classmates.",
+            "A smaller product is usually easier to carry in a schoolbag.",
+            "Durability links quality with lasting value.",
+            "Fashion concerns popularity rather than product quality.",
+            "Size concerns portability, not reliability."
+          ],
+          [
+            "For example, a student may check the stitching and zip of a schoolbag before buying it.",
+            "For example, a student may choose a bag because a popular influencer owns one.",
+            "For example, a student may choose the lightest bag on the shelf without checking its zip.",
+            "Checking stitching and the zip tests quality.",
+            "An influencer endorsement does not test durability.",
+            "Lightness alone does not test whether the bag is well-made."
+          ],
+          [
+            "As a result, the student is less likely to spend extra money replacing a bag that breaks quickly.",
+            "As a result, more classmates may recognise the brand of the bag.",
+            "As a result, the bag may feel easier to carry between classrooms.",
+            "Durability can reduce replacement spending.",
+            "Brand recognition comes from trends.",
+            "Comfort relates to weight, not durability."
+          ]
+        ]
+      ],
+      [
+        "Students should read reviews carefully before buying items online.",
+        [
+          [
+            "Reviews that describe real experiences can reveal problems not shown in product advertisements.",
+            "Online shops often provide several ways for buyers to pay.",
+            "Popular products sometimes sell out during large promotional events.",
+            "Specific user experiences reveal possible product problems.",
+            "Payment methods do not evaluate the product.",
+            "Selling out relates to demand, not review quality."
+          ],
+          [
+            "For example, a student may notice several detailed reviews saying that a pair of earphones stops working after a week.",
+            "For example, a student may choose whether to pay with an e-wallet or bank transfer.",
+            "For example, a student may hurry to order earphones before a flash sale ends.",
+            "Repeated specific complaints help evaluate reliability.",
+            "Choosing payment is unrelated to reading reviews.",
+            "A rushed sale purchase does not evaluate user experiences."
+          ],
+          [
+            "Therefore, the student can avoid an unreliable purchase and look for a better option.",
+            "Therefore, the student may complete the payment in a convenient way.",
+            "Therefore, the student may receive a temporary discount on the earphones.",
+            "A review-based decision helps avoid disappointment.",
+            "Convenience follows payment selection.",
+            "A discount follows timing, not reviews."
+          ]
+        ]
+      ],
+      [
+        "Making a shopping list helps students avoid unnecessary purchases.",
+        [
+          [
+            "A written list reminds them which items they actually need while browsing a shop.",
+            "A spending limit tells students the maximum amount available for a trip.",
+            "Comparing brands can show which products offer similar features.",
+            "A list keeps attention on needed items.",
+            "A budget restricts total money but does not list needed items.",
+            "Brand comparison is a separate shopping strategy."
+          ],
+          [
+            "For example, a student buying art materials may use a list and leave behind attractive stickers that are not required.",
+            "For example, a student may set a RM30 limit before entering the stationery shop.",
+            "For example, a student may compare two brands of coloured pencils.",
+            "Following the list prevents an unplanned extra purchase.",
+            "A price limit is budgeting, not following a list.",
+            "Comparing brands does not show a list being followed."
+          ],
+          [
+            "As a result, the student is less likely to leave the shop with items that were never needed.",
+            "As a result, the student knows the largest amount that can be spent.",
+            "As a result, the student can identify a brand with suitable features.",
+            "The result concerns avoiding off-list purchases.",
+            "Knowing a limit follows budgeting.",
+            "Feature evaluation follows comparing brands."
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "title": "Resisting Spending Pressure",
+    "items": [
+      [
+        "Avoiding impulsive purchases helps students make better financial decisions.",
+        [
+          [
+            "Taking time before paying allows them to decide whether excitement is hiding a lack of real need.",
+            "Searching for more product advertisements may introduce students to newer models.",
+            "Choosing a shorter delivery period means an order may arrive sooner.",
+            "Waiting helps distinguish impulse from genuine need.",
+            "More advertisements may increase temptation.",
+            "Delivery speed does not test whether a purchase is necessary."
+          ],
+          [
+            "For example, a student may wait two days before deciding whether a gaming accessory is really useful.",
+            "For example, a student may follow several gaming shops to see their newest products.",
+            "For example, a student may pay extra to get the accessory delivered tomorrow.",
+            "The delay tests whether the wish remains worthwhile.",
+            "Following shops is product browsing.",
+            "Faster delivery does not reduce impulse buying."
+          ],
+          [
+            "Consequently, the student may avoid regretting a purchase made only because of temporary excitement.",
+            "Consequently, the student may hear about more gaming accessories.",
+            "Consequently, the accessory may arrive before the weekend.",
+            "Avoiding regret follows thoughtful waiting.",
+            "Hearing about products follows browsing.",
+            "Faster arrival follows expedited delivery."
+          ]
+        ]
+      ],
+      [
+        "Students should question social media promotions before buying trendy products.",
+        [
+          [
+            "Sponsored posts often highlight attractive features without explaining whether the product suits the buyer’s needs.",
+            "Product videos can be entertaining to watch during free time.",
+            "Some influencers regularly post tips about organising their bedrooms.",
+            "Promotions may not present a balanced view of usefulness.",
+            "Entertainment does not evaluate promotional claims.",
+            "Room organisation is unrelated to assessing advertising."
+          ],
+          [
+            "For example, a student may check independent information before ordering a viral study lamp advertised by an influencer.",
+            "For example, a student may enjoy watching a video showing a colourful study desk.",
+            "For example, a student may rearrange books after viewing a room-makeover post.",
+            "Independent checking goes beyond the advertisement.",
+            "Enjoying a video is not evaluating claims.",
+            "Rearranging books is not a buying decision."
+          ],
+          [
+            "As a result, the student is more likely to buy something genuinely useful rather than merely fashionable.",
+            "As a result, the student may find more entertaining videos to watch.",
+            "As a result, the student may have a tidier study area.",
+            "The outcome is a needs-based purchase.",
+            "Entertainment is a viewing outcome.",
+            "A tidy room follows rearranging, not evaluating promotions."
+          ]
+        ]
+      ],
+      [
+        "Students can resist peer pressure when deciding how to spend their money.",
+        [
+          [
+            "Remembering their own priorities makes it easier to decline purchases made only to fit in.",
+            "Friends can introduce students to shops they have never visited.",
+            "Discussing prices with classmates may provide useful information.",
+            "Personal priorities help resist social pressure.",
+            "Finding shops does not address pressure to copy friends.",
+            "Price discussion is information gathering, not resisting pressure."
+          ],
+          [
+            "For example, a student may politely decline buying expensive matching shoes because the current pair still works well.",
+            "For example, a student may visit a new shoe shop recommended by a friend.",
+            "For example, a student may ask classmates how much their sports shoes cost.",
+            "Saying no to unnecessary matching shoes demonstrates independence.",
+            "Visiting a recommended shop is not resisting pressure.",
+            "Asking prices does not show a choice to refuse unnecessary spending."
+          ],
+          [
+            "Therefore, the student can make decisions based on actual needs instead of fear of being left out.",
+            "Therefore, the student may discover more shoe designs in the new shop.",
+            "Therefore, the student may know the price range of classmates’ shoes.",
+            "The result concerns independent spending choices.",
+            "New designs are the result of visiting shops.",
+            "Price knowledge follows discussion, not resisting pressure."
+          ]
+        ]
+      ]
+    ]
+  },
+  {
+    "title": "Protecting Money and Getting Value",
+    "items": [
+      [
+        "Students should check the total cost before placing an online order.",
+        [
+          [
+            "Delivery fees and other charges can make an advertised bargain more expensive than expected.",
+            "Online sellers sometimes offer many colour and size choices.",
+            "Order-tracking information helps buyers see where their parcels are.",
+            "Extra checkout charges affect the actual amount paid.",
+            "Product variety does not explain final costs.",
+            "Tracking helps after ordering, not with calculating checkout costs."
+          ],
+          [
+            "For example, a student may discover that a RM15 pencil case costs RM24 after delivery charges and reconsider the purchase.",
+            "For example, a student may select a blue pencil case instead of a black one.",
+            "For example, a student may check whether a pencil case has reached the delivery centre.",
+            "The example calculates the actual checkout cost.",
+            "Colour choice does not calculate total cost.",
+            "Parcel tracking occurs after ordering."
+          ],
+          [
+            "As a result, the student can choose an option that better fits the money available.",
+            "As a result, the pencil case may match the student’s schoolbag.",
+            "As a result, the student may know when the parcel is arriving.",
+            "Knowing the final price supports an affordable choice.",
+            "Matching follows colour selection.",
+            "Arrival estimates follow parcel tracking."
+          ]
+        ]
+      ],
+      [
+        "Considering how often an item will be used can prevent wasteful spending.",
+        [
+          [
+            "An item used regularly may provide better value than one bought for a single occasion.",
+            "A product with attractive packaging can make a good impression as a gift.",
+            "A popular product may be easier to find at large shopping centres.",
+            "Frequency of use is directly linked to long-term value.",
+            "Packaging concerns presentation, not frequency of use.",
+            "Availability concerns where to buy it, not how often it is needed."
+          ],
+          [
+            "For example, a student may choose a reusable lunch container used daily instead of buying an expensive party accessory for one event.",
+            "For example, a student may choose a beautifully wrapped item for a friend’s birthday.",
+            "For example, a student may find a well-known brand at a shopping mall.",
+            "This compares frequent usefulness with a one-time purchase.",
+            "Gift wrapping focuses on presentation.",
+            "Finding a brand relates to availability."
+          ],
+          [
+            "Consequently, the student gets more practical use from the money spent.",
+            "Consequently, the friend may enjoy opening the gift.",
+            "Consequently, the student may locate the product easily.",
+            "Repeated practical use signals greater value.",
+            "Enjoying a gift follows wrapping.",
+            "Locating a product follows availability."
+          ]
+        ]
+      ],
+      [
+        "Keeping receipts helps students deal with faulty purchases responsibly.",
+        [
+          [
+            "Proof of purchase can support a request for a return or replacement when the shop’s policy allows it.",
+            "Keeping product boxes can make shelves look more organised.",
+            "Making a spending diary can show how pocket money is used.",
+            "Receipts may establish eligibility for a return or replacement.",
+            "Product boxes concern storage, not proof of purchase.",
+            "An expense diary tracks spending habits rather than supporting returns."
+          ],
+          [
+            "For example, a student whose newly bought headphones fail may show the receipt when contacting the seller.",
+            "For example, a student may arrange headphone boxes neatly in a cupboard.",
+            "For example, a student may write the headphone price in a weekly expense record.",
+            "Presenting a receipt supports a complaint about a faulty item.",
+            "Organising boxes does not show purchase evidence to a seller.",
+            "Recording a price does not necessarily meet return-policy requirements."
+          ],
+          [
+            "As a result, the student has a better chance of resolving the problem without paying for another item.",
+            "As a result, the cupboard may be easier to organise.",
+            "As a result, the student may understand how much was spent that week.",
+            "Documentation helps resolve a faulty purchase.",
+            "An organised cupboard follows storage habits.",
+            "A weekly total follows expense tracking."
+          ]
+        ]
+      ]
+    ]
+  }
+];
+const $=id=>document.getElementById(id);
+const NAMES=['Explanation','Example','Result / Effect'];
+const MALAY_STEPS=['Penjelasan','Contoh','Kesan'];
+const MAX=LEVELS.reduce((n,l)=>n+l.items.length*3,0);
+let player='',rounds=[],level=0,challenge=0,step=0,score=0,answeredCount=0,challengeScore=0,levelScores=[],mistakes=[],answered=false;
+function shuffle(items){let a=[...items];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function screen(name){for(const s of ['start','play','built','between','end'])$(s).hidden=s!==name}
+function current(){return rounds[level].items[challenge]}
+function startGame(){rounds=LEVELS.map(group=>{const items=shuffle(group.items).map(([point,parts])=>({point,parts:parts.map(([correct,w1,w2,why,why1,why2])=>({correct,why,wrong:[{text:w1,reason:why1},{text:w2,reason:why2}],options:[]}))}));const positions=shuffle(Array.from({length:items.length*3},(_,i)=>i%3));let k=0;for(const item of items){for(const part of item.parts){part.options=shuffle(part.wrong).map(x=>({...x,correct:false}));part.options.splice(positions[k++],0,{text:part.correct,correct:true})}}return {title:group.title,items}});level=0;challenge=0;score=0;answeredCount=0;levelScores=LEVELS.map(()=>0);mistakes=[];startChallenge()}
+function startChallenge(){step=0;challengeScore=0;screen('play');render()}
+function render(){answered=false;const item=current();$('player').textContent='👤 '+player;$('level').textContent=`Level ${level+1}/3 · ${rounds[level].title}`;$('score').textContent=`⭐ ${score}/${MAX}`;const before=rounds.slice(0,level).reduce((n,g)=>n+g.items.length,0);$('progress').textContent=`Paragraph ${before+challenge+1} of 10 · Step ${step+1} of 3`;$('bar').style.width=(answeredCount/MAX*100)+'%';$('point').textContent=item.point;NAMES.forEach((_,i)=>{$('step'+i).className='step '+(i<step?'done':i===step?'active':'')});$('draft').hidden=step===0;$('draftText').textContent=[item.point,...item.parts.slice(0,step).map(p=>p.correct)].join(' ');$('prompt').textContent=`Choose the best ${NAMES[step].toLowerCase()} sentence.`;$('feedback').hidden=true;$('feedback').className='feedback';$('feedback').replaceChildren();$('next').hidden=true;$('choices').replaceChildren();item.parts[step].options.forEach((opt,i)=>{let b=document.createElement('button');b.type='button';b.className='choice';let l=document.createElement('span');l.className='letter';l.textContent='ABC'[i];let t=document.createElement('span');t.textContent=opt.text;b.append(l,t);b.addEventListener('click',()=>choose(opt,b));$('choices').append(b)})}
+function feedbackLine(label,content){let p=document.createElement('p');let strong=document.createElement('strong');strong.textContent=label;p.append(strong,document.createTextNode(content));$('feedback').append(p)}
+function choose(opt,button){if(answered)return;answered=true;answeredCount++;let part=current().parts[step];for(let b of $('choices').children){b.disabled=true;if(b.querySelector('span:last-child').textContent===part.correct)b.classList.add('correct')}const fb=$('feedback');fb.hidden=false;if(opt.correct){score++;levelScores[level]++;challengeScore++;fb.classList.add('good');feedbackLine('✅ Correct! +1 mark',part.why);feedbackLine('🇲🇾 Penjelasan:',`Ayat ini ${step===0?'menerangkan sebab atau cara':step===1?'memberikan contoh yang tepat':'menunjukkan kesan yang sesuai'} berdasarkan isi utama.`)}else{button.classList.add('wrong');fb.classList.add('bad');feedbackLine('❌ 0 marks — Why your choice is wrong:',opt.reason);feedbackLine('🇲🇾 Mengapa salah:',`Ayat pilihan anda tidak memenuhi tugas ${MALAY_STEPS[step].toLowerCase()} bagi isi utama. Walaupun ayat ini mungkin berkaitan dengan topik berbelanja dengan bijak, ayat tersebut membincangkan idea yang berbeza dan tidak mengembangkan isi utama secara langsung.`);feedbackLine('✅ Correct sentence:',part.correct);feedbackLine('💡 Why this is correct:',part.why);feedbackLine('🇲🇾 Mengapa jawapan ini betul:',`Ayat yang betul ${step===0?'menerangkan bagaimana atau mengapa isi utama berlaku':step===1?'memberi contoh yang khusus dan sepadan dengan isi utama':'menunjukkan kesan yang logik daripada isi dan contoh sebelumnya'}.`);mistakes.push({point:current().point,kind:NAMES[step],chosen:opt.text,whyWrong:opt.reason,correct:part.correct,whyCorrect:part.why})}$('score').textContent=`⭐ ${score}/${MAX}`;$('bar').style.width=(answeredCount/MAX*100)+'%';$('next').textContent=step<2?`Continue to ${NAMES[step+1]} →`:'See Complete Paragraph 📝';$('next').hidden=false}
+function showParagraph(){screen('built');let item=current();$('challengeResult').textContent=`You earned ${challengeScore}/3 marks for this paragraph.`;$('paragraph').textContent=[item.point,...item.parts.map(p=>p.correct)].join(' ');let last=challenge===rounds[level].items.length-1;$('nextChallenge').textContent=last?(level===2?'See Final Score 🏆':'Finish This Level →'):'Next Paragraph →'}
+function nextChallenge(){challenge++;if(challenge<rounds[level].items.length){startChallenge();return}if(level===rounds.length-1){finish();return}$('levelFinished').textContent=`Level ${level+1} Completed!`;$('levelSummary').textContent=`You scored ${levelScores[level]}/${rounds[level].items.length*3} in ${rounds[level].title}.` ;screen('between')}
+function finish(){screen('end');$('resultName').textContent=player;$('finalScore').textContent=`${score} / ${MAX}`;$('percentage').textContent=Math.round(score/MAX*100)+'% correct';$('breakdown').replaceChildren();rounds.forEach((g,i)=>{let c=document.createElement('span');c.className='chip';c.textContent=`Level ${i+1}: ${levelScores[i]}/${g.items.length*3}`;$('breakdown').append(c)});$('message').textContent=score>=27?'🌟 Excellent paragraph-building skills!':score>=21?'👏 Great work! Keep connecting your ideas.':'🌱 Keep practising how each sentence supports the main point.';$('reviewButton').textContent=`Review My Mistakes (${mistakes.length}) 📚`;$('review').hidden=true;$('review').replaceChildren();if(!mistakes.length){$('review').textContent='Perfect! No mistakes to review. 🎉'}mistakes.forEach((m,i)=>{let box=document.createElement('div');box.className='review';for(const [label,val] of [[`${i+1}. ${m.kind} — Main point:`,m.point],['❌ Your choice:',m.chosen],['Why it does not fit:',m.whyWrong],['✅ Correct sentence:',m.correct],['Why it fits:',m.whyCorrect]]){let p=document.createElement('p');let s=document.createElement('strong');s.textContent=label+' ';p.append(s,document.createTextNode(val));box.append(p)}$('review').append(box)})}
+$('nameForm').addEventListener('submit',e=>{e.preventDefault();player=$('nameInput').value.trim();if(player)startGame()});$('next').addEventListener('click',()=>{if(!answered)return;if(step<2){step++;render()}else showParagraph()});$('nextChallenge').addEventListener('click',nextChallenge);$('continueLevel').addEventListener('click',()=>{level++;challenge=0;startChallenge()});$('reviewButton').addEventListener('click',()=>{$('review').hidden=!$('review').hidden});$('replay').addEventListener('click',startGame);$('changeName').addEventListener('click',()=>screen('start'));document.addEventListener('keydown',e=>{if($('play').hidden||answered||e.repeat||e.target.matches('input,textarea'))return;let i={'1':0,'2':1,'3':2,a:0,b:1,c:2}[e.key.toLowerCase()];if(i!==undefined)$('choices').children[i]?.click()});
+</script></body></html>
