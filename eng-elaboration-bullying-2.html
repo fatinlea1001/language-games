@@ -1,0 +1,1090 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paragraph Builder — Bullying Set 2</title>
+<style>
+:root{
+  --pink:#ea71a4;--ink:#493b4d;
+  --green:#238358;--red:#c83859
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:16px;
+  font-family:"Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(135deg,#ffe5f0,#f1edff,#e8f9f2)
+}
+.app{
+  width:min(100%,760px);margin:auto;
+  padding:27px 23px;background:white;
+  border-radius:25px;
+  box-shadow:0 14px 38px #b789a440
+}
+h1{text-align:center;color:#d64e8c;margin:9px 0 14px}
+h2{line-height:1.35}
+p{line-height:1.6}
+.center{text-align:center}
+.hero{font-size:50px;text-align:center}
+.pill{
+  display:inline-block;background:#ffebf4;
+  color:#a04478;border-radius:99px;
+  padding:8px 12px;font-size:13px;font-weight:750
+}
+input{
+  width:100%;font:inherit;
+  border:2px solid #efc0d6;
+  border-radius:13px;padding:15px;margin:14px 0
+}
+button{font:inherit;cursor:pointer}
+.btn{
+  width:100%;border:0;border-radius:14px;
+  margin-top:15px;padding:15px;
+  background:var(--pink);color:white;
+  font-size:16px;font-weight:750
+}
+.btn:hover{background:#d74c8b}
+.btn.alt{background:#ae91b5}
+.btn:focus-visible,.choice:focus-visible{
+  outline:3px solid #7354b8;outline-offset:3px
+}
+.stats{
+  display:flex;flex-wrap:wrap;
+  justify-content:space-between;gap:8px
+}
+.track{
+  height:11px;margin:20px 0;
+  background:#f9ddea;
+  border-radius:99px;overflow:hidden
+}
+.bar{
+  height:100%;width:0;
+  background:linear-gradient(90deg,#f1a8c9,#e46ca0);
+  transition:width .25s
+}
+.steps{display:flex;gap:6px;margin:15px 0}
+.step{
+  flex:1;border-radius:12px;
+  background:#f5f0f5;color:#88788b;
+  text-align:center;padding:10px 5px;
+  font-size:12px;font-weight:800;
+  border:2px solid transparent
+}
+.step.active{
+  background:#fbe1ef;color:#a63876;
+  border-color:#ea95bc
+}
+.step.done{background:#def6e8;color:#20734d}
+.point{
+  background:#fff2f8;
+  border:2px solid #f3d4e3;
+  border-radius:16px;padding:17px;margin:16px 0
+}
+.point small{
+  display:block;font-size:12px;font-weight:800;
+  color:#a4497b;letter-spacing:.06em;
+  margin-bottom:8px
+}
+.point strong{font-size:19px;line-height:1.5}
+.draft{
+  background:#f8f7ff;
+  border:1px dashed #c5afd9;
+  border-radius:14px;padding:13px 16px;
+  margin:13px 0
+}
+.draft small{color:#8162a6;font-weight:800}
+.draft p{
+  font-size:14px;margin:7px 0;line-height:1.65
+}
+.prompt{
+  text-align:center;font-weight:800;
+  margin:20px 0 14px
+}
+.choices{display:grid;gap:11px}
+.choice{
+  display:flex;align-items:flex-start;gap:12px;
+  width:100%;border:2px solid #f2cadd;
+  border-radius:15px;padding:14px;
+  text-align:left;background:#fff9fc;
+  color:var(--ink);line-height:1.5
+}
+.choice:hover:not(:disabled){
+  background:#ffe8f1;border-color:var(--pink)
+}
+.choice:disabled{cursor:default}
+.letter{
+  flex:0 0 31px;min-height:31px;
+  display:grid;place-items:center;
+  background:#f8dce9;border-radius:9px;
+  color:#86516e;font-weight:850
+}
+.choice.correct{
+  background:#e0f8e9;
+  border-color:#47af79;color:#205e43
+}
+.choice.correct .letter{
+  background:#c6efd8;color:#1b7047
+}
+.choice.wrong{
+  background:#ffe0e7;border-color:#e26182;
+  color:#a52a49;animation:shake .42s ease
+}
+.feedback{
+  padding:15px;border-radius:14px;
+  margin-top:15px;font-weight:650;
+  font-size:14px;line-height:1.6
+}
+.feedback.good{background:#e4f8ed;color:#1d704a}
+.feedback.bad{background:#ffe3e9;color:#a52d4b}
+.model{
+  border:2px solid #edc9db;
+  background:#fffafd;border-radius:16px;
+  padding:19px;line-height:1.8;font-size:16px
+}
+.model p{margin:0}
+.big{
+  font-size:65px;font-weight:900;
+  color:#d74d90;margin:12px 0;text-align:center
+}
+.scorechips{
+  display:flex;justify-content:center;
+  flex-wrap:wrap;gap:8px
+}
+.chip{
+  background:#fff0f6;border-radius:12px;
+  padding:9px 13px;font-size:13px;font-weight:700
+}
+.reviewitem{
+  text-align:left;padding:14px;
+  background:#fff9fc;
+  border:1px solid #ecd5e2;
+  border-radius:14px;margin-top:10px;
+  font-size:14px;line-height:1.6
+}
+.reviewitem strong{display:block}
+#effects{
+  position:fixed;inset:0;
+  pointer-events:none;overflow:hidden;z-index:99
+}
+.particle{
+  position:absolute;font-size:28px;
+  animation:burst 1.12s ease-out forwards
+}
+@keyframes burst{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.25)
+  }
+  20%{opacity:1}
+  100%{
+    opacity:0;
+    transform:translate(
+      calc(-50% + var(--dx)),
+      calc(-50% + var(--dy))
+    ) rotate(var(--r)) scale(1.2)
+  }
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%,60%{transform:translateX(-8px)}
+  40%,80%{transform:translateX(8px)}
+}
+@keyframes flashRed{35%{background:#ffe0e7}}
+@keyframes flashGreen{35%{background:#e5faed}}
+.flash-red{animation:flashRed .45s}
+.flash-green{animation:flashGreen .45s}
+[hidden]{display:none!important}
+@media(max-width:520px){
+  body{padding:8px}
+  .app{padding:21px 14px}
+  .point strong{font-size:17px}
+  .choice{font-size:14px;padding:12px}
+  .step{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="effects" aria-hidden="true"></div>
+<main class="app" id="app">
+
+<section id="start">
+  <div class="hero">🤝🛡️🌸</div>
+  <h1>Paragraph Builder!</h1>
+  <p class="center">
+    <span class="pill">BULLYING · SET 2</span>
+  </p>
+  <p class="center">
+    Develop each main point with an
+    <b>Explanation → Example → Result / Effect</b>.
+  </p>
+  <div class="steps">
+    <div class="step active">1 · Explanation</div>
+    <div class="step active">2 · Example</div>
+    <div class="step active">3 · Result</div>
+  </div>
+  <p class="center">
+    💭 Effects of Bullying (4 paragraphs)<br>
+    🛡️ Responding to Bullying (3 paragraphs)<br>
+    🤝 Preventing Bullying (3 paragraphs)
+  </p>
+  <p class="center">
+    <b>10 paragraphs × 3 steps = 30 marks</b>
+  </p>
+  <form id="nameForm">
+    <input id="nameInput" maxlength="60"
+      placeholder="Enter your name" required>
+    <button class="btn">Start Building ✨</button>
+  </form>
+</section>
+
+<section id="play" hidden>
+  <div class="stats">
+    <span class="pill" id="player"></span>
+    <span class="pill" id="level"></span>
+    <span class="pill" id="score"></span>
+  </div>
+  <div class="track">
+    <div class="bar" id="bar"></div>
+  </div>
+  <p id="progress" class="center"></p>
+  <div class="steps">
+    <div class="step" id="step0">1 · Explanation</div>
+    <div class="step" id="step1">2 · Example</div>
+    <div class="step" id="step2">3 · Result</div>
+  </div>
+  <div class="point">
+    <small>MAIN POINT</small>
+    <strong id="point"></strong>
+  </div>
+  <div class="draft" id="draft" hidden>
+    <small>CORRECT PARAGRAPH SO FAR (including corrected answers)</small>
+    <p id="draftText"></p>
+  </div>
+  <p class="prompt" id="prompt"></p>
+  <div class="choices" id="choices"></div>
+  <div class="feedback" id="feedback"
+    role="status" aria-live="polite" hidden></div>
+  <button class="btn" id="next" hidden>
+    Continue →
+  </button>
+</section>
+
+<section id="built" hidden>
+  <div class="hero">📝👏🌸</div>
+  <h1>Paragraph Complete!</h1>
+  <p id="challengeResult" class="center"></p>
+  <div class="model">
+    <p id="modelText"></p>
+  </div>
+  <p class="center" style="font-size:13px">
+    Notice how each sentence explains, illustrates
+    or develops the main point.
+  </p>
+  <button class="btn" id="nextChallenge">
+    Next Paragraph →
+  </button>
+</section>
+
+<section id="between" hidden>
+  <div class="hero">🎉💗</div>
+  <h1 id="levelFinished"></h1>
+  <p class="center" id="levelSummary"></p>
+  <button class="btn" id="continueLevel">
+    Next Level →
+  </button>
+</section>
+
+<section id="end" hidden>
+  <div class="hero">🏆💗✨</div>
+  <h1>Writing Challenge Completed!</h1>
+  <h2 class="center" id="resultName"></h2>
+  <p class="center">Your final score</p>
+  <div class="big" id="finalScore"></div>
+  <p class="center">
+    <span class="pill" id="percentage"></span>
+  </p>
+  <div class="scorechips" id="breakdown"></div>
+  <p id="message" class="center"></p>
+  <button class="btn alt" id="reviewButton">
+    Review My Mistakes 📚
+  </button>
+  <div id="review" hidden></div>
+  <button class="btn" id="replay">
+    Play Again 🔀
+  </button>
+  <button class="btn alt" id="changeName">
+    Change Name
+  </button>
+  <p class="center" style="font-size:13px">
+    📸 Screenshot your result to submit!
+  </p>
+</section>
+</main>
+
+<script>
+// Each stage:
+// [correct, wrong 1, wrong 2, teaching explanation]
+
+const LEVELS=[
+ {
+  "title": "Effects of Bullying",
+  "items": [
+   {
+    "point": "Spreading rumours about a classmate can damage their reputation.",
+    "topicIndex": 0,
+    "steps": [
+     [
+      "When an unverified story is repeated, others may form unfair opinions before hearing the truth.",
+      "Once an embarrassing image is forwarded, it may reach many viewers and remain accessible even after the original post is removed.",
+      "When classmates repeatedly leave someone out, the student may believe that they are not accepted by the group.",
+      "This explains how unverified stories influence other people’s opinions."
+     ],
+     [
+      "For example, several students may avoid a classmate after a false accusation spreads through a group chat.",
+      "For example, a private photograph shared to embarrass a student may be copied into several class group chats.",
+      "For example, a pupil may be left without a partner during group tasks because others repeatedly refuse to work with them.",
+      "The example shows classmates reacting to a false story."
+     ],
+     [
+      "As a result, the student may lose friendships and struggle to regain the trust of classmates.",
+      "As a result, the victim may continue worrying about who has seen the image long after the first incident.",
+      "As a result, the pupil may feel isolated and hesitate to join future classroom activities.",
+      "The outcome concerns reputation and trust, not simply hurt feelings."
+     ]
+    ]
+   },
+   {
+    "point": "Repeated bullying can make students reluctant to attend school.",
+    "topicIndex": 1,
+    "steps": [
+     [
+      "When students expect to face humiliation or threats, staying away may seem safer than attending lessons.",
+      "When classmates repeatedly leave someone out, the student may believe that they are not accepted by the group.",
+      "When an unverified story is repeated, others may form unfair opinions before hearing the truth.",
+      "This shows how fear may lead to avoiding school."
+     ],
+     [
+      "For instance, a student who is mocked every morning at the school gate may begin asking to stay home.",
+      "For example, a pupil may be left without a partner during group tasks because others repeatedly refuse to work with them.",
+      "For example, several students may avoid a classmate after a false accusation spreads through a group chat.",
+      "The example links repeated bullying to the wish to stay home."
+     ],
+     [
+      "Consequently, the student may miss important lessons and feel increasingly disconnected from school.",
+      "As a result, the pupil may feel isolated and hesitate to join future classroom activities.",
+      "As a result, the student may lose friendships and struggle to regain the trust of classmates.",
+      "The effect focuses on attendance and lost learning opportunities."
+     ]
+    ]
+   },
+   {
+    "point": "Being deliberately excluded from activities can harm a student’s sense of belonging.",
+    "topicIndex": 2,
+    "steps": [
+     [
+      "When classmates repeatedly leave someone out, the student may believe that they are not accepted by the group.",
+      "When students expect to face humiliation or threats, staying away may seem safer than attending lessons.",
+      "Once an embarrassing image is forwarded, it may reach many viewers and remain accessible even after the original post is removed.",
+      "This explains why exclusion affects the feeling of being accepted."
+     ],
+     [
+      "For example, a pupil may be left without a partner during group tasks because others repeatedly refuse to work with them.",
+      "For instance, a student who is mocked every morning at the school gate may begin asking to stay home.",
+      "For example, a private photograph shared to embarrass a student may be copied into several class group chats.",
+      "The example shows deliberate exclusion from a shared task."
+     ],
+     [
+      "As a result, the pupil may feel isolated and hesitate to join future classroom activities.",
+      "Consequently, the student may miss important lessons and feel increasingly disconnected from school.",
+      "As a result, the victim may continue worrying about who has seen the image long after the first incident.",
+      "The result concerns belonging and participation after exclusion."
+     ]
+    ]
+   },
+   {
+    "point": "Sharing humiliating images online can make bullying more difficult to escape.",
+    "topicIndex": 3,
+    "steps": [
+     [
+      "Once an embarrassing image is forwarded, it may reach many viewers and remain accessible even after the original post is removed.",
+      "When an unverified story is repeated, others may form unfair opinions before hearing the truth.",
+      "When students expect to face humiliation or threats, staying away may seem safer than attending lessons.",
+      "This explains how repeated sharing prolongs online humiliation."
+     ],
+     [
+      "For example, a private photograph shared to embarrass a student may be copied into several class group chats.",
+      "For example, several students may avoid a classmate after a false accusation spreads through a group chat.",
+      "For instance, a student who is mocked every morning at the school gate may begin asking to stay home.",
+      "The example centres on an image spreading beyond its first audience."
+     ],
+     [
+      "As a result, the victim may continue worrying about who has seen the image long after the first incident.",
+      "As a result, the student may lose friendships and struggle to regain the trust of classmates.",
+      "Consequently, the student may miss important lessons and feel increasingly disconnected from school.",
+      "The effect concerns the continuing impact of a circulated image."
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Responding to Bullying",
+  "items": [
+   {
+    "point": "Keeping a record of bullying incidents can help students report them clearly.",
+    "topicIndex": 4,
+    "steps": [
+     [
+      "Notes about dates, locations and messages can give a trusted adult specific information to investigate.",
+      "Forwarding insulting content can expose the victim to more viewers and encourage the behaviour to continue.",
+      "Offering company and checking on someone privately can reduce isolation while adults handle the harmful behaviour.",
+      "This explains how organised evidence supports a clear report."
+     ],
+     [
+      "For instance, a student may save threatening messages and record when repeated incidents happened before speaking to a counsellor.",
+      "For example, a bystander may refuse to repost a mocking video and instead inform a trusted teacher about it.",
+      "For example, two classmates may invite an excluded student to sit with them and encourage the student to speak to a teacher.",
+      "The example shows preserving relevant details rather than confronting the bully."
+     ],
+     [
+      "As a result, the adult may better understand the pattern and decide what support or action is needed.",
+      "Consequently, the hurtful content may spread less widely, and the incident can be brought to an adult’s attention.",
+      "As a result, the student may feel less alone and more confident about asking for help.",
+      "The outcome focuses on a more informed response to a report."
+     ]
+    ]
+   },
+   {
+    "point": "Classmates can support a bullied student without confronting the bully directly.",
+    "topicIndex": 5,
+    "steps": [
+     [
+      "Offering company and checking on someone privately can reduce isolation while adults handle the harmful behaviour.",
+      "Notes about dates, locations and messages can give a trusted adult specific information to investigate.",
+      "Forwarding insulting content can expose the victim to more viewers and encourage the behaviour to continue.",
+      "This explains safe peer support without escalating the conflict."
+     ],
+     [
+      "For example, two classmates may invite an excluded student to sit with them and encourage the student to speak to a teacher.",
+      "For instance, a student may save threatening messages and record when repeated incidents happened before speaking to a counsellor.",
+      "For example, a bystander may refuse to repost a mocking video and instead inform a trusted teacher about it.",
+      "The example shows inclusion and encouragement rather than retaliation."
+     ],
+     [
+      "As a result, the student may feel less alone and more confident about asking for help.",
+      "As a result, the adult may better understand the pattern and decide what support or action is needed.",
+      "Consequently, the hurtful content may spread less widely, and the incident can be brought to an adult’s attention.",
+      "The result describes emotional support and willingness to seek help."
+     ]
+    ]
+   },
+   {
+    "point": "Students who witness bullying should avoid sharing cruel posts for entertainment.",
+    "topicIndex": 6,
+    "steps": [
+     [
+      "Forwarding insulting content can expose the victim to more viewers and encourage the behaviour to continue.",
+      "Offering company and checking on someone privately can reduce isolation while adults handle the harmful behaviour.",
+      "Notes about dates, locations and messages can give a trusted adult specific information to investigate.",
+      "This explains how reposting can increase harm even without writing the original post."
+     ],
+     [
+      "For example, a bystander may refuse to repost a mocking video and instead inform a trusted teacher about it.",
+      "For example, two classmates may invite an excluded student to sit with them and encourage the student to speak to a teacher.",
+      "For instance, a student may save threatening messages and record when repeated incidents happened before speaking to a counsellor.",
+      "The example combines refusing to spread the content with safe reporting."
+     ],
+     [
+      "Consequently, the hurtful content may spread less widely, and the incident can be brought to an adult’s attention.",
+      "As a result, the student may feel less alone and more confident about asking for help.",
+      "As a result, the adult may better understand the pattern and decide what support or action is needed.",
+      "The effect concerns limiting circulation and enabling adult support."
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Preventing Bullying",
+  "items": [
+   {
+    "point": "Regular class discussions about respectful language can help prevent verbal bullying.",
+    "topicIndex": 7,
+    "steps": [
+     [
+      "When students examine how jokes and nicknames affect others, they may become more aware of hurtful speech.",
+      "Campaigns that explain safe ways to respond can show witnesses that doing nothing is not their only option.",
+      "Sharing concerns about changes in mood, friendships or school attendance can reveal warning signs that one adult might miss.",
+      "This explains how reflecting on language can change everyday behaviour."
+     ],
+     [
+      "For example, a teacher may ask groups to rewrite insulting comments as respectful ways of expressing disagreement.",
+      "For instance, campaign posters may advise students to seek adult help, avoid joining in and offer support to victims.",
+      "For example, a parent may tell a class teacher that a child has become afraid of going to school, prompting a careful follow-up.",
+      "The activity practises respectful alternatives to insulting comments."
+     ],
+     [
+      "As a result, students may think more carefully before speaking and handle disagreements with less hostility.",
+      "As a result, more witnesses may recognise practical steps they can take when they see bullying.",
+      "As a result, adults may recognise a possible problem sooner and coordinate suitable support for the student.",
+      "The result focuses on reducing hurtful speech."
+     ]
+    ]
+   },
+   {
+    "point": "Including bystander responsibilities in school campaigns can strengthen anti-bullying efforts.",
+    "topicIndex": 8,
+    "steps": [
+     [
+      "Campaigns that explain safe ways to respond can show witnesses that doing nothing is not their only option.",
+      "When students examine how jokes and nicknames affect others, they may become more aware of hurtful speech.",
+      "Sharing concerns about changes in mood, friendships or school attendance can reveal warning signs that one adult might miss.",
+      "This explains why campaigns should guide witnesses towards safe action."
+     ],
+     [
+      "For instance, campaign posters may advise students to seek adult help, avoid joining in and offer support to victims.",
+      "For example, a teacher may ask groups to rewrite insulting comments as respectful ways of expressing disagreement.",
+      "For example, a parent may tell a class teacher that a child has become afraid of going to school, prompting a careful follow-up.",
+      "The example gives specific bystander actions within a campaign."
+     ],
+     [
+      "As a result, more witnesses may recognise practical steps they can take when they see bullying.",
+      "As a result, students may think more carefully before speaking and handle disagreements with less hostility.",
+      "As a result, adults may recognise a possible problem sooner and coordinate suitable support for the student.",
+      "The effect concerns witnesses understanding how to respond."
+     ]
+    ]
+   },
+   {
+    "point": "Cooperation between parents and teachers can help identify bullying earlier.",
+    "topicIndex": 9,
+    "steps": [
+     [
+      "Sharing concerns about changes in mood, friendships or school attendance can reveal warning signs that one adult might miss.",
+      "Campaigns that explain safe ways to respond can show witnesses that doing nothing is not their only option.",
+      "When students examine how jokes and nicknames affect others, they may become more aware of hurtful speech.",
+      "This explains why communication between home and school matters."
+     ],
+     [
+      "For example, a parent may tell a class teacher that a child has become afraid of going to school, prompting a careful follow-up.",
+      "For instance, campaign posters may advise students to seek adult help, avoid joining in and offer support to victims.",
+      "For example, a teacher may ask groups to rewrite insulting comments as respectful ways of expressing disagreement.",
+      "The example connects a concern noticed at home with a school follow-up."
+     ],
+     [
+      "As a result, adults may recognise a possible problem sooner and coordinate suitable support for the student.",
+      "As a result, more witnesses may recognise practical steps they can take when they see bullying.",
+      "As a result, students may think more carefully before speaking and handle disagreements with less hostility.",
+      "The result focuses on earlier recognition and coordinated support."
+     ]
+    ]
+   }
+  ]
+ }
+];
+
+const TOPICS=[
+ [
+  "humiliating images spreading online",
+  "deliberate exclusion harming a sense of belonging",
+  "false rumours damaging a student’s reputation",
+  "imej memalukan tersebar dalam talian",
+  "pemulauan sengaja menjejaskan rasa diterima",
+  "khabar angin palsu merosakkan reputasi murid"
+ ],
+ [
+  "deliberate exclusion harming a sense of belonging",
+  "false rumours damaging a student’s reputation",
+  "bullying leading to school avoidance",
+  "pemulauan sengaja menjejaskan rasa diterima",
+  "khabar angin palsu merosakkan reputasi murid",
+  "buli menyebabkan murid enggan ke sekolah"
+ ],
+ [
+  "bullying leading to school avoidance",
+  "humiliating images spreading online",
+  "deliberate exclusion harming a sense of belonging",
+  "buli menyebabkan murid enggan ke sekolah",
+  "imej memalukan tersebar dalam talian",
+  "pemulauan sengaja menjejaskan rasa diterima"
+ ],
+ [
+  "false rumours damaging a student’s reputation",
+  "bullying leading to school avoidance",
+  "humiliating images spreading online",
+  "khabar angin palsu merosakkan reputasi murid",
+  "buli menyebabkan murid enggan ke sekolah",
+  "imej memalukan tersebar dalam talian"
+ ],
+ [
+  "bystanders refusing to amplify hurtful content",
+  "safe peer support for someone being bullied",
+  "keeping evidence for a bullying report",
+  "saksi enggan menyebarkan kandungan yang menyakitkan hati",
+  "sokongan rakan sebaya yang selamat kepada mangsa buli",
+  "menyimpan bukti untuk laporan buli"
+ ],
+ [
+  "keeping evidence for a bullying report",
+  "bystanders refusing to amplify hurtful content",
+  "safe peer support for someone being bullied",
+  "menyimpan bukti untuk laporan buli",
+  "saksi enggan menyebarkan kandungan yang menyakitkan hati",
+  "sokongan rakan sebaya yang selamat kepada mangsa buli"
+ ],
+ [
+  "safe peer support for someone being bullied",
+  "keeping evidence for a bullying report",
+  "bystanders refusing to amplify hurtful content",
+  "sokongan rakan sebaya yang selamat kepada mangsa buli",
+  "menyimpan bukti untuk laporan buli",
+  "saksi enggan menyebarkan kandungan yang menyakitkan hati"
+ ],
+ [
+  "anti-bullying campaigns guiding witnesses",
+  "parents and teachers detecting bullying together",
+  "class discussions encouraging respectful language",
+  "kempen antibuli membimbing saksi",
+  "ibu bapa dan guru mengesan buli bersama-sama",
+  "perbincangan kelas menggalakkan bahasa yang hormat"
+ ],
+ [
+  "class discussions encouraging respectful language",
+  "parents and teachers detecting bullying together",
+  "anti-bullying campaigns guiding witnesses",
+  "perbincangan kelas menggalakkan bahasa yang hormat",
+  "ibu bapa dan guru mengesan buli bersama-sama",
+  "kempen antibuli membimbing saksi"
+ ],
+ [
+  "anti-bullying campaigns guiding witnesses",
+  "class discussions encouraging respectful language",
+  "parents and teachers detecting bullying together",
+  "kempen antibuli membimbing saksi",
+  "perbincangan kelas menggalakkan bahasa yang hormat",
+  "ibu bapa dan guru mengesan buli bersama-sama"
+ ]
+];
+
+function whyWrong(part,choice){
+ const topic=part.topics[choice.wrongIndex];
+ return {
+  en:`Your choice is about ${topic.en}, but the main point is about ${part.topics.targetEn}. It introduces a different idea instead of developing this paragraph's point.`,
+  ms:`Ayat pilihan anda berkaitan ${topic.ms}, tetapi isi utama ialah ${part.topics.targetMs}. Ayat ini membawa idea lain dan tidak menghuraikan isi utama perenggan.`
+ };
+}
+
+function feedbackLines(target,lines){
+ target.replaceChildren();
+ for(const line of lines){
+  const p=document.createElement("p");
+  p.textContent=line;
+  p.style.margin="5px 0";
+  target.appendChild(p);
+ }
+}
+
+const $=id=>document.getElementById(id);
+const NAMES=["Explanation","Example","Result / Effect"];
+const LEVEL_MAX=LEVELS.map(l=>l.items.length*3);
+const TOTAL=LEVEL_MAX.reduce((a,b)=>a+b,0);
+
+let player="",rounds=[],level=0,challenge=0,step=0;
+let score=0,answeredCount=0,challengeScore=0;
+let levelScores=[],mistakes=[],answered=false;
+
+function shuffle(items){
+ const a=[...items];
+ for(let i=a.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [a[i],a[j]]=[a[j],a[i]];
+ }
+ return a;
+}
+
+function screen(name){
+ for(const id of ["start","play","built","between","end"])
+  $(id).hidden=id!==name;
+}
+
+function current(){
+ return rounds[level].items[challenge];
+}
+
+function startGame(){
+ let topicOffset=0;
+ rounds=LEVELS.map(group=>{
+  const items=shuffle(group.items.map((item,i)=>({...item,topicIndex:topicOffset+i}))).map(item=>({
+   point:item.point,
+   steps:item.steps.map(([correct,w1,w2,tip])=>({
+    correct,
+    wrong:[w1,w2],
+    tip,
+    topics:{
+     0:{en:TOPICS[item.topicIndex][0],ms:TOPICS[item.topicIndex][3]},
+     1:{en:TOPICS[item.topicIndex][1],ms:TOPICS[item.topicIndex][4]},
+     targetEn:TOPICS[item.topicIndex][2],
+     targetMs:TOPICS[item.topicIndex][5]
+    },
+    options:[]
+   }))
+  }));
+  topicOffset+=group.items.length;
+
+  // Balanced correct answers across A, B and C.
+  const positions=shuffle(
+   Array.from({length:items.length*3},(_,i)=>i%3)
+  );
+
+  let next=0;
+
+  for(const item of items){
+   for(const part of item.steps){
+    part.options=shuffle(part.wrong.map((text,wrongIndex)=>({text,correct:false,wrongIndex})));
+    part.options.splice(
+     positions[next++],0,
+     {text:part.correct,correct:true}
+    );
+   }
+  }
+  return {title:group.title,items};
+ });
+
+ level=0;
+ challenge=0;
+ score=0;
+ answeredCount=0;
+ levelScores=LEVELS.map(()=>0);
+ mistakes=[];
+ startChallenge();
+}
+
+function startChallenge(){
+ step=0;
+ challengeScore=0;
+ screen("play");
+ render();
+}
+
+function render(){
+ answered=false;
+ const item=current();
+
+ $("player").textContent="👤 "+player;
+ $("level").textContent=
+  `Level ${level+1}/3 · ${rounds[level].title}`;
+ $("score").textContent=`⭐ ${score}/${TOTAL}`;
+
+ const before=rounds.slice(0,level).reduce(
+  (n,g)=>n+g.items.length,0
+ );
+
+ $("progress").textContent=
+  `Paragraph ${before+challenge+1} of 10 · Step ${step+1} of 3`;
+
+ $("bar").style.width=(answeredCount/TOTAL*100)+"%";
+ $("point").textContent=item.point;
+
+ NAMES.forEach((_,i)=>{
+  $("step"+i).className="step "+(
+   i<step?"done":i===step?"active":""
+  );
+ });
+
+ $("draft").hidden=step===0;
+ $("draftText").textContent=[
+  item.point,
+  ...item.steps.slice(0,step).map(s=>s.correct)
+ ].join(" ");
+
+ $("prompt").textContent=
+  `Step ${step+1}: Choose the best ${NAMES[step].toLowerCase()} sentence.`;
+
+ $("feedback").hidden=true;
+ $("feedback").className="feedback";
+ $("next").hidden=true;
+ $("choices").replaceChildren();
+
+ current().steps[step].options.forEach((option,i)=>{
+  const button=document.createElement("button");
+  button.type="button";
+  button.className="choice";
+
+  const letter=document.createElement("span");
+  letter.className="letter";
+  letter.textContent="ABC"[i];
+
+  const text=document.createElement("span");
+  text.textContent=option.text;
+
+  button.append(letter,text);
+  button.addEventListener("click",()=>choose(option,button));
+  $("choices").appendChild(button);
+ });
+}
+
+function flash(name){
+ $("app").classList.remove("flash-red","flash-green");
+ void $("app").offsetWidth;
+ $("app").classList.add(name);
+}
+
+function celebrate(target){
+ const box=target.getBoundingClientRect();
+ const x=box.left+box.width/2;
+ const y=box.top+box.height/2;
+
+ ["👏","✅","🌸","✨","👏","✅","💗","⭐"]
+ .forEach((emoji,i,arr)=>{
+  const node=document.createElement("span");
+  const a=i*2*Math.PI/arr.length;
+  const d=75+Math.random()*90;
+
+  node.className="particle";
+  node.textContent=emoji;
+  node.style.left=x+"px";
+  node.style.top=y+"px";
+  node.style.setProperty("--dx",Math.cos(a)*d+"px");
+  node.style.setProperty("--dy",Math.sin(a)*d+"px");
+  node.style.setProperty("--r",(Math.random()*70-35)+"deg");
+
+  $("effects").appendChild(node);
+  node.addEventListener("animationend",()=>node.remove(),{once:true});
+  setTimeout(()=>node.remove(),1400);
+ });
+}
+
+function choose(choice,button){
+ if(answered)return;
+ answered=true;
+ answeredCount++;
+
+ const part=current().steps[step];
+
+ for(const optionButton of $("choices").children){
+  optionButton.disabled=true;
+  if(
+   optionButton.querySelector("span:last-child")
+    .textContent===part.correct
+  ){
+   optionButton.classList.add("correct");
+  }
+ }
+
+ const fb=$("feedback");
+ fb.hidden=false;
+
+ if(choice.correct){
+  score++;
+  challengeScore++;
+  levelScores[level]++;
+
+  fb.classList.add("good");
+  fb.textContent="✅ Correct! +1 mark. "+part.tip;
+
+  flash("flash-green");
+  celebrate(button);
+
+ }else{
+  button.classList.add("wrong");
+  fb.classList.add("bad");
+  const reason=whyWrong(part,choice);
+  feedbackLines(fb,[
+   "❌ Incorrect — 0 marks for this step.",
+   "Your answer: "+choice.text,
+   "WHY IT IS WRONG: "+reason.en,
+   "MENGAPA SALAH: "+reason.ms,
+   "✅ Correct sentence: "+part.correct,
+   "WHY IT FITS: "+part.tip,
+   "The correct sentence (not your wrong choice) will appear in the next step. / Ayat yang betul akan digunakan pada langkah seterusnya."
+  ]);
+
+  mistakes.push({
+   chosen:choice.text,
+   reasonEn:reason.en,
+   reasonMs:reason.ms,
+   point:current().point,
+   kind:NAMES[step],
+   correct:part.correct,
+   tip:part.tip
+  });
+
+  flash("flash-red");
+
+  if(typeof navigator.vibrate==="function")
+   navigator.vibrate([90,45,90]);
+ }
+
+ $("score").textContent=`⭐ ${score}/${TOTAL}`;
+ $("bar").style.width=(answeredCount/TOTAL*100)+"%";
+
+ $("next").textContent=step<2
+  ?`Continue to ${NAMES[step+1]} →`
+  :"See Complete Paragraph 📝";
+
+ $("next").hidden=false;
+}
+
+function showParagraph(){
+ screen("built");
+
+ const item=current();
+
+ $("challengeResult").textContent=
+  `You earned ${challengeScore}/3 marks for this paragraph.`;
+
+ $("modelText").textContent=[
+  item.point,
+  ...item.steps.map(s=>s.correct)
+ ].join(" ");
+
+ const last=challenge===rounds[level].items.length-1;
+
+ $("nextChallenge").textContent=last
+  ?(level===2?"See Final Score 🏆":"Finish This Level →")
+  :"Next Paragraph →";
+}
+
+function nextChallenge(){
+ challenge++;
+
+ if(challenge<rounds[level].items.length){
+  startChallenge();
+  return;
+ }
+
+ if(level===rounds.length-1){
+  finish();
+  return;
+ }
+
+ $("levelFinished").textContent=
+  `Level ${level+1} Completed!`;
+
+ $("levelSummary").textContent=
+  `You earned ${levelScores[level]}/${LEVEL_MAX[level]} marks in ${rounds[level].title}. Next: ${rounds[level+1].title}.`;
+
+ screen("between");
+}
+
+function finish(){
+ screen("end");
+
+ $("resultName").textContent=player;
+ $("finalScore").textContent=`${score} / ${TOTAL}`;
+ $("percentage").textContent=
+  Math.round(score/TOTAL*100)+"% correct";
+
+ $("breakdown").replaceChildren();
+
+ rounds.forEach((r,i)=>{
+  const chip=document.createElement("span");
+  chip.className="chip";
+  chip.textContent=
+   `Level ${i+1}: ${levelScores[i]}/${LEVEL_MAX[i]}`;
+  $("breakdown").appendChild(chip);
+ });
+
+ $("message").textContent=score>=27
+  ?"🌟 Excellent! Your explanations, examples and results fit together beautifully!"
+  :score>=21
+  ?"👏 Great work! Keep building strong paragraphs."
+  :"🌱 Keep practising: explain WHY, give a fitting example and show the effect.";
+
+ $("reviewButton").textContent=
+  `Review My Mistakes (${mistakes.length}) 📚`;
+
+ $("review").hidden=true;
+ $("review").replaceChildren();
+
+ if(!mistakes.length){
+  const p=document.createElement("p");
+  p.textContent="Perfect! No mistakes to review. 🎉";
+  $("review").appendChild(p);
+ }
+
+ mistakes.forEach((m,i)=>{
+  const card=document.createElement("div");
+  card.className="reviewitem";
+
+  const heading=document.createElement("strong");
+  heading.textContent=
+   `${i+1}. ${m.kind} — ${m.point}`;
+
+  const selected=document.createElement("p");
+  selected.textContent="❌ Your answer (0 marks): "+m.chosen;
+  const en=document.createElement("p");
+  en.textContent="WHY IT IS WRONG: "+m.reasonEn;
+  const ms=document.createElement("p");
+  ms.textContent="MENGAPA SALAH: "+m.reasonMs;
+  const ans=document.createElement("p");
+  ans.textContent="✅ Correct sentence: "+m.correct;
+  const tip=document.createElement("p");
+  tip.textContent="💡 Why it fits: "+m.tip;
+
+  card.append(heading,selected,en,ms,ans,tip);
+  $("review").appendChild(card);
+ });
+}
+
+$("nameForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ player=$("nameInput").value.trim();
+ if(player)startGame();
+});
+
+$("next").addEventListener("click",()=>{
+ if(!answered)return;
+ if(step<2){
+  step++;
+  render();
+ }else showParagraph();
+});
+
+$("nextChallenge").addEventListener("click",nextChallenge);
+
+$("continueLevel").addEventListener("click",()=>{
+ level++;
+ challenge=0;
+ startChallenge();
+});
+
+$("reviewButton").addEventListener("click",()=>{
+ $("review").hidden=!$("review").hidden;
+});
+
+$("replay").addEventListener("click",startGame);
+
+$("changeName").addEventListener("click",()=>{
+ screen("start");
+});
+
+// Keyboard shortcuts: A, B, C or 1, 2, 3.
+document.addEventListener("keydown",e=>{
+ if(
+  $("play").hidden ||
+  answered ||
+  e.repeat ||
+  e.target.matches("input,textarea")
+ )return;
+
+ const n={
+  "1":0,"2":1,"3":2,
+  a:0,b:1,c:2
+ }[e.key.toLowerCase()];
+
+ if(n!==undefined)
+  $("choices").children[n]?.click();
+});
+</script>
+</body>
+</html>
