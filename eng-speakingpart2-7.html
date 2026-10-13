@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speaking Part 2 — Build My Answer</title>
+<style>
+:root{--blue:#ffeaf3;--ink:#883b63;--deep:#bc4f86;--pink:#fff6fa;--good:#dff5e9;--bad:#ffe5e5}*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#ffeaf3,#fff6fa);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);padding:16px}.wrap{max-width:760px;margin:20px auto}.hero{background:white;border:3px solid #f2a6c7;border-radius:24px;padding:20px;box-shadow:0 8px 0 #ffeaf3;text-align:center}.hero h1{margin:3px 0 8px;font-size:clamp(25px,5vw,38px)}.hero p{margin:4px 0}.cute{font-size:40px}.card{background:white;border:2px solid #f2a6c7;border-radius:21px;padding:20px;margin-top:18px;box-shadow:0 5px 0 #ffeaf3}.hide{display:none!important}label{font-weight:750;display:block;margin-bottom:8px}input{width:100%;border:2px solid #f2a6c7;border-radius:12px;font-size:18px;padding:12px}button{font:inherit;cursor:pointer}.primary{background:#bc4f86;border:none;color:white;padding:13px 19px;border-radius:13px;font-weight:800;margin-top:14px}.primary:hover{background:#883b63}.primary:disabled{opacity:.5;cursor:not-allowed}.muted{color:#883b63;font-size:14px}.pill{display:inline-block;background:#ffeaf3;padding:6px 12px;border-radius:50px;font-size:13px;font-weight:800}.progress{height:12px;background:#ffeaf3;border-radius:30px;overflow:hidden;margin:14px 0}.bar{background:#f2a6c7;height:100%;width:0;transition:width .2s}.script{background:#fff6fa;border-left:5px solid #bc4f86;padding:12px 15px;border-radius:12px;line-height:1.65}.script p{margin:7px 0}.script strong{color:#bc4f86}.option{display:flex;align-items:flex-start;width:100%;gap:10px;background:#fff;border:2px solid #f2a6c7;border-radius:13px;padding:13px;margin-top:10px;text-align:left;color:var(--ink);line-height:1.5}.option:hover:not(:disabled){background:#ffeaf3;border-color:#bc4f86}.option:disabled{cursor:default}.option .letter{background:#ffeaf3;border-radius:8px;min-width:29px;padding:3px;text-align:center;font-weight:800}.option.good{background:var(--good);border-color:#bc4f86}.option.bad{background:var(--bad);border-color:#e09b9b}.feedback{padding:12px 14px;border-radius:12px;margin-top:14px;line-height:1.6}.feedback.good{background:var(--good)}.feedback.bad{background:var(--bad)}.feedback p{margin:5px 0}.between{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.topic{font-size:22px;margin:14px 0 8px}.small{font-size:13px}.finalscore{font-size:48px;font-weight:900;color:#bc4f86;margin:4px 0}.footer{text-align:center;color:#883b63;margin:22px 0;font-size:12px}@media(max-width:480px){body{padding:9px}.hero,.card{padding:16px}.option{padding:11px}}
+.copyReminder{margin:16px 0;padding:18px 12px;background:#fff1ac;border:4px dashed #e47a25;border-radius:16px;color:#803500;text-align:center;font-size:clamp(20px,4vw,28px);font-weight:950;line-height:1.45;animation:pulse 1.5s ease-in-out infinite}.copyReminder span{display:block;font-size:clamp(14px,3.2vw,19px);margin-top:6px}@keyframes pulse{50%{box-shadow:0 0 0 5px #ffe1a9}}#checkpointScript p{margin:9px 0}#copyBtn{background:#bc4f86}
+.vocabBox{margin-top:15px;padding:14px;background:#fff6fa;border:2px solid #f2a6c7;border-radius:12px}.vocabBox p{margin:6px 0}.vocabBox strong{color:#883b63}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero"><div class="cute">🩷 🌷 🎤</div><h1>SPEAKING PART 2</h1><p><b>Build My Answer! — Set 7</b> 🧩</p><p class="muted">Think carefully: a longer sentence is not necessarily better. Follow the meaning!</p></header>
+<section class="card" id="start"><label for="student">Your name / Nama murid</label><input id="student" maxlength="60" placeholder="Enter your name" autocomplete="name"><p class="muted">3 NEW topics • 30 sentences • Tricky choices • C1 word notes (BM + 中文) • Copy every completed answer</p><button class="primary" id="startBtn">Start Game →</button></section>
+<section class="card hide" id="game"><div class="between"><span id="who" class="pill"></span><span id="stat" class="pill"></span></div><div class="progress"><div class="bar" id="bar"></div></div><h2 class="topic" id="topic"></h2><p class="muted" id="topicNote"></p><div id="previous" class="script"></div><h3 id="question"></h3><div id="choices"></div><div class="feedback hide" id="feedback" aria-live="polite"></div><button class="primary hide" id="nextBtn">Next sentence →</button></section>
+<section class="card hide" id="checkpoint"><div style="font-size:48px;text-align:center">📒 ✍️ 🚨</div><h2 style="text-align:center">YOUR SPEAKING ANSWER IS READY!</h2><div class="copyReminder">🚨 BIG REMINDER! 🚨<br>COPY YOUR COMPLETED ANSWER INTO YOUR EXERCISE BOOK!<br><span>SALIN JAWAPAN LENGKAP DALAM BUKU LATIHAN!</span></div><p class="muted" style="text-align:center">Read the complete answer and copy every sentence before moving on.</p><h3 id="checkpointTitle"></h3><div id="checkpointScript" class="script"></div><div id="vocabBox" class="vocabBox"></div><button class="primary" id="copyBtn" type="button">📋 Copy Answer</button><p id="copiedMsg" class="muted" aria-live="polite"></p><label style="margin-top:14px"><input type="checkbox" id="copiedCheck" style="width:auto;margin-right:8px">I have copied the entire answer into my exercise book / Saya sudah menyalin jawapan.</label><button class="primary" id="continueBtn" disabled>Continue →</button></section>
+<section class="card hide" id="end"><div style="text-align:center;font-size:45px">🏆 ✨ 🐰</div><h2 style="text-align:center">Speaking Builder Set 7 Complete!</h2><p style="text-align:center" id="finishName"></p><div class="finalscore" style="text-align:center" id="finalScore"></div><p style="text-align:center" id="finalRemark"></p><h3>Your three complete speaking answers 🎤</h3><div id="finishedScripts"></div><button class="primary" id="replayBtn">Play Again ↻</button></section><p class="footer">Practise speaking naturally — don't memorise only one pattern!</p>
+</main><script>
+// Three topics, ten stages each. Varying sentence length is intentional.
+const topics=[
+  {
+    "title": "A Movie I Enjoyed",
+    "note": "Describe a movie, its story, characters and why it appealed to you.",
+    "steps": [
+      {
+        "ask": "Introduce the topic clearly.",
+        "options": [
+          "Even though the ending was predictable, the message was touching.",
+          "Today, I would like to talk about a movie I enjoyed.",
+          "I watched it with my cousin during the school holidays."
+        ],
+        "correct": 1,
+        "why": "A focused opening introduces the required topic.",
+        "bm": "Pilih ayat yang memperkenalkan topik ini dengan tepat."
+      },
+      {
+        "ask": "Identify the person, place or thing.",
+        "options": [
+          "At the beginning, the main characters were afraid to try something new.",
+          "Overall, I recommend the film because its simple story delivers a powerful lesson.",
+          "It was an animated film about two friends on an adventure."
+        ],
+        "correct": 2,
+        "why": "This identifies the subject rather than adding an unrelated description.",
+        "bm": "Pilih ayat yang mengenal pasti perkara yang sedang dibincangkan."
+      },
+      {
+        "ask": "Give a specific background detail.",
+        "options": [
+          "It was an animated film about two friends on an adventure.",
+          "I watched it with my cousin during the school holidays.",
+          "At the beginning, the main characters were afraid to try something new."
+        ],
+        "correct": 1,
+        "why": "The background must match this particular experience.",
+        "bm": "Pilih latar belakang yang sesuai dengan cerita."
+      },
+      {
+        "ask": "Add a relevant detail that develops the story.",
+        "options": [
+          "Overall, I recommend the film because its simple story delivers a powerful lesson.",
+          "At the beginning, the main characters were afraid to try something new.",
+          "Even though the ending was predictable, the message was touching."
+        ],
+        "correct": 1,
+        "why": "Follow the earlier sentence, not merely a shared keyword.",
+        "bm": "Pastikan ayat ini menyambung idea sebelumnya."
+      },
+      {
+        "ask": "Continue with a clear example or important detail.",
+        "options": [
+          "At the beginning, the main characters were afraid to try something new.",
+          "One scene made me laugh.",
+          "However, they gradually learnt to trust each other."
+        ],
+        "correct": 2,
+        "why": "A good example should support the idea being developed.",
+        "bm": "Pilih contoh atau maklumat yang benar-benar mengembangkan jawapan."
+      },
+      {
+        "ask": "Add the next natural point.",
+        "options": [
+          "One scene made me laugh.",
+          "At the beginning, the main characters were afraid to try something new.",
+          "Overall, I recommend the film because its simple story delivers a powerful lesson."
+        ],
+        "correct": 0,
+        "why": "Choose the continuation that fits the progression of the answer.",
+        "bm": "Pilih idea seterusnya yang paling lancar."
+      },
+      {
+        "ask": "Develop the situation or introduce a challenge.",
+        "options": [
+          "More importantly, the story highlighted the value of courage.",
+          "Besides that, the colourful animation kept me interested.",
+          "One scene made me laugh."
+        ],
+        "correct": 1,
+        "why": "The development must follow what has already been established.",
+        "bm": "Perhatikan perkembangan situasi atau cabaran dalam cerita."
+      },
+      {
+        "ask": "Explain what happened next or how you responded.",
+        "options": [
+          "More importantly, the story highlighted the value of courage.",
+          "Overall, I recommend the film because its simple story delivers a powerful lesson.",
+          "At the beginning, the main characters were afraid to try something new."
+        ],
+        "correct": 0,
+        "why": "The response should address the situation in the completed answer.",
+        "bm": "Pilih tindakan atau penjelasan yang sesuai dengan ayat sebelumnya."
+      },
+      {
+        "ask": "Describe the outcome, significance or lesson.",
+        "options": [
+          "Even though the ending was predictable, the message was touching.",
+          "Overall, I recommend the film because its simple story delivers a powerful lesson.",
+          "More importantly, the story highlighted the value of courage."
+        ],
+        "correct": 0,
+        "why": "The effect or lesson must come from this specific experience.",
+        "bm": "Pilih kesan atau pengajaran yang berkaitan dengan cerita."
+      },
+      {
+        "ask": "End with a personal opinion and reason.",
+        "options": [
+          "Overall, I recommend the film because its simple story delivers a powerful lesson.",
+          "Besides that, the colourful animation kept me interested.",
+          "However, they gradually learnt to trust each other."
+        ],
+        "correct": 0,
+        "why": "A personal conclusion should evaluate the topic already discussed.",
+        "bm": "Akhiri dengan pendapat peribadi serta sebab yang jelas."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "predictable",
+        "ms": "mudah dijangka",
+        "zh": "可预测的"
+      },
+      {
+        "word": "highlighted",
+        "ms": "menonjolkan",
+        "zh": "突出了"
+      }
+    ]
+  },
+  {
+    "title": "A Book I Recommend",
+    "note": "Describe a book, its theme, memorable details and why others should read it.",
+    "steps": [
+      {
+        "ask": "Introduce the topic clearly.",
+        "options": [
+          "Today, I would like to recommend a book I recently read.",
+          "I borrowed it from my school library.",
+          "As a result, the book encouraged me to read more English fiction."
+        ],
+        "correct": 0,
+        "why": "A focused opening introduces the required topic.",
+        "bm": "Pilih ayat yang memperkenalkan topik ini dengan tepat."
+      },
+      {
+        "ask": "Identify the person, place or thing.",
+        "options": [
+          "It is a mystery novel set in a small town.",
+          "In my opinion, it is worth reading because it develops curiosity and critical thinking.",
+          "Furthermore, the main character solves problems through careful observation."
+        ],
+        "correct": 0,
+        "why": "This identifies the subject rather than adding an unrelated description.",
+        "bm": "Pilih ayat yang mengenal pasti perkara yang sedang dibincangkan."
+      },
+      {
+        "ask": "Give a specific background detail.",
+        "options": [
+          "I borrowed it from my school library.",
+          "It is a mystery novel set in a small town.",
+          "To begin with, the story follows a student searching for a missing diary."
+        ],
+        "correct": 0,
+        "why": "The background must match this particular experience.",
+        "bm": "Pilih latar belakang yang sesuai dengan cerita."
+      },
+      {
+        "ask": "Add a relevant detail that develops the story.",
+        "options": [
+          "Furthermore, the main character solves problems through careful observation.",
+          "To begin with, the story follows a student searching for a missing diary.",
+          "In my opinion, it is worth reading because it develops curiosity and critical thinking."
+        ],
+        "correct": 1,
+        "why": "Follow the earlier sentence, not merely a shared keyword.",
+        "bm": "Pastikan ayat ini menyambung idea sebelumnya."
+      },
+      {
+        "ask": "Continue with a clear example or important detail.",
+        "options": [
+          "I could not stop reading.",
+          "Each chapter introduces a surprising clue.",
+          "To begin with, the story follows a student searching for a missing diary."
+        ],
+        "correct": 1,
+        "why": "A good example should support the idea being developed.",
+        "bm": "Pilih contoh atau maklumat yang benar-benar mengembangkan jawapan."
+      },
+      {
+        "ask": "Add the next natural point.",
+        "options": [
+          "In my opinion, it is worth reading because it develops curiosity and critical thinking.",
+          "I could not stop reading.",
+          "Furthermore, the main character solves problems through careful observation."
+        ],
+        "correct": 1,
+        "why": "Choose the continuation that fits the progression of the answer.",
+        "bm": "Pilih idea seterusnya yang paling lancar."
+      },
+      {
+        "ask": "Develop the situation or introduce a challenge.",
+        "options": [
+          "I could not stop reading.",
+          "Furthermore, the main character solves problems through careful observation.",
+          "Although some parts were challenging, the plot remained engaging."
+        ],
+        "correct": 1,
+        "why": "The development must follow what has already been established.",
+        "bm": "Perhatikan perkembangan situasi atau cabaran dalam cerita."
+      },
+      {
+        "ask": "Explain what happened next or how you responded.",
+        "options": [
+          "Although some parts were challenging, the plot remained engaging.",
+          "In my opinion, it is worth reading because it develops curiosity and critical thinking.",
+          "Furthermore, the main character solves problems through careful observation."
+        ],
+        "correct": 0,
+        "why": "The response should address the situation in the completed answer.",
+        "bm": "Pilih tindakan atau penjelasan yang sesuai dengan ayat sebelumnya."
+      },
+      {
+        "ask": "Describe the outcome, significance or lesson.",
+        "options": [
+          "In my opinion, it is worth reading because it develops curiosity and critical thinking.",
+          "Although some parts were challenging, the plot remained engaging.",
+          "As a result, the book encouraged me to read more English fiction."
+        ],
+        "correct": 2,
+        "why": "The effect or lesson must come from this specific experience.",
+        "bm": "Pilih kesan atau pengajaran yang berkaitan dengan cerita."
+      },
+      {
+        "ask": "End with a personal opinion and reason.",
+        "options": [
+          "In my opinion, it is worth reading because it develops curiosity and critical thinking.",
+          "Furthermore, the main character solves problems through careful observation.",
+          "Each chapter introduces a surprising clue."
+        ],
+        "correct": 0,
+        "why": "A personal conclusion should evaluate the topic already discussed.",
+        "bm": "Akhiri dengan pendapat peribadi serta sebab yang jelas."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "engaging",
+        "ms": "menarik perhatian",
+        "zh": "引人入胜的"
+      },
+      {
+        "word": "observation",
+        "ms": "pemerhatian",
+        "zh": "观察"
+      }
+    ]
+  },
+  {
+    "title": "A Song I Love",
+    "note": "Talk about a song, when you listen to it and why it is meaningful.",
+    "steps": [
+      {
+        "ask": "Introduce the topic clearly.",
+        "options": [
+          "Over time, its uplifting message has become a source of comfort.",
+          "Today, I would like to talk about a song I love.",
+          "I first heard it on the radio while travelling with my family."
+        ],
+        "correct": 1,
+        "why": "A focused opening introduces the required topic.",
+        "bm": "Pilih ayat yang memperkenalkan topik ini dengan tepat."
+      },
+      {
+        "ask": "Identify the person, place or thing.",
+        "options": [
+          "Over time, its uplifting message has become a source of comfort.",
+          "It is a cheerful pop song about hope.",
+          "In short, I love this song because it reminds me to remain optimistic."
+        ],
+        "correct": 1,
+        "why": "This identifies the subject rather than adding an unrelated description.",
+        "bm": "Pilih ayat yang mengenal pasti perkara yang sedang dibincangkan."
+      },
+      {
+        "ask": "Give a specific background detail.",
+        "options": [
+          "To begin with, its melody is easy to remember.",
+          "It is a cheerful pop song about hope.",
+          "I first heard it on the radio while travelling with my family."
+        ],
+        "correct": 2,
+        "why": "The background must match this particular experience.",
+        "bm": "Pilih latar belakang yang sesuai dengan cerita."
+      },
+      {
+        "ask": "Add a relevant detail that develops the story.",
+        "options": [
+          "To begin with, its melody is easy to remember.",
+          "Over time, its uplifting message has become a source of comfort.",
+          "In short, I love this song because it reminds me to remain optimistic."
+        ],
+        "correct": 0,
+        "why": "Follow the earlier sentence, not merely a shared keyword.",
+        "bm": "Pastikan ayat ini menyambung idea sebelumnya."
+      },
+      {
+        "ask": "Continue with a clear example or important detail.",
+        "options": [
+          "I often play it while tidying my room.",
+          "Besides that, the lyrics encourage listeners to keep trying.",
+          "To begin with, its melody is easy to remember."
+        ],
+        "correct": 1,
+        "why": "A good example should support the idea being developed.",
+        "bm": "Pilih contoh atau maklumat yang benar-benar mengembangkan jawapan."
+      },
+      {
+        "ask": "Add the next natural point.",
+        "options": [
+          "I often play it while tidying my room.",
+          "In short, I love this song because it reminds me to remain optimistic.",
+          "Over time, its uplifting message has become a source of comfort."
+        ],
+        "correct": 0,
+        "why": "Choose the continuation that fits the progression of the answer.",
+        "bm": "Pilih idea seterusnya yang paling lancar."
+      },
+      {
+        "ask": "Develop the situation or introduce a challenge.",
+        "options": [
+          "Whenever I feel discouraged, the song lifts my mood.",
+          "However, I keep the volume low so I do not disturb anyone.",
+          "I often play it while tidying my room."
+        ],
+        "correct": 0,
+        "why": "The development must follow what has already been established.",
+        "bm": "Perhatikan perkembangan situasi atau cabaran dalam cerita."
+      },
+      {
+        "ask": "Explain what happened next or how you responded.",
+        "options": [
+          "Over time, its uplifting message has become a source of comfort.",
+          "In short, I love this song because it reminds me to remain optimistic.",
+          "However, I keep the volume low so I do not disturb anyone."
+        ],
+        "correct": 2,
+        "why": "The response should address the situation in the completed answer.",
+        "bm": "Pilih tindakan atau penjelasan yang sesuai dengan ayat sebelumnya."
+      },
+      {
+        "ask": "Describe the outcome, significance or lesson.",
+        "options": [
+          "Over time, its uplifting message has become a source of comfort.",
+          "However, I keep the volume low so I do not disturb anyone.",
+          "In short, I love this song because it reminds me to remain optimistic."
+        ],
+        "correct": 0,
+        "why": "The effect or lesson must come from this specific experience.",
+        "bm": "Pilih kesan atau pengajaran yang berkaitan dengan cerita."
+      },
+      {
+        "ask": "End with a personal opinion and reason.",
+        "options": [
+          "Besides that, the lyrics encourage listeners to keep trying.",
+          "Whenever I feel discouraged, the song lifts my mood.",
+          "In short, I love this song because it reminds me to remain optimistic."
+        ],
+        "correct": 2,
+        "why": "A personal conclusion should evaluate the topic already discussed.",
+        "bm": "Akhiri dengan pendapat peribadi serta sebab yang jelas."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "uplifting",
+        "ms": "menaikkan semangat",
+        "zh": "鼓舞人心的"
+      },
+      {
+        "word": "optimistic",
+        "ms": "bersikap positif",
+        "zh": "乐观的"
+      }
+    ]
+  }
+];
+const $=id=>document.getElementById(id);
+let name='',order=[],step=0,score=0,answers=[],firstTry=true,locked=false;
+function shuffle(arr){let a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function begin(){name=$('student').value.trim();if(!name){$('student').focus();alert('Please enter your name first. / Sila masukkan nama.');return}step=0;score=0;answers=topics.map(()=>[]);order=topics.flatMap((t,ti)=>t.steps.map((s,si)=>({ti,si})));$('start').classList.add('hide');$('end').classList.add('hide');$('checkpoint').classList.add('hide');$('game').classList.remove('hide');render()}
+function render(){locked=false;firstTry=true;let {ti,si}=order[step],topic=topics[ti],item=topic.steps[si];$('who').textContent=name;$('stat').textContent=`${step+1}/30 • ${score} marks`;$('bar').style.width=`${step/30*100}%`;$('topic').textContent=`${ti+1}. ${topic.title}`;$('topicNote').textContent=topic.note;$('previous').innerHTML=answers[ti].length?`<b>🧩 Your answer so far:</b>${answers[ti].map(s=>`<p>${safe(s)}</p>`).join('')}`:'<b>🧩 Your answer so far:</b><p class="muted">Choose your first sentence below.</p>';$('question').textContent=`Step ${si+1} of 10: ${item.ask}`;$('feedback').className='feedback hide';$('nextBtn').classList.add('hide');$('nextBtn').textContent=si===9?'See Completed Answer →':'Next Sentence →';let options=shuffle(item.options.map((text,i)=>({text,correct:i===item.correct})));$('choices').innerHTML='';options.forEach((option,i)=>{let btn=document.createElement('button');btn.type='button';btn.className='option';btn.innerHTML=`<span class="letter">${'ABC'[i]}</span><span>${safe(option.text)}</span>`;btn.addEventListener('click',()=>choose(btn,option.correct,item));$('choices').appendChild(btn)})}
+function choose(btn,isCorrect,item){if(locked)return;let feedback=$('feedback');feedback.classList.remove('hide');if(!isCorrect){firstTry=false;btn.classList.add('bad');btn.disabled=true;feedback.className='feedback bad';feedback.innerHTML=`<strong>❌ Not quite. Try another sentence!</strong><p>${safe(item.why)}</p><p><b>BM:</b> ${safe(item.bm)}</p><p class="small">Tip: Choose the sentence that answers the current point and connects naturally with your previous sentences.</p>`;return}locked=true;btn.classList.add('good');if(firstTry)score++;let {ti}=order[step];answers[ti].push(item.options[item.correct]);$('stat').textContent=`${step+1}/30 • ${score} marks`;feedback.className='feedback good';feedback.innerHTML=`<strong>✅ Correct!</strong><p>${safe(item.why)}</p><p><b>BM:</b> ${safe(item.bm)}</p>${topics[ti].vocab.filter(v=>new RegExp('\\b'+v.word+'\\b','i').test(item.options[item.correct])).map(v=>`<p><b>🌱 ${safe(v.word)}</b> — BM: ${safe(v.ms)} · 中文: ${safe(v.zh)}</p>`).join('')}${firstTry?'':'<p class="small">Correct after retry — no mark this round.</p>'}`;[...$('choices').children].forEach(b=>b.disabled=true);$('previous').innerHTML=`<b>🧩 Your answer so far:</b>${answers[ti].map(s=>`<p>${safe(s)}</p>`).join('')}`;$('nextBtn').classList.remove('hide')}
+function next(){if(!locked)return;let justDone=order[step];if(justDone.si===9){showCheckpoint(justDone.ti);return}advance()}
+function advance(){step++;if(step===30){finish();return}render();$('game').scrollIntoView({behavior:'smooth',block:'start'})}
+function showCheckpoint(ti){$('game').classList.add('hide');$('checkpoint').classList.remove('hide');$('checkpointTitle').textContent=`${ti+1}. ${topics[ti].title}`;$('checkpointScript').innerHTML=answers[ti].map((line,i)=>`<p><b>${i+1}.</b> ${safe(line)}</p>`).join('');$('vocabBox').innerHTML='<b>📚 Vocabulary boost (C1 / challenging words):</b>'+topics[ti].vocab.map(v=>`<p><strong>${safe(v.word)}</strong> — BM: ${safe(v.ms)} · 中文: ${safe(v.zh)}</p>`).join('');$('copiedCheck').checked=false;$('continueBtn').disabled=true;$('continueBtn').textContent=ti===2?'View Final Score →':'Continue to Next Topic →';$('copiedMsg').textContent='';window.scrollTo({top:0,behavior:'smooth'})}
+$('copiedCheck').addEventListener('change',e=>{$('continueBtn').disabled=!e.target.checked});
+$('copyBtn').addEventListener('click',async()=>{const ti=order[step].ti;const lines=answers[ti].join(' ');try{await navigator.clipboard.writeText(lines);$('copiedMsg').textContent='✅ Answer copied to clipboard! Remember to WRITE it in your exercise book.'}catch(e){$('copiedMsg').textContent='Please select and copy the displayed answer manually.'}});
+$('continueBtn').addEventListener('click',()=>{if(!$('copiedCheck').checked)return;$('checkpoint').classList.add('hide');$('game').classList.remove('hide');advance()});
+function finish(){$('game').classList.add('hide');$('end').classList.remove('hide');$('finishName').textContent=`Well done, ${name}!`;$('finalScore').textContent=`${score} / 30`;$('finalRemark').textContent=score>=27?'Excellent! Now practise speaking aloud.':score>=21?'Good effort! Try the game again to improve.':'Keep practising! Read each explanation carefully.';$('finishedScripts').innerHTML=topics.map((t,i)=>`<div class="script" style="margin:12px 0"><b>${i+1}. ${safe(t.title)}</b>${answers[i].map(s=>`<p>${safe(s)}</p>`).join('')}</div>`).join('');window.scrollTo({top:0,behavior:'smooth'})}
+$('startBtn').addEventListener('click',begin);$('student').addEventListener('keydown',e=>{if(e.key==='Enter')begin()});$('nextBtn').addEventListener('click',next);$('replayBtn').addEventListener('click',()=>{$('end').classList.add('hide');$('start').classList.remove('hide');window.scrollTo({top:0,behavior:'smooth'})});
+</script></body></html>
