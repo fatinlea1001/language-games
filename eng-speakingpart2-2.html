@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speaking Part 2 — Build My Answer</title>
+<style>
+:root{--blue:#dff6e0;--ink:#254d34;--deep:#24754d;--pink:#eff9ed;--good:#dcf6e4;--bad:#ffe5e5}*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#e8f8e7,#f7fcef);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);padding:16px}.wrap{max-width:760px;margin:20px auto}.hero{background:white;border:3px solid #64a77a;border-radius:24px;padding:20px;box-shadow:0 8px 0 #cdebd0;text-align:center}.hero h1{margin:3px 0 8px;font-size:clamp(25px,5vw,38px)}.hero p{margin:4px 0}.cute{font-size:40px}.card{background:white;border:2px solid #bbdec5;border-radius:21px;padding:20px;margin-top:18px;box-shadow:0 5px 0 #e0f0db}.hide{display:none!important}label{font-weight:750;display:block;margin-bottom:8px}input{width:100%;border:2px solid #87c29d;border-radius:12px;font-size:18px;padding:12px}button{font:inherit;cursor:pointer}.primary{background:#28784f;border:none;color:white;padding:13px 19px;border-radius:13px;font-weight:800;margin-top:14px}.primary:hover{background:#1f5d3e}.primary:disabled{opacity:.5;cursor:not-allowed}.muted{color:#51725c;font-size:14px}.pill{display:inline-block;background:#e4f5e7;padding:6px 12px;border-radius:50px;font-size:13px;font-weight:800}.progress{height:12px;background:#e7f0e8;border-radius:30px;overflow:hidden;margin:14px 0}.bar{background:#68b880;height:100%;width:0;transition:width .2s}.script{background:#f3fbf2;border-left:5px solid #66ac78;padding:12px 15px;border-radius:12px;line-height:1.65}.script p{margin:7px 0}.script strong{color:#206b45}.option{display:flex;align-items:flex-start;width:100%;gap:10px;background:#fff;border:2px solid #c9dfcb;border-radius:13px;padding:13px;margin-top:10px;text-align:left;color:var(--ink);line-height:1.5}.option:hover:not(:disabled){background:#edf9ec;border-color:#5dab71}.option:disabled{cursor:default}.option .letter{background:#e5f3e6;border-radius:8px;min-width:29px;padding:3px;text-align:center;font-weight:800}.option.good{background:var(--good);border-color:#6bba81}.option.bad{background:var(--bad);border-color:#e09b9b}.feedback{padding:12px 14px;border-radius:12px;margin-top:14px;line-height:1.6}.feedback.good{background:var(--good)}.feedback.bad{background:var(--bad)}.feedback p{margin:5px 0}.between{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.topic{font-size:22px;margin:14px 0 8px}.small{font-size:13px}.finalscore{font-size:48px;font-weight:900;color:#28784f;margin:4px 0}.footer{text-align:center;color:#66826c;margin:22px 0;font-size:12px}@media(max-width:480px){body{padding:9px}.hero,.card{padding:16px}.option{padding:11px}}
+.copyReminder{margin:16px 0;padding:18px 12px;background:#fff1ac;border:4px dashed #e47a25;border-radius:16px;color:#803500;text-align:center;font-size:clamp(19px,4vw,26px);font-weight:950;line-height:1.45;animation:pulse 1.5s ease-in-out infinite}.copyReminder span{display:block;font-size:clamp(14px,3.2vw,19px);margin-top:6px}@keyframes pulse{50%{box-shadow:0 0 0 5px #ffe1a9}}#checkpointScript p{margin:9px 0}#copyBtn{background:#277b71}
+.vocabBox{margin-top:15px;padding:14px;background:#ecf9e8;border:2px solid #9dcba3;border-radius:12px}.vocabBox p{margin:6px 0}.vocabBox strong{color:#235c36}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero"><div class="cute">🌿 🐸 🎤</div><h1>SPEAKING PART 2</h1><p><b>Build My Answer! — Set 2</b> 🧩</p><p class="muted">Choose the sentence that best continues your answer. Short and long sentences can both be correct!</p></header>
+<section class="card" id="start"><label for="student">Your name / Nama murid</label><input id="student" maxlength="60" placeholder="Enter your name" autocomplete="name"><p class="muted">3 NEW topics • 30 sentences • Green theme • Copy each completed answer</p><button class="primary" id="startBtn">Start Game →</button></section>
+<section class="card hide" id="game"><div class="between"><span id="who" class="pill"></span><span id="stat" class="pill"></span></div><div class="progress"><div class="bar" id="bar"></div></div><h2 class="topic" id="topic"></h2><p class="muted" id="topicNote"></p><div id="previous" class="script"></div><h3 id="question"></h3><div id="choices"></div><div class="feedback hide" id="feedback" aria-live="polite"></div><button class="primary hide" id="nextBtn">Next sentence →</button></section>
+<section class="card hide" id="checkpoint"><div style="font-size:48px;text-align:center">📒 ✍️ 🚨</div><h2 style="text-align:center">YOUR SPEAKING ANSWER IS READY!</h2><div class="copyReminder">🚨 BIG REMINDER! 🚨<br>COPY YOUR COMPLETED ANSWER INTO YOUR EXERCISE BOOK!<br><span>SALIN JAWAPAN LENGKAP DALAM BUKU LATIHAN!</span></div><p class="muted" style="text-align:center">Read the complete answer and copy every sentence before moving on.</p><h3 id="checkpointTitle"></h3><div id="checkpointScript" class="script"></div><div id="vocabBox" class="vocabBox"></div><button class="primary" id="copyBtn" type="button">📋 Copy Answer</button><p id="copiedMsg" class="muted" aria-live="polite"></p><label style="margin-top:14px"><input type="checkbox" id="copiedCheck" style="width:auto;margin-right:8px">I have copied the entire answer into my book.</label><button class="primary" id="continueBtn" disabled>Continue →</button></section>
+<section class="card hide" id="end"><div style="text-align:center;font-size:45px">🏆 ✨ 🐰</div><h2 style="text-align:center">Speaking Builder Set 2 Complete!</h2><p style="text-align:center" id="finishName"></p><div class="finalscore" style="text-align:center" id="finalScore"></div><p style="text-align:center" id="finalRemark"></p><h3>Your three complete speaking answers 🎤</h3><div id="finishedScripts"></div><button class="primary" id="replayBtn">Play Again ↻</button></section><p class="footer">Practise speaking naturally — don't memorise only one pattern!</p>
+</main><script>
+// Three topics, ten stages each. Varying sentence length is intentional.
+const topics=[
+ {
+  "title": "A School Event",
+  "note": "Talk about an event at school, when and where it happened, your role, what you enjoyed and why it mattered.",
+  "steps": [
+   {
+    "ask": "Introduce the event.",
+    "options": [
+     "Today, I would like to talk about a memorable event at my school.",
+     "An event at school because memorable.",
+     "In conclusion, we went home."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Say what the event was and when it happened.",
+    "options": [
+     "To begin with, our school held a charity carnival last month.",
+     "For instance, I like going to school every morning.",
+     "In conclusion, last month was a month."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Tell where it took place and who joined.",
+    "options": [
+     "Besides that, the carnival took place in the school hall, and students, teachers and parents joined the fun.",
+     "Moreover, it was because people are happy.",
+     "To begin with, the event was last month again."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Describe your role.",
+    "options": [
+     "As for my role, I helped my classmates run a drinks stall.",
+     "I was a stall because classmates.",
+     "In conclusion, I had a role."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Explain how you prepared.",
+    "options": [
+     "Before the event, we arranged the cups, prepared a price list and decorated our stall with colourful paper signs.",
+     "For example, we prepared the preparation by preparing it.",
+     "In conclusion, the hall is in our school."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Describe a challenge you faced.",
+    "options": [
+     "However, the long queue was a challenge.",
+     "Moreover, there were no challenges and everything was challenging.",
+     "To begin with, the carnival was last month."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Explain how you handled the challenge.",
+    "options": [
+     "To overcome this, we divided the tasks so that one student collected money while the others served drinks.",
+     "Therefore, we decided not to serve any customers.",
+     "For example, the event took place in the hall."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Add a meaningful result, with one higher-level word.",
+    "options": [
+     "As a result, our teamwork made the stall more efficient, and we managed to serve everyone without making them wait too long.",
+     "As a result, efficient means we did not work at all.",
+     "Besides that, my favourite subject is English."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Describe your feelings.",
+    "options": [
+     "Most importantly, I felt proud of what we achieved together.",
+     "My feelings were proud because pride proud.",
+     "On the other hand, I am going to school tomorrow."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Conclude with an opinion and reason.",
+    "options": [
+     "In my opinion, the event was worthwhile because it brought our school community closer and taught us to cooperate.",
+     "If the event was worthwhile, whether.",
+     "In conclusion, the carnival was last month in the school hall."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   }
+  ],
+  "vocab": [
+   {
+    "word": "efficient",
+    "ms": "cekap",
+    "zh": "高效的"
+   },
+   {
+    "word": "worthwhile",
+    "ms": "berbaloi",
+    "zh": "值得的"
+   }
+  ]
+ },
+ {
+  "title": "Helping the Environment",
+  "note": "Talk about an environmental activity, who joined, what you did, challenges and why it is useful.",
+  "steps": [
+   {
+    "ask": "Introduce the topic.",
+    "options": [
+     "Today, I would like to talk about an activity to protect the environment.",
+     "The environment is an activity because it is.",
+     "In conclusion, rubbish is rubbish."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Name the activity and when it happened.",
+    "options": [
+     "To begin with, my classmates and I joined a clean-up campaign last Saturday.",
+     "For example, last Saturday was on the weekend.",
+     "In conclusion, I have classmates."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Explain where you went.",
+    "options": [
+     "After that, we gathered at a nearby park to collect litter along the walking paths.",
+     "After that, we went to school yesterday next year.",
+     "Besides that, I like walking to the canteen."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Describe what you used.",
+    "options": [
+     "To stay safe, we wore gloves and carried rubbish bags.",
+     "In addition, I wore a school bag to throw it away.",
+     "In conclusion, the park had trees."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Describe how you worked together.",
+    "options": [
+     "Furthermore, we worked in small groups, so each team could clean a different part of the park.",
+     "Furthermore, teamwork is when groups are grouped in groups.",
+     "To begin with, we joined last Saturday."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Say what surprised you.",
+    "options": [
+     "Surprisingly, we found plastic bottles and food wrappers near the benches.",
+     "Surprisingly, the plastic was surprised to see us.",
+     "In conclusion, we went to the park."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Explain why the problem matters.",
+    "options": [
+     "This is worrying because plastic waste can pollute the surroundings and harm animals that mistake it for food.",
+     "This is worrying because pollution is a very polluted pollution.",
+     "For example, our class has many students."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Mention one practical solution, including higher-level language.",
+    "options": [
+     "Therefore, we encouraged visitors to use reusable containers, which can reduce unnecessary waste over time.",
+     "Therefore, we encouraged visitors to drop more litter.",
+     "After that, the park is near my house."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Explain what you learnt.",
+    "options": [
+     "More importantly, I realised that small, consistent actions can make a real difference.",
+     "I learnt that the environment was an environment.",
+     "To begin with, my classmates joined last Saturday."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "End with your opinion and a reason.",
+    "options": [
+     "In my opinion, everyone should take part in activities like this because a cleaner environment benefits the whole community.",
+     "Whether everyone should take part because.",
+     "In conclusion, gloves are useful and the bags were black."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   }
+  ],
+  "vocab": [
+   {
+    "word": "pollute",
+    "ms": "mencemarkan",
+    "zh": "污染"
+   },
+   {
+    "word": "consistent",
+    "ms": "konsisten / berterusan",
+    "zh": "持续的"
+   }
+  ]
+ },
+ {
+  "title": "A Useful Mobile App",
+  "note": "Talk about an app, how you discovered it, what it does, how you use it, its advantages and your opinion.",
+  "steps": [
+   {
+    "ask": "Start the speaking answer.",
+    "options": [
+     "Today, I would like to talk about a useful mobile app.",
+     "A mobile app useful to talk.",
+     "In conclusion, my phone has a screen."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Name the app and explain what you use it for.",
+    "options": [
+     "To begin with, I use a dictionary app to learn English words.",
+     "In conclusion, it is a dictionary word.",
+     "Besides that, a phone is a mobile device."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Explain how you found out about it.",
+    "options": [
+     "At first, my teacher recommended the app during an English lesson.",
+     "At first, I will recommended it yesterday tomorrow.",
+     "In conclusion, I enjoy English at school."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Describe one main feature.",
+    "options": [
+     "Besides that, I can listen to the pronunciation of unfamiliar words.",
+     "Besides that, I listen pronunciation because pronouncing pronunciations.",
+     "To begin with, I have a teacher."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Give a specific example.",
+    "options": [
+     "For example, when I see a new word in a story, I search for it and listen to how it is said.",
+     "For example, my teacher recommended the app during a lesson.",
+     "I search the word because I words search."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Mention another benefit.",
+    "options": [
+     "Moreover, the app provides example sentences that show how to use each word correctly.",
+     "Moreover, the app is an app with app features.",
+     "In conclusion, I use a dictionary app."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Explain how the app helps your studies.",
+    "options": [
+     "As a result, I can expand my vocabulary and feel more confident when speaking in class.",
+     "As a result, I always forget every word I learn.",
+     "Besides that, I take the bus to school."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Mention a possible disadvantage.",
+    "options": [
+     "However, I sometimes get distracted by other notifications on my phone.",
+     "However, the app has a phone and I have an app.",
+     "For example, new words are new."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Explain how you manage the disadvantage.",
+    "options": [
+     "To avoid this, I turn off unnecessary notifications and set aside ten minutes for focused practice each day.",
+     "To avoid this, I open more social media apps.",
+     "At first, the teacher recommended it."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   },
+   {
+    "ask": "Finish with a clear opinion and reason.",
+    "options": [
+     "In my opinion, this app is beneficial because it makes learning convenient and encourages me to study independently.",
+     "If the app is beneficial or whether.",
+     "In conclusion, I have a phone that has an app."
+    ],
+    "correct": 0,
+    "why": "This sentence addresses the current point clearly and links naturally to the developing answer.",
+    "bm": "Ayat ini menjawab isi semasa dengan jelas dan menghubungkan idea secara lancar."
+   }
+  ],
+  "vocab": [
+   {
+    "word": "unfamiliar",
+    "ms": "tidak dikenali / asing",
+    "zh": "不熟悉的"
+   },
+   {
+    "word": "beneficial",
+    "ms": "bermanfaat",
+    "zh": "有益的"
+   },
+   {
+    "word": "independently",
+    "ms": "secara berdikari",
+    "zh": "独立地"
+   }
+  ]
+ }
+];
+const $=id=>document.getElementById(id);
+let name='',order=[],step=0,score=0,answers=[],firstTry=true,locked=false;
+function shuffle(arr){let a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function begin(){name=$('student').value.trim();if(!name){$('student').focus();alert('Please enter your name first. / Sila masukkan nama.');return}step=0;score=0;answers=topics.map(()=>[]);order=topics.flatMap((t,ti)=>t.steps.map((s,si)=>({ti,si})));$('start').classList.add('hide');$('end').classList.add('hide');$('checkpoint').classList.add('hide');$('game').classList.remove('hide');render()}
+function render(){locked=false;firstTry=true;let {ti,si}=order[step],topic=topics[ti],item=topic.steps[si];$('who').textContent=name;$('stat').textContent=`${step+1}/30 • ${score} marks`;$('bar').style.width=`${step/30*100}%`;$('topic').textContent=`${ti+1}. ${topic.title}`;$('topicNote').textContent=topic.note;$('previous').innerHTML=answers[ti].length?`<b>🧩 Your answer so far:</b>${answers[ti].map(s=>`<p>${safe(s)}</p>`).join('')}`:'<b>🧩 Your answer so far:</b><p class="muted">Choose your first sentence below.</p>';$('question').textContent=`Step ${si+1} of 10: ${item.ask}`;$('feedback').className='feedback hide';$('nextBtn').classList.add('hide');$('nextBtn').textContent=si===9?'See Completed Answer →':'Next Sentence →';let options=shuffle(item.options.map((text,i)=>({text,correct:i===item.correct})));$('choices').innerHTML='';options.forEach((option,i)=>{let btn=document.createElement('button');btn.type='button';btn.className='option';btn.innerHTML=`<span class="letter">${'ABC'[i]}</span><span>${safe(option.text)}</span>`;btn.addEventListener('click',()=>choose(btn,option.correct,item));$('choices').appendChild(btn)})}
+function choose(btn,isCorrect,item){if(locked)return;let feedback=$('feedback');feedback.classList.remove('hide');if(!isCorrect){firstTry=false;btn.classList.add('bad');feedback.className='feedback bad';feedback.innerHTML=`<strong>❌ Not quite. Try another sentence!</strong><p>${safe(item.why)}</p><p><b>BM:</b> ${safe(item.bm)}</p><p class="small">Tip: Choose the sentence that answers the current point and connects naturally with your previous sentences.</p>`;return}locked=true;btn.classList.add('good');if(firstTry)score++;let {ti}=order[step];answers[ti].push(item.options[item.correct]);$('stat').textContent=`${step+1}/30 • ${score} marks`;feedback.className='feedback good';feedback.innerHTML=`<strong>✅ Correct!</strong><p>${safe(item.why)}</p><p><b>BM:</b> ${safe(item.bm)}</p>${topics[ti].vocab.filter(v=>new RegExp('\\b'+v.word+'\\b','i').test(item.options[item.correct])).map(v=>`<p><b>🌱 ${safe(v.word)}</b> — BM: ${safe(v.ms)} · 中文: ${safe(v.zh)}</p>`).join('')}${firstTry?'':'<p class="small">Correct after retry — no mark this round.</p>'}`;[...$('choices').children].forEach(b=>b.disabled=true);$('previous').innerHTML=`<b>🧩 Your answer so far:</b>${answers[ti].map(s=>`<p>${safe(s)}</p>`).join('')}`;$('nextBtn').classList.remove('hide')}
+function next(){if(!locked)return;let justDone=order[step];if(justDone.si===9){showCheckpoint(justDone.ti);return}advance()}
+function advance(){step++;if(step===30){finish();return}render();$('game').scrollIntoView({behavior:'smooth',block:'start'})}
+function showCheckpoint(ti){$('game').classList.add('hide');$('checkpoint').classList.remove('hide');$('checkpointTitle').textContent=`${ti+1}. ${topics[ti].title}`;$('checkpointScript').innerHTML=answers[ti].map((line,i)=>`<p><b>${i+1}.</b> ${safe(line)}</p>`).join('');$('vocabBox').innerHTML='<b>🌱 Vocabulary boost (C1 / challenging words):</b>'+topics[ti].vocab.map(v=>`<p><strong>${safe(v.word)}</strong> — BM: ${safe(v.ms)} · 中文: ${safe(v.zh)}</p>`).join('');$('copiedCheck').checked=false;$('continueBtn').disabled=true;$('continueBtn').textContent=ti===2?'View Final Score →':'Continue to Next Topic →';$('copiedMsg').textContent='';window.scrollTo({top:0,behavior:'smooth'})}
+$('copiedCheck').addEventListener('change',e=>{$('continueBtn').disabled=!e.target.checked});
+$('copyBtn').addEventListener('click',async()=>{const ti=order[step].ti;const lines=answers[ti].join(' ');try{await navigator.clipboard.writeText(lines);$('copiedMsg').textContent='✅ Answer copied to clipboard! Remember to WRITE it in your exercise book.'}catch(e){$('copiedMsg').textContent='Please select and copy the displayed answer manually.'}});
+$('continueBtn').addEventListener('click',()=>{if(!$('copiedCheck').checked)return;$('checkpoint').classList.add('hide');$('game').classList.remove('hide');advance()});
+function finish(){$('game').classList.add('hide');$('end').classList.remove('hide');$('finishName').textContent=`Well done, ${name}!`;$('finalScore').textContent=`${score} / 30`;$('finalRemark').textContent=score>=27?'Excellent! Now practise speaking aloud.':score>=21?'Good effort! Try the game again to improve.':'Keep practising! Read each explanation carefully.';$('finishedScripts').innerHTML=topics.map((t,i)=>`<div class="script" style="margin:12px 0"><b>${i+1}. ${safe(t.title)}</b>${answers[i].map(s=>`<p>${safe(s)}</p>`).join('')}</div>`).join('');window.scrollTo({top:0,behavior:'smooth'})}
+$('startBtn').addEventListener('click',begin);$('student').addEventListener('keydown',e=>{if(e.key==='Enter')begin()});$('nextBtn').addEventListener('click',next);$('replayBtn').addEventListener('click',()=>{$('end').classList.add('hide');$('start').classList.remove('hide');window.scrollTo({top:0,behavior:'smooth'})});
+</script></body></html>
