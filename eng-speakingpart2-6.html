@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speaking Part 2 — Build My Answer</title>
+<style>
+:root{--blue:#fff0e5;--ink:#804b32;--deep:#bd6846;--pink:#fff8f3;--good:#dff5e9;--bad:#ffe5e5}*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#fff0e5,#fff8f3);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);padding:16px}.wrap{max-width:760px;margin:20px auto}.hero{background:white;border:3px solid #efb38d;border-radius:24px;padding:20px;box-shadow:0 8px 0 #fff0e5;text-align:center}.hero h1{margin:3px 0 8px;font-size:clamp(25px,5vw,38px)}.hero p{margin:4px 0}.cute{font-size:40px}.card{background:white;border:2px solid #efb38d;border-radius:21px;padding:20px;margin-top:18px;box-shadow:0 5px 0 #fff0e5}.hide{display:none!important}label{font-weight:750;display:block;margin-bottom:8px}input{width:100%;border:2px solid #efb38d;border-radius:12px;font-size:18px;padding:12px}button{font:inherit;cursor:pointer}.primary{background:#bd6846;border:none;color:white;padding:13px 19px;border-radius:13px;font-weight:800;margin-top:14px}.primary:hover{background:#804b32}.primary:disabled{opacity:.5;cursor:not-allowed}.muted{color:#804b32;font-size:14px}.pill{display:inline-block;background:#fff0e5;padding:6px 12px;border-radius:50px;font-size:13px;font-weight:800}.progress{height:12px;background:#fff0e5;border-radius:30px;overflow:hidden;margin:14px 0}.bar{background:#efb38d;height:100%;width:0;transition:width .2s}.script{background:#fff8f3;border-left:5px solid #bd6846;padding:12px 15px;border-radius:12px;line-height:1.65}.script p{margin:7px 0}.script strong{color:#bd6846}.option{display:flex;align-items:flex-start;width:100%;gap:10px;background:#fff;border:2px solid #efb38d;border-radius:13px;padding:13px;margin-top:10px;text-align:left;color:var(--ink);line-height:1.5}.option:hover:not(:disabled){background:#fff0e5;border-color:#bd6846}.option:disabled{cursor:default}.option .letter{background:#fff0e5;border-radius:8px;min-width:29px;padding:3px;text-align:center;font-weight:800}.option.good{background:var(--good);border-color:#bd6846}.option.bad{background:var(--bad);border-color:#e09b9b}.feedback{padding:12px 14px;border-radius:12px;margin-top:14px;line-height:1.6}.feedback.good{background:var(--good)}.feedback.bad{background:var(--bad)}.feedback p{margin:5px 0}.between{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.topic{font-size:22px;margin:14px 0 8px}.small{font-size:13px}.finalscore{font-size:48px;font-weight:900;color:#bd6846;margin:4px 0}.footer{text-align:center;color:#804b32;margin:22px 0;font-size:12px}@media(max-width:480px){body{padding:9px}.hero,.card{padding:16px}.option{padding:11px}}
+.copyReminder{margin:16px 0;padding:18px 12px;background:#fff1ac;border:4px dashed #e47a25;border-radius:16px;color:#803500;text-align:center;font-size:clamp(20px,4vw,28px);font-weight:950;line-height:1.45;animation:pulse 1.5s ease-in-out infinite}.copyReminder span{display:block;font-size:clamp(14px,3.2vw,19px);margin-top:6px}@keyframes pulse{50%{box-shadow:0 0 0 5px #ffe1a9}}#checkpointScript p{margin:9px 0}#copyBtn{background:#bd6846}
+.vocabBox{margin-top:15px;padding:14px;background:#fff8f3;border:2px solid #efb38d;border-radius:12px}.vocabBox p{margin:6px 0}.vocabBox strong{color:#804b32}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero"><div class="cute">🍑 🌼 🎤</div><h1>SPEAKING PART 2</h1><p><b>Build My Answer! — Set 6</b> 🧩</p><p class="muted">Think carefully: a longer sentence is not necessarily better. Follow the meaning!</p></header>
+<section class="card" id="start"><label for="student">Your name / Nama murid</label><input id="student" maxlength="60" placeholder="Enter your name" autocomplete="name"><p class="muted">3 NEW topics • 30 sentences • Tricky choices • C1 word notes (BM + 中文) • Copy every completed answer</p><button class="primary" id="startBtn">Start Game →</button></section>
+<section class="card hide" id="game"><div class="between"><span id="who" class="pill"></span><span id="stat" class="pill"></span></div><div class="progress"><div class="bar" id="bar"></div></div><h2 class="topic" id="topic"></h2><p class="muted" id="topicNote"></p><div id="previous" class="script"></div><h3 id="question"></h3><div id="choices"></div><div class="feedback hide" id="feedback" aria-live="polite"></div><button class="primary hide" id="nextBtn">Next sentence →</button></section>
+<section class="card hide" id="checkpoint"><div style="font-size:48px;text-align:center">📒 ✍️ 🚨</div><h2 style="text-align:center">YOUR SPEAKING ANSWER IS READY!</h2><div class="copyReminder">🚨 BIG REMINDER! 🚨<br>COPY YOUR COMPLETED ANSWER INTO YOUR EXERCISE BOOK!<br><span>SALIN JAWAPAN LENGKAP DALAM BUKU LATIHAN!</span></div><p class="muted" style="text-align:center">Read the complete answer and copy every sentence before moving on.</p><h3 id="checkpointTitle"></h3><div id="checkpointScript" class="script"></div><div id="vocabBox" class="vocabBox"></div><button class="primary" id="copyBtn" type="button">📋 Copy Answer</button><p id="copiedMsg" class="muted" aria-live="polite"></p><label style="margin-top:14px"><input type="checkbox" id="copiedCheck" style="width:auto;margin-right:8px">I have copied the entire answer into my exercise book / Saya sudah menyalin jawapan.</label><button class="primary" id="continueBtn" disabled>Continue →</button></section>
+<section class="card hide" id="end"><div style="text-align:center;font-size:45px">🏆 ✨ 🐰</div><h2 style="text-align:center">Speaking Builder Set 6 Complete!</h2><p style="text-align:center" id="finishName"></p><div class="finalscore" style="text-align:center" id="finalScore"></div><p style="text-align:center" id="finalRemark"></p><h3>Your three complete speaking answers 🎤</h3><div id="finishedScripts"></div><button class="primary" id="replayBtn">Play Again ↻</button></section><p class="footer">Practise speaking naturally — don't memorise only one pattern!</p>
+</main><script>
+// Three topics, ten stages each. Varying sentence length is intentional.
+const topics=[
+  {
+    "title": "A Family Gathering",
+    "note": "Describe a family gathering, what happened and why it mattered.",
+    "steps": [
+      {
+        "ask": "Introduce the topic clearly.",
+        "options": [
+          "More importantly, the gathering gave us a rare opportunity to reconnect.",
+          "To begin with, my relatives arrived in the morning.",
+          "Today, I would like to share an enjoyable family gathering."
+        ],
+        "correct": 2,
+        "why": "A focused opening introduces the required topic.",
+        "bm": "Pilih ayat yang memperkenalkan topik ini dengan tepat."
+      },
+      {
+        "ask": "Identify the person, place or thing.",
+        "options": [
+          "More importantly, the gathering gave us a rare opportunity to reconnect.",
+          "It took place at my grandmother’s house last Sunday.",
+          "Overall, I cherish such moments because they strengthen our family relationships."
+        ],
+        "correct": 1,
+        "why": "This identifies the subject rather than adding an unrelated description.",
+        "bm": "Pilih ayat yang mengenal pasti perkara yang sedang dibincangkan."
+      },
+      {
+        "ask": "Give a specific background detail.",
+        "options": [
+          "It took place at my grandmother’s house last Sunday.",
+          "Together, we prepared lunch and arranged the dining table.",
+          "To begin with, my relatives arrived in the morning."
+        ],
+        "correct": 2,
+        "why": "The background must match this particular experience.",
+        "bm": "Pilih latar belakang yang sesuai dengan cerita."
+      },
+      {
+        "ask": "Add a relevant detail that develops the story.",
+        "options": [
+          "Together, we prepared lunch and arranged the dining table.",
+          "More importantly, the gathering gave us a rare opportunity to reconnect.",
+          "Overall, I cherish such moments because they strengthen our family relationships."
+        ],
+        "correct": 0,
+        "why": "Follow the earlier sentence, not merely a shared keyword.",
+        "bm": "Pastikan ayat ini menyambung idea sebelumnya."
+      },
+      {
+        "ask": "Continue with a clear example or important detail.",
+        "options": [
+          "My favourite part was listening to my grandfather’s funny stories.",
+          "Together, we prepared lunch and arranged the dining table.",
+          "Everyone laughed."
+        ],
+        "correct": 0,
+        "why": "A good example should support the idea being developed.",
+        "bm": "Pilih contoh atau maklumat yang benar-benar mengembangkan jawapan."
+      },
+      {
+        "ask": "Add the next natural point.",
+        "options": [
+          "More importantly, the gathering gave us a rare opportunity to reconnect.",
+          "Overall, I cherish such moments because they strengthen our family relationships.",
+          "Everyone laughed."
+        ],
+        "correct": 2,
+        "why": "Choose the continuation that fits the progression of the answer.",
+        "bm": "Pilih idea seterusnya yang paling lancar."
+      },
+      {
+        "ask": "Develop the situation or introduce a challenge.",
+        "options": [
+          "Everyone laughed.",
+          "Although we were tired, nobody wanted to leave early.",
+          "Later, the younger children played games in the garden."
+        ],
+        "correct": 2,
+        "why": "The development must follow what has already been established.",
+        "bm": "Perhatikan perkembangan situasi atau cabaran dalam cerita."
+      },
+      {
+        "ask": "Explain what happened next or how you responded.",
+        "options": [
+          "Although we were tired, nobody wanted to leave early.",
+          "More importantly, the gathering gave us a rare opportunity to reconnect.",
+          "Overall, I cherish such moments because they strengthen our family relationships."
+        ],
+        "correct": 0,
+        "why": "The response should address the situation in the completed answer.",
+        "bm": "Pilih tindakan atau penjelasan yang sesuai dengan ayat sebelumnya."
+      },
+      {
+        "ask": "Describe the outcome, significance or lesson.",
+        "options": [
+          "Overall, I cherish such moments because they strengthen our family relationships.",
+          "Although we were tired, nobody wanted to leave early.",
+          "More importantly, the gathering gave us a rare opportunity to reconnect."
+        ],
+        "correct": 2,
+        "why": "The effect or lesson must come from this specific experience.",
+        "bm": "Pilih kesan atau pengajaran yang berkaitan dengan cerita."
+      },
+      {
+        "ask": "End with a personal opinion and reason.",
+        "options": [
+          "My favourite part was listening to my grandfather’s funny stories.",
+          "Overall, I cherish such moments because they strengthen our family relationships.",
+          "Later, the younger children played games in the garden."
+        ],
+        "correct": 1,
+        "why": "A personal conclusion should evaluate the topic already discussed.",
+        "bm": "Akhiri dengan pendapat peribadi serta sebab yang jelas."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "reconnect",
+        "ms": "mengeratkan semula hubungan",
+        "zh": "重新联系"
+      },
+      {
+        "word": "cherish",
+        "ms": "menghargai",
+        "zh": "珍惜"
+      }
+    ]
+  },
+  {
+    "title": "A Traditional Malaysian Food",
+    "note": "Talk about a traditional food, its ingredients, taste and cultural value.",
+    "steps": [
+      {
+        "ask": "Introduce the topic clearly.",
+        "options": [
+          "Today, I would like to talk about a traditional Malaysian food.",
+          "To begin with, the rice is cooked with coconut milk.",
+          "In addition, nasi lemak reflects the diversity of our local food culture."
+        ],
+        "correct": 0,
+        "why": "A focused opening introduces the required topic.",
+        "bm": "Pilih ayat yang memperkenalkan topik ini dengan tepat."
+      },
+      {
+        "ask": "Identify the person, place or thing.",
+        "options": [
+          "Therefore, I believe this iconic dish deserves to be appreciated by future generations.",
+          "My choice is nasi lemak.",
+          "In addition, nasi lemak reflects the diversity of our local food culture."
+        ],
+        "correct": 1,
+        "why": "This identifies the subject rather than adding an unrelated description.",
+        "bm": "Pilih ayat yang mengenal pasti perkara yang sedang dibincangkan."
+      },
+      {
+        "ask": "Give a specific background detail.",
+        "options": [
+          "To begin with, the rice is cooked with coconut milk.",
+          "My choice is nasi lemak.",
+          "It is usually served with sambal, cucumber and boiled eggs."
+        ],
+        "correct": 0,
+        "why": "The background must match this particular experience.",
+        "bm": "Pilih latar belakang yang sesuai dengan cerita."
+      },
+      {
+        "ask": "Add a relevant detail that develops the story.",
+        "options": [
+          "Therefore, I believe this iconic dish deserves to be appreciated by future generations.",
+          "In addition, nasi lemak reflects the diversity of our local food culture.",
+          "It is usually served with sambal, cucumber and boiled eggs."
+        ],
+        "correct": 2,
+        "why": "Follow the earlier sentence, not merely a shared keyword.",
+        "bm": "Pastikan ayat ini menyambung idea sebelumnya."
+      },
+      {
+        "ask": "Continue with a clear example or important detail.",
+        "options": [
+          "For example, I often eat it with my family for breakfast.",
+          "Personally, I enjoy the rich flavour and spicy sambal.",
+          "It is usually served with sambal, cucumber and boiled eggs."
+        ],
+        "correct": 1,
+        "why": "A good example should support the idea being developed.",
+        "bm": "Pilih contoh atau maklumat yang benar-benar mengembangkan jawapan."
+      },
+      {
+        "ask": "Add the next natural point.",
+        "options": [
+          "Therefore, I believe this iconic dish deserves to be appreciated by future generations.",
+          "For example, I often eat it with my family for breakfast.",
+          "In addition, nasi lemak reflects the diversity of our local food culture."
+        ],
+        "correct": 1,
+        "why": "Choose the continuation that fits the progression of the answer.",
+        "bm": "Pilih idea seterusnya yang paling lancar."
+      },
+      {
+        "ask": "Develop the situation or introduce a challenge.",
+        "options": [
+          "Besides being delicious, the dish is widely enjoyed by Malaysians.",
+          "However, I prefer a smaller portion when the meal is very rich.",
+          "For example, I often eat it with my family for breakfast."
+        ],
+        "correct": 0,
+        "why": "The development must follow what has already been established.",
+        "bm": "Perhatikan perkembangan situasi atau cabaran dalam cerita."
+      },
+      {
+        "ask": "Explain what happened next or how you responded.",
+        "options": [
+          "In addition, nasi lemak reflects the diversity of our local food culture.",
+          "Therefore, I believe this iconic dish deserves to be appreciated by future generations.",
+          "However, I prefer a smaller portion when the meal is very rich."
+        ],
+        "correct": 2,
+        "why": "The response should address the situation in the completed answer.",
+        "bm": "Pilih tindakan atau penjelasan yang sesuai dengan ayat sebelumnya."
+      },
+      {
+        "ask": "Describe the outcome, significance or lesson.",
+        "options": [
+          "Therefore, I believe this iconic dish deserves to be appreciated by future generations.",
+          "In addition, nasi lemak reflects the diversity of our local food culture.",
+          "However, I prefer a smaller portion when the meal is very rich."
+        ],
+        "correct": 1,
+        "why": "The effect or lesson must come from this specific experience.",
+        "bm": "Pilih kesan atau pengajaran yang berkaitan dengan cerita."
+      },
+      {
+        "ask": "End with a personal opinion and reason.",
+        "options": [
+          "Personally, I enjoy the rich flavour and spicy sambal.",
+          "Therefore, I believe this iconic dish deserves to be appreciated by future generations.",
+          "Besides being delicious, the dish is widely enjoyed by Malaysians."
+        ],
+        "correct": 1,
+        "why": "A personal conclusion should evaluate the topic already discussed.",
+        "bm": "Akhiri dengan pendapat peribadi serta sebab yang jelas."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "diversity",
+        "ms": "kepelbagaian",
+        "zh": "多样性"
+      },
+      {
+        "word": "iconic",
+        "ms": "terkenal dan menjadi lambang",
+        "zh": "标志性的"
+      }
+    ]
+  },
+  {
+    "title": "A Festival I Celebrate",
+    "note": "Describe a festival, preparations, activities and what it means to you.",
+    "steps": [
+      {
+        "ask": "Introduce the topic clearly.",
+        "options": [
+          "For me, the festival represents gratitude, generosity and togetherness.",
+          "Today, I would like to describe a festival I celebrate.",
+          "Before the celebration, we clean and decorate our house."
+        ],
+        "correct": 1,
+        "why": "A focused opening introduces the required topic.",
+        "bm": "Pilih ayat yang memperkenalkan topik ini dengan tepat."
+      },
+      {
+        "ask": "Identify the person, place or thing.",
+        "options": [
+          "For me, the festival represents gratitude, generosity and togetherness.",
+          "I enjoy celebrating Hari Raya Aidilfitri with my family.",
+          "In conclusion, I look forward to this meaningful celebration every year."
+        ],
+        "correct": 1,
+        "why": "This identifies the subject rather than adding an unrelated description.",
+        "bm": "Pilih ayat yang mengenal pasti perkara yang sedang dibincangkan."
+      },
+      {
+        "ask": "Give a specific background detail.",
+        "options": [
+          "Before the celebration, we clean and decorate our house.",
+          "I enjoy celebrating Hari Raya Aidilfitri with my family.",
+          "On the morning itself, we dress neatly and visit our relatives."
+        ],
+        "correct": 0,
+        "why": "The background must match this particular experience.",
+        "bm": "Pilih latar belakang yang sesuai dengan cerita."
+      },
+      {
+        "ask": "Add a relevant detail that develops the story.",
+        "options": [
+          "For me, the festival represents gratitude, generosity and togetherness.",
+          "On the morning itself, we dress neatly and visit our relatives.",
+          "In conclusion, I look forward to this meaningful celebration every year."
+        ],
+        "correct": 1,
+        "why": "Follow the earlier sentence, not merely a shared keyword.",
+        "bm": "Pastikan ayat ini menyambung idea sebelumnya."
+      },
+      {
+        "ask": "Continue with a clear example or important detail.",
+        "options": [
+          "On the morning itself, we dress neatly and visit our relatives.",
+          "After that, we share traditional food such as ketupat and rendang.",
+          "The food is delicious."
+        ],
+        "correct": 1,
+        "why": "A good example should support the idea being developed.",
+        "bm": "Pilih contoh atau maklumat yang benar-benar mengembangkan jawapan."
+      },
+      {
+        "ask": "Add the next natural point.",
+        "options": [
+          "In conclusion, I look forward to this meaningful celebration every year.",
+          "For me, the festival represents gratitude, generosity and togetherness.",
+          "The food is delicious."
+        ],
+        "correct": 2,
+        "why": "Choose the continuation that fits the progression of the answer.",
+        "bm": "Pilih idea seterusnya yang paling lancar."
+      },
+      {
+        "ask": "Develop the situation or introduce a challenge.",
+        "options": [
+          "The food is delicious.",
+          "Although preparations can be tiring, everyone helps willingly.",
+          "Moreover, we take time to apologise and forgive one another."
+        ],
+        "correct": 2,
+        "why": "The development must follow what has already been established.",
+        "bm": "Perhatikan perkembangan situasi atau cabaran dalam cerita."
+      },
+      {
+        "ask": "Explain what happened next or how you responded.",
+        "options": [
+          "For me, the festival represents gratitude, generosity and togetherness.",
+          "Although preparations can be tiring, everyone helps willingly.",
+          "In conclusion, I look forward to this meaningful celebration every year."
+        ],
+        "correct": 1,
+        "why": "The response should address the situation in the completed answer.",
+        "bm": "Pilih tindakan atau penjelasan yang sesuai dengan ayat sebelumnya."
+      },
+      {
+        "ask": "Describe the outcome, significance or lesson.",
+        "options": [
+          "Although preparations can be tiring, everyone helps willingly.",
+          "For me, the festival represents gratitude, generosity and togetherness.",
+          "In conclusion, I look forward to this meaningful celebration every year."
+        ],
+        "correct": 1,
+        "why": "The effect or lesson must come from this specific experience.",
+        "bm": "Pilih kesan atau pengajaran yang berkaitan dengan cerita."
+      },
+      {
+        "ask": "End with a personal opinion and reason.",
+        "options": [
+          "Moreover, we take time to apologise and forgive one another.",
+          "After that, we share traditional food such as ketupat and rendang.",
+          "In conclusion, I look forward to this meaningful celebration every year."
+        ],
+        "correct": 2,
+        "why": "A personal conclusion should evaluate the topic already discussed.",
+        "bm": "Akhiri dengan pendapat peribadi serta sebab yang jelas."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "generosity",
+        "ms": "kemurahan hati",
+        "zh": "慷慨"
+      },
+      {
+        "word": "gratitude",
+        "ms": "kesyukuran",
+        "zh": "感恩"
+      }
+    ]
+  }
+];
+const $=id=>document.getElementById(id);
+let name='',order=[],step=0,score=0,answers=[],firstTry=true,locked=false;
+function shuffle(arr){let a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function begin(){name=$('student').value.trim();if(!name){$('student').focus();alert('Please enter your name first. / Sila masukkan nama.');return}step=0;score=0;answers=topics.map(()=>[]);order=topics.flatMap((t,ti)=>t.steps.map((s,si)=>({ti,si})));$('start').classList.add('hide');$('end').classList.add('hide');$('checkpoint').classList.add('hide');$('game').classList.remove('hide');render()}
+function render(){locked=false;firstTry=true;let {ti,si}=order[step],topic=topics[ti],item=topic.steps[si];$('who').textContent=name;$('stat').textContent=`${step+1}/30 • ${score} marks`;$('bar').style.width=`${step/30*100}%`;$('topic').textContent=`${ti+1}. ${topic.title}`;$('topicNote').textContent=topic.note;$('previous').innerHTML=answers[ti].length?`<b>🧩 Your answer so far:</b>${answers[ti].map(s=>`<p>${safe(s)}</p>`).join('')}`:'<b>🧩 Your answer so far:</b><p class="muted">Choose your first sentence below.</p>';$('question').textContent=`Step ${si+1} of 10: ${item.ask}`;$('feedback').className='feedback hide';$('nextBtn').classList.add('hide');$('nextBtn').textContent=si===9?'See Completed Answer →':'Next Sentence →';let options=shuffle(item.options.map((text,i)=>({text,correct:i===item.correct})));$('choices').innerHTML='';options.forEach((option,i)=>{let btn=document.createElement('button');btn.type='button';btn.className='option';btn.innerHTML=`<span class="letter">${'ABC'[i]}</span><span>${safe(option.text)}</span>`;btn.addEventListener('click',()=>choose(btn,option.correct,item));$('choices').appendChild(btn)})}
+function choose(btn,isCorrect,item){if(locked)return;let feedback=$('feedback');feedback.classList.remove('hide');if(!isCorrect){firstTry=false;btn.classList.add('bad');btn.disabled=true;feedback.className='feedback bad';feedback.innerHTML=`<strong>❌ Not quite. Try another sentence!</strong><p>${safe(item.why)}</p><p><b>BM:</b> ${safe(item.bm)}</p><p class="small">Tip: Choose the sentence that answers the current point and connects naturally with your previous sentences.</p>`;return}locked=true;btn.classList.add('good');if(firstTry)score++;let {ti}=order[step];answers[ti].push(item.options[item.correct]);$('stat').textContent=`${step+1}/30 • ${score} marks`;feedback.className='feedback good';feedback.innerHTML=`<strong>✅ Correct!</strong><p>${safe(item.why)}</p><p><b>BM:</b> ${safe(item.bm)}</p>${topics[ti].vocab.filter(v=>new RegExp('\\b'+v.word+'\\b','i').test(item.options[item.correct])).map(v=>`<p><b>🌱 ${safe(v.word)}</b> — BM: ${safe(v.ms)} · 中文: ${safe(v.zh)}</p>`).join('')}${firstTry?'':'<p class="small">Correct after retry — no mark this round.</p>'}`;[...$('choices').children].forEach(b=>b.disabled=true);$('previous').innerHTML=`<b>🧩 Your answer so far:</b>${answers[ti].map(s=>`<p>${safe(s)}</p>`).join('')}`;$('nextBtn').classList.remove('hide')}
+function next(){if(!locked)return;let justDone=order[step];if(justDone.si===9){showCheckpoint(justDone.ti);return}advance()}
+function advance(){step++;if(step===30){finish();return}render();$('game').scrollIntoView({behavior:'smooth',block:'start'})}
+function showCheckpoint(ti){$('game').classList.add('hide');$('checkpoint').classList.remove('hide');$('checkpointTitle').textContent=`${ti+1}. ${topics[ti].title}`;$('checkpointScript').innerHTML=answers[ti].map((line,i)=>`<p><b>${i+1}.</b> ${safe(line)}</p>`).join('');$('vocabBox').innerHTML='<b>📚 Vocabulary boost (C1 / challenging words):</b>'+topics[ti].vocab.map(v=>`<p><strong>${safe(v.word)}</strong> — BM: ${safe(v.ms)} · 中文: ${safe(v.zh)}</p>`).join('');$('copiedCheck').checked=false;$('continueBtn').disabled=true;$('continueBtn').textContent=ti===2?'View Final Score →':'Continue to Next Topic →';$('copiedMsg').textContent='';window.scrollTo({top:0,behavior:'smooth'})}
+$('copiedCheck').addEventListener('change',e=>{$('continueBtn').disabled=!e.target.checked});
+$('copyBtn').addEventListener('click',async()=>{const ti=order[step].ti;const lines=answers[ti].join(' ');try{await navigator.clipboard.writeText(lines);$('copiedMsg').textContent='✅ Answer copied to clipboard! Remember to WRITE it in your exercise book.'}catch(e){$('copiedMsg').textContent='Please select and copy the displayed answer manually.'}});
+$('continueBtn').addEventListener('click',()=>{if(!$('copiedCheck').checked)return;$('checkpoint').classList.add('hide');$('game').classList.remove('hide');advance()});
+function finish(){$('game').classList.add('hide');$('end').classList.remove('hide');$('finishName').textContent=`Well done, ${name}!`;$('finalScore').textContent=`${score} / 30`;$('finalRemark').textContent=score>=27?'Excellent! Now practise speaking aloud.':score>=21?'Good effort! Try the game again to improve.':'Keep practising! Read each explanation carefully.';$('finishedScripts').innerHTML=topics.map((t,i)=>`<div class="script" style="margin:12px 0"><b>${i+1}. ${safe(t.title)}</b>${answers[i].map(s=>`<p>${safe(s)}</p>`).join('')}</div>`).join('');window.scrollTo({top:0,behavior:'smooth'})}
+$('startBtn').addEventListener('click',begin);$('student').addEventListener('keydown',e=>{if(e.key==='Enter')begin()});$('nextBtn').addEventListener('click',next);$('replayBtn').addEventListener('click',()=>{$('end').classList.add('hide');$('start').classList.remove('hide');window.scrollTo({top:0,behavior:'smooth'})});
+</script></body></html>
