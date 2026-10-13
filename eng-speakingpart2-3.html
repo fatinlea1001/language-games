@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speaking Part 2 — Build My Answer</title>
+<style>
+:root{--blue:#dff6e0;--ink:#254d34;--deep:#24754d;--pink:#eff9ed;--good:#dcf6e4;--bad:#ffe5e5}*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#e8f8e7,#f7fcef);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);padding:16px}.wrap{max-width:760px;margin:20px auto}.hero{background:white;border:3px solid #64a77a;border-radius:24px;padding:20px;box-shadow:0 8px 0 #cdebd0;text-align:center}.hero h1{margin:3px 0 8px;font-size:clamp(25px,5vw,38px)}.hero p{margin:4px 0}.cute{font-size:40px}.card{background:white;border:2px solid #bbdec5;border-radius:21px;padding:20px;margin-top:18px;box-shadow:0 5px 0 #e0f0db}.hide{display:none!important}label{font-weight:750;display:block;margin-bottom:8px}input{width:100%;border:2px solid #87c29d;border-radius:12px;font-size:18px;padding:12px}button{font:inherit;cursor:pointer}.primary{background:#28784f;border:none;color:white;padding:13px 19px;border-radius:13px;font-weight:800;margin-top:14px}.primary:hover{background:#1f5d3e}.primary:disabled{opacity:.5;cursor:not-allowed}.muted{color:#51725c;font-size:14px}.pill{display:inline-block;background:#e4f5e7;padding:6px 12px;border-radius:50px;font-size:13px;font-weight:800}.progress{height:12px;background:#e7f0e8;border-radius:30px;overflow:hidden;margin:14px 0}.bar{background:#68b880;height:100%;width:0;transition:width .2s}.script{background:#f3fbf2;border-left:5px solid #66ac78;padding:12px 15px;border-radius:12px;line-height:1.65}.script p{margin:7px 0}.script strong{color:#206b45}.option{display:flex;align-items:flex-start;width:100%;gap:10px;background:#fff;border:2px solid #c9dfcb;border-radius:13px;padding:13px;margin-top:10px;text-align:left;color:var(--ink);line-height:1.5}.option:hover:not(:disabled){background:#edf9ec;border-color:#5dab71}.option:disabled{cursor:default}.option .letter{background:#e5f3e6;border-radius:8px;min-width:29px;padding:3px;text-align:center;font-weight:800}.option.good{background:var(--good);border-color:#6bba81}.option.bad{background:var(--bad);border-color:#e09b9b}.feedback{padding:12px 14px;border-radius:12px;margin-top:14px;line-height:1.6}.feedback.good{background:var(--good)}.feedback.bad{background:var(--bad)}.feedback p{margin:5px 0}.between{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.topic{font-size:22px;margin:14px 0 8px}.small{font-size:13px}.finalscore{font-size:48px;font-weight:900;color:#28784f;margin:4px 0}.footer{text-align:center;color:#66826c;margin:22px 0;font-size:12px}@media(max-width:480px){body{padding:9px}.hero,.card{padding:16px}.option{padding:11px}}
+.copyReminder{margin:16px 0;padding:18px 12px;background:#fff1ac;border:4px dashed #e47a25;border-radius:16px;color:#803500;text-align:center;font-size:clamp(20px,4vw,28px);font-weight:950;line-height:1.45;animation:pulse 1.5s ease-in-out infinite}.copyReminder span{display:block;font-size:clamp(14px,3.2vw,19px);margin-top:6px}@keyframes pulse{50%{box-shadow:0 0 0 5px #ffe1a9}}#checkpointScript p{margin:9px 0}#copyBtn{background:#277b71}
+.vocabBox{margin-top:15px;padding:14px;background:#ecf9e8;border:2px solid #9dcba3;border-radius:12px}.vocabBox p{margin:6px 0}.vocabBox strong{color:#235c36}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero"><div class="cute">🌿 🐸 🎤</div><h1>SPEAKING PART 2</h1><p><b>Build My Answer! — Set 3</b> 🧩</p><p class="muted">Don’t guess by length! The best sentence is the one that fits the topic and previous ideas.</p></header>
+<section class="card" id="start"><label for="student">Your name / Nama murid</label><input id="student" maxlength="60" placeholder="Enter your name" autocomplete="name"><p class="muted">3 NEW topics • 30 sentences • Tricky choices • Copy every completed answer</p><button class="primary" id="startBtn">Start Game →</button></section>
+<section class="card hide" id="game"><div class="between"><span id="who" class="pill"></span><span id="stat" class="pill"></span></div><div class="progress"><div class="bar" id="bar"></div></div><h2 class="topic" id="topic"></h2><p class="muted" id="topicNote"></p><div id="previous" class="script"></div><h3 id="question"></h3><div id="choices"></div><div class="feedback hide" id="feedback" aria-live="polite"></div><button class="primary hide" id="nextBtn">Next sentence →</button></section>
+<section class="card hide" id="checkpoint"><div style="font-size:48px;text-align:center">📒 ✍️ 🚨</div><h2 style="text-align:center">YOUR SPEAKING ANSWER IS READY!</h2><div class="copyReminder">🚨 BIG REMINDER! 🚨<br>COPY YOUR COMPLETED ANSWER INTO YOUR EXERCISE BOOK!<br><span>SALIN JAWAPAN LENGKAP DALAM BUKU LATIHAN!</span></div><p class="muted" style="text-align:center">Read the complete answer and copy every sentence before moving on.</p><h3 id="checkpointTitle"></h3><div id="checkpointScript" class="script"></div><div id="vocabBox" class="vocabBox"></div><button class="primary" id="copyBtn" type="button">📋 Copy Answer</button><p id="copiedMsg" class="muted" aria-live="polite"></p><label style="margin-top:14px"><input type="checkbox" id="copiedCheck" style="width:auto;margin-right:8px">I have copied the entire answer into my book.</label><button class="primary" id="continueBtn" disabled>Continue →</button></section>
+<section class="card hide" id="end"><div style="text-align:center;font-size:45px">🏆 ✨ 🐰</div><h2 style="text-align:center">Speaking Builder Set 3 Complete!</h2><p style="text-align:center" id="finishName"></p><div class="finalscore" style="text-align:center" id="finalScore"></div><p style="text-align:center" id="finalRemark"></p><h3>Your three complete speaking answers 🎤</h3><div id="finishedScripts"></div><button class="primary" id="replayBtn">Play Again ↻</button></section><p class="footer">Practise speaking naturally — don't memorise only one pattern!</p>
+</main><script>
+// Three topics, ten stages each. Varying sentence length is intentional.
+const topics=[
+  {
+    "title": "A Healthy Habit",
+    "note": "Talk about a healthy habit, how you practise it, obstacles and why it helps you.",
+    "steps": [
+      {
+        "ask": "Introduce the habit.",
+        "options": [
+          "Today, I would like to talk about a healthy habit that has improved my daily routine.",
+          "Today, I would like to talk about a healthy lifestyle that every teenager should adopt to become successful in their studies and future careers.",
+          "Firstly, everyone needs good health because health is important for every person throughout their life."
+        ],
+        "correct": 0,
+        "why": "The topic is your own healthy habit, not health advice in general.",
+        "bm": "Topiknya ialah tabiat sihat kamu sendiri, bukannya nasihat kesihatan secara umum."
+      },
+      {
+        "ask": "Name the habit.",
+        "options": [
+          "To begin with, I believe that playing competitive sports such as badminton, football and basketball is an excellent way to build confidence.",
+          "Furthermore, my school organises a fitness campaign with posters and talks throughout the year.",
+          "To begin with, I walk every evening."
+        ],
+        "correct": 2,
+        "why": "A short direct sentence identifies the habit. Longer options describe something else.",
+        "bm": "Ayat pendek ini terus menyatakan tabiat. Pilihan panjang membincangkan perkara lain."
+      },
+      {
+        "ask": "Say when and where you do it.",
+        "options": [
+          "Besides that, walking in a beautiful neighbourhood has many advantages, especially for people who enjoy watching trees and flowers.",
+          "Usually, I walk around my neighbourhood after dinner.",
+          "In addition, my friends often visit the sports centre on Saturdays, where they enjoy various games."
+        ],
+        "correct": 1,
+        "why": "The correct sentence gives both time and place.",
+        "bm": "Jawapan yang betul menyatakan masa dan tempat."
+      },
+      {
+        "ask": "Explain why you chose the habit.",
+        "options": [
+          "I chose walking because it is simple, free and easy to fit into my busy schedule.",
+          "I chose walking even though some sports require expensive equipment, a large playing field and professional training.",
+          "As a result, my teacher encouraged the class to organise a walking event for parents."
+        ],
+        "correct": 0,
+        "why": "Explain your reason for choosing this habit rather than changing to school events or equipment.",
+        "bm": "Terangkan sebab memilih tabiat itu, bukan bertukar kepada acara sekolah atau peralatan."
+      },
+      {
+        "ask": "Describe one benefit.",
+        "options": [
+          "As a result, my neighbours are usually outside doing gardening, washing cars and talking to each other in the evening.",
+          "Moreover, I think that every public park needs better facilities, brighter lights and more comfortable benches for the community.",
+          "As a result, I feel less stressed."
+        ],
+        "correct": 2,
+        "why": "The next idea should explain how the habit affects you.",
+        "bm": "Idea seterusnya perlu menerangkan kesan tabiat itu terhadap diri kamu."
+      },
+      {
+        "ask": "Elaborate on the benefit.",
+        "options": [
+          "For example, some people prefer to spend their weekends shopping at large malls because they enjoy fashionable clothes and restaurants.",
+          "For example, a short walk helps me clear my mind after a demanding day at school.",
+          "For instance, our class often completes difficult homework after school and sometimes attends additional tuition lessons."
+        ],
+        "correct": 1,
+        "why": "Give a specific example of how walking reduces stress.",
+        "bm": "Berikan contoh khusus bagaimana berjalan mengurangkan tekanan."
+      },
+      {
+        "ask": "Mention a difficulty.",
+        "options": [
+          "However, I sometimes feel too tired to go out.",
+          "However, the local council recently built a new playground and planted more trees to make the neighbourhood attractive.",
+          "On the other hand, watching television is a popular hobby among teenagers because many programmes are entertaining."
+        ],
+        "correct": 0,
+        "why": "However introduces a genuine obstacle to your habit.",
+        "bm": "However memperkenalkan halangan sebenar kepada tabiat kamu."
+      },
+      {
+        "ask": "Explain how you overcome it.",
+        "options": [
+          "To overcome this, my school should introduce more exciting competitions so that everyone will become interested in fitness.",
+          "Consequently, many people purchase expensive running shoes and sports watches to track their progress.",
+          "To overcome this, I start with a ten-minute walk instead of skipping it completely."
+        ],
+        "correct": 2,
+        "why": "The solution must respond to feeling tired, not suggest unrelated programmes.",
+        "bm": "Penyelesaian mesti berkaitan dengan rasa penat, bukan program yang tidak berkaitan."
+      },
+      {
+        "ask": "Use a higher-level word to describe your progress.",
+        "options": [
+          "Gradually, my classmates have become more enthusiastic about visiting shopping malls and trying the latest food trends.",
+          "Gradually, this habit has made me more resilient.",
+          "In contrast, public transport systems are becoming increasingly sophisticated in many major cities."
+        ],
+        "correct": 1,
+        "why": "Resilient describes your ability to keep going despite challenges.",
+        "bm": "Resilient menerangkan kemampuan kamu untuk terus berusaha walaupun menghadapi cabaran."
+      },
+      {
+        "ask": "End with an opinion and reason.",
+        "options": [
+          "Overall, I believe walking is worth continuing because it supports both my physical and mental well-being.",
+          "In conclusion, schools should ban unhealthy food and organise sports activities so that students will become more disciplined.",
+          "Overall, I would love to visit a famous hiking destination one day because the scenery looks breathtaking."
+        ],
+        "correct": 0,
+        "why": "Close with your view of the habit you described.",
+        "bm": "Akhiri dengan pendapat tentang tabiat yang telah dihuraikan."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "resilient",
+        "ms": "berdaya tahan",
+        "zh": "有韧性的"
+      },
+      {
+        "word": "demanding",
+        "ms": "mencabar / memenatkan",
+        "zh": "要求高的"
+      }
+    ]
+  },
+  {
+    "title": "An Online Purchase",
+    "note": "Talk about something you bought online, how you chose it, its arrival and your opinion.",
+    "steps": [
+      {
+        "ask": "Start by introducing the purchase.",
+        "options": [
+          "Today, I would like to describe why online shopping has completely transformed the way millions of people purchase products.",
+          "To begin with, online shopping websites offer different kinds of electronic devices and household items.",
+          "Today, I would like to talk about something I recently bought online."
+        ],
+        "correct": 2,
+        "why": "Introduce your purchase, not an essay on online shopping.",
+        "bm": "Perkenalkan pembelian kamu, bukan karangan umum tentang beli-belah dalam talian."
+      },
+      {
+        "ask": "Identify the item.",
+        "options": [
+          "To begin with, many popular brands produce reusable bottles in different shapes, sizes and attractive colours.",
+          "It was a water bottle.",
+          "Besides that, my sister has been saving money to purchase a new school bag and stationery."
+        ],
+        "correct": 1,
+        "why": "Simple identification is exactly what this step asks for.",
+        "bm": "Pengenalan barang secara ringkas tepat menjawab arahan."
+      },
+      {
+        "ask": "Explain why you needed it.",
+        "options": [
+          "I wanted it because my old bottle leaked inside my school bag.",
+          "Besides that, plastic pollution has become an urgent global issue requiring collective action from all communities.",
+          "I also realised that some online shops offer attractive discounts during major celebrations and festivals."
+        ],
+        "correct": 0,
+        "why": "Give a personal need, not a broad environmental point or shopping tip.",
+        "bm": "Nyatakan keperluan peribadi, bukan isu alam sekitar secara umum atau tip membeli-belah."
+      },
+      {
+        "ask": "Say how you selected it.",
+        "options": [
+          "Before buying it, I spent hours watching entertaining videos about expensive designer bottles used by famous celebrities.",
+          "Meanwhile, my classmates discussed the advantages of buying clothes from physical shops instead of using online platforms.",
+          "Before buying it, I compared the prices and read several customer reviews."
+        ],
+        "correct": 2,
+        "why": "Comparing prices and reviews explains your decision-making.",
+        "bm": "Membandingkan harga dan ulasan menerangkan cara kamu membuat pilihan."
+      },
+      {
+        "ask": "Describe a helpful feature.",
+        "options": [
+          "Moreover, the seller displayed colourful photographs and promoted various unrelated accessories at discounted prices.",
+          "Moreover, the bottle has a secure lid, so I can carry it without worrying about spills.",
+          "In addition, some students bring homemade meals to school because canteen food can be expensive."
+        ],
+        "correct": 1,
+        "why": "Describe a feature of your bottle that meets your original need.",
+        "bm": "Huraikan ciri botol yang menyelesaikan masalah asal kamu."
+      },
+      {
+        "ask": "Mention a concern before ordering.",
+        "options": [
+          "However, I was unsure whether the photographs showed the actual quality of the bottle.",
+          "However, many shoppers have different opinions about the growing number of online advertisements on social media.",
+          "For example, my cousin once ordered a pair of headphones and received them two days later."
+        ],
+        "correct": 0,
+        "why": "The concern needs to relate to your particular purchase.",
+        "bm": "Kebimbangan perlu berkaitan dengan pembelian kamu sendiri."
+      },
+      {
+        "ask": "Explain what you did about the concern.",
+        "options": [
+          "To be safe, customers should understand every possible risk of online transactions and avoid using the internet unnecessarily.",
+          "As a result, my best friend decided to buy a completely different product from another shop.",
+          "To be safe, I checked the seller’s ratings before paying."
+        ],
+        "correct": 2,
+        "why": "This is a practical response to doubts about the seller.",
+        "bm": "Ini tindakan praktikal apabila ragu-ragu tentang penjual."
+      },
+      {
+        "ask": "Describe what happened when it arrived.",
+        "options": [
+          "Fortunately, the shopping platform released an interesting advertisement explaining its loyalty programme and seasonal promotions.",
+          "Fortunately, it arrived on time and was carefully packed in a sturdy box.",
+          "Besides that, online sellers should offer more delivery options because different customers have different preferences."
+        ],
+        "correct": 1,
+        "why": "Continue the story with the arrival of your item.",
+        "bm": "Sambung cerita dengan ketibaan barang kamu."
+      },
+      {
+        "ask": "Evaluate the item using a stronger word.",
+        "options": [
+          "In fact, the bottle has been remarkably durable.",
+          "In fact, more teenagers are becoming interested in modern technology and learning to use different mobile applications.",
+          "Furthermore, supermarkets are trying to reduce the number of disposable plastic bags given to customers."
+        ],
+        "correct": 0,
+        "why": "Durable evaluates the quality of the bottle after use.",
+        "bm": "Durable menilai ketahanan botol selepas digunakan."
+      },
+      {
+        "ask": "Give your final opinion.",
+        "options": [
+          "In conclusion, all customers should carefully research the advantages and disadvantages of online shopping before buying expensive products.",
+          "In my opinion, shopping in physical stores is always more enjoyable because customers can meet their friends.",
+          "Overall, I think it was a worthwhile purchase because I use it at school every day."
+        ],
+        "correct": 2,
+        "why": "Finish with a personal opinion on this particular item.",
+        "bm": "Akhiri dengan pendapat sendiri tentang barang tersebut."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "durable",
+        "ms": "tahan lama",
+        "zh": "耐用的"
+      },
+      {
+        "word": "worthwhile",
+        "ms": "berbaloi",
+        "zh": "值得的"
+      },
+      {
+        "word": "sturdy",
+        "ms": "kukuh",
+        "zh": "结实的"
+      }
+    ]
+  },
+  {
+    "title": "Helping a Friend",
+    "note": "Talk about a time you helped a friend, what happened, your actions and what you learnt.",
+    "steps": [
+      {
+        "ask": "Introduce your experience.",
+        "options": [
+          "Today, I would like to explain the importance of friendship and describe why kindness should be taught in all schools.",
+          "Today, I would like to share an experience when I helped a friend.",
+          "To begin with, making friends is an important part of life for teenagers around the world."
+        ],
+        "correct": 1,
+        "why": "Introduce a personal experience, not a general discussion about friendship.",
+        "bm": "Perkenalkan pengalaman sendiri, bukan perbincangan umum tentang persahabatan."
+      },
+      {
+        "ask": "Say who needed help.",
+        "options": [
+          "It was my classmate, Amir.",
+          "To begin with, students from different backgrounds should be encouraged to support one another during challenging situations.",
+          "Besides that, my cousin often helps his neighbours organise community activities during school holidays."
+        ],
+        "correct": 0,
+        "why": "The question asks WHO; a short name is enough.",
+        "bm": "Soalan bertanya SIAPA; nama ringkas sudah mencukupi."
+      },
+      {
+        "ask": "Describe the problem.",
+        "options": [
+          "One morning, our class was excited because the teacher announced a new educational trip to a nearby museum.",
+          "Meanwhile, the school library organised an interesting reading campaign with colourful prizes for participants.",
+          "One morning, he looked worried because he had lost his revision notes before a test."
+        ],
+        "correct": 2,
+        "why": "The next sentence should describe Amir’s problem.",
+        "bm": "Ayat seterusnya mesti menerangkan masalah Amir."
+      },
+      {
+        "ask": "Explain how you noticed.",
+        "options": [
+          "At first, the examination timetable was displayed on the classroom noticeboard for students to read.",
+          "At first, I noticed that he kept searching through his bag and could not concentrate.",
+          "For example, I usually prepare my books the night before school to avoid forgetting important materials."
+        ],
+        "correct": 1,
+        "why": "Describe the sign that made you realise something was wrong.",
+        "bm": "Terangkan tanda yang menyebabkan kamu sedar ada masalah."
+      },
+      {
+        "ask": "Say what you did first.",
+        "options": [
+          "So, I asked him what had happened.",
+          "As a result, the school should provide lockers so students can organise their belongings more efficiently.",
+          "Therefore, our English teacher decided to give the entire class extra homework for the coming weekend."
+        ],
+        "correct": 0,
+        "why": "A quick supportive question follows naturally from noticing his worry.",
+        "bm": "Pertanyaan ringkas yang prihatin sesuai selepas kamu melihat kebimbangannya."
+      },
+      {
+        "ask": "Describe the help you gave.",
+        "options": [
+          "After listening to him, I suggested that every student should purchase expensive revision books from a well-known bookshop.",
+          "Furthermore, the teacher prepared a detailed presentation for the entire class about the benefits of independent learning.",
+          "After listening to him, I shared my own notes and explained the sections he found confusing."
+        ],
+        "correct": 2,
+        "why": "The action directly helps with missing revision notes.",
+        "bm": "Tindakan itu membantu masalah nota ulang kaji yang hilang secara langsung."
+      },
+      {
+        "ask": "Explain why your help mattered.",
+        "options": [
+          "As a result, more students at school became interested in attending sports competitions after their examinations.",
+          "As a result, he felt calmer and could revise the key points before the test.",
+          "In addition, he had already completed several art projects earlier that week and received praise from the teacher."
+        ],
+        "correct": 1,
+        "why": "Show the immediate positive effect on Amir.",
+        "bm": "Tunjukkan kesan positif serta-merta terhadap Amir."
+      },
+      {
+        "ask": "Mention a small challenge.",
+        "options": [
+          "However, we had very little time.",
+          "However, the library contained a wide selection of interesting books, newspapers and magazines for students.",
+          "On the other hand, my classmates usually spend their free time talking about their favourite online games."
+        ],
+        "correct": 0,
+        "why": "This complication fits a test happening soon.",
+        "bm": "Cabaran ini sesuai kerana ujian akan bermula tidak lama lagi."
+      },
+      {
+        "ask": "Explain how you dealt with that challenge.",
+        "options": [
+          "Therefore, schools should create detailed long-term revision programmes to help students prepare for public examinations.",
+          "To make things easier, we decided to postpone the test until the following week without telling the teacher.",
+          "Therefore, we focused on the most important topics instead of trying to memorise everything."
+        ],
+        "correct": 2,
+        "why": "The solution is realistic and responds directly to limited time.",
+        "bm": "Penyelesaian ini realistik dan terus menangani masalah masa yang terhad."
+      },
+      {
+        "ask": "End with a lesson learnt.",
+        "options": [
+          "Ultimately, academic success depends on a combination of effective time management, modern technology and careful planning.",
+          "Ultimately, the experience taught me that even a small act of empathy can make a meaningful difference.",
+          "In conclusion, I hope to participate in more school competitions because they help students develop confidence."
+        ],
+        "correct": 1,
+        "why": "End with the personal lesson about helping someone.",
+        "bm": "Akhiri dengan pengajaran peribadi tentang membantu orang lain."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "empathy",
+        "ms": "empati / memahami perasaan orang lain",
+        "zh": "同理心"
+      },
+      {
+        "word": "meaningful",
+        "ms": "bermakna",
+        "zh": "有意义的"
+      }
+    ]
+  }
+];
+const $=id=>document.getElementById(id);
+let name='',order=[],step=0,score=0,answers=[],firstTry=true,locked=false;
+function shuffle(arr){let a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function begin(){name=$('student').value.trim();if(!name){$('student').focus();alert('Please enter your name first. / Sila masukkan nama.');return}step=0;score=0;answers=topics.map(()=>[]);order=topics.flatMap((t,ti)=>t.steps.map((s,si)=>({ti,si})));$('start').classList.add('hide');$('end').classList.add('hide');$('checkpoint').classList.add('hide');$('game').classList.remove('hide');render()}
+function render(){locked=false;firstTry=true;let {ti,si}=order[step],topic=topics[ti],item=topic.steps[si];$('who').textContent=name;$('stat').textContent=`${step+1}/30 • ${score} marks`;$('bar').style.width=`${step/30*100}%`;$('topic').textContent=`${ti+1}. ${topic.title}`;$('topicNote').textContent=topic.note;$('previous').innerHTML=answers[ti].length?`<b>🧩 Your answer so far:</b>${answers[ti].map(s=>`<p>${safe(s)}</p>`).join('')}`:'<b>🧩 Your answer so far:</b><p class="muted">Choose your first sentence below.</p>';$('question').textContent=`Step ${si+1} of 10: ${item.ask}`;$('feedback').className='feedback hide';$('nextBtn').classList.add('hide');$('nextBtn').textContent=si===9?'See Completed Answer →':'Next Sentence →';let options=shuffle(item.options.map((text,i)=>({text,correct:i===item.correct})));$('choices').innerHTML='';options.forEach((option,i)=>{let btn=document.createElement('button');btn.type='button';btn.className='option';btn.innerHTML=`<span class="letter">${'ABC'[i]}</span><span>${safe(option.text)}</span>`;btn.addEventListener('click',()=>choose(btn,option.correct,item));$('choices').appendChild(btn)})}
+function choose(btn,isCorrect,item){if(locked)return;let feedback=$('feedback');feedback.classList.remove('hide');if(!isCorrect){firstTry=false;btn.classList.add('bad');btn.disabled=true;feedback.className='feedback bad';feedback.innerHTML=`<strong>❌ Not quite. Try another sentence!</strong><p>${safe(item.why)}</p><p><b>BM:</b> ${safe(item.bm)}</p><p class="small">Tip: Choose the sentence that answers the current point and connects naturally with your previous sentences.</p>`;return}locked=true;btn.classList.add('good');if(firstTry)score++;let {ti}=order[step];answers[ti].push(item.options[item.correct]);$('stat').textContent=`${step+1}/30 • ${score} marks`;feedback.className='feedback good';feedback.innerHTML=`<strong>✅ Correct!</strong><p>${safe(item.why)}</p><p><b>BM:</b> ${safe(item.bm)}</p>${topics[ti].vocab.filter(v=>new RegExp('\\b'+v.word+'\\b','i').test(item.options[item.correct])).map(v=>`<p><b>🌱 ${safe(v.word)}</b> — BM: ${safe(v.ms)} · 中文: ${safe(v.zh)}</p>`).join('')}${firstTry?'':'<p class="small">Correct after retry — no mark this round.</p>'}`;[...$('choices').children].forEach(b=>b.disabled=true);$('previous').innerHTML=`<b>🧩 Your answer so far:</b>${answers[ti].map(s=>`<p>${safe(s)}</p>`).join('')}`;$('nextBtn').classList.remove('hide')}
+function next(){if(!locked)return;let justDone=order[step];if(justDone.si===9){showCheckpoint(justDone.ti);return}advance()}
+function advance(){step++;if(step===30){finish();return}render();$('game').scrollIntoView({behavior:'smooth',block:'start'})}
+function showCheckpoint(ti){$('game').classList.add('hide');$('checkpoint').classList.remove('hide');$('checkpointTitle').textContent=`${ti+1}. ${topics[ti].title}`;$('checkpointScript').innerHTML=answers[ti].map((line,i)=>`<p><b>${i+1}.</b> ${safe(line)}</p>`).join('');$('vocabBox').innerHTML='<b>🌱 Vocabulary boost (C1 / challenging words):</b>'+topics[ti].vocab.map(v=>`<p><strong>${safe(v.word)}</strong> — BM: ${safe(v.ms)} · 中文: ${safe(v.zh)}</p>`).join('');$('copiedCheck').checked=false;$('continueBtn').disabled=true;$('continueBtn').textContent=ti===2?'View Final Score →':'Continue to Next Topic →';$('copiedMsg').textContent='';window.scrollTo({top:0,behavior:'smooth'})}
+$('copiedCheck').addEventListener('change',e=>{$('continueBtn').disabled=!e.target.checked});
+$('copyBtn').addEventListener('click',async()=>{const ti=order[step].ti;const lines=answers[ti].join(' ');try{await navigator.clipboard.writeText(lines);$('copiedMsg').textContent='✅ Answer copied to clipboard! Remember to WRITE it in your exercise book.'}catch(e){$('copiedMsg').textContent='Please select and copy the displayed answer manually.'}});
+$('continueBtn').addEventListener('click',()=>{if(!$('copiedCheck').checked)return;$('checkpoint').classList.add('hide');$('game').classList.remove('hide');advance()});
+function finish(){$('game').classList.add('hide');$('end').classList.remove('hide');$('finishName').textContent=`Well done, ${name}!`;$('finalScore').textContent=`${score} / 30`;$('finalRemark').textContent=score>=27?'Excellent! Now practise speaking aloud.':score>=21?'Good effort! Try the game again to improve.':'Keep practising! Read each explanation carefully.';$('finishedScripts').innerHTML=topics.map((t,i)=>`<div class="script" style="margin:12px 0"><b>${i+1}. ${safe(t.title)}</b>${answers[i].map(s=>`<p>${safe(s)}</p>`).join('')}</div>`).join('');window.scrollTo({top:0,behavior:'smooth'})}
+$('startBtn').addEventListener('click',begin);$('student').addEventListener('keydown',e=>{if(e.key==='Enter')begin()});$('nextBtn').addEventListener('click',next);$('replayBtn').addEventListener('click',()=>{$('end').classList.add('hide');$('start').classList.remove('hide');window.scrollTo({top:0,behavior:'smooth'})});
+</script></body></html>
