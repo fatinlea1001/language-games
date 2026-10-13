@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speaking Part 2 — Build My Answer</title>
+<style>
+:root{--blue:#f4edff;--ink:#594183;--deep:#7652a5;--pink:#faf6ff;--good:#dff5e9;--bad:#ffe5e5}*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f4edff,#faf6ff);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);padding:16px}.wrap{max-width:760px;margin:20px auto}.hero{background:white;border:3px solid #c8a8ed;border-radius:24px;padding:20px;box-shadow:0 8px 0 #f4edff;text-align:center}.hero h1{margin:3px 0 8px;font-size:clamp(25px,5vw,38px)}.hero p{margin:4px 0}.cute{font-size:40px}.card{background:white;border:2px solid #c8a8ed;border-radius:21px;padding:20px;margin-top:18px;box-shadow:0 5px 0 #f4edff}.hide{display:none!important}label{font-weight:750;display:block;margin-bottom:8px}input{width:100%;border:2px solid #c8a8ed;border-radius:12px;font-size:18px;padding:12px}button{font:inherit;cursor:pointer}.primary{background:#7652a5;border:none;color:white;padding:13px 19px;border-radius:13px;font-weight:800;margin-top:14px}.primary:hover{background:#594183}.primary:disabled{opacity:.5;cursor:not-allowed}.muted{color:#594183;font-size:14px}.pill{display:inline-block;background:#f4edff;padding:6px 12px;border-radius:50px;font-size:13px;font-weight:800}.progress{height:12px;background:#f4edff;border-radius:30px;overflow:hidden;margin:14px 0}.bar{background:#c8a8ed;height:100%;width:0;transition:width .2s}.script{background:#faf6ff;border-left:5px solid #7652a5;padding:12px 15px;border-radius:12px;line-height:1.65}.script p{margin:7px 0}.script strong{color:#7652a5}.option{display:flex;align-items:flex-start;width:100%;gap:10px;background:#fff;border:2px solid #c8a8ed;border-radius:13px;padding:13px;margin-top:10px;text-align:left;color:var(--ink);line-height:1.5}.option:hover:not(:disabled){background:#f4edff;border-color:#7652a5}.option:disabled{cursor:default}.option .letter{background:#f4edff;border-radius:8px;min-width:29px;padding:3px;text-align:center;font-weight:800}.option.good{background:var(--good);border-color:#7652a5}.option.bad{background:var(--bad);border-color:#e09b9b}.feedback{padding:12px 14px;border-radius:12px;margin-top:14px;line-height:1.6}.feedback.good{background:var(--good)}.feedback.bad{background:var(--bad)}.feedback p{margin:5px 0}.between{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.topic{font-size:22px;margin:14px 0 8px}.small{font-size:13px}.finalscore{font-size:48px;font-weight:900;color:#7652a5;margin:4px 0}.footer{text-align:center;color:#594183;margin:22px 0;font-size:12px}@media(max-width:480px){body{padding:9px}.hero,.card{padding:16px}.option{padding:11px}}
+.copyReminder{margin:16px 0;padding:18px 12px;background:#fff1ac;border:4px dashed #e47a25;border-radius:16px;color:#803500;text-align:center;font-size:clamp(20px,4vw,28px);font-weight:950;line-height:1.45;animation:pulse 1.5s ease-in-out infinite}.copyReminder span{display:block;font-size:clamp(14px,3.2vw,19px);margin-top:6px}@keyframes pulse{50%{box-shadow:0 0 0 5px #ffe1a9}}#checkpointScript p{margin:9px 0}#copyBtn{background:#7652a5}
+.vocabBox{margin-top:15px;padding:14px;background:#faf6ff;border:2px solid #c8a8ed;border-radius:12px}.vocabBox p{margin:6px 0}.vocabBox strong{color:#594183}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero"><div class="cute">💜 🦋 🎤</div><h1>SPEAKING PART 2</h1><p><b>Build My Answer! — Set 5</b> 🧩</p><p class="muted">Think carefully: a longer sentence is not necessarily better. Follow the meaning!</p></header>
+<section class="card" id="start"><label for="student">Your name / Nama murid</label><input id="student" maxlength="60" placeholder="Enter your name" autocomplete="name"><p class="muted">3 NEW topics • 30 sentences • Tricky choices • C1 word notes (BM + 中文) • Copy every completed answer</p><button class="primary" id="startBtn">Start Game →</button></section>
+<section class="card hide" id="game"><div class="between"><span id="who" class="pill"></span><span id="stat" class="pill"></span></div><div class="progress"><div class="bar" id="bar"></div></div><h2 class="topic" id="topic"></h2><p class="muted" id="topicNote"></p><div id="previous" class="script"></div><h3 id="question"></h3><div id="choices"></div><div class="feedback hide" id="feedback" aria-live="polite"></div><button class="primary hide" id="nextBtn">Next sentence →</button></section>
+<section class="card hide" id="checkpoint"><div style="font-size:48px;text-align:center">📒 ✍️ 🚨</div><h2 style="text-align:center">YOUR SPEAKING ANSWER IS READY!</h2><div class="copyReminder">🚨 BIG REMINDER! 🚨<br>COPY YOUR COMPLETED ANSWER INTO YOUR EXERCISE BOOK!<br><span>SALIN JAWAPAN LENGKAP DALAM BUKU LATIHAN!</span></div><p class="muted" style="text-align:center">Read the complete answer and copy every sentence before moving on.</p><h3 id="checkpointTitle"></h3><div id="checkpointScript" class="script"></div><div id="vocabBox" class="vocabBox"></div><button class="primary" id="copyBtn" type="button">📋 Copy Answer</button><p id="copiedMsg" class="muted" aria-live="polite"></p><label style="margin-top:14px"><input type="checkbox" id="copiedCheck" style="width:auto;margin-right:8px">I have copied the entire answer into my exercise book / Saya sudah menyalin jawapan.</label><button class="primary" id="continueBtn" disabled>Continue →</button></section>
+<section class="card hide" id="end"><div style="text-align:center;font-size:45px">🏆 ✨ 🐰</div><h2 style="text-align:center">Speaking Builder Set 5 Complete!</h2><p style="text-align:center" id="finishName"></p><div class="finalscore" style="text-align:center" id="finalScore"></div><p style="text-align:center" id="finalRemark"></p><h3>Your three complete speaking answers 🎤</h3><div id="finishedScripts"></div><button class="primary" id="replayBtn">Play Again ↻</button></section><p class="footer">Practise speaking naturally — don't memorise only one pattern!</p>
+</main><script>
+// Three topics, ten stages each. Varying sentence length is intentional.
+const topics=[
+  {
+    "title": "An Online Game I Enjoy",
+    "note": "Explain the game, its features, your experience and responsible gaming.",
+    "steps": [
+      {
+        "ask": "Introduce the topic clearly.",
+        "options": [
+          "Consequently, gaming remains an enjoyable hobby instead of a distraction.",
+          "To begin with, it offers many different activities created by players.",
+          "Today, I would like to talk about an online game I enjoy."
+        ],
+        "correct": 2,
+        "why": "A focused opening introduces the required topic.",
+        "bm": "Pilih ayat yang memperkenalkan topik ini dengan tepat."
+      },
+      {
+        "ask": "Identify the person, place or thing.",
+        "options": [
+          "The game is called Roblox.",
+          "In my opinion, playing responsibly helps us enjoy the benefits without neglecting schoolwork.",
+          "For example, we must communicate clearly to complete a difficult challenge."
+        ],
+        "correct": 0,
+        "why": "This identifies the subject rather than adding an unrelated description.",
+        "bm": "Pilih ayat yang mengenal pasti perkara yang sedang dibincangkan."
+      },
+      {
+        "ask": "Give a specific background detail.",
+        "options": [
+          "To begin with, it offers many different activities created by players.",
+          "The game is called Roblox.",
+          "I especially enjoy solving puzzles with my friends."
+        ],
+        "correct": 0,
+        "why": "The background must match this particular experience.",
+        "bm": "Pilih latar belakang yang sesuai dengan cerita."
+      },
+      {
+        "ask": "Add a relevant detail that develops the story.",
+        "options": [
+          "For example, we must communicate clearly to complete a difficult challenge.",
+          "In my opinion, playing responsibly helps us enjoy the benefits without neglecting schoolwork.",
+          "I especially enjoy solving puzzles with my friends."
+        ],
+        "correct": 2,
+        "why": "Follow the earlier sentence, not merely a shared keyword.",
+        "bm": "Pastikan ayat ini menyambung idea sebelumnya."
+      },
+      {
+        "ask": "Continue with a clear example or important detail.",
+        "options": [
+          "For example, we must communicate clearly to complete a difficult challenge.",
+          "Besides that, the game encourages creativity.",
+          "I especially enjoy solving puzzles with my friends."
+        ],
+        "correct": 0,
+        "why": "A good example should support the idea being developed.",
+        "bm": "Pilih contoh atau maklumat yang benar-benar mengembangkan jawapan."
+      },
+      {
+        "ask": "Add the next natural point.",
+        "options": [
+          "In my opinion, playing responsibly helps us enjoy the benefits without neglecting schoolwork.",
+          "For example, we must communicate clearly to complete a difficult challenge.",
+          "Besides that, the game encourages creativity."
+        ],
+        "correct": 2,
+        "why": "Choose the continuation that fits the progression of the answer.",
+        "bm": "Pilih idea seterusnya yang paling lancar."
+      },
+      {
+        "ask": "Develop the situation or introduce a challenge.",
+        "options": [
+          "Besides that, the game encourages creativity.",
+          "To manage this, I set a thirty-minute limit before playing.",
+          "However, I sometimes lose track of time."
+        ],
+        "correct": 2,
+        "why": "The development must follow what has already been established.",
+        "bm": "Perhatikan perkembangan situasi atau cabaran dalam cerita."
+      },
+      {
+        "ask": "Explain what happened next or how you responded.",
+        "options": [
+          "For example, we must communicate clearly to complete a difficult challenge.",
+          "In my opinion, playing responsibly helps us enjoy the benefits without neglecting schoolwork.",
+          "To manage this, I set a thirty-minute limit before playing."
+        ],
+        "correct": 2,
+        "why": "The response should address the situation in the completed answer.",
+        "bm": "Pilih tindakan atau penjelasan yang sesuai dengan ayat sebelumnya."
+      },
+      {
+        "ask": "Describe the outcome, significance or lesson.",
+        "options": [
+          "To manage this, I set a thirty-minute limit before playing.",
+          "In my opinion, playing responsibly helps us enjoy the benefits without neglecting schoolwork.",
+          "Consequently, gaming remains an enjoyable hobby instead of a distraction."
+        ],
+        "correct": 2,
+        "why": "The effect or lesson must come from this specific experience.",
+        "bm": "Pilih kesan atau pengajaran yang berkaitan dengan cerita."
+      },
+      {
+        "ask": "End with a personal opinion and reason.",
+        "options": [
+          "In my opinion, playing responsibly helps us enjoy the benefits without neglecting schoolwork.",
+          "For example, we must communicate clearly to complete a difficult challenge.",
+          "However, I sometimes lose track of time."
+        ],
+        "correct": 0,
+        "why": "A personal conclusion should evaluate the topic already discussed.",
+        "bm": "Akhiri dengan pendapat peribadi serta sebab yang jelas."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "creativity",
+        "ms": "kreativiti",
+        "zh": "创造力"
+      },
+      {
+        "word": "neglecting",
+        "ms": "mengabaikan",
+        "zh": "忽视"
+      }
+    ]
+  },
+  {
+    "title": "A Useful Website",
+    "note": "Describe a useful website, its purpose, features and benefits.",
+    "steps": [
+      {
+        "ask": "Introduce the topic clearly.",
+        "options": [
+          "I first discovered it while preparing for an English test.",
+          "Today, I would like to recommend a useful website.",
+          "Over time, this habit has significantly expanded my vocabulary."
+        ],
+        "correct": 1,
+        "why": "A focused opening introduces the required topic.",
+        "bm": "Pilih ayat yang memperkenalkan topik ini dengan tepat."
+      },
+      {
+        "ask": "Identify the person, place or thing.",
+        "options": [
+          "Overall, the website is an invaluable learning tool because I can use it anywhere.",
+          "For example, I check a new word before using it in a speaking answer.",
+          "It is a free online dictionary."
+        ],
+        "correct": 2,
+        "why": "This identifies the subject rather than adding an unrelated description.",
+        "bm": "Pilih ayat yang mengenal pasti perkara yang sedang dibincangkan."
+      },
+      {
+        "ask": "Give a specific background detail.",
+        "options": [
+          "I first discovered it while preparing for an English test.",
+          "To begin with, it explains unfamiliar words in simple English.",
+          "It is a free online dictionary."
+        ],
+        "correct": 0,
+        "why": "The background must match this particular experience.",
+        "bm": "Pilih latar belakang yang sesuai dengan cerita."
+      },
+      {
+        "ask": "Add a relevant detail that develops the story.",
+        "options": [
+          "For example, I check a new word before using it in a speaking answer.",
+          "Overall, the website is an invaluable learning tool because I can use it anywhere.",
+          "To begin with, it explains unfamiliar words in simple English."
+        ],
+        "correct": 2,
+        "why": "Follow the earlier sentence, not merely a shared keyword.",
+        "bm": "Pastikan ayat ini menyambung idea sebelumnya."
+      },
+      {
+        "ask": "Continue with a clear example or important detail.",
+        "options": [
+          "For example, I check a new word before using it in a speaking answer.",
+          "To begin with, it explains unfamiliar words in simple English.",
+          "Moreover, I can listen to the correct pronunciation."
+        ],
+        "correct": 2,
+        "why": "A good example should support the idea being developed.",
+        "bm": "Pilih contoh atau maklumat yang benar-benar mengembangkan jawapan."
+      },
+      {
+        "ask": "Add the next natural point.",
+        "options": [
+          "Over time, this habit has significantly expanded my vocabulary.",
+          "For example, I check a new word before using it in a speaking answer.",
+          "Overall, the website is an invaluable learning tool because I can use it anywhere."
+        ],
+        "correct": 1,
+        "why": "Choose the continuation that fits the progression of the answer.",
+        "bm": "Pilih idea seterusnya yang paling lancar."
+      },
+      {
+        "ask": "Develop the situation or introduce a challenge.",
+        "options": [
+          "Therefore, I always read the example sentences carefully.",
+          "Sometimes, one word has several meanings.",
+          "For example, I check a new word before using it in a speaking answer."
+        ],
+        "correct": 1,
+        "why": "The development must follow what has already been established.",
+        "bm": "Perhatikan perkembangan situasi atau cabaran dalam cerita."
+      },
+      {
+        "ask": "Explain what happened next or how you responded.",
+        "options": [
+          "Therefore, I always read the example sentences carefully.",
+          "For example, I check a new word before using it in a speaking answer.",
+          "Overall, the website is an invaluable learning tool because I can use it anywhere."
+        ],
+        "correct": 0,
+        "why": "The response should address the situation in the completed answer.",
+        "bm": "Pilih tindakan atau penjelasan yang sesuai dengan ayat sebelumnya."
+      },
+      {
+        "ask": "Describe the outcome, significance or lesson.",
+        "options": [
+          "Over time, this habit has significantly expanded my vocabulary.",
+          "Therefore, I always read the example sentences carefully.",
+          "Overall, the website is an invaluable learning tool because I can use it anywhere."
+        ],
+        "correct": 0,
+        "why": "The effect or lesson must come from this specific experience.",
+        "bm": "Pilih kesan atau pengajaran yang berkaitan dengan cerita."
+      },
+      {
+        "ask": "End with a personal opinion and reason.",
+        "options": [
+          "Overall, the website is an invaluable learning tool because I can use it anywhere.",
+          "Sometimes, one word has several meanings.",
+          "Moreover, I can listen to the correct pronunciation."
+        ],
+        "correct": 0,
+        "why": "A personal conclusion should evaluate the topic already discussed.",
+        "bm": "Akhiri dengan pendapat peribadi serta sebab yang jelas."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "invaluable",
+        "ms": "amat berharga",
+        "zh": "极有价值的"
+      },
+      {
+        "word": "significantly",
+        "ms": "dengan ketara",
+        "zh": "显著地"
+      }
+    ]
+  },
+  {
+    "title": "A Social Media Influencer",
+    "note": "Describe an influencer, the content they create and their influence on you.",
+    "steps": [
+      {
+        "ask": "Introduce the topic clearly.",
+        "options": [
+          "I found her account while looking for revision tips.",
+          "Today, I would like to talk about a social media influencer I admire.",
+          "Instead, I choose advice that suits my own learning needs."
+        ],
+        "correct": 1,
+        "why": "A focused opening introduces the required topic.",
+        "bm": "Pilih ayat yang memperkenalkan topik ini dengan tepat."
+      },
+      {
+        "ask": "Identify the person, place or thing.",
+        "options": [
+          "She creates short videos about studying effectively.",
+          "In my view, a responsible influencer can have a positive impact on young people.",
+          "For instance, she breaks long revision sessions into manageable parts."
+        ],
+        "correct": 0,
+        "why": "This identifies the subject rather than adding an unrelated description.",
+        "bm": "Pilih ayat yang mengenal pasti perkara yang sedang dibincangkan."
+      },
+      {
+        "ask": "Give a specific background detail.",
+        "options": [
+          "She creates short videos about studying effectively.",
+          "To begin with, her videos show how to organise daily tasks.",
+          "I found her account while looking for revision tips."
+        ],
+        "correct": 2,
+        "why": "The background must match this particular experience.",
+        "bm": "Pilih latar belakang yang sesuai dengan cerita."
+      },
+      {
+        "ask": "Add a relevant detail that develops the story.",
+        "options": [
+          "For instance, she breaks long revision sessions into manageable parts.",
+          "To begin with, her videos show how to organise daily tasks.",
+          "In my view, a responsible influencer can have a positive impact on young people."
+        ],
+        "correct": 1,
+        "why": "Follow the earlier sentence, not merely a shared keyword.",
+        "bm": "Pastikan ayat ini menyambung idea sebelumnya."
+      },
+      {
+        "ask": "Continue with a clear example or important detail.",
+        "options": [
+          "For instance, she breaks long revision sessions into manageable parts.",
+          "I tried this method before my last test.",
+          "To begin with, her videos show how to organise daily tasks."
+        ],
+        "correct": 0,
+        "why": "A good example should support the idea being developed.",
+        "bm": "Pilih contoh atau maklumat yang benar-benar mengembangkan jawapan."
+      },
+      {
+        "ask": "Add the next natural point.",
+        "options": [
+          "For instance, she breaks long revision sessions into manageable parts.",
+          "In my view, a responsible influencer can have a positive impact on young people.",
+          "I tried this method before my last test."
+        ],
+        "correct": 2,
+        "why": "Choose the continuation that fits the progression of the answer.",
+        "bm": "Pilih idea seterusnya yang paling lancar."
+      },
+      {
+        "ask": "Develop the situation or introduce a challenge.",
+        "options": [
+          "As a result, I felt more focused and less stressed.",
+          "Nevertheless, I do not follow every suggestion without thinking.",
+          "I tried this method before my last test."
+        ],
+        "correct": 0,
+        "why": "The development must follow what has already been established.",
+        "bm": "Perhatikan perkembangan situasi atau cabaran dalam cerita."
+      },
+      {
+        "ask": "Explain what happened next or how you responded.",
+        "options": [
+          "For instance, she breaks long revision sessions into manageable parts.",
+          "Nevertheless, I do not follow every suggestion without thinking.",
+          "In my view, a responsible influencer can have a positive impact on young people."
+        ],
+        "correct": 1,
+        "why": "The response should address the situation in the completed answer.",
+        "bm": "Pilih tindakan atau penjelasan yang sesuai dengan ayat sebelumnya."
+      },
+      {
+        "ask": "Describe the outcome, significance or lesson.",
+        "options": [
+          "Nevertheless, I do not follow every suggestion without thinking.",
+          "In my view, a responsible influencer can have a positive impact on young people.",
+          "Instead, I choose advice that suits my own learning needs."
+        ],
+        "correct": 2,
+        "why": "The effect or lesson must come from this specific experience.",
+        "bm": "Pilih kesan atau pengajaran yang berkaitan dengan cerita."
+      },
+      {
+        "ask": "End with a personal opinion and reason.",
+        "options": [
+          "In my view, a responsible influencer can have a positive impact on young people.",
+          "As a result, I felt more focused and less stressed.",
+          "For instance, she breaks long revision sessions into manageable parts."
+        ],
+        "correct": 0,
+        "why": "A personal conclusion should evaluate the topic already discussed.",
+        "bm": "Akhiri dengan pendapat peribadi serta sebab yang jelas."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "manageable",
+        "ms": "mudah diurus",
+        "zh": "易于管理的"
+      },
+      {
+        "word": "responsible",
+        "ms": "bertanggungjawab",
+        "zh": "负责任的"
+      }
+    ]
+  }
+];
+const $=id=>document.getElementById(id);
+let name='',order=[],step=0,score=0,answers=[],firstTry=true,locked=false;
+function shuffle(arr){let a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function begin(){name=$('student').value.trim();if(!name){$('student').focus();alert('Please enter your name first. / Sila masukkan nama.');return}step=0;score=0;answers=topics.map(()=>[]);order=topics.flatMap((t,ti)=>t.steps.map((s,si)=>({ti,si})));$('start').classList.add('hide');$('end').classList.add('hide');$('checkpoint').classList.add('hide');$('game').classList.remove('hide');render()}
+function render(){locked=false;firstTry=true;let {ti,si}=order[step],topic=topics[ti],item=topic.steps[si];$('who').textContent=name;$('stat').textContent=`${step+1}/30 • ${score} marks`;$('bar').style.width=`${step/30*100}%`;$('topic').textContent=`${ti+1}. ${topic.title}`;$('topicNote').textContent=topic.note;$('previous').innerHTML=answers[ti].length?`<b>🧩 Your answer so far:</b>${answers[ti].map(s=>`<p>${safe(s)}</p>`).join('')}`:'<b>🧩 Your answer so far:</b><p class="muted">Choose your first sentence below.</p>';$('question').textContent=`Step ${si+1} of 10: ${item.ask}`;$('feedback').className='feedback hide';$('nextBtn').classList.add('hide');$('nextBtn').textContent=si===9?'See Completed Answer →':'Next Sentence →';let options=shuffle(item.options.map((text,i)=>({text,correct:i===item.correct})));$('choices').innerHTML='';options.forEach((option,i)=>{let btn=document.createElement('button');btn.type='button';btn.className='option';btn.innerHTML=`<span class="letter">${'ABC'[i]}</span><span>${safe(option.text)}</span>`;btn.addEventListener('click',()=>choose(btn,option.correct,item));$('choices').appendChild(btn)})}
+function choose(btn,isCorrect,item){if(locked)return;let feedback=$('feedback');feedback.classList.remove('hide');if(!isCorrect){firstTry=false;btn.classList.add('bad');btn.disabled=true;feedback.className='feedback bad';feedback.innerHTML=`<strong>❌ Not quite. Try another sentence!</strong><p>${safe(item.why)}</p><p><b>BM:</b> ${safe(item.bm)}</p><p class="small">Tip: Choose the sentence that answers the current point and connects naturally with your previous sentences.</p>`;return}locked=true;btn.classList.add('good');if(firstTry)score++;let {ti}=order[step];answers[ti].push(item.options[item.correct]);$('stat').textContent=`${step+1}/30 • ${score} marks`;feedback.className='feedback good';feedback.innerHTML=`<strong>✅ Correct!</strong><p>${safe(item.why)}</p><p><b>BM:</b> ${safe(item.bm)}</p>${topics[ti].vocab.filter(v=>new RegExp('\\b'+v.word+'\\b','i').test(item.options[item.correct])).map(v=>`<p><b>🌱 ${safe(v.word)}</b> — BM: ${safe(v.ms)} · 中文: ${safe(v.zh)}</p>`).join('')}${firstTry?'':'<p class="small">Correct after retry — no mark this round.</p>'}`;[...$('choices').children].forEach(b=>b.disabled=true);$('previous').innerHTML=`<b>🧩 Your answer so far:</b>${answers[ti].map(s=>`<p>${safe(s)}</p>`).join('')}`;$('nextBtn').classList.remove('hide')}
+function next(){if(!locked)return;let justDone=order[step];if(justDone.si===9){showCheckpoint(justDone.ti);return}advance()}
+function advance(){step++;if(step===30){finish();return}render();$('game').scrollIntoView({behavior:'smooth',block:'start'})}
+function showCheckpoint(ti){$('game').classList.add('hide');$('checkpoint').classList.remove('hide');$('checkpointTitle').textContent=`${ti+1}. ${topics[ti].title}`;$('checkpointScript').innerHTML=answers[ti].map((line,i)=>`<p><b>${i+1}.</b> ${safe(line)}</p>`).join('');$('vocabBox').innerHTML='<b>📚 Vocabulary boost (C1 / challenging words):</b>'+topics[ti].vocab.map(v=>`<p><strong>${safe(v.word)}</strong> — BM: ${safe(v.ms)} · 中文: ${safe(v.zh)}</p>`).join('');$('copiedCheck').checked=false;$('continueBtn').disabled=true;$('continueBtn').textContent=ti===2?'View Final Score →':'Continue to Next Topic →';$('copiedMsg').textContent='';window.scrollTo({top:0,behavior:'smooth'})}
+$('copiedCheck').addEventListener('change',e=>{$('continueBtn').disabled=!e.target.checked});
+$('copyBtn').addEventListener('click',async()=>{const ti=order[step].ti;const lines=answers[ti].join(' ');try{await navigator.clipboard.writeText(lines);$('copiedMsg').textContent='✅ Answer copied to clipboard! Remember to WRITE it in your exercise book.'}catch(e){$('copiedMsg').textContent='Please select and copy the displayed answer manually.'}});
+$('continueBtn').addEventListener('click',()=>{if(!$('copiedCheck').checked)return;$('checkpoint').classList.add('hide');$('game').classList.remove('hide');advance()});
+function finish(){$('game').classList.add('hide');$('end').classList.remove('hide');$('finishName').textContent=`Well done, ${name}!`;$('finalScore').textContent=`${score} / 30`;$('finalRemark').textContent=score>=27?'Excellent! Now practise speaking aloud.':score>=21?'Good effort! Try the game again to improve.':'Keep practising! Read each explanation carefully.';$('finishedScripts').innerHTML=topics.map((t,i)=>`<div class="script" style="margin:12px 0"><b>${i+1}. ${safe(t.title)}</b>${answers[i].map(s=>`<p>${safe(s)}</p>`).join('')}</div>`).join('');window.scrollTo({top:0,behavior:'smooth'})}
+$('startBtn').addEventListener('click',begin);$('student').addEventListener('keydown',e=>{if(e.key==='Enter')begin()});$('nextBtn').addEventListener('click',next);$('replayBtn').addEventListener('click',()=>{$('end').classList.add('hide');$('start').classList.remove('hide');window.scrollTo({top:0,behavior:'smooth'})});
+</script></body></html>
