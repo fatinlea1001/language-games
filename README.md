@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**64 games** — automatically updated when an HTML game is added or changed.
+**65 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Environment Vocabulary (Set 3)](https://fatinlea1001.github.io/language-games/eng-vocab-environment-3.html) — updated 13 Oct 2026
 - [Vocab Finance (Set 3)](https://fatinlea1001.github.io/language-games/eng-vocab-finance-3.html) — updated 13 Oct 2026
 - [Vocab Finance (Set 2)](https://fatinlea1001.github.io/language-games/eng-vocab-finance-2.html) — updated 13 Oct 2026
 - [Vocab Finance (Set 1)](https://fatinlea1001.github.io/language-games/eng-vocab-finance-1.html) — updated 13 Oct 2026
