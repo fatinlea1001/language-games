@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**58 games** — automatically updated when an HTML game is added or changed.
+**59 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Vocab Health (Set 1)](https://fatinlea1001.github.io/language-games/eng-vocab-health-1.html) — updated 13 Oct 2026
 - [Speakingpart2 (Set 10)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-10.html) — updated 13 Oct 2026
 - [Speakingpart2 (Set 9)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-9.html) — updated 13 Oct 2026
 - [Speakingpart2 (Set 8)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-8.html) — updated 13 Oct 2026
