@@ -7,7 +7,7 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Jumble Fincance (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-fincance-1.html) — updated 14 Oct 2026
+- [Jumble Finance (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-finance-1.html) — updated 14 Oct 2026
 - [Jumble Health (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-health-1.html) — updated 14 Oct 2026
 - [Jumble Socialmedia (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-socialmedia-1.html) — updated 14 Oct 2026
 - [Jumble Education (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-education-1.html) — updated 14 Oct 2026
