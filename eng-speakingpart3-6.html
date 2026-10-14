@@ -1,0 +1,405 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#e3f8f2"><meta name="description" content="SPM Speaking Part 3: Build five speaking paragraphs about factors when choosing a part-time job."><title>Speak &amp; Build | Factors When Choosing a Part-Time Job</title><style>
+    :root{--ink:#233651;--muted:#667895;--purple:#397ae6;--purple-dark:#2459be;--purple-light:#edf4ff;--pink:#ffe8f1;--border:#d4e3fc;--good:#176a4b;--good-bg:#eaf9f1;--bad:#a13b57;--bad-bg:#fff0f3;--white:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 0 0,#dfedff 0,transparent 32%),radial-gradient(circle at 100% 0,#d7e0ff 0,transparent 31%),linear-gradient(160deg,#eff7ff,#f7faff 55%,#fff8fd);min-height:100vh}
+    .container{max-width:850px;margin:auto;padding:22px 15px 50px}
+    .brand{text-align:center;margin-bottom:19px}
+    .brand small{display:inline-block;border-radius:99px;background:#fff;padding:7px 14px;color:#3267b7;font-size:.76rem;font-weight:850;letter-spacing:.055em;box-shadow:0 2px 13px #95b7e52c}
+    .brand h1{font-size:clamp(1.7rem,5vw,2.5rem);margin:10px 0 6px;letter-spacing:-.035em}
+    .brand p{margin:0;color:var(--muted);font-size:.95rem}
+    .card{background:#ffffffef;border:1px solid var(--border);border-radius:23px;padding:clamp(19px,4vw,32px);box-shadow:0 13px 33px #6897db21}
+    .hidden{display:none!important}
+    .question{background:linear-gradient(115deg,#dfecff,#f1eaff);border:1px solid #cad9fa;padding:20px 18px;border-radius:18px;text-align:center}
+    .question .label{font-size:.76rem;font-weight:850;color:#3a65ae;text-transform:uppercase;letter-spacing:.07em}
+    .question h2{font-size:clamp(1.18rem,4vw,1.6rem);line-height:1.32;margin:8px auto 0;max-width:670px}
+    .mindmap{margin:19px 0 8px;text-align:center}
+    .mindmap strong{display:block;margin-bottom:12px}
+    .map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    .map-node{border:2px solid #c9d9f5;background:#f9fbff;border-radius:14px;min-height:83px;padding:11px 6px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;text-align:center;font-size:.83rem;font-weight:800;overflow-wrap:anywhere}
+    .map-node .emoji{font-size:1.45rem}
+    .map-node.active{background:#d7e7ff;border-color:#328b90;box-shadow:0 0 0 2px #e0eaff}
+    .map-node.done{background:#e6f4ed;border-color:#94c9b5}
+    .hint{font-size:.9rem;color:var(--muted);line-height:1.65}
+    .name-label{display:block;font-weight:800;margin:23px 0 8px}
+    input[type=text]{font:inherit;width:100%;padding:14px;border:2px solid #c8d9f8;border-radius:12px;color:var(--ink);background:white}
+    input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline:3px solid #8eb1fa;outline-offset:3px}
+    .error{font-size:.88rem;color:var(--bad);margin:8px 0 0}
+    button{font:inherit;font-weight:820;cursor:pointer;border:0;border-radius:13px;padding:13px 19px}
+    button:disabled{opacity:.47;cursor:not-allowed}
+    .btn-primary{background:var(--purple);color:white}
+    .btn-primary:not(:disabled):hover{background:var(--purple-dark)}
+    .btn-soft{background:#e5efff;color:#315fb5}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .button-row>button{flex:1 1 190px}
+    .status{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}
+    .chip{display:inline-flex;align-items:center;background:#e9f1ff;border-radius:99px;padding:6px 11px;color:#3766b2;font-size:.83rem;font-weight:850}
+    .progress{height:9px;border-radius:99px;background:#e7eeff;overflow:hidden;margin:12px 0 20px}
+    .progress-inner{height:100%;width:0;background:linear-gradient(90deg,#61adff,#8474e8);transition:width .25s}
+    .point-heading{font-size:1.45rem;letter-spacing:-.025em;margin:11px 0 5px}
+    .step-desc{font-size:.95rem;color:var(--muted);margin:0 0 14px}
+    .paragraph-box{background:#f5f9ff;border:1px solid #d6e3ff;border-left:5px solid #76a2ee;border-radius:14px;padding:15px 17px;margin:17px 0;min-height:90px;line-height:1.8}
+    .paragraph-box .mini-label{font-size:.73rem;color:#3c6fba;font-weight:850;letter-spacing:.045em;margin-bottom:5px}
+    .placeholder{color:#9a94ae;font-style:italic}
+    .paragraph-box p{margin:0}
+    .paragraph-box .built{font-weight:600}
+    .choose-title{font-size:1.07rem;margin:21px 0 11px}
+    .choices{display:grid;gap:10px}
+    .choice{width:100%;text-align:left;display:flex;align-items:flex-start;gap:12px;color:var(--ink);font-weight:600;line-height:1.5;background:#fff;border:2px solid #d2dff6;transition:background .15s,border-color .15s}
+    .choice:hover:not(:disabled){border-color:#89aaf3;background:#f5f8ff}
+    .choice.correct{border-color:#67b994;background:var(--good-bg)}
+    .choice.wrong{border-color:#e6a3b4;background:var(--bad-bg)}
+    .letter{display:inline-flex;flex:0 0 28px;width:28px;height:28px;justify-content:center;align-items:center;border-radius:9px;background:#e6f0ff;color:#3567ae;font-size:.83rem;font-weight:850}
+    .feedback{border-radius:15px;margin-top:16px;padding:15px 17px;line-height:1.65}
+    .feedback.good{background:var(--good-bg);border:1px solid #9dd5bb}
+    .feedback.bad{background:var(--bad-bg);border:1px solid #ecc2cc}
+    .feedback h3{margin:0 0 6px;font-size:1.04rem}
+    .feedback p{margin:8px 0 0;font-size:.92rem}
+    .feedback .correct-line{padding:9px 11px;border-radius:9px;background:#fff;font-weight:700;margin-top:10px}
+    .para-review{background:#f8faff;border:1px solid #d6e2fa;border-radius:14px;padding:16px 17px;margin:12px 0}
+    .para-review h3{font-size:1.08rem;margin:0 0 6px}
+    .para-review p{margin:0;line-height:1.8}
+    .copy-banner{background:#fff3c9;border:3px solid #dfab38;border-radius:17px;padding:20px;margin:21px 0;box-shadow:0 5px 0 #f3e4bb}
+    .copy-banner h3{margin:0 0 10px;font-size:clamp(1.22rem,4.5vw,1.55rem);color:#7d4e0d}
+    .copy-banner p{margin:6px 0;line-height:1.6}
+    .tick{display:flex;align-items:flex-start;gap:11px;padding:12px 0;font-weight:700;line-height:1.5}
+    .tick input{margin:4px 0 0;transform:scale(1.35);accent-color:var(--purple)}
+    .score{font-size:clamp(3rem,9vw,4.7rem);color:var(--purple-dark);font-weight:950;text-align:center;margin:12px 0 2px}
+    .center{text-align:center}
+    .result-line{padding:11px 0;border-bottom:1px solid #dce6f8;display:flex;justify-content:space-between;gap:9px}
+    .result-line:last-child{border:0}
+    .footer{text-align:center;color:#667895;margin:21px 0 0;font-size:.78rem}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(3,1fr)}.map-node{min-height:72px}.container{padding-top:15px}.card{border-radius:18px}.choice{padding:12px}}
+    @media(max-width:380px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+    @media print{body{background:white}.brand,.question,.mindmap,#welcome,#game,#results,.copy-banner,.tick,.button-row,.footer{display:none!important}#review{display:block!important;box-shadow:none;border:0;padding:0}.para-review{break-inside:avoid}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  
+    .map-node.pick{cursor:pointer;transition:transform .12s,background .12s,border-color .12s}
+    .map-node.pick:hover:not(:disabled){transform:translateY(-2px);border-color:#7ca7f0}
+    .map-node.pick:disabled{cursor:not-allowed;opacity:.66}
+    .map-node.selected{background:#deebff;border-color:#4785e5;box-shadow:0 0 0 2px #e5edff}
+    .map-node.skipped{background:#f2f3f5;border-color:#dde2e5;color:#8b9198}
+    .map-node small{font-size:.67rem;font-weight:800;line-height:1.2}
+    .map-node.active{background:#e8ddff;border-color:#9382da;box-shadow:0 0 0 2px #eeeaff}
+    .select-help{margin-top:12px;border-radius:12px;padding:10px 12px;background:#edf4ff;color:#345d9e;font-size:.92rem;font-weight:750;text-align:center}
+    .map-grid button{font:inherit}
+    .note{background:#eaf3ff;border-radius:12px;padding:12px 14px;line-height:1.55;font-size:.91rem;margin:14px 0}
+    .copy-banner{background:#fff3bf;border-color:#dda225}
+    .copy-banner h3{font-size:clamp(1.3rem,4.6vw,1.65rem)}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+  
+  .subline{font-weight:700;margin-top:9px;color:#47648e}
+  .opening-tag{display:inline-block;border-radius:8px;background:#e0ebff;color:#2e63b7;padding:3px 8px;font-size:.75rem;font-weight:850;margin-bottom:8px}
+  .choice.target{border-color:#3c80d9;background:#e9f2ff;box-shadow:0 0 0 2px #d6e8ff}
+  .choice.target .letter{background:#397ae6;color:white}
+  .paragraph-box .built{font-weight:540}
+  .copy-banner{background:#fff1be;border-color:#dfa33f}
+  .note{background:#edf4ff}
+  @media print{.opening-tag{display:none}}
+
+/* Adventure palette: warm pastel peach + forest teal */
+:root{--ink:#28454b;--muted:#657c7e;--purple:#238c89;--purple-dark:#176a69;--purple-light:#e9f9f4;--border:#d2e8e2}
+body{background:radial-gradient(circle at 8% 0%,#ffeadb 0,transparent 32%),radial-gradient(circle at 96% 5%,#def9f0 0,transparent 30%),linear-gradient(156deg,#fff8ef,#f1fcf7 57%,#f5f9ff)}
+.brand small{color:#267b75;box-shadow:0 2px 13px #a6d6cb31}
+.card{box-shadow:0 13px 33px #72b7aa20}
+.question{background:linear-gradient(115deg,#fff0de,#e4f7ee);border-color:#f4debc}
+.question .label{color:#327973}
+.map-node{border-color:#d7e8df;background:#fcfffd}
+.map-node.selected{background:#dcf6ed;border-color:#45aa97;box-shadow:0 0 0 2px #eaf9f4}
+.map-node.active{background:#ffe8cb;border-color:#e8a666;box-shadow:0 0 0 2px #fff5e6}
+.map-node.done{background:#e0f4e7;border-color:#8fc6a4}
+.map-node.pick:hover:not(:disabled){border-color:#56b7a1}
+input[type=text]{border-color:#c7e6df}
+input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline-color:#80c5b6}
+.btn-soft{background:#e0f5ed;color:#207b70}
+.chip{background:#e6f6ee;color:#2b7d73}
+.progress{background:#e3f3ed}
+.progress-inner{background:linear-gradient(90deg,#56bfa7,#f0aa78)}
+.paragraph-box{background:#f5fcf9;border-color:#d6ebe2;border-left-color:#58bca8}
+.paragraph-box .mini-label{color:#287f75}
+.choice{border-color:#d4e9e4}
+.choice:hover:not(:disabled){border-color:#80beaa;background:#f2fdf8}
+.letter{background:#e1f5ef;color:#227e75}
+.para-review{background:#fbfffc;border-color:#dcebe3}
+.select-help{background:#e6f8f0;color:#257f73}
+.opening-tag{background:#e1f4eb;color:#287b6e}
+.choice.target{border-color:#37a292;background:#e7f9f1;box-shadow:0 0 0 2px #d5f0e3}
+.choice.target .letter{background:#238c89;color:white}
+.result-line{border-bottom-color:#e1efe9}
+.footer{color:#637e79}
+.copy-banner{background:#fff0be;border-color:#e2a54a}
+
+/* Emergency palette: gentle coral, sky blue and pale cream */
+:root{--ink:#36445a;--muted:#647489;--purple:#d66d5d;--purple-dark:#a94d42;--purple-light:#fff3ed;--border:#f4dcd8}
+body{background:radial-gradient(circle at 3% 1%,#ffe1db 0,transparent 34%),radial-gradient(circle at 99% 8%,#daefff 0,transparent 33%),linear-gradient(160deg,#fff9f3,#f3faff 55%,#fff6f0)}
+.brand small{color:#a65449;box-shadow:0 2px 14px #e9ae9940}
+.card{box-shadow:0 13px 33px #d69a8a21}
+.question{background:linear-gradient(120deg,#ffe8dc,#e1efff);border-color:#f7cdbd}
+.question .label{color:#ac6251}
+.map-node{border-color:#e6d9db;background:#fffdfa}
+.map-node.selected{background:#ffe9df;border-color:#e69b89;box-shadow:0 0 0 2px #fff0e8}
+.map-node.active{background:#dff0ff;border-color:#82acdb;box-shadow:0 0 0 2px #edf7ff}
+.map-node.done{background:#e5f7ed;border-color:#8ccfa4}
+.map-node.pick:hover:not(:disabled){border-color:#e1a494}
+.map-node.skipped{background:#f2f3f6;border-color:#d9e0e6}
+input[type=text]{border-color:#efd4cf}
+input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline-color:#eebba0}
+.btn-soft{background:#fff0e8;color:#a35144}
+.chip{background:#ffede6;color:#a45448}
+.progress{background:#f3e9e4}
+.progress-inner{background:linear-gradient(90deg,#f0ab81,#82bde4)}
+.paragraph-box{background:#fff9f5;border-color:#f2ded4;border-left-color:#e59b83}
+.paragraph-box .mini-label{color:#a95e51}
+.choice{border-color:#edd8d2}
+.choice:hover:not(:disabled){border-color:#e5a390;background:#fff7f2}
+.letter{background:#ffeadf;color:#a3594c}
+.para-review{background:#fffdfa;border-color:#f0e2d6}
+.select-help{background:#fff0e9;color:#a7584b}
+.opening-tag{background:#ffe9e0;color:#a45d50}
+.choice.target{border-color:#dd876d;background:#fff3e9;box-shadow:0 0 0 2px #ffe2d5}
+.choice.target .letter{background:#c86c55;color:white}
+.result-line{border-bottom-color:#f1e1d8}
+.footer{color:#798190}
+.copy-banner{background:#fff1be;border-color:#e2a54a}
+.note{background:#e9f5ff;color:#375676;border:1px solid #cfe6fa}
+
+
+/* Part-time jobs palette: pastel mint + sunshine yellow */
+:root{--ink:#25454a;--muted:#60777d;--purple:#248c86;--purple-dark:#156d6c;--purple-light:#e6f9f2;--border:#cfe9e3}
+body{background:radial-gradient(circle at 0 0,#d4f4ed 0,transparent 34%),radial-gradient(circle at 100% 0,#fff2bf 0,transparent 31%),linear-gradient(155deg,#f0fcf8,#fbfff8 55%,#fff9ed)}
+.brand small{color:#237e78;box-shadow:0 2px 14px #b8e0d53b}
+.card{box-shadow:0 13px 33px #76b9ad26}
+.question{background:linear-gradient(115deg,#d9f5e9,#fff1c6);border-color:#c5e6dc}
+.question .label{color:#197c79}
+.map-node{border-color:#cde6df;background:#f8fffc}
+.map-node.selected{background:#d6f4ea;border-color:#78baa9;box-shadow:0 0 0 2px #ecfff7}
+.map-node.active{background:#fff0c9;border-color:#dbb96d;box-shadow:0 0 0 2px #fffae2}
+.map-node.done{background:#e5f8ee;border-color:#91c5a3}
+.map-node.pick:hover:not(:disabled){border-color:#62b4a4}
+.map-node.skipped{background:#f1f6f4;border-color:#dce7e3}
+input[type=text]{border-color:#bde0d7}
+input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline-color:#5fac9b}
+.btn-soft{background:#e4f8f0;color:#227d71}
+.chip{background:#ddf5ee;color:#207974}
+.progress{background:#e0eee8}
+.progress-inner{background:linear-gradient(90deg,#70c8ab,#e0c36b)}
+.paragraph-box{background:#f6fdfa;border-color:#d1e8e0;border-left-color:#67baa7}
+.paragraph-box .mini-label{color:#237f77}
+.choice{border-color:#cfe6de}
+.choice:hover:not(:disabled){border-color:#8acbbb;background:#f4fcf8}
+.letter{background:#e1f4ec;color:#258478}
+.para-review{background:#fbfffc;border-color:#d3e7e0}
+.select-help{background:#e4f8f0;color:#287c73}
+.opening-tag{background:#ddf5e8;color:#247b74}
+.choice.target{border-color:#4da994;background:#e4f7ee;box-shadow:0 0 0 2px #d3f4e6}
+.choice.target .letter{background:#248c86;color:white}
+.result-line{border-bottom-color:#d5e7df}
+.footer{color:#728682}
+.note{background:#fff5d8;color:#806b38;border:1px solid #eedea0}
+.copy-banner{background:#fff1b7;border-color:#dba236}
+</style></head><body>
+<main class="container">
+<header class="brand"><small>🗣️ SPM ENGLISH SPEAKING PRACTICE</small><h1>💼 Speak &amp; Build!</h1><p>Part 3 · Factors When Choosing a Part-Time Job</p></header>
+<section id="welcome" class="card">
+  <div class="question"><div class="label">Speaking Part 3 · Discussion Question</div><h2>What factors should teenagers consider when choosing a part-time job?</h2><p class="subline">Choose any five points from the mind map.</p></div>
+  <div class="note" role="note">💡 <b>Speaking tip:</b> Each paragraph begins with a transition, followed by an explanation, an example and a result. / <b>Tip bertutur:</b> Setiap perenggan bermula dengan penanda wacana, diikuti huraian, contoh dan kesan.</div>
+  <div class="mindmap"><strong>🧠 Six Points in the Mind Map</strong><div class="map-grid" id="welcomeMap"></div></div>
+  <div class="select-help" id="selectCount" role="status" aria-live="polite">Choose FIVE points (0 / 5 selected).</div>
+  <p class="hint">Select any <b>FIVE out of SIX</b> points. / Pilih mana-mana <b>LIMA daripada ENAM</b> isi.</p>
+  <label class="name-label" for="studentName">Your name / Nama murid</label>
+  <input id="studentName" type="text" maxlength="65" placeholder="Enter your name" autocomplete="name">
+  <p id="nameError" class="error hidden" role="alert">Please enter your name. / Sila masukkan nama.</p>
+  <div class="button-row"><button type="button" class="btn-primary" id="startBtn" disabled>Start Building My Five Paragraphs →</button></div>
+  <p class="hint">For each point, you will choose <b>3 elaboration sentences</b>. A correct first attempt earns 1 mark. Total: <b>15 marks</b>. Each paragraph begins with a cohesive transition.</p>
+</section>
+<section id="game" class="card hidden">
+  <div class="status"><span class="chip" id="pointCounter">Point 1 of 5</span><span class="chip" id="stepCounter">Sentence 1 of 3</span><span class="chip" id="markCounter">Marks: 0 / 15</span></div>
+  <div class="progress" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progress"><div class="progress-inner" id="progressInner"></div></div>
+  <div class="question"><div class="label">Speaking Part 3 · Discussion Question</div><h2>What factors should teenagers consider when choosing a part-time job?</h2></div>
+  <div class="mindmap"><strong>🧠 All Six Original Points</strong><div class="map-grid" id="gameMap"></div></div>
+  <h2 class="point-heading" id="pointTitle">Point 1</h2><p class="step-desc" id="stepHelp"></p>
+  <div class="paragraph-box" aria-live="polite"><div class="mini-label">YOUR PARAGRAPH SO FAR</div><div class="opening-tag">✨ Transition + main point</div><p id="builtParagraph" class="built"></p></div>
+  <h3 class="choose-title" id="chooseTitle">Choose the most suitable sentence:</h3><div class="choices" id="choices"></div>
+  <div class="feedback hidden" id="feedback" role="status" aria-live="polite"></div>
+  <div class="button-row hidden" id="nextWrap"><button type="button" class="btn-primary" id="nextBtn">Next Sentence →</button></div>
+</section>
+<section id="review" class="card hidden">
+  <div class="question"><div class="label">Fantastic! 🎉</div><h2>Your FIVE Completed Paragraphs</h2></div>
+  <p class="hint center">Look at the transitions, explanations, examples and results. Read the paragraphs and copy them into your exercise book.</p>
+  <div id="paragraphsList"></div>
+  <div class="copy-banner" role="note"><h3>📚✏️ IMPORTANT! COPY ALL FIVE PARAGRAPHS INTO YOUR EXERCISE BOOK!</h3><p><b>Copy the five complete paragraphs before viewing your score.</b></p><p><b>PENTING! SALIN KELIMA-LIMA PERENGGAN INI KE DALAM BUKU LATIHAN ANDA SEBELUM MELIHAT MARKAH!</b></p></div>
+  <label class="tick"><input type="checkbox" id="copiedCheck"><span>I have copied all FIVE paragraphs into my exercise book.<span class="hint" style="display:block">Saya telah menyalin KELIMA-LIMA perenggan ke dalam buku latihan.</span></span></label>
+  <div class="button-row"><button type="button" id="scoreBtn" class="btn-primary" disabled>Continue to Final Score →</button></div>
+</section>
+<section id="results" class="card hidden">
+  <div class="center" style="font-size:2.6rem">🎉🏆🌟</div><h2 class="center">Great Work! Quiz Complete!</h2>
+  <p id="resultStudent" class="center" style="font-weight:800"></p><div id="finalScore" class="score">0 / 15</div><p class="center" id="resultMessage"></p>
+  <h3>📚 Your Five Selected Points</h3><div id="breakdown"></div>
+  <p class="hint">📸 Take a screenshot showing your name and final score for your teacher.</p>
+  <div class="button-row"><button type="button" class="btn-soft" id="reviewBtn">📖 See My Five Paragraphs</button><button type="button" class="btn-primary" id="replayBtn">🔀 Replay · Choose Five Points</button></div>
+</section>
+<footer class="footer">SPM Speaking Part 3 • Standalone HTML • GitHub Pages friendly • Works offline</footer>
+</main>
+<script>
+'use strict';
+const POINTS = [{"key":"salary","name":"Salary","emoji":"💰","bm":"gaji","focus":"whether the pay is fair for the work","focusMs":"sama ada gaji setimpal dengan kerja yang dilakukan","intro":"teenagers should check whether the salary is fair before accepting a part-time job.","introSecond":"Another important factor is salary, as teenagers should be paid fairly for their effort.","sentences":["A reasonable salary should match the hours and responsibilities of the job.","For example, students can compare the hourly pay offered by two shops before deciding where to work.","As a result, they can choose a job that pays fairly and helps them save money."],"en":["This explains why teenagers should consider whether the pay matches the work required.","Comparing hourly pay at two shops is a clear example of checking salary before choosing a job.","This result shows how fair pay can help teenagers earn and save money."],"ms":["Ayat ini menerangkan mengapa remaja perlu memastikan gaji setimpal dengan kerja yang dilakukan.","Membandingkan kadar gaji sejam di dua kedai ialah contoh menilai gaji sebelum memilih pekerjaan.","Ayat ini menunjukkan bagaimana gaji yang berpatutan dapat membantu remaja memperoleh dan menyimpan wang."]},{"key":"hours","name":"Working Hours","emoji":"⏰","bm":"waktu bekerja","focus":"choosing shifts that fit around school and rest","focusMs":"memilih syif yang sesuai dengan jadual sekolah dan waktu rehat","intro":"teenagers should choose working hours that fit their school routines.","introSecond":"Another important factor is working hours because teenagers still need time to study and rest.","sentences":["Suitable shifts allow them to balance schoolwork, rest and their part-time responsibilities.","For instance, a weekend shift may suit a student better than working late on school nights.","Therefore, they can earn extra income without neglecting their studies."],"en":["This explains why working hours must leave time for schoolwork and proper rest.","A weekend shift is an example of arranging work around school commitments.","This states the benefit of manageable working hours for teenage students."],"ms":["Ayat ini menerangkan mengapa waktu bekerja perlu memberi ruang kepada pelajaran dan rehat yang mencukupi.","Syif hujung minggu ialah contoh mengatur kerja supaya tidak mengganggu persekolahan.","Ayat ini menunjukkan faedah waktu bekerja yang sesuai kepada pelajar."]},{"key":"environment","name":"Work Environment","emoji":"🤝","bm":"persekitaran kerja","focus":"the support and treatment teenagers receive from coworkers and supervisors","focusMs":"sokongan dan layanan yang diterima daripada rakan sekerja serta penyelia","intro":"a supportive work environment can make a part-time job more enjoyable.","introSecond":"Another important factor is the work environment, especially how staff treat one another.","sentences":["Respectful supervisors and helpful coworkers make it easier for teenagers to learn their duties.","For example, a friendly colleague might guide a new worker who is unsure how to serve customers.","As a result, teenagers can feel comfortable and become more confident at work."],"en":["This explains how positive relationships can make a workplace supportive.","A colleague helping a new employee is a realistic example of a good work environment.","This describes the confidence and comfort that a supportive workplace can create."],"ms":["Ayat ini menerangkan bagaimana hubungan yang baik mewujudkan persekitaran kerja yang menyokong pekerja.","Rakan sekerja membantu pekerja baharu ialah contoh persekitaran kerja yang positif.","Ayat ini menunjukkan keyakinan dan keselesaan yang terhasil daripada persekitaran kerja yang baik."]},{"key":"location","name":"Location","emoji":"📍","bm":"lokasi tempat kerja","focus":"how convenient the journey to the workplace is","focusMs":"sejauh mana perjalanan ke tempat kerja mudah dan praktikal","intro":"the location of the workplace should be convenient for teenagers.","introSecond":"Another useful factor is location because teenagers need a practical way to travel to work.","sentences":["Jobs near home or along a familiar route can save travel time and transport costs.","For example, a student may choose a nearby bookstore instead of a café that requires two bus rides.","Consequently, they can arrive on time and spend less money getting to work."],"en":["This explains how a convenient location can reduce the time and cost of travelling.","Choosing a nearby bookstore rather than a distant café illustrates the importance of location.","This shows the practical benefits of choosing a workplace that is easy to reach."],"ms":["Ayat ini menerangkan bagaimana lokasi yang sesuai dapat menjimatkan masa dan kos perjalanan.","Memilih kedai buku berdekatan berbanding kafe yang jauh menunjukkan kepentingan lokasi.","Ayat ini menunjukkan manfaat memilih tempat kerja yang mudah dikunjungi."]},{"key":"skills","name":"Skills Gained","emoji":"🌟","bm":"kemahiran yang diperoleh","focus":"abilities teenagers can learn and use in the future","focusMs":"kemahiran yang boleh dipelajari dan digunakan oleh remaja pada masa depan","intro":"a part-time job is more valuable when it helps teenagers gain useful skills.","introSecond":"Another factor is the skills gained because work experience can prepare teenagers for the future.","sentences":["Working with others can improve communication, teamwork and time-management skills.","For instance, a teenager working at a restaurant may learn to speak politely to customers.","These skills may help students in school activities and future job interviews."],"en":["This explains the useful abilities teenagers may develop through part-time work.","Speaking politely to restaurant customers is a clear example of learning a communication skill.","This shows how skills gained at work can be useful in other situations."],"ms":["Ayat ini menerangkan kemahiran berguna yang boleh dibina melalui kerja sambilan.","Bercakap dengan sopan kepada pelanggan restoran ialah contoh mempelajari kemahiran komunikasi.","Ayat ini menunjukkan bagaimana kemahiran daripada pekerjaan boleh digunakan dalam situasi lain."]},{"key":"safety","name":"Safety","emoji":"🦺","bm":"keselamatan","focus":"workplace rules and equipment that protect teenage employees","focusMs":"peraturan dan peralatan di tempat kerja yang melindungi pekerja remaja","intro":"teenagers should put safety first when choosing a part-time job.","introSecond":"Another essential factor is safety because teenagers need a workplace that protects its employees.","sentences":["A safe workplace should provide clear instructions and suitable equipment for each task.","For example, workers should receive guidance before using unfamiliar tools or machines.","This reduces the risk of avoidable injuries and helps teenagers work with greater confidence."],"en":["This explains the safety measures that an employer should provide.","Receiving guidance before using equipment is an example of safe workplace practice.","This describes how good safety practices reduce risks and help workers feel secure."],"ms":["Ayat ini menerangkan langkah keselamatan yang perlu disediakan oleh majikan.","Menerima tunjuk ajar sebelum menggunakan peralatan ialah contoh amalan kerja yang selamat.","Ayat ini menerangkan bagaimana amalan keselamatan yang baik mengurangkan risiko dan meningkatkan rasa selamat."]}];
+const LEADS = [
+ 'To begin with, ',
+ 'Secondly, ',
+ 'In addition, ',
+ 'Furthermore, ',
+ 'Finally, '
+];
+const PHASES = [
+ {en:'Choose a suitable EXPLANATION.',ms:'Pilih ayat HURAIAN yang sesuai.',name:'Explanation'},
+ {en:'Choose a suitable EXAMPLE or supporting detail.',ms:'Pilih CONTOH atau maklumat sokongan yang sesuai.',name:'Example / Detail'},
+ {en:'Choose a suitable RESULT or benefit.',ms:'Pilih KESAN atau faedah yang sesuai.',name:'Result / Benefit'}
+];
+const $ = id => document.getElementById(id);
+const show = id => $(id).classList.remove('hidden');
+const hide = id => $(id).classList.add('hidden');
+const shuffle = xs => {const a=xs.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let student='',selectedKeys=[],selectedPoints=[],pointIndex=0,stepIndex=0,score=0,pointScores=[],wrongYet=false,solved=false,choices=[],paragraphs=[],completed=0,hasCopied=false;
+function openSentence(p, position){return position===1 ? p.introSecond : LEADS[position] + p.intro;}
+function fullParagraph(p,position,lines){return [openSentence(p,position),...lines].join(' ');}
+function resetWelcomeMap(){
+ const wrap=$('welcomeMap');wrap.replaceChildren();
+ POINTS.forEach(p=>{
+  const b=document.createElement('button');b.type='button';b.className='map-node pick'+(selectedKeys.includes(p.key)?' selected':'');
+  b.disabled=selectedKeys.length===5&&!selectedKeys.includes(p.key);
+  b.setAttribute('aria-pressed',String(selectedKeys.includes(p.key)));
+  const icon=document.createElement('span');icon.className='emoji';icon.textContent=p.emoji;
+  const name=document.createElement('span');name.textContent=p.name;
+  const state=document.createElement('small');state.textContent=selectedKeys.includes(p.key)?'✓ SELECTED':'TAP TO SELECT';
+  b.append(icon,name,state);
+  b.addEventListener('click',()=>{
+   if(selectedKeys.includes(p.key))selectedKeys=selectedKeys.filter(k=>k!==p.key);
+   else if(selectedKeys.length<5)selectedKeys.push(p.key);
+   resetWelcomeMap();
+  });wrap.append(b);
+ });
+ $('selectCount').textContent=selectedKeys.length===5?'✅ Five points selected! You can change one before starting.':`Choose FIVE points (${selectedKeys.length} / 5 selected).`;
+ $('startBtn').disabled=selectedKeys.length!==5;
+}
+function renderGameMap(){
+ const wrap=$('gameMap');wrap.replaceChildren();
+ POINTS.forEach(p=>{
+  const index=selectedPoints.findIndex(q=>q.key===p.key);
+  const node=document.createElement('div');node.className='map-node '+(index<0?'skipped':index===pointIndex?'active':index<pointIndex?'done':'selected');
+  const ico=document.createElement('span');ico.className='emoji';ico.textContent=p.emoji;
+  const name=document.createElement('span');name.textContent=p.name;
+  const st=document.createElement('small');st.textContent=index<0?'NOT SELECTED':index===pointIndex?'CURRENT POINT':index<pointIndex?'COMPLETED':'SELECTED';
+  node.append(ico,name,st);wrap.append(node);
+ });
+}
+function newChoices(){
+ const p=selectedPoints[pointIndex];
+ const others=shuffle(POINTS.filter(q=>q.key!==p.key)).slice(0,2);
+ choices=shuffle([{text:p.sentences[stepIndex],owner:p.key},...others.map(q=>({text:q.sentences[stepIndex],owner:q.key}))]);
+}
+function start(){
+ const name=$('studentName').value.trim();if(!name){show('nameError');$('studentName').focus();return;}
+ hide('nameError');if(selectedKeys.length!==5)return;
+ student=name;
+ // Keep the order consistent with the original mind map, not the order of clicks.
+ selectedPoints=POINTS.filter(p=>selectedKeys.includes(p.key));
+ pointIndex=0;stepIndex=0;score=0;pointScores=Array(5).fill(0);wrongYet=false;solved=false;
+ paragraphs=selectedPoints.map(()=>[]);completed=0;hasCopied=false;
+ $('copiedCheck').checked=false;$('scoreBtn').disabled=true;
+ hide('welcome');hide('review');hide('results');show('game');newChoices();render();window.scrollTo(0,0);
+}
+function render(){
+ const p=selectedPoints[pointIndex];
+ $('pointCounter').textContent=`Point ${pointIndex+1} of 5`;
+ $('stepCounter').textContent=`Sentence ${stepIndex+1} of 3`;
+ $('markCounter').textContent=`Marks: ${score} / 15`;
+ $('progressInner').style.width=`${completed/15*100}%`;
+ $('progress').setAttribute('aria-valuenow',String(completed));
+ $('pointTitle').textContent=`${p.emoji} Point ${pointIndex+1}: ${p.name}`;
+ $('stepHelp').textContent=PHASES[stepIndex].en+' / '+PHASES[stepIndex].ms;
+ $('chooseTitle').textContent=`Choose the best sentence — ${PHASES[stepIndex].name}`;
+ renderGameMap();
+ $('builtParagraph').textContent=fullParagraph(p,pointIndex,paragraphs[pointIndex]);
+ $('choices').replaceChildren();
+ choices.forEach((c,i)=>{
+  const b=document.createElement('button');b.type='button';b.className='choice';b.disabled=solved;
+  const letter=document.createElement('span');letter.className='letter';letter.textContent='ABC'[i];
+  const txt=document.createElement('span');txt.textContent=c.text;
+  b.append(letter,txt);b.addEventListener('click',()=>choose(c,b));$('choices').append(b);
+ });
+ hide('feedback');hide('nextWrap');
+}
+function feedback(type,title,en,ms,correctLine=''){
+ const el=$('feedback');el.className='feedback '+type;el.replaceChildren();
+ const heading=document.createElement('h3');heading.textContent=title;
+ const english=document.createElement('p');english.textContent='🇬🇧 '+en;
+ const malay=document.createElement('p');malay.textContent='🇲🇾 '+ms;
+ el.append(heading,english,malay);
+ if(correctLine){const line=document.createElement('div');line.className='correct-line';line.textContent='✅ Correct sentence: '+correctLine;el.append(line);}
+ show('feedback');
+}
+function choose(c,b){
+ if(solved||b.disabled)return;
+ const p=selectedPoints[pointIndex];
+ if(c.owner!==p.key){
+  wrongYet=true;b.classList.add('wrong');b.disabled=true;
+  const wrong=POINTS.find(q=>q.key===c.owner);
+  document.querySelectorAll('#choices button').forEach((btn,i)=>{if(choices[i].owner===p.key)btn.classList.add('target');});
+  feedback('bad','❌ Not quite — try again!',
+   `This sentence focuses on ${wrong.focus}, but your paragraph is about ${p.focus}. Choose the highlighted sentence to continue.`,
+   `Ayat ini berfokus pada ${wrong.focusMs}, tetapi perenggan ini tentang ${p.focusMs}. Pilih ayat yang ditandakan untuk meneruskan.`,p.sentences[stepIndex]);
+  return;
+ }
+ solved=true;b.classList.remove('target');b.classList.add('correct');
+ if(!wrongYet){score++;pointScores[pointIndex]++;}
+ completed++;paragraphs[pointIndex].push(p.sentences[stepIndex]);
+ $('builtParagraph').textContent=fullParagraph(p,pointIndex,paragraphs[pointIndex]);
+ document.querySelectorAll('#choices button').forEach(btn=>btn.disabled=true);
+ $('markCounter').textContent=`Marks: ${score} / 15`;
+ $('progressInner').style.width=`${completed/15*100}%`;
+ $('progress').setAttribute('aria-valuenow',String(completed));
+ feedback('good',wrongYet?'✅ Correct! Keep practising.':'✅ Excellent! +1 mark',p.en[stepIndex],p.ms[stepIndex]);
+ $('nextBtn').textContent=stepIndex<2?'Next Sentence →':pointIndex<4?'Next Point →':'See All Five Paragraphs →';
+ show('nextWrap');
+}
+function advance(){
+ if(!solved)return;
+ if(stepIndex<2)stepIndex++;
+ else if(pointIndex<4){pointIndex++;stepIndex=0;}
+ else{showReview();return;}
+ wrongYet=false;solved=false;newChoices();render();window.scrollTo(0,0);
+}
+function showReview(){
+ hide('game');hide('results');show('review');
+ $('paragraphsList').replaceChildren();
+ selectedPoints.forEach((p,i)=>{
+  const section=document.createElement('section');section.className='para-review';
+  const title=document.createElement('h3');title.textContent=`${i+1}. ${p.emoji} ${p.name}`;
+  const body=document.createElement('p');body.textContent=fullParagraph(p,i,paragraphs[i]);
+  section.append(title,body);$('paragraphsList').append(section);
+ });
+ $('copiedCheck').checked=hasCopied;$('scoreBtn').disabled=!hasCopied;window.scrollTo(0,0);
+}
+function finish(){
+ if(!hasCopied)return;
+ hide('review');show('results');
+ $('resultStudent').textContent='Student / Nama: '+student;
+ $('finalScore').textContent=`${score} / 15`;
+ $('resultMessage').textContent=score===15?'🌟 Fantastic! All first attempts correct!':score>=11?'🌟 Great job! Keep practising your speaking skills.':score>=7?'📚 Good effort! Review the sentences you learnt.':'💡 Keep practising! Every sentence helps you improve.';
+ $('breakdown').replaceChildren();
+ selectedPoints.forEach((p,i)=>{
+  const line=document.createElement('div');line.className='result-line';
+  const label=document.createElement('span');label.textContent=p.emoji+' '+p.name;
+  const marks=document.createElement('strong');marks.textContent=`${pointScores[i]} / 3`;
+  line.append(label,marks);$('breakdown').append(line);
+ });window.scrollTo(0,0);
+}
+function replay(){hide('results');hide('review');hide('game');show('welcome');selectedKeys=[];resetWelcomeMap();window.scrollTo(0,0);}
+resetWelcomeMap();
+$('startBtn').addEventListener('click',start);
+$('studentName').addEventListener('keydown',e=>{if(e.key==='Enter')start();});
+$('nextBtn').addEventListener('click',advance);
+$('copiedCheck').addEventListener('change',e=>{hasCopied=e.target.checked;$('scoreBtn').disabled=!hasCopied;});
+$('scoreBtn').addEventListener('click',finish);
+$('reviewBtn').addEventListener('click',showReview);
+$('replayBtn').addEventListener('click',replay);
+</script></body></html>
