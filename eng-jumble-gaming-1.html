@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eae0fc">
+  <title>Sentence Jumble • Entertainment & Gaming</title>
+  <style>
+    :root { --ink:#45395b; --muted:#786d8b; --blue:#8565bb; --blue-dark:#644999; --paper:#fff; --border:#e3d9f5; --success:#166534; --bad:#a11a44; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif; color:var(--ink); background:radial-gradient(circle at 9% 12%,#ffeffb 0,transparent 30%),radial-gradient(circle at 90% 10%,#e3d5fb 0,transparent 29%),linear-gradient(155deg,#f3eeff,#fcf8ff 55%,#fff7ed); }
+    .wrap { max-width:790px; margin:auto; padding:24px 15px 44px; }
+    .card { background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:24px; box-shadow:0 14px 36px #9877a51b; padding:clamp(19px,4vw,34px); }
+    .top { text-align:center; margin-bottom:18px; }
+    .eyebrow { display:inline-block; padding:6px 13px; border-radius:99px; background:#eae0fc; font-size:.78rem; font-weight:800; letter-spacing:.05em; color:#624a89; }
+    h1 { font-size:clamp(1.75rem,5vw,2.5rem); line-height:1.16; margin:14px 0 8px; }
+    .subtitle { margin:0 auto; max-width:580px; color:var(--muted); line-height:1.6; }
+    h2 { margin:0 0 12px; font-size:1.3rem; }
+    .hidden { display:none !important; }
+    .row { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+    .pill { display:inline-block; border-radius:40px; padding:7px 11px; background:#eae0fc; color:#624a89; font-size:.85rem; font-weight:800; }
+    label { display:block; font-weight:750; margin:17px 0 7px; }
+    input { width:100%; font:inherit; border-radius:12px; border:2px solid #d1bde9; padding:14px; color:var(--ink); background:white; }
+    input:focus-visible,.tile:focus-visible,button:focus-visible { outline:3px solid #d1bde9; outline-offset:2px; }
+    button { font:inherit; font-weight:800; border:0; border-radius:12px; padding:12px 17px; cursor:pointer; transition:filter .15s,transform .1s; }
+    button:active { transform:scale(.985); }
+    button:disabled { opacity:.48; cursor:not-allowed; }
+    .primary { background:var(--blue); color:white; }
+    .primary:hover:not(:disabled) { filter:brightness(.92); }
+    .secondary { background:#f3ebff; color:#624a89; }
+    .light { background:#fcf8ff; color:#786d8b; }
+    .actions { display:flex; flex-wrap:wrap; gap:9px; margin-top:20px; }
+    .actions button { flex:1 1 135px; }
+    .error { font-size:.88rem; color:var(--bad); margin-top:8px; }
+    .meter { height:11px; border-radius:30px; overflow:hidden; background:#f3ebff; margin:13px 0 21px; }
+    .meter>div { height:100%; background:linear-gradient(90deg,#8565bb,#644999); transition:width .3s; }
+    .instruction { line-height:1.6; margin:7px 0 14px; color:var(--muted); }
+    .box-label { font-size:.82rem; color:var(--muted); font-weight:800; margin:15px 0 8px; }
+    .answer-zone { background:#fcf8ff; border:2px dashed #d1bde9; border-radius:16px; padding:13px; min-height:90px; display:flex; flex-wrap:wrap; align-content:flex-start; gap:8px; }
+    .answer-zone:empty::before { content:"Tap the word tiles to build your sentence..."; color:#786d8b; font-size:.94rem; }
+    .word-bank { display:flex; flex-wrap:wrap; gap:9px; padding:4px 0; min-height:60px; }
+    .tile { border:1.5px solid #d1bde9; background:white; color:#45395b; padding:10px 13px; min-height:43px; box-shadow:0 3px 0 #d9cbed; border-radius:11px; font-weight:750; overflow-wrap:anywhere; }
+    .tile:hover:not(:disabled) { background:#f3ebff; }
+    .answer-zone .tile { background:#e9dffb; border-color:#d1bde9; }
+    .feedback { margin-top:17px; padding:17px; border-radius:15px; line-height:1.65; }
+    .feedback.good { background:#eaf8ee; border:1px solid #b4e4c3; }
+    .feedback.bad { background:#fff1f4; border:1px solid #f3bdca; }
+    .feedback strong { display:block; margin-bottom:5px; }
+    .feedback p { margin:8px 0; }
+    .correct-sentence { background:white; border-radius:9px; padding:10px; margin:9px 0; font-weight:750; }
+    .hint { margin-top:12px; font-size:.84rem; color:#786d8b; }
+    .result-score { text-align:center; font-weight:900; font-size:clamp(2.6rem,8vw,4rem); color:var(--blue-dark); margin:10px 0; }
+    .review-item { border-bottom:1px solid #e3d9f5; padding:11px 0; display:flex; gap:10px; align-items:flex-start; line-height:1.45; }
+    .review-item:last-child { border:0; }
+    .review-item span { min-width:22px; }
+    .footer { text-align:center; color:#786d8b; font-size:.78rem; margin:18px 0 0; }
+    @media(max-width:450px) { .wrap{padding-top:16px} .tile{padding:10px 11px} .card{border-radius:19px} }
+    @media(prefers-reduced-motion:reduce) { *{transition:none !important;} }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <span class="eyebrow">🌟 ENGLISH LANGUAGE GAMES 🌟</span>
+      <h1>🎮 Sentence Jumble</h1>
+      <p class="subtitle">Entertainment &amp; Gaming · 20 questions · A2–B2<br>Tap the mixed-up words to build meaningful English sentences.</p>
+    </header>
+
+    <section class="card" id="welcome">
+      <h2>✨ Ready to play?</h2>
+      <p class="subtitle">Every sentence is carefully scrambled. Look for the capital letter and full stop to help you! Arrange the words, tap <b>Check Answer</b>, and read the English + Malay explanation.</p>
+      <label for="studentName">Your name / Nama anda</label>
+      <input id="studentName" type="text" maxlength="60" placeholder="Enter your full name" autocomplete="name">
+      <p class="error hidden" id="nameError">Please enter your name first.</p>
+      <div class="actions"><button class="primary" id="startBtn">Start Game →</button></div>
+      <p class="hint">One point for each correct answer on the first check. Your final score will appear at the end.</p>
+    </section>
+
+    <section class="card hidden" id="game" aria-live="off">
+      <div class="row"><span class="pill" id="qNumber">Question 1 / 20</span><span class="pill" id="difficulty">A2</span></div>
+      <div class="meter" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="progress"><div id="progressFill" style="width:0%"></div></div>
+      <h2>Arrange the words</h2>
+      <p class="instruction">Tap the words in the correct order. The capital letter and full stop are clues! Tap any selected word to put it back.</p>
+      <div class="box-label">YOUR SENTENCE</div>
+      <div class="answer-zone" id="answerZone" aria-label="Your selected words"></div>
+      <div class="box-label">MIXED-UP WORDS</div>
+      <div class="word-bank" id="wordBank" aria-label="Available word tiles"></div>
+      <div class="actions" id="editActions">
+        <button class="light" id="undoBtn" type="button">↶ Undo</button>
+        <button class="secondary" id="clearBtn" type="button">Clear</button>
+        <button class="primary" id="checkBtn" type="button" disabled>Check Answer ✓</button>
+      </div>
+      <div class="feedback hidden" id="feedback" role="status" aria-live="polite"></div>
+      <div class="actions hidden" id="nextActions"><button class="primary" id="nextBtn" type="button">Next Question →</button></div>
+    </section>
+
+    <section class="card hidden" id="results">
+      <div style="text-align:center;font-size:2.5rem">🎉🏆✨</div>
+      <h2 style="text-align:center">Quiz Complete!</h2>
+      <p style="text-align:center" id="resultName"></p>
+      <div class="result-score" id="resultScore">0 / 20</div>
+      <p class="subtitle" style="text-align:center" id="resultMessage"></p>
+      <h2 style="margin-top:25px">📚 Answer Review</h2>
+      <div id="review"></div>
+      <div class="actions"><button class="primary" id="replayBtn">🔀 Replay with a fresh shuffle</button></div>
+      <p class="hint">📸 Take a screenshot showing your name and score to submit to your teacher.</p>
+    </section>
+    <p class="footer">Made for English learning · GitHub Pages friendly · Works offline</p>
+  </main>
+
+  <script>
+    "use strict";
+    // Sentence, CEFR level, English explanation, Malay explanation.
+    const QUESTIONS = [
+      ["My friends enjoy playing video games after school.", "A2", "“Enjoy” is followed by the -ing form “playing”.", "“Enjoy” diikuti bentuk -ing iaitu “playing”."],
+      ["We watched an exciting movie at the cinema.", "A2", "“Watched” is past tense; the adjective “exciting” describes the movie.", "“Watched” ialah bentuk lampau; kata sifat “exciting” menerangkan filem."],
+      ["My favourite singer released a new song yesterday.", "A2", "“Yesterday” signals past time, so the verb is “released”.", "“Yesterday” menunjukkan masa lampau, maka kata kerja ialah “released”."],
+      ["The game has colourful graphics and funny characters.", "A2", "The singular subject “game” takes “has”; “and” joins two features.", "Subjek tunggal “game” menggunakan “has”; “and” menghubungkan dua ciri."],
+      ["I listen to music when I feel bored.", "A2", "Use “listen to” as a phrase; “when” links the activity and feeling.", "Gunakan frasa “listen to”; “when” menghubungkan aktiviti dan perasaan."],
+      ["Playing online games with friends can improve teamwork skills.", "B1", "An -ing phrase acts as the subject; “can + base verb” describes a benefit.", "Frasa -ing menjadi subjek; “can + kata kerja asas” menerangkan manfaat."],
+      ["I enjoyed the movie because its storyline was interesting.", "B1", "“Because” introduces the reason; both verbs refer to the past.", "“Because” memperkenalkan sebab; kedua-dua kata kerja merujuk masa lampau."],
+      ["Although the game looked simple, it was surprisingly challenging.", "B1", "“Although” introduces the contrast between appearance and difficulty.", "“Although” menunjukkan pertentangan antara rupa dan tahap kesukaran."],
+      ["My brother prefers adventure games that involve solving puzzles.", "B1", "The relative clause “that involve solving puzzles” describes the games.", "Klausa relatif “that involve solving puzzles” menerangkan permainan itu."],
+      ["If players complete the mission, they will unlock a new level.", "B1", "The first conditional uses “if + present simple” and “will + verb”.", "Ayat syarat pertama menggunakan “if + masa kini mudah” dan “will + kata kerja”."],
+      ["The audience cheered loudly when the singer appeared on stage.", "B1", "“When” connects two past events; “loudly” tells us how the audience cheered.", "“When” menghubungkan dua peristiwa lampau; “loudly” menerangkan cara penonton bersorak."],
+      ["Some teenagers watch gaming videos to learn useful strategies.", "B1", "“To learn” explains why they watch the videos.", "“To learn” menerangkan tujuan mereka menonton video tersebut."],
+      ["The film was so entertaining that I watched it twice.", "B1", "The pattern “so + adjective + that” shows a result.", "Pola “so + kata sifat + that” menunjukkan hasil atau kesan."],
+      ["My friends and I discussed the ending after watching the movie.", "B1", "“After + -ing” shows the earlier activity; “discussed” is in the past tense.", "“After + -ing” menunjukkan aktiviti lebih awal; “discussed” ialah bentuk lampau."],
+      ["Many students enjoy games that allow them to create their own characters.", "B1", "“That allow them to create” describes the type of games.", "“That allow them to create” menerangkan jenis permainan tersebut."],
+      ["Despite receiving mixed reviews, the movie attracted a large audience.", "B2", "“Despite + -ing” shows a contrast between the reviews and popularity.", "“Despite + -ing” menunjukkan pertentangan antara ulasan dan sambutan penonton."],
+      ["Players who communicate effectively can complete difficult missions more easily.", "B2", "The relative clause beginning with “who” describes the players.", "Klausa relatif bermula dengan “who” menerangkan pemain tersebut."],
+      ["The game's realistic graphics create a more immersive experience.", "B2", "“Game’s” is possessive; “graphics” is plural, so it takes “create”.", "“Game’s” menunjukkan pemilikan; “graphics” ialah jamak, jadi gunakan “create”."],
+      ["Rather than focusing only on competition, players should learn to enjoy the experience.", "B2", "“Rather than + -ing” contrasts competing with enjoying the game.", "“Rather than + -ing” membandingkan persaingan dengan keseronokan bermain."],
+      ["Not only was the storyline engaging, but the soundtrack also enhanced the atmosphere.", "B2", "“Not only ... but also” joins two strengths; inversion puts “was” before “the storyline”.", "“Not only ... but also” menghubungkan dua kelebihan; “was” diletakkan sebelum “the storyline”."]
+    ];
+
+    const $ = (id) => document.getElementById(id);
+    let student = "", order = [], position = 0, score = 0, history = [];
+    let tiles = [], shuffled = [], chosen = [], checked = false;
+    const normalize = (word) => word.replace(/[.,!?;:]+$/g, "").toLowerCase();
+    const show = (id) => $(id).classList.remove("hidden");
+    const hide = (id) => $(id).classList.add("hidden");
+
+    // Fisher–Yates, then reject weak shuffles. This is not merely reversing the words.
+    function randomize(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+    function longestOriginalRun(candidate, originalWords) {
+      let longest = 0;
+      for (let i = 0; i < candidate.length; i++) {
+        for (let j = 0; j < originalWords.length; j++) {
+          let run = 0;
+          while (i+run < candidate.length && j+run < originalWords.length &&
+            candidate[i+run] === originalWords[j+run]) run++;
+          longest = Math.max(longest, run);
+        }
+      }
+      return longest;
+    }
+    function strongShuffle(words) {
+      const target = words.map(normalize);
+      const indices = words.map((_,i) => i);
+      let best = randomize(indices), bestPenalty = Infinity;
+      for (let attempt = 0; attempt < 1000; attempt++) {
+        const candidate = randomize(indices);
+        const displayed = candidate.map(i => target[i]);
+        const fixed = displayed.filter((w,i) => w === target[i]).length;
+        const run = longestOriginalRun(displayed, target);
+        const edgeMatches = Number(displayed[0] === target[0]) + Number(displayed.at(-1) === target.at(-1));
+        const penalty = fixed * 2 + Math.max(0,run-2)*10 + edgeMatches*8;
+        if (penalty < bestPenalty) { best = candidate; bestPenalty = penalty; }
+        if (fixed <= Math.max(1,Math.floor(words.length/4)) && run <= 2 && edgeMatches === 0) return candidate;
+      }
+      return best; // Robust fallback if a sentence contains many repeated words.
+    }
+    function labelWord(index) {
+      // Preserve the original word exactly: the opening capital and final full stop
+      // remain on their tiles even while the words are thoroughly shuffled.
+      // This also preserves names, "I", and any commas inside the sentence.
+      return tiles[index];
+    }
+    function makeTile(index, area, action) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "tile";
+      button.textContent = labelWord(index);
+      button.setAttribute("aria-label", area === "answer" ? "Remove " + labelWord(index) : "Add " + labelWord(index));
+      button.addEventListener("click", action);
+      return button;
+    }
+    function renderTiles() {
+      const answer = $("answerZone"), bank = $("wordBank");
+      answer.replaceChildren(); bank.replaceChildren();
+      chosen.forEach((index,i) => answer.appendChild(makeTile(index,"answer",() => {
+        if (checked) return;
+        chosen.splice(i,1); renderTiles();
+      })));
+      shuffled.filter(i => !chosen.includes(i)).forEach(index => {
+        bank.appendChild(makeTile(index,"bank",() => {
+          if (checked) return;
+          chosen.push(index); renderTiles();
+        }));
+      });
+      $("checkBtn").disabled = checked || chosen.length !== tiles.length;
+      $("undoBtn").disabled = checked || chosen.length === 0;
+      $("clearBtn").disabled = checked || chosen.length === 0;
+    }
+    function loadQuestion() {
+      const q = QUESTIONS[order[position]];
+      tiles = q[0].trim().split(/\s+/);
+      shuffled = strongShuffle(tiles);
+      chosen = []; checked = false;
+      $("qNumber").textContent = `Question ${position + 1} / ${QUESTIONS.length}`;
+      $("difficulty").textContent = q[1];
+      $("progressFill").style.width = `${100*position/QUESTIONS.length}%`;
+      $("progress").setAttribute("aria-valuenow",position);
+      $("feedback").replaceChildren();
+      hide("feedback"); hide("nextActions"); show("editActions");
+      renderTiles();
+    }
+    function checkAnswer() {
+      if (checked || chosen.length !== tiles.length) return;
+      checked = true;
+      const q = QUESTIONS[order[position]];
+      // Compare displayed words, not tile IDs: identical tiles may be swapped,
+      // but the capital letter and punctuation must be placed correctly.
+      const correct = chosen.every((index,i) => tiles[index] === tiles[i]);
+      if (correct) score++;
+      history.push({sentence:q[0],correct});
+      const result = $("feedback");
+      result.className = "feedback " + (correct ? "good" : "bad");
+      const heading = document.createElement("strong");
+      heading.textContent = correct ? "✅ Correct! +1 point" : "💡 Not quite — 0 points this round";
+      result.appendChild(heading);
+      const sentenceLabel = document.createElement("p");
+      sentenceLabel.textContent = "Correct sentence:";
+      result.appendChild(sentenceLabel);
+      const corrected = document.createElement("div");
+      corrected.className = "correct-sentence";
+      corrected.textContent = q[0];
+      result.appendChild(corrected);
+      const eng = document.createElement("p");
+      eng.textContent = "🇬🇧 Explanation: " + q[2];
+      result.appendChild(eng);
+      const malay = document.createElement("p");
+      malay.textContent = "🇲🇾 Penerangan: " + q[3];
+      result.appendChild(malay);
+      hide("editActions"); show("nextActions"); renderTiles();
+      $("nextBtn").textContent = position === QUESTIONS.length-1 ? "See My Results →" : "Next Question →";
+      result.scrollIntoView({behavior:"smooth",block:"nearest"});
+    }
+    function finish() {
+      hide("game"); show("results");
+      $("resultName").textContent = "Student: " + student;
+      $("resultScore").textContent = `${score} / ${QUESTIONS.length}`;
+      $("resultMessage").textContent = score >= 18 ? "Excellent work! 🌟" : score >= 14 ? "Great effort — keep it up! 💜" : score >= 10 ? "Good practice! Review the sentences below. 📖" : "Keep learning — each sentence makes you stronger! 💪";
+      $("review").replaceChildren();
+      history.forEach((item,i) => {
+        const row = document.createElement("div"); row.className = "review-item";
+        const mark = document.createElement("span"); mark.textContent = item.correct ? "✅" : "❌";
+        const sentence = document.createElement("div"); sentence.textContent = `${i+1}. ${item.sentence}`;
+        row.append(mark,sentence); $("review").appendChild(row);
+      });
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+    function startGame() {
+      const name = $("studentName").value.trim();
+      if (!name) { show("nameError"); $("studentName").focus(); return; }
+      hide("nameError"); student = name;
+      order = randomize(QUESTIONS.map((_,i)=>i));
+      position = 0; score = 0; history = [];
+      hide("welcome"); hide("results"); show("game"); loadQuestion();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+    $("startBtn").addEventListener("click",startGame);
+    $("studentName").addEventListener("keydown",e=>{if(e.key==="Enter")startGame()});
+    $("undoBtn").addEventListener("click",()=>{if(!checked){chosen.pop();renderTiles()}});
+    $("clearBtn").addEventListener("click",()=>{if(!checked){chosen=[];renderTiles()}});
+    $("checkBtn").addEventListener("click",checkAnswer);
+    $("nextBtn").addEventListener("click",()=>{if(!checked)return;position++;if(position>=QUESTIONS.length)finish();else loadQuestion()});
+    $("replayBtn").addEventListener("click",()=>{
+      hide("results"); show("game"); order = randomize(QUESTIONS.map((_,i)=>i));
+      position = 0; score = 0; history = []; loadQuestion();
+      window.scrollTo({top:0,behavior:"smooth"});
+    });
+  </script>
+</body>
+</html>
