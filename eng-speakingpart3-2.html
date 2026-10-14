@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#e1f8f1">
+  <meta name="description" content="SPM Speaking Part 3: Choose five out of six ways of communication and build five paragraphs.">
+  <title>Speak &amp; Build | Ways of Communication</title>
+  <style>
+    :root{--ink:#29304c;--muted:#63708c;--purple:#328b90;--purple-dark:#226c70;--purple-light:#e6f8f4;--pink:#ffe8f1;--border:#d4eae7;--good:#176a4b;--good-bg:#eaf9f1;--bad:#a13b57;--bad-bg:#fff0f3;--white:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 0 0,#fff0e7 0,transparent 32%),radial-gradient(circle at 100% 0,#cff5eb 0,transparent 31%),linear-gradient(160deg,#fff9f4,#f1fcf9 55%,#f0f7ff);min-height:100vh}
+    .container{max-width:850px;margin:auto;padding:22px 15px 50px}
+    .brand{text-align:center;margin-bottom:19px}
+    .brand small{display:inline-block;border-radius:99px;background:#fff;padding:7px 14px;color:#297d7e;font-size:.76rem;font-weight:850;letter-spacing:.055em;box-shadow:0 2px 13px #92d2cc2c}
+    .brand h1{font-size:clamp(1.7rem,5vw,2.5rem);margin:10px 0 6px;letter-spacing:-.035em}
+    .brand p{margin:0;color:var(--muted);font-size:.95rem}
+    .card{background:#ffffffef;border:1px solid var(--border);border-radius:23px;padding:clamp(19px,4vw,32px);box-shadow:0 13px 33px #69a9a21a}
+    .hidden{display:none!important}
+    .question{background:linear-gradient(115deg,#e4f9f4,#fff0e7);border:1px solid #bfe7de;padding:20px 18px;border-radius:18px;text-align:center}
+    .question .label{font-size:.76rem;font-weight:850;color:#2a7b7b;text-transform:uppercase;letter-spacing:.07em}
+    .question h2{font-size:clamp(1.18rem,4vw,1.6rem);line-height:1.32;margin:8px auto 0;max-width:670px}
+    .mindmap{margin:19px 0 8px;text-align:center}
+    .mindmap strong{display:block;margin-bottom:12px}
+    .map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    .map-node{border:2px solid #c9dedb;background:#f7fffd;border-radius:14px;min-height:83px;padding:11px 6px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;text-align:center;font-size:.83rem;font-weight:800;overflow-wrap:anywhere}
+    .map-node .emoji{font-size:1.45rem}
+    .map-node.active{background:#d2f5ed;border-color:#328b90;box-shadow:0 0 0 2px #c3e9e1}
+    .map-node.done{background:#dff7e9;border-color:#86bca2}
+    .hint{font-size:.9rem;color:var(--muted);line-height:1.65}
+    .name-label{display:block;font-weight:800;margin:23px 0 8px}
+    input[type=text]{font:inherit;width:100%;padding:14px;border:2px solid #c8e3df;border-radius:12px;color:var(--ink);background:white}
+    input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline:3px solid #66b9b7;outline-offset:3px}
+    .error{font-size:.88rem;color:var(--bad);margin:8px 0 0}
+    button{font:inherit;font-weight:820;cursor:pointer;border:0;border-radius:13px;padding:13px 19px}
+    button:disabled{opacity:.47;cursor:not-allowed}
+    .btn-primary{background:var(--purple);color:white}
+    .btn-primary:not(:disabled):hover{background:var(--purple-dark)}
+    .btn-soft{background:#e1f5f0;color:#25777a}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .button-row>button{flex:1 1 190px}
+    .status{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}
+    .chip{display:inline-flex;align-items:center;background:#e9f8f4;border-radius:99px;padding:6px 11px;color:#2b7677;font-size:.83rem;font-weight:850}
+    .progress{height:9px;border-radius:99px;background:#e8f0ee;overflow:hidden;margin:12px 0 20px}
+    .progress-inner{height:100%;width:0;background:linear-gradient(90deg,#71cdb5,#6d91de);transition:width .25s}
+    .point-heading{font-size:1.45rem;letter-spacing:-.025em;margin:11px 0 5px}
+    .step-desc{font-size:.95rem;color:var(--muted);margin:0 0 14px}
+    .paragraph-box{background:#f4fdfa;border:1px solid #cce8e1;border-left:5px solid #69baa8;border-radius:14px;padding:15px 17px;margin:17px 0;min-height:90px;line-height:1.8}
+    .paragraph-box .mini-label{font-size:.73rem;color:#2a7c75;font-weight:850;letter-spacing:.045em;margin-bottom:5px}
+    .placeholder{color:#9a94ae;font-style:italic}
+    .paragraph-box p{margin:0}
+    .paragraph-box .built{font-weight:600}
+    .choose-title{font-size:1.07rem;margin:21px 0 11px}
+    .choices{display:grid;gap:10px}
+    .choice{width:100%;text-align:left;display:flex;align-items:flex-start;gap:12px;color:var(--ink);font-weight:600;line-height:1.5;background:#fff;border:2px solid #d0e6e0;transition:background .15s,border-color .15s}
+    .choice:hover:not(:disabled){border-color:#69b8b2;background:#f4fffd}
+    .choice.correct{border-color:#67b994;background:var(--good-bg)}
+    .choice.wrong{border-color:#e6a3b4;background:var(--bad-bg)}
+    .letter{display:inline-flex;flex:0 0 28px;width:28px;height:28px;justify-content:center;align-items:center;border-radius:9px;background:#e4f7f0;color:#2c7776;font-size:.83rem;font-weight:850}
+    .feedback{border-radius:15px;margin-top:16px;padding:15px 17px;line-height:1.65}
+    .feedback.good{background:var(--good-bg);border:1px solid #9dd5bb}
+    .feedback.bad{background:var(--bad-bg);border:1px solid #ecc2cc}
+    .feedback h3{margin:0 0 6px;font-size:1.04rem}
+    .feedback p{margin:8px 0 0;font-size:.92rem}
+    .feedback .correct-line{padding:9px 11px;border-radius:9px;background:#fff;font-weight:700;margin-top:10px}
+    .para-review{background:#f8fffd;border:1px solid #d0e9e2;border-radius:14px;padding:16px 17px;margin:12px 0}
+    .para-review h3{font-size:1.08rem;margin:0 0 6px}
+    .para-review p{margin:0;line-height:1.8}
+    .copy-banner{background:#fff3c9;border:3px solid #dfab38;border-radius:17px;padding:20px;margin:21px 0;box-shadow:0 5px 0 #f3e4bb}
+    .copy-banner h3{margin:0 0 10px;font-size:clamp(1.22rem,4.5vw,1.55rem);color:#7d4e0d}
+    .copy-banner p{margin:6px 0;line-height:1.6}
+    .tick{display:flex;align-items:flex-start;gap:11px;padding:12px 0;font-weight:700;line-height:1.5}
+    .tick input{margin:4px 0 0;transform:scale(1.35);accent-color:var(--purple)}
+    .score{font-size:clamp(3rem,9vw,4.7rem);color:var(--purple-dark);font-weight:950;text-align:center;margin:12px 0 2px}
+    .center{text-align:center}
+    .result-line{padding:11px 0;border-bottom:1px solid #d5e9e4;display:flex;justify-content:space-between;gap:9px}
+    .result-line:last-child{border:0}
+    .footer{text-align:center;color:#617e7d;margin:21px 0 0;font-size:.78rem}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(3,1fr)}.map-node{min-height:72px}.container{padding-top:15px}.card{border-radius:18px}.choice{padding:12px}}
+    @media(max-width:380px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+    @media print{body{background:white}.brand,.question,.mindmap,#welcome,#game,#results,.copy-banner,.tick,.button-row,.footer{display:none!important}#review{display:block!important;box-shadow:none;border:0;padding:0}.para-review{break-inside:avoid}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  
+    .map-node.pick{cursor:pointer;transition:transform .12s,background .12s,border-color .12s}
+    .map-node.pick:hover:not(:disabled){transform:translateY(-2px);border-color:#4aa99e}
+    .map-node.pick:disabled{cursor:not-allowed;opacity:.66}
+    .map-node.selected{background:#d9f7ed;border-color:#399f94;box-shadow:0 0 0 2px #d1f1e9}
+    .map-node.skipped{background:#f2f3f5;border-color:#dde2e5;color:#8b9198}
+    .map-node small{font-size:.67rem;font-weight:800;line-height:1.2}
+    .map-node.active{background:#ffe8cf;border-color:#e7ab66;box-shadow:0 0 0 2px #fff4e8}
+    .select-help{margin-top:12px;border-radius:12px;padding:10px 12px;background:#f0fbf8;color:#286c70;font-size:.92rem;font-weight:750;text-align:center}
+    .map-grid button{font:inherit}
+    .note{background:#eaf7fe;border-radius:12px;padding:12px 14px;line-height:1.55;font-size:.91rem;margin:14px 0}
+    .copy-banner{background:#fff3bf;border-color:#dda225}
+    .copy-banner h3{font-size:clamp(1.3rem,4.6vw,1.65rem)}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+<main class="container">
+  <header class="brand"><small>🗣️ ENGLISH SPEAKING PRACTICE 🗣️</small><h1>💬 Speak &amp; Build!</h1><p>SPM Speaking Part 3 • Ways of Communication</p></header>
+  <section id="welcome" class="card">
+    <div class="question"><div class="label">Speaking Part 3 · Discussion Topic</div><h2>Ways of Communication</h2><p>Discuss different ways people communicate with others.</p></div>
+    <div class="mindmap"><strong>🧠 Six Points in the Mind Map</strong><div class="map-grid" id="welcomeMap"></div></div>
+    <div class="select-help" id="selectCount" role="status" aria-live="polite">Choose any FIVE points (0 / 5 selected).</div>
+    <p class="hint">Tap five points above. You only need to practise <b>FIVE of the SIX points</b>. / Pilih <b>LIMA daripada ENAM isi</b> sahaja.</p>
+    <label class="name-label" for="studentName">Your name / Nama murid</label>
+    <input id="studentName" type="text" maxlength="65" placeholder="Enter your name" autocomplete="name">
+    <p id="nameError" class="error hidden" role="alert">Please enter your name. / Sila masukkan nama.</p>
+    <div class="button-row"><button type="button" class="btn-primary" id="startBtn" disabled>Start Building My 5 Paragraphs →</button></div>
+    <p class="hint">⭐ For each selected point, choose 3 suitable sentences. 1 mark for each correct first attempt. <b>15 marks</b> in total.</p>
+  </section>
+  <section id="game" class="card hidden">
+    <div class="status"><span class="chip" id="pointCounter">Point 1 of 5</span><span class="chip" id="stepCounter">Sentence 1 of 3</span><span class="chip" id="markCounter">Marks: 0 / 15</span></div>
+    <div class="progress" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progress"><div class="progress-inner" id="progressInner"></div></div>
+    <div class="question"><div class="label">Speaking Part 3 · Discussion Topic</div><h2>Ways of Communication</h2><p>Discuss different ways people communicate with others.</p></div>
+    <div class="mindmap"><strong>🧠 All Six Original Points</strong><div class="map-grid" id="gameMap"></div></div>
+    <div class="note">You selected five points. The remaining point is not part of this round. / Anda telah memilih lima isi. Satu isi tidak digunakan.</div>
+    <h2 class="point-heading" id="pointTitle">Point 1</h2><p class="step-desc" id="stepHelp"></p>
+    <div class="paragraph-box" aria-live="polite"><div class="mini-label">YOUR PARAGRAPH SO FAR</div><p id="builtParagraph" class="placeholder">Choose a sentence to begin...</p></div>
+    <h3 class="choose-title" id="chooseTitle">Choose the most suitable sentence:</h3><div id="choices" class="choices"></div>
+    <div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div>
+    <div class="button-row hidden" id="nextWrap"><button type="button" class="btn-primary" id="nextBtn">Next Sentence →</button></div>
+  </section>
+  <section id="review" class="card hidden">
+    <div class="question"><div class="label">You did it! 🎉</div><h2>Your FIVE Completed Paragraphs</h2></div>
+    <p class="hint center">Read all five complete elaborations. These are sample speaking paragraphs for the five points you selected.</p>
+    <div id="paragraphsList"></div>
+    <div class="copy-banner" role="note"><h3>📚✏️ IMPORTANT! COPY ALL FIVE PARAGRAPHS INTO YOUR EXERCISE BOOK!</h3><p><b>Write all five paragraphs in your exercise book before viewing your score.</b></p><p><b>PERINGATAN PENTING: SALIN KELIMA-LIMA PERENGGAN INI KE DALAM BUKU LATIHAN SEBELUM MELIHAT MARKAH!</b></p></div>
+    <label class="tick"><input type="checkbox" id="copiedCheck"><span>I have copied all FIVE paragraphs into my exercise book.<span class="hint" style="display:block">Saya telah menyalin KELIMA-LIMA perenggan ke dalam buku latihan.</span></span></label>
+    <div class="button-row"><button type="button" id="scoreBtn" class="btn-primary" disabled>Continue to Final Score →</button></div>
+  </section>
+  <section id="results" class="card hidden">
+    <div class="center" style="font-size:2.6rem">🎉🏆✨</div><h2 class="center">Great work! Quiz Complete!</h2>
+    <p id="resultStudent" class="center" style="font-weight:800"></p><div id="finalScore" class="score">0 / 15</div><p class="center" id="resultMessage"></p>
+    <h3>📚 Your five selected points</h3><div id="breakdown"></div>
+    <p class="hint">📸 Take a screenshot showing your name and score for your teacher.</p>
+    <div class="button-row"><button type="button" class="btn-soft" id="reviewBtn">📖 See My Five Paragraphs</button><button type="button" class="btn-primary" id="replayBtn">🔀 Replay · Choose Five Points</button></div>
+  </section>
+  <footer class="footer">Created for SPM Speaking Part 3 • GitHub Pages friendly • Mobile-friendly • Works offline</footer>
+</main>
+<script>
+'use strict';
+const POINTS = [
+  {
+    "key": "face",
+    "name": "Face-to-face Conversation",
+    "emoji": "🗣️",
+    "bm": "perbualan bersemuka",
+    "sentences": [
+      "Face-to-face conversations allow people to communicate directly with one another.",
+      "They can understand each other's feelings through facial expressions and body language.",
+      "For example, discussing a problem in person can prevent misunderstandings and build stronger relationships."
+    ],
+    "en": [
+      "This sentence introduces face-to-face conversation as a direct way to communicate.",
+      "Facial expressions and body language make feelings easier to understand.",
+      "This example shows how an in-person conversation can help solve a problem."
+    ],
+    "ms": [
+      "Ayat ini memperkenalkan perbualan bersemuka sebagai cara komunikasi secara langsung.",
+      "Ekspresi muka dan bahasa badan membantu kita memahami perasaan orang lain.",
+      "Contoh ini menunjukkan bagaimana perbualan bersemuka dapat membantu menyelesaikan masalah."
+    ]
+  },
+  {
+    "key": "phone",
+    "name": "Phone Calls",
+    "emoji": "📞",
+    "bm": "panggilan telefon",
+    "sentences": [
+      "Phone calls allow people to speak to each other even when they are far apart.",
+      "Unlike text messages, callers can hear the other person's tone of voice and respond immediately.",
+      "For example, making a quick phone call is useful when someone needs urgent information."
+    ],
+    "en": [
+      "Introduce phone calls as a way to talk over a distance.",
+      "Explain the benefit of hearing someone's voice and getting an immediate reply.",
+      "Give an example of when calling is faster than sending a message."
+    ],
+    "ms": [
+      "Perkenalkan panggilan telefon sebagai cara bercakap walaupun berjauhan.",
+      "Terangkan kelebihan mendengar nada suara dan mendapat jawapan dengan segera.",
+      "Berikan contoh keadaan apabila menelefon lebih cepat daripada menghantar mesej."
+    ]
+  },
+  {
+    "key": "text",
+    "name": "Text Messaging",
+    "emoji": "💬",
+    "bm": "mesej teks",
+    "sentences": [
+      "Text messaging is a convenient way to send short messages at any time.",
+      "People can share information quickly without interrupting the other person's activities.",
+      "For example, students can send reminders about homework or group projects to their classmates."
+    ],
+    "en": [
+      "Start by describing text messaging as easy and convenient.",
+      "Explain why short messages are useful when someone is busy.",
+      "Give a school-related example of sending a helpful reminder."
+    ],
+    "ms": [
+      "Mulakan dengan menerangkan bahawa mesej teks mudah dan praktikal.",
+      "Jelaskan mengapa mesej ringkas berguna apabila seseorang sedang sibuk.",
+      "Berikan contoh peringatan berkaitan sekolah melalui mesej teks."
+    ]
+  },
+  {
+    "key": "social",
+    "name": "Social Media",
+    "emoji": "📱",
+    "bm": "media sosial",
+    "sentences": [
+      "Social media helps people stay connected and share updates with a large audience.",
+      "Users can post photos, share news and interact through comments or private messages.",
+      "For example, school clubs can use social media to announce activities and reach more students."
+    ],
+    "en": [
+      "Introduce social media as a way to connect with many people.",
+      "Explain the different ways users share information on social platforms.",
+      "Give an example of reaching a school community through social media."
+    ],
+    "ms": [
+      "Perkenalkan media sosial sebagai cara berhubung dengan ramai orang.",
+      "Terangkan cara pengguna berkongsi maklumat melalui platform media sosial.",
+      "Berikan contoh cara kelab sekolah menyampaikan pengumuman kepada murid."
+    ]
+  },
+  {
+    "key": "email",
+    "name": "Emails",
+    "emoji": "📧",
+    "bm": "e-mel",
+    "sentences": [
+      "Emails are commonly used for formal communication at school and work.",
+      "They allow people to send detailed messages and attach important documents.",
+      "For example, students can email their teachers to ask questions or submit assignments politely."
+    ],
+    "en": [
+      "Explain that emails are often suitable for formal communication.",
+      "Describe how email can carry detailed information and attachments.",
+      "Give a realistic example of students communicating politely with teachers."
+    ],
+    "ms": [
+      "Terangkan bahawa e-mel sering digunakan untuk komunikasi rasmi.",
+      "Jelaskan bahawa e-mel boleh mengandungi maklumat terperinci dan lampiran dokumen.",
+      "Berikan contoh murid berhubung secara sopan dengan guru melalui e-mel."
+    ]
+  },
+  {
+    "key": "video",
+    "name": "Video Conferencing",
+    "emoji": "💻",
+    "bm": "persidangan video",
+    "sentences": [
+      "Video conferencing allows people in different places to communicate through live video.",
+      "Participants can see and hear one another while discussing ideas or sharing information.",
+      "For example, students can attend online lessons or work on group projects without meeting in person."
+    ],
+    "en": [
+      "Introduce live video as a way to communicate from different places.",
+      "Explain how seeing and hearing others supports a group discussion.",
+      "Give an example of learning or working together online."
+    ],
+    "ms": [
+      "Perkenalkan video secara langsung sebagai cara berkomunikasi dari tempat berbeza.",
+      "Terangkan bagaimana melihat dan mendengar orang lain membantu perbincangan kumpulan.",
+      "Berikan contoh pembelajaran atau kerja berkumpulan secara dalam talian."
+    ]
+  }
+];
+const PHASES = [
+  {name:'Main point',help:'Step 1: Choose the sentence that introduces this point.',malay:'Pilih ayat yang memperkenalkan isi ini.'},
+  {name:'Elaboration',help:'Step 2: Choose the sentence that explains this point further.',malay:'Pilih ayat yang menghuraikan isi ini.'},
+  {name:'Example / Result',help:'Step 3: Choose a suitable example or result.',malay:'Pilih contoh atau kesan yang sesuai.'}
+];
+const $ = id => document.getElementById(id);
+const show = id => $(id).classList.remove('hidden');
+const hide = id => $(id).classList.add('hidden');
+const shuffle = xs => {const a=xs.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let student='',selectedKeys=[],selectedPoints=[],pointIndex=0,stepIndex=0,score=0,pointScores=[],wrongYet=false,solved=false,choices=[],paragraphs=[],completed=0,hasCopied=false;
+function resetWelcomeMap(){
+  const wrap=$('welcomeMap');wrap.replaceChildren();
+  POINTS.forEach(p=>{
+    const b=document.createElement('button');b.type='button';b.className='map-node pick'+(selectedKeys.includes(p.key)?' selected':'');
+    b.disabled=selectedKeys.length>=5&&!selectedKeys.includes(p.key);
+    b.setAttribute('aria-pressed',String(selectedKeys.includes(p.key)));
+    b.setAttribute('aria-label',p.name+(selectedKeys.includes(p.key)?', selected':', not selected'));
+    const icon=document.createElement('span');icon.className='emoji';icon.textContent=p.emoji;
+    const title=document.createElement('span');title.textContent=p.name;
+    const status=document.createElement('small');status.textContent=selectedKeys.includes(p.key)?'✓ SELECTED':'TAP TO SELECT';
+    b.append(icon,title,status);
+    b.addEventListener('click',()=>{
+      if(selectedKeys.includes(p.key))selectedKeys=selectedKeys.filter(k=>k!==p.key);
+      else if(selectedKeys.length<5)selectedKeys.push(p.key);
+      resetWelcomeMap();
+    });
+    wrap.append(b);
+  });
+  const total=selectedKeys.length;
+  $('selectCount').textContent=total===5?'✅ Five points selected! Deselect one if you want to change it.':`Choose any FIVE points (${total} / 5 selected).`;
+  $('startBtn').disabled=total!==5;
+}
+function renderGameMap(){
+  const wrap=$('gameMap');wrap.replaceChildren();
+  const current=selectedPoints[pointIndex];
+  POINTS.forEach(p=>{
+    const node=document.createElement('div');
+    const isChosen=selectedKeys.includes(p.key),passed=selectedPoints.findIndex(s=>s.key===p.key)<pointIndex;
+    node.className='map-node'+(!isChosen?' skipped':(p.key===current.key?' active':(passed?' done':' selected')));
+    const ico=document.createElement('span');ico.className='emoji';ico.textContent=p.emoji;
+    const name=document.createElement('span');name.textContent=p.name;
+    const note=document.createElement('small');note.textContent=!isChosen?'NOT SELECTED':p.key===current.key?'CURRENT POINT':passed?'COMPLETED':'SELECTED';
+    node.append(ico,name,note);wrap.append(node);
+  });
+}
+function buildParagraph(p,lines){return lines.join(' ');}
+function newChoices(){
+  const p=selectedPoints[pointIndex];
+  const other=shuffle(POINTS.filter(q=>q.key!==p.key)).slice(0,2);
+  choices=shuffle([{text:p.sentences[stepIndex],owner:p.key},...other.map(q=>({text:q.sentences[stepIndex],owner:q.key}))]);
+}
+function start(){
+  const name=$('studentName').value.trim();
+  if(!name){show('nameError');$('studentName').focus();return;}
+  hide('nameError');if(selectedKeys.length!==5)return;
+  student=name;selectedPoints=POINTS.filter(p=>selectedKeys.includes(p.key));
+  pointIndex=0;stepIndex=0;score=0;pointScores=Array(5).fill(0);wrongYet=false;solved=false;
+  paragraphs=selectedPoints.map(()=>[]);completed=0;hasCopied=false;
+  $('copiedCheck').checked=false;$('scoreBtn').disabled=true;
+  hide('welcome');hide('review');hide('results');show('game');newChoices();render();window.scrollTo(0,0);
+}
+function render(){
+  const p=selectedPoints[pointIndex];
+  $('pointCounter').textContent=`Point ${pointIndex+1} of 5`;
+  $('stepCounter').textContent=`Sentence ${stepIndex+1} of 3`;
+  $('markCounter').textContent=`Marks: ${score} / 15`;
+  $('progressInner').style.width=`${completed/15*100}%`;
+  $('progress').setAttribute('aria-valuenow',String(completed));
+  $('pointTitle').textContent=`${p.emoji} Point ${pointIndex+1}: ${p.name}`;
+  $('stepHelp').textContent=`${PHASES[stepIndex].help} / ${PHASES[stepIndex].malay}`;
+  $('chooseTitle').textContent=`Choose the best sentence — ${PHASES[stepIndex].name}`;
+  renderGameMap();
+  const built=buildParagraph(p,paragraphs[pointIndex]);
+  $('builtParagraph').textContent=built||'Choose a sentence below to begin...';
+  $('builtParagraph').className=built?'built':'placeholder';
+  $('choices').replaceChildren();
+  choices.forEach((c,i)=>{
+    const b=document.createElement('button');b.type='button';b.className='choice';b.disabled=solved;
+    const letter=document.createElement('span');letter.className='letter';letter.textContent='ABC'[i];
+    const text=document.createElement('span');text.textContent=c.text;
+    b.append(letter,text);b.addEventListener('click',()=>choose(c,b));$('choices').append(b);
+  });
+  hide('feedback');hide('nextWrap');
+}
+function feedback(type,title,en,ms,correctLine=''){
+  const el=$('feedback');el.className='feedback '+type;el.replaceChildren();
+  const heading=document.createElement('h3');heading.textContent=title;el.append(heading);
+  const english=document.createElement('p');english.textContent='🇬🇧 '+en;
+  const malay=document.createElement('p');malay.textContent='🇲🇾 '+ms;
+  el.append(english,malay);
+  if(correctLine){const sentence=document.createElement('div');sentence.className='correct-line';sentence.textContent='✅ Suitable sentence: '+correctLine;el.append(sentence);}
+  show('feedback');
+}
+function choose(c,b){
+  if(solved||b.disabled)return;
+  const p=selectedPoints[pointIndex];
+  if(c.owner!==p.key){
+    wrongYet=true;b.classList.add('wrong');b.disabled=true;
+    const owner=POINTS.find(q=>q.key===c.owner);
+    feedback('bad','❌ Not quite — try again!',
+      `This sentence explains ${owner.name.toLowerCase()}, not ${p.name.toLowerCase()}. Choose a sentence that develops the current point.`,
+      `Ayat ini menerangkan ${owner.bm}, bukannya ${p.bm}. Pilih ayat yang menghuraikan isi sekarang.`,
+      p.sentences[stepIndex]);
+    return;
+  }
+  solved=true;b.classList.add('correct');
+  if(!wrongYet){score++;pointScores[pointIndex]++;}
+  completed++;paragraphs[pointIndex].push(p.sentences[stepIndex]);
+  $('builtParagraph').textContent=buildParagraph(p,paragraphs[pointIndex]);$('builtParagraph').className='built';
+  document.querySelectorAll('#choices button').forEach(btn=>btn.disabled=true);
+  $('markCounter').textContent=`Marks: ${score} / 15`;
+  $('progressInner').style.width=`${completed/15*100}%`;$('progress').setAttribute('aria-valuenow',String(completed));
+  feedback('good',wrongYet?'✅ Correct! Good correction.':'✅ Excellent! +1 mark',p.en[stepIndex],p.ms[stepIndex]);
+  $('nextBtn').textContent=stepIndex<2?'Next Sentence →':pointIndex<4?'Next Point →':'See All Five Paragraphs →';
+  show('nextWrap');
+}
+function advance(){
+  if(!solved)return;
+  if(stepIndex<2)stepIndex++;
+  else if(pointIndex<4){pointIndex++;stepIndex=0;}
+  else{showReview();return;}
+  wrongYet=false;solved=false;newChoices();render();window.scrollTo(0,0);
+}
+function showReview(){
+  hide('game');hide('results');show('review');
+  $('paragraphsList').replaceChildren();
+  selectedPoints.forEach((p,i)=>{
+    const section=document.createElement('section');section.className='para-review';
+    const title=document.createElement('h3');title.textContent=`${i+1}. ${p.emoji} ${p.name}`;
+    const body=document.createElement('p');body.textContent=buildParagraph(p,paragraphs[i]);
+    section.append(title,body);$('paragraphsList').append(section);
+  });
+  $('copiedCheck').checked=hasCopied;$('scoreBtn').disabled=!hasCopied;window.scrollTo(0,0);
+}
+function finish(){
+  if(!hasCopied)return;
+  hide('review');show('results');
+  $('resultStudent').textContent='Student / Nama: '+student;
+  $('finalScore').textContent=`${score} / 15`;
+  $('resultMessage').textContent=score===15?'🌟 Fantastic! All first attempts correct!':score>=11?'💚 Great job! Keep practising your speaking skills.':score>=7?'📚 Good effort! Review the sentences you learnt.':'🌱 Keep practising! Every sentence helps you improve.';
+  $('breakdown').replaceChildren();
+  selectedPoints.forEach((p,i)=>{
+    const line=document.createElement('div');line.className='result-line';
+    const label=document.createElement('span');label.textContent=p.emoji+' '+p.name;
+    const marks=document.createElement('strong');marks.textContent=`${pointScores[i]} / 3`;
+    line.append(label,marks);$('breakdown').append(line);
+  });window.scrollTo(0,0);
+}
+function replay(){
+  hide('results');hide('review');hide('game');show('welcome');
+  selectedKeys=[];resetWelcomeMap();window.scrollTo(0,0);
+}
+resetWelcomeMap();
+$('startBtn').addEventListener('click',start);
+$('studentName').addEventListener('keydown',e=>{if(e.key==='Enter')start();});
+$('nextBtn').addEventListener('click',advance);
+$('copiedCheck').addEventListener('change',e=>{hasCopied=e.target.checked;$('scoreBtn').disabled=!hasCopied;});
+$('scoreBtn').addEventListener('click',finish);
+$('reviewBtn').addEventListener('click',showReview);
+$('replayBtn').addEventListener('click',replay);
+</script>
+</body>
+</html>
