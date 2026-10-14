@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**82 games** — automatically updated when an HTML game is added or changed.
+**83 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Speakingpart3 (Set 1)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-1.html) — updated 14 Oct 2026
 - [Jumble Gaming (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-gaming-1.html) — updated 14 Oct 2026
 - [Jumble Bullying (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-bullying-1.html) — updated 14 Oct 2026
 - [Jumble Finance (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-finance-1.html) — updated 14 Oct 2026
