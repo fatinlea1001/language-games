@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**78 games** — automatically updated when an HTML game is added or changed.
+**79 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Jumble Health (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-health-1.html) — updated 14 Oct 2026
 - [Jumble Socialmedia (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-socialmedia-1.html) — updated 14 Oct 2026
 - [Jumble Education (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-education-1.html) — updated 14 Oct 2026
 - [Vocab Education (Set 3)](https://fatinlea1001.github.io/language-games/eng-vocab-education-3.html) — updated 13 Oct 2026
