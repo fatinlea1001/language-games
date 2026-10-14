@@ -1,151 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f1e8ff">
-<title>Speak & Build | SPM Part 3: Reading Reviews</title>
-<style>
-:root{--ink:#27314d;--muted:#68738f;--violet:#7254be;--violet2:#573a9e;--pink:#fce6f2;--lav:#f0e8ff;--blue:#e7f2ff;--peach:#fff1e3;--green:#e9f8ec;--edge:#e1dcf0;--white:#fff;--shadow:0 14px 45px #765a9b1c}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 7%,#fbdde9,transparent 31%),radial-gradient(circle at 95% 13%,#dedbff,transparent 35%),linear-gradient(150deg,#fcfaff,#f6faff 62%,#fff9f3);min-height:100vh}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.48}button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #9d90ea;outline-offset:3px}.wrap{max-width:830px;margin:auto;padding:22px 14px 55px}.top{text-align:center;padding:15px 8px 23px}.tiny{display:inline-flex;gap:7px;align-items:center;background:#fff;border:1px solid #e9dbfb;border-radius:50px;padding:7px 14px;color:#6d4eaa;font-size:.78rem;font-weight:850;letter-spacing:.06em}.top h1{font-size:clamp(2rem,6vw,3.05rem);letter-spacing:-.045em;line-height:1.12;margin:13px 0 10px}.top h1 span{color:var(--violet)}.top p{color:var(--muted);margin:0;line-height:1.55}.sheet{border:1px solid var(--edge);background:#ffffffed;box-shadow:var(--shadow);border-radius:25px;padding:clamp(19px,4vw,34px)}.hidden{display:none!important}.tag{display:inline-flex;border-radius:50px;background:var(--lav);color:#654ca2;padding:6px 11px;font-size:.78rem;font-weight:800}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.micro{font-size:.82rem;color:var(--muted);line-height:1.5}.intro{font-size:1rem;line-height:1.7;margin:11px 0 16px;color:#4e5a75}.topic{background:linear-gradient(110deg,#f2e9ff,#fff1e8);padding:15px;border-radius:14px;border:1px solid #e8def7;margin:13px 0}.topic strong{display:block;margin-bottom:6px}.reason-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.reason-pill{background:#fff;border:1px solid #eadff5;padding:11px 9px;border-radius:11px;text-align:center;font-weight:700;font-size:.86rem}.reasons-help{font-size:.78rem;color:var(--muted);margin-top:12px}label.form-label{display:block;font-size:.9rem;font-weight:750;margin:19px 0 8px}.name-input,textarea,.short-input{border:2px solid #dcd6f5;border-radius:13px;width:100%;padding:13px 15px;background:#fff;color:var(--ink)}.short-input{font-size:1.12rem}.name-input:focus,textarea:focus,.short-input:focus{border-color:#9982db}.btn{border:0;border-radius:13px;padding:12px 19px;font-weight:850;background:#eeeaf9;color:#5f4a9a;transition:transform .12s,filter .12s}.btn:active{transform:scale(.975)}.btn:hover:not(:disabled){filter:brightness(.97)}.btn.main{background:var(--violet);color:#fff}.btn.main:hover:not(:disabled){background:var(--violet2)}.btn.soft{background:#f0eff7;color:#5d627b}.btn.ok{background:#dcf7e8;color:#246447}.btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:19px}.btnrow .btn{flex:1 1 160px}.error{color:#ad3152;font-size:.9rem;margin:9px 0 0}.hud{display:flex;justify-content:space-between;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:12px}.hud .left{display:flex;gap:8px;flex-wrap:wrap}.level{display:inline-flex;background:#f3f1fa;padding:6px 11px;border-radius:90px;font-size:.78rem;font-weight:800;color:#626a82}.progress{height:10px;background:#f1eff9;border-radius:50px;overflow:hidden;margin:13px 0 22px}.progress div{height:100%;width:0;background:linear-gradient(90deg,#ec99c4,#9d87e9);border-radius:50px;transition:width .3s}.stage-count{color:#785fb9;font-size:.79rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase}.qtitle{font-size:clamp(1.23rem,3.5vw,1.58rem);line-height:1.36;margin:9px 0 13px;letter-spacing:-.02em}.prompt{padding:18px;border-radius:16px;background:var(--blue);font-size:1.08rem;line-height:1.65;margin-bottom:14px;border:1px solid #dceafc}.options{display:grid;gap:9px;margin-top:12px}.option{display:flex;align-items:center;text-align:left;gap:12px;background:#fff;border:2px solid #e2e0ee;border-radius:14px;padding:13px 15px;color:var(--ink);font-weight:650;line-height:1.5;min-height:57px}.option .letter{flex:0 0 27px;height:27px;background:#f1ecfc;border-radius:9px;display:grid;place-items:center;color:#6b53a8;font-size:.8rem;font-weight:850}.option:hover:not(:disabled){border-color:#bbaced;background:#fcfaff}.option.selected{background:#f3edff;border-color:#876bd5}.option.correct{background:#e9f8ed;border-color:#6db586}.option.wrong{background:#fff0f1;border-color:#ed8d9c}.dialogue{display:grid;gap:10px;margin-bottom:15px}.bubble{max-width:94%;padding:13px 17px;border:1px solid #d9e7fb;border-radius:17px 17px 17px 4px;background:#eef5ff;line-height:1.6}.bubble.b{justify-self:end;background:#f8ecff;border-color:#ebdbf7;border-radius:17px 17px 4px 17px}.bubble strong{display:block;font-size:.79rem;color:#586d9e;margin-bottom:4px}.bubble.b strong{color:#8062a9}.typing{background:var(--peach);border-radius:15px;padding:17px;line-height:1.75;margin:11px 0}.blank{display:inline-block;border-bottom:2px solid #b9827d;min-width:83px;text-align:center;letter-spacing:2px}.clue{color:#7d5571;font-weight:750;margin:6px 0 13px;font-size:.87rem}.tiles{display:flex;gap:9px;flex-wrap:wrap;min-height:62px;align-items:flex-start}.tile{padding:10px 13px;border:1.5px solid #c8b4ef;border-radius:10px;background:#fff;color:#45386a;font-weight:750;box-shadow:0 3px 0 #eee7fb;text-align:left;line-height:1.4}.tile:hover:not(:disabled){background:#f5eeff}.placed .tile{background:#e7deff}.dropzone{background:#faf7ff;border:2px dashed #c4b6ea;border-radius:15px;padding:13px;min-height:90px;margin:9px 0 15px}.box-label{font-size:.77rem;font-weight:850;color:#78819a;letter-spacing:.045em;margin:10px 0 8px}.empty{font-size:.87rem;color:#9a94ae}.feedback{border-radius:17px;padding:16px 18px;margin-top:17px;line-height:1.62}.feedback.good{background:#eaf8ed;border:1px solid #b7dec3}.feedback.bad{background:#fff2f3;border:1px solid #f0c7d3}.feedback strong{font-size:1.02rem}.feedback p{margin:9px 0 0}.model{padding:11px 13px;background:#fff;border-radius:10px;font-weight:700;margin-top:10px}.feedback .bm{border-top:1px solid #dddce5;margin-top:12px;padding-top:11px}.transition-note{margin:16px 0 0;background:#f8f5ff;border-radius:12px;padding:12px 14px;font-size:.84rem;color:#655d7a}.talk-choice{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0 16px}.talk-choice button{border:2px solid #e3dcee;background:#fff;border-radius:12px;padding:12px 7px;color:#4d4965;font-weight:750}.talk-choice button.active{border-color:var(--violet);background:#f1ebff;color:#584195}.talk-choice button:focus-visible{outline:3px solid #aa9bf0}textarea{min-height:125px;resize:vertical;line-height:1.6}.starter{background:#f7f2ff;border:1px solid #e5d9fa;padding:12px 15px;border-radius:12px;font-size:.91rem;line-height:1.6;margin:13px 0}.checklist{display:grid;gap:8px;margin-top:12px}.checklist label{display:flex;gap:9px;align-items:flex-start;font-size:.9rem;color:#4f5973}.checklist input{width:17px;height:17px;accent-color:#7657bd;flex-shrink:0}.timerbox{background:#fff5eb;border:1px solid #fae0c8;border-radius:14px;padding:13px 16px;margin-top:17px}.timerfont{font-size:1.65rem;font-weight:850;font-variant-numeric:tabular-nums;color:#a76851}.smallbutton{font-size:.78rem;padding:8px 12px;margin-left:5px}.preview{margin-top:16px;padding:15px;border-radius:13px;background:#f0f6ff;line-height:1.62}.preview small{color:var(--muted)}.medal{text-align:center;font-size:3rem}.score{text-align:center;font-size:clamp(3rem,9vw,4.3rem);font-weight:900;color:var(--violet);letter-spacing:-.06em}.result-meta{text-align:center;color:var(--muted);margin:0 0 15px}.results-box{background:#f6f1ff;border:1px solid #e2d6fa;padding:18px;border-radius:15px;margin:18px 0}.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0}.stat{background:#fff;border:1px solid #ece6fa;border-radius:12px;text-align:center;padding:10px 6px}.stat b{display:block;color:#7654b3;font-size:1.25rem}.stat span{font-size:.7rem;color:var(--muted)}.review{margin-top:18px}.review details{border-bottom:1px solid #ece6f5;padding:11px 0}.review summary{cursor:pointer;font-size:.9rem;font-weight:750;line-height:1.5}.review details p{margin:9px 0;font-size:.87rem;line-height:1.5;color:#616b80}.footer{text-align:center;color:#9090a7;font-size:.77rem;margin:20px 0}details.model-details{border:1px solid #eee5f8;background:#fff;border-radius:12px;margin-top:13px;padding:12px}details.model-details summary{font-weight:750;color:#604d96;cursor:pointer}.field-note{color:#66718a;font-size:.85rem}.clipnotice{color:#347350;font-size:.82rem;margin:7px 0 0}
-@media(max-width:560px){.wrap{padding:11px 11px 34px}.top{padding:16px 5px}.sheet{border-radius:19px;padding:18px 16px}.reason-grid{grid-template-columns:repeat(2,1fr)}.talk-choice{grid-template-columns:repeat(2,1fr)}.statgrid{grid-template-columns:repeat(2,1fr)}.option{padding:12px 10px}.btnrow .btn{flex-basis:120px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7e9ff">
+  <meta name="description" content="SPM Speaking Part 3 — build five elaboration paragraphs about reading product reviews.">
+  <title>Speak & Build | Why Read Reviews?</title>
+  <style>
+    :root{--ink:#29304c;--muted:#63708c;--purple:#7b58cc;--purple-dark:#613ba9;--purple-light:#f2eafe;--pink:#ffe8f1;--border:#e8e0f4;--good:#176a4b;--good-bg:#eaf9f1;--bad:#a13b57;--bad-bg:#fff0f3;--white:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 0 0,#ffeaf3 0,transparent 32%),radial-gradient(circle at 100% 0,#e5dcff 0,transparent 31%),linear-gradient(160deg,#fff8fc,#f8f4ff 55%,#f4f9ff);min-height:100vh}
+    .container{max-width:850px;margin:auto;padding:22px 15px 50px}
+    .brand{text-align:center;margin-bottom:19px}
+    .brand small{display:inline-block;border-radius:99px;background:#fff;padding:7px 14px;color:#7656b5;font-size:.76rem;font-weight:850;letter-spacing:.055em;box-shadow:0 2px 13px #bba6dc2c}
+    .brand h1{font-size:clamp(1.7rem,5vw,2.5rem);margin:10px 0 6px;letter-spacing:-.035em}
+    .brand p{margin:0;color:var(--muted);font-size:.95rem}
+    .card{background:#ffffffef;border:1px solid var(--border);border-radius:23px;padding:clamp(19px,4vw,32px);box-shadow:0 13px 33px #8a78b91a}
+    .hidden{display:none!important}
+    .question{background:linear-gradient(115deg,#f2e9ff,#ffedf2);border:1px solid #e9d7f7;padding:20px 18px;border-radius:18px;text-align:center}
+    .question .label{font-size:.76rem;font-weight:850;color:#7954a7;text-transform:uppercase;letter-spacing:.07em}
+    .question h2{font-size:clamp(1.18rem,4vw,1.6rem);line-height:1.32;margin:8px auto 0;max-width:670px}
+    .mindmap{margin:19px 0 8px;text-align:center}
+    .mindmap strong{display:block;margin-bottom:12px}
+    .map-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+    .map-node{border:2px solid #ddd3ee;background:#faf7ff;border-radius:14px;min-height:83px;padding:11px 6px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;text-align:center;font-size:.83rem;font-weight:800;overflow-wrap:anywhere}
+    .map-node .emoji{font-size:1.45rem}
+    .map-node.active{background:#ebe0ff;border-color:#9877db;box-shadow:0 0 0 2px #e6d8fb}
+    .map-node.done{background:#e5f7ed;border-color:#88cbaa}
+    .hint{font-size:.9rem;color:var(--muted);line-height:1.65}
+    .name-label{display:block;font-weight:800;margin:23px 0 8px}
+    input[type=text]{font:inherit;width:100%;padding:14px;border:2px solid #d9c9ee;border-radius:12px;color:var(--ink);background:white}
+    input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline:3px solid #b19af1;outline-offset:3px}
+    .error{font-size:.88rem;color:var(--bad);margin:8px 0 0}
+    button{font:inherit;font-weight:820;cursor:pointer;border:0;border-radius:13px;padding:13px 19px}
+    button:disabled{opacity:.47;cursor:not-allowed}
+    .btn-primary{background:var(--purple);color:white}
+    .btn-primary:not(:disabled):hover{background:var(--purple-dark)}
+    .btn-soft{background:#f0e9fc;color:#6746a6}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .button-row>button{flex:1 1 190px}
+    .status{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}
+    .chip{display:inline-flex;align-items:center;background:#f2edfc;border-radius:99px;padding:6px 11px;color:#6d4aab;font-size:.83rem;font-weight:850}
+    .progress{height:9px;border-radius:99px;background:#eee9f8;overflow:hidden;margin:12px 0 20px}
+    .progress-inner{height:100%;width:0;background:linear-gradient(90deg,#d48dbd,#8a77d7);transition:width .25s}
+    .point-heading{font-size:1.45rem;letter-spacing:-.025em;margin:11px 0 5px}
+    .step-desc{font-size:.95rem;color:var(--muted);margin:0 0 14px}
+    .paragraph-box{background:#f9f6ff;border:1px solid #e4daef;border-left:5px solid #af8de3;border-radius:14px;padding:15px 17px;margin:17px 0;min-height:90px;line-height:1.8}
+    .paragraph-box .mini-label{font-size:.73rem;color:#7655a3;font-weight:850;letter-spacing:.045em;margin-bottom:5px}
+    .placeholder{color:#9a94ae;font-style:italic}
+    .paragraph-box p{margin:0}
+    .paragraph-box .built{font-weight:600}
+    .choose-title{font-size:1.07rem;margin:21px 0 11px}
+    .choices{display:grid;gap:10px}
+    .choice{width:100%;text-align:left;display:flex;align-items:flex-start;gap:12px;color:var(--ink);font-weight:600;line-height:1.5;background:#fff;border:2px solid #ddd7e8;transition:background .15s,border-color .15s}
+    .choice:hover:not(:disabled){border-color:#b497e8;background:#faf5ff}
+    .choice.correct{border-color:#67b994;background:var(--good-bg)}
+    .choice.wrong{border-color:#e6a3b4;background:var(--bad-bg)}
+    .letter{display:inline-flex;flex:0 0 28px;width:28px;height:28px;justify-content:center;align-items:center;border-radius:9px;background:#efeaf9;color:#6a52a2;font-size:.83rem;font-weight:850}
+    .feedback{border-radius:15px;margin-top:16px;padding:15px 17px;line-height:1.65}
+    .feedback.good{background:var(--good-bg);border:1px solid #9dd5bb}
+    .feedback.bad{background:var(--bad-bg);border:1px solid #ecc2cc}
+    .feedback h3{margin:0 0 6px;font-size:1.04rem}
+    .feedback p{margin:8px 0 0;font-size:.92rem}
+    .feedback .correct-line{padding:9px 11px;border-radius:9px;background:#fff;font-weight:700;margin-top:10px}
+    .para-review{background:#faf8fe;border:1px solid #e6dff1;border-radius:14px;padding:16px 17px;margin:12px 0}
+    .para-review h3{font-size:1.08rem;margin:0 0 6px}
+    .para-review p{margin:0;line-height:1.8}
+    .copy-banner{background:#fff3c9;border:3px solid #dfab38;border-radius:17px;padding:20px;margin:21px 0;box-shadow:0 5px 0 #f3e4bb}
+    .copy-banner h3{margin:0 0 10px;font-size:clamp(1.22rem,4.5vw,1.55rem);color:#7d4e0d}
+    .copy-banner p{margin:6px 0;line-height:1.6}
+    .tick{display:flex;align-items:flex-start;gap:11px;padding:12px 0;font-weight:700;line-height:1.5}
+    .tick input{margin:4px 0 0;transform:scale(1.35);accent-color:var(--purple)}
+    .score{font-size:clamp(3rem,9vw,4.7rem);color:var(--purple-dark);font-weight:950;text-align:center;margin:12px 0 2px}
+    .center{text-align:center}
+    .result-line{padding:11px 0;border-bottom:1px solid #eee9f5;display:flex;justify-content:space-between;gap:9px}
+    .result-line:last-child{border:0}
+    .footer{text-align:center;color:#827d92;margin:21px 0 0;font-size:.78rem}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(3,1fr)}.map-node{min-height:72px}.container{padding-top:15px}.card{border-radius:18px}.choice{padding:12px}}
+    @media(max-width:380px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+    @media print{body{background:white}.brand,.question,.mindmap,#welcome,#game,#results,.copy-banner,.tick,.button-row,.footer{display:none!important}#review{display:block!important;box-shadow:none;border:0;padding:0}.para-review{break-inside:avoid}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
 </head>
 <body>
-<main class="wrap">
-  <header class="top"><span class="tiny">🎤 SPM SPEAKING PART 3 · INTERACTIVE PRACTICE</span><h1>Speak <span>&</span> Build <span>✨</span></h1><p>Why do people read reviews before making a purchase?</p></header>
-  <section id="welcome" class="sheet">
-    <div class="row"><h2 style="margin:0">Hello, future speakers! 👋</h2><span class="tag">A2–B2</span></div>
-    <p class="intro">Explore six reasons, complete useful expressions, practise replying to a partner and build a convincing final opinion.</p>
-    <div class="topic"><strong>🛍️ Our discussion question</strong>Why do people read reviews before making a purchase?</div>
-    <div class="reason-grid"><div class="reason-pill">🤝 Trust</div><div class="reason-pill">⭐ Quality</div><div class="reason-pill">💬 User experience</div><div class="reason-pill">💰 Price</div><div class="reason-pill">📦 Product details</div><div class="reason-pill">🌟 Rating</div></div>
-    <p class="reasons-help">5 stages · 20 scored questions · 1 guided one-minute speaking task</p>
-    <label class="form-label" for="studentName">Student name / Nama murid</label><input class="name-input" id="studentName" type="text" maxlength="70" autocomplete="name" placeholder="Type your name here">
-    <p id="nameError" class="error hidden">Please enter your name before starting. / Sila masukkan nama.</p>
-    <div class="btnrow"><button id="startBtn" class="btn main">Let's begin! →</button></div>
-    <p class="micro">✅ One point for each correct answer on the first check. Mistakes are learning opportunities — read the feedback in English and Malay!</p>
+<main class="container">
+  <header class="brand"><small>🌸 ENGLISH SPEAKING PRACTICE 🌸</small><h1>💬 Speak &amp; Build!</h1><p>SPM Speaking Part 3 • Five-Point Elaboration Challenge</p></header>
+  <section id="welcome" class="card">
+    <div class="question"><div class="label">Part 3: Discussion</div><h2>Why do people read reviews before making a purchase?</h2></div>
+    <div class="mindmap"><strong>🧠 Our 5-Point Mind Map</strong><div class="map-grid" id="welcomeMap"></div></div>
+    <p class="hint">Choose the best sentence to build a paragraph for each point. You will practise <b>5 points</b>, with <b>3 choices to make for each paragraph</b>. If you choose a wrong answer, read the Malay explanation and try again!</p>
+    <label class="name-label" for="studentName">Your name / Nama murid</label><input id="studentName" type="text" maxlength="65" placeholder="Enter your name" autocomplete="name">
+    <p id="nameError" class="error hidden">Please enter your name first. / Sila masukkan nama dahulu.</p>
+    <div class="button-row"><button type="button" class="btn-primary" id="startBtn">Let's start! →</button></div>
+    <p class="hint">⭐ 1 mark for each correct answer on your first attempt. Total: 15 marks. You can always retry a wrong answer and complete every paragraph.</p>
   </section>
-  <section id="game" class="sheet hidden">
-    <div class="hud"><div class="left"><span class="tag" id="stageLabel">Stage 1</span><span class="level" id="levelLabel">B1</span></div><span class="level" id="scoreLabel">⭐ 0 / 20</span></div>
-    <div class="row"><span class="micro" id="questionCounter"></span><span class="micro" id="progressText"></span></div>
-    <div class="progress" role="progressbar" aria-label="Activity progress" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0" id="progress"><div id="progressFill"></div></div>
-    <div id="task"></div>
-    <div id="feedback" class="feedback hidden" aria-live="polite" role="status"></div>
-    <div class="btnrow" id="actionArea"><button id="checkBtn" class="btn main" disabled>Check my answer ✓</button><button id="nextBtn" class="btn main hidden">Next activity →</button></div>
+  <section id="game" class="card hidden">
+    <div class="status"><span class="chip" id="pointCounter">Point 1 of 5</span><span class="chip" id="stepCounter">Sentence 1 of 3</span><span class="chip" id="markCounter">Marks: 0 / 15</span></div>
+    <div class="progress" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progress"><div class="progress-inner" id="progressInner"></div></div>
+    <div class="question"><div class="label">Our discussion question</div><h2>Why do people read reviews before making a purchase?</h2></div>
+    <div class="mindmap"><strong>🧠 Remember the Five Points</strong><div class="map-grid" id="gameMap"></div></div>
+    <h2 class="point-heading" id="pointTitle">Point 1: Trust</h2><p class="step-desc" id="stepHelp"></p>
+    <div class="paragraph-box" aria-live="polite"><div class="mini-label">YOUR PARAGRAPH SO FAR</div><p id="builtParagraph" class="placeholder">Choose a sentence below to begin...</p></div>
+    <h3 class="choose-title" id="chooseTitle">Which sentence fits this point?</h3><div id="choices" class="choices"></div>
+    <div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div>
+    <div class="button-row hidden" id="nextWrap"><button type="button" class="btn-primary" id="nextBtn">Next Sentence →</button></div>
   </section>
-  <section id="results" class="sheet hidden">
-    <div class="medal">🏆🌟🎤</div><h2 style="text-align:center;margin:6px 0">Speaking Challenge Complete!</h2>
-    <p id="resultName" class="result-meta"></p><div id="finalScore" class="score">0 / 20</div><p id="resultMessage" class="result-meta"></p>
-    <div id="stageStats" class="statgrid"></div>
-    <div class="results-box"><strong>🎙️ Your final speaking idea</strong><p id="finalReason" style="margin-bottom:4px"></p><p id="finalOpinion" style="line-height:1.7;white-space:pre-wrap"></p><button id="copyBtn" class="btn soft" type="button">📋 Copy my answer</button><p class="clipnotice hidden" id="copied">Copied!</p></div>
-    <div class="review"><h3>📖 Review your answers</h3><p class="micro">Open any item to see the model answer. Wrong answers are marked for revision.</p><div id="reviewList"></div></div>
-    <div class="btnrow"><button id="replayBtn" class="btn main">🔀 Replay the full game</button></div>
-    <p class="micro">📸 Screenshot this page with your name and score for submission to your teacher.</p>
+  <section id="review" class="card hidden">
+    <div class="question"><div class="label">You did it! 🎉</div><h2>Your Five Completed Paragraphs</h2></div>
+    <p class="hint center">Read the paragraphs below carefully. These are your sample elaborations for Speaking Part 3.</p>
+    <div id="paragraphsList"></div>
+    <div class="copy-banner" role="note"><h3>✏️ IMPORTANT! COPY ALL FIVE PARAGRAPHS!</h3><p><b>Write all five paragraphs in your exercise book before viewing your score.</b></p><p><b>PERINGATAN PENTING:</b> Salin KELIMA-LIMA perenggan ke dalam buku latihan sebelum melihat markah.</p></div>
+    <label class="tick"><input type="checkbox" id="copiedCheck"><span>I have copied all five paragraphs into my exercise book.<br><span class="hint">Saya telah menyalin kelima-lima perenggan ke dalam buku latihan.</span></span></label>
+    <div class="button-row"><button type="button" id="scoreBtn" class="btn-primary" disabled>Continue to Final Score →</button></div>
   </section>
-  <div class="footer">Made for Form 4–5 English learners · Standalone HTML · Works on GitHub Pages</div>
+  <section id="results" class="card hidden">
+    <div class="center" style="font-size:2.6rem">🎉🏆✨</div><h2 class="center">Great work! Quiz Complete!</h2>
+    <p id="resultStudent" class="center" style="font-weight:800"></p><div id="finalScore" class="score">0 / 15</div><p class="center" id="resultMessage"></p>
+    <h3>📚 Your five points</h3><div id="breakdown"></div>
+    <p class="hint">📸 Take a screenshot showing your name and score for your teacher.</p>
+    <div class="button-row"><button type="button" class="btn-soft" id="reviewBtn">📖 See the 5 paragraphs again</button><button type="button" class="btn-primary" id="replayBtn">🔀 Replay</button></div>
+  </section>
+  <footer class="footer">Created for SPM Speaking Part 3 • Works on mobile and GitHub Pages • No internet needed after loading</footer>
 </main>
 <script>
-"use strict";
-// All learning content follows the supplied SPM Speaking Part 3 notes on reading product reviews.
-const REASONS=["Trust","Quality","User experience","Price","Product details","Rating"];
-const MATCH=[
- {focus:"Trust",level:"A2",prompt:"Positive feedback makes buyers feel more confident about a product or seller.",opts:["Trust","Price","Rating","Quality"],en:"Positive reviews build trust, so customers feel less worried about being disappointed.",bm:"Ulasan positif membina kepercayaan. Pembeli berasa lebih yakin dan kurang bimbang akan kecewa."},
- {focus:"Quality",level:"B1",prompt:"Reviews help people check whether a product is durable, reliable and worth buying.",opts:["Quality","User experience","Price","Rating"],en:"Durable and reliable describe product quality, especially for expensive items.",bm:"Tahan lama dan boleh dipercayai menerangkan kualiti produk, terutamanya barang yang mahal."},
- {focus:"User experience",level:"B1",prompt:"Other customers explain whether a product is easy to use and works as expected.",opts:["Trust","User experience","Product details","Rating"],en:"Real customers share their user experience, including advantages and problems.",bm:"Pelanggan sebenar berkongsi pengalaman menggunakan produk, termasuk kelebihan dan masalah."},
- {focus:"Price",level:"A2",prompt:"Customers read reviews to decide if a product is worth its cost or if cheaper choices are better.",opts:["Quality","Price","Trust","Product details"],en:"A review can help buyers judge value for money and avoid overspending.",bm:"Ulasan membantu pembeli menilai sama ada harga berbaloi dan mengelakkan pembaziran."},
- {focus:"Product details",level:"B1",prompt:"Reviews may mention an item's actual size, material and performance in real life.",opts:["Product details","Rating","Price","Quality"],en:"These are extra product details that might not appear in the description.",bm:"Ini ialah butiran tambahan produk yang mungkin tidak dinyatakan dalam penerangan jualan."},
- {focus:"Rating",level:"B1",prompt:"Buyers look at how many stars other customers gave a product to see how satisfied they are.",opts:["Trust","Quality","User experience","Rating"],en:"Ratings show overall satisfaction, but customers should also read written comments.",bm:"Penilaian bintang menunjukkan tahap kepuasan, tetapi pembeli juga patut membaca komen."}
-];
-const TYPING=[
- {level:"A2",before:"Positive reviews make customers feel more",after:"about spending their money.",answer:"confident",clue:"yakin · starts with C",en:"'Feel more confident' means to feel more sure about making a purchase.",bm:"'Feel more confident' bermaksud berasa lebih yakin untuk membuat pembelian."},
- {level:"B1",before:"Reviews can show whether a product is",after:"and reliable.",answer:"durable",clue:"tahan lama · starts with D",en:"'Durable' means a product can last a long time without breaking easily.",bm:"'Durable' bermaksud produk tahan lama dan tidak mudah rosak."},
- {level:"B1",before:"Customers want to know if a product works as",after:".",answer:"expected",clue:"seperti yang dijangka · starts with E",en:"'Works as expected' means the product performs as buyers thought it would.",bm:"'Works as expected' bermaksud produk berfungsi seperti yang dijangkakan."},
- {level:"B1",before:"Buyers may look for cheaper",after:"if a product is too expensive.",answer:"alternatives",clue:"pilihan lain · starts with A",en:"'Alternatives' are other possible choices instead of the original product.",bm:"'Alternatives' ialah pilihan lain sebagai pengganti produk asal."},
- {level:"A2",before:"Customer reviews may mention a product's size and",after:".",answer:"material",clue:"bahan · starts with M",en:"'Material' refers to what a product is made from.",bm:"'Material' merujuk kepada bahan yang digunakan untuk menghasilkan produk."},
- {level:"B1",before:"A high rating may show that many customers are",after:"with a product.",answer:"satisfied",clue:"berpuas hati · starts with S",en:"'Satisfied' means customers are happy with the product they received.",bm:"'Satisfied' bermaksud pelanggan berasa puas hati dengan produk yang diterima."}
-];
-const REPLIES=[
- {level:"B1",talk:[{who:"Candidate A",text:"I think trust is important. Positive reviews make people feel more confident."}],ask:"What is the best response from Candidate B?",options:[
-   {text:"That's a good point, but I believe quality is more important because reviews show if a product is durable.",ok:true},
-   {text:"I bought a sandwich at the canteen yesterday.",why:"This changes the topic instead of discussing reviews."},
-   {text:"Trust is the only possible reason, and we should not discuss anything else.",why:"This closes the discussion instead of developing it."},
-   {text:"I completely disagree, so there is no need to explain.",why:"A good discussion includes a reason, not just disagreement."}],
-  en:"Acknowledge your partner's idea, give your own view and explain it.",bm:"Akui pendapat pasangan, nyatakan pandangan sendiri dan berikan penjelasan."},
- {level:"B1",talk:[{who:"Candidate A",text:"Reviews show us whether the price is reasonable. Some buyers may look for cheaper alternatives."}],ask:"Which reply develops the discussion logically?",options:[
-   {text:"That's true. Ratings can also help us see how satisfied other customers are.",ok:true},
-   {text:"I think all prices should always be the same.",why:"This is not an explanation of why people read reviews."},
-   {text:"My favourite subject at school is English.",why:"This is unrelated to buying a product."},
-   {text:"No, we should never read the comments or ratings.",why:"This contradicts the topic without a supporting reason."}],
-  en:"'That's true' responds politely, then adds another relevant point: rating.",bm:"'That's true' memberikan respons yang sopan, kemudian menambah isi berkaitan, iaitu penilaian."},
- {level:"B2",talk:[{who:"Candidate A",text:"Real customers can tell us if an item is easy to use or works as expected."}],ask:"How can Candidate B add a new supporting reason?",options:[
-   {text:"I agree. Reviews sometimes mention extra product details, such as the actual size and material.",ok:true},
-   {text:"I agree because school holidays are enjoyable.",why:"The reason does not connect to product reviews."},
-   {text:"I don't think real customers have any experience.",why:"This dismisses the idea without providing useful support."},
-   {text:"Easy to use, easy to use, easy to use.",why:"Repeating words is not elaboration."}],
-  en:"Build on a partner's point by adding a related reason and a specific example.",bm:"Kembangkan isi pasangan dengan sebab yang berkaitan serta contoh yang khusus."},
- {level:"B2",talk:[{who:"Candidate A",text:"I think trust is the best reason. It makes customers feel more confident."},{who:"Candidate B",text:"That's a good point, but I believe quality is more important. Reviews tell us if items are durable."}],ask:"Which is the best next turn for Candidate A?",options:[
-   {text:"I agree that quality is important, but trust can influence our final decision.",ok:true},
-   {text:"There is nothing left for us to discuss.",why:"It ends the exchange before comparing the two ideas."},
-   {text:"I don't like reading books during the holidays.",why:"The sentence is unrelated to the discussion."},
-   {text:"Quality is quality, and trust is trust.",why:"This repeats words without making a comparison or conclusion."}],
-  en:"This reply recognises the other view while defending a clear final choice.",bm:"Respons ini menerima pandangan pasangan sambil mempertahankan pilihan akhir yang jelas."}
-];
-const BUILD=[
- {level:"B1",chunks:["Reviews help customers", "trust a product or seller", "because positive feedback", "makes them feel more confident."],en:"Start with the reason (trust), then explain it using 'because'.",bm:"Mulakan dengan isi (kepercayaan), kemudian huraikan menggunakan 'because'."},
- {level:"B1",chunks:["Real customer experiences", "can reveal possible problems", "before buyers", "make a final decision."],en:"The sentence moves from the source of information to its benefit for buyers.",bm:"Ayat bergerak daripada sumber maklumat kepada manfaatnya kepada pembeli."},
- {level:"B2",chunks:["Although a high rating looks attractive,", "customers should read the comments", "because a rating alone", "may not tell the whole story."],en:"'Although' introduces contrast, while 'because' explains the reason.",bm:"'Although' menunjukkan pertentangan, manakala 'because' memberikan sebab."},
- {level:"B2",chunks:["If customers think a product", "is too expensive for its quality,", "they may look for cheaper alternatives", "to avoid wasting money."],en:"Use the first conditional idea: if a condition is true, buyers may take an action.",bm:"Gunakan ayat bersyarat: jika keadaan itu berlaku, pembeli mungkin mengambil tindakan."}
-];
-const SAMPLES={
- "Trust":"I think trust is the best reason because positive reviews make customers feel more confident. For example, they feel less worried about receiving a poor product. As a result, they can make better decisions.",
- "Quality":"I believe quality is the best reason because reviews show whether a product is durable and reliable. This is especially useful for expensive items. As a result, buyers can spend their money wisely.",
- "User experience":"I think user experience matters most because other customers explain how a product works in real life. For example, they may mention problems that are not in the description. This helps buyers make a better choice.",
- "Price":"I believe price is the best reason because reviews help buyers decide whether a product is worth the money. If it is too expensive, they can look for cheaper alternatives. This helps them avoid wasting money.",
- "Product details":"I think product details are the best reason because reviews may mention the real size and material of an item. For example, buyers can learn information missing from the product description. This helps them choose something suitable.",
- "Rating":"I believe rating is the best reason because it shows how satisfied other customers are. A high rating can make buyers interested, but they should also read comments. This helps them avoid making a poor choice."
-};
-const STAGES={match:{name:"Match the Reason",short:"Identify",emoji:"🧩",num:1},type:{name:"Complete the Elaboration",short:"Type",emoji:"⌨️",num:2},reply:{name:"Continue the Conversation",short:"Respond",emoji:"💬",num:3},build:{name:"Build a Better Response",short:"Build",emoji:"🧱",num:4},decide:{name:"Best Reason Challenge",short:"Speak",emoji:"🎤",num:5}};
-const $=id=>document.getElementById(id);
-const shuffle=a=>{let r=a.slice();for(let i=r.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r};
-const clean=s=>String(s).toLowerCase().trim().replace(/^[^a-z]+|[^a-z]+$/g,"").replace(/\s+/g," ");
-const el=(tag,cls,txt)=>{let n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n};
-const append=(parent,...nodes)=>parent.append(...nodes);
-const show=id=>$(id).classList.remove("hidden");
-const hide=id=>$(id).classList.add("hidden");
-let student="",queue=[],step=0,score=0,records=[],locked=false,choice=null,optionsOnScreen=[],placed=[],tileOrder=[],speakingReason="",speakingText="",timerSecs=60,timerId=null;
-function buildQueue(){return [
- ...shuffle(MATCH.map((q,i)=>({kind:"match",q,i}))),
- ...shuffle(TYPING.map((q,i)=>({kind:"type",q,i}))),
- ...shuffle(REPLIES.map((q,i)=>({kind:"reply",q,i}))),
- ...shuffle(BUILD.map((q,i)=>({kind:"build",q,i}))),{kind:"decide",q:null,i:0}];}
-function start(){let name=$("studentName").value.trim();if(!name){show("nameError");$("studentName").focus();return}student=name;hide("nameError");score=0;records=[];step=0;queue=buildQueue();speakingReason="";speakingText="";hide("welcome");hide("results");show("game");render();window.scrollTo({top:0,behavior:"smooth"})}
-function prepareHeading(stage,title,instr){let wrap=el("div");append(wrap,el("div","stage-count",stage.emoji+" Stage "+stage.num+" of 5 · "+stage.name),el("h2","qtitle",title),el("p","micro",instr));return wrap}
-function strongShuffleIndices(n){let original=Array.from({length:n},(_,i)=>i),candidate;do{candidate=shuffle(original)}while(candidate[0]===0||candidate[n-1]===n-1||candidate.every((v,i)=>v===i));return candidate}
-function render(){stopTimer();locked=false;choice=null;placed=[];let item=queue[step],kind=item.kind,q=item.q,stage=STAGES[kind];hide("feedback");hide("nextBtn");show("checkBtn");$("checkBtn").textContent="Check my answer ✓";$("checkBtn").disabled=true;
- $("stageLabel").textContent=stage.emoji+" "+stage.name;$("levelLabel").textContent=q?q.level:"Speaking task";$("scoreLabel").textContent="⭐ "+score+" / 20";$("questionCounter").textContent=kind==="decide"?"Final speaking task · Not scored":"Question "+(step+1)+" / 20";$("progressText").textContent=(step+1)+" / 21 activities";$("progressFill").style.width=(step/21*100)+"%";$("progress").setAttribute("aria-valuenow",step);$("task").replaceChildren();
- if(kind==="match")renderMatch(q);else if(kind==="type")renderType(q);else if(kind==="reply")renderReply(q);else if(kind==="build")renderBuild(q);else renderDecision();
-}
-function choiceButton(text,index){let b=el("button","option");b.type="button";append(b,el("span","letter","ABCD"[index]),el("span","",text));b.addEventListener("click",()=>{if(locked)return;choice=index;optionsOnScreen.forEach((p,i)=>p.classList.toggle("selected",i===choice));$("checkBtn").disabled=false});return b}
-function renderOptions(options){optionsOnScreen=[];let box=el("div","options");options.forEach((opt,i)=>{let b=choiceButton(typeof opt==="string"?opt:opt.text,i);optionsOnScreen.push(b);box.appendChild(b)});$("task").appendChild(box)}
-function renderMatch(q){append($("task"),prepareHeading(STAGES.match,"Which reason is being described?","Read the clue and choose the most suitable reason."),el("div","prompt",q.prompt));let opts=shuffle(q.opts);renderOptions(opts);$("task").dataset.answer=opts.indexOf(q.focus)}
-function renderType(q){append($("task"),prepareHeading(STAGES.type,"Type the missing word","Use the Malay clue to complete the sentence correctly."));let sentence=el("div","typing");append(sentence,document.createTextNode(q.before+" "),el("span","blank","______"),document.createTextNode((/^[.,!?;:]/.test(q.after)?"":" ")+q.after));append($("task"),sentence,el("div","clue","💡 Malay clue: "+q.clue));let input=el("input","short-input");input.type="text";input.id="typedAnswer";input.autocomplete="off";input.spellcheck=false;input.maxLength=40;input.setAttribute("aria-label","Type the missing English word");input.placeholder="One English word...";input.addEventListener("input",()=>{$("checkBtn").disabled=!input.value.trim()});input.addEventListener("keydown",e=>{if(e.key==="Enter"&&input.value.trim()){e.preventDefault();grade()}});append($("task"),input,el("p","micro","Capital letters and final punctuation do not affect your score."))}
-function renderReply(q){append($("task"),prepareHeading(STAGES.reply,q.ask,"Think about polite agreement, a useful reason and a natural continuation."));let lines=el("div","dialogue");q.talk.forEach(t=>{let b=el("div","bubble"+(t.who==="Candidate B"?" b":""));append(b,el("strong","",t.who),document.createTextNode(t.text));lines.appendChild(b)});$("task").appendChild(lines);let opts=shuffle(q.options);renderOptions(opts);$("task").currentOptions=opts;$("task").dataset.answer=opts.findIndex(o=>o.ok)}
-function renderBuild(q){append($("task"),prepareHeading(STAGES.build,"Arrange the phrase tiles","Tap the chunks in the correct order to create a clear and logical explanation."),el("div","box-label","YOUR RESPONSE"));let zone=el("div","dropzone");zone.id="dropZone";$("task").appendChild(zone);append($("task"),el("div","box-label","MIXED-UP PHRASES"));let bank=el("div","tiles");bank.id="chunkBank";$("task").appendChild(bank);let buttons=el("div","btnrow");let undo=el("button","btn soft","↶ Undo");undo.type="button";undo.id="undoChunk";undo.addEventListener("click",()=>{if(!locked){placed.pop();paintChunks(q)}});let clear=el("button","btn soft","Clear all");clear.type="button";clear.id="clearChunks";clear.addEventListener("click",()=>{if(!locked){placed=[];paintChunks(q)}});append(buttons,undo,clear);$("task").appendChild(buttons);tileOrder=strongShuffleIndices(q.chunks.length);paintChunks(q)}
-function paintChunks(q){let zone=$("dropZone"),bank=$("chunkBank");zone.replaceChildren();bank.replaceChildren();if(placed.length===0)zone.appendChild(el("span","empty","Tap a phrase below to begin..."));else{let pile=el("div","tiles placed");placed.forEach((index,pos)=>{let btn=el("button","tile",q.chunks[index]);btn.disabled=locked;btn.type="button";btn.setAttribute("aria-label","Remove phrase: "+q.chunks[index]);btn.addEventListener("click",()=>{if(!locked){placed.splice(pos,1);paintChunks(q)}});pile.appendChild(btn)});zone.appendChild(pile)}tileOrder.filter(i=>!placed.includes(i)).forEach(index=>{let btn=el("button","tile",q.chunks[index]);btn.disabled=locked;btn.type="button";btn.setAttribute("aria-label","Add phrase: "+q.chunks[index]);btn.addEventListener("click",()=>{if(!locked){placed.push(index);paintChunks(q)}});bank.appendChild(btn)});$("checkBtn").disabled=locked||placed.length!==q.chunks.length;$("undoChunk").disabled=locked||placed.length===0;$("clearChunks").disabled=locked||placed.length===0}
-function feedback(correct,solution,en,bm,wrongWhy=""){let box=$("feedback");box.replaceChildren();box.className="feedback "+(correct?"good":"bad");append(box,el("strong","",correct?"✅ Correct! You earned 1 point.":"💡 Good try! Let's learn from this."));if(wrongWhy)append(box,el("p","","Why not? "+wrongWhy));append(box,el("div","model",solution),el("p","","🇬🇧 "+en),el("p","bm","🇲🇾 "+bm));show("feedback")}
-function grade(){if(locked||step>=20)return;let {kind,q}=queue[step],correct=false,solution="",wrongWhy="";if(kind==="match"||kind==="reply"){if(choice===null)return;let right=Number($("task").dataset.answer);correct=choice===right;solution=(kind==="match"?"Correct reason: ":"Best reply: ")+(kind==="match"?q.focus:$("task").currentOptions[right].text);optionsOnScreen.forEach((b,i)=>{b.disabled=true;b.classList.remove("selected");b.classList.toggle("correct",i===right);b.classList.toggle("wrong",i===choice&&!correct)});if(kind==="reply"&&!correct)wrongWhy=$("task").currentOptions[choice].why||"This response does not develop the discussion.";if(kind==="match"&&!correct)wrongWhy="This description is about "+q.focus.toLowerCase()+", not "+$("task").querySelectorAll(".option")[choice].textContent.slice(1).trim()+"."}
- else if(kind==="type"){let input=$("typedAnswer");if(!input.value.trim())return;correct=clean(input.value)===q.answer;solution="Correct word: "+q.answer;input.disabled=true;input.style.borderColor=correct?"#82c49a":"#e68d9d"}
- else if(kind==="build"){if(placed.length!==q.chunks.length)return;correct=placed.every((v,i)=>v===i);solution="Correct response: "+q.chunks.join(" ");if(!correct)wrongWhy="The ideas need to follow a logical sequence so the meaning is clear.";$("undoChunk").disabled=$("clearChunks").disabled=true}
- locked=true;if(kind==="build")paintChunks(q);if(correct)score++;records.push({kind,correct,question:kind==="match"?q.prompt:kind==="type"?q.before+" ____ "+q.after:kind==="reply"?q.ask:q.chunks.join(" "),solution});feedback(correct,solution,q.en,q.bm,wrongWhy);$("scoreLabel").textContent="⭐ "+score+" / 20";hide("checkBtn");show("nextBtn");$("nextBtn").textContent=step===19?"Go to the speaking challenge →":"Next activity →";$("nextBtn").focus({preventScroll:true});$("feedback").scrollIntoView({behavior:"smooth",block:"nearest"})}
-function renderDecision(){hide("checkBtn");hide("nextBtn");append($("task"),prepareHeading(STAGES.decide,"Which reason is the best?","Choose your opinion, type a short explanation and practise saying it aloud."));let box=el("div","topic");append(box,el("strong","","🎯 Final decision-making task"),document.createTextNode("Discuss which reason is the best for reading reviews before buying something."));$("task").appendChild(box);append($("task"),el("div","box-label","STEP 1 · CHOOSE YOUR BEST REASON"));let options=el("div","talk-choice");options.id="talkChoice";REASONS.forEach(reason=>{let b=el("button","",reason);b.type="button";b.addEventListener("click",()=>{speakingReason=reason;[...options.children].forEach(btn=>btn.classList.toggle("active",btn===b));$("starter").textContent="I think "+reason.toLowerCase()+" is the best reason because ... For example, ... As a result, ...";$("modelExample").textContent=SAMPLES[reason];updateDecisionButton()});options.appendChild(b)});$("task").appendChild(options);append($("task"),el("div","box-label","STEP 2 · PREPARE YOUR RESPONSE"));let starter=el("div","starter","Choose a reason above to see a speaking starter.");starter.id="starter";$("task").appendChild(starter);let ta=el("textarea");ta.id="opinionInput";ta.placeholder="Example: I think trust is the best reason because ...";ta.maxLength=1200;ta.setAttribute("aria-label","Write your best reason response");ta.addEventListener("input",()=>{speakingText=ta.value;updateDecisionButton()});$("task").appendChild(ta);let wc=el("div","micro","0 words · Try to write at least 10 words.");wc.id="wordCount";$("task").appendChild(wc);let checks=el("div","checklist");["I clearly stated the best reason.","I explained why it is important.","I gave an example or a result."].forEach(label=>{let l=el("label");let input=el("input");input.type="checkbox";l.append(input,document.createTextNode(label));checks.appendChild(l)});append($("task"),el("div","box-label","STEP 3 · SELF-CHECK YOUR IDEA"),checks);let details=el("details","model-details");let summary=el("summary","","Need help? Show a sample response");let model=el("p","micro","Choose a reason to see a sample response.");model.id="modelExample";append(details,summary,model);$("task").appendChild(details);
- let timer=el("div","timerbox");append(timer,el("div","box-label","STEP 4 · SPEAK FOR ONE MINUTE"));let r=el("div","row");let clock=el("div","timerfont","01:00");clock.id="clock";let ctrls=el("div");let start=el("button","btn smallbutton","▶ Start");start.type="button";start.id="timerStart";start.addEventListener("click",toggleTimer);let reset=el("button","btn soft smallbutton","↻ Reset");reset.type="button";reset.addEventListener("click",resetTimer);append(ctrls,start,reset);append(r,clock,ctrls);append(timer,r,el("p","micro","Use this timer while you practise speaking aloud. Your written response is not automatically graded."));$("task").appendChild(timer);let finish=el("button","btn main","Finish & see my results 🏆");finish.type="button";finish.id="finishBtn";finish.disabled=true;finish.addEventListener("click",finishGame);let err=el("p","error hidden","Choose one reason and write at least 10 words.");err.id="decisionError";$("task").append(err);let br=el("div","btnrow");br.appendChild(finish);$("task").appendChild(br);if(speakingReason){[...options.children].forEach(b=>b.classList.toggle("active",b.textContent===speakingReason));starter.textContent="I think "+speakingReason.toLowerCase()+" is the best reason because ... For example, ... As a result, ...";model.textContent=SAMPLES[speakingReason]}ta.value=speakingText;updateDecisionButton()}
-function wordCount(s){return s.trim()?s.trim().split(/\s+/).length:0}
-function updateDecisionButton(){let n=wordCount(speakingText);if($("wordCount"))$("wordCount").textContent=n+" words · "+(n<10?"Try to write at least 10 words.":"Nice! Practise saying this aloud.");if($("finishBtn"))$("finishBtn").disabled=!(speakingReason&&n>=10)}
-function stopTimer(){if(timerId!==null){clearInterval(timerId);timerId=null}}
-function resetTimer(){stopTimer();timerSecs=60;let d=$("clock");if(d)d.textContent="01:00";let b=$("timerStart");if(b)b.textContent="▶ Start"}
-function toggleTimer(){if(timerId!==null){stopTimer();$("timerStart").textContent="▶ Resume";return}if(timerSecs===0)resetTimer();$("timerStart").textContent="⏸ Pause";timerId=setInterval(()=>{timerSecs--;$("clock").textContent=String(Math.floor(timerSecs/60)).padStart(2,"0")+":"+String(timerSecs%60).padStart(2,"0");if(timerSecs<=0){stopTimer();$("timerStart").textContent="✓ Finished";$("clock").textContent="00:00"}},1000)}
-function finishGame(){if(!(speakingReason&&wordCount(speakingText)>=10)){show("decisionError");return}stopTimer();hide("game");show("results");$("resultName").textContent="Student: "+student;$("finalScore").textContent=score+" / 20";$("resultMessage").textContent=score>=18?"Amazing work! Your ideas are clear and well connected. 🌟":score>=14?"Great effort! Keep practising your explanations. 💜":score>=10?"Good practice! Review the model answers and try again. 📚":"Every attempt helps you improve. Keep going! 💪";$("finalReason").textContent="Best reason: "+speakingReason;$("finalOpinion").textContent=speakingText.trim();$("progressFill").style.width="100%";$("progress").setAttribute("aria-valuenow",21);let stats=$("stageStats");stats.replaceChildren();[{k:"match",name:"Match"},{k:"type",name:"Typing"},{k:"reply",name:"Dialogue"},{k:"build",name:"Build"}].forEach(s=>{let correct=records.filter(r=>r.kind===s.k&&r.correct).length,total=records.filter(r=>r.kind===s.k).length,stat=el("div","stat");append(stat,el("b","",correct+"/"+total),el("span","",s.name));stats.appendChild(stat)});let review=$("reviewList");review.replaceChildren();records.forEach((r,i)=>{let d=el("details"),s=el("summary","",(r.correct?"✅ ":"❌ ")+(i+1)+". "+r.question),p=el("p","",r.solution);append(d,s,p);review.appendChild(d)});hide("copied");window.scrollTo({top:0,behavior:"smooth"})}
-$("startBtn").addEventListener("click",start);$("studentName").addEventListener("keydown",e=>{if(e.key==="Enter")start()});$("checkBtn").addEventListener("click",grade);$("nextBtn").addEventListener("click",()=>{if(!locked)return;step++;render();window.scrollTo({top:0,behavior:"smooth"})});$("replayBtn").addEventListener("click",()=>{resetTimer();score=0;records=[];queue=buildQueue();step=0;locked=false;speakingReason="";speakingText="";hide("results");show("game");render();window.scrollTo({top:0,behavior:"smooth"})});$("copyBtn").addEventListener("click",async()=>{let s="SPM Speaking Part 3 — "+student+"\nBest reason: "+speakingReason+"\n"+speakingText.trim();try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(s)}else{let input=document.createElement("textarea");input.value=s;document.body.appendChild(input);input.select();document.execCommand("copy");input.remove()}show("copied")}catch(e){hide("copied");alert("Copy unavailable here. Please select and copy your answer instead.")}});
+  'use strict';
+  // The five points and sample content are based on the teacher's original speaking handout.
+  const POINTS = [
+    {key:'trust',name:'Trust',emoji:'🤝',bm:'kepercayaan',
+      sentences:[
+        'Reviews help customers decide whether they can trust a product or seller.',
+        'Positive feedback from other buyers can make them feel more confident about spending their money.',
+        'As a result, they are less worried about being disappointed or receiving a poor product.'
+      ],
+      en:['Start by explaining how reviews build trust.','Positive comments help buyers feel confident.','Use “As a result” to explain the positive effect of trust.'],
+      ms:['Mulakan dengan menerangkan bagaimana ulasan membina kepercayaan.','Komen positif membantu pembeli berasa lebih yakin.','Gunakan “As a result” untuk menerangkan kesan positif kepercayaan.']},
+    {key:'quality',name:'Quality',emoji:'⭐',bm:'kualiti',
+      sentences:[
+        'Another reason is to find out about the quality of the product.',
+        'Reviews can show whether the product is durable, reliable, and worth buying.',
+        'This is especially useful for expensive items because customers want to make sure their money is well spent.'
+      ],
+      en:['Introduce product quality as another reason.','“Durable” and “reliable” describe the quality of a product.','This example explains why quality matters for expensive purchases.'],
+      ms:['Perkenalkan kualiti produk sebagai sebab yang lain.','“Durable” bermaksud tahan lama dan “reliable” bermaksud boleh dipercayai.','Contoh ini menerangkan kepentingan kualiti apabila membeli barang mahal.']},
+    {key:'experience',name:'User Experience',emoji:'👥',bm:'pengalaman pengguna',prefix:'That’s a good point.',
+      sentences:[
+        'Reviews also provide information about other customers’ user experience.',
+        'For example, they may explain whether the product is easy to use or works as expected.',
+        'By reading real experiences, buyers can understand the advantages and possible problems before making a decision.'
+      ],
+      en:['Focus on what real customers experience.','Give a clear example of what users can describe.','Explain how real experiences help buyers make decisions.'],
+      ms:['Fokus pada pengalaman sebenar pelanggan.','Berikan contoh jelas tentang perkara yang boleh diterangkan oleh pengguna.','Terangkan bagaimana pengalaman sebenar membantu pembeli membuat keputusan.']},
+    {key:'price',name:'Price',emoji:'💰',bm:'harga',
+      sentences:[
+        'In addition, people may also read reviews to decide whether the product is worth the price.',
+        'If many customers think it is too expensive for its quality, buyers may look for cheaper alternatives.',
+        'In this way, reviews can help people avoid wasting money and make better purchasing decisions.'
+      ],
+      en:['Introduce whether the price is reasonable.','Explain what buyers may do if the price is too high.','“In this way” links the reason to a useful result.'],
+      ms:['Perkenalkan idea sama ada harga sesuatu produk berpatutan.','Terangkan tindakan pembeli jika harga terlalu tinggi.','“In this way” menghubungkan sebab dengan hasil yang bermanfaat.']},
+    {key:'rating',name:'Rating',emoji:'🌟',bm:'penarafan',
+      sentences:[
+        'People often check the rating to see how satisfied other customers are with the product.',
+        'A high rating can attract more buyers, while a low rating may make them think twice before purchasing.',
+        'Even so, customers should read the comments as well because a rating alone may not tell the whole story.'
+      ],
+      en:['Introduce ratings as a quick sign of customer satisfaction.','Compare the effects of high and low ratings.','“Even so” introduces an important caution: read comments too.'],
+      ms:['Perkenalkan penarafan sebagai petunjuk ringkas kepuasan pelanggan.','Bandingkan kesan penarafan tinggi dan rendah.','“Even so” membawa peringatan penting: baca komen juga.']}
+  ];
+  const PHASES = [
+    {name:'Main point',help:'Step 1: Choose the sentence that introduces this point.',malay:'Pilih ayat yang memperkenalkan isi ini.'},
+    {name:'Elaboration',help:'Step 2: Choose the sentence that explains this point further.',malay:'Pilih ayat yang menghuraikan isi ini.'},
+    {name:'Result / Example',help:'Step 3: Choose a suitable result, example, or final detail.',malay:'Pilih kesan, contoh atau perincian yang sesuai.'}
+  ];
+  const $ = id => document.getElementById(id);
+  const show = id => $(id).classList.remove('hidden');
+  const hide = id => $(id).classList.add('hidden');
+  function shuffle(xs){let a=xs.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  let student='',pointIndex=0,stepIndex=0,score=0,pointScores=[],wrongYet=false,solved=false,choices=[],paragraphs=[],completed=0,hasCopied=false;
+  function mapInto(id,current=-1){$(id).replaceChildren();POINTS.forEach((p,i)=>{const node=document.createElement('div');node.className='map-node'+(i===current?' active':(i<current?' done':''));const pic=document.createElement('span');pic.className='emoji';pic.textContent=p.emoji;const name=document.createElement('span');name.textContent=p.name;node.append(pic,name);$(id).append(node);});}
+  function fullParagraph(p,lines){return [p.prefix||'',...lines].filter(Boolean).join(' ');}
+  function newChoices(){const p=POINTS[pointIndex];let other=shuffle(POINTS.map((q,i)=>({q,i})).filter(x=>x.i!==pointIndex)).slice(0,3);choices=shuffle([{text:p.sentences[stepIndex],owner:pointIndex},...other.map(x=>({text:x.q.sentences[stepIndex],owner:x.i}))]);}
+  function start(){const name=$('studentName').value.trim();if(!name){show('nameError');$('studentName').focus();return;}student=name;hide('nameError');pointIndex=0;stepIndex=0;score=0;pointScores=Array(5).fill(0);wrongYet=false;solved=false;paragraphs=POINTS.map(()=>[]);completed=0;hasCopied=false;$('copiedCheck').checked=false;$('scoreBtn').disabled=true;hide('welcome');hide('review');hide('results');show('game');newChoices();render();window.scrollTo({top:0,behavior:'smooth'});}
+  function render(){const p=POINTS[pointIndex];$('pointCounter').textContent=`Point ${pointIndex+1} of 5`;$('stepCounter').textContent=`Sentence ${stepIndex+1} of 3`;$('markCounter').textContent=`Marks: ${score} / 15`;$('progressInner').style.width=`${100*completed/15}%`;$('progress').setAttribute('aria-valuenow',String(completed));$('pointTitle').textContent=`${p.emoji} Point ${pointIndex+1}: ${p.name}`;$('stepHelp').textContent=`${PHASES[stepIndex].help} / ${PHASES[stepIndex].malay}`;$('chooseTitle').textContent=`Choose the best sentence — ${PHASES[stepIndex].name}`;mapInto('gameMap',pointIndex);const built=fullParagraph(p,paragraphs[pointIndex]);$('builtParagraph').textContent=built||'Choose a sentence below to begin...';$('builtParagraph').className=built?'built':'placeholder';$('choices').replaceChildren();choices.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.className='choice';b.disabled=solved;const letter=document.createElement('span');letter.className='letter';letter.textContent='ABCD'[i];const words=document.createElement('span');words.textContent=c.text;b.append(letter,words);b.addEventListener('click',()=>choose(c,b));$('choices').append(b);});hide('feedback');hide('nextWrap');}
+  function feedback(type,title,bodyEn,bodyMs,correctLine=''){const el=$('feedback');el.className='feedback '+type;el.replaceChildren();const heading=document.createElement('h3');heading.textContent=title;el.append(heading);for(const t of [bodyEn,'🇲🇾 '+bodyMs]){const p=document.createElement('p');p.textContent=t;el.append(p);}if(correctLine){const d=document.createElement('div');d.className='correct-line';d.textContent='✅ Suitable sentence: '+correctLine;el.append(d);}show('feedback');}
+  function choose(c,button){if(solved)return;const p=POINTS[pointIndex];if(c.owner!==pointIndex){wrongYet=true;button.classList.add('wrong');const owner=POINTS[c.owner];feedback('bad','❌ Not quite — try again!','That sentence explains '+owner.name.toLowerCase()+', but our current point is '+p.name.toLowerCase()+'. Choose a sentence that develops '+p.name.toLowerCase()+'.','Ayat itu menerangkan '+owner.bm+', tetapi isi sekarang ialah '+p.bm+'. Pilih ayat yang menghuraikan '+p.bm+'.',p.sentences[stepIndex]);return;}solved=true;button.classList.add('correct');if(!wrongYet){score++;pointScores[pointIndex]++;}completed++;paragraphs[pointIndex].push(p.sentences[stepIndex]);$('builtParagraph').textContent=fullParagraph(p,paragraphs[pointIndex]);$('builtParagraph').className='built';document.querySelectorAll('#choices button').forEach(b=>b.disabled=true);$('markCounter').textContent=`Marks: ${score} / 15`;$('progressInner').style.width=`${100*completed/15}%`;$('progress').setAttribute('aria-valuenow',String(completed));feedback('good',wrongYet?'✅ Correct! Good correction.':'✅ Excellent! +1 mark',p.en[stepIndex],p.ms[stepIndex]);$('nextBtn').textContent=stepIndex<2?'Next Sentence →':pointIndex<4?'Next Point →':'See All Five Paragraphs →';show('nextWrap');}
+  function advance(){if(!solved)return;if(stepIndex<2)stepIndex++;else if(pointIndex<4){pointIndex++;stepIndex=0;}else {showReview();return;}wrongYet=false;solved=false;newChoices();render();$('game').scrollIntoView({behavior:'smooth',block:'start'});}
+  function showReview(){hide('game');hide('results');show('review');const list=$('paragraphsList');list.replaceChildren();POINTS.forEach((p,i)=>{const section=document.createElement('section');section.className='para-review';const title=document.createElement('h3');title.textContent=`${i+1}. ${p.emoji} ${p.name}`;const paragraph=document.createElement('p');paragraph.textContent=fullParagraph(p,paragraphs[i]);section.append(title,paragraph);list.append(section);});$('copiedCheck').checked=hasCopied;$('scoreBtn').disabled=!hasCopied;window.scrollTo({top:0,behavior:'smooth'});}
+  function finish(){if(!hasCopied)return;hide('review');show('results');$('resultStudent').textContent='Student / Nama: '+student;$('finalScore').textContent=`${score} / 15`;$('resultMessage').textContent=score===15?'🌟 Fantastic! All first attempts correct!':score>=11?'💜 Great job! Keep practising your elaborations.':score>=7?'📚 Good effort! Read the completed paragraphs again.':'🌱 Keep practising! Every correct sentence helps you improve.';const list=$('breakdown');list.replaceChildren();POINTS.forEach((p,i)=>{const line=document.createElement('div');line.className='result-line';const name=document.createElement('span');name.textContent=`${p.emoji} ${p.name}`;const mark=document.createElement('strong');mark.textContent=`${pointScores[i]} / 3`;line.append(name,mark);list.append(line);});window.scrollTo({top:0,behavior:'smooth'});}
+  mapInto('welcomeMap');
+  $('startBtn').addEventListener('click',start);
+  $('studentName').addEventListener('keydown',e=>{if(e.key==='Enter')start();});
+  $('nextBtn').addEventListener('click',advance);
+  $('copiedCheck').addEventListener('change',e=>{hasCopied=e.target.checked;$('scoreBtn').disabled=!hasCopied;});
+  $('scoreBtn').addEventListener('click',finish);
+  $('reviewBtn').addEventListener('click',showReview);
+  $('replayBtn').addEventListener('click',start);
 </script>
 </body>
 </html>
