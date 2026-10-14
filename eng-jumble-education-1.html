@@ -68,7 +68,7 @@
 
     <section class="card" id="welcome">
       <h2>✨ Ready to play?</h2>
-      <p class="subtitle">Every sentence is carefully scrambled. Arrange all the words, tap <b>Check Answer</b>, and read the English + Malay explanation.</p>
+      <p class="subtitle">Every sentence is carefully scrambled. Look for the capital letter and full stop to help you! Arrange the words, tap <b>Check Answer</b>, and read the English + Malay explanation.</p>
       <label for="studentName">Your name / Nama anda</label>
       <input id="studentName" type="text" maxlength="60" placeholder="Enter your full name" autocomplete="name">
       <p class="error hidden" id="nameError">Please enter your name first.</p>
@@ -80,7 +80,7 @@
       <div class="row"><span class="pill" id="qNumber">Question 1 / 20</span><span class="pill" id="difficulty">A2</span></div>
       <div class="meter" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="progress"><div id="progressFill" style="width:0%"></div></div>
       <h2>Arrange the words</h2>
-      <p class="instruction">Tap the words in the correct order. Tap any selected word to put it back. Punctuation is added automatically.</p>
+      <p class="instruction">Tap the words in the correct order. The capital letter and full stop are clues! Tap any selected word to put it back.</p>
       <div class="box-label">YOUR SENTENCE</div>
       <div class="answer-zone" id="answerZone" aria-label="Your selected words"></div>
       <div class="box-label">MIXED-UP WORDS</div>
@@ -179,10 +179,10 @@
       return best; // Robust fallback if a sentence contains many repeated words.
     }
     function labelWord(index) {
-      const word = normalize(tiles[index]);
-      if (word === "i") return "I";
-      if (word === "aina") return "Aina";
-      return word; // No capital-letter or punctuation hints about the first/last tile.
+      // Preserve the original word exactly: the opening capital and final full stop
+      // remain on their tiles even while the words are thoroughly shuffled.
+      // This also preserves names, "I", and any commas inside the sentence.
+      return tiles[index];
     }
     function makeTile(index, area, action) {
       const button = document.createElement("button");
@@ -227,8 +227,9 @@
       if (checked || chosen.length !== tiles.length) return;
       checked = true;
       const q = QUESTIONS[order[position]];
-      // Compare words, not tile IDs: exchanging identical words must still count as correct.
-      const correct = chosen.every((index,i) => normalize(tiles[index]) === normalize(tiles[i]));
+      // Compare displayed words, not tile IDs: identical tiles may be swapped,
+      // but the capital letter and punctuation must be placed correctly.
+      const correct = chosen.every((index,i) => tiles[index] === tiles[i]);
       if (correct) score++;
       history.push({sentence:q[0],correct});
       const result = $("feedback");
