@@ -3,7 +3,7 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**104 games** — automatically updated when an HTML game is added or changed.
+**108 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
@@ -96,6 +96,10 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [Story Emoji Fill (Set 5)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-5.html) — updated 15 Oct 2026
+- [Story Emoji Fill (Set 4)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-4.html) — updated 15 Oct 2026
+- [Story Emoji Fill (Set 3)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-3.html) — updated 15 Oct 2026
+- [Story Emoji Fill (Set 2)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-2.html) — updated 15 Oct 2026
 - [Story Emoji Fill (Set 1)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-1.html) — updated 15 Oct 2026
 - [Kanji & Katakana Spell-Off (Set 7)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-7.html) — updated 15 Oct 2026
 - [Kanji & Katakana Spell-Off (Set 6)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-6.html) — updated 15 Oct 2026
