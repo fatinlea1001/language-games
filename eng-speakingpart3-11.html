@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ede8ff"><meta name="description" content="SPM Speaking Part 3: Build five connected paragraphs about adapting to life in a foreign country."><title>Speak &amp; Build | Ways to Adapt Yourself in a Foreign Country</title><style>
+
+    :root{--ink:#233651;--muted:#667895;--purple:#397ae6;--purple-dark:#2459be;--purple-light:#edf4ff;--pink:#ffe8f1;--border:#d4e3fc;--good:#176a4b;--good-bg:#eaf9f1;--bad:#a13b57;--bad-bg:#fff0f3;--white:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 0 0,#dfedff 0,transparent 32%),radial-gradient(circle at 100% 0,#d7e0ff 0,transparent 31%),linear-gradient(160deg,#eff7ff,#f7faff 55%,#fff8fd);min-height:100vh}
+    .container{max-width:850px;margin:auto;padding:22px 15px 50px}
+    .brand{text-align:center;margin-bottom:19px}
+    .brand small{display:inline-block;border-radius:99px;background:#fff;padding:7px 14px;color:#3267b7;font-size:.76rem;font-weight:850;letter-spacing:.055em;box-shadow:0 2px 13px #95b7e52c}
+    .brand h1{font-size:clamp(1.7rem,5vw,2.5rem);margin:10px 0 6px;letter-spacing:-.035em}
+    .brand p{margin:0;color:var(--muted);font-size:.95rem}
+    .card{background:#ffffffef;border:1px solid var(--border);border-radius:23px;padding:clamp(19px,4vw,32px);box-shadow:0 13px 33px #6897db21}
+    .hidden{display:none!important}
+    .question{background:linear-gradient(115deg,#dfecff,#f1eaff);border:1px solid #cad9fa;padding:20px 18px;border-radius:18px;text-align:center}
+    .question .label{font-size:.76rem;font-weight:850;color:#3a65ae;text-transform:uppercase;letter-spacing:.07em}
+    .question h2{font-size:clamp(1.18rem,4vw,1.6rem);line-height:1.32;margin:8px auto 0;max-width:670px}
+    .mindmap{margin:19px 0 8px;text-align:center}
+    .mindmap strong{display:block;margin-bottom:12px}
+    .map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    .map-node{border:2px solid #c9d9f5;background:#f9fbff;border-radius:14px;min-height:83px;padding:11px 6px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;text-align:center;font-size:.83rem;font-weight:800;overflow-wrap:anywhere}
+    .map-node .emoji{font-size:1.45rem}
+    .map-node.active{background:#d7e7ff;border-color:#328b90;box-shadow:0 0 0 2px #e0eaff}
+    .map-node.done{background:#e6f4ed;border-color:#94c9b5}
+    .hint{font-size:.9rem;color:var(--muted);line-height:1.65}
+    .name-label{display:block;font-weight:800;margin:23px 0 8px}
+    input[type=text]{font:inherit;width:100%;padding:14px;border:2px solid #c8d9f8;border-radius:12px;color:var(--ink);background:white}
+    input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline:3px solid #8eb1fa;outline-offset:3px}
+    .error{font-size:.88rem;color:var(--bad);margin:8px 0 0}
+    button{font:inherit;font-weight:820;cursor:pointer;border:0;border-radius:13px;padding:13px 19px}
+    button:disabled{opacity:.47;cursor:not-allowed}
+    .btn-primary{background:var(--purple);color:white}
+    .btn-primary:not(:disabled):hover{background:var(--purple-dark)}
+    .btn-soft{background:#e5efff;color:#315fb5}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .button-row>button{flex:1 1 190px}
+    .status{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}
+    .chip{display:inline-flex;align-items:center;background:#e9f1ff;border-radius:99px;padding:6px 11px;color:#3766b2;font-size:.83rem;font-weight:850}
+    .progress{height:9px;border-radius:99px;background:#e7eeff;overflow:hidden;margin:12px 0 20px}
+    .progress-inner{height:100%;width:0;background:linear-gradient(90deg,#61adff,#8474e8);transition:width .25s}
+    .point-heading{font-size:1.45rem;letter-spacing:-.025em;margin:11px 0 5px}
+    .step-desc{font-size:.95rem;color:var(--muted);margin:0 0 14px}
+    .paragraph-box{background:#f5f9ff;border:1px solid #d6e3ff;border-left:5px solid #76a2ee;border-radius:14px;padding:15px 17px;margin:17px 0;min-height:90px;line-height:1.8}
+    .paragraph-box .mini-label{font-size:.73rem;color:#3c6fba;font-weight:850;letter-spacing:.045em;margin-bottom:5px}
+    .placeholder{color:#9a94ae;font-style:italic}
+    .paragraph-box p{margin:0}
+    .paragraph-box .built{font-weight:600}
+    .choose-title{font-size:1.07rem;margin:21px 0 11px}
+    .choices{display:grid;gap:10px}
+    .choice{width:100%;text-align:left;display:flex;align-items:flex-start;gap:12px;color:var(--ink);font-weight:600;line-height:1.5;background:#fff;border:2px solid #d2dff6;transition:background .15s,border-color .15s}
+    .choice:hover:not(:disabled){border-color:#89aaf3;background:#f5f8ff}
+    .choice.correct{border-color:#67b994;background:var(--good-bg)}
+    .choice.wrong{border-color:#e6a3b4;background:var(--bad-bg)}
+    .letter{display:inline-flex;flex:0 0 28px;width:28px;height:28px;justify-content:center;align-items:center;border-radius:9px;background:#e6f0ff;color:#3567ae;font-size:.83rem;font-weight:850}
+    .feedback{border-radius:15px;margin-top:16px;padding:15px 17px;line-height:1.65}
+    .feedback.good{background:var(--good-bg);border:1px solid #9dd5bb}
+    .feedback.bad{background:var(--bad-bg);border:1px solid #ecc2cc}
+    .feedback h3{margin:0 0 6px;font-size:1.04rem}
+    .feedback p{margin:8px 0 0;font-size:.92rem}
+    .feedback .correct-line{padding:9px 11px;border-radius:9px;background:#fff;font-weight:700;margin-top:10px}
+    .para-review{background:#f8faff;border:1px solid #d6e2fa;border-radius:14px;padding:16px 17px;margin:12px 0}
+    .para-review h3{font-size:1.08rem;margin:0 0 6px}
+    .para-review p{margin:0;line-height:1.8}
+    .copy-banner{background:#fff3c9;border:3px solid #dfab38;border-radius:17px;padding:20px;margin:21px 0;box-shadow:0 5px 0 #f3e4bb}
+    .copy-banner h3{margin:0 0 10px;font-size:clamp(1.22rem,4.5vw,1.55rem);color:#7d4e0d}
+    .copy-banner p{margin:6px 0;line-height:1.6}
+    .tick{display:flex;align-items:flex-start;gap:11px;padding:12px 0;font-weight:700;line-height:1.5}
+    .tick input{margin:4px 0 0;transform:scale(1.35);accent-color:var(--purple)}
+    .score{font-size:clamp(3rem,9vw,4.7rem);color:var(--purple-dark);font-weight:950;text-align:center;margin:12px 0 2px}
+    .center{text-align:center}
+    .result-line{padding:11px 0;border-bottom:1px solid #dce6f8;display:flex;justify-content:space-between;gap:9px}
+    .result-line:last-child{border:0}
+    .footer{text-align:center;color:#667895;margin:21px 0 0;font-size:.78rem}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(3,1fr)}.map-node{min-height:72px}.container{padding-top:15px}.card{border-radius:18px}.choice{padding:12px}}
+    @media(max-width:380px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+    @media print{body{background:white}.brand,.question,.mindmap,#welcome,#game,#results,.copy-banner,.tick,.button-row,.footer{display:none!important}#review{display:block!important;box-shadow:none;border:0;padding:0}.para-review{break-inside:avoid}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    .map-node.pick{cursor:pointer;transition:transform .12s,background .12s,border-color .12s}
+    .map-node.pick:hover:not(:disabled){transform:translateY(-2px);border-color:#7ca7f0}
+    .map-node.pick:disabled{cursor:not-allowed;opacity:.66}
+    .map-node.selected{background:#deebff;border-color:#4785e5;box-shadow:0 0 0 2px #e5edff}
+    .map-node.skipped{background:#f2f3f5;border-color:#dde2e5;color:#8b9198}
+    .map-node small{font-size:.67rem;font-weight:800;line-height:1.2}
+    .map-node.active{background:#e8ddff;border-color:#9382da;box-shadow:0 0 0 2px #eeeaff}
+    .select-help{margin-top:12px;border-radius:12px;padding:10px 12px;background:#edf4ff;color:#345d9e;font-size:.92rem;font-weight:750;text-align:center}
+    .map-grid button{font:inherit}
+    .note{background:#eaf3ff;border-radius:12px;padding:12px 14px;line-height:1.55;font-size:.91rem;margin:14px 0}
+    .copy-banner{background:#fff3bf;border-color:#dda225}
+    .copy-banner h3{font-size:clamp(1.3rem,4.6vw,1.65rem)}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+  
+  .subline{font-weight:700;margin-top:9px;color:#47648e}
+  .opening-tag{display:inline-block;border-radius:8px;background:#e0ebff;color:#2e63b7;padding:3px 8px;font-size:.75rem;font-weight:850;margin-bottom:8px}
+  .choice.target{border-color:#3c80d9;background:#e9f2ff;box-shadow:0 0 0 2px #d6e8ff}
+  .choice.target .letter{background:#397ae6;color:white}
+  .paragraph-box .built{font-weight:540}
+  .copy-banner{background:#fff1be;border-color:#dfa33f}
+  .note{background:#edf4ff}
+  @media print{.opening-tag{display:none}}
+
+
+/* Adapt to Life Abroad: pastel lavender + mint */
+:root{--ink:#343755;--muted:#646b8b;--purple:#7462c8;--purple-dark:#5846ad;--purple-light:#f0ebff;--border:#e0dbf5;--good:#176a4b;--good-bg:#e7f8ef;--bad:#a13b57;--bad-bg:#fff0f3}
+body{background:radial-gradient(circle at 5% 4%,#e8e0ff 0,transparent 34%),radial-gradient(circle at 100% 8%,#d5f6ed 0,transparent 32%),linear-gradient(150deg,#f5f1ff,#f5fcfa 57%,#fff8f4)}
+.brand small{color:#6756b3;box-shadow:0 2px 13px #b9a5dd39}
+.brand h1{color:#6756bd}
+.card{box-shadow:0 14px 36px #8e83c22c}
+.question{background:linear-gradient(115deg,#ede4ff,#e0f9ef);border-color:#d9d0f0}
+.question .label{color:#6d56ad}
+.map-node{border-color:#ded9f0;background:#fffefd}
+.map-node.selected{background:#e9e3ff;border-color:#8876ce;box-shadow:0 0 0 2px #f6f3ff}
+.map-node.active{background:#dbf6ed;border-color:#65c2aa;box-shadow:0 0 0 2px #effcf7}
+.map-node.done{background:#e5f7ed;border-color:#77c5a5}
+.map-node.pick:hover:not(:disabled){border-color:#927dc9}
+.map-node.skipped{background:#f2f4f5;border-color:#dce4e6}
+input[type=text]{border-color:#dbd1f2}
+input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline-color:#a48be8}
+.btn-soft{background:#ebe6ff;color:#6656b3}
+.chip{background:#eee8ff;color:#6b59b1}
+.progress{background:#e8e3f6}
+.progress-inner{background:linear-gradient(90deg,#8d7de2,#84d2bc)}
+.paragraph-box{background:#f8f6ff;border-color:#e3ddf8;border-left-color:#9c85da}
+.paragraph-box .mini-label{color:#735fbb}
+.choice{border-color:#ddd5f2}
+.choice:hover:not(:disabled){border-color:#a89ae2;background:#faf8ff}
+.letter{background:#ebe6ff;color:#6856b3}
+.para-review{background:#fffeff;border-color:#e5def4}
+.select-help{background:#eee8ff;color:#6958b7}
+.opening-tag{background:#ebe6ff;color:#6555b5}
+.choice.target{border-color:#8471cf;background:#eee9ff;box-shadow:0 0 0 2px #e3dcff}
+.choice.target .letter{background:#7462c8;color:white}
+.result-line{border-bottom-color:#e6e2f0}
+.note{background:#effbf7;color:#466f69;border:1px solid #d3eee3}
+.copy-banner{background:#fff0c9;border-color:#e3b45a}
+@media print{.container{max-width:none}.para-review{break-inside:avoid}}
+</style></head><body>
+<main class="container">
+<header class="brand"><small>🗣️ SPM ENGLISH SPEAKING PRACTICE</small><h1>🌏 Speak &amp; Build!</h1><p>Part 3 · Ways to Adapt Yourself in a Foreign Country</p></header>
+<section id="welcome" class="card">
+  <div class="question"><div class="label">Speaking Part 3 · Discussion Question</div><h2>How can you adapt to life in a foreign country?</h2><p class="subline">Choose any five points from the mind map.</p></div>
+  <div class="note" role="note">💡 <b>Speaking tip:</b> Each paragraph begins with a transition, followed by an explanation, an example and a result. / <b>Tip bertutur:</b> Setiap perenggan bermula dengan penanda wacana, diikuti huraian, contoh dan kesan.</div>
+  <p class="hint">🌏 <b>Speaking tip:</b> Give practical ways to adjust to unfamiliar surroundings. Use a clear example and result. / <b>Tip bertutur:</b> Berikan cara yang praktikal untuk menyesuaikan diri di tempat baharu. Gunakan contoh dan kesan yang jelas.</p>
+  <div class="mindmap"><strong>🧠 Six Points in the Mind Map</strong><div class="map-grid" id="welcomeMap"></div></div>
+  <div class="select-help" id="selectCount" role="status" aria-live="polite">Choose FIVE points (0 / 5 selected).</div>
+  <p class="hint">Select any <b>FIVE out of SIX</b> points. / Pilih mana-mana <b>LIMA daripada ENAM</b> isi.</p>
+  <label class="name-label" for="studentName">Your name / Nama murid</label>
+  <input id="studentName" type="text" maxlength="65" placeholder="Enter your name" autocomplete="name">
+  <p id="nameError" class="error hidden" role="alert">Please enter your name. / Sila masukkan nama.</p>
+  <div class="button-row"><button type="button" class="btn-primary" id="startBtn" disabled>Start Building My Five Paragraphs →</button></div>
+  <p class="hint">For each point, you will choose <b>3 elaboration sentences</b>. A correct first attempt earns 1 mark. Total: <b>15 marks</b>. Each paragraph begins with a cohesive transition.</p>
+</section>
+<section id="game" class="card hidden">
+  <div class="status"><span class="chip" id="pointCounter">Point 1 of 5</span><span class="chip" id="stepCounter">Sentence 1 of 3</span><span class="chip" id="markCounter">Marks: 0 / 15</span></div>
+  <div class="progress" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progress"><div class="progress-inner" id="progressInner"></div></div>
+  <div class="question"><div class="label">Speaking Part 3 · Discussion Question</div><h2>How can you adapt to life in a foreign country?</h2></div>
+  <div class="mindmap"><strong>🧠 All Six Original Points</strong><div class="map-grid" id="gameMap"></div></div>
+  <h2 class="point-heading" id="pointTitle">Point 1</h2><p class="step-desc" id="stepHelp"></p>
+  <div class="paragraph-box" aria-live="polite"><div class="mini-label">YOUR PARAGRAPH SO FAR</div><div class="opening-tag">✨ Transition + main point</div><p id="builtParagraph" class="built"></p></div>
+  <h3 class="choose-title" id="chooseTitle">Choose the most suitable sentence:</h3><div class="choices" id="choices"></div>
+  <div class="feedback hidden" id="feedback" role="status" aria-live="polite"></div>
+  <div class="button-row hidden" id="nextWrap"><button type="button" class="btn-primary" id="nextBtn">Next Sentence →</button></div>
+</section>
+<section id="review" class="card hidden">
+  <div class="question"><div class="label">Fantastic! 🎉</div><h2>Your FIVE Completed Paragraphs</h2></div>
+  <p class="hint center">Look at the transitions, explanations, examples and results. Read the paragraphs and copy them into your exercise book.</p>
+  <div id="paragraphsList"></div>
+  <div class="copy-banner" role="note"><h3>📚✏️ IMPORTANT! COPY ALL FIVE PARAGRAPHS INTO YOUR EXERCISE BOOK!</h3><p><b>Copy the five complete paragraphs before viewing your score.</b></p><p><b>PENTING! SALIN KELIMA-LIMA PERENGGAN INI KE DALAM BUKU LATIHAN ANDA SEBELUM MELIHAT MARKAH!</b></p></div>
+  <label class="tick"><input type="checkbox" id="copiedCheck"><span>I have copied all FIVE paragraphs into my exercise book.<span class="hint" style="display:block">Saya telah menyalin KELIMA-LIMA perenggan ke dalam buku latihan.</span></span></label>
+  <div class="button-row"><button type="button" id="scoreBtn" class="btn-primary" disabled>Continue to Final Score →</button></div>
+</section>
+<section id="results" class="card hidden">
+  <div class="center" style="font-size:2.6rem">🎉🏆🌟</div><h2 class="center">Great Work! Quiz Complete!</h2>
+  <p class="center hint">Ways to Adapt Yourself in a Foreign Country</p><p id="resultStudent" class="center" style="font-weight:800"></p><div id="finalScore" class="score">0 / 15</div><p class="center" id="resultMessage"></p>
+  <h3>📚 Your Five Selected Points</h3><div id="breakdown"></div>
+  <p class="hint">📸 Take a screenshot showing your name and final score for your teacher.</p>
+  <div class="button-row"><button type="button" class="btn-soft" id="reviewBtn">📖 See My Five Paragraphs</button><button type="button" class="btn-primary" id="replayBtn">🔀 Replay · Choose Five Points</button></div>
+</section>
+<footer class="footer">SPM Speaking Part 3 • Standalone HTML • GitHub Pages friendly • Works offline</footer>
+</main>
+<script>
+'use strict';
+const POINTS = [{"key":"language","name":"Learn the Local Language","emoji":"🗣️","bm":"belajar bahasa tempatan","focus":"using the local language to communicate in everyday situations","focusMs":"menggunakan bahasa tempatan untuk berkomunikasi dalam situasi harian","intro":"learning the local language helps newcomers communicate more easily in everyday situations.","introSecond":"Another useful way to adapt is to learn the local language.","sentences":["Even a few common phrases can help them understand signs and speak to people around them.","For example, a teenager can ask for directions or order a meal using simple local expressions.","As a result, daily activities become less stressful, and they can feel more independent."],"en":["This explains how knowing simple local phrases makes daily communication easier.","Asking for directions or ordering food shows how someone can use the local language in real life.","This result connects language learning with confidence and independence in daily activities."],"ms":["Ayat ini menerangkan bagaimana frasa mudah dalam bahasa tempatan memudahkan komunikasi harian.","Bertanya arah atau memesan makanan menunjukkan cara seseorang menggunakan bahasa tempatan dalam kehidupan sebenar.","Kesan ini mengaitkan pembelajaran bahasa dengan keyakinan dan kebolehan berdikari dalam aktiviti harian."]},{"key":"festivals","name":"Join the Community Festivals","emoji":"🎉","bm":"menyertai perayaan masyarakat setempat","focus":"participating in neighbourhood celebrations and community festivals","focusMs":"menyertai sambutan kejiranan dan perayaan masyarakat setempat","intro":"joining community festivals can help newcomers feel part of local life.","introSecond":"Another enjoyable way to adjust is to join community festivals.","sentences":["Local celebrations provide opportunities to take part in activities alongside neighbours.","For instance, a teenager might attend a town festival and watch traditional performances with local families.","Through these shared experiences, they can feel more welcome and connected to the community."],"en":["This explanation describes how festivals bring newcomers and neighbours together.","Attending a town festival is a clear example of joining a community celebration.","This result shows how taking part in festivals can increase a sense of belonging."],"ms":["Huraian ini menunjukkan bagaimana perayaan menyatukan pendatang baharu dengan jiran tetangga.","Menghadiri perayaan di bandar ialah contoh jelas menyertai sambutan masyarakat setempat.","Kesan ini menunjukkan bagaimana penyertaan dalam perayaan dapat memupuk rasa diterima dalam masyarakat."]},{"key":"friends","name":"Make New Friends","emoji":"🤝","bm":"mencari kawan baharu","focus":"building friendships and finding social support in a new country","focusMs":"membina persahabatan dan mendapatkan sokongan sosial di negara baharu","intro":"making new friends can provide comfort and support in an unfamiliar place.","introSecond":"Another important step is to make new friends who can offer support.","sentences":["Friends can introduce newcomers to their surroundings and help them feel less lonely.","For example, a student can join a school club and get to know classmates with similar interests.","Consequently, they may settle in more confidently and have people to ask for help."],"en":["This explanation focuses on the support and companionship that new friends can provide.","Joining a school club is a suitable example of meeting peers and making friends.","This result links new friendships with confidence and support when adjusting to a new country."],"ms":["Huraian ini menekankan sokongan dan persahabatan yang dapat diberikan oleh kawan baharu.","Menyertai kelab sekolah ialah contoh sesuai untuk bertemu rakan sebaya dan berkawan.","Kesan ini mengaitkan persahabatan baharu dengan keyakinan serta sokongan ketika menyesuaikan diri di negara baharu."]},{"key":"food","name":"Try Local Food","emoji":"🍜","bm":"mencuba makanan tempatan","focus":"tasting local dishes and becoming familiar with unfamiliar flavours","focusMs":"mencuba hidangan tempatan dan membiasakan diri dengan cita rasa baharu","intro":"trying local food is a simple way to become familiar with life in another country.","introSecond":"Another interesting way to adapt is to try local food.","sentences":["Local dishes introduce newcomers to ingredients and flavours that are popular in their new home.","For instance, they can visit a food market and try a dish recommended by local residents.","Over time, enjoying unfamiliar food can make daily life feel more comfortable and exciting."],"en":["This explanation focuses on discovering local dishes and flavours.","Trying food recommended by residents is a clear example of exploring local cuisine.","This result shows how becoming familiar with local meals can make life feel more enjoyable."],"ms":["Huraian ini berfokus pada pengenalan hidangan dan cita rasa tempatan.","Mencuba makanan yang disyorkan penduduk tempatan ialah contoh jelas meneroka masakan setempat.","Kesan ini menunjukkan bagaimana kebiasaan dengan makanan tempatan boleh menjadikan kehidupan lebih menyeronokkan."]},{"key":"openmind","name":"Keep an Open Mind","emoji":"🌱","bm":"bersikap terbuka","focus":"accepting different habits and ideas without judging too quickly","focusMs":"menerima kebiasaan dan pandangan berbeza tanpa cepat menghakimi","intro":"keeping an open mind helps teenagers accept differences in their new surroundings.","introSecond":"Another helpful attitude is to keep an open mind when facing unfamiliar customs.","sentences":["People may have different habits and views, so it is important not to judge them too quickly.","For example, a teenager can listen respectfully when a new friend explains an unfamiliar tradition.","This attitude can reduce misunderstandings and make adjusting to a new environment easier."],"en":["This explains why an open mind is important when people think or behave differently.","Listening respectfully to another point of view is an example of being open-minded.","This result links acceptance of differences with fewer misunderstandings and easier adjustment."],"ms":["Ayat ini menerangkan kepentingan sikap terbuka apabila orang lain mempunyai pandangan atau kebiasaan berbeza.","Mendengar pandangan orang lain dengan hormat ialah contoh sikap terbuka.","Kesan ini mengaitkan penerimaan perbezaan dengan kurangnya salah faham dan penyesuaian diri yang lebih mudah."]},{"key":"culture","name":"Learn About the Culture","emoji":"🏮","bm":"mempelajari budaya tempatan","focus":"understanding local customs, greetings and social expectations","focusMs":"memahami adat, sapaan dan adab masyarakat setempat","intro":"learning about the local culture helps people understand how to behave respectfully.","introSecond":"Another practical step is to learn about the local culture and customs.","sentences":["Understanding common greetings and social rules can prevent accidental disrespect.","For example, newcomers can learn polite ways to greet teachers or neighbours in their host country.","Therefore, they can interact more comfortably with local people and build positive relationships."],"en":["This explains why learning about cultural rules helps newcomers show respect.","Learning polite greetings is a specific example of understanding local customs.","This result connects cultural knowledge with respectful and comfortable interactions."],"ms":["Huraian ini menerangkan bagaimana pengetahuan tentang adat membantu pendatang baharu menunjukkan rasa hormat.","Mempelajari cara memberi salam yang sopan ialah contoh khusus memahami adat tempatan.","Kesan ini mengaitkan pengetahuan budaya dengan interaksi yang sopan dan selesa."]}];
+const LEADS = [
+ 'To begin with, ',
+ 'Secondly, ',
+ 'In addition, ',
+ 'Furthermore, ',
+ 'Finally, '
+];
+const PHASES = [
+ {en:'Choose a suitable EXPLANATION.',ms:'Pilih ayat HURAIAN yang sesuai.',name:'Explanation'},
+ {en:'Choose a suitable EXAMPLE or supporting detail.',ms:'Pilih CONTOH atau maklumat sokongan yang sesuai.',name:'Example / Detail'},
+ {en:'Choose a suitable RESULT or benefit.',ms:'Pilih KESAN atau faedah yang sesuai.',name:'Result / Benefit'}
+];
+const $ = id => document.getElementById(id);
+const show = id => $(id).classList.remove('hidden');
+const hide = id => $(id).classList.add('hidden');
+const shuffle = xs => {const a=xs.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let student='',selectedKeys=[],selectedPoints=[],pointIndex=0,stepIndex=0,score=0,pointScores=[],wrongYet=false,solved=false,choices=[],paragraphs=[],completed=0,hasCopied=false;
+function openSentence(p, position){return position===1 ? p.introSecond : LEADS[position] + p.intro;}
+function fullParagraph(p,position,lines){return [openSentence(p,position),...lines].join(' ');}
+function resetWelcomeMap(){
+ const wrap=$('welcomeMap');wrap.replaceChildren();
+ POINTS.forEach(p=>{
+  const b=document.createElement('button');b.type='button';b.className='map-node pick'+(selectedKeys.includes(p.key)?' selected':'');
+  b.disabled=selectedKeys.length===5&&!selectedKeys.includes(p.key);
+  b.setAttribute('aria-pressed',String(selectedKeys.includes(p.key)));
+  const icon=document.createElement('span');icon.className='emoji';icon.textContent=p.emoji;
+  const name=document.createElement('span');name.textContent=p.name;
+  const state=document.createElement('small');state.textContent=selectedKeys.includes(p.key)?'✓ SELECTED':'TAP TO SELECT';
+  b.append(icon,name,state);
+  b.addEventListener('click',()=>{
+   if(selectedKeys.includes(p.key))selectedKeys=selectedKeys.filter(k=>k!==p.key);
+   else if(selectedKeys.length<5)selectedKeys.push(p.key);
+   resetWelcomeMap();
+  });wrap.append(b);
+ });
+ $('selectCount').textContent=selectedKeys.length===5?'✅ Five points selected! You can change one before starting.':`Choose FIVE points (${selectedKeys.length} / 5 selected).`;
+ $('startBtn').disabled=selectedKeys.length!==5;
+}
+function renderGameMap(){
+ const wrap=$('gameMap');wrap.replaceChildren();
+ POINTS.forEach(p=>{
+  const index=selectedPoints.findIndex(q=>q.key===p.key);
+  const node=document.createElement('div');node.className='map-node '+(index<0?'skipped':index===pointIndex?'active':index<pointIndex?'done':'selected');
+  const ico=document.createElement('span');ico.className='emoji';ico.textContent=p.emoji;
+  const name=document.createElement('span');name.textContent=p.name;
+  const st=document.createElement('small');st.textContent=index<0?'NOT SELECTED':index===pointIndex?'CURRENT POINT':index<pointIndex?'COMPLETED':'SELECTED';
+  node.append(ico,name,st);wrap.append(node);
+ });
+}
+function newChoices(){
+ const p=selectedPoints[pointIndex];
+ const others=shuffle(POINTS.filter(q=>q.key!==p.key)).slice(0,2);
+ choices=shuffle([{text:p.sentences[stepIndex],owner:p.key},...others.map(q=>({text:q.sentences[stepIndex],owner:q.key}))]);
+}
+function start(){
+ const name=$('studentName').value.trim();if(!name){show('nameError');$('studentName').focus();return;}
+ hide('nameError');if(selectedKeys.length!==5)return;
+ student=name;
+ // Keep the order consistent with the original mind map, not the order of clicks.
+ selectedPoints=POINTS.filter(p=>selectedKeys.includes(p.key));
+ pointIndex=0;stepIndex=0;score=0;pointScores=Array(5).fill(0);wrongYet=false;solved=false;
+ paragraphs=selectedPoints.map(()=>[]);completed=0;hasCopied=false;
+ $('copiedCheck').checked=false;$('scoreBtn').disabled=true;
+ hide('welcome');hide('review');hide('results');show('game');newChoices();render();window.scrollTo(0,0);
+}
+function render(){
+ const p=selectedPoints[pointIndex];
+ $('pointCounter').textContent=`Point ${pointIndex+1} of 5`;
+ $('stepCounter').textContent=`Sentence ${stepIndex+1} of 3`;
+ $('markCounter').textContent=`Marks: ${score} / 15`;
+ $('progressInner').style.width=`${completed/15*100}%`;
+ $('progress').setAttribute('aria-valuenow',String(completed));
+ $('pointTitle').textContent=`${p.emoji} Point ${pointIndex+1}: ${p.name}`;
+ $('stepHelp').textContent=PHASES[stepIndex].en+' / '+PHASES[stepIndex].ms;
+ $('chooseTitle').textContent=`Choose the best sentence — ${PHASES[stepIndex].name}`;
+ renderGameMap();
+ $('builtParagraph').textContent=fullParagraph(p,pointIndex,paragraphs[pointIndex]);
+ $('choices').replaceChildren();
+ choices.forEach((c,i)=>{
+  const b=document.createElement('button');b.type='button';b.className='choice';b.disabled=solved;
+  const letter=document.createElement('span');letter.className='letter';letter.textContent='ABC'[i];
+  const txt=document.createElement('span');txt.textContent=c.text;
+  b.append(letter,txt);b.addEventListener('click',()=>choose(c,b));$('choices').append(b);
+ });
+ hide('feedback');hide('nextWrap');
+}
+function feedback(type,title,en,ms,correctLine=''){
+ const el=$('feedback');el.className='feedback '+type;el.replaceChildren();
+ const heading=document.createElement('h3');heading.textContent=title;
+ const english=document.createElement('p');english.textContent='🇬🇧 '+en;
+ const malay=document.createElement('p');malay.textContent='🇲🇾 '+ms;
+ el.append(heading,english,malay);
+ if(correctLine){const line=document.createElement('div');line.className='correct-line';line.textContent='✅ Correct sentence: '+correctLine;el.append(line);}
+ show('feedback');
+}
+function choose(c,b){
+ if(solved||b.disabled)return;
+ const p=selectedPoints[pointIndex];
+ if(c.owner!==p.key){
+  wrongYet=true;b.classList.add('wrong');b.disabled=true;
+  const wrong=POINTS.find(q=>q.key===c.owner);
+  document.querySelectorAll('#choices button').forEach((btn,i)=>{if(choices[i].owner===p.key)btn.classList.add('target');});
+  feedback('bad','❌ Not quite — try again!',
+   `This sentence focuses on ${wrong.focus}, but your paragraph is about ${p.focus}. Choose the highlighted sentence to continue.`,
+   `Ayat ini berfokus pada ${wrong.focusMs}, tetapi perenggan ini tentang ${p.focusMs}. Pilih ayat yang ditandakan untuk meneruskan.`,p.sentences[stepIndex]);
+  return;
+ }
+ solved=true;b.classList.remove('target');b.classList.add('correct');
+ if(!wrongYet){score++;pointScores[pointIndex]++;}
+ completed++;paragraphs[pointIndex].push(p.sentences[stepIndex]);
+ $('builtParagraph').textContent=fullParagraph(p,pointIndex,paragraphs[pointIndex]);
+ document.querySelectorAll('#choices button').forEach(btn=>btn.disabled=true);
+ $('markCounter').textContent=`Marks: ${score} / 15`;
+ $('progressInner').style.width=`${completed/15*100}%`;
+ $('progress').setAttribute('aria-valuenow',String(completed));
+ feedback('good',wrongYet?'✅ Correct! Keep practising.':'✅ Excellent! +1 mark',p.en[stepIndex],p.ms[stepIndex]);
+ $('nextBtn').textContent=stepIndex<2?'Next Sentence →':pointIndex<4?'Next Point →':'See All Five Paragraphs →';
+ show('nextWrap');
+}
+function advance(){
+ if(!solved)return;
+ if(stepIndex<2)stepIndex++;
+ else if(pointIndex<4){pointIndex++;stepIndex=0;}
+ else{showReview();return;}
+ wrongYet=false;solved=false;newChoices();render();window.scrollTo(0,0);
+}
+function showReview(){
+ hide('game');hide('results');show('review');
+ $('paragraphsList').replaceChildren();
+ selectedPoints.forEach((p,i)=>{
+  const section=document.createElement('section');section.className='para-review';
+  const title=document.createElement('h3');title.textContent=`${i+1}. ${p.emoji} ${p.name}`;
+  const body=document.createElement('p');body.textContent=fullParagraph(p,i,paragraphs[i]);
+  section.append(title,body);$('paragraphsList').append(section);
+ });
+ $('copiedCheck').checked=hasCopied;$('scoreBtn').disabled=!hasCopied;window.scrollTo(0,0);
+}
+function finish(){
+ if(!hasCopied)return;
+ hide('review');show('results');
+ $('resultStudent').textContent='Student / Nama: '+student;
+ $('finalScore').textContent=`${score} / 15`;
+ $('resultMessage').textContent=score===15?'🌟 Fantastic! All first attempts correct!':score>=11?'🌟 Great job! Keep practising your speaking skills.':score>=7?'📚 Good effort! Review the sentences you learnt.':'💡 Keep practising! Every sentence helps you improve.';
+ $('breakdown').replaceChildren();
+ selectedPoints.forEach((p,i)=>{
+  const line=document.createElement('div');line.className='result-line';
+  const label=document.createElement('span');label.textContent=p.emoji+' '+p.name;
+  const marks=document.createElement('strong');marks.textContent=`${pointScores[i]} / 3`;
+  line.append(label,marks);$('breakdown').append(line);
+ });window.scrollTo(0,0);
+}
+function replay(){hide('results');hide('review');hide('game');show('welcome');selectedKeys=[];resetWelcomeMap();window.scrollTo(0,0);}
+resetWelcomeMap();
+$('startBtn').addEventListener('click',start);
+$('studentName').addEventListener('keydown',e=>{if(e.key==='Enter')start();});
+$('nextBtn').addEventListener('click',advance);
+$('copiedCheck').addEventListener('change',e=>{hasCopied=e.target.checked;$('scoreBtn').disabled=!hasCopied;});
+$('scoreBtn').addEventListener('click',finish);
+$('reviewBtn').addEventListener('click',showReview);
+$('replayBtn').addEventListener('click',replay);
+</script></body></html>
