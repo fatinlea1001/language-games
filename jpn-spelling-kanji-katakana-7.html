@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fff2e8">
+<title>Japanese Spell-Off! — Set 7</title>
+<style>
+:root{--accent:#db8a59;--soft:#fff2e8;--mist:#ffe9dc;--pale:#fffaf5;--ink:#4d465d;--good:#238354;--bad:#b63855}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:18px;font-family:system-ui,-apple-system,"Segoe UI","Yu Gothic","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 12%,var(--soft),transparent 37%),radial-gradient(circle at 95% 5%,var(--mist),transparent 42%),linear-gradient(135deg,var(--pale),#fff 65%,var(--soft))}
+.app{width:min(100%,650px);padding:clamp(20px,5vw,34px);text-align:center;border:1px solid #ffffffaa;background:#fffffff4;border-radius:26px;box-shadow:0 15px 40px #66546c24}
+h1{color:var(--accent);font-size:clamp(27px,5vw,37px);margin:7px 0 12px}p{line-height:1.6}.emoji{font-size:48px}.subtitle{color:#716a7a;margin:9px 0 20px}
+.pill{display:inline-block;border-radius:90px;background:var(--soft);color:var(--accent);padding:8px 16px;font-size:14px;font-weight:800}
+input{width:100%;margin:10px 0 0;padding:15px;border:2px solid #d8d1e2;border-radius:13px;font:inherit;font-size:16px;background:#fff;color:var(--ink)}
+button{font:inherit;cursor:pointer}.primary{display:block;width:100%;margin-top:17px;padding:15px 18px;border:0;border-radius:14px;color:#fff;background:var(--accent);font-weight:800;font-size:17px;box-shadow:0 4px 0 #5f4b5c1a}.secondary{background:#9b89a6}
+.primary:focus-visible,.choice:focus-visible,input:focus-visible,.mini:focus-visible{outline:3px solid #3179de;outline-offset:3px}
+button:disabled{cursor:default}.top{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;font-weight:800;flex-wrap:wrap}.track{height:11px;border-radius:30px;overflow:hidden;background:var(--soft);margin:18px 0 20px}.fill{height:100%;width:0;background:var(--accent);transition:width .2s}
+.meaning{font-size:clamp(27px,6vw,39px);font-weight:900;margin:10px 0 4px;line-height:1.3}.reading{min-height:26px;margin:6px 0;color:#756c80;font-size:15px}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0 12px}
+.choice{min-height:115px;padding:14px 7px;border:3px solid var(--mist);background:var(--soft);border-radius:16px;color:var(--ink);font-weight:800;font-size:clamp(23px,5vw,32px);overflow-wrap:anywhere;transition:background .2s,transform .12s}.choice:hover:not(:disabled){background:var(--mist);transform:translateY(-2px)}
+.choice.correct{background:#dff8e9;border-color:#2d9e68;color:#176c47;animation:pop .35s ease}.choice.wrong{background:#ffe1e8;border-color:#dc5779;color:#a92d4e;animation:shake .4s ease}
+.feedback{border-radius:13px;padding:15px;margin-top:12px;text-align:left;font-size:15px;line-height:1.6;font-weight:750}.feedback.good{background:#e9faef;color:#166641}.feedback.bad{background:#fff0f2;color:#9b2b47}
+.big{font-size:clamp(48px,12vw,68px);font-weight:950;color:var(--accent);margin:6px 0}.mini{border:0;border-radius:10px;padding:10px 14px;background:var(--soft);color:var(--accent);font-size:14px;font-weight:800}
+.review{margin:12px 0 0;padding:15px;border:1px solid var(--mist);border-radius:14px;text-align:left;background:#fff}.review h3{margin:0 0 8px}.review ol{margin:0;padding-left:22px}.review li{margin:9px 0;line-height:1.5}
+footer{font-size:12px;color:#8b8290;margin-top:25px}[hidden]{display:none!important}
+#effects{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:5}.particle{position:fixed;font-size:28px;animation:burst 1.1s ease-out forwards}
+@keyframes burst{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}20%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(25deg) scale(1.2)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}@keyframes pop{40%{transform:scale(1.07)}}
+@media(max-width:360px){.app{padding:17px 12px}.choice{font-size:21px;min-height:100px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="effects" aria-hidden="true"></div>
+<main class="app">
+ <section id="start">
+   <div class="emoji">🌸🇯🇵🛍️💼</div>
+   <h1>Japanese Spell-Off!</h1>
+   <span class="pill">SET 7</span>
+   <h2 style="margin:16px 0 5px">Shopping & Work</h2>
+   <p class="subtitle">Choose the correct Kanji or Katakana spelling.</p>
+   <p>📚 Mixed N5–N4 practice<br>🈶 12 Kanji + 13 Katakana each round<br>⭐ 25 questions • 1 point each</p>
+   <form id="startForm">
+    <label for="playerName" style="font-weight:800">Your name / おなまえ</label>
+    <input id="playerName" maxlength="50" placeholder="Enter your name" required autocomplete="name">
+    <button class="primary" type="submit">Start Game 🎮</button>
+   </form>
+   <p style="font-size:13px;color:#82778a">Fresh words and shuffled answers on replay! 🌷</p>
+ </section>
+ <section id="game" hidden>
+   <div class="top"><span id="player"></span><span id="score">⭐ 0 / 25</span></div>
+   <div class="track"><div class="fill" id="progress"></div></div>
+   <span class="pill" id="category">🈶 Kanji</span>
+   <p id="counter" style="margin:10px 0">Question 1 of 25</p>
+   <p style="margin:0">Choose the correct Japanese word for:</p>
+   <div id="meaning" class="meaning"></div>
+   <p id="reading" class="reading"></p>
+   <div id="choices" class="choices"></div>
+   <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+   <button id="next" class="primary" hidden>Next Question →</button>
+   <p style="font-size:12px;color:#8b8290">Tip: Tap your answer. You can also press 1 or 2.</p>
+ </section>
+ <section id="result" hidden>
+   <div class="emoji">🏆🌸👏</div>
+   <h1>Well Done!</h1>
+   <span class="pill">SET 7 COMPLETE</span>
+   <h2 id="resultName"></h2>
+   <p>Your Japanese Score</p>
+   <div class="big" id="finalScore"></div>
+   <span class="pill" id="percent"></span>
+   <p id="message"></p>
+   <button id="reviewToggle" class="mini" type="button" aria-expanded="false">📖 Review missed words</button>
+   <div id="review" class="review" hidden></div>
+   <button id="replay" class="primary">Play Again 🔀</button>
+   <button id="change" class="primary secondary">Change Name</button>
+   <p>📸 Screenshot your result!</p>
+ </section>
+ <footer>Japanese Learning Games 🌷 • GitHub Pages ready</footer>
+</main>
+<script>
+"use strict";
+const SET_NUMBER=7;
+const kanjiWords=[["shop assistant", "てんいん", "店員", "店長"], ["shop manager", "てんちょう", "店長", "店員"], ["price", "ねだん", "値段", "値引き"], ["fee / charge", "りょうきん", "料金", "給料"], ["free of charge", "むりょう", "無料", "有料"], ["fee-paying / paid", "ゆうりょう", "有料", "無料"], ["bill / checkout", "かいけい", "会計", "計画"], ["cash", "げんきん", "現金", "料金"], ["change (money)", "おつり", "お釣り", "お金"], ["goods / item", "しなもの", "品物", "食べ物"], ["product", "しょうひん", "商品", "作品"], ["delivery", "はいたつ", "配達", "出発"], ["order (noun)", "ちゅうもん", "注文", "質問"], ["reservation", "よやく", "予約", "約束"], ["discount", "わりびき", "割引", "割合"], ["customer", "おきゃくさん", "お客さん", "店員"], ["to work", "はたらく", "働く", "動く"], ["salary", "きゅうりょう", "給料", "料理"], ["job interview", "めんせつ", "面接", "面倒"], ["experience", "けいけん", "経験", "試験"]];
+const katakanaWords=[["shop", "ショップ", "シヨップ"], ["cash register", "レジ", "レシ"], ["receipt", "レシート", "レシト"], ["coupon", "クーポン", "クポン"], ["size", "サイズ", "サイス"], ["design", "デザイン", "デサイン"], ["brand", "ブランド", "プランド"], ["reward points", "ポイント", "ボイント"], ["credit card", "クレジットカード", "クレジトカード"], ["part-time work", "アルバイト", "アルパイト"], ["part-time job (short)", "バイト", "パイト"], ["staff", "スタッフ", "スタフ"], ["manager", "マネージャー", "マネージヤー"], ["office", "オフィス", "オフイス"], ["business", "ビジネス", "ビジネズ"], ["photocopy", "コピー", "コピ"], ["department store", "デパート", "デパト"], ["apron", "エプロン", "エプロソ"], ["uniform", "ユニフォーム", "ユニフオーム"], ["sneakers", "スニーカー", "スニカ"]];
+const TOTAL=25;
+const $=id=>document.getElementById(id);
+let questions=[],current=0,score=0,name="",answered=false,mistakes=[];
+function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function show(id){for(const s of ['start','game','result'])$(s).hidden=s!==id}
+function startGame(){
+ const kj=shuffle(kanjiWords).slice(0,12).map(([meaning,reading,correct,wrong])=>({kind:'🈶 Kanji',meaning,reading,correct,wrong}));
+ const kt=shuffle(katakanaWords).slice(0,13).map(([meaning,correct,wrong])=>({kind:'🔤 Katakana',meaning,reading:'',correct,wrong}));
+ questions=shuffle([...kj,...kt]);current=0;score=0;answered=false;mistakes=[];
+ $('player').textContent='👤 '+name;$('effects').replaceChildren();show('game');render();window.scrollTo(0,0)
+}
+function render(){
+ answered=false;const q=questions[current];$('category').textContent=q.kind;
+ $('counter').textContent=`Question ${current+1} of ${TOTAL}`;$('meaning').textContent=q.meaning;
+ $('reading').textContent=q.reading?'Reading: '+q.reading:'Katakana spelling';
+ $('score').textContent=`⭐ ${score} / ${TOTAL}`;$('progress').style.width=(current/TOTAL*100)+'%';
+ $('feedback').hidden=true;$('feedback').className='feedback';$('next').hidden=true;
+ $('choices').replaceChildren();
+ shuffle([q.correct,q.wrong]).forEach(word=>{
+  const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=word;
+  b.addEventListener('click',()=>choose(word,b));$('choices').appendChild(b)
+ });
+}
+function burst(target){
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const r=target.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;
+ ['👏','🌸','✅','✨','💗','🌟','👏','✨'].forEach((sym,i)=>{
+  const el=document.createElement('span');el.className='particle';el.textContent=sym;
+  const angle=i*Math.PI/4,dist=75+Math.random()*75;
+  el.style.left=x+'px';el.style.top=y+'px';el.style.setProperty('--dx',Math.cos(angle)*dist+'px');
+  el.style.setProperty('--dy',Math.sin(angle)*dist+'px');$('effects').appendChild(el);
+  el.addEventListener('animationend',()=>el.remove(),{once:true});setTimeout(()=>el.remove(),1300)
+ })
+}
+function choose(word,button){
+ if(answered)return;answered=true;
+ const q=questions[current],ok=word===q.correct;
+ for(const b of $('choices').children){b.disabled=true;if(b.textContent===q.correct)b.classList.add('correct');if(b===button&&!ok)b.classList.add('wrong')}
+ const fb=$('feedback');fb.hidden=false;fb.className='feedback '+(ok?'good':'bad');
+ if(ok){score++;fb.textContent=`✅ せいかい！ ${q.correct}${q.reading?' ('+q.reading+')':''}  +1 point! 🌸`;burst(button)}
+ else{mistakes.push(q);fb.textContent=`❌ Not quite! Correct: ${q.correct}${q.reading?' ('+q.reading+')':''}. Remember this spelling!`}
+ $('score').textContent=`⭐ ${score} / ${TOTAL}`;$('progress').style.width=((current+1)/TOTAL*100)+'%';
+ $('next').textContent=current===TOTAL-1?'See My Results 🏆':'Next Question →';$('next').hidden=false;
+}
+function results(){
+ show('result');$('resultName').textContent=name;$('finalScore').textContent=`${score} / ${TOTAL}`;
+ const pct=Math.round(score/TOTAL*100);$('percent').textContent=pct+'% correct';
+ $('message').textContent=pct>=88?'すごい！ 🌟 Excellent Japanese!':pct>=68?'よくできました！ 🌸 Great effort!':'がんばって！ 💗 Review and try again!';
+ const wrap=$('review');wrap.replaceChildren();
+ const heading=document.createElement('h3');heading.textContent=mistakes.length?`Words to practise (${mistakes.length})`:'Perfect score! No missed words. 🎉';wrap.appendChild(heading);
+ if(mistakes.length){const list=document.createElement('ol');for(const q of mistakes){const li=document.createElement('li');li.textContent=`${q.meaning} → ${q.correct}${q.reading?' ('+q.reading+')':''}`;list.appendChild(li)}wrap.appendChild(list)}
+ wrap.hidden=true;$('reviewToggle').textContent='📖 Review missed words';$('reviewToggle').setAttribute('aria-expanded','false');
+ if(pct>=88)burst($('finalScore'));window.scrollTo(0,0)
+}
+$('startForm').addEventListener('submit',e=>{e.preventDefault();name=$('playerName').value.trim();if(name)startGame()});
+$('next').addEventListener('click',()=>{if(!answered)return;current++;if(current>=TOTAL)results();else render()});
+$('replay').addEventListener('click',startGame);
+$('change').addEventListener('click',()=>{show('start');$('playerName').focus()});
+$('reviewToggle').addEventListener('click',()=>{const el=$('review');el.hidden=!el.hidden;$('reviewToggle').setAttribute('aria-expanded',String(!el.hidden));$('reviewToggle').textContent=el.hidden?'📖 Review missed words':'Hide review ↑'});
+document.addEventListener('keydown',e=>{if($('game').hidden||e.repeat)return;if(!answered&&(e.key==='1'||e.key==='2')){$('choices').children[Number(e.key)-1]?.click()}else if(answered&&e.key==='Enter'){$('next').click()}});
+</script>
+</body></html>
