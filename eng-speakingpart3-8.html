@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f1efff"><meta name="description" content="SPM Speaking Part 3: Build five connected paragraphs about the challenges of being a teenager."><title>Speak &amp; Build | Challenges of Being a Teenager</title><style>
+
+    :root{--ink:#233651;--muted:#667895;--purple:#397ae6;--purple-dark:#2459be;--purple-light:#edf4ff;--pink:#ffe8f1;--border:#d4e3fc;--good:#176a4b;--good-bg:#eaf9f1;--bad:#a13b57;--bad-bg:#fff0f3;--white:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 0 0,#dfedff 0,transparent 32%),radial-gradient(circle at 100% 0,#d7e0ff 0,transparent 31%),linear-gradient(160deg,#eff7ff,#f7faff 55%,#fff8fd);min-height:100vh}
+    .container{max-width:850px;margin:auto;padding:22px 15px 50px}
+    .brand{text-align:center;margin-bottom:19px}
+    .brand small{display:inline-block;border-radius:99px;background:#fff;padding:7px 14px;color:#3267b7;font-size:.76rem;font-weight:850;letter-spacing:.055em;box-shadow:0 2px 13px #95b7e52c}
+    .brand h1{font-size:clamp(1.7rem,5vw,2.5rem);margin:10px 0 6px;letter-spacing:-.035em}
+    .brand p{margin:0;color:var(--muted);font-size:.95rem}
+    .card{background:#ffffffef;border:1px solid var(--border);border-radius:23px;padding:clamp(19px,4vw,32px);box-shadow:0 13px 33px #6897db21}
+    .hidden{display:none!important}
+    .question{background:linear-gradient(115deg,#dfecff,#f1eaff);border:1px solid #cad9fa;padding:20px 18px;border-radius:18px;text-align:center}
+    .question .label{font-size:.76rem;font-weight:850;color:#3a65ae;text-transform:uppercase;letter-spacing:.07em}
+    .question h2{font-size:clamp(1.18rem,4vw,1.6rem);line-height:1.32;margin:8px auto 0;max-width:670px}
+    .mindmap{margin:19px 0 8px;text-align:center}
+    .mindmap strong{display:block;margin-bottom:12px}
+    .map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    .map-node{border:2px solid #c9d9f5;background:#f9fbff;border-radius:14px;min-height:83px;padding:11px 6px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;text-align:center;font-size:.83rem;font-weight:800;overflow-wrap:anywhere}
+    .map-node .emoji{font-size:1.45rem}
+    .map-node.active{background:#d7e7ff;border-color:#328b90;box-shadow:0 0 0 2px #e0eaff}
+    .map-node.done{background:#e6f4ed;border-color:#94c9b5}
+    .hint{font-size:.9rem;color:var(--muted);line-height:1.65}
+    .name-label{display:block;font-weight:800;margin:23px 0 8px}
+    input[type=text]{font:inherit;width:100%;padding:14px;border:2px solid #c8d9f8;border-radius:12px;color:var(--ink);background:white}
+    input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline:3px solid #8eb1fa;outline-offset:3px}
+    .error{font-size:.88rem;color:var(--bad);margin:8px 0 0}
+    button{font:inherit;font-weight:820;cursor:pointer;border:0;border-radius:13px;padding:13px 19px}
+    button:disabled{opacity:.47;cursor:not-allowed}
+    .btn-primary{background:var(--purple);color:white}
+    .btn-primary:not(:disabled):hover{background:var(--purple-dark)}
+    .btn-soft{background:#e5efff;color:#315fb5}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .button-row>button{flex:1 1 190px}
+    .status{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}
+    .chip{display:inline-flex;align-items:center;background:#e9f1ff;border-radius:99px;padding:6px 11px;color:#3766b2;font-size:.83rem;font-weight:850}
+    .progress{height:9px;border-radius:99px;background:#e7eeff;overflow:hidden;margin:12px 0 20px}
+    .progress-inner{height:100%;width:0;background:linear-gradient(90deg,#61adff,#8474e8);transition:width .25s}
+    .point-heading{font-size:1.45rem;letter-spacing:-.025em;margin:11px 0 5px}
+    .step-desc{font-size:.95rem;color:var(--muted);margin:0 0 14px}
+    .paragraph-box{background:#f5f9ff;border:1px solid #d6e3ff;border-left:5px solid #76a2ee;border-radius:14px;padding:15px 17px;margin:17px 0;min-height:90px;line-height:1.8}
+    .paragraph-box .mini-label{font-size:.73rem;color:#3c6fba;font-weight:850;letter-spacing:.045em;margin-bottom:5px}
+    .placeholder{color:#9a94ae;font-style:italic}
+    .paragraph-box p{margin:0}
+    .paragraph-box .built{font-weight:600}
+    .choose-title{font-size:1.07rem;margin:21px 0 11px}
+    .choices{display:grid;gap:10px}
+    .choice{width:100%;text-align:left;display:flex;align-items:flex-start;gap:12px;color:var(--ink);font-weight:600;line-height:1.5;background:#fff;border:2px solid #d2dff6;transition:background .15s,border-color .15s}
+    .choice:hover:not(:disabled){border-color:#89aaf3;background:#f5f8ff}
+    .choice.correct{border-color:#67b994;background:var(--good-bg)}
+    .choice.wrong{border-color:#e6a3b4;background:var(--bad-bg)}
+    .letter{display:inline-flex;flex:0 0 28px;width:28px;height:28px;justify-content:center;align-items:center;border-radius:9px;background:#e6f0ff;color:#3567ae;font-size:.83rem;font-weight:850}
+    .feedback{border-radius:15px;margin-top:16px;padding:15px 17px;line-height:1.65}
+    .feedback.good{background:var(--good-bg);border:1px solid #9dd5bb}
+    .feedback.bad{background:var(--bad-bg);border:1px solid #ecc2cc}
+    .feedback h3{margin:0 0 6px;font-size:1.04rem}
+    .feedback p{margin:8px 0 0;font-size:.92rem}
+    .feedback .correct-line{padding:9px 11px;border-radius:9px;background:#fff;font-weight:700;margin-top:10px}
+    .para-review{background:#f8faff;border:1px solid #d6e2fa;border-radius:14px;padding:16px 17px;margin:12px 0}
+    .para-review h3{font-size:1.08rem;margin:0 0 6px}
+    .para-review p{margin:0;line-height:1.8}
+    .copy-banner{background:#fff3c9;border:3px solid #dfab38;border-radius:17px;padding:20px;margin:21px 0;box-shadow:0 5px 0 #f3e4bb}
+    .copy-banner h3{margin:0 0 10px;font-size:clamp(1.22rem,4.5vw,1.55rem);color:#7d4e0d}
+    .copy-banner p{margin:6px 0;line-height:1.6}
+    .tick{display:flex;align-items:flex-start;gap:11px;padding:12px 0;font-weight:700;line-height:1.5}
+    .tick input{margin:4px 0 0;transform:scale(1.35);accent-color:var(--purple)}
+    .score{font-size:clamp(3rem,9vw,4.7rem);color:var(--purple-dark);font-weight:950;text-align:center;margin:12px 0 2px}
+    .center{text-align:center}
+    .result-line{padding:11px 0;border-bottom:1px solid #dce6f8;display:flex;justify-content:space-between;gap:9px}
+    .result-line:last-child{border:0}
+    .footer{text-align:center;color:#667895;margin:21px 0 0;font-size:.78rem}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(3,1fr)}.map-node{min-height:72px}.container{padding-top:15px}.card{border-radius:18px}.choice{padding:12px}}
+    @media(max-width:380px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+    @media print{body{background:white}.brand,.question,.mindmap,#welcome,#game,#results,.copy-banner,.tick,.button-row,.footer{display:none!important}#review{display:block!important;box-shadow:none;border:0;padding:0}.para-review{break-inside:avoid}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    .map-node.pick{cursor:pointer;transition:transform .12s,background .12s,border-color .12s}
+    .map-node.pick:hover:not(:disabled){transform:translateY(-2px);border-color:#7ca7f0}
+    .map-node.pick:disabled{cursor:not-allowed;opacity:.66}
+    .map-node.selected{background:#deebff;border-color:#4785e5;box-shadow:0 0 0 2px #e5edff}
+    .map-node.skipped{background:#f2f3f5;border-color:#dde2e5;color:#8b9198}
+    .map-node small{font-size:.67rem;font-weight:800;line-height:1.2}
+    .map-node.active{background:#e8ddff;border-color:#9382da;box-shadow:0 0 0 2px #eeeaff}
+    .select-help{margin-top:12px;border-radius:12px;padding:10px 12px;background:#edf4ff;color:#345d9e;font-size:.92rem;font-weight:750;text-align:center}
+    .map-grid button{font:inherit}
+    .note{background:#eaf3ff;border-radius:12px;padding:12px 14px;line-height:1.55;font-size:.91rem;margin:14px 0}
+    .copy-banner{background:#fff3bf;border-color:#dda225}
+    .copy-banner h3{font-size:clamp(1.3rem,4.6vw,1.65rem)}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+  
+  .subline{font-weight:700;margin-top:9px;color:#47648e}
+  .opening-tag{display:inline-block;border-radius:8px;background:#e0ebff;color:#2e63b7;padding:3px 8px;font-size:.75rem;font-weight:850;margin-bottom:8px}
+  .choice.target{border-color:#3c80d9;background:#e9f2ff;box-shadow:0 0 0 2px #d6e8ff}
+  .choice.target .letter{background:#397ae6;color:white}
+  .paragraph-box .built{font-weight:540}
+  .copy-banner{background:#fff1be;border-color:#dfa33f}
+  .note{background:#edf4ff}
+  @media print{.opening-tag{display:none}}
+
+
+/* Challenges of Being a Teenager: lavender, sky blue and blush */
+:root {--ink:#313855;--muted:#6a7291;--purple:#7163c6;--purple-dark:#5145a6;--purple-light:#f1efff;--border:#e2dcfa;--good:#206b58;--good-bg:#eaf8f0;--bad:#ab3f62;--bad-bg:#fff0f5}
+body{background:radial-gradient(circle at 6% 4%,#fbe6f4 0,transparent 34%),radial-gradient(circle at 93% 8%,#dceeff 0,transparent 32%),linear-gradient(160deg,#f8f4ff,#f2f7ff 56%,#fff8fb)}
+.brand small{color:#6359b3;box-shadow:0 2px 13px #beb1e13d}
+.card{box-shadow:0 14px 33px #9b91d02d}
+.question{background:linear-gradient(115deg,#ebe4ff,#e3f3ff);border-color:#dcd3fc}
+.question .label{color:#6655b5}
+.map-node{border-color:#d9d5f2;background:#fdfbff}
+.map-node.selected{background:#e9e4ff;border-color:#8b79d2;box-shadow:0 0 0 2px #f3f0ff}
+.map-node.active{background:#deecff;border-color:#7197dc;box-shadow:0 0 0 2px #eff5ff}
+.map-node.done{background:#e6f6ee;border-color:#92cbb0}
+.map-node.pick:hover:not(:disabled){border-color:#9885db}
+.map-node.skipped{background:#f4f3f7;border-color:#e1dfe8}
+input[type=text]{border-color:#dbd4f7}
+input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline-color:#a89ae5}
+.btn-soft{background:#f0eaff;color:#6957b0}
+.chip{background:#efebff;color:#6458ac}
+.progress{background:#e9e5f9}
+.progress-inner{background:linear-gradient(90deg,#b8a0f2,#8cb8f2)}
+.paragraph-box{background:#f8f7ff;border-color:#e0dbfa;border-left-color:#9685df}
+.paragraph-box .mini-label{color:#6555ac}
+.choice{border-color:#dfdcf2}
+.choice:hover:not(:disabled){border-color:#a89ad9;background:#faf8ff}
+.letter{background:#ece7ff;color:#6557af}
+.para-review{background:#fdfcff;border-color:#e4dffa}
+.select-help{background:#f0eaff;color:#6554a9}
+.opening-tag{background:#e9e3ff;color:#6e58b9}
+.choice.target{border-color:#8270cf;background:#f3efff;box-shadow:0 0 0 2px #e8e0ff}
+.choice.target .letter{background:#7664bf;color:white}
+.result-line{border-bottom-color:#e5dffa}
+.note{background:#eaf4ff;color:#456188;border:1px solid #d6e6ff}
+.copy-banner{background:#fff1bb;border-color:#d9a53b}
+@media print { .container{max-width:none} .para-review{break-inside:avoid} }
+</style></head><body>
+<main class="container">
+<header class="brand"><small>🗣️ SPM ENGLISH SPEAKING PRACTICE</small><h1>💜 Speak &amp; Build!</h1><p>Part 3 · Challenges of Being a Teenager</p></header>
+<section id="welcome" class="card">
+  <div class="question"><div class="label">Speaking Part 3 · Discussion Question</div><h2>What are the challenges of being a teenager?</h2><p class="subline">Choose any five points from the mind map.</p></div>
+  <div class="note" role="note">💡 <b>Speaking tip:</b> Each paragraph begins with a transition, followed by an explanation, an example and a result. / <b>Tip bertutur:</b> Setiap perenggan bermula dengan penanda wacana, diikuti huraian, contoh dan kesan.</div>
+  <p class="hint">💜 Some topics may feel personal. If you need support, speak to a trusted adult or school counsellor. / Jika anda memerlukan sokongan, berbincanglah dengan orang dewasa yang dipercayai atau kaunselor sekolah.</p>
+  <div class="mindmap"><strong>🧠 Six Points in the Mind Map</strong><div class="map-grid" id="welcomeMap"></div></div>
+  <div class="select-help" id="selectCount" role="status" aria-live="polite">Choose FIVE points (0 / 5 selected).</div>
+  <p class="hint">Select any <b>FIVE out of SIX</b> points. / Pilih mana-mana <b>LIMA daripada ENAM</b> isi.</p>
+  <label class="name-label" for="studentName">Your name / Nama murid</label>
+  <input id="studentName" type="text" maxlength="65" placeholder="Enter your name" autocomplete="name">
+  <p id="nameError" class="error hidden" role="alert">Please enter your name. / Sila masukkan nama.</p>
+  <div class="button-row"><button type="button" class="btn-primary" id="startBtn" disabled>Start Building My Five Paragraphs →</button></div>
+  <p class="hint">For each point, you will choose <b>3 elaboration sentences</b>. A correct first attempt earns 1 mark. Total: <b>15 marks</b>. Each paragraph begins with a cohesive transition.</p>
+</section>
+<section id="game" class="card hidden">
+  <div class="status"><span class="chip" id="pointCounter">Point 1 of 5</span><span class="chip" id="stepCounter">Sentence 1 of 3</span><span class="chip" id="markCounter">Marks: 0 / 15</span></div>
+  <div class="progress" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progress"><div class="progress-inner" id="progressInner"></div></div>
+  <div class="question"><div class="label">Speaking Part 3 · Discussion Question</div><h2>What are the challenges of being a teenager?</h2></div>
+  <div class="mindmap"><strong>🧠 All Six Original Points</strong><div class="map-grid" id="gameMap"></div></div>
+  <h2 class="point-heading" id="pointTitle">Point 1</h2><p class="step-desc" id="stepHelp"></p>
+  <div class="paragraph-box" aria-live="polite"><div class="mini-label">YOUR PARAGRAPH SO FAR</div><div class="opening-tag">✨ Transition + main point</div><p id="builtParagraph" class="built"></p></div>
+  <h3 class="choose-title" id="chooseTitle">Choose the most suitable sentence:</h3><div class="choices" id="choices"></div>
+  <div class="feedback hidden" id="feedback" role="status" aria-live="polite"></div>
+  <div class="button-row hidden" id="nextWrap"><button type="button" class="btn-primary" id="nextBtn">Next Sentence →</button></div>
+</section>
+<section id="review" class="card hidden">
+  <div class="question"><div class="label">Fantastic! 🎉</div><h2>Your FIVE Completed Paragraphs</h2></div>
+  <p class="hint center">Look at the transitions, explanations, examples and results. Read the paragraphs and copy them into your exercise book.</p>
+  <div id="paragraphsList"></div>
+  <div class="copy-banner" role="note"><h3>📚✏️ IMPORTANT! COPY ALL FIVE PARAGRAPHS INTO YOUR EXERCISE BOOK!</h3><p><b>Copy the five complete paragraphs before viewing your score.</b></p><p><b>PENTING! SALIN KELIMA-LIMA PERENGGAN INI KE DALAM BUKU LATIHAN ANDA SEBELUM MELIHAT MARKAH!</b></p></div>
+  <label class="tick"><input type="checkbox" id="copiedCheck"><span>I have copied all FIVE paragraphs into my exercise book.<span class="hint" style="display:block">Saya telah menyalin KELIMA-LIMA perenggan ke dalam buku latihan.</span></span></label>
+  <div class="button-row"><button type="button" id="scoreBtn" class="btn-primary" disabled>Continue to Final Score →</button></div>
+</section>
+<section id="results" class="card hidden">
+  <div class="center" style="font-size:2.6rem">🎉🏆🌟</div><h2 class="center">Great Work! Quiz Complete!</h2>
+  <p class="center hint">Challenges of Being a Teenager</p><p id="resultStudent" class="center" style="font-weight:800"></p><div id="finalScore" class="score">0 / 15</div><p class="center" id="resultMessage"></p>
+  <h3>📚 Your Five Selected Points</h3><div id="breakdown"></div>
+  <p class="hint">📸 Take a screenshot showing your name and final score for your teacher.</p>
+  <div class="button-row"><button type="button" class="btn-soft" id="reviewBtn">📖 See My Five Paragraphs</button><button type="button" class="btn-primary" id="replayBtn">🔀 Replay · Choose Five Points</button></div>
+</section>
+<footer class="footer">SPM Speaking Part 3 • Standalone HTML • GitHub Pages friendly • Works offline</footer>
+</main>
+<script>
+'use strict';
+const POINTS = [{"key":"academic","name":"Academic Pressure","emoji":"📚","bm":"tekanan akademik","focus":"the stress caused by tests, grades and schoolwork","focusMs":"tekanan akibat ujian, gred dan kerja sekolah","intro":"academic pressure can be a major challenge for teenagers.","introSecond":"Another common challenge for teenagers is academic pressure, especially when examinations are approaching.","sentences":["They may feel worried when they have several tests and assignments to complete in a short time.","For example, a student might stay up late revising for an examination while finishing homework.","As a result, this pressure can leave them tired and make it harder to concentrate in class."],"en":["This explains how heavy school demands can put pressure on teenagers.","Revising for an examination while completing homework gives a clear example of academic pressure.","This describes how academic pressure may affect teenagers’ energy and concentration."],"ms":["Ayat ini menerangkan bagaimana tuntutan pelajaran yang banyak boleh memberikan tekanan kepada remaja.","Mengulang kaji untuk peperiksaan sambil menyiapkan kerja rumah ialah contoh tekanan akademik.","Ayat ini menunjukkan bagaimana tekanan akademik boleh menjejaskan tenaga dan tumpuan remaja."]},{"key":"peer","name":"Peer Pressure","emoji":"👥","bm":"tekanan rakan sebaya","focus":"being influenced by friends to make choices or behave differently","focusMs":"pengaruh rakan sebaya terhadap pilihan atau tingkah laku","intro":"peer pressure can influence the decisions teenagers make every day.","introSecond":"Another challenge is peer pressure, which can affect teenagers’ choices and behaviour.","sentences":["Some teenagers may feel pushed to act differently just to be accepted by their friends.","For instance, a student might agree to skip a school activity because their friends insist.","Consequently, they may make choices they regret instead of following their own values."],"en":["This explains how wanting acceptance from friends can create peer pressure.","Following friends’ demands is a specific example of peer pressure.","This result shows how peer pressure may lead to decisions that do not reflect personal values."],"ms":["Ayat ini menerangkan bagaimana keinginan untuk diterima oleh rakan boleh menyebabkan tekanan rakan sebaya.","Mengikut desakan rakan ialah contoh khusus tekanan rakan sebaya.","Ayat ini menunjukkan bagaimana tekanan rakan sebaya boleh menyebabkan keputusan yang tidak selaras dengan nilai diri."]},{"key":"family","name":"Family Expectations","emoji":"🏠","bm":"harapan keluarga","focus":"the standards and achievements expected by family members","focusMs":"standard dan pencapaian yang diharapkan oleh ahli keluarga","intro":"family expectations can make teenagers feel that they must meet high standards.","introSecond":"Another challenge comes from family expectations, especially when parents expect high achievements.","sentences":["Some teenagers worry about disappointing their families when their results do not meet expectations.","For example, a student may feel pressured to choose a career that their parents prefer.","This can create stress and make it difficult for them to express their own goals."],"en":["This explains how fear of disappointing family members can cause pressure.","Choosing a career to satisfy parents is an example of family expectations influencing decisions.","This shows how pressure from family expectations can affect personal choices."],"ms":["Ayat ini menerangkan bagaimana kebimbangan mengecewakan keluarga boleh menyebabkan tekanan.","Memilih kerjaya untuk memenuhi kehendak ibu bapa ialah contoh pengaruh harapan keluarga terhadap keputusan.","Ayat ini menunjukkan bagaimana harapan keluarga boleh mempengaruhi pilihan peribadi."]},{"key":"mental","name":"Mental Health Issues","emoji":"💜","bm":"isu kesihatan mental","focus":"stress, sadness or anxiety that can affect emotional well-being","focusMs":"tekanan, kesedihan atau keresahan yang boleh menjejaskan kesejahteraan emosi","intro":"mental health difficulties can affect some teenagers as they grow up.","introSecond":"Another important challenge involves mental health, which can affect how some teenagers feel and cope.","sentences":["Some teenagers experience ongoing stress, sadness or anxiety that affects their daily routines.","For example, a student who feels overwhelmed may find it hard to focus or enjoy usual activities.","With support from trusted adults or counsellors, they can learn ways to manage these feelings."],"en":["This explains some emotional difficulties that can affect everyday life.","Feeling overwhelmed and struggling with everyday activities is an example related to mental health.","This gives a supportive response: speaking to trusted adults or counsellors can help teenagers cope."],"ms":["Ayat ini menerangkan beberapa kesukaran emosi yang boleh menjejaskan kehidupan harian.","Rasa terlalu terbeban sehingga sukar melakukan aktiviti harian ialah contoh berkaitan kesihatan mental.","Ayat ini memberikan langkah sokongan: berbincang dengan orang dewasa yang dipercayai atau kaunselor boleh membantu remaja."]},{"key":"time","name":"Managing Time","emoji":"⏰","bm":"pengurusan masa","focus":"balancing schedules, tasks, responsibilities and free time","focusMs":"mengimbangi jadual, tugasan, tanggungjawab dan masa lapang","intro":"managing time can be difficult when teenagers have many responsibilities.","introSecond":"Another everyday challenge is managing time between school, family and personal interests.","sentences":["They need to balance schoolwork, rest and hobbies without leaving important tasks until the last minute.","For instance, a student may struggle to finish homework after attending tuition and sports practice.","If they plan their schedules carefully, they can feel more organised and less rushed."],"en":["This explains why balancing different activities is part of managing time.","A busy schedule with tuition, sports and homework is an example of a time-management challenge.","This describes how planning can help teenagers use their time more effectively."],"ms":["Ayat ini menerangkan mengapa mengimbangi pelbagai aktiviti merupakan sebahagian daripada pengurusan masa.","Jadual yang padat dengan kelas tambahan, sukan dan kerja rumah ialah contoh cabaran mengurus masa.","Ayat ini menunjukkan bagaimana perancangan boleh membantu remaja menggunakan masa dengan lebih berkesan."]},{"key":"identity","name":"Identity and Self-confidence","emoji":"🌱","bm":"identiti dan keyakinan diri","focus":"understanding personal identity and believing in one’s abilities","focusMs":"memahami identiti diri dan mempercayai kebolehan sendiri","intro":"developing a sense of identity and self-confidence can be challenging during the teenage years.","introSecond":"Another personal challenge is building identity and self-confidence while growing up.","sentences":["Teenagers may compare themselves with others and question their own abilities or appearance.","For example, someone might avoid joining a competition because they fear being judged.","Encouragement and small achievements can help them recognise their strengths over time."],"en":["This explains how comparing themselves with others can affect teenagers’ confidence.","Avoiding a competition because of fear of judgement is a clear example of low self-confidence.","This gives a positive outcome: support and small successes can strengthen confidence."],"ms":["Ayat ini menerangkan bagaimana membandingkan diri dengan orang lain boleh menjejaskan keyakinan remaja.","Mengelakkan pertandingan kerana takut dinilai ialah contoh kurang keyakinan diri.","Ayat ini menunjukkan hasil yang positif: sokongan dan kejayaan kecil boleh meningkatkan keyakinan diri."]}];
+const LEADS = [
+ 'To begin with, ',
+ 'Secondly, ',
+ 'In addition, ',
+ 'Furthermore, ',
+ 'Finally, '
+];
+const PHASES = [
+ {en:'Choose a suitable EXPLANATION.',ms:'Pilih ayat HURAIAN yang sesuai.',name:'Explanation'},
+ {en:'Choose a suitable EXAMPLE or supporting detail.',ms:'Pilih CONTOH atau maklumat sokongan yang sesuai.',name:'Example / Detail'},
+ {en:'Choose a suitable RESULT or benefit.',ms:'Pilih KESAN atau faedah yang sesuai.',name:'Result / Benefit'}
+];
+const $ = id => document.getElementById(id);
+const show = id => $(id).classList.remove('hidden');
+const hide = id => $(id).classList.add('hidden');
+const shuffle = xs => {const a=xs.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let student='',selectedKeys=[],selectedPoints=[],pointIndex=0,stepIndex=0,score=0,pointScores=[],wrongYet=false,solved=false,choices=[],paragraphs=[],completed=0,hasCopied=false;
+function openSentence(p, position){return position===1 ? p.introSecond : LEADS[position] + p.intro;}
+function fullParagraph(p,position,lines){return [openSentence(p,position),...lines].join(' ');}
+function resetWelcomeMap(){
+ const wrap=$('welcomeMap');wrap.replaceChildren();
+ POINTS.forEach(p=>{
+  const b=document.createElement('button');b.type='button';b.className='map-node pick'+(selectedKeys.includes(p.key)?' selected':'');
+  b.disabled=selectedKeys.length===5&&!selectedKeys.includes(p.key);
+  b.setAttribute('aria-pressed',String(selectedKeys.includes(p.key)));
+  const icon=document.createElement('span');icon.className='emoji';icon.textContent=p.emoji;
+  const name=document.createElement('span');name.textContent=p.name;
+  const state=document.createElement('small');state.textContent=selectedKeys.includes(p.key)?'✓ SELECTED':'TAP TO SELECT';
+  b.append(icon,name,state);
+  b.addEventListener('click',()=>{
+   if(selectedKeys.includes(p.key))selectedKeys=selectedKeys.filter(k=>k!==p.key);
+   else if(selectedKeys.length<5)selectedKeys.push(p.key);
+   resetWelcomeMap();
+  });wrap.append(b);
+ });
+ $('selectCount').textContent=selectedKeys.length===5?'✅ Five points selected! You can change one before starting.':`Choose FIVE points (${selectedKeys.length} / 5 selected).`;
+ $('startBtn').disabled=selectedKeys.length!==5;
+}
+function renderGameMap(){
+ const wrap=$('gameMap');wrap.replaceChildren();
+ POINTS.forEach(p=>{
+  const index=selectedPoints.findIndex(q=>q.key===p.key);
+  const node=document.createElement('div');node.className='map-node '+(index<0?'skipped':index===pointIndex?'active':index<pointIndex?'done':'selected');
+  const ico=document.createElement('span');ico.className='emoji';ico.textContent=p.emoji;
+  const name=document.createElement('span');name.textContent=p.name;
+  const st=document.createElement('small');st.textContent=index<0?'NOT SELECTED':index===pointIndex?'CURRENT POINT':index<pointIndex?'COMPLETED':'SELECTED';
+  node.append(ico,name,st);wrap.append(node);
+ });
+}
+function newChoices(){
+ const p=selectedPoints[pointIndex];
+ const others=shuffle(POINTS.filter(q=>q.key!==p.key)).slice(0,2);
+ choices=shuffle([{text:p.sentences[stepIndex],owner:p.key},...others.map(q=>({text:q.sentences[stepIndex],owner:q.key}))]);
+}
+function start(){
+ const name=$('studentName').value.trim();if(!name){show('nameError');$('studentName').focus();return;}
+ hide('nameError');if(selectedKeys.length!==5)return;
+ student=name;
+ // Keep the order consistent with the original mind map, not the order of clicks.
+ selectedPoints=POINTS.filter(p=>selectedKeys.includes(p.key));
+ pointIndex=0;stepIndex=0;score=0;pointScores=Array(5).fill(0);wrongYet=false;solved=false;
+ paragraphs=selectedPoints.map(()=>[]);completed=0;hasCopied=false;
+ $('copiedCheck').checked=false;$('scoreBtn').disabled=true;
+ hide('welcome');hide('review');hide('results');show('game');newChoices();render();window.scrollTo(0,0);
+}
+function render(){
+ const p=selectedPoints[pointIndex];
+ $('pointCounter').textContent=`Point ${pointIndex+1} of 5`;
+ $('stepCounter').textContent=`Sentence ${stepIndex+1} of 3`;
+ $('markCounter').textContent=`Marks: ${score} / 15`;
+ $('progressInner').style.width=`${completed/15*100}%`;
+ $('progress').setAttribute('aria-valuenow',String(completed));
+ $('pointTitle').textContent=`${p.emoji} Point ${pointIndex+1}: ${p.name}`;
+ $('stepHelp').textContent=PHASES[stepIndex].en+' / '+PHASES[stepIndex].ms;
+ $('chooseTitle').textContent=`Choose the best sentence — ${PHASES[stepIndex].name}`;
+ renderGameMap();
+ $('builtParagraph').textContent=fullParagraph(p,pointIndex,paragraphs[pointIndex]);
+ $('choices').replaceChildren();
+ choices.forEach((c,i)=>{
+  const b=document.createElement('button');b.type='button';b.className='choice';b.disabled=solved;
+  const letter=document.createElement('span');letter.className='letter';letter.textContent='ABC'[i];
+  const txt=document.createElement('span');txt.textContent=c.text;
+  b.append(letter,txt);b.addEventListener('click',()=>choose(c,b));$('choices').append(b);
+ });
+ hide('feedback');hide('nextWrap');
+}
+function feedback(type,title,en,ms,correctLine=''){
+ const el=$('feedback');el.className='feedback '+type;el.replaceChildren();
+ const heading=document.createElement('h3');heading.textContent=title;
+ const english=document.createElement('p');english.textContent='🇬🇧 '+en;
+ const malay=document.createElement('p');malay.textContent='🇲🇾 '+ms;
+ el.append(heading,english,malay);
+ if(correctLine){const line=document.createElement('div');line.className='correct-line';line.textContent='✅ Correct sentence: '+correctLine;el.append(line);}
+ show('feedback');
+}
+function choose(c,b){
+ if(solved||b.disabled)return;
+ const p=selectedPoints[pointIndex];
+ if(c.owner!==p.key){
+  wrongYet=true;b.classList.add('wrong');b.disabled=true;
+  const wrong=POINTS.find(q=>q.key===c.owner);
+  document.querySelectorAll('#choices button').forEach((btn,i)=>{if(choices[i].owner===p.key)btn.classList.add('target');});
+  feedback('bad','❌ Not quite — try again!',
+   `This sentence focuses on ${wrong.focus}, but your paragraph is about ${p.focus}. Choose the highlighted sentence to continue.`,
+   `Ayat ini berfokus pada ${wrong.focusMs}, tetapi perenggan ini tentang ${p.focusMs}. Pilih ayat yang ditandakan untuk meneruskan.`,p.sentences[stepIndex]);
+  return;
+ }
+ solved=true;b.classList.remove('target');b.classList.add('correct');
+ if(!wrongYet){score++;pointScores[pointIndex]++;}
+ completed++;paragraphs[pointIndex].push(p.sentences[stepIndex]);
+ $('builtParagraph').textContent=fullParagraph(p,pointIndex,paragraphs[pointIndex]);
+ document.querySelectorAll('#choices button').forEach(btn=>btn.disabled=true);
+ $('markCounter').textContent=`Marks: ${score} / 15`;
+ $('progressInner').style.width=`${completed/15*100}%`;
+ $('progress').setAttribute('aria-valuenow',String(completed));
+ feedback('good',wrongYet?'✅ Correct! Keep practising.':'✅ Excellent! +1 mark',p.en[stepIndex],p.ms[stepIndex]);
+ $('nextBtn').textContent=stepIndex<2?'Next Sentence →':pointIndex<4?'Next Point →':'See All Five Paragraphs →';
+ show('nextWrap');
+}
+function advance(){
+ if(!solved)return;
+ if(stepIndex<2)stepIndex++;
+ else if(pointIndex<4){pointIndex++;stepIndex=0;}
+ else{showReview();return;}
+ wrongYet=false;solved=false;newChoices();render();window.scrollTo(0,0);
+}
+function showReview(){
+ hide('game');hide('results');show('review');
+ $('paragraphsList').replaceChildren();
+ selectedPoints.forEach((p,i)=>{
+  const section=document.createElement('section');section.className='para-review';
+  const title=document.createElement('h3');title.textContent=`${i+1}. ${p.emoji} ${p.name}`;
+  const body=document.createElement('p');body.textContent=fullParagraph(p,i,paragraphs[i]);
+  section.append(title,body);$('paragraphsList').append(section);
+ });
+ $('copiedCheck').checked=hasCopied;$('scoreBtn').disabled=!hasCopied;window.scrollTo(0,0);
+}
+function finish(){
+ if(!hasCopied)return;
+ hide('review');show('results');
+ $('resultStudent').textContent='Student / Nama: '+student;
+ $('finalScore').textContent=`${score} / 15`;
+ $('resultMessage').textContent=score===15?'🌟 Fantastic! All first attempts correct!':score>=11?'🌟 Great job! Keep practising your speaking skills.':score>=7?'📚 Good effort! Review the sentences you learnt.':'💡 Keep practising! Every sentence helps you improve.';
+ $('breakdown').replaceChildren();
+ selectedPoints.forEach((p,i)=>{
+  const line=document.createElement('div');line.className='result-line';
+  const label=document.createElement('span');label.textContent=p.emoji+' '+p.name;
+  const marks=document.createElement('strong');marks.textContent=`${pointScores[i]} / 3`;
+  line.append(label,marks);$('breakdown').append(line);
+ });window.scrollTo(0,0);
+}
+function replay(){hide('results');hide('review');hide('game');show('welcome');selectedKeys=[];resetWelcomeMap();window.scrollTo(0,0);}
+resetWelcomeMap();
+$('startBtn').addEventListener('click',start);
+$('studentName').addEventListener('keydown',e=>{if(e.key==='Enter')start();});
+$('nextBtn').addEventListener('click',advance);
+$('copiedCheck').addEventListener('change',e=>{hasCopied=e.target.checked;$('scoreBtn').disabled=!hasCopied;});
+$('scoreBtn').addEventListener('click',finish);
+$('reviewBtn').addEventListener('click',showReview);
+$('replayBtn').addEventListener('click',replay);
+</script></body></html>
