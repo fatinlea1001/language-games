@@ -290,7 +290,7 @@ function topicDescription(file, readmeTitle, language){
   return describe('Paragraph Makeover — Elaboration & Cohesion',['Saving Money','Cultural Awareness','Plastic Waste'],'SPM Writing Skills');
  if(stem.startsWith('eng-missingsentence-')){
   const code=stem.slice('eng-missingsentence-'.length);
-  const display=code==='schoollife'?'School Life':code.replace(/([a-z])([A-Z])/g,'$1 $2').replace(/(^|\s)\w/g,ch=>ch.toUpperCase());
+  const display=({'schoollife':'School Life','bullyingmentalhealth':'Bullying & Mental Health','haze':'Haze'})[code]||code.replace(/([a-z])([A-Z])/g,'$1 $2').replace(/(^|\s)\w/g,ch=>ch.toUpperCase());
   return describe('Missing Sentence Challenge — '+display,display,'SPM Reading Part 4');
  }
  if(stem.startsWith('eng-elaboration-')){
