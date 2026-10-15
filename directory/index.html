@@ -40,6 +40,30 @@ h1{font-size:clamp(32px,5.4vw,49px);line-height:1.1;margin:16px 0 9px;letter-spa
 .theme-label{font-size:10px;font-weight:800;color:#7951a3;background:#f4edff;border-radius:30px;padding:3px 9px}
 .topics-line{margin-top:7px;font-size:12px;color:#655676;font-weight:650;line-height:1.5}
 @media(max-width:620px){.theme-label{font-size:9px}.topics-line{font-size:11px}}
+
+/* Compact layout inside a Google Sites iframe; full page remains unchanged. */
+html.embedded-view body{min-height:0;background:#fffaff}
+html.embedded-view .shell{max-width:none;padding:8px 8px 18px}
+html.embedded-view .preview-note,html.embedded-view .hero,html.embedded-view .footer{display:none}
+html.embedded-view .panel{margin:0;padding:12px;border-radius:16px;box-shadow:none}
+html.embedded-view .panel::before{content:"🎮 Language Games & Quizzes";display:block;padding:2px 2px 12px;font-size:clamp(16px,3vw,22px);font-weight:900;color:#68488f}
+html.embedded-view .language-tabs{margin:0 0 12px}
+html.embedded-view .toolbar{margin-bottom:8px}
+html.embedded-view .smallsub,html.embedded-view .sort{display:none}
+html.embedded-view .search{min-height:44px;margin-bottom:8px}
+html.embedded-view .search input{padding-top:11px;padding-bottom:11px}
+html.embedded-view .game{min-height:60px;padding:8px 10px}
+html.embedded-view .game-emoji{width:41px;height:41px;flex-basis:41px;font-size:22px}
+html.embedded-view .game-title{font-size:13px}
+html.embedded-view .game-sub{gap:4px}
+@media(max-width:620px){
+ html.embedded-view .shell{padding:4px 4px 12px}
+ html.embedded-view .panel{padding:10px;border-radius:10px}
+ html.embedded-view .panel::before{font-size:16px;padding-bottom:8px}
+ html.embedded-view .language-tabs{margin-bottom:10px}
+ html.embedded-view .language-tab{min-height:45px}
+ html.embedded-view .game{gap:8px}
+}
 </style>
 </head>
 <body>
@@ -70,6 +94,14 @@ h1{font-size:clamp(32px,5.4vw,49px);line-height:1.1;margin:16px 0 9px;letter-spa
 </main>
 <script>
 'use strict';
+
+// The welcome banner is for full-page visitors; embedded visitors see games first.
+try {
+ if(window.self!==window.top)document.documentElement.classList.add('embedded-view');
+}catch(error){
+ document.documentElement.classList.add('embedded-view');
+}
+
 // The existing GitHub Action updates README.md whenever HTML games are committed.
 // This page reads that same directory; no additional workflow or API key is needed.
 const REPO = 'fatinlea1001/language-games';
