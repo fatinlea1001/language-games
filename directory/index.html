@@ -103,6 +103,12 @@ function gameStyle(path, language){
  return language==='Japanese'?{emoji:'🌸',bg:'#ffeaf3',topic:'Japanese practice'}:{emoji:'🎮',bg:'#eeeaff',topic:'English practice'};
 }
 
+function displayGameTitle(title, filename){
+ const match=filename.match(/^eng-speakingpart([23])-(\d+)\.html$/i);
+ if(match)return `SPM Speaking Part ${match[1]} (Set ${match[2]})`;
+ return title;
+}
+
 function parseDirectory(markdown){
  const begin='<!-- AUTO-GAMES:START -->';
  const finish='<!-- AUTO-GAMES:END -->';
@@ -124,7 +130,7 @@ function parseDirectory(markdown){
   if(url.origin!=='https://fatinlea1001.github.io' || !url.pathname.startsWith('/language-games/') || !url.pathname.toLowerCase().endsWith('.html'))continue;
   const file=decodeURIComponent(url.pathname.split('/').pop());
   const style=gameStyle(file,language);
-  parsed.push({title,kind:language,date,dateLabel:date||'Recently added',url:url.href,file,...style});
+  parsed.push({title:displayGameTitle(title,file),kind:language,date,dateLabel:date||'Recently added',url:url.href,file,...style});
  }
  if(!parsed.length)throw new Error('Game list is empty');
  return parsed; // preserve README's most-recently-updated-first order per category
