@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffedf6">
+<title>Missing Sentence Challenge — Haze (Set 1)</title>
+<style>
+:root{--ink:#43334e;--muted:#786a80;--pink:#ec77af;--pinkdeep:#b95086;--purple:#8a6ac7;--lav:#f0eafe;--line:#efd9e7;--good:#287852;--goodbg:#eaf9f1;--bad:#b84964;--badbg:#fff1f2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:ui-rounded,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,#ffe5f0,transparent 34%),radial-gradient(circle at 95% 16%,#eee9ff,transparent 36%),#fffbfd}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ab86d7;outline-offset:3px}[hidden]{display:none!important}
+.wrap{max-width:930px;margin:auto;padding:20px 16px 58px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(112deg,#ffd2e5 0%,#f5def5 51%,#dfe8ff 100%);padding:26px 27px 24px;border:1px solid #f4d1e3;border-radius:26px;box-shadow:0 12px 36px #9b728b19}
+.eyebrow{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.11em;color:#845779;background:#ffffffab;border-radius:999px;padding:7px 12px;border:1px solid #ffffffaa}
+h1{margin:12px 0 6px;font-size:clamp(27px,4vw,41px);line-height:1.17;letter-spacing:-.035em}h1 span{color:#9d4e96}.intro{font-size:14px;line-height:1.58;max-width:690px;margin:4px 0 0;color:#685b73}
+.spar{position:absolute;right:5%;top:19px;font-size:52px;transform:rotate(11deg);user-select:none;pointer-events:none}.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.pill{background:#fffaffc7;border:1px solid #ffffffb8;padding:7px 11px;border-radius:99px;font-size:11px;font-weight:850;color:#875878}
+.panel{background:#fff;border:1px solid #efe3ee;border-radius:22px;box-shadow:0 9px 28px #9f8db214;padding:20px;margin-top:15px}.start{max-width:750px;margin:20px auto 0}
+h2{font-size:20px;margin:4px 0 9px;letter-spacing:-.02em}.fieldlabel{font-size:13px;font-weight:900;display:block;margin-bottom:8px}
+.nameinput{width:100%;border:2px solid #e8d9ed;background:#fffafd;border-radius:13px;padding:12px 14px;font-size:15px;outline:none}
+.primary{background:linear-gradient(120deg,#db69a3,#a66fd1);border:0;color:white;border-radius:13px;font-weight:900;padding:13px 19px;box-shadow:0 7px 18px #b76b9c2d}.primary:hover{filter:brightness(1.04)}
+.secondary{background:#f6efff;color:#7554a1;border:1px solid #e9dcf7;border-radius:12px;font-weight:850;padding:10px 13px}.tips{margin:15px 0 0;border-radius:12px;background:#f8f3ff;padding:12px 14px;font-size:13px;line-height:1.6;color:#625476}
+.actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:8px}.error{font-size:13px;color:#ab3b62;font-weight:750;min-height:18px;margin:9px 0 0}.start-button{min-height:49px;min-width:200px}.start-tip{font-size:12px;line-height:1.5;color:#786a80;margin:8px 0 0}
+.topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:3px 0 8px}.topbar strong{font-size:15px}.student{color:#7a6287;font-size:12px;font-weight:800}
+.progress{height:9px;background:#f1e7f5;border-radius:999px;overflow:hidden;margin:10px 0 13px}.progress>div{height:100%;width:0;background:linear-gradient(90deg,#d969a4,#987be0);transition:width .2s}
+.subtext{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 10px}.storyline{font-size:clamp(15px,1.6vw,16px);line-height:1.85;padding:18px 19px;border-radius:15px;background:#fffdfb;border:1px solid #f1e4e8}
+.storyline .storypara{margin:0 0 21px}.storyline .storypara:last-child{margin-bottom:0}
+.gapbox{display:block;margin:11px 0 13px;padding:12px 13px;border-radius:14px;background:#f9f3ff;border:1.5px dashed #bc9edb;line-height:1.4}
+.gapbox.solved{background:#eefaef;border:1px solid #b9dec6}.gaplabel{font-size:12px;font-weight:900;color:#8953b0;margin-bottom:7px}.gapbox.solved .gaplabel{color:#277851}
+.gapselect{width:100%;max-width:100%;background:#fff;border:1.5px solid #d4bde8;border-radius:11px;padding:12px 36px 12px 11px;color:#584368;font-size:13px;line-height:1.45;min-height:49px;cursor:pointer;text-overflow:ellipsis}
+.gapselect:disabled{background:#f6fcf8;color:#276448;border-color:#bcdfc8;cursor:default}.gapselect.invalid{border-color:#d55f85;background:#fffafd}
+.selection-full{font-size:13px;line-height:1.55;margin:8px 0 0;color:#685478;overflow-wrap:anywhere}.selection-full b{color:#734e9b}
+.solvedsentence{display:block;font-weight:760;font-size:15px;line-height:1.7;color:#266a49;overflow-wrap:anywhere}.resulttag{font-size:12px;font-weight:900;margin-top:5px;color:#2b7953}
+.gapfeedback{margin-top:9px;border-radius:12px;padding:10px 12px;line-height:1.55;font-size:12px}.gapfeedback.good{background:#e5f8ef;color:#23694b;border:1px solid #bde3ca}.gapfeedback.bad{background:var(--badbg);color:#95334f;border:1px solid #f0b9c8}.gapfeedback.hint{background:#fff6dc;color:#71532d;border:1px solid #ead7a9}.gapfeedback strong{display:block;font-size:13px;margin-bottom:3px}.gapfeedback p{margin:4px 0}
+.hintbtn{font-size:11px;min-height:33px;margin-top:7px;padding:6px 11px}.hintbtn:disabled{opacity:.6;cursor:default}
+.note{background:#fff6d8;border:1px solid #f2dfb2;border-radius:13px;color:#7c6030;padding:11px 13px;font-size:12px;line-height:1.55;margin-top:13px}.vocab{font-size:12px;color:#74647f;line-height:1.8;margin-top:11px}.vocab b{color:#7e5198}
+.endbar{text-align:center;border-radius:15px;padding:15px;background:#faf2fc;margin-top:15px}.endbar p{font-size:13px;line-height:1.55;color:#75577d;margin:0 0 12px}.endbar .primary{min-width:200px}.endbar .primary:disabled{background:#e8dce9;box-shadow:none;color:#907c96;cursor:not-allowed}
+.final-title{text-align:center;font-size:27px;margin:11px 0 4px}.score{text-align:center;font-size:47px;font-weight:1000;color:#975eb6;letter-spacing:-.055em}.score small{font-size:22px;color:#87758f}.result-msg{text-align:center;color:#72617c;line-height:1.6}.review{background:#fffafd;border:1px solid #efdfee;border-radius:15px;margin-top:13px;padding:16px}.review p{font-size:13px;line-height:1.7;margin:12px 0}.review b{color:#7456a3}.result-buttons{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:20px 0 0}.smallcap{text-align:center;font-size:11px;color:#938293;margin-top:17px}
+@media(max-width:540px){.wrap{padding:9px 8px 30px}.hero{padding:20px 16px;border-radius:18px}.spar{font-size:31px;right:5%;top:19px}h1{max-width:285px;font-size:27px}.intro{font-size:12px}.panel{padding:13px;border-radius:17px;margin-top:9px}h2{font-size:18px}.storyline{padding:12px 11px;line-height:1.76}.gapbox{padding:10px 9px}.gapselect{font-size:14px;min-height:53px}.start-button{width:100%;min-height:54px;font-size:16px}.start .tips{margin-top:13px}.score{font-size:40px}.endbar .primary{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Submit-all-first flow: select used answers remain visible but unavailable in other menus. */
+.gapbox.invalid{background:#fff8f8;border-color:#e6a5b9}
+.gapbox.retrying{background:#fffaf5;border-color:#e9c5a3}
+.gapselect option:disabled{color:#9c9ca4;background:#eeeeee}
+.gapselect option:checked{background:#f6e6f8}
+.checksummary{margin:11px auto 13px;max-width:650px;background:#f8f1ff;border:1px solid #e5d3f3;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.6;color:#67467e}
+.checksummary b{color:#8c4a9b}
+.instructions-strong{font-weight:850;color:#754f93}
+
+/* Optional stretch vocabulary, never part of the answer key. */
+.c1-phrase{color:#7a3d85;background:#fff0b1;border-radius:4px;padding:0 2px;font-weight:850}
+.c1-glossary{margin:11px 0 0;border:1px solid #e9dcf0;background:#fcf9ff;border-radius:13px;padding:11px 13px;color:#69547a;font-size:12px;line-height:1.7}
+.c1-glossary summary{font-size:13px;font-weight:850;color:#8453a0;cursor:pointer}
+.c1-glossary ul{padding-left:18px;margin:9px 0 2px}.c1-glossary li{margin:5px 0}.c1-glossary li b{color:#7d3e88}
+
+.sources{color:#7f7084;font-size:11px;line-height:1.65;margin:10px 2px 4px}.sources a{color:#7954a2;text-underline-offset:2px}.sources a:hover{color:#a24b83}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero"><span class="spar" aria-hidden="true">🌫️🌸</span><div class="eyebrow">🇬🇧 ENGLISH · SPM READING PART 4</div><h1>Missing Sentence <span>Challenge!</span></h1><p class="intro">Learn the facts about haze in Malaysia while practising SPM Reading Part 4. Choose all six sentences, then check your answers together.</p><div class="stats"><span class="pill">🌫️ Haze &amp; Air Pollution</span><span class="pill">📖 B1–B2 + 3 C1 phrases</span><span class="pill">🧩 6 gaps · 8 options</span><span class="pill">🇲🇾 English + BM feedback</span></div></header>
+<section class="panel start" id="startScreen">
+ <h2>🌤️ Ready to clear the haze?</h2>
+ <form id="startForm" novalidate>
+  <label class="fieldlabel" for="name">Student name / Nama murid</label>
+  <input class="nameinput" id="name" name="studentName" autocomplete="name" autocapitalize="words" enterkeyhint="go" placeholder="Type your full name here" maxlength="70">
+  <p id="startError" class="error" role="alert"></p>
+  <div class="actions"><button id="startBtn" class="primary start-button" type="submit">🎮 START GAME →</button></div>
+  <p class="start-tip">👆 Enter your name, then tap <strong>START GAME</strong> or press <strong>Go/Enter</strong>.</p>
+ </form>
+ <p class="tips"><strong>How to play:</strong> Read the factual passage. Every gap has a <strong>drop-down menu in the passage</strong>. Choose all <strong>6 sentences first</strong>, then tap <strong>Check Answers</strong>. A sentence already selected in another gap becomes greyed out. <strong>Hints appear only for wrong answers.</strong> You can retry, but your score is based on your <strong>first check</strong>.<br><strong>BM:</strong> Pilih ayat untuk keenam-enam tempat kosong dahulu, kemudian tekan <strong>Semak Jawapan</strong>. Pilihan yang sudah digunakan akan dikelabukan. Petunjuk hanya dipaparkan untuk jawapan yang salah. Markah berdasarkan semakan pertama.</p>
+</section>
+<section id="gameScreen" hidden>
+ <div class="panel">
+  <div class="topbar"><div><strong id="progressText">0 / 6 sentences chosen</strong><div class="student" id="studentDisplay"></div></div><button class="secondary" id="restartTop" type="button">↻ Start over</button></div>
+  <div class="progress"><div id="progressFill"></div></div>
+  <h2>🌫️ Haze: More Than a Grey Sky</h2>
+  <p class="subtext">Choose all six sentences in the passage, then tap <strong>Check Answers</strong>. Already-used options are greyed out in the other menus.</p>
+  <div id="passage" class="storyline" aria-label="Reading passage with six drop-down sentence selectors"></div>
+  <div class="vocab"><b>Word help:</b> particles = zarah · vulnerable = mudah terjejas · exposure = pendedahan · respirator = pelitup penapis zarah</div>
+  <details class="c1-glossary"><summary>🌟 Three advanced expressions · English / Malay / Chinese</summary>
+   <ul>
+    <li><b>far-reaching consequences</b> — serious effects over a wide area or for many people. <span>BM: kesan yang meluas</span> · <span>中文: 影响深远的后果</span></li>
+    <li><b>mitigate the impact</b> — reduce the harmful effects. <span>BM: mengurangkan kesan buruk</span> · <span>中文: 减轻影响</span></li>
+    <li><b>a concerted effort</b> — people or groups working together towards a shared goal. <span>BM: usaha bersepadu</span> · <span>中文: 齐心协力的努力</span></li>
+   </ul>
+  </details>
+  <p class="sources"><strong>Factual references:</strong> <a href="https://www.doe.gov.my/en/2021/10/26/english-air-pollutant-index-api-2/" target="_blank" rel="noopener noreferrer">Malaysia DOE (API)</a> · <a href="https://www.moh.gov.my/teras/info-kesihatan/jerebu/artikel-dan-panduan-pengguna-berkaitan-jerebu/usage-of-personal-protection-during-haze" target="_blank" rel="noopener noreferrer">Malaysia MOH (haze protection)</a> · <a href="https://www.who.int/europe/news-room/questions-and-answers/item/public-health-advice-during-the-wildfires--how-to-protect-your-health-and-keep-safe" target="_blank" rel="noopener noreferrer">WHO (smoke &amp; health)</a>. Follow current local health advisories.</p>
+  <div class="endbar"><p id="finishLabel">🧩 Choose all six sentences before checking your answers.</p><div id="checkSummary" class="checksummary" role="status" aria-live="polite" hidden></div><button id="finishBtn" class="primary" type="button" disabled>✅ Check All 6 Answers</button></div>
+ </div>
+</section>
+<section class="panel" id="resultsScreen" hidden>
+ <h2 class="final-title">🏆 Reading Challenge Complete!</h2><div class="student" style="text-align:center" id="resultName"></div><div class="score" id="score"></div><p class="result-msg" id="resultMessage"></p>
+ <div class="review"><h2>📘 Your completed passage</h2><p class="subtext">Review how the six sentences explain haze and protect the logical flow of the article.</p><div id="finalStory" class="storyline"></div><div id="resultGlossary"></div><div id="key"></div></div>
+ <div class="result-buttons"><button class="secondary" id="copyBtn" type="button">📋 Copy completed story</button><button class="primary" id="replayBtn" type="button">🌸 Play Again</button></div><p id="copyMessage" class="smallcap" role="status"></p>
+</section>
+<footer class="smallcap">🌸 Made for curious learners · Haze Awareness &amp; SPM Reading Part 4</footer>
+</main>
+<script>
+'use strict';
+const DATA = {"passage":[{"before":"On some mornings, distant buildings almost disappear behind a grey curtain. This condition is known as haze. It happens when tiny particles and gases collect in the air. Smoke from forest and peatland fires can be a major source, while vehicles and factories release pollutants.","gap":0,"after":"When winds carry polluted air across national borders, people far from the original fires may experience haze too."},{"before":"Haze can change from day to day. Wind direction, rainfall and other weather conditions affect how pollution moves. Rain can help remove particles from the air, but calm conditions may allow them to build up near the ground.","gap":1,"after":"This helps explain why the sky can look clearer in one district while a nearby area remains hazy."},{"before":"Poor visibility is not the only concern. Haze can contain PM2.5, extremely fine particles that can travel deep into the lungs. Exposure may irritate the eyes or make asthma symptoms worse. Children, older adults and people with existing heart or lung conditions are vulnerable.","gap":2,"after":"As a result, haze can have far-reaching consequences for public health."},{"before":"In Malaysia, the Department of Environment reports air quality using the Air Pollutant Index, or API, called IPU in Malay. Monitoring stations measure several air pollutants, and the index presents air quality as a number with a health-related category.","gap":3,"after":"People should check official readings and advice when planning outdoor activities instead of judging safety only by how grey the sky appears."},{"before":"There are practical ways to mitigate the impact of haze. When air quality is poor, reducing time outdoors and avoiding strenuous exercise can lower exposure. Closing windows when outdoor air is smoky may help keep indoor air cleaner.","gap":4,"after":"Even so, a mask is not a substitute for following official health advice or getting medical help when serious symptoms occur."},{"before":"Protecting people during a haze episode is important, but prevention matters too. Governments, businesses and communities can help by reducing harmful emissions, discouraging open burning and managing land responsibly. This matters when fires send smoke over a wide area.","gap":5,"after":"Cleaner air will require a concerted effort from authorities, industries and ordinary citizens."}],"answers":[{"id":"dry","text":"During dry periods, fires may spread more easily and release more smoke."},{"id":"vary","text":"Consequently, the amount of pollution in the air is not the same everywhere."},{"id":"risk","text":"For these groups, breathing polluted air may lead to more serious health problems."},{"id":"api","text":"Generally, a higher API indicates poorer air quality and a greater need for caution."},{"id":"n95","text":"For those who must go outside, a well-fitting N95 respirator can help filter fine particles."},{"id":"borders","text":"Since smoke can cross borders, cooperation between neighbouring countries is also necessary."},{"id":"photos","text":"Some people take photographs of distant hills when the view is especially clear."},{"id":"posters","text":"Schools sometimes display posters to remind students about caring for the environment."}],"gaps":[{"answer":"dry","hint":"The paragraph lists pollution sources. Look for a fact about why fires produce more smoke before wind carries it elsewhere.","hintMs":"Perenggan ini menyenaraikan punca pencemaran. Cari fakta tentang sebab kebakaran menghasilkan lebih banyak asap sebelum angin membawanya ke tempat lain.","right":"The dry-weather sentence develops the point about fires before the paragraph explains how smoke travels.","rightMs":"Ayat tentang cuaca kering menghuraikan isu kebakaran sebelum perenggan menerangkan pergerakan asap.","wrong":"Choose a sentence linking fire conditions with smoke, not just an observation of the sky.","wrongMs":"Pilih ayat yang menghubungkan keadaan kebakaran dengan asap, bukan sekadar pemerhatian langit.","context":"Sources of haze and winds carrying smoke across borders."},{"answer":"vary","hint":"Wind and rain do not affect every area in exactly the same way. What result would follow?","hintMs":"Angin dan hujan tidak memberi kesan yang sama kepada semua kawasan. Apakah akibatnya?","right":"The sentence summarises uneven pollution levels and prepares the example comparing two districts.","rightMs":"Ayat ini merumuskan perbezaan tahap pencemaran sebelum memberi contoh dua daerah.","wrong":"Look for a general result of changing weather conditions before the district comparison.","wrongMs":"Cari akibat umum perubahan cuaca sebelum perbandingan antara dua daerah.","context":"Weather changes the amount of pollution; nearby districts can look different."},{"answer":"risk","hint":"The previous sentence identifies vulnerable people. What does 'these groups' refer to?","hintMs":"Ayat sebelumnya menyatakan golongan berisiko. Siapakah yang dirujuk oleh 'these groups'?","right":"'These groups' clearly refers to the children, older adults and people with health conditions just mentioned.","rightMs":"'These groups' merujuk kepada kanak-kanak, warga emas dan mereka yang mempunyai masalah kesihatan yang baru disebut.","wrong":"The missing sentence should explain why the vulnerable groups face extra risks.","wrongMs":"Ayat yang hilang patut menerangkan mengapa golongan berisiko menerima kesan yang lebih serius.","context":"PM2.5 and vulnerable people; consequences for health."},{"answer":"api","hint":"The paragraph explains an index reported as a number. What does the number tell people?","hintMs":"Perenggan menerangkan indeks yang dinyatakan dalam bentuk nombor. Apakah maksud nombor itu?","right":"The sentence interprets an API reading and leads logically to advice about checking official reports.","rightMs":"Ayat ini menerangkan maksud bacaan IPU dan menghubungkannya dengan nasihat untuk menyemak laporan rasmi.","wrong":"Choose a sentence explaining the meaning of the index before advice on using its readings.","wrongMs":"Pilih ayat yang menerangkan maksud indeks sebelum nasihat menggunakan bacaan tersebut.","context":"Malaysia's API/IPU, official numbers, advice about outdoor activities."},{"answer":"n95","hint":"The next sentence begins 'Even so, a mask ...'. What type of mask must be introduced first?","hintMs":"Ayat selepas tempat kosong bermula dengan 'Even so, a mask ...'. Jenis pelitup apakah yang perlu diperkenalkan dahulu?","right":"The sentence introduces a well-fitting N95 respirator, making the following limitation about masks meaningful.","rightMs":"Ayat ini memperkenalkan respirator N95 yang sesuai, lalu menjadikan peringatan selepasnya berkaitan.","wrong":"The next sentence discusses the limits of wearing a mask. Find the sentence that introduces it.","wrongMs":"Ayat seterusnya membincangkan batas penggunaan pelitup. Cari ayat yang memperkenalkannya.","context":"Reduce exposure, then mention a respirator and its limits."},{"answer":"borders","hint":"The paragraph mentions smoke travelling over a wide area. Think beyond one town or country.","hintMs":"Perenggan menyebut asap bergerak ke kawasan yang luas. Fikirkan kerjasama yang melangkaui satu bandar atau negara.","right":"Cross-border smoke explains why regional cooperation is part of the wider prevention effort.","rightMs":"Asap yang merentasi sempadan menjelaskan keperluan kerjasama serantau dalam usaha pencegahan.","wrong":"The closing paragraph moves from actions at home to shared responsibility across countries.","wrongMs":"Perenggan akhir bergerak daripada tindakan setempat kepada tanggungjawab bersama antara negara.","context":"Prevention and smoke spreading across a wide area, followed by collective effort."}]};
+const $ = id => document.getElementById(id);
+const byId = new Map(DATA.answers.map(a=>[a.id,a]));
+const shuffle = input => {const a=[...input];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let student='',order=[],labels={},selections=Array(6).fill(''),locked=Array(6).fill(false),checkedOnce=false,firstScore=null;
+function node(tag,klass,text){const x=document.createElement(tag);if(klass)x.className=klass;if(text!==undefined)x.textContent=text;return x;}
+const C1_PATTERN=/(far-reaching consequences|mitigate the impact|a concerted effort)/gi;
+function appendTextWithPhrases(target,text){
+ C1_PATTERN.lastIndex=0;let offset=0,match;
+ while((match=C1_PATTERN.exec(text))!==null){
+  if(match.index>offset)target.append(document.createTextNode(text.slice(offset,match.index)));
+  target.append(node('strong','c1-phrase',match[0]));offset=match.index+match[0].length;
+ }
+ if(offset<text.length)target.append(document.createTextNode(text.slice(offset)));
+}
+function scrollToScreen(el){try{el.scrollIntoView({behavior:'auto',block:'start'});}catch(e){/* In-app preview can block scrolling */}}
+function resetState(){order=shuffle(DATA.answers);labels=Object.fromEntries(order.map((a,i)=>[a.id,String.fromCharCode(65+i)]));selections=Array(6).fill('');locked=Array(6).fill(false);checkedOnce=false;firstScore=null;}
+function updateProgress(){
+ const filled=selections.filter(Boolean).length;
+ const correct=locked.filter(Boolean).length;
+ const finished=correct===6;
+ $('progressText').textContent=checkedOnce ? correct+' / 6 correct · '+(6-correct)+' to complete' : filled+' / 6 sentences chosen';
+ $('progressFill').style.width=((checkedOnce?correct:filled)/6*100)+'%';
+ $('finishBtn').disabled=!finished&&filled!==6;
+ $('finishBtn').textContent=finished?'🏆 View Results':checkedOnce?'🔁 Check My Corrections':'✅ Check All 6 Answers';
+ if(finished){$('finishLabel').textContent='🌟 All six sentences are in place! View your final results.';}
+ else if(checkedOnce){$('finishLabel').textContent=filled===6?'🌸 Ready? Check your corrected sentences.':'💡 Use the hints above to choose again in the incorrect gaps.';}
+ else {$('finishLabel').textContent=filled===6?'✅ All six selected! Tap Check Answers to see how you did.':'🧩 Choose '+(6-filled)+' more sentence'+(6-filled===1?'':'s')+' before checking.';}
+}
+function dropDown(gapIndex){
+ const sel=node('select','gapselect');sel.id='gapSelect'+gapIndex;sel.setAttribute('aria-label','Choose the sentence for gap '+(gapIndex+1));
+ const placeholder=node('option','','— Tap to choose a sentence —');placeholder.value='';sel.append(placeholder);
+ for(const ans of order){const o=node('option','',labels[ans.id]+'. '+ans.text);o.value=ans.id;sel.append(o);}
+ sel.addEventListener('change',()=>pick(gapIndex,sel.value));return sel;
+}
+function makePassage(target,final=false){
+ target.replaceChildren();
+ DATA.passage.forEach((para,i)=>{
+  const p=node('div','storypara');appendTextWithPhrases(p,para.before+' ');
+  if(final){const span=node('span');appendTextWithPhrases(span,byId.get(DATA.gaps[i].answer).text);span.style.fontWeight='750';span.style.color='#825aa9';p.append(span);}
+  else{
+   const block=node('div','gapbox');block.id='gapBox'+i;
+   block.append(node('div','gaplabel','🔽 GAP '+(i+1)+' · Choose a sentence'));
+   block.append(dropDown(i));
+   const selected=node('div','selection-full');selected.id='selectionFull'+i;block.append(selected);
+   const response=node('div','gapfeedback');response.hidden=true;response.id='feedback'+i;response.setAttribute('role','status');response.setAttribute('aria-live','polite');block.append(response);
+   p.append(block);
+  }
+  appendTextWithPhrases(p,' '+para.after);target.append(p);
+ });
+}
+function feedback(i,kind,title,en,bm){
+ const host=$('feedback'+i);host.hidden=false;host.className='gapfeedback '+kind;
+ host.replaceChildren(node('strong','',title),node('p','',en),node('p','','🇲🇾 '+bm));
+}
+function updateAvailableChoices(){
+ DATA.gaps.forEach((gap,i)=>{
+  if(locked[i])return;
+  const sel=$('gapSelect'+i);
+  if(!sel)return;
+  for(const opt of sel.options){
+   if(!opt.value)continue;
+   const usedElsewhere=selections.some((v,index)=>index!==i&&v===opt.value);
+   opt.disabled=usedElsewhere;
+   opt.textContent=(usedElsewhere?'🔒 Used · ':'')+labels[opt.value]+'. '+byId.get(opt.value).text;
+  }
+ });
+}
+function pick(i,id){
+ if(locked[i])return;
+ if(id&&selections.some((v,j)=>j!==i&&v===id)){
+  $('gapSelect'+i).value=selections[i];return;
+ }
+ selections[i]=id;
+ const box=$('gapBox'+i);
+ box.classList.toggle('retrying',checkedOnce&&!!id);
+ const display=$('selectionFull'+i);
+ display.replaceChildren();
+ if(id){display.append(node('b','',labels[id]+'. '));appendTextWithPhrases(display,byId.get(id).text);}
+ updateAvailableChoices();updateProgress();
+}
+function evaluate(){
+ if(locked.every(Boolean)){end();return;}
+ if(selections.some(x=>!x))return;
+ const submitted=[...selections];
+ if(!checkedOnce){firstScore=submitted.reduce((total,id,i)=>total+(id===DATA.gaps[i].answer?1:0),0);checkedOnce=true;}
+ let newlyCorrect=0;
+ DATA.gaps.forEach((gap,i)=>{
+  if(locked[i])return;
+  const id=submitted[i],box=$('gapBox'+i),sel=$('gapSelect'+i),display=$('selectionFull'+i);
+  if(id===gap.answer){
+   locked[i]=true;newlyCorrect++;
+   box.classList.remove('invalid','retrying');box.classList.add('solved');
+   box.querySelector('.gaplabel').textContent='✅ GAP '+(i+1)+' · Correct';
+   sel.disabled=true;sel.hidden=true;
+   const correctSpan=node('span','solvedsentence');appendTextWithPhrases(correctSpan,byId.get(id).text);display.replaceChildren(correctSpan);
+   feedback(i,'good','✅ Correct connection!',gap.right,gap.rightMs);
+  }else{
+   box.classList.remove('retrying');box.classList.add('invalid');
+   box.querySelector('.gaplabel').textContent='💡 GAP '+(i+1)+' · Try again';
+   display.replaceChildren();
+   feedback(i,'bad','💡 Hint / Petunjuk · '+labels[id]+' was not right',
+    'Your choice: '+labels[id]+'. '+byId.get(id).text+'  Hint: '+gap.hint,
+    'Petunjuk: '+gap.hintMs);
+   selections[i]='';sel.value='';
+  }
+ });
+ updateAvailableChoices();updateProgress();
+ const correct=locked.filter(Boolean).length;
+ const summary=$('checkSummary');summary.hidden=false;
+ if(correct===6){summary.replaceChildren(node('b','','🎉 All six correct!'),document.createTextNode(' Your first-check score is '+firstScore+'/6. Tap View Results to read the completed passage.'));}
+ else {summary.replaceChildren(node('b','','📋 First-check score: '+firstScore+'/6. '),document.createTextNode('You have '+(6-correct)+' gap'+(6-correct===1?'':'s')+' to fix. Only incorrect gaps have hints. Choose again, then check your corrections. Your score stays the same.'));}
+ // Keep the feedback in the passage visible; do not reveal the answers to incorrect gaps.
+}
+function begin(){
+ const name=$('name').value.trim();
+ if(!name){$('startError').textContent='Please enter your name. / Sila masukkan nama anda.';$('name').focus();return;}
+ student=name;resetState();$('startError').textContent='';$('startScreen').hidden=true;$('resultsScreen').hidden=true;$('gameScreen').hidden=false;
+ $('studentDisplay').textContent='👤 '+student;$('checkSummary').hidden=true;$('checkSummary').replaceChildren();
+ makePassage($('passage'));updateAvailableChoices();updateProgress();scrollToScreen($('gameScreen'));
+}
+function end(){
+ if(!locked.every(Boolean))return;
+ const earned=firstScore;
+ $('score').replaceChildren(document.createTextNode(String(earned)),node('small','',' / 6'));
+ $('resultName').textContent='🎓 '+student;
+ $('resultMessage').textContent=earned===6?'Wonderful! All six connected perfectly on your first check. 🌟':earned>=4?'Well done! You corrected your gaps using the clues. This score is from your first check. 🌸':'Great persistence! Your score reflects your first check; keep practising sentence links. 💪';
+ makePassage($('finalStory'),true);$('resultGlossary').replaceChildren($('gameScreen').querySelector('.c1-glossary').cloneNode(true));const key=$('key');key.replaceChildren();
+ DATA.gaps.forEach((g,i)=>{const p=node('p');p.append(node('b','',`Gap ${i+1} · Option ${labels[g.answer]} · `),document.createTextNode(g.right+' 🇲🇾 '+g.rightMs));key.append(p);});
+ $('resultsScreen').hidden=false;$('gameScreen').hidden=true;scrollToScreen($('resultsScreen'));
+}
+async function copyStory(){const story=DATA.passage.map((p,i)=>p.before+' '+byId.get(DATA.gaps[i].answer).text+' '+p.after).join('\n\n');try{await navigator.clipboard.writeText('Haze: More Than a Grey Sky\n\n'+story);$('copyMessage').textContent='✅ Story copied! / Cerita berjaya disalin!';}catch(e){$('copyMessage').textContent='Copy is unavailable here. You can select and copy the story above.';}}
+$('startForm').addEventListener('submit',e=>{e.preventDefault();begin();});$('name').addEventListener('input',()=>{$('startError').textContent='';});$('finishBtn').addEventListener('click',evaluate);$('copyBtn').addEventListener('click',copyStory);
+$('replayBtn').addEventListener('click',()=>{$('gameScreen').hidden=true;$('resultsScreen').hidden=true;$('startScreen').hidden=false;$('copyMessage').textContent='';$('name').value=student;scrollToScreen($('startScreen'));});
+$('restartTop').addEventListener('click',()=>{if(confirm('Restart this game? Your current score will be cleared. / Mula semula?')){$('gameScreen').hidden=true;$('startScreen').hidden=false;scrollToScreen($('startScreen'));}});
+</script>
+</body>
+</html>
