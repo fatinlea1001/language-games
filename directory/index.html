@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff4fa">
+<title>Language Arcade — English & Japanese Games</title>
+<style>
+:root{--ink:#30304f;--muted:#6c6a83;--pink:#fbd5e8;--lilac:#e7ddff;--line:#f0e9f2;--bg:#fff9fc;--purple:#7755aa}
+*{box-sizing:border-box}body{margin:0;font-family:ui-rounded,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 6% 0%,#fee1ef,transparent 26%),radial-gradient(circle at 90% 8%,#eae4ff,transparent 30%),#fffaff;min-height:100vh}
+.shell{max-width:940px;padding:26px 18px 55px;margin:auto}
+.preview-note{display:flex;align-items:center;justify-content:center;gap:8px;color:#7a588c;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px}
+.preview-note span{background:#fff;border:1px solid #f0d7eb;border-radius:20px;padding:6px 13px}
+.hero{position:relative;overflow:hidden;border-radius:29px;padding:34px 36px;background:linear-gradient(111deg,#fbd6e9 1%,#eadbff 62%,#ddecff 100%);border:1px solid #f5d9ed;box-shadow:0 16px 38px #a45c9020;}
+.sparkle{position:absolute;opacity:.7;user-select:none;pointer-events:none}.s1{right:8%;top:9%;font-size:42px}.s2{right:22%;bottom:12%;font-size:27px}.s3{right:3%;bottom:9%;font-size:26px}.s4{right:31%;top:19%;font-size:20px}
+.kicker{display:inline-flex;align-items:center;gap:7px;background:#ffffffbd;border:1px solid #ffffffb8;border-radius:30px;padding:7px 13px;color:#815b93;letter-spacing:.1em;font-size:11px;font-weight:900}
+h1{font-size:clamp(32px,5.4vw,49px);line-height:1.1;margin:16px 0 9px;letter-spacing:-.04em;font-weight:900}h1 em{font-style:normal;color:#8154a9}p.hero-sub{font-size:15px;line-height:1.65;max-width:560px;margin:0;color:#554a68;font-weight:550}.hero-bottom{display:flex;gap:9px;margin-top:21px;flex-wrap:wrap}.hero-mini{background:#ffffffbf;border:1px solid #ffffffd8;padding:8px 11px;border-radius:11px;font-size:12px;font-weight:800;color:#755984}
+.panel{border:1px solid #f0e8f2;background:#fff;border-radius:26px;box-shadow:0 12px 34px #88719c13;padding:20px;margin-top:19px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:15px}
+.section-title{margin:0;font-size:21px;letter-spacing:-.025em;display:flex;gap:8px;align-items:center}.smallsub{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4}.sort{display:inline-flex;gap:7px;align-items:center;border-radius:20px;background:#f9f5ff;padding:9px 13px;font-size:12px;font-weight:800;color:#7850a5;white-space:nowrap}
+.search{position:relative;display:flex;align-items:center;border:1.5px solid #ebe3ee;background:#fdfbff;border-radius:15px;min-height:51px;margin-bottom:14px;box-shadow:0 2px 0 #eae3f533}.search-icon{position:absolute;left:17px;font-size:21px;color:#998daa;line-height:1}.search input{padding:14px 46px;outline:none;border:0;background:transparent;width:100%;min-width:0;font:inherit;font-size:14px;color:var(--ink)}.search input::placeholder{color:#a2a0b0}.search:focus-within{border-color:#cdb3ee;box-shadow:0 0 0 3px #eaddff}.clear{position:absolute;right:13px;width:28px;height:28px;border:0;border-radius:50%;background:#f0eafd;color:#70538c;font-size:17px;cursor:pointer;display:none}.clear.visible{display:block}
+.status{display:flex;align-items:center;justify-content:space-between;color:#77758b;font-size:12px;font-weight:700;padding:4px 3px 12px;gap:12px}.status strong{color:#665b8c}.status-right{display:flex;align-items:center;gap:6px}.live-dot{width:7px;height:7px;background:#7abf95;border-radius:50%}
+.items{display:grid;gap:9px}.game{display:flex;align-items:center;gap:13px;min-height:79px;text-decoration:none;color:inherit;border:1px solid #f0edf3;border-radius:17px;background:#fff;transition:transform .16s,background .16s,border-color .16s,box-shadow .16s;padding:12px 13px}.game:hover,.game:focus-visible{transform:translateY(-1px);border-color:#d7c2eb;background:#fffafd;box-shadow:0 8px 24px #ad8bb820;outline:0}.game-emoji{display:flex;align-items:center;justify-content:center;font-size:28px;width:53px;height:53px;border-radius:15px;flex:0 0 53px;background:var(--emoji-bg)}.game-body{min-width:0;flex:1}.game-title{font-size:15px;font-weight:830;line-height:1.4;word-break:break-word}.game-sub{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:5px}.pill{background:#f7f4fa;border-radius:20px;padding:3px 8px;font-size:10px;font-weight:800;color:#81768d}.pill.japanese{background:#fff0f5;color:#b56a8f}.pill.english{background:#f0efff;color:#7662b8}.date{font-size:11px;color:#9691a0}.go{white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;font-weight:850;color:#8261a5;background:#f4efff;border-radius:11px;padding:9px 11px}.go span{font-size:17px;font-weight:500}.empty{text-align:center;padding:38px 10px;color:var(--muted);font-weight:700}.footer{text-align:center;color:#9a90a0;font-size:11px;margin:18px 0 0;line-height:1.7}.footer strong{color:#8c79aa}
+@media(max-width:620px){.shell{padding:12px 10px 30px}.preview-note{font-size:10px;margin-bottom:10px}.hero{padding:25px 19px;border-radius:22px}.s1{right:5%;top:9%;font-size:26px}.s2{right:5%;bottom:11%;font-size:18px}.s4{right:5%;top:44%;font-size:16px}.s3{display:none}h1{font-size:34px;max-width:290px}p.hero-sub{font-size:13px;max-width:280px}.hero-bottom{gap:6px;margin-top:14px}.hero-mini{font-size:10px;padding:7px 9px}.panel{margin-top:12px;padding:14px;border-radius:20px}.section-title{font-size:18px}.sort{font-size:10px;padding:7px 9px}.toolbar{gap:8px}.game{padding:10px 9px;gap:9px;min-height:77px}.game-emoji{font-size:23px;width:45px;height:45px;flex-basis:45px;border-radius:13px}.game-title{font-size:13px}.date{font-size:10px}.go{padding:7px 8px;font-size:0;gap:0}.go span{font-size:18px}.game-sub{gap:5px}.pill{font-size:9px;padding:2px 7px}.status{font-size:11px}}
+@media(max-width:365px){.go{display:none}.s2{display:none}h1{font-size:30px}}
+
+/* Language tabs: English and Japanese independently searchable. */
+.language-tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1px 0 21px;padding:6px;background:#f7f2fa;border:1px solid #ebe3f2;border-radius:19px}
+.language-tab{appearance:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;min-height:59px;border:1px solid transparent;border-radius:14px;color:#806e91;background:transparent;font:inherit;font-size:15px;font-weight:850;transition:background .18s,border-color .18s,box-shadow .18s;white-space:nowrap}
+.language-tab .flag{font-size:22px}.language-tab .tab-count{font-size:11px;padding:5px 8px;border-radius:99px;background:#eee7f4;color:#765c8c;font-weight:900}
+.language-tab:hover{background:#fffbff}.language-tab:focus-visible{outline:3px solid #ad8bce;outline-offset:2px}
+.language-tab[aria-selected="true"]{background:white;border-color:#e8d9f1;color:#7953a5;box-shadow:0 4px 14px #ab84c721}
+.language-tab[aria-selected="true"] .tab-count{background:#f1e7fc;color:#8453b0}
+.language-tab[data-language="Japanese"][aria-selected="true"]{border-color:#f2d2e3;color:#b15f8c}
+.language-tab[data-language="Japanese"][aria-selected="true"] .tab-count{background:#ffebf5;color:#ab5b86}
+@media(max-width:620px){.language-tabs{gap:5px;padding:4px;border-radius:14px;margin-bottom:16px}.language-tab{min-height:51px;gap:5px;border-radius:10px;font-size:13px}.language-tab .flag{font-size:18px}.language-tab .tab-count{font-size:10px;padding:3px 6px}}
+@media(max-width:345px){.language-tab{font-size:12px}.language-tab .tab-count{display:none}}
+.retry{border:none;border-radius:10px;background:#eee4fb;color:#60458b;font:inherit;font-weight:800;padding:9px 13px;margin-left:6px;cursor:pointer}.retry:hover{background:#e5d4fa}
+.footer a{color:#7b5a9e;text-decoration:underline}.loading{text-align:center;color:#7e7691;padding:32px 10px;font-weight:700}
+</style>
+</head>
+<body>
+<main class="shell">
+  <section class="hero">
+    <span class="sparkle s1">🌸</span><span class="sparkle s2">⭐</span><span class="sparkle s3">🫧</span><span class="sparkle s4">✨</span>
+    <div class="kicker">🎮 &nbsp; THE LANGUAGE ARCADE</div>
+    <h1>Play. Learn.<br><em>Level Up!</em> 🌈</h1>
+    <p class="hero-sub">Fun little games to practise English and Japanese. Pick one, start playing, and grow a little every day!</p>
+    <div class="hero-bottom"><span class="hero-mini">📝 Vocabulary</span><span class="hero-mini">🧩 Sentence Games</span><span class="hero-mini">🌸 Japanese Stories</span></div>
+  </section>
+  <section class="panel" aria-label="Game directory">
+    <div class="language-tabs" role="tablist" aria-label="Select game language">
+      <button id="englishTab" class="language-tab" role="tab" type="button" data-language="English" aria-selected="true" aria-controls="items"><span class="flag" aria-hidden="true">🇬🇧</span> English <span class="tab-count" id="englishCount">0</span></button>
+      <button id="japaneseTab" class="language-tab" role="tab" type="button" data-language="Japanese" aria-selected="false" aria-controls="items" tabindex="-1"><span class="flag" aria-hidden="true">🇯🇵</span> Japanese <span class="tab-count" id="japaneseCount">0</span></button>
+    </div>
+    <div class="toolbar">
+      <div><h2 id="sectionTitle" class="section-title">🇬🇧 English Games</h2><p class="smallsub">Most recently updated first, within each language.</p></div>
+      <div class="sort" aria-label="Sort order">↧ Newest first</div>
+    </div>
+    <label class="search"><span class="search-icon">⌕</span><input id="find" placeholder="Search English games or topics…" aria-label="Search games"><button id="clear" class="clear" aria-label="Clear search" type="button">×</button></label>
+    <div class="status"><div><strong id="count">Loading games…</strong> <span id="totalHint"></span></div><div class="status-right"><i class="live-dot"></i><span id="syncLabel">Loading latest list</span></div></div>
+    <div id="items" class="items" aria-live="polite" aria-busy="true"></div>
+    <div id="empty" class="empty" hidden>🔍 No games found. Try another word!</div>
+    <div id="problem" class="empty" hidden role="alert">The directory could not load right now. <button id="retry" class="retry" type="button">Try again</button></div>
+  </section>
+  <p class="footer"><strong>Made for curious learners 💗</strong><br>Updated automatically from the <a href="https://github.com/fatinlea1001/language-games" target="_blank" rel="noopener noreferrer">language-games repository</a>.<br>New game not showing yet? Refresh after GitHub finishes updating its game list.</p>
+</main>
+<script>
+'use strict';
+// The existing GitHub Action updates README.md whenever HTML games are committed.
+// This page reads that same directory; no additional workflow or API key is needed.
+const REPO = 'fatinlea1001/language-games';
+const BRANCH = 'main';
+const BASE = 'https://fatinlea1001.github.io/language-games/';
+const RAW = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/README.md`;
+const API = `https://api.github.com/repos/${REPO}/contents/README.md?ref=${BRANCH}`;
+const items = document.getElementById('items');
+const field = document.getElementById('find');
+const count = document.getElementById('count');
+const totalHint = document.getElementById('totalHint');
+const empty = document.getElementById('empty');
+const problem = document.getElementById('problem');
+const clear = document.getElementById('clear');
+const sectionTitle = document.getElementById('sectionTitle');
+const syncLabel = document.getElementById('syncLabel');
+const tabs = Array.from(document.querySelectorAll('.language-tab'));
+let games = [];
+let activeLanguage = 'English';
+let loaded = false;
+
+function gameStyle(path, language){
+ const name=path.toLowerCase();
+ if(name.includes('story'))return {emoji:'📖',bg:'#ffe6ef',topic:'Story · Fill in the blanks'};
+ if(name.includes('spelling')||name.includes('spell-'))return {emoji:'🈴',bg:'#eee8ff',topic:'Spelling challenge'};
+ if(name.includes('speaking'))return {emoji:'🎤',bg:'#ebe8ff',topic:'Speaking practice'};
+ if(name.includes('jumble'))return {emoji:'🧩',bg:'#e7f6f8',topic:'Sentence jumble'};
+ if(name.includes('elaboration'))return {emoji:'💬',bg:'#fff0df',topic:'Elaboration practice'};
+ if(name.includes('vocab'))return {emoji:'📚',bg:'#e5f3ea',topic:'Vocabulary'};
+ if(name.includes('truefalse'))return {emoji:'✅',bg:'#fbe9f6',topic:'True or false'};
+ if(name.includes('verbtonoun'))return {emoji:'📝',bg:'#f9ebdc',topic:'Word formation'};
+ if(name.includes('preposition'))return {emoji:'📍',bg:'#ebedff',topic:'Prepositions'};
+ if(name.includes('teform'))return {emoji:'✍️',bg:'#fff1dc',topic:'Japanese grammar'};
+ return language==='Japanese'?{emoji:'🌸',bg:'#ffeaf3',topic:'Japanese practice'}:{emoji:'🎮',bg:'#eeeaff',topic:'English practice'};
+}
+
+function parseDirectory(markdown){
+ const begin='<!-- AUTO-GAMES:START -->';
+ const finish='<!-- AUTO-GAMES:END -->';
+ const start=markdown.indexOf(begin);
+ const end=markdown.indexOf(finish, start+begin.length);
+ if(start<0 || end<0)throw new Error('Missing automatic directory markers');
+ let language='';
+ const parsed=[];
+ for(const line of markdown.slice(start+begin.length,end).split(/\r?\n/)){
+  const heading=line.match(/^###\s+.*?\b(English|Japanese|Other) Games\s*$/i);
+  if(heading){language=heading[1][0].toUpperCase()+heading[1].slice(1).toLowerCase();continue;}
+  if(language!=='English' && language!=='Japanese')continue;
+  const match=line.match(/^- \[([^\]]+)\]\((https:\/\/[^)]+)\)(?:\s+[—–-]\s+updated\s+(.+))?\s*$/);
+  if(!match)continue;
+  const [,title,href,date='']=match;
+  let url;
+  try {url=new URL(href);} catch {continue;}
+  // Never turn repository content into arbitrary outbound links.
+  if(url.origin!=='https://fatinlea1001.github.io' || !url.pathname.startsWith('/language-games/') || !url.pathname.toLowerCase().endsWith('.html'))continue;
+  const file=decodeURIComponent(url.pathname.split('/').pop());
+  const style=gameStyle(file,language);
+  parsed.push({title,kind:language,date,dateLabel:date||'Recently added',url:url.href,file,...style});
+ }
+ if(!parsed.length)throw new Error('Game list is empty');
+ return parsed; // preserve README's most-recently-updated-first order per category
+}
+
+async function fetchDirectory(){
+ let lastError;
+ try{
+  const response=await fetch(RAW,{cache:'no-store'});
+  if(!response.ok)throw new Error('GitHub raw '+response.status);
+  return parseDirectory(await response.text());
+ }catch(e){lastError=e;}
+ try{
+  const response=await fetch(API,{headers:{'Accept':'application/vnd.github+json'},cache:'no-store'});
+  if(!response.ok)throw new Error('GitHub API '+response.status);
+  const data=await response.json();
+  const bytes=Uint8Array.from(atob(data.content.replace(/\s/g,'')),char=>char.charCodeAt(0));
+  return parseDirectory(new TextDecoder().decode(bytes));
+ }catch(e){throw new Error('Could not load GitHub game list: '+(e?.message||lastError?.message));}
+}
+
+function updateTabs(){
+ document.getElementById('englishCount').textContent=games.filter(g=>g.kind==='English').length;
+ document.getElementById('japaneseCount').textContent=games.filter(g=>g.kind==='Japanese').length;
+}
+function switchLanguage(language){
+ activeLanguage=language;
+ tabs.forEach(tab=>{
+  const selected=tab.dataset.language===language;
+  tab.setAttribute('aria-selected',String(selected));
+  tab.tabIndex=selected?0:-1;
+ });
+ sectionTitle.textContent=(language==='English'?'🇬🇧':'🇯🇵')+' '+language+' Games';
+ field.value='';
+ field.placeholder='Search '+language+' games or topics…';
+ render();
+}
+tabs.forEach(tab=>{
+ tab.addEventListener('click',()=>switchLanguage(tab.dataset.language));
+ tab.addEventListener('keydown',event=>{
+  if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){
+   event.preventDefault();
+   const index=event.key==='Home'?0:event.key==='End'?tabs.length-1:(tabs.indexOf(tab)+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+   tabs[index].focus();switchLanguage(tabs[index].dataset.language);
+  }
+ });
+});
+function render(){
+ const q=field.value.trim().toLocaleLowerCase();
+ const matches=games.filter(g=>g.kind===activeLanguage && [g.title,g.topic,g.file].join(' ').toLocaleLowerCase().includes(q));
+ items.replaceChildren();
+ if(!loaded){count.textContent='Loading games…';empty.hidden=true;return;}
+ const fragment=document.createDocumentFragment();
+ matches.forEach(g=>{
+  const a=document.createElement('a');a.className='game';a.href=g.url;a.target='_blank';a.rel='noopener noreferrer';
+  const em=document.createElement('span');em.className='game-emoji';em.style.setProperty('--emoji-bg',g.bg);em.textContent=g.emoji;
+  const body=document.createElement('span');body.className='game-body';
+  const h=document.createElement('div');h.className='game-title';h.textContent=g.title;
+  const sub=document.createElement('div');sub.className='game-sub';
+  const pill=document.createElement('span');pill.className='pill '+g.kind.toLowerCase();pill.textContent=g.kind;
+  const detail=document.createElement('span');detail.className='date';detail.textContent=g.topic+' · '+g.dateLabel;
+  sub.append(pill,detail);body.append(h,sub);
+  const go=document.createElement('span');go.className='go';go.textContent='Play now ↗';
+  a.append(em,body,go);fragment.append(a);
+ });
+ items.append(fragment);
+ count.textContent=matches.length+' '+(matches.length===1?'game':'games');
+ empty.hidden=matches.length>0 || !loaded;
+ clear.classList.toggle('visible',Boolean(field.value));
+}
+async function loadGames(){
+ items.setAttribute('aria-busy','true');
+ loaded=false;
+ problem.hidden=true;
+ empty.hidden=true;
+ syncLabel.textContent='Loading latest list';
+ count.textContent='Loading games…';
+ try{
+  games=await fetchDirectory();
+  loaded=true;
+  updateTabs();
+  totalHint.textContent='available in the '+activeLanguage+' tab';
+  syncLabel.textContent='Synced with GitHub';
+  render();
+ }catch(error){
+  console.error(error);
+  loaded=false;
+  count.textContent='Game list unavailable';
+  syncLabel.textContent='Connection issue';
+  items.replaceChildren();
+  problem.hidden=false;
+ }finally{items.setAttribute('aria-busy','false');}
+}
+field.addEventListener('input',render);
+clear.addEventListener('click',()=>{field.value='';render();field.focus();});
+document.getElementById('retry').addEventListener('click',loadGames);
+render();loadGames();
+</script>
+</body>
+</html>
