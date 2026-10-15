@@ -37,6 +37,9 @@ h1{font-size:clamp(32px,5.4vw,49px);line-height:1.1;margin:16px 0 9px;letter-spa
 @media(max-width:345px){.language-tab{font-size:12px}.language-tab .tab-count{display:none}}
 .retry{border:none;border-radius:10px;background:#eee4fb;color:#60458b;font:inherit;font-weight:800;padding:9px 13px;margin-left:6px;cursor:pointer}.retry:hover{background:#e5d4fa}
 .footer a{color:#7b5a9e;text-decoration:underline}.loading{text-align:center;color:#7e7691;padding:32px 10px;font-weight:700}
+.theme-label{font-size:10px;font-weight:800;color:#7951a3;background:#f4edff;border-radius:30px;padding:3px 9px}
+.topics-line{margin-top:7px;font-size:12px;color:#655676;font-weight:650;line-height:1.5}
+@media(max-width:620px){.theme-label{font-size:9px}.topics-line{font-size:11px}}
 </style>
 </head>
 <body>
@@ -109,6 +112,154 @@ function displayGameTitle(title, filename){
  return title;
 }
 
+
+/* Reviewed topic labels for all 113 games in the directory on 15 October 2026.
+   These modify display text only, never the HTML filenames or game URLs. */
+const SPEAKING_2=[
+ ['My Hometown','My Favourite Place','A Memorable Trip'],
+ ['A School Event','Helping the Environment','A Useful Mobile App'],
+ ['A Healthy Habit','An Online Purchase','Helping a Friend'],
+ ['A Favourite Restaurant','A Birthday Celebration','A Gift I Received'],
+ ['An Online Game I Enjoy','A Useful Website','A Social Media Influencer'],
+ ['A Family Gathering','A Traditional Malaysian Food','A Festival I Celebrate'],
+ ['A Movie I Enjoyed','A Book I Recommend','A Song I Love'],
+ ['A School Competition','A Teacher I Admire','A Club or Society I Joined'],
+ ['A Way to Save Money','A Shopping Experience','Something I Want to Buy'],
+ ['A Dream Career','A Skill I Want to Learn','A Goal for My Future']
+];
+const SPEAKING_3=[
+ ['Reading Product Reviews','Shopping & Reviews'],
+ ['Ways of Communication','Communication'],
+ ['Reasons Teenagers Enjoy Social Media','Technology & Social Media'],
+ ['Adventurous Activities','Adventure & Hobbies'],
+ ['Surviving an Emergency','Safety'],
+ ['Choosing a Part-Time Job','Career & Work'],
+ ['Unhealthy Shopping Habits','Shopping & Finance'],
+ ['Challenges of Being a Teenager','Personal Issues'],
+ ['Suitable Part-Time Jobs','Career & Work'],
+ ['Reasons People Like to Travel','Travel & Tourism'],
+ ['Adapting to Life in a Foreign Country','Travel & Culture'],
+ ['Popular Pastime Activities','Hobbies & Leisure'],
+ ['Preserving Nature','Environment'],
+ ['Green Living','Environment'],
+ ['Ways Teenagers Share Their Problems','Personal Issues'],
+ ['Ways Teenagers Express Themselves','Self-Expression']
+];
+const JAPANESE_STORIES=[
+ ['School Festival','School & Culture'],
+ ['Rainy Afternoon','Weather & Daily Life'],
+ ['Weekend Shopping','Shopping'],
+ ['Trip to the Sea','Travel & Nature'],
+ ['Cooking with Family','Food & Family'],
+ ['Studying at the Library','Education'],
+ ['Morning in the Park','Nature & Daily Life'],
+ ["Friend's Birthday",'Celebrations'],
+ ['First Part-Time Job','Work'],
+ ['Hiking in the Mountains','Nature & Travel']
+];
+const JAPANESE_SPELL=[
+ ['Mixed Kanji & Katakana','N5–N4 Vocabulary'],
+ ['Mixed Kanji & Katakana','N5–N4 Vocabulary'],
+ ['Daily Life & Home','Everyday Japanese'],
+ ['School & Learning','Education'],
+ ['Travel & Transport','Travel'],
+ ['Feelings & Everyday Actions','Everyday Japanese'],
+ ['Shopping & Work','Everyday Japanese']
+];
+const TOPIC_BASE={
+ 'environment':['Environment','Environment'],
+ 'education':['School Life & Education','Education'],
+ 'personal':['Personal Issues & Wellbeing','Personal Issues'],
+ 'technology':['Technology & Social Media','Technology'],
+ 'finance':['Money & Financial Literacy','Finance'],
+ 'health':['Health & Healthy Living','Health & Lifestyle'],
+ 'gaming':['Entertainment & Gaming','Entertainment'],
+ 'bullying':['Bullying & Personal Issues','Personal Issues'],
+ 'socialmedia':['Social Media & Technology','Technology'],
+ 'sports':['Playing Sports','Sports & Health'],
+ 'mentalhealth':['Mental Health','Personal Issues'],
+ 'savingmoney':['Saving Money','Finance'],
+ 'spendmoneywisely':['Spending Money Wisely','Finance'],
+ 'managetime':['Managing Time','Study Skills'],
+ 'smartphoneaddiction':['Smartphone Addiction','Technology & Wellbeing'],
+ 'hotelreview':['Hotel Reviews','Travel & Review Writing'],
+ 'robloxreview':['Roblox Reviews','Gaming & Review Writing'],
+ 'ai':['Artificial Intelligence (AI)','Technology']
+};
+const JUMBLE_BASE={
+ 'finance':'Money & Shopping',
+ 'health':'Health & Lifestyle',
+ 'education':'School Life & Education',
+ 'gaming':'Entertainment & Gaming',
+ 'bullying':'Bullying & Personal Issues',
+ 'socialmedia':'Social Media & Technology',
+ 'environment':'Environment'
+};
+function topicDescription(file, readmeTitle, language){
+ const setMatch=file.match(/^(.*?)-(\d+)\.html$/i);
+ const stem=setMatch?setMatch[1]:file.replace(/\.html$/i,'');
+ const number=setMatch?Number(setMatch[2]):0;
+ const setLabel=number?' (Set '+number+')':'';
+ const describe=(base,topics,theme)=>{
+  const list=Array.isArray(topics)?topics:[topics];
+  return {label:base+setLabel,topics:list,theme};
+ };
+ if(stem==='eng-speakingpart2' && SPEAKING_2[number-1])
+  return describe('SPM Speaking Part 2',SPEAKING_2[number-1],'Speaking & Daily Life');
+ if(stem==='eng-speakingpart3' && SPEAKING_3[number-1]){
+  const [topic,theme]=SPEAKING_3[number-1];
+  return describe('SPM Speaking Part 3 — '+topic,topic,theme);
+ }
+ if(stem==='jpn-story-emoji-fill' && JAPANESE_STORIES[number-1]){
+  const [topic,theme]=JAPANESE_STORIES[number-1];
+  return describe('Japanese Emoji Story Fill — '+topic,topic,theme);
+ }
+ if(stem==='jpn-spelling-kanji-katakana' && JAPANESE_SPELL[number-1]){
+  const [topic,theme]=JAPANESE_SPELL[number-1];
+  return describe('Kanji & Katakana Spell-Off — '+topic,topic,theme);
+ }
+ if(stem.startsWith('jpn-truefalse-')){
+  const scene=stem.slice(14);
+  const topic=scene[0].toUpperCase()+scene.slice(1);
+  return describe('Japanese Picture True/False — '+topic,topic+' Scenes','Sentence Recognition');
+ }
+ if(stem==='teform')return describe('Japanese て-Form Builder','Verb て-Form','N5 Grammar');
+ if(stem==='n5-adj')return describe('N5 Adjective Quiz','N5 Adjectives','Japanese Vocabulary');
+ if(stem==='n5-verb')return describe('N5 Verb Quiz','N5 Verbs','Japanese Vocabulary');
+ if(stem==='n5-vocabulary')return describe('N5 Vocabulary Quiz','Everyday Japanese Words','Japanese Vocabulary');
+ if(stem==='n5-sentence')return describe('N5 Sentence Jumble','Japanese Sentence Formation','N5 Grammar');
+ if(stem==='eng-elaboration-finance' && number===1)
+  return describe('Paragraph Makeover — Elaboration & Cohesion',['Saving Money','Cultural Awareness','Plastic Waste'],'SPM Writing Skills');
+ if(stem.startsWith('eng-elaboration-')){
+  const code=stem.slice(16);
+  const [topic,theme]=TOPIC_BASE[code]||[code,'Writing'];
+  return describe('Elaboration Builder — '+topic,topic,theme);
+ }
+ if(stem.startsWith('eng-jumble-')){
+  const code=stem.slice(11);
+  const topic=JUMBLE_BASE[code]||code;
+  return describe('Sentence Jumble — '+topic,topic,(TOPIC_BASE[code]||['','Sentence Building'])[1]);
+ }
+ if(stem.startsWith('eng-vocab-')){
+  const code=stem.slice(10);
+  const [topic,theme]=TOPIC_BASE[code]||[code,'Vocabulary'];
+  return describe('Vocabulary Quiz — '+topic,topic,theme);
+ }
+ if(stem.startsWith('eng-spell-')){
+  const code=stem.slice(10);
+  const [topic,theme]=TOPIC_BASE[code]||[code,'Spelling'];
+  return describe('Spelling Challenge — '+topic,topic,theme);
+ }
+ if(stem==='eng-matchvocab-personal')
+  return describe('Vocabulary Match-Up — Confidence','Confidence & Self-Esteem','Personal Issues');
+ if(stem==='eng-preposition')
+  return describe('Prepositions Quiz','Prepositions','English Grammar');
+ if(stem==='eng-verbtonoun')
+  return describe('Word Formation — Verb to Noun','Verb-to-Noun Word Formation','English Grammar');
+ // Unknown future files stay discoverable without inventing their contents.
+ return {label:readmeTitle,topics:[],theme:language+' Practice'};
+}
+
 function parseDirectory(markdown){
  const begin='<!-- AUTO-GAMES:START -->';
  const finish='<!-- AUTO-GAMES:END -->';
@@ -130,7 +281,8 @@ function parseDirectory(markdown){
   if(url.origin!=='https://fatinlea1001.github.io' || !url.pathname.startsWith('/language-games/') || !url.pathname.toLowerCase().endsWith('.html'))continue;
   const file=decodeURIComponent(url.pathname.split('/').pop());
   const style=gameStyle(file,language);
-  parsed.push({title:displayGameTitle(title,file),kind:language,date,dateLabel:date||'Recently added',url:url.href,file,...style});
+  const metadata=topicDescription(file,title,language);
+  parsed.push({title:metadata.label,topics:metadata.topics,theme:metadata.theme,kind:language,date,dateLabel:date||'Recently added',url:url.href,file,...style});
  }
  if(!parsed.length)throw new Error('Game list is empty');
  return parsed; // preserve README's most-recently-updated-first order per category
@@ -180,7 +332,7 @@ tabs.forEach(tab=>{
 });
 function render(){
  const q=field.value.trim().toLocaleLowerCase();
- const matches=games.filter(g=>g.kind===activeLanguage && [g.title,g.topic,g.file].join(' ').toLocaleLowerCase().includes(q));
+ const matches=games.filter(g=>g.kind===activeLanguage && [g.title,g.topic,g.file,g.theme,...g.topics].join(' ').toLocaleLowerCase().includes(q));
  items.replaceChildren();
  if(!loaded){count.textContent='Loading games…';empty.hidden=true;return;}
  const fragment=document.createDocumentFragment();
@@ -191,8 +343,14 @@ function render(){
   const h=document.createElement('div');h.className='game-title';h.textContent=g.title;
   const sub=document.createElement('div');sub.className='game-sub';
   const pill=document.createElement('span');pill.className='pill '+g.kind.toLowerCase();pill.textContent=g.kind;
-  const detail=document.createElement('span');detail.className='date';detail.textContent=g.topic+' · '+g.dateLabel;
-  sub.append(pill,detail);body.append(h,sub);
+  const theme=document.createElement('span');theme.className='theme-label';theme.textContent=g.theme;
+  const detail=document.createElement('span');detail.className='date';detail.textContent=g.dateLabel;
+  sub.append(pill,theme,detail);body.append(h,sub);
+  if(g.topics.length>1){
+   const topical=document.createElement('div');topical.className='topics-line';
+   topical.textContent='Topics: '+g.topics.join(' · ');
+   body.append(topical);
+  }
   const go=document.createElement('span');go.className='go';go.textContent='Play now ↗';
   a.append(em,body,go);fragment.append(a);
  });
