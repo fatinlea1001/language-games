@@ -7,22 +7,22 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Speakingpart3 (Set 16)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-16.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 15)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-15.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 14)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-14.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 13)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-13.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 12)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-12.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 11)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-11.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 10)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-10.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 9)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-9.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 8)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-8.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 7)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-7.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 6)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-6.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 5)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-5.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 4)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-4.html) — updated 15 Oct 2026
-- [Speakingpart3 (Set 3)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-3.html) — updated 14 Oct 2026
-- [Speakingpart3 (Set 2)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-2.html) — updated 14 Oct 2026
-- [Speakingpart3 (Set 1)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-1.html) — updated 14 Oct 2026
+- [SPM Speaking Part 3 (Set 16)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-16.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 15)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-15.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 14)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-14.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 13)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-13.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 12)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-12.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 11)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-11.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 10)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-10.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 9)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-9.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 8)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-8.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 7)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-7.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 6)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-6.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 5)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-5.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 4)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-4.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 (Set 3)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-3.html) — updated 14 Oct 2026
+- [SPM Speaking Part 3 (Set 2)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-2.html) — updated 14 Oct 2026
+- [SPM Speaking Part 3 (Set 1)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-1.html) — updated 14 Oct 2026
 - [Jumble Gaming (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-gaming-1.html) — updated 14 Oct 2026
 - [Jumble Bullying (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-bullying-1.html) — updated 14 Oct 2026
 - [Jumble Finance (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-finance-1.html) — updated 14 Oct 2026
@@ -47,16 +47,16 @@ Recently updated games appear first in each category.
 - [Vocab Health (Set 3)](https://fatinlea1001.github.io/language-games/eng-vocab-health-3.html) — updated 13 Oct 2026
 - [Vocab Health (Set 2)](https://fatinlea1001.github.io/language-games/eng-vocab-health-2.html) — updated 13 Oct 2026
 - [Vocab Health (Set 1)](https://fatinlea1001.github.io/language-games/eng-vocab-health-1.html) — updated 13 Oct 2026
-- [Speakingpart2 (Set 10)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-10.html) — updated 13 Oct 2026
-- [Speakingpart2 (Set 9)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-9.html) — updated 13 Oct 2026
-- [Speakingpart2 (Set 8)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-8.html) — updated 13 Oct 2026
-- [Speakingpart2 (Set 7)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-7.html) — updated 13 Oct 2026
-- [Speakingpart2 (Set 6)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-6.html) — updated 13 Oct 2026
-- [Speakingpart2 (Set 5)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-5.html) — updated 13 Oct 2026
-- [Speakingpart2 (Set 4)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-4.html) — updated 13 Oct 2026
-- [Speakingpart2 (Set 3)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-3.html) — updated 13 Oct 2026
-- [Speakingpart2 (Set 2)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-2.html) — updated 13 Oct 2026
-- [Speakingpart2 (Set 1)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-1.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 (Set 10)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-10.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 (Set 9)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-9.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 (Set 8)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-8.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 (Set 7)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-7.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 (Set 6)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-6.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 (Set 5)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-5.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 (Set 4)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-4.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 (Set 3)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-3.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 (Set 2)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-2.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 (Set 1)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-1.html) — updated 13 Oct 2026
 - [Elaboration Robloxreview (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-robloxreview-2.html) — updated 12 Oct 2026
 - [Elaboration Robloxreview (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-robloxreview-1.html) — updated 12 Oct 2026
 - [Elaboration Hotelreview (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-hotelreview-2.html) — updated 12 Oct 2026
