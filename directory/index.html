@@ -64,6 +64,32 @@ html.embedded-view .game-sub{gap:4px}
  html.embedded-view .language-tab{min-height:45px}
  html.embedded-view .game{gap:8px}
 }
+
+/* Restore the pastel banner when embedded; use a small banner on phones. */
+@media(min-width:621px){
+ html.embedded-view .shell{max-width:940px;padding:22px 18px 40px}
+ html.embedded-view .hero{display:block}
+ html.embedded-view .panel{margin-top:18px;padding:20px;border-radius:26px;box-shadow:0 12px 34px #88719c13}
+ html.embedded-view .panel::before{display:none}
+ html.embedded-view .footer{display:block}
+ html.embedded-view .smallsub{display:block}
+ html.embedded-view .sort{display:inline-flex}
+ html.embedded-view .search{min-height:51px;margin-bottom:14px}
+ html.embedded-view .search input{padding:14px 46px}
+ html.embedded-view .game{min-height:79px;padding:12px 13px}
+ html.embedded-view .game-emoji{width:53px;height:53px;flex-basis:53px;font-size:28px}
+ html.embedded-view .game-title{font-size:15px}
+ html.embedded-view .game-sub{gap:7px}
+}
+@media(max-width:620px){
+ html.embedded-view .hero{display:block;padding:11px 14px;border-radius:15px;box-shadow:none;margin:0 0 10px}
+ html.embedded-view .hero h1{font-size:21px;max-width:none;line-height:1.16;margin:7px 0 2px}
+ html.embedded-view .hero .kicker{font-size:9px;padding:4px 9px;letter-spacing:.05em}
+ html.embedded-view .hero-sub,html.embedded-view .hero-bottom{display:none}
+ html.embedded-view .hero .sparkle{display:none}
+ html.embedded-view .hero .s1{display:block;right:8%;top:18%;font-size:22px}
+ html.embedded-view .panel::before{display:none}
+}
 </style>
 </head>
 <body>
