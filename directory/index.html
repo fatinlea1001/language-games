@@ -288,6 +288,11 @@ function topicDescription(file, readmeTitle, language){
  if(stem==='n5-sentence')return describe('N5 Sentence Jumble','Japanese Sentence Formation','N5 Grammar');
  if(stem==='eng-elaboration-finance' && number===1)
   return describe('Paragraph Makeover — Elaboration & Cohesion',['Saving Money','Cultural Awareness','Plastic Waste'],'SPM Writing Skills');
+ if(stem.startsWith('eng-missingsentence-')){
+  const code=stem.slice('eng-missingsentence-'.length);
+  const display=code==='schoollife'?'School Life':code.replace(/([a-z])([A-Z])/g,'$1 $2').replace(/(^|\s)\w/g,ch=>ch.toUpperCase());
+  return describe('Missing Sentence Challenge — '+display,display,'SPM Reading Part 4');
+ }
  if(stem.startsWith('eng-elaboration-')){
   const code=stem.slice(16);
   const [topic,theme]=TOPIC_BASE[code]||[code,'Writing'];
