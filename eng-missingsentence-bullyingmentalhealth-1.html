@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffedf6">
+<title>Missing Sentence Challenge — Bullying & Mental Health (Set 1)</title>
+<style>
+:root{--ink:#43334e;--muted:#786a80;--pink:#ec77af;--pinkdeep:#b95086;--purple:#8a6ac7;--lav:#f0eafe;--line:#efd9e7;--good:#287852;--goodbg:#eaf9f1;--bad:#b84964;--badbg:#fff1f2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:ui-rounded,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,#ffe5f0,transparent 34%),radial-gradient(circle at 95% 16%,#eee9ff,transparent 36%),#fffbfd}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ab86d7;outline-offset:3px}[hidden]{display:none!important}
+.wrap{max-width:930px;margin:auto;padding:20px 16px 58px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(112deg,#ffd2e5 0%,#f5def5 51%,#dfe8ff 100%);padding:26px 27px 24px;border:1px solid #f4d1e3;border-radius:26px;box-shadow:0 12px 36px #9b728b19}
+.eyebrow{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.11em;color:#845779;background:#ffffffab;border-radius:999px;padding:7px 12px;border:1px solid #ffffffaa}
+h1{margin:12px 0 6px;font-size:clamp(27px,4vw,41px);line-height:1.17;letter-spacing:-.035em}h1 span{color:#9d4e96}.intro{font-size:14px;line-height:1.58;max-width:690px;margin:4px 0 0;color:#685b73}
+.spar{position:absolute;right:5%;top:19px;font-size:52px;transform:rotate(11deg);user-select:none;pointer-events:none}.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.pill{background:#fffaffc7;border:1px solid #ffffffb8;padding:7px 11px;border-radius:99px;font-size:11px;font-weight:850;color:#875878}
+.panel{background:#fff;border:1px solid #efe3ee;border-radius:22px;box-shadow:0 9px 28px #9f8db214;padding:20px;margin-top:15px}.start{max-width:750px;margin:20px auto 0}
+h2{font-size:20px;margin:4px 0 9px;letter-spacing:-.02em}.fieldlabel{font-size:13px;font-weight:900;display:block;margin-bottom:8px}
+.nameinput{width:100%;border:2px solid #e8d9ed;background:#fffafd;border-radius:13px;padding:12px 14px;font-size:15px;outline:none}
+.primary{background:linear-gradient(120deg,#db69a3,#a66fd1);border:0;color:white;border-radius:13px;font-weight:900;padding:13px 19px;box-shadow:0 7px 18px #b76b9c2d}.primary:hover{filter:brightness(1.04)}
+.secondary{background:#f6efff;color:#7554a1;border:1px solid #e9dcf7;border-radius:12px;font-weight:850;padding:10px 13px}.tips{margin:15px 0 0;border-radius:12px;background:#f8f3ff;padding:12px 14px;font-size:13px;line-height:1.6;color:#625476}
+.actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:8px}.error{font-size:13px;color:#ab3b62;font-weight:750;min-height:18px;margin:9px 0 0}.start-button{min-height:49px;min-width:200px}.start-tip{font-size:12px;line-height:1.5;color:#786a80;margin:8px 0 0}
+.topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:3px 0 8px}.topbar strong{font-size:15px}.student{color:#7a6287;font-size:12px;font-weight:800}
+.progress{height:9px;background:#f1e7f5;border-radius:999px;overflow:hidden;margin:10px 0 13px}.progress>div{height:100%;width:0;background:linear-gradient(90deg,#d969a4,#987be0);transition:width .2s}
+.subtext{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 10px}.storyline{font-size:clamp(15px,1.6vw,16px);line-height:1.85;padding:18px 19px;border-radius:15px;background:#fffdfb;border:1px solid #f1e4e8}
+.storyline .storypara{margin:0 0 21px}.storyline .storypara:last-child{margin-bottom:0}
+.gapbox{display:block;margin:11px 0 13px;padding:12px 13px;border-radius:14px;background:#f9f3ff;border:1.5px dashed #bc9edb;line-height:1.4}
+.gapbox.solved{background:#eefaef;border:1px solid #b9dec6}.gaplabel{font-size:12px;font-weight:900;color:#8953b0;margin-bottom:7px}.gapbox.solved .gaplabel{color:#277851}
+.gapselect{width:100%;max-width:100%;background:#fff;border:1.5px solid #d4bde8;border-radius:11px;padding:12px 36px 12px 11px;color:#584368;font-size:13px;line-height:1.45;min-height:49px;cursor:pointer;text-overflow:ellipsis}
+.gapselect:disabled{background:#f6fcf8;color:#276448;border-color:#bcdfc8;cursor:default}.gapselect.invalid{border-color:#d55f85;background:#fffafd}
+.selection-full{font-size:13px;line-height:1.55;margin:8px 0 0;color:#685478;overflow-wrap:anywhere}.selection-full b{color:#734e9b}
+.solvedsentence{display:block;font-weight:760;font-size:15px;line-height:1.7;color:#266a49;overflow-wrap:anywhere}.resulttag{font-size:12px;font-weight:900;margin-top:5px;color:#2b7953}
+.gapfeedback{margin-top:9px;border-radius:12px;padding:10px 12px;line-height:1.55;font-size:12px}.gapfeedback.good{background:#e5f8ef;color:#23694b;border:1px solid #bde3ca}.gapfeedback.bad{background:var(--badbg);color:#95334f;border:1px solid #f0b9c8}.gapfeedback.hint{background:#fff6dc;color:#71532d;border:1px solid #ead7a9}.gapfeedback strong{display:block;font-size:13px;margin-bottom:3px}.gapfeedback p{margin:4px 0}
+.hintbtn{font-size:11px;min-height:33px;margin-top:7px;padding:6px 11px}.hintbtn:disabled{opacity:.6;cursor:default}
+.note{background:#fff6d8;border:1px solid #f2dfb2;border-radius:13px;color:#7c6030;padding:11px 13px;font-size:12px;line-height:1.55;margin-top:13px}.vocab{font-size:12px;color:#74647f;line-height:1.8;margin-top:11px}.vocab b{color:#7e5198}
+.endbar{text-align:center;border-radius:15px;padding:15px;background:#faf2fc;margin-top:15px}.endbar p{font-size:13px;line-height:1.55;color:#75577d;margin:0 0 12px}.endbar .primary{min-width:200px}.endbar .primary:disabled{background:#e8dce9;box-shadow:none;color:#907c96;cursor:not-allowed}
+.final-title{text-align:center;font-size:27px;margin:11px 0 4px}.score{text-align:center;font-size:47px;font-weight:1000;color:#975eb6;letter-spacing:-.055em}.score small{font-size:22px;color:#87758f}.result-msg{text-align:center;color:#72617c;line-height:1.6}.review{background:#fffafd;border:1px solid #efdfee;border-radius:15px;margin-top:13px;padding:16px}.review p{font-size:13px;line-height:1.7;margin:12px 0}.review b{color:#7456a3}.result-buttons{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:20px 0 0}.smallcap{text-align:center;font-size:11px;color:#938293;margin-top:17px}
+@media(max-width:540px){.wrap{padding:9px 8px 30px}.hero{padding:20px 16px;border-radius:18px}.spar{font-size:31px;right:5%;top:19px}h1{max-width:285px;font-size:27px}.intro{font-size:12px}.panel{padding:13px;border-radius:17px;margin-top:9px}h2{font-size:18px}.storyline{padding:12px 11px;line-height:1.76}.gapbox{padding:10px 9px}.gapselect{font-size:14px;min-height:53px}.start-button{width:100%;min-height:54px;font-size:16px}.start .tips{margin-top:13px}.score{font-size:40px}.endbar .primary{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Submit-all-first flow: select used answers remain visible but unavailable in other menus. */
+.gapbox.invalid{background:#fff8f8;border-color:#e6a5b9}
+.gapbox.retrying{background:#fffaf5;border-color:#e9c5a3}
+.gapselect option:disabled{color:#9c9ca4;background:#eeeeee}
+.gapselect option:checked{background:#f6e6f8}
+.checksummary{margin:11px auto 13px;max-width:650px;background:#f8f1ff;border:1px solid #e5d3f3;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.6;color:#67467e}
+.checksummary b{color:#8c4a9b}
+.instructions-strong{font-weight:850;color:#754f93}
+
+/* Optional stretch vocabulary, never part of the answer key. */
+.c1-phrase{color:#7a3d85;background:#fff0b1;border-radius:4px;padding:0 2px;font-weight:850}
+.c1-glossary{margin:11px 0 0;border:1px solid #e9dcf0;background:#fcf9ff;border-radius:13px;padding:11px 13px;color:#69547a;font-size:12px;line-height:1.7}
+.c1-glossary summary{font-size:13px;font-weight:850;color:#8453a0;cursor:pointer}
+.c1-glossary ul{padding-left:18px;margin:9px 0 2px}.c1-glossary li{margin:5px 0}.c1-glossary li b{color:#7d3e88}
+
+.sources{color:#7f7084;font-size:11px;line-height:1.65;margin:10px 2px 4px}.sources a{color:#7954a2;text-underline-offset:2px}.sources a:hover{color:#a24b83}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero"><span class="spar" aria-hidden="true">🫶🌸</span><div class="eyebrow">🇬🇧 ENGLISH · SPM READING PART 4</div><h1>Missing Sentence <span>Challenge!</span></h1><p class="intro">Explore how bullying affects mental health, learning and school life. Choose all six sentences, then check your answers together.</p><div class="stats"><span class="pill">🫶 Bullying &amp; Mental Health</span><span class="pill">📖 B1–B2 + 3 C1 phrases</span><span class="pill">🧩 6 gaps · 8 options</span><span class="pill">🇲🇾 English + BM feedback</span></div></header>
+<section class="panel start" id="startScreen">
+ <h2>💗 Ready to make the connections?</h2>
+ <form id="startForm" novalidate>
+  <label class="fieldlabel" for="name">Student name / Nama murid</label>
+  <input class="nameinput" id="name" name="studentName" autocomplete="name" autocapitalize="words" enterkeyhint="go" placeholder="Type your full name here" maxlength="70">
+  <p id="startError" class="error" role="alert"></p>
+  <div class="actions"><button id="startBtn" class="primary start-button" type="submit">🎮 START GAME →</button></div>
+  <p class="start-tip">👆 Enter your name, then tap <strong>START GAME</strong> or press <strong>Go/Enter</strong>.</p>
+ </form>
+ <p class="tips"><strong>How to play:</strong> Read the informative passage. Every gap has a <strong>drop-down menu in the passage</strong>. Choose all <strong>6 sentences first</strong>, then tap <strong>Check Answers</strong>. A sentence already selected in another gap becomes greyed out. <strong>Hints appear only for wrong answers.</strong> You can retry, but your score is based on your <strong>first check</strong>.<br><strong>BM:</strong> Pilih ayat untuk keenam-enam tempat kosong dahulu, kemudian tekan <strong>Semak Jawapan</strong>. Pilihan yang sudah digunakan akan dikelabukan. Petunjuk hanya dipaparkan untuk jawapan yang salah. Markah berdasarkan semakan pertama.</p>
+</section>
+<section id="gameScreen" hidden>
+ <div class="panel">
+  <div class="topbar"><div><strong id="progressText">0 / 6 sentences chosen</strong><div class="student" id="studentDisplay"></div></div><button class="secondary" id="restartTop" type="button">↻ Start over</button></div>
+  <div class="progress"><div id="progressFill"></div></div>
+  <h2>🫶 Bullying: The Hidden Impact on Mental Health</h2>
+  <p class="subtext">Choose all six sentences in the passage, then tap <strong>Check Answers</strong>. Already-used options are greyed out in the other menus.</p>
+  <div id="passage" class="storyline" aria-label="Reading passage with six drop-down sentence selectors"></div>
+  <div class="vocab"><b>Word help:</b> humiliation = penghinaan · anxiety = keresahan · bystander = saksi · counsellor = kaunselor</div>
+  <details class="c1-glossary"><summary>🌟 Three advanced expressions · English / Malay / Chinese</summary>
+   <ul>
+    <li><b>take a psychological toll</b> — gradually harm someone's emotional wellbeing. <span>BM: memberi kesan buruk kepada kesihatan mental</span> · <span>中文: 对心理健康造成负担</span></li>
+    <li><b>erode self-esteem</b> — slowly weaken a person's confidence and sense of self-worth. <span>BM: menghakis harga diri</span> · <span>中文: 逐渐削弱自尊</span></li>
+    <li><b>foster a culture of empathy</b> — encourage people to understand and care about others. <span>BM: memupuk budaya empati</span> · <span>中文: 营造富有同理心的文化</span></li>
+   </ul>
+  </details>
+  <p class="note">💗 <strong>A gentle reminder / Peringatan:</strong> If bullying is affecting you or a friend, speak with a trusted adult, teacher or school counsellor. You deserve support. / Jika buli menjejaskan anda atau rakan, berbincanglah dengan orang dewasa yang dipercayai, guru atau kaunselor sekolah.</p>
+  <p class="sources"><strong>Factual references:</strong> <a href="https://www.cdc.gov/youth-violence/about/about-bullying.html" target="_blank" rel="noopener noreferrer">CDC (bullying and wellbeing)</a> · <a href="https://www.stopbullying.gov/bullying/effects" target="_blank" rel="noopener noreferrer">StopBullying.gov (mental-health effects)</a> · <a href="https://www.unicef.org/parenting/child-care/bullying" target="_blank" rel="noopener noreferrer">UNICEF (supporting children)</a>. This reading activity is educational, not a mental-health assessment.</p>
+  <div class="endbar"><p id="finishLabel">🧩 Choose all six sentences before checking your answers.</p><div id="checkSummary" class="checksummary" role="status" aria-live="polite" hidden></div><button id="finishBtn" class="primary" type="button" disabled>✅ Check All 6 Answers</button></div>
+ </div>
+</section>
+<section class="panel" id="resultsScreen" hidden>
+ <h2 class="final-title">🏆 Reading Challenge Complete!</h2><div class="student" style="text-align:center" id="resultName"></div><div class="score" id="score"></div><p class="result-msg" id="resultMessage"></p>
+ <div class="review"><h2>📘 Your completed passage</h2><p class="subtext">Review how the six sentences connect ideas about bullying, wellbeing and getting help.</p><div id="finalStory" class="storyline"></div><div id="resultGlossary"></div><div id="key"></div></div>
+ <div class="result-buttons"><button class="secondary" id="copyBtn" type="button">📋 Copy completed story</button><button class="primary" id="replayBtn" type="button">🌸 Play Again</button></div><p id="copyMessage" class="smallcap" role="status"></p>
+</section>
+<footer class="smallcap">🌸 Made for curious learners · Mental Health Awareness &amp; SPM Reading Part 4</footer>
+</main>
+<script>
+'use strict';
+const DATA = {"passage":[{"before":"Bullying is not simply a fight in a corridor. It can include repeated insults, deliberate exclusion or threats. It often involves an imbalance of power linked to strength, popularity or access to embarrassing information.","after":"Understanding these different forms matters because harmful behaviour is not always visible to teachers or parents."},{"before":"The emotional effects can be harder to notice than physical injuries. A targeted student might worry about the next lesson, break time or message notification. Such ongoing fear can take a psychological toll on young people.","after":"These feelings do not mean every bullied student develops a mental health condition, but they deserve attention."},{"before":"Stress affects daily routines too. Some students sleep poorly, have headaches or stomach aches, or lose interest in favourite activities. Others feel exhausted from trying to avoid someone who hurts them.","after":"A sudden drop in marks is not proof of bullying on its own. However, it may be a reason for adults to ask gentle questions instead of making assumptions."},{"before":"Cyberbullying can follow students home. Hurtful comments, altered pictures and cruel group chats may spread quickly. A post can be copied or shared after the original has been deleted.","after":"Saving screenshots, reporting harmful content and speaking to a trusted adult can help students seek support without confronting the person responsible alone."},{"before":"Bullying can affect witnesses too. Classmates may feel guilty about staying silent but fear becoming the next target. Laughing at cruelty or sharing hurtful messages can encourage it, even when bystanders did not start it.","after":"Students should not endanger themselves by confronting a threatening situation. Responsible witnesses can help make schools safer."},{"before":"There is no single solution for every bullying case. Schools need clear reporting procedures; families can listen and take concerns seriously. Students who remain distressed may benefit from talking to a school counsellor or another qualified professional.","after":"Bullying must never be dismissed as part of growing up. Early support protects students' wellbeing and learning."}],"answers":[{"id":"different","text":"In other words, bullying may take place face to face or through a screen, and it is different from a single disagreement between friends."},{"id":"esteem","text":"Over time, fear and humiliation may erode self-esteem and increase the risk of anxiety or depression."},{"id":"learning","text":"Consequently, their concentration, attendance and school performance may also suffer."},{"id":"online","text":"This can make it difficult for some students to feel that there is a safe place away from the bullying."},{"id":"witness","text":"A safer response is to avoid joining in, offer support privately and report the incident to a trusted adult."},{"id":"empathy","text":"Together, these steps can foster a culture of empathy in which students feel safer asking for help."},{"id":"digital","text":"At the same time, digital platforms also allow young people to work together on homework and share ideas."},{"id":"clubs","text":"In addition, schools often organise co-curricular activities that help students develop new interests and leadership skills."}],"gaps":[{"answer":"different","hint":"Look at the examples in the first paragraph. What sentence links those examples to the meaning of bullying? Check how the following sentence refers to its different forms.","hintMs":"Lihat contoh dalam perenggan pertama. Ayat manakah menghubungkan contoh tersebut dengan maksud buli? Perhatikan rujukan kepada pelbagai bentuk buli selepas tempat kosong.","right":"The sentence distinguishes repeated bullying from a one-off argument and connects the different forms mentioned before and after the gap.","rightMs":"Ayat ini membezakan buli berulang daripada pertengkaran sekali sahaja dan menghubungkan pelbagai bentuk buli dalam perenggan.","wrong":"The introduction needs a clear link between the definition and its different forms.","wrongMs":"Pendahuluan memerlukan hubungan yang jelas antara definisi dengan pelbagai bentuk buli.","context":"Definition, examples and where bullying takes place."},{"answer":"esteem","hint":"The previous sentence describes ongoing fear. Look for the possible emotional effect of that repeated experience.","hintMs":"Ayat sebelumnya menerangkan rasa takut yang berterusan. Cari kemungkinan kesan emosi daripada pengalaman berulang itu.","right":"“Over time” develops the idea of ongoing fear and introduces possible mental-health effects before the caution that not everyone develops a condition.","rightMs":"“Over time” menghuraikan ketakutan berterusan dan memperkenalkan kemungkinan kesan mental sebelum penjelasan bahawa bukan semua orang mengalami gangguan.","wrong":"The correct link should move from repeated fear to possible emotional consequences, not change the subject.","wrongMs":"Ayat yang tepat harus menghubungkan ketakutan berulang dengan kemungkinan kesan emosi, bukannya menukar topik.","context":"Ongoing fear, self-esteem and possible anxiety or depression."},{"answer":"learning","hint":"The paragraph mentions poor sleep, physical discomfort and exhaustion. What might these problems affect during the school day?","hintMs":"Perenggan menyebut kurang tidur, ketidakselesaan fizikal dan keletihan. Apakah yang mungkin terjejas semasa di sekolah?","right":"“Consequently” links health and stress symptoms to difficulties with lessons and attendance, leading to the discussion of falling marks.","rightMs":"“Consequently” menghubungkan simptom tekanan dengan masalah pembelajaran dan kehadiran sebelum membincangkan penurunan markah.","wrong":"Look for a result of the difficulties described, especially one that leads naturally to the next sentence about marks.","wrongMs":"Cari kesan daripada masalah yang dihuraikan, khususnya yang berkait dengan ayat berikut tentang markah.","context":"Sleep and stress effects followed by academic performance."},{"answer":"online","hint":"The passage says online posts can be copied and shared. Think about how that affects a student’s ability to escape the experience.","hintMs":"Petikan menyatakan siaran dalam talian boleh disalin dan dikongsi. Fikirkan kesannya terhadap keupayaan murid menjauhkan diri daripada pengalaman itu.","right":"“This” refers back to hurtful posts that can spread and persist. The sentence explains the feeling of being unsafe before suggesting ways to get support.","rightMs":"“This” merujuk kepada siaran menyakitkan yang boleh terus tersebar. Ayat ini menerangkan rasa tidak selamat sebelum cadangan mendapatkan bantuan.","wrong":"The missing idea should explain a consequence of online abuse before the practical steps that follow.","wrongMs":"Idea yang hilang perlu menerangkan akibat buli siber sebelum langkah praktikal seterusnya.","context":"Cyberbullying spreads beyond school and leads to advice on reporting."},{"answer":"witness","hint":"The paragraph looks at witnesses. Which sentence suggests safe and useful actions after mentioning the danger of joining in?","hintMs":"Perenggan memberi tumpuan kepada saksi. Ayat manakah mencadangkan tindakan selamat selepas bahaya turut serta dalam buli disebut?","right":"The sentence describes safer actions for bystanders and prepares the warning against putting themselves in danger.","rightMs":"Ayat ini menjelaskan tindakan yang lebih selamat untuk saksi dan berkait dengan amaran agar tidak membahayakan diri.","wrong":"Choose a response witnesses can take, not a general observation about school activities.","wrongMs":"Pilih tindakan yang boleh diambil oleh saksi, bukan pemerhatian umum tentang aktiviti sekolah.","context":"Bystanders and safe intervention."},{"answer":"empathy","hint":"Notice the steps by schools, families and counsellors. Find a sentence that unites these efforts before the final reminder.","hintMs":"Perhatikan langkah oleh pihak sekolah, keluarga dan kaunselor. Cari ayat yang menyatukan usaha ini sebelum peringatan akhir.","right":"“Together, these steps” summarises the shared support described in the paragraph and leads into the closing call to take bullying seriously.","rightMs":"“Together, these steps” merumuskan sokongan bersama yang dihuraikan dan menghubungkannya dengan seruan akhir supaya buli dipandang serius.","wrong":"The conclusion needs a sentence bringing the different forms of support together.","wrongMs":"Penutup memerlukan ayat yang menggabungkan pelbagai bentuk sokongan.","context":"Schools, families, counsellors and a respectful environment."}]};
+const $ = id => document.getElementById(id);
+const byId = new Map(DATA.answers.map(a=>[a.id,a]));
+const shuffle = input => {const a=[...input];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let student='',order=[],labels={},selections=Array(6).fill(''),locked=Array(6).fill(false),checkedOnce=false,firstScore=null;
+function node(tag,klass,text){const x=document.createElement(tag);if(klass)x.className=klass;if(text!==undefined)x.textContent=text;return x;}
+const C1_PATTERN=/(take a psychological toll|erode self-esteem|foster a culture of empathy)/gi;
+function appendTextWithPhrases(target,text){
+ C1_PATTERN.lastIndex=0;let offset=0,match;
+ while((match=C1_PATTERN.exec(text))!==null){
+  if(match.index>offset)target.append(document.createTextNode(text.slice(offset,match.index)));
+  target.append(node('strong','c1-phrase',match[0]));offset=match.index+match[0].length;
+ }
+ if(offset<text.length)target.append(document.createTextNode(text.slice(offset)));
+}
+function scrollToScreen(el){try{el.scrollIntoView({behavior:'auto',block:'start'});}catch(e){/* In-app preview can block scrolling */}}
+function resetState(){order=shuffle(DATA.answers);labels=Object.fromEntries(order.map((a,i)=>[a.id,String.fromCharCode(65+i)]));selections=Array(6).fill('');locked=Array(6).fill(false);checkedOnce=false;firstScore=null;}
+function updateProgress(){
+ const filled=selections.filter(Boolean).length;
+ const correct=locked.filter(Boolean).length;
+ const finished=correct===6;
+ $('progressText').textContent=checkedOnce ? correct+' / 6 correct · '+(6-correct)+' to complete' : filled+' / 6 sentences chosen';
+ $('progressFill').style.width=((checkedOnce?correct:filled)/6*100)+'%';
+ $('finishBtn').disabled=!finished&&filled!==6;
+ $('finishBtn').textContent=finished?'🏆 View Results':checkedOnce?'🔁 Check My Corrections':'✅ Check All 6 Answers';
+ if(finished){$('finishLabel').textContent='🌟 All six sentences are in place! View your final results.';}
+ else if(checkedOnce){$('finishLabel').textContent=filled===6?'🌸 Ready? Check your corrected sentences.':'💡 Use the hints above to choose again in the incorrect gaps.';}
+ else {$('finishLabel').textContent=filled===6?'✅ All six selected! Tap Check Answers to see how you did.':'🧩 Choose '+(6-filled)+' more sentence'+(6-filled===1?'':'s')+' before checking.';}
+}
+function dropDown(gapIndex){
+ const sel=node('select','gapselect');sel.id='gapSelect'+gapIndex;sel.setAttribute('aria-label','Choose the sentence for gap '+(gapIndex+1));
+ const placeholder=node('option','','— Tap to choose a sentence —');placeholder.value='';sel.append(placeholder);
+ for(const ans of order){const o=node('option','',labels[ans.id]+'. '+ans.text);o.value=ans.id;sel.append(o);}
+ sel.addEventListener('change',()=>pick(gapIndex,sel.value));return sel;
+}
+function makePassage(target,final=false){
+ target.replaceChildren();
+ DATA.passage.forEach((para,i)=>{
+  const p=node('div','storypara');appendTextWithPhrases(p,para.before+' ');
+  if(final){const span=node('span');appendTextWithPhrases(span,byId.get(DATA.gaps[i].answer).text);span.style.fontWeight='750';span.style.color='#825aa9';p.append(span);}
+  else{
+   const block=node('div','gapbox');block.id='gapBox'+i;
+   block.append(node('div','gaplabel','🔽 GAP '+(i+1)+' · Choose a sentence'));
+   block.append(dropDown(i));
+   const selected=node('div','selection-full');selected.id='selectionFull'+i;block.append(selected);
+   const response=node('div','gapfeedback');response.hidden=true;response.id='feedback'+i;response.setAttribute('role','status');response.setAttribute('aria-live','polite');block.append(response);
+   p.append(block);
+  }
+  appendTextWithPhrases(p,' '+para.after);target.append(p);
+ });
+}
+function feedback(i,kind,title,en,bm){
+ const host=$('feedback'+i);host.hidden=false;host.className='gapfeedback '+kind;
+ host.replaceChildren(node('strong','',title),node('p','',en),node('p','','🇲🇾 '+bm));
+}
+function updateAvailableChoices(){
+ DATA.gaps.forEach((gap,i)=>{
+  if(locked[i])return;
+  const sel=$('gapSelect'+i);
+  if(!sel)return;
+  for(const opt of sel.options){
+   if(!opt.value)continue;
+   const usedElsewhere=selections.some((v,index)=>index!==i&&v===opt.value);
+   opt.disabled=usedElsewhere;
+   opt.textContent=(usedElsewhere?'🔒 Used · ':'')+labels[opt.value]+'. '+byId.get(opt.value).text;
+  }
+ });
+}
+function pick(i,id){
+ if(locked[i])return;
+ if(id&&selections.some((v,j)=>j!==i&&v===id)){
+  $('gapSelect'+i).value=selections[i];return;
+ }
+ selections[i]=id;
+ const box=$('gapBox'+i);
+ box.classList.toggle('retrying',checkedOnce&&!!id);
+ const display=$('selectionFull'+i);
+ display.replaceChildren();
+ if(id){display.append(node('b','',labels[id]+'. '));appendTextWithPhrases(display,byId.get(id).text);}
+ updateAvailableChoices();updateProgress();
+}
+function evaluate(){
+ if(locked.every(Boolean)){end();return;}
+ if(selections.some(x=>!x))return;
+ const submitted=[...selections];
+ if(!checkedOnce){firstScore=submitted.reduce((total,id,i)=>total+(id===DATA.gaps[i].answer?1:0),0);checkedOnce=true;}
+ let newlyCorrect=0;
+ DATA.gaps.forEach((gap,i)=>{
+  if(locked[i])return;
+  const id=submitted[i],box=$('gapBox'+i),sel=$('gapSelect'+i),display=$('selectionFull'+i);
+  if(id===gap.answer){
+   locked[i]=true;newlyCorrect++;
+   box.classList.remove('invalid','retrying');box.classList.add('solved');
+   box.querySelector('.gaplabel').textContent='✅ GAP '+(i+1)+' · Correct';
+   sel.disabled=true;sel.hidden=true;
+   const correctSpan=node('span','solvedsentence');appendTextWithPhrases(correctSpan,byId.get(id).text);display.replaceChildren(correctSpan);
+   feedback(i,'good','✅ Correct connection!',gap.right,gap.rightMs);
+  }else{
+   box.classList.remove('retrying');box.classList.add('invalid');
+   box.querySelector('.gaplabel').textContent='💡 GAP '+(i+1)+' · Try again';
+   display.replaceChildren();
+   feedback(i,'bad','💡 Hint / Petunjuk · '+labels[id]+' was not right',
+    'Your choice: '+labels[id]+'. '+byId.get(id).text+'  Hint: '+gap.hint,
+    'Petunjuk: '+gap.hintMs);
+   selections[i]='';sel.value='';
+  }
+ });
+ updateAvailableChoices();updateProgress();
+ const correct=locked.filter(Boolean).length;
+ const summary=$('checkSummary');summary.hidden=false;
+ if(correct===6){summary.replaceChildren(node('b','','🎉 All six correct!'),document.createTextNode(' Your first-check score is '+firstScore+'/6. Tap View Results to read the completed passage.'));}
+ else {summary.replaceChildren(node('b','','📋 First-check score: '+firstScore+'/6. '),document.createTextNode('You have '+(6-correct)+' gap'+(6-correct===1?'':'s')+' to fix. Only incorrect gaps have hints. Choose again, then check your corrections. Your score stays the same.'));}
+ // Keep the feedback in the passage visible; do not reveal the answers to incorrect gaps.
+}
+function begin(){
+ const name=$('name').value.trim();
+ if(!name){$('startError').textContent='Please enter your name. / Sila masukkan nama anda.';$('name').focus();return;}
+ student=name;resetState();$('startError').textContent='';$('startScreen').hidden=true;$('resultsScreen').hidden=true;$('gameScreen').hidden=false;
+ $('studentDisplay').textContent='👤 '+student;$('checkSummary').hidden=true;$('checkSummary').replaceChildren();
+ makePassage($('passage'));updateAvailableChoices();updateProgress();scrollToScreen($('gameScreen'));
+}
+function end(){
+ if(!locked.every(Boolean))return;
+ const earned=firstScore;
+ $('score').replaceChildren(document.createTextNode(String(earned)),node('small','',' / 6'));
+ $('resultName').textContent='🎓 '+student;
+ $('resultMessage').textContent=earned===6?'Wonderful! All six connected perfectly on your first check. 🌟':earned>=4?'Well done! You corrected your gaps using the clues. This score is from your first check. 🌸':'Great persistence! Your score reflects your first check; keep practising sentence links. 💪';
+ makePassage($('finalStory'),true);$('resultGlossary').replaceChildren($('gameScreen').querySelector('.c1-glossary').cloneNode(true));const key=$('key');key.replaceChildren();
+ DATA.gaps.forEach((g,i)=>{const p=node('p');p.append(node('b','',`Gap ${i+1} · Option ${labels[g.answer]} · `),document.createTextNode(g.right+' 🇲🇾 '+g.rightMs));key.append(p);});
+ $('resultsScreen').hidden=false;$('gameScreen').hidden=true;scrollToScreen($('resultsScreen'));
+}
+async function copyStory(){const story=DATA.passage.map((p,i)=>p.before+' '+byId.get(DATA.gaps[i].answer).text+' '+p.after).join('\n\n');try{await navigator.clipboard.writeText('Bullying: The Hidden Impact on Mental Health\n\n'+story);$('copyMessage').textContent='✅ Story copied! / Cerita berjaya disalin!';}catch(e){$('copyMessage').textContent='Copy is unavailable here. You can select and copy the story above.';}}
+$('startForm').addEventListener('submit',e=>{e.preventDefault();begin();});$('name').addEventListener('input',()=>{$('startError').textContent='';});$('finishBtn').addEventListener('click',evaluate);$('copyBtn').addEventListener('click',copyStory);
+$('replayBtn').addEventListener('click',()=>{$('gameScreen').hidden=true;$('resultsScreen').hidden=true;$('startScreen').hidden=false;$('copyMessage').textContent='';$('name').value=student;scrollToScreen($('startScreen'));});
+$('restartTop').addEventListener('click',()=>{if(confirm('Restart this game? Your current score will be cleared. / Mula semula?')){$('gameScreen').hidden=true;$('startScreen').hidden=false;scrollToScreen($('startScreen'));}});
+</script>
+</body>
+</html>
