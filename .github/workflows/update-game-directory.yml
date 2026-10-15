@@ -42,6 +42,8 @@ jobs:
           malaysia_time = timezone(timedelta(hours=8))
 
           names = {
+              'eng-speakingpart2': 'SPM Speaking Part 2',
+              'eng-speakingpart3': 'SPM Speaking Part 3',
               'eng-jumble-environment': 'Sentence Jumble — Environment',
               'eng-preposition': 'Prepositions',
               'eng-spell-environment': 'Environment Spelling',
