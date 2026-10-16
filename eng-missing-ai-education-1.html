@@ -1,426 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI in Education | SPM Missing Sentence</title>
-  <style>
-    :root { --ink:#27334b; --muted:#61708c; --purple:#7059bb; --soft:#f4f0ff;
-      --line:#e1def0; --green:#18794e; --red:#a63b55; }
-    * { box-sizing:border-box; }
-    body { margin:0; color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;
-      background:linear-gradient(140deg,#f4eeff,#eff8ff 55%,#fff7ef); min-height:100vh; }
-    button,input { font:inherit; }
-    button { cursor:pointer; }
-    button:disabled { cursor:not-allowed; }
-    [hidden] { display:none !important; }
-    .wrap { max-width:1160px; margin:auto; padding:24px 16px 60px; }
-    .brand { text-align:center; margin:4px 0 23px; }
-    .brand h1 { margin:0; font-size:clamp(1.65rem,4vw,2.35rem); line-height:1.2; }
-    .brand p { margin:8px auto 0; color:var(--muted); }
-    .kicker { color:var(--purple); font-weight:850; letter-spacing:.1em;
-      font-size:.76rem; text-transform:uppercase; }
-    .card { background:#fff; border:1px solid var(--line); border-radius:20px;
-      box-shadow:0 12px 35px #33336b10; padding:24px; }
-    .intro { max-width:530px; margin:35px auto 0; text-align:center; }
-    .robot { font-size:3rem; line-height:1.4; }
-    .intro h2 { margin:4px 0; }
-    .intro p { color:var(--muted); }
-    label { display:block; text-align:left; font-weight:750; margin:20px 0 7px; }
-    input { width:100%; border:2px solid var(--line); border-radius:12px;
-      padding:13px 15px; color:var(--ink); background:#fff; }
-    input:focus-visible,button:focus-visible { outline:3px solid #aa93ef; outline-offset:2px; }
-    .primary,.secondary { border:0; border-radius:13px; padding:12px 18px;
-      font-weight:800; transition:transform .12s,background .12s; }
-    .primary { background:var(--purple); color:#fff; }
-    .primary:hover:not(:disabled) { background:#5842a3; transform:translateY(-1px); }
-    .primary:disabled { background:#b8b5c5; }
-    .secondary { color:var(--purple); background:#f0eaff; }
-    .secondary:hover { background:#e7dfff; }
-    .full { width:100%; margin-top:16px; }
-    .instruction { font-size:.9rem; color:var(--muted); }
-    .topline { display:flex; flex-wrap:wrap; justify-content:space-between;
-      align-items:center; gap:10px; margin-bottom:15px; }
-    .pill { display:inline-block; color:#6349ad; background:#efe9ff; border-radius:99px;
-      padding:5px 12px; font-weight:800; font-size:.88rem; }
-    .layout { display:grid; grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);
-      gap:16px; align-items:start; }
-    .paper { padding:clamp(18px,3vw,32px); }
-    .paper h2 { margin:0 0 15px; text-align:center; font-family:Georgia,serif;
-      font-size:1.35rem; }
-    .paper p { font-family:Georgia,"Times New Roman",serif; font-size:1.075rem;
-      line-height:1.9; margin:0 0 20px; text-indent:1.8em; }
-    .paper p:last-child { margin-bottom:0; }
-    .gap { display:inline; border:1.5px dashed #957dd9; background:#f3edff;
-      color:#5c469e; border-radius:7px; padding:2px 6px;
-      font-family:system-ui,sans-serif; font-size:.87em; font-weight:750;
-      text-indent:0; text-align:left; line-height:1.6; vertical-align:baseline; }
-    .gap.filled { border-style:solid; background:#eee9ff; }
-    .gap.correct { background:#e7f7ee; border-color:#55a77e; color:#13623e; }
-    .gap.active { box-shadow:0 0 0 3px #b5a0f477; }
-    .gap .number { font-weight:900; margin-right:4px; white-space:nowrap; }
-    .side { position:sticky; top:14px; }
-    .side h2 { margin:0 0 4px; font-size:1.2rem; }
-    .side .sub { color:var(--muted); margin:0 0 14px; font-size:.92rem; }
-    .nav { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:5px; margin-bottom:17px; }
-    .nav button { border:1px solid var(--line); background:#faf9ff; color:var(--ink);
-      border-radius:9px; padding:8px 0; font-weight:850; }
-    .nav button.active { background:var(--purple); color:#fff; }
-    .nav button.done:not(.active) { background:#e5f5ec; color:var(--green); border-color:#b2dfc6; }
-    .nav button.selected:not(.active) { background:#ede7ff; color:#654dab; }
-    .focus { border-left:4px solid #9e86dc; background:#f8f5ff;
-      padding:11px 13px; border-radius:8px; font-size:.91rem; margin-bottom:15px; }
-    .focus strong { color:#6043aa; }
-    .choices { display:grid; gap:8px; }
-    .choice { display:flex; text-align:left; width:100%; gap:10px; align-items:flex-start;
-      padding:10px 11px; border:1.5px solid var(--line); background:#fff;
-      border-radius:11px; color:var(--ink); line-height:1.42; font-size:.94rem; }
-    .choice:hover:not(:disabled) { border-color:#987ee0; background:#faf7ff; }
-    .choice .letter { flex:0 0 27px; height:27px; display:grid; place-items:center;
-      border-radius:7px; background:#f0eaff; color:#5c459f; font-weight:850; }
-    .choice.used { color:#a2a4ae; background:#f4f4f6; border-color:#e9e9ed; }
-    .choice.used .letter { background:#e8e8eb; color:#a0a0aa; }
-    .choice.picked { border-color:var(--purple); background:#f2ecff; font-weight:700; }
-    .choice.locked { border-color:#7dcba1; background:#eaf8ef; }
-    .note { color:var(--muted); font-size:.82rem; margin:9px 0 0; }
-    .feedback { border:1px solid #efc1cd; background:#fff4f6; border-radius:11px;
-      padding:12px; margin:0 0 13px; font-size:.89rem; }
-    .feedback strong { color:var(--red); }
-    .feedback p { margin:5px 0; }
-    .controls { display:flex; gap:9px; margin-top:17px; }
-    .controls button { flex:1; padding:10px; }
-    .message { min-height:1.4em; font-size:.9rem; font-weight:750;
-      color:#5c469e; margin:11px 0 0; }
-    .score { text-align:center; max-width:650px; margin:20px auto; }
-    .score .emoji { font-size:3.7rem; }
-    .score .big { font-size:3rem; line-height:1.2; color:var(--green);
-      font-weight:900; margin:10px 0; }
-    .score p { color:var(--muted); }
-    .review { text-align:left; margin:22px 0; padding:16px; background:#f8f5ff;
-      border-radius:12px; }
-    .review h3 { margin:0 0 10px; }
-    .review ol { padding-left:25px; margin:0; }
-    .review li { margin:0 0 9px; }
-    @media(max-width:850px) {
-      .layout { grid-template-columns:1fr; }
-      .side { position:static; }
-      .card { padding:18px; }
-      .paper p { font-size:1.02rem; }
-    }
-    @media(max-width:480px) { .wrap { padding:16px 10px 40px; }
-      .nav { gap:3px; } .nav button { font-size:.8rem; } }
-    @media print { body { background:#fff; } .side,.nav,.controls,.brand p { display:none!important; }
-      .layout { display:block; } .card { border:none; box-shadow:none; }
-      .paper p { color:#000; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffedf6">
+<title>Missing Sentence Challenge — AI in Education</title>
+<style>
+:root{--ink:#43334e;--muted:#786a80;--pink:#ec77af;--pinkdeep:#b95086;--purple:#8a6ac7;--lav:#f0eafe;--line:#efd9e7;--good:#287852;--goodbg:#eaf9f1;--bad:#b84964;--badbg:#fff1f2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:ui-rounded,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,#ffe5f0,transparent 34%),radial-gradient(circle at 95% 16%,#eee9ff,transparent 36%),#fffbfd}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ab86d7;outline-offset:3px}[hidden]{display:none!important}
+.wrap{max-width:930px;margin:auto;padding:20px 16px 58px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(112deg,#ffd2e5 0%,#f5def5 51%,#dfe8ff 100%);padding:26px 27px 24px;border:1px solid #f4d1e3;border-radius:26px;box-shadow:0 12px 36px #9b728b19}
+.eyebrow{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.11em;color:#845779;background:#ffffffab;border-radius:999px;padding:7px 12px;border:1px solid #ffffffaa}
+h1{margin:12px 0 6px;font-size:clamp(27px,4vw,41px);line-height:1.17;letter-spacing:-.035em}h1 span{color:#9d4e96}.intro{font-size:14px;line-height:1.58;max-width:690px;margin:4px 0 0;color:#685b73}
+.spar{position:absolute;right:5%;top:19px;font-size:52px;transform:rotate(11deg);user-select:none;pointer-events:none}.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.pill{background:#fffaffc7;border:1px solid #ffffffb8;padding:7px 11px;border-radius:99px;font-size:11px;font-weight:850;color:#875878}
+.panel{background:#fff;border:1px solid #efe3ee;border-radius:22px;box-shadow:0 9px 28px #9f8db214;padding:20px;margin-top:15px}.start{max-width:750px;margin:20px auto 0}
+h2{font-size:20px;margin:4px 0 9px;letter-spacing:-.02em}.fieldlabel{font-size:13px;font-weight:900;display:block;margin-bottom:8px}
+.nameinput{width:100%;border:2px solid #e8d9ed;background:#fffafd;border-radius:13px;padding:12px 14px;font-size:15px;outline:none}
+.primary{background:linear-gradient(120deg,#db69a3,#a66fd1);border:0;color:white;border-radius:13px;font-weight:900;padding:13px 19px;box-shadow:0 7px 18px #b76b9c2d}.primary:hover{filter:brightness(1.04)}
+.secondary{background:#f6efff;color:#7554a1;border:1px solid #e9dcf7;border-radius:12px;font-weight:850;padding:10px 13px}.tips{margin:15px 0 0;border-radius:12px;background:#f8f3ff;padding:12px 14px;font-size:13px;line-height:1.6;color:#625476}
+.actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:8px}.error{font-size:13px;color:#ab3b62;font-weight:750;min-height:18px;margin:9px 0 0}.start-button{min-height:49px;min-width:200px}.start-tip{font-size:12px;line-height:1.5;color:#786a80;margin:8px 0 0}
+.topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:3px 0 8px}.topbar strong{font-size:15px}.student{color:#7a6287;font-size:12px;font-weight:800}
+.progress{height:9px;background:#f1e7f5;border-radius:999px;overflow:hidden;margin:10px 0 13px}.progress>div{height:100%;width:0;background:linear-gradient(90deg,#d969a4,#987be0);transition:width .2s}
+.subtext{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 10px}.storyline{font-size:clamp(15px,1.6vw,16px);line-height:1.85;padding:18px 19px;border-radius:15px;background:#fffdfb;border:1px solid #f1e4e8}
+.storyline .storypara{margin:0 0 21px}.storyline .storypara:last-child{margin-bottom:0}
+.gapbox{display:block;margin:11px 0 13px;padding:12px 13px;border-radius:14px;background:#f9f3ff;border:1.5px dashed #bc9edb;line-height:1.4}
+.gapbox.solved{background:#eefaef;border:1px solid #b9dec6}.gaplabel{font-size:12px;font-weight:900;color:#8953b0;margin-bottom:7px}.gapbox.solved .gaplabel{color:#277851}
+.gapselect{width:100%;max-width:100%;background:#fff;border:1.5px solid #d4bde8;border-radius:11px;padding:12px 36px 12px 11px;color:#584368;font-size:13px;line-height:1.45;min-height:49px;cursor:pointer;text-overflow:ellipsis}
+.gapselect:disabled{background:#f6fcf8;color:#276448;border-color:#bcdfc8;cursor:default}.gapselect.invalid{border-color:#d55f85;background:#fffafd}
+.selection-full{font-size:13px;line-height:1.55;margin:8px 0 0;color:#685478;overflow-wrap:anywhere}.selection-full b{color:#734e9b}
+.solvedsentence{display:block;font-weight:760;font-size:15px;line-height:1.7;color:#266a49;overflow-wrap:anywhere}.resulttag{font-size:12px;font-weight:900;margin-top:5px;color:#2b7953}
+.gapfeedback{margin-top:9px;border-radius:12px;padding:10px 12px;line-height:1.55;font-size:12px}.gapfeedback.good{background:#e5f8ef;color:#23694b;border:1px solid #bde3ca}.gapfeedback.bad{background:var(--badbg);color:#95334f;border:1px solid #f0b9c8}.gapfeedback.hint{background:#fff6dc;color:#71532d;border:1px solid #ead7a9}.gapfeedback strong{display:block;font-size:13px;margin-bottom:3px}.gapfeedback p{margin:4px 0}
+.hintbtn{font-size:11px;min-height:33px;margin-top:7px;padding:6px 11px}.hintbtn:disabled{opacity:.6;cursor:default}
+.note{background:#fff6d8;border:1px solid #f2dfb2;border-radius:13px;color:#7c6030;padding:11px 13px;font-size:12px;line-height:1.55;margin-top:13px}.vocab{font-size:12px;color:#74647f;line-height:1.8;margin-top:11px}.vocab b{color:#7e5198}
+.endbar{text-align:center;border-radius:15px;padding:15px;background:#faf2fc;margin-top:15px}.endbar p{font-size:13px;line-height:1.55;color:#75577d;margin:0 0 12px}.endbar .primary{min-width:200px}.endbar .primary:disabled{background:#e8dce9;box-shadow:none;color:#907c96;cursor:not-allowed}
+.final-title{text-align:center;font-size:27px;margin:11px 0 4px}.score{text-align:center;font-size:47px;font-weight:1000;color:#975eb6;letter-spacing:-.055em}.score small{font-size:22px;color:#87758f}.result-msg{text-align:center;color:#72617c;line-height:1.6}.review{background:#fffafd;border:1px solid #efdfee;border-radius:15px;margin-top:13px;padding:16px}.review p{font-size:13px;line-height:1.7;margin:12px 0}.review b{color:#7456a3}.result-buttons{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:20px 0 0}.smallcap{text-align:center;font-size:11px;color:#938293;margin-top:17px}
+@media(max-width:540px){.wrap{padding:9px 8px 30px}.hero{padding:20px 16px;border-radius:18px}.spar{font-size:31px;right:5%;top:19px}h1{max-width:285px;font-size:27px}.intro{font-size:12px}.panel{padding:13px;border-radius:17px;margin-top:9px}h2{font-size:18px}.storyline{padding:12px 11px;line-height:1.76}.gapbox{padding:10px 9px}.gapselect{font-size:14px;min-height:53px}.start-button{width:100%;min-height:54px;font-size:16px}.start .tips{margin-top:13px}.score{font-size:40px}.endbar .primary{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Submit-all-first flow: select used answers remain visible but unavailable in other menus. */
+.gapbox.invalid{background:#fff8f8;border-color:#e6a5b9}
+.gapbox.retrying{background:#fffaf5;border-color:#e9c5a3}
+.gapselect option:disabled{color:#9c9ca4;background:#eeeeee}
+.gapselect option:checked{background:#f6e6f8}
+.checksummary{margin:11px auto 13px;max-width:650px;background:#f8f1ff;border:1px solid #e5d3f3;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.6;color:#67467e}
+.checksummary b{color:#8c4a9b}
+.instructions-strong{font-weight:850;color:#754f93}
+
+/* Optional stretch vocabulary, never part of the answer key. */
+.c1-phrase{color:#7a3d85;background:#fff0b1;border-radius:4px;padding:0 2px;font-weight:850}
+.c1-glossary{margin:11px 0 0;border:1px solid #e9dcf0;background:#fcf9ff;border-radius:13px;padding:11px 13px;color:#69547a;font-size:12px;line-height:1.7}
+.c1-glossary summary{font-size:13px;font-weight:850;color:#8453a0;cursor:pointer}
+.c1-glossary ul{padding-left:18px;margin:9px 0 2px}.c1-glossary li{margin:5px 0}.c1-glossary li b{color:#7d3e88}
+
+.sources{color:#7f7084;font-size:11px;line-height:1.65;margin:10px 2px 4px}.sources a{color:#7954a2;text-underline-offset:2px}.sources a:hover{color:#a24b83}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="brand">
-      <div class="kicker">SPM Reading · Part 4</div>
-      <h1>🤖 Missing Sentence Mission</h1>
-      <p>AI in Education · Read carefully, then match six missing sentences.</p>
-    </header>
-
-    <section id="intro" class="card intro">
-      <div class="robot" aria-hidden="true">📚✨🤖</div>
-      <h2>Ready to solve the mystery?</h2>
-      <p>There are <b>6 gaps (27–32)</b> and <b>8 choices (A–H)</b>. Two sentences do not belong in the passage.</p>
-      <label for="studentName">Student name</label>
-      <input id="studentName" maxlength="60" placeholder="Enter your name" autocomplete="name">
-      <button class="primary full" id="startBtn">Start reading →</button>
-      <p class="instruction">Choose all six answers first. Check them together. Only incorrect gaps receive hints in English and Bahasa Melayu.</p>
-    </section>
-
-    <section id="game" hidden>
-      <div class="topline">
-        <span class="pill" id="studentTag"></span>
-        <span class="pill" id="progressTag" aria-live="polite"></span>
-      </div>
-      <div class="layout">
-        <article class="card paper" aria-label="Reading passage">
-          <h2>The Role of AI in Education</h2>
-          <div id="passage"></div>
-        </article>
-        <aside class="card side" id="answerPanel">
-          <h2>Choose the missing sentence</h2>
-          <p class="sub">Tap a gap number, then choose one sentence. Used choices turn grey.</p>
-          <div class="nav" id="gapNav" aria-label="Choose a gap"></div>
-          <div class="focus" id="gapContext"></div>
-          <div id="hintArea" aria-live="polite"></div>
-          <div class="choices" id="choices"></div>
-          <p class="note">Grey = already used in another gap. Tap an earlier gap to change it.</p>
-          <div class="controls">
-            <button class="secondary" id="previousBtn">← Previous</button>
-            <button class="secondary" id="nextBtn">Next →</button>
-          </div>
-          <button class="primary full" id="checkBtn" disabled>Check all 6 answers ✓</button>
-          <p class="message" id="message" aria-live="polite"></p>
-        </aside>
-      </div>
-    </section>
-
-    <section id="result" class="card score" hidden>
-      <div class="emoji">🏆🌟</div>
-      <h2>Mission completed!</h2>
-      <h3 id="resultName"></h3>
-      <div class="big">6 / 6</div>
-      <p id="resultStats"></p>
-      <div class="review">
-        <h3>✅ Correct sentences</h3>
-        <ol id="answerReview" start="27"></ol>
-      </div>
-      <button class="primary full" id="replayBtn">Play again ↻</button>
-    </section>
-  </div>
-
-  <script>
-    "use strict";
-
-    // The completed passage is approximately 360 words long.
-    const paragraphs = [
-      {
-        gap: 27,
-        before: "Artificial intelligence, or AI, is becoming a familiar part of education. Language-learning apps and revision platforms now help students practise new skills. Some systems can identify topics a learner finds difficult. ",
-        after: " As a result, students studying the same subject may receive different activities to match their progress.",
-        answer: "s27",
-        hintEn: "Look for an example of a learning app adjusting a task to suit one student.",
-        hintBm: "Cari contoh aplikasi pembelajaran yang menyesuaikan latihan mengikut kemampuan seorang murid."
-      },
-      {
-        gap: 28,
-        before: "AI can make teachers' daily work more manageable. Planning lessons, preparing worksheets and giving feedback take time, especially in busy classrooms. ",
-        after: " This allows teachers to focus on answering questions and supporting learners who need extra attention. However, teachers must still check that the materials are suitable.",
-        answer: "s28",
-        hintEn: "What task can AI complete quickly for teachers? The next sentence says 'This allows teachers...'.",
-        hintBm: "Apakah tugas yang boleh disiapkan AI dengan cepat untuk guru? Ayat selepas tempat kosong bermula dengan 'This allows teachers...'."
-      },
-      {
-        gap: 29,
-        before: "Beyond school hours, AI can support students revising independently. Imagine struggling with a science question late at night when nobody is available to explain it. ",
-        after: " Such immediate support can make learning less frustrating. Nevertheless, students should attempt problems themselves because genuine understanding requires effort.",
-        answer: "s29",
-        hintEn: "The missing sentence should show how a learner gets an immediate explanation at home.",
-        hintBm: "Ayat yang hilang perlu menunjukkan cara murid mendapat penerangan dengan segera ketika belajar di rumah."
-      },
-      {
-        gap: 30,
-        before: "Despite these benefits, AI is not always trustworthy. It can produce confident explanations containing mistakes or outdated facts. ",
-        after: " Without this habit, students might include false information in assignments simply because a computer generated it. Learning to question digital information is therefore essential.",
-        answer: "s30",
-        hintEn: "What checking habit does 'Without this habit' refer to in the following sentence?",
-        hintBm: "Apakah amalan menyemak yang dirujuk oleh frasa 'Without this habit' dalam ayat seterusnya?"
-      },
-      {
-        gap: 31,
-        before: "There is also the danger of becoming too dependent on AI. When learners ask a chatbot to write an entire essay, they may submit polished work without developing their own ideas. ",
-        after: " Schools should therefore encourage AI for brainstorming and feedback rather than allowing it to complete every task.",
-        answer: "s31",
-        hintEn: "Look for a negative long-term effect of letting AI do students' thinking.",
-        hintBm: "Cari kesan buruk jangka panjang apabila murid membiarkan AI berfikir bagi pihak mereka."
-      },
-      {
-        gap: 32,
-        before: "Finally, AI raises questions about fairness and privacy. Not every student has reliable internet access or a suitable device, and some services collect personal data. ",
-        after: " Addressing these challenges could make AI a valuable classroom assistant. Still, technology should support teachers, not replace the relationships that make education meaningful.",
-        answer: "s32",
-        hintEn: "Find an action schools could take to address BOTH privacy and fair access.",
-        hintBm: "Cari tindakan yang boleh diambil oleh sekolah untuk menangani KEDUA-DUA isu privasi dan akses yang adil."
-      }
-    ];
-
-    const sentences = [
-      { id: "s27", text: "For example, an app may offer easier questions after a student struggles with a topic." },
-      { id: "s28", text: "For instance, AI can draft practice questions and organise teaching materials in a few minutes." },
-      { id: "s29", text: "A chatbot can break the problem into simple steps and suggest another example to try." },
-      { id: "s30", text: "Students should therefore check important claims against textbooks, trusted websites or their teachers' advice." },
-      { id: "s31", text: "Over time, this over-reliance may weaken their critical-thinking and problem-solving skills." },
-      { id: "s32", text: "Schools consequently need clear guidelines to protect information and give all learners fair access." },
-      { id: "d1", text: "Meanwhile, digital devices can make group presentations more colourful and interesting." },
-      { id: "d2", text: "Some students, however, prefer to study with printed notes instead of using a screen." }
-    ];
-
-    const $ = id => document.getElementById(id);
-    let name = "";
-    let optionOrder = [];
-    let answers = {};
-    let locked = new Set();
-    let hints = {};
-    let active = 27;
-    let checks = 0;
-    let firstScore = null;
-
-    function shuffle(items) {
-      const copy = [...items];
-      for (let i = copy.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [copy[i], copy[j]] = [copy[j], copy[i]];
-      }
-      return copy;
-    }
-    function optionText(id) { return sentences.find(s => s.id === id).text; }
-    function letter(id) { return String.fromCharCode(65 + optionOrder.findIndex(s => s.id === id)); }
-    function gapData(number) { return paragraphs.find(p => p.gap === number); }
-
-    function start() {
-      name = $("studentName").value.trim();
-      if (!name) { $("studentName").focus(); $("studentName").setCustomValidity("Please enter your name."); $("studentName").reportValidity(); return; }
-      $("studentName").setCustomValidity("");
-      optionOrder = shuffle(sentences);
-      answers = {}; locked = new Set(); hints = {};
-      active = 27; checks = 0; firstScore = null;
-      $("studentTag").textContent = "👤 " + name;
-      $("intro").hidden = true; $("result").hidden = true; $("game").hidden = false;
-      render();
-      window.scrollTo({ top: 0, behavior: "instant" });
-    }
-
-    function goTo(number, scroll) {
-      active = number;
-      render();
-      if (scroll && window.innerWidth <= 850) {
-        $("answerPanel").scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-
-    function renderPassage() {
-      const container = $("passage"); container.replaceChildren();
-      paragraphs.forEach(p => {
-        const el = document.createElement("p");
-        el.append(document.createTextNode(p.before));
-        const gap = document.createElement("button");
-        gap.type = "button";
-        gap.className = "gap" + (answers[p.gap] ? " filled" : "") +
-          (locked.has(p.gap) ? " correct" : "") + (active === p.gap ? " active" : "");
-        const num = document.createElement("span");
-        num.className = "number"; num.textContent = p.gap + ".";
-        const text = document.createElement("span");
-        text.textContent = answers[p.gap] ? " " + optionText(answers[p.gap]) : " _________";
-        gap.append(num, text);
-        gap.setAttribute("aria-label", "Gap " + p.gap + (answers[p.gap] ? ", answered" : ", unanswered"));
-        gap.addEventListener("click", () => goTo(p.gap, true));
-        el.append(gap, document.createTextNode(p.after));
-        container.append(el);
-      });
-    }
-
-    function renderNav() {
-      const nav = $("gapNav"); nav.replaceChildren();
-      paragraphs.forEach(p => {
-        const b = document.createElement("button"); b.type = "button";
-        b.textContent = p.gap;
-        b.className = (active === p.gap ? "active " : "") +
-          (locked.has(p.gap) ? "done" : (answers[p.gap] ? "selected" : ""));
-        b.setAttribute("aria-label", "Select gap " + p.gap);
-        b.addEventListener("click", () => goTo(p.gap, false));
-        nav.append(b);
-      });
-    }
-
-    function renderChoices() {
-      const p = gapData(active);
-      $("gapContext").textContent = "Gap " + active + ": " +
-        p.before.slice(-115).trimStart() + " [ … ] " + p.after.slice(0, 130).trim();
-      const area = $("hintArea"); area.replaceChildren();
-      if (hints[active] && !locked.has(active)) {
-        const box = document.createElement("div"); box.className = "feedback";
-        const heading = document.createElement("strong");
-        heading.textContent = "Not quite — your last answer was " + letter(hints[active]) + ".";
-        const en = document.createElement("p"); en.textContent = "💡 Hint: " + p.hintEn;
-        const bm = document.createElement("p"); bm.textContent = "🇲🇾 Petunjuk: " + p.hintBm;
-        box.append(heading, en, bm); area.append(box);
-      } else if (locked.has(active)) {
-        const box = document.createElement("div"); box.className = "focus";
-        box.textContent = "✅ This answer is correct and locked in!"; area.append(box);
-      }
-
-      const list = $("choices"); list.replaceChildren();
-      optionOrder.forEach((item, i) => {
-        const usedBy = Object.keys(answers).find(g => Number(g) !== active && answers[g] === item.id);
-        const picked = answers[active] === item.id;
-        const b = document.createElement("button"); b.type = "button";
-        b.className = "choice" + (usedBy ? " used" : "") + (picked ? " picked" : "") +
-          (picked && locked.has(active) ? " locked" : "");
-        b.disabled = Boolean(usedBy) || locked.has(active);
-        b.setAttribute("aria-pressed", String(picked));
-        const label = document.createElement("span"); label.className = "letter";
-        label.textContent = String.fromCharCode(65 + i);
-        const text = document.createElement("span"); text.textContent = item.text;
-        b.append(label, text);
-        if (usedBy) b.title = "Already selected for gap " + usedBy;
-        b.addEventListener("click", () => choose(item.id));
-        list.append(b);
-      });
-    }
-
-    function render() {
-      renderPassage(); renderNav(); renderChoices();
-      const filled = Object.keys(answers).length;
-      $("progressTag").textContent = "✏️ " + filled + " / 6 chosen";
-      $("checkBtn").disabled = filled !== 6;
-      $("checkBtn").textContent = checks ? "Check corrections ✓" : "Check all 6 answers ✓";
-      $("previousBtn").disabled = active === 27;
-      $("nextBtn").disabled = active === 32;
-    }
-
-    function choose(id) {
-      if (locked.has(active)) return;
-      if (Object.entries(answers).some(([g, v]) => Number(g) !== active && v === id)) return;
-      const filledGap = active;
-      answers[active] = id;
-      const nextEmpty = paragraphs.find(p => p.gap > active && !answers[p.gap]);
-      const anyEmpty = paragraphs.find(p => !answers[p.gap]);
-      active = nextEmpty ? nextEmpty.gap : anyEmpty ? anyEmpty.gap : filledGap;
-      render();
-      $("message").textContent = Object.keys(answers).length === 6
-        ? "All 6 chosen! You can change your answers or check them now."
-        : "Gap " + filledGap + " saved. Continue with gap " + active + ".";
-    }
-
-    function checkAll() {
-      if (Object.keys(answers).length !== 6) return;
-      checks++;
-      const correct = paragraphs.filter(p => answers[p.gap] === p.answer);
-      if (firstScore === null) firstScore = correct.length;
-      if (correct.length === 6) { finish(); return; }
-      const wrong = paragraphs.filter(p => answers[p.gap] !== p.answer);
-      // Release ALL incorrect choices together, so swaps can be corrected.
-      const newHints = {};
-      wrong.forEach(p => { newHints[p.gap] = answers[p.gap]; delete answers[p.gap]; });
-      correct.forEach(p => locked.add(p.gap));
-      hints = newHints;
-      active = wrong[0].gap;
-      render();
-      $("message").textContent = correct.length + "/6 correct. Correct answers are locked. " +
-        "Hints appear only for the " + wrong.length + " incorrect gap(s). Try again!";
-      if (window.innerWidth <= 850) $("answerPanel").scrollIntoView({ behavior: "smooth" });
-    }
-
-    function finish() {
-      $("game").hidden = true; $("result").hidden = false;
-      $("resultName").textContent = "Well done, " + name + "!";
-      $("resultStats").textContent = "First attempt: " + firstScore + "/6 · " +
-        "Final score: 6/6 · Checks used: " + checks;
-      const list = $("answerReview"); list.replaceChildren();
-      paragraphs.forEach(p => {
-        const li = document.createElement("li");
-        li.textContent = "(" + letter(p.answer) + ") " + optionText(p.answer);
-        list.append(li);
-      });
-      window.scrollTo({ top: 0, behavior: "instant" });
-    }
-
-    $("startBtn").addEventListener("click", start);
-    $("studentName").addEventListener("input", () => $("studentName").setCustomValidity(""));
-    $("studentName").addEventListener("keydown", e => { if (e.key === "Enter") start(); });
-    $("previousBtn").addEventListener("click", () => goTo(active - 1, false));
-    $("nextBtn").addEventListener("click", () => goTo(active + 1, false));
-    $("checkBtn").addEventListener("click", checkAll);
-    $("replayBtn").addEventListener("click", () => {
-      $("result").hidden = true; $("intro").hidden = false;
-      $("studentName").value = ""; $("message").textContent = "";
-      $("studentName").focus();
-    });
-  </script>
+<main class="wrap">
+<header class="hero"><span class="spar" aria-hidden="true">🤖🌸</span><div class="eyebrow">🇬🇧 ENGLISH · SPM READING PART 4</div><h1>Missing Sentence <span>Challenge!</span></h1><p class="intro">Explore the benefits and challenges of AI in education. Choose all six sentences before checking your answers together.</p><div class="stats"><span class="pill">🤖 AI in Education</span><span class="pill">📖 B1–B2 + some C1 vocabulary</span><span class="pill">🧩 6 gaps · 8 options</span><span class="pill">🇲🇾 English + BM feedback</span></div></header>
+<section class="panel start" id="startScreen">
+ <h2>💗 Ready to make the connections?</h2>
+ <form id="startForm" novalidate>
+  <label class="fieldlabel" for="name">Student name / Nama murid</label>
+  <input class="nameinput" id="name" name="studentName" autocomplete="name" autocapitalize="words" enterkeyhint="go" placeholder="Type your full name here" maxlength="70">
+  <p id="startError" class="error" role="alert"></p>
+  <div class="actions"><button id="startBtn" class="primary start-button" type="submit">🎮 START GAME →</button></div>
+  <p class="start-tip">👆 Enter your name, then tap <strong>START GAME</strong> or press <strong>Go/Enter</strong>.</p>
+ </form>
+ <p class="tips"><strong>How to play:</strong> Read the informative passage. Every gap has a <strong>drop-down menu in the passage</strong>. Choose all <strong>6 sentences first</strong>, then tap <strong>Check Answers</strong>. A sentence already selected in another gap becomes greyed out. <strong>Hints appear only for wrong answers.</strong> You can retry, but your score is based on your <strong>first check</strong>.<br><strong>BM:</strong> Pilih ayat untuk keenam-enam tempat kosong dahulu, kemudian tekan <strong>Semak Jawapan</strong>. Pilihan yang sudah digunakan akan dikelabukan. Petunjuk hanya dipaparkan untuk jawapan yang salah. Markah berdasarkan semakan pertama.</p>
+</section>
+<section id="gameScreen" hidden>
+ <div class="panel">
+  <div class="topbar"><div><strong id="progressText">0 / 6 sentences chosen</strong><div class="student" id="studentDisplay"></div></div><button class="secondary" id="restartTop" type="button">↻ Start over</button></div>
+  <div class="progress"><div id="progressFill"></div></div>
+  <h2>🤖 AI in Education</h2>
+  <p class="subtext">Choose all six sentences in the passage, then tap <strong>Check Answers</strong>. Already-used options are greyed out in the other menus.</p>
+  <div id="passage" class="storyline" aria-label="Reading passage with six drop-down sentence selectors"></div>
+  <div class="vocab"><b>Word help:</b> trustworthy = boleh dipercayai · reliable = boleh diharap · privacy = privasi · guidelines = garis panduan</div>
+  <details class="c1-glossary"><summary>🌟 Three advanced expressions · English / Malay / Chinese</summary><ul><li><b>over-reliance</b> — depending too much on a tool or person <span>BM: kebergantungan berlebihan</span> · <span>中文: 过度依赖</span></li><li><b>critical-thinking</b> — the ability to analyse and question information carefully <span>BM: pemikiran kritis</span> · <span>中文: 批判性思维</span></li><li><b>fair access</b> — equal opportunities to use needed resources <span>BM: akses yang adil</span> · <span>中文: 公平使用机会</span></li></ul></details>
+  <p class="note">🤖 <strong>Use AI wisely / Gunakan AI dengan bijak:</strong> Check important information and use AI to support your learning, not to replace your own thinking. / Semak maklumat penting dan gunakan AI untuk membantu pembelajaran, bukan menggantikan pemikiran sendiri.</p>
+  <p class="sources"><strong>Reading practice:</strong> An educational passage on the opportunities and risks of AI in schools.</p>
+  <div class="endbar"><p id="finishLabel">🧩 Choose all six sentences before checking your answers.</p><div id="checkSummary" class="checksummary" role="status" aria-live="polite" hidden></div><button id="finishBtn" class="primary" type="button" disabled>✅ Check All 6 Answers</button></div>
+ </div>
+</section>
+<section class="panel" id="resultsScreen" hidden>
+ <h2 class="final-title">🏆 Reading Challenge Complete!</h2><div class="student" style="text-align:center" id="resultName"></div><div class="score" id="score"></div><p class="result-msg" id="resultMessage"></p>
+ <div class="review"><h2>📘 Your completed passage</h2><p class="subtext">Review how the six missing sentences connect the benefits and challenges of using AI in education.</p><div id="finalStory" class="storyline"></div><div id="resultGlossary"></div><div id="key"></div></div>
+ <div class="result-buttons"><button class="secondary" id="copyBtn" type="button">📋 Copy completed story</button><button class="primary" id="replayBtn" type="button">🌸 Play Again</button></div><p id="copyMessage" class="smallcap" role="status"></p>
+</section>
+<footer class="smallcap">🤖 SPM Reading Part 4 · Missing Sentence Challenge</footer>
+</main>
+<script>
+'use strict';
+const DATA = {"title":"AI in Education","blocks":["Artificial intelligence, or AI, is becoming a familiar part of education. Language-learning apps and revision platforms now help students practise new skills. Some systems can identify topics a learner finds difficult. {{27}} As a result, students studying the same subject may receive different activities to match their progress.","AI can make teachers' daily work more manageable. Planning lessons, preparing worksheets and giving feedback take time, especially in busy classrooms. {{28}} This allows teachers to focus on answering questions and supporting learners who need extra attention. However, teachers must still check that the materials are suitable.","Beyond school hours, AI can support students revising independently. Imagine struggling with a science question late at night when nobody is available to explain it. {{29}} Such immediate support can make learning less frustrating. Nevertheless, students should attempt problems themselves because genuine understanding requires effort.","Despite these benefits, AI is not always trustworthy. It can produce confident explanations containing mistakes or outdated facts. {{30}} Without this habit, students might include false information in assignments simply because a computer generated it. Learning to question digital information is therefore essential.","There is also the danger of becoming too dependent on AI. When learners ask a chatbot to write an entire essay, they may submit polished work without developing their own ideas. {{31}} Schools should therefore encourage AI for brainstorming and feedback rather than allowing it to complete every task.","Finally, AI raises questions about fairness and privacy. Not every student has reliable internet access or a suitable device, and some services collect personal data. {{32}} Addressing these challenges could make AI a valuable classroom assistant. Still, technology should support teachers, not replace the relationships that make education meaningful."],"answers":[{"id":"s27","text":"For example, an app may offer easier questions after a student struggles with a topic."},{"id":"s28","text":"For instance, AI can draft practice questions and organise teaching materials in a few minutes."},{"id":"s29","text":"A chatbot can break the problem into simple steps and suggest another example to try."},{"id":"s30","text":"Students should therefore check important claims against textbooks, trusted websites or their teachers' advice."},{"id":"s31","text":"Over time, this over-reliance may weaken their critical-thinking and problem-solving skills."},{"id":"s32","text":"Schools consequently need clear guidelines to protect information and give all learners fair access."},{"id":"d1","text":"Meanwhile, digital devices can make group presentations more colourful and interesting."},{"id":"d2","text":"Some students, however, prefer to study with printed notes instead of using a screen."}],"gaps":[{"answer":"s27","hint":"Look for an example of a learning app adjusting a task to suit one student.","hintMs":"Cari contoh aplikasi pembelajaran yang menyesuaikan latihan mengikut kemampuan seorang murid.","right":"The example of easier questions shows how an app adapts learning to a student's needs.","rightMs":"Contoh soalan yang lebih mudah menunjukkan cara aplikasi menyesuaikan pembelajaran mengikut keperluan murid.","wrong":"Re-read the sentences around the gap and notice the logical connection.","wrongMs":"Baca semula ayat sebelum dan selepas tempat kosong serta kenal pasti hubungan idea.","context":"Match the ideas before and after the missing sentence."},{"answer":"s28","hint":"What task can AI complete quickly for teachers? The next sentence says 'This allows teachers...'.","hintMs":"Apakah tugas yang boleh disiapkan AI dengan cepat untuk guru? Ayat selepas tempat kosong bermula dengan 'This allows teachers...'.","right":"The quick preparation of practice questions explains how AI saves teachers time, as stated in the next sentence.","rightMs":"Penyediaan latihan yang cepat menjelaskan cara AI menjimatkan masa guru seperti dalam ayat seterusnya.","wrong":"Re-read the sentences around the gap and notice the logical connection.","wrongMs":"Baca semula ayat sebelum dan selepas tempat kosong serta kenal pasti hubungan idea.","context":"Match the ideas before and after the missing sentence."},{"answer":"s29","hint":"The missing sentence should show how a learner gets an immediate explanation at home.","hintMs":"Ayat yang hilang perlu menunjukkan cara murid mendapat penerangan dengan segera ketika belajar di rumah.","right":"A chatbot's step-by-step explanation provides the immediate support mentioned right after the gap.","rightMs":"Penerangan langkah demi langkah oleh chatbot memberikan bantuan segera seperti yang disebut selepas tempat kosong.","wrong":"Re-read the sentences around the gap and notice the logical connection.","wrongMs":"Baca semula ayat sebelum dan selepas tempat kosong serta kenal pasti hubungan idea.","context":"Match the ideas before and after the missing sentence."},{"answer":"s30","hint":"What checking habit does 'Without this habit' refer to in the following sentence?","hintMs":"Apakah amalan menyemak yang dirujuk oleh frasa 'Without this habit' dalam ayat seterusnya?","right":"The recommendation to verify AI's claims is the checking habit referred to by 'Without this habit'.","rightMs":"Cadangan menyemak dakwaan AI ialah amalan yang dirujuk oleh frasa 'Without this habit'.","wrong":"Re-read the sentences around the gap and notice the logical connection.","wrongMs":"Baca semula ayat sebelum dan selepas tempat kosong serta kenal pasti hubungan idea.","context":"Match the ideas before and after the missing sentence."},{"answer":"s31","hint":"Look for a negative long-term effect of letting AI do students' thinking.","hintMs":"Cari kesan buruk jangka panjang apabila murid membiarkan AI berfikir bagi pihak mereka.","right":"'Over time' introduces the long-term damage caused by relying on AI to do all the thinking.","rightMs":"'Over time' memperkenalkan kesan jangka panjang apabila murid terlalu bergantung pada AI untuk berfikir.","wrong":"Re-read the sentences around the gap and notice the logical connection.","wrongMs":"Baca semula ayat sebelum dan selepas tempat kosong serta kenal pasti hubungan idea.","context":"Match the ideas before and after the missing sentence."},{"answer":"s32","hint":"Find an action schools could take to address BOTH privacy and fair access.","hintMs":"Cari tindakan yang boleh diambil oleh sekolah untuk menangani KEDUA-DUA isu privasi dan akses yang adil.","right":"The guidelines address both personal data and fair access, linking the concerns before the gap to the solutions after it.","rightMs":"Garis panduan menangani kedua-dua masalah data peribadi dan akses saksama, lalu menghubungkan isu dengan penyelesaiannya.","wrong":"Re-read the sentences around the gap and notice the logical connection.","wrongMs":"Baca semula ayat sebelum dan selepas tempat kosong serta kenal pasti hubungan idea.","context":"Match the ideas before and after the missing sentence."}],"shuffle":true,"highlight":["over-reliance","critical-thinking","fair access"]};
+const $ = id => document.getElementById(id);
+const byId = new Map(DATA.answers.map(a=>[a.id,a]));
+const shuffle = input => {const a=[...input];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let student='',order=[],labels={},selections=Array(6).fill(''),locked=Array(6).fill(false),checkedOnce=false,firstScore=null;
+function node(tag,klass,text){const x=document.createElement(tag);if(klass)x.className=klass;if(text!==undefined)x.textContent=text;return x;}
+const C1_PATTERN=new RegExp(DATA.highlight.join('|'),'gi');
+function appendTextWithPhrases(target,text){
+ C1_PATTERN.lastIndex=0;let offset=0,match;
+ while((match=C1_PATTERN.exec(text))!==null){
+  if(match.index>offset)target.append(document.createTextNode(text.slice(offset,match.index)));
+  target.append(node('strong','c1-phrase',match[0]));offset=match.index+match[0].length;
+ }
+ if(offset<text.length)target.append(document.createTextNode(text.slice(offset)));
+}
+function scrollToScreen(el){try{el.scrollIntoView({behavior:'auto',block:'start'});}catch(e){/* In-app preview can block scrolling */}}
+function resetState(){order=DATA.shuffle===false?[...DATA.answers]:shuffle(DATA.answers);labels=Object.fromEntries(order.map((a,i)=>[a.id,String.fromCharCode(65+i)]));selections=Array(6).fill('');locked=Array(6).fill(false);checkedOnce=false;firstScore=null;}
+function updateProgress(){
+ const filled=selections.filter(Boolean).length;
+ const correct=locked.filter(Boolean).length;
+ const finished=correct===6;
+ $('progressText').textContent=checkedOnce ? correct+' / 6 correct · '+(6-correct)+' to complete' : filled+' / 6 sentences chosen';
+ $('progressFill').style.width=((checkedOnce?correct:filled)/6*100)+'%';
+ $('finishBtn').disabled=!finished&&filled!==6;
+ $('finishBtn').textContent=finished?'🏆 View Results':checkedOnce?'🔁 Check My Corrections':'✅ Check All 6 Answers';
+ if(finished){$('finishLabel').textContent='🌟 All six sentences are in place! View your final results.';}
+ else if(checkedOnce){$('finishLabel').textContent=filled===6?'🌸 Ready? Check your corrected sentences.':'💡 Use the hints above to choose again in the incorrect gaps.';}
+ else {$('finishLabel').textContent=filled===6?'✅ All six selected! Tap Check Answers to see how you did.':'🧩 Choose '+(6-filled)+' more sentence'+(6-filled===1?'':'s')+' before checking.';}
+}
+function dropDown(gapIndex){
+ const sel=node('select','gapselect');sel.id='gapSelect'+gapIndex;sel.setAttribute('aria-label','Choose the sentence for gap '+(gapIndex+27));
+ const placeholder=node('option','','— Tap to choose a sentence —');placeholder.value='';sel.append(placeholder);
+ for(const ans of order){const o=node('option','',labels[ans.id]+'. '+ans.text);o.value=ans.id;sel.append(o);}
+ sel.addEventListener('change',()=>pick(gapIndex,sel.value));return sel;
+}
+function makePassage(target,final=false){
+ target.replaceChildren();
+ DATA.blocks.forEach(block=>{
+  const p=node('div','storypara');
+  const pattern=/\{\{(27|28|29|30|31|32)\}\}/g;
+  let previous=0,match;
+  while((match=pattern.exec(block))!==null){
+   appendTextWithPhrases(p,block.slice(previous,match.index));
+   const i=Number(match[1])-27;
+   if(final){
+    const span=node('span');appendTextWithPhrases(span,byId.get(DATA.gaps[i].answer).text);
+    span.style.fontWeight='750';span.style.color='#825aa9';p.append(span);
+   }else{
+    const slot=node('div','gapbox');slot.id='gapBox'+i;
+    slot.append(node('div','gaplabel','🔽 GAP '+(i+27)+' · Choose a sentence'));
+    slot.append(dropDown(i));
+    const selected=node('div','selection-full');selected.id='selectionFull'+i;slot.append(selected);
+    const response=node('div','gapfeedback');response.hidden=true;response.id='feedback'+i;
+    response.setAttribute('role','status');response.setAttribute('aria-live','polite');slot.append(response);
+    p.append(slot);
+   }
+   previous=pattern.lastIndex;
+  }
+  appendTextWithPhrases(p,block.slice(previous));target.append(p);
+ });
+}
+function feedback(i,kind,title,en,bm){
+ const host=$('feedback'+i);host.hidden=false;host.className='gapfeedback '+kind;
+ host.replaceChildren(node('strong','',title),node('p','',en),node('p','','🇲🇾 '+bm));
+}
+function updateAvailableChoices(){
+ DATA.gaps.forEach((gap,i)=>{
+  if(locked[i])return;
+  const sel=$('gapSelect'+i);
+  if(!sel)return;
+  for(const opt of sel.options){
+   if(!opt.value)continue;
+   const usedElsewhere=selections.some((v,index)=>index!==i&&v===opt.value);
+   opt.disabled=usedElsewhere;
+   opt.textContent=(usedElsewhere?'🔒 Used · ':'')+labels[opt.value]+'. '+byId.get(opt.value).text;
+  }
+ });
+}
+function pick(i,id){
+ if(locked[i])return;
+ if(id&&selections.some((v,j)=>j!==i&&v===id)){
+  $('gapSelect'+i).value=selections[i];return;
+ }
+ selections[i]=id;
+ const box=$('gapBox'+i);
+ box.classList.toggle('retrying',checkedOnce&&!!id);
+ const display=$('selectionFull'+i);
+ display.replaceChildren();
+ if(id){display.append(node('b','',labels[id]+'. '));appendTextWithPhrases(display,byId.get(id).text);}
+ updateAvailableChoices();updateProgress();
+}
+function evaluate(){
+ if(locked.every(Boolean)){end();return;}
+ if(selections.some(x=>!x))return;
+ const submitted=[...selections];
+ if(!checkedOnce){firstScore=submitted.reduce((total,id,i)=>total+(id===DATA.gaps[i].answer?1:0),0);checkedOnce=true;}
+ let newlyCorrect=0;
+ DATA.gaps.forEach((gap,i)=>{
+  if(locked[i])return;
+  const id=submitted[i],box=$('gapBox'+i),sel=$('gapSelect'+i),display=$('selectionFull'+i);
+  if(id===gap.answer){
+   locked[i]=true;newlyCorrect++;
+   box.classList.remove('invalid','retrying');box.classList.add('solved');
+   box.querySelector('.gaplabel').textContent='✅ GAP '+(i+27)+' · Correct';
+   sel.disabled=true;sel.hidden=true;
+   const correctSpan=node('span','solvedsentence');appendTextWithPhrases(correctSpan,byId.get(id).text);display.replaceChildren(correctSpan);
+   feedback(i,'good','✅ Correct connection!',gap.right,gap.rightMs);
+  }else{
+   box.classList.remove('retrying');box.classList.add('invalid');
+   box.querySelector('.gaplabel').textContent='💡 GAP '+(i+27)+' · Try again';
+   display.replaceChildren();
+   feedback(i,'bad','💡 Hint / Petunjuk · '+labels[id]+' was not right',
+    'Your choice: '+labels[id]+'. '+byId.get(id).text+'  Hint: '+gap.hint,
+    'Petunjuk: '+gap.hintMs);
+   selections[i]='';sel.value='';
+  }
+ });
+ updateAvailableChoices();updateProgress();
+ const correct=locked.filter(Boolean).length;
+ const summary=$('checkSummary');summary.hidden=false;
+ if(correct===6){summary.replaceChildren(node('b','','🎉 All six correct!'),document.createTextNode(' Your first-check score is '+firstScore+'/6. Tap View Results to read the completed passage.'));}
+ else {summary.replaceChildren(node('b','','📋 First-check score: '+firstScore+'/6. '),document.createTextNode('You have '+(6-correct)+' gap'+(6-correct===1?'':'s')+' to fix. Only incorrect gaps have hints. Choose again, then check your corrections. Your score stays the same.'));}
+ // Keep the feedback in the passage visible; do not reveal the answers to incorrect gaps.
+}
+function begin(){
+ const name=$('name').value.trim();
+ if(!name){$('startError').textContent='Please enter your name. / Sila masukkan nama anda.';$('name').focus();return;}
+ student=name;resetState();$('startError').textContent='';$('startScreen').hidden=true;$('resultsScreen').hidden=true;$('gameScreen').hidden=false;
+ $('studentDisplay').textContent='👤 '+student;$('checkSummary').hidden=true;$('checkSummary').replaceChildren();
+ makePassage($('passage'));updateAvailableChoices();updateProgress();scrollToScreen($('gameScreen'));
+}
+function end(){
+ if(!locked.every(Boolean))return;
+ const earned=firstScore;
+ $('score').replaceChildren(document.createTextNode(String(earned)),node('small','',' / 6'));
+ $('resultName').textContent='🎓 '+student;
+ $('resultMessage').textContent=earned===6?'Wonderful! All six connected perfectly on your first check. 🌟':earned>=4?'Well done! You corrected your gaps using the clues. This score is from your first check. 🌸':'Great persistence! Your score reflects your first check; keep practising sentence links. 💪';
+ makePassage($('finalStory'),true);$('resultGlossary').replaceChildren($('gameScreen').querySelector('.c1-glossary').cloneNode(true));const key=$('key');key.replaceChildren();
+ DATA.gaps.forEach((g,i)=>{const p=node('p');p.append(node('b','',`Gap ${i+27} · Option ${labels[g.answer]} · `),document.createTextNode(g.right+' 🇲🇾 '+g.rightMs));key.append(p);});
+ $('resultsScreen').hidden=false;$('gameScreen').hidden=true;scrollToScreen($('resultsScreen'));
+}
+async function copyStory(){
+ const story=DATA.blocks.map(block=>block.replace(/\{\{(27|28|29|30|31|32)\}\}/g,(_,num)=>byId.get(DATA.gaps[Number(num)-27].answer).text)).join('\n\n');
+ try{await navigator.clipboard.writeText(DATA.title+'\n\n'+story);$('copyMessage').textContent='✅ Story copied! / Cerita berjaya disalin!';}
+ catch(e){$('copyMessage').textContent='Copy is unavailable here. You can select and copy the story above.';}
+}
+$('startForm').addEventListener('submit',e=>{e.preventDefault();begin();});$('name').addEventListener('input',()=>{$('startError').textContent='';});$('finishBtn').addEventListener('click',evaluate);$('copyBtn').addEventListener('click',copyStory);
+$('replayBtn').addEventListener('click',()=>{$('gameScreen').hidden=true;$('resultsScreen').hidden=true;$('startScreen').hidden=false;$('copyMessage').textContent='';$('name').value=student;scrollToScreen($('startScreen'));});
+$('restartTop').addEventListener('click',()=>{if(confirm('Restart this game? Your current score will be cleared. / Mula semula?')){$('gameScreen').hidden=true;$('startScreen').hidden=false;scrollToScreen($('startScreen'));}});
+</script>
 </body>
 </html>
