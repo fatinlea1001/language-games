@@ -288,9 +288,16 @@ function topicDescription(file, readmeTitle, language){
  if(stem==='n5-sentence')return describe('N5 Sentence Jumble','Japanese Sentence Formation','N5 Grammar');
  if(stem==='eng-elaboration-finance' && number===1)
   return describe('Paragraph Makeover — Elaboration & Cohesion',['Saving Money','Cultural Awareness','Plastic Waste'],'SPM Writing Skills');
- if(stem.startsWith('eng-missingsentence-')){
-  const code=stem.slice('eng-missingsentence-'.length);
-  const display=({'schoollife':'School Life','bullyingmentalhealth':'Bullying & Mental Health','haze':'Haze'})[code]||code.replace(/([a-z])([A-Z])/g,'$1 $2').replace(/(^|\s)\w/g,ch=>ch.toUpperCase());
+ if(stem.startsWith('eng-missingsentence-') || stem.startsWith('eng-missing-')){
+  const prefix=stem.startsWith('eng-missingsentence-')?'eng-missingsentence-':'eng-missing-';
+  const code=stem.slice(prefix.length);
+  const display=({
+   'schoollife':'School Life',
+   'bullyingmentalhealth':'Bullying & Mental Health',
+   'haze':'Haze',
+   'ai-education':'AI in Education',
+   'true-crime':'True Crime Podcasts'
+  })[code]||code.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/(^|\s)\w/g,ch=>ch.toUpperCase());
   return describe('Missing Sentence Challenge — '+display,display,'SPM Reading Part 4');
  }
  if(stem.startsWith('eng-elaboration-')){
