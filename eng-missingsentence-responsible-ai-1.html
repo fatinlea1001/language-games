@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffedf6">
+<title>SPM Reading Part 4 — Responsible Use of AI (Set 1)</title>
+<style>
+:root{--ink:#43334e;--muted:#786a80;--pink:#ec77af;--lav:#f0eafe;--line:#efd9e7;--good:#287852;--bad:#b84964}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:ui-rounded,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,#ffe5f0,transparent 34%),radial-gradient(circle at 95% 16%,#eee9ff,transparent 36%),#fffbfd}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ab86d7;outline-offset:3px}[hidden]{display:none!important}
+.wrap{max-width:930px;margin:auto;padding:20px 16px 58px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(112deg,#dfefff 0%,#e8f4ff 51%,#f7e7ff 100%);padding:26px 27px 24px;border:1px solid #f4d1e3;border-radius:26px;box-shadow:0 12px 36px #9b728b19}
+.eyebrow{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.11em;color:#845779;background:#ffffffab;border-radius:999px;padding:7px 12px;border:1px solid #ffffffaa}
+h1{margin:12px 0 6px;font-size:clamp(27px,4vw,41px);line-height:1.17;letter-spacing:-.035em}h1 span{color:#9d4e96}.intro{font-size:14px;line-height:1.58;max-width:690px;margin:4px 0 0;color:#685b73}
+.spar{position:absolute;right:5%;top:19px;font-size:52px;transform:rotate(11deg);user-select:none;pointer-events:none}.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.pill{background:#fffaffc7;border:1px solid #ffffffb8;padding:7px 11px;border-radius:99px;font-size:11px;font-weight:850;color:#875878}
+.panel{background:#fff;border:1px solid #efe3ee;border-radius:22px;box-shadow:0 9px 28px #9f8db214;padding:20px;margin-top:15px}.start{max-width:750px;margin:20px auto 0}
+h2{font-size:20px;margin:4px 0 9px;letter-spacing:-.02em}.fieldlabel{font-size:13px;font-weight:900;display:block;margin-bottom:8px}
+.nameinput{width:100%;border:2px solid #e8d9ed;background:#fffafd;border-radius:13px;padding:12px 14px;font-size:15px;outline:none}
+.primary{background:linear-gradient(120deg,#db69a3,#a66fd1);border:0;color:white;border-radius:13px;font-weight:900;padding:13px 19px;box-shadow:0 7px 18px #b76b9c2d}.primary:hover{filter:brightness(1.04)}
+.secondary{background:#f6efff;color:#7554a1;border:1px solid #e9dcf7;border-radius:12px;font-weight:850;padding:10px 13px}
+.tips{margin:15px 0 0;border-radius:12px;background:#f8f3ff;padding:12px 14px;font-size:13px;line-height:1.6;color:#625476}
+.actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:8px}.error{font-size:13px;color:#ab3b62;font-weight:750;min-height:18px;margin:9px 0 0}.start-button{min-height:49px;min-width:200px}
+.topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:3px 0 8px}.topbar strong{font-size:15px}.student{color:#7a6287;font-size:12px;font-weight:800}
+.progress{height:9px;background:#f1e7f5;border-radius:999px;overflow:hidden;margin:10px 0 13px}.progress>div{height:100%;width:0;background:linear-gradient(90deg,#d969a4,#987be0);transition:width .2s}
+.subtext{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 10px}.storyline{font-size:clamp(15px,1.6vw,16px);line-height:1.85;padding:18px 19px;border-radius:15px;background:#fffdfb;border:1px solid #f1e4e8}
+.storyline .storypara{margin:0 0 17px;padding:16px 16px 19px;background:#fff;border:1px solid #f0dfec;border-left:5px solid #73b4ec;border-radius:15px;box-shadow:0 2px 10px #73517b0a}
+.storyline .storypara:nth-child(even){background:#fffbfe;border-left-color:#eb8eb8}
+.storyline .storypara:last-child{margin-bottom:0}
+.paragraph-label{display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;padding:6px 13px;border-radius:999px;border:1px solid #e5cbee;background:#f5eafd;color:#73449c;font-size:13px;font-weight:900;letter-spacing:.015em;line-height:1.5}
+.storypara:nth-child(even) .paragraph-label{background:#ffedf5;color:#a34578;border-color:#f5c8dc}
+.gapbox{display:block;margin:11px 0 13px;padding:12px 13px;border-radius:14px;background:#f9f3ff;border:1.5px dashed #bc9edb;line-height:1.4}
+.gapbox.solved{background:#eefaef;border:1px solid #b9dec6}.gapbox.invalid{background:#fff8f8;border-color:#e6a5b9}.gapbox.retrying{background:#fffaf5;border-color:#e9c5a3}
+.gaplabel{font-size:12px;font-weight:900;color:#8953b0;margin-bottom:7px}.gapbox.solved .gaplabel{color:#277851}
+.gapselect{width:100%;max-width:100%;background:#fff;border:1.5px solid #d4bde8;border-radius:11px;padding:12px 36px 12px 11px;color:#584368;font-size:13px;line-height:1.45;min-height:49px;cursor:pointer;text-overflow:ellipsis}
+.gapselect:disabled{background:#f6fcf8;color:#276448;border-color:#bcdfc8;cursor:default}.gapselect option:disabled{color:#9c9ca4;background:#eeeeee}
+.selection-full{font-size:13px;line-height:1.55;margin:8px 0 0;color:#685478;overflow-wrap:anywhere}.selection-full b{color:#734e9b}
+.solvedsentence{display:block;font-weight:760;font-size:15px;line-height:1.7;color:#266a49;overflow-wrap:anywhere}
+.gapfeedback{margin-top:9px;border-radius:12px;padding:10px 12px;line-height:1.55;font-size:12px}.gapfeedback.good{background:#e5f8ef;color:#23694b;border:1px solid #bde3ca}.gapfeedback.bad{background:#fff1f2;color:#95334f;border:1px solid #f0b9c8}
+.gapfeedback strong{display:block;font-size:13px;margin-bottom:3px}.gapfeedback p{margin:4px 0}
+.note{background:#fff6d8;border:1px solid #f2dfb2;border-radius:13px;color:#7c6030;padding:11px 13px;font-size:12px;line-height:1.55;margin-top:13px}.vocab{font-size:12px;color:#74647f;line-height:1.8;margin-top:11px}.vocab b{color:#7e5198}
+.endbar{text-align:center;border-radius:15px;padding:15px;background:#faf2fc;margin-top:15px}.endbar p{font-size:13px;line-height:1.55;color:#75577d;margin:0 0 12px}.endbar .primary{min-width:200px}.endbar .primary:disabled{background:#e8dce9;box-shadow:none;color:#907c96;cursor:not-allowed}
+.checksummary{margin:11px auto 13px;max-width:650px;background:#f8f1ff;border:1px solid #e5d3f3;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.6;color:#67467e}.checksummary b{color:#8c4a9b}
+.final-title{text-align:center;font-size:27px;margin:11px 0 4px}.score{text-align:center;font-size:47px;font-weight:1000;color:#975eb6;letter-spacing:-.055em}.score small{font-size:22px;color:#87758f}.result-msg{text-align:center;color:#72617c;line-height:1.6}
+.review{background:#fffafd;border:1px solid #efdfee;border-radius:15px;margin-top:13px;padding:16px}.review p{font-size:13px;line-height:1.7;margin:12px 0}.review b{color:#7456a3}
+.result-buttons{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:20px 0 0}.smallcap{text-align:center;font-size:11px;color:#938293;margin-top:17px}
+@media(max-width:540px){.wrap{padding:9px 8px 30px}.hero{padding:20px 16px;border-radius:18px}.spar{font-size:31px;right:5%;top:19px}h1{max-width:285px;font-size:27px}.intro{font-size:12px}.panel{padding:13px;border-radius:17px;margin-top:9px}h2{font-size:18px}.storyline{padding:10px 8px;line-height:1.76}.storyline .storypara{padding:13px 11px 15px;margin-bottom:12px}.paragraph-label{font-size:12px;padding:6px 10px;margin-bottom:10px}.gapbox{padding:10px 9px}.gapselect{font-size:14px;min-height:53px}.start-button{width:100%;min-height:54px;font-size:16px}.score{font-size:40px}.endbar .primary{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero"><span class="spar" aria-hidden="true">🤖🌸</span><div class="eyebrow">🇬🇧 ENGLISH · SPM READING PART 4</div><h1>Missing Sentence <span>Challenge!</span></h1><p class="intro">Explore how students can use AI honestly, carefully and responsibly. Choose all six missing sentences before checking your answers.</p><div class="stats"><span class="pill">🤖 Responsible AI Use</span><span class="pill">📚 Reading Comprehension</span><span class="pill">📖 8 paragraphs</span><span class="pill">🧩 6 gaps · 8 options</span><span class="pill">🇲🇾 English + BM feedback</span></div></header>
+<section class="panel start" id="startScreen">
+<h2>🤖 Ready to connect the ideas?</h2>
+<form id="startForm" novalidate>
+<label class="fieldlabel" for="name">Student name / Nama murid</label>
+<input class="nameinput" id="name" name="studentName" autocomplete="name" autocapitalize="words" enterkeyhint="go" placeholder="Type your full name here" maxlength="70">
+<p id="startError" class="error" role="alert"></p><div class="actions"><button id="startBtn" class="primary start-button" type="submit">🎮 START GAME →</button></div>
+<p class="subtext">Enter your name, then press START GAME or Enter.</p>
+</form>
+<p class="tips"><strong>How to play:</strong> Read the passage. Select a sentence from the <strong>drop-down menu in each gap (27–32)</strong>. Choose all <strong>6 answers first</strong>, then tap <strong>Check Answers</strong>. A sentence already used in another gap is greyed out. <strong>Hints appear only for incorrect answers.</strong> You may retry, but your score is based on the <strong>first check</strong>.<br><strong>BM:</strong> Pilih ayat untuk keenam-enam tempat kosong dahulu, kemudian tekan <strong>Semak Jawapan</strong>. Pilihan yang sudah digunakan akan dikelabukan. Petunjuk hanya dipaparkan untuk jawapan salah. Markah berdasarkan semakan pertama.</p>
+</section>
+<section id="gameScreen" hidden><div class="panel">
+<div class="topbar"><div><strong id="progressText">0 / 6 sentences chosen</strong><div class="student" id="studentDisplay"></div></div><button class="secondary" id="restartTop" type="button">↻ Start over</button></div>
+<div class="progress"><div id="progressFill"></div></div>
+<h2>🤖 Responsible Use of Artificial Intelligence</h2>
+<p class="subtext">Choose a sentence for each blank, then tap <strong>Check Answers</strong>. Used sentences turn grey in other menus. Options stay in their original A–H order, including on replay.</p>
+<div id="passage" class="storyline" aria-label="Reading passage with six sentence selectors"></div>
+<div class="vocab"><b>Word help / Bantuan kosa kata:</b> bias = berat sebelah · plagiarism = plagiarisme · originality = keaslian · stereotypes = stereotaip · privacy = privasi · digital identity = identiti digital</div>
+<p class="note">💡 <strong>Reading tip / Tip membaca:</strong> Watch for reference words (“this”, “these”) and connectors (“However”, “Conversely”, “Additionally”). Check how each answer connects the previous and following sentences. / Cari kata rujukan dan penanda wacana. Semak hubungan antara ayat sebelum dan selepas tempat kosong.</p>
+<div class="endbar"><p id="finishLabel">🧩 Choose all six sentences before checking your answers.</p><div id="checkSummary" class="checksummary" role="status" aria-live="polite" hidden></div><button id="finishBtn" class="primary" type="button" disabled>✅ Check All 6 Answers</button></div>
+</div></section>
+<section class="panel" id="resultsScreen" hidden>
+<h2 class="final-title">🏆 Reading Challenge Complete!</h2><div class="student" style="text-align:center" id="resultName"></div><div class="score" id="score"></div><p class="result-msg" id="resultMessage"></p>
+<div class="review"><h2>📘 Your completed passage</h2><p class="subtext">Review how the missing sentences connect the ideas from the text.</p><div id="finalStory" class="storyline"></div><div id="key"></div></div>
+<div class="result-buttons"><button class="secondary" id="copyBtn" type="button">📋 Copy completed passage</button><button class="primary" id="replayBtn" type="button">🌸 Play Again</button></div><p id="copyMessage" class="smallcap" role="status"></p>
+</section>
+<footer class="smallcap">🤖 SPM Reading Part 4 · Responsible AI · Set 1</footer>
+</main>
+<script>
+'use strict';
+const DATA={"title":"Responsible Use of Artificial Intelligence","passage":[{"parts":["Artificial Intelligence (AI) is becoming part of our everyday lives. From search engines and language apps to smart assistants, students often use AI to learn, create, and communicate. However, with these opportunities comes the responsibility to use AI wisely and ethically."]},{"parts":["First, students should remember that AI is a tool, not a replacement for human thinking. It can provide quick answers, suggest ideas, or check grammar, but it cannot fully replace creativity, critical thinking, or personal judgement.","Relying too much on AI may weaken independent skills."]},{"parts":["Second, responsible use involves honesty.","Instead, students should treat AI as a support system, like a dictionary or calculator, rather than a shortcut. Teachers value originality, so it is important to show personal effort and voice in assignments."]},{"parts":["Third, students must be aware of bias and accuracy. AI systems learn from large amounts of data, which may include mistakes or stereotypes.","Before accepting information, students should cross-check with reliable sources. Developing a habit of questioning AI responses helps build stronger critical thinking skills."]},{"parts":["Privacy is another important aspect. Many AI tools collect data from users.","They should also read basic privacy settings before using new platforms. Protecting one’s digital identity is part of responsible online behaviour."]},{"parts":["Finally, responsible AI use also means balance.","Discussing ideas with classmates, asking teachers for feedback, and practising problem-solving without digital help are still essential for growth."]},{"parts":["It is undeniable that AI is a powerful tool that can support education, but it must be used with care.","Responsible use ensures that AI becomes a partner in learning, not a shortcut that limits personal development."]},{"parts":["In conclusion, AI is inevitable. Therefore, embracing the technology while still exercising caution is advisable."]}],"answers":[{"id":"A","text":"Students who use AI responsibly by being honest, critical, and mindful of privacy will gain the most benefit."},{"id":"B","text":"Copying AI-generated work and presenting it as your own is a form of plagiarism."},{"id":"C","text":"Students should avoid sharing sensitive personal information."},{"id":"D","text":"This means that AI answers are not always correct or neutral."},{"id":"E","text":"For example, when writing an essay, AI can help generate ideas, but the final product should come from the students."},{"id":"F","text":"While AI can save time, students should not let it replace human interaction."},{"id":"G","text":"AI usually gives mostly accurate answers although there may be errors."},{"id":"H","text":"We should be honest and make it known that AI has helped with our work."}],"gaps":[{"answer":"E","hint":"Before the gap, the writer says AI can help with ideas and grammar without replacing a student’s thinking. Look for an example that demonstrates this balance.","hintMs":"Sebelum tempat kosong, penulis menyatakan AI boleh membantu dengan idea dan tatabahasa tanpa menggantikan pemikiran murid. Cari contoh yang menunjukkan keseimbangan ini.","right":"The essay-writing example shows how AI can help generate ideas while students still produce the final work themselves. The next sentence warns against overdependence.","rightMs":"Contoh penulisan esei menunjukkan AI boleh membantu menjana idea, tetapi hasil akhir perlu dihasilkan oleh murid sendiri. Ayat seterusnya memberi amaran tentang kebergantungan berlebihan."},{"answer":"B","hint":"The paragraph is about honesty and original schoolwork. The word “Instead” after the gap signals a better alternative to an unacceptable practice.","hintMs":"Perenggan ini berkaitan kejujuran dan hasil kerja asli. Perkataan “Instead” selepas tempat kosong menunjukkan alternatif yang lebih baik kepada amalan yang tidak wajar.","right":"Passing off AI-generated writing as your own is plagiarism. “Instead” contrasts this with using AI only as a support tool and showing personal effort.","rightMs":"Mengaku hasil tulisan AI sebagai kerja sendiri ialah plagiarisme. “Instead” membandingkan perbuatan itu dengan penggunaan AI sebagai alat sokongan dan usaha sendiri."},{"answer":"D","hint":"The paragraph mentions bias, mistakes and stereotypes in the data used by AI. What limitation would make checking information with trustworthy sources necessary?","hintMs":"Perenggan menyebut bias, kesilapan dan stereotaip dalam data AI. Apakah batasan yang menyebabkan maklumat perlu disemak dengan sumber yang boleh dipercayai?","right":"AI output may be inaccurate or biased because the training data can contain errors and stereotypes. That leads logically to advice to cross-check its claims.","rightMs":"Output AI mungkin tidak tepat atau berat sebelah kerana data latihannya boleh mengandungi kesilapan dan stereotaip. Oleh itu, semakan dengan sumber lain diperlukan."},{"answer":"C","hint":"Many AI tools collect user data. The following sentence discusses privacy settings, so find a practical precaution about the information students provide.","hintMs":"Banyak alat AI mengumpulkan data pengguna. Ayat selepas tempat kosong menyentuh tetapan privasi, jadi cari langkah berjaga-jaga mengenai maklumat yang diberikan oleh murid.","right":"Avoiding sensitive personal details is an immediate privacy precaution. “They should also” then adds another precaution: checking privacy settings.","rightMs":"Mengelakkan perkongsian maklumat peribadi yang sensitif ialah langkah perlindungan privasi. “They should also” kemudian menambah langkah menyemak tetapan privasi."},{"answer":"F","hint":"The paragraph introduces “balance” and later encourages class discussions, teacher feedback and problem-solving without digital assistance.","hintMs":"Perenggan memperkenalkan “keseimbangan” dan selepas itu menggalakkan perbincangan kelas, maklum balas guru serta penyelesaian masalah tanpa bantuan digital.","right":"The warning against replacing human interaction with AI introduces the value of talking to classmates and teachers. Those examples develop the idea of balance.","rightMs":"Amaran supaya AI tidak menggantikan interaksi manusia memperkenalkan kepentingan berbual dengan rakan sekelas dan guru. Contoh tersebut menghuraikan idea keseimbangan."},{"answer":"A","hint":"This paragraph concludes that AI can support learning if it is handled carefully. Look for a sentence combining the responsibilities discussed earlier.","hintMs":"Perenggan ini menyimpulkan bahawa AI boleh menyokong pembelajaran jika digunakan dengan berhati-hati. Cari ayat yang menggabungkan tanggungjawab yang telah dibincangkan.","right":"The sentence sums up honesty, critical thinking and privacy as habits that help students benefit from AI. The next sentence restates the value of responsible use.","rightMs":"Ayat ini merumuskan kejujuran, pemikiran kritis dan privasi sebagai amalan yang membantu murid mendapat manfaat daripada AI. Ayat berikutnya menegaskan nilai penggunaan bertanggungjawab."}]};
+const $=id=>document.getElementById(id);
+const byId=new Map(DATA.answers.map(a=>[a.id,a]));
+const gapCount=DATA.gaps.length;
+let student='',order=[],labels={},selections=[],locked=[],checkedOnce=false,firstScore=null;
+function el(tag,klass,text){const x=document.createElement(tag);if(klass)x.className=klass;if(text!==undefined)x.textContent=text;return x;}
+function goTo(x){try{x.scrollIntoView({behavior:'auto',block:'start'});}catch(_e){}}
+function resetState(){order=[...DATA.answers];labels=Object.fromEntries(DATA.answers.map(a=>[a.id,a.id]));selections=Array(gapCount).fill('');locked=Array(gapCount).fill(false);checkedOnce=false;firstScore=null;}
+function updateProgress(){
+ const filled=selections.filter(Boolean).length,correct=locked.filter(Boolean).length,done=correct===gapCount;
+ $('progressText').textContent=checkedOnce?correct+' / 6 correct · '+(gapCount-correct)+' to complete':filled+' / 6 sentences chosen';
+ $('progressFill').style.width=((checkedOnce?correct:filled)/gapCount*100)+'%';
+ $('finishBtn').disabled=!done&&filled!==gapCount;
+ $('finishBtn').textContent=done?'🏆 View Results':checkedOnce?'🔁 Check My Corrections':'✅ Check All 6 Answers';
+ $('finishLabel').textContent=done?'🌟 All six sentences are correct. View your results!':checkedOnce?(filled===gapCount?'Ready to check your corrections.':'💡 Use the hints in incorrect gaps, then select again.'):(filled===gapCount?'✅ All six selected! Check when ready.':'🧩 Choose '+(gapCount-filled)+' more sentence(s) before checking.');
+}
+function makeSelect(i){
+ const s=el('select','gapselect');s.id='gapSelect'+i;s.setAttribute('aria-label','Choose sentence for gap '+(i+27));
+ const placeholder=el('option','','— Tap to choose a sentence —');placeholder.value='';s.append(placeholder);
+ for(const a of order){const o=el('option','',labels[a.id]+'. '+a.text);o.value=a.id;s.append(o);}
+ s.addEventListener('change',()=>pick(i,s.value));return s;
+}
+function makePassage(target,final=false){
+ target.replaceChildren();
+ let gapIndex=0;
+ DATA.passage.forEach((paragraph,paragraphIndex)=>{
+  const p=el('div','storypara');
+  const first=gapIndex+27, last=first+paragraph.parts.length-2;
+  const gapNames=paragraph.parts.length===1?'':(first===last?'GAP '+first:'GAPS '+first+'–'+last);
+  p.append(el('div','paragraph-label','📖 PARAGRAPH '+(paragraphIndex+1)+' · PERENGGAN '+(paragraphIndex+1)+(gapNames?' · '+gapNames:'')));
+  paragraph.parts.forEach((part,partIndex)=>{
+   if(part) p.append(document.createTextNode((partIndex?' ':'')+part));
+   if(partIndex===paragraph.parts.length-1) return;
+   const i=gapIndex++;
+   if(final){p.append(el('strong','solvedsentence',byId.get(DATA.gaps[i].answer).text));}
+   else{
+    const box=el('div','gapbox');box.id='gapBox'+i;
+    box.append(el('div','gaplabel','🔽 GAP '+(i+27)+' · Choose a sentence'),makeSelect(i));
+    const selected=el('div','selection-full');selected.id='selectionFull'+i;box.append(selected);
+    const feedbackBox=el('div','gapfeedback');feedbackBox.id='feedback'+i;feedbackBox.hidden=true;feedbackBox.setAttribute('role','status');feedbackBox.setAttribute('aria-live','polite');box.append(feedbackBox);
+    p.append(box);
+   }
+  });
+  target.append(p);
+ });
+}
+function showFeedback(i,kind,title,en,ms){
+ const b=$('feedback'+i);b.hidden=false;b.className='gapfeedback '+kind;
+ b.replaceChildren(el('strong','',title),el('p','',en),el('p','','🇲🇾 '+ms));
+}
+function updateChoices(){
+ DATA.gaps.forEach((g,i)=>{if(locked[i])return;const s=$('gapSelect'+i);if(!s)return;
+  for(const o of s.options){if(!o.value)continue;const used=selections.some((v,j)=>j!==i&&v===o.value);o.disabled=used;o.textContent=(used?'🔒 Used · ':'')+labels[o.value]+'. '+byId.get(o.value).text;}
+ });
+}
+function pick(i,id){
+ if(locked[i])return;
+ if(id&&selections.some((v,j)=>j!==i&&v===id)){$('gapSelect'+i).value=selections[i];return;}
+ selections[i]=id;$('gapBox'+i).classList.toggle('retrying',checkedOnce&&!!id);
+ const display=$('selectionFull'+i);display.replaceChildren();
+ if(id){display.append(el('b','',labels[id]+'. '),document.createTextNode(byId.get(id).text));}
+ updateChoices();updateProgress();
+}
+function evaluate(){
+ if(locked.every(Boolean)){showResults();return;}
+ if(selections.some(v=>!v))return;
+ const submitted=[...selections];
+ if(!checkedOnce){firstScore=submitted.reduce((n,id,i)=>n+(id===DATA.gaps[i].answer?1:0),0);checkedOnce=true;}
+ DATA.gaps.forEach((g,i)=>{
+  if(locked[i])return;
+  const id=submitted[i],box=$('gapBox'+i),s=$('gapSelect'+i),display=$('selectionFull'+i);
+  if(id===g.answer){
+   locked[i]=true;box.classList.remove('invalid','retrying');box.classList.add('solved');
+   box.querySelector('.gaplabel').textContent='✅ GAP '+(i+27)+' · Correct';s.disabled=true;s.hidden=true;
+   display.replaceChildren(el('span','solvedsentence',byId.get(id).text));
+   showFeedback(i,'good','✅ Correct connection!',g.right,g.rightMs);
+  }else{
+   box.classList.remove('retrying');box.classList.add('invalid');box.querySelector('.gaplabel').textContent='💡 GAP '+(i+27)+' · Try again';
+   display.replaceChildren();showFeedback(i,'bad','💡 Hint / Petunjuk · '+labels[id]+' was not right','Your choice: '+labels[id]+'. '+byId.get(id).text+'  Hint: '+g.hint,'Petunjuk: '+g.hintMs);
+   selections[i]='';s.value='';
+  }
+ });
+ updateChoices();updateProgress();
+ const correct=locked.filter(Boolean).length,summary=$('checkSummary');summary.hidden=false;
+ if(correct===gapCount){summary.replaceChildren(el('b','','🎉 All six correct!'),document.createTextNode(' Your first-check score is '+firstScore+'/6. Tap View Results.'));}
+ else{summary.replaceChildren(el('b','','📋 First-check score: '+firstScore+'/6. '),document.createTextNode('You have '+(gapCount-correct)+' gap(s) to fix. Hints are shown only for wrong answers. Your score will not change.'));}
+}
+function begin(){
+ const name=$('name').value.trim();if(!name){$('startError').textContent='Please enter your name. / Sila masukkan nama anda.';$('name').focus();return;}
+ student=name;resetState();$('startError').textContent='';$('startScreen').hidden=true;$('resultsScreen').hidden=true;$('gameScreen').hidden=false;
+ $('studentDisplay').textContent='👤 '+student;$('checkSummary').hidden=true;$('checkSummary').replaceChildren();makePassage($('passage'));updateChoices();updateProgress();goTo($('gameScreen'));
+}
+function showResults(){
+ if(!locked.every(Boolean))return;
+ $('score').replaceChildren(document.createTextNode(String(firstScore)),el('small','',' / 6'));
+ $('resultName').textContent='🎓 '+student;
+ $('resultMessage').textContent=firstScore===6?'Wonderful! All six connected perfectly on the first check. 🌟':firstScore>=4?'Well done! You used the clues to complete the passage. This is your first-check score. 🌸':'Great persistence! This score is from the first check. Keep practising! 💪';
+ makePassage($('finalStory'),true);const key=$('key');key.replaceChildren();
+ DATA.gaps.forEach((g,i)=>{const p=el('p');p.append(el('b','','Gap '+(i+27)+' · Option '+labels[g.answer]+' · '),document.createTextNode(g.right+' 🇲🇾 '+g.rightMs));key.append(p);});
+ $('resultsScreen').hidden=false;$('gameScreen').hidden=true;goTo($('resultsScreen'));
+}
+async function copyPassage(){
+ const story=DATA.passage.map((p,j)=>{const before=DATA.passage.slice(0,j).reduce((sum,para)=>sum+para.parts.length-1,0);return p.parts.map((part,k)=>part+(k<p.parts.length-1?' '+byId.get(DATA.gaps[before+k].answer).text:'')).join(' ');}).join('\n\n');
+ try{await navigator.clipboard.writeText(DATA.title+'\n\n'+story);$('copyMessage').textContent='✅ Passage copied! / Petikan berjaya disalin!';}
+ catch(_e){$('copyMessage').textContent='Copy unavailable here; select the passage above to copy it.';}
+}
+$('startForm').addEventListener('submit',e=>{e.preventDefault();begin();});
+$('name').addEventListener('input',()=>{$('startError').textContent='';});
+$('finishBtn').addEventListener('click',evaluate);
+$('copyBtn').addEventListener('click',copyPassage);
+$('replayBtn').addEventListener('click',()=>{$('gameScreen').hidden=true;$('resultsScreen').hidden=true;$('startScreen').hidden=false;$('copyMessage').textContent='';$('name').value=student;goTo($('startScreen'));});
+$('restartTop').addEventListener('click',()=>{if(confirm('Restart the game? Current choices will be cleared. / Mula semula?')){$('gameScreen').hidden=true;$('startScreen').hidden=false;goTo($('startScreen'));}});
+</script>
+</body>
+</html>
