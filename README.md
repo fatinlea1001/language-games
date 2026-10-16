@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**124 games** — automatically updated when an HTML game is added or changed.
+**125 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Missingsentence Soft Skills (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-soft-skills-1.html) — updated 16 Oct 2026
 - [Missingsentence Interact Club (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-interact-club-1.html) — updated 16 Oct 2026
 - [Missingsentence Digital Payments (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-digital-payments-1.html) — updated 16 Oct 2026
 - [Missingsentence Smart Consumer (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-smart-consumer-1.html) — updated 16 Oct 2026
