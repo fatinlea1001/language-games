@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**127 games** — automatically updated when an HTML game is added or changed.
+**128 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Missingsentence Learning Spend Wisely (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-learning-spend-wisely-1.html) — updated 16 Oct 2026
 - [Missingsentence Khairul Aming (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-khairul-aming-1.html) — updated 16 Oct 2026
 - [Missingsentence Opposites Attract (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-opposites-attract-1.html) — updated 16 Oct 2026
 - [Missingsentence Soft Skills (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-soft-skills-1.html) — updated 16 Oct 2026
