@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Appeal of True Crime Podcasts | SPM Missing Sentence</title>
+  <style>
+    :root { --ink:#27334b; --muted:#61708c; --purple:#426f86; --soft:#e9f6fb;
+      --line:#d9e5ed; --green:#18794e; --red:#a63b55; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;
+      background:linear-gradient(140deg,#eaf9fc,#f0edff 55%,#fff7f4); min-height:100vh; }
+    button,input { font:inherit; }
+    button { cursor:pointer; }
+    button:disabled { cursor:not-allowed; }
+    [hidden] { display:none !important; }
+    .wrap { max-width:1160px; margin:auto; padding:24px 16px 60px; }
+    .brand { text-align:center; margin:4px 0 23px; }
+    .brand h1 { margin:0; font-size:clamp(1.65rem,4vw,2.35rem); line-height:1.2; }
+    .brand p { margin:8px auto 0; color:var(--muted); }
+    .kicker { color:var(--purple); font-weight:850; letter-spacing:.1em;
+      font-size:.76rem; text-transform:uppercase; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:20px;
+      box-shadow:0 12px 35px #33336b10; padding:24px; }
+    .intro { max-width:530px; margin:35px auto 0; text-align:center; }
+    .robot { font-size:3rem; line-height:1.4; }
+    .intro h2 { margin:4px 0; }
+    .intro p { color:var(--muted); }
+    label { display:block; text-align:left; font-weight:750; margin:20px 0 7px; }
+    input { width:100%; border:2px solid var(--line); border-radius:12px;
+      padding:13px 15px; color:var(--ink); background:#fff; }
+    input:focus-visible,button:focus-visible { outline:3px solid #7db6d4; outline-offset:2px; }
+    .primary,.secondary { border:0; border-radius:13px; padding:12px 18px;
+      font-weight:800; transition:transform .12s,background .12s; }
+    .primary { background:var(--purple); color:#fff; }
+    .primary:hover:not(:disabled) { background:#30596e; transform:translateY(-1px); }
+    .primary:disabled { background:#b8b5c5; }
+    .secondary { color:var(--purple); background:#e9f4f8; }
+    .secondary:hover { background:#d8ecf4; }
+    .full { width:100%; margin-top:16px; }
+    .instruction { font-size:.9rem; color:var(--muted); }
+    .topline { display:flex; flex-wrap:wrap; justify-content:space-between;
+      align-items:center; gap:10px; margin-bottom:15px; }
+    .pill { display:inline-block; color:#375e72; background:#e6f4fa; border-radius:99px;
+      padding:5px 12px; font-weight:800; font-size:.88rem; }
+    .layout { display:grid; grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);
+      gap:16px; align-items:start; }
+    .paper { padding:clamp(18px,3vw,32px); }
+    .paper h2 { margin:0 0 15px; text-align:center; font-family:Georgia,serif;
+      font-size:1.35rem; }
+    .paper p { font-family:Georgia,"Times New Roman",serif; font-size:1.075rem;
+      line-height:1.9; margin:0 0 20px; text-indent:1.8em; }
+    .paper p:last-child { margin-bottom:0; }
+    .gap { display:inline; border:1.5px dashed #82aec3; background:#eaf6fb;
+      color:#356078; border-radius:7px; padding:2px 6px;
+      font-family:system-ui,sans-serif; font-size:.87em; font-weight:750;
+      text-indent:0; text-align:left; line-height:1.6; vertical-align:baseline; }
+    .gap.filled { border-style:solid; background:#e5f2f8; }
+    .gap.correct { background:#e7f7ee; border-color:#55a77e; color:#13623e; }
+    .gap.active { box-shadow:0 0 0 3px #a3d2e477; }
+    .gap .number { font-weight:900; margin-right:4px; white-space:nowrap; }
+    .side { position:sticky; top:14px; }
+    .side h2 { margin:0 0 4px; font-size:1.2rem; }
+    .side .sub { color:var(--muted); margin:0 0 14px; font-size:.92rem; }
+    .nav { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:5px; margin-bottom:17px; }
+    .nav button { border:1px solid var(--line); background:#faf9ff; color:var(--ink);
+      border-radius:9px; padding:8px 0; font-weight:850; }
+    .nav button.active { background:var(--purple); color:#fff; }
+    .nav button.done:not(.active) { background:#e5f5ec; color:var(--green); border-color:#b2dfc6; }
+    .nav button.selected:not(.active) { background:#e8f4f9; color:#356078; }
+    .focus { border-left:4px solid #82aec3; background:#f2f9fc;
+      padding:11px 13px; border-radius:8px; font-size:.91rem; margin-bottom:15px; }
+    .focus strong { color:#305b72; }
+    .choices { display:grid; gap:8px; }
+    .choice { display:flex; text-align:left; width:100%; gap:10px; align-items:flex-start;
+      padding:10px 11px; border:1.5px solid var(--line); background:#fff;
+      border-radius:11px; color:var(--ink); line-height:1.42; font-size:.94rem; }
+    .choice:hover:not(:disabled) { border-color:#82aec3; background:#f3fbfe; }
+    .choice .letter { flex:0 0 27px; height:27px; display:grid; place-items:center;
+      border-radius:7px; background:#e9f4f8; color:#356078; font-weight:850; }
+    .choice.used { color:#a2a4ae; background:#f4f4f6; border-color:#e9e9ed; }
+    .choice.used .letter { background:#e8e8eb; color:#a0a0aa; }
+    .choice.picked { border-color:var(--purple); background:#e9f5fb; font-weight:700; }
+    .choice.locked { border-color:#7dcba1; background:#eaf8ef; }
+    .note { color:var(--muted); font-size:.82rem; margin:9px 0 0; }
+    .feedback { border:1px solid #efc1cd; background:#fff4f6; border-radius:11px;
+      padding:12px; margin:0 0 13px; font-size:.89rem; }
+    .feedback strong { color:var(--red); }
+    .feedback p { margin:5px 0; }
+    .controls { display:flex; gap:9px; margin-top:17px; }
+    .controls button { flex:1; padding:10px; }
+    .message { min-height:1.4em; font-size:.9rem; font-weight:750;
+      color:#356078; margin:11px 0 0; }
+    .score { text-align:center; max-width:650px; margin:20px auto; }
+    .score .emoji { font-size:3.7rem; }
+    .score .big { font-size:3rem; line-height:1.2; color:var(--green);
+      font-weight:900; margin:10px 0; }
+    .score p { color:var(--muted); }
+    .review { text-align:left; margin:22px 0; padding:16px; background:#f2f9fc;
+      border-radius:12px; }
+    .review h3 { margin:0 0 10px; }
+    .review ol { padding-left:25px; margin:0; }
+    .review li { margin:0 0 9px; }
+    @media(max-width:850px) {
+      .layout { grid-template-columns:1fr; }
+      .side { position:static; }
+      .card { padding:18px; }
+      .paper p { font-size:1.02rem; }
+    }
+    @media(max-width:480px) { .wrap { padding:16px 10px 40px; }
+      .nav { gap:3px; } .nav button { font-size:.8rem; } }
+    @media print { body { background:#fff; } .side,.nav,.controls,.brand p { display:none!important; }
+      .layout { display:block; } .card { border:none; box-shadow:none; }
+      .paper p { color:#000; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="brand">
+      <div class="kicker">SPM Reading · Part 4</div>
+      <h1>🎙️ Missing Sentence Mission</h1>
+      <p>True Crime Podcasts · Read carefully, then match six missing sentences.</p>
+    </header>
+
+    <section id="intro" class="card intro">
+      <div class="robot" aria-hidden="true">🎧🔎🕵️</div>
+      <h2>Ready to crack the case?</h2>
+      <p>There are <b>6 gaps (27–32)</b> and <b>8 choices (A–H)</b>. Two sentences do not belong in the passage.</p>
+      <label for="studentName">Student name</label>
+      <input id="studentName" maxlength="60" placeholder="Enter your name" autocomplete="name">
+      <button class="primary full" id="startBtn">Start reading →</button>
+      <p class="instruction">Choose all six answers first. Check them together. Only incorrect gaps receive hints in English and Bahasa Melayu.</p>
+    </section>
+
+    <section id="game" hidden>
+      <div class="topline">
+        <span class="pill" id="studentTag"></span>
+        <span class="pill" id="progressTag" aria-live="polite"></span>
+      </div>
+      <div class="layout">
+        <article class="card paper" aria-label="Reading passage">
+          <h2>The Appeal of True Crime Podcasts</h2>
+          <div id="passage"></div>
+        </article>
+        <aside class="card side" id="answerPanel">
+          <h2>Choose the missing sentence</h2>
+          <p class="sub">Tap a gap number, then choose one sentence. Used choices turn grey.</p>
+          <div class="nav" id="gapNav" aria-label="Choose a gap"></div>
+          <div class="focus" id="gapContext"></div>
+          <div id="hintArea" aria-live="polite"></div>
+          <div class="choices" id="choices"></div>
+          <p class="note">Grey = already used in another gap. Tap an earlier gap to change it.</p>
+          <div class="controls">
+            <button class="secondary" id="previousBtn">← Previous</button>
+            <button class="secondary" id="nextBtn">Next →</button>
+          </div>
+          <button class="primary full" id="checkBtn" disabled>Check all 6 answers ✓</button>
+          <p class="message" id="message" aria-live="polite"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="result" class="card score" hidden>
+      <div class="emoji">🏆🎙️</div>
+      <h2>Case solved!</h2>
+      <h3 id="resultName"></h3>
+      <div class="big">6 / 6</div>
+      <p id="resultStats"></p>
+      <div class="review">
+        <h3>✅ Correct sentences</h3>
+        <ol id="answerReview" start="27"></ol>
+      </div>
+      <button class="primary full" id="replayBtn">Play again ↻</button>
+    </section>
+  </div>
+
+  <script>
+    "use strict";
+
+    // Passage transcribed from the provided school worksheet. Markers show missing sentences.
+    // The original answer choices A–H are kept in their given order.
+    const passageBlocks = [
+      "People have long been fascinated by crime and mysteries. Stories about criminals and detectives continue to capture our attention in books, films, and television shows. Today, true crime podcasts have become increasingly popular around the world. Why have they become such a global phenomenon?",
+      "One reason true crime podcasts are so appealing is that they create an exciting listening experience. {{27}} They may imagine footsteps in a dark alley, a detective searching for clues, or a witness describing a frightening event. Although they know they are completely safe, their bodies still react to the suspense. {{28}} This combination of fear, excitement, and curiosity keeps people listening until the very end.",
+      "{{29}} While listening, they often try to predict what will happen next or identify the criminal before the answer is revealed. This makes listeners feel like detectives searching for the truth. Consequently, solving the mystery, or even coming close to the correct answer, gives them a strong sense of satisfaction and accomplishment.",
+      "In addition, true crime podcasts can teach valuable lessons about personal safety. Real-life cases show how crimes happen and how dangerous situations can develop. {{30}} They may also become more alert when meeting strangers or visiting unfamiliar places. Although most people will never experience a serious crime, these stories encourage them to stay cautious and make wiser decisions.",
+      "{{31}} Finally, many people listen because they want to see justice served. Most believe that criminals should face the consequences of their actions. When a criminal is caught and punished, listeners feel that fairness has been restored. {{32}} These reactions show how strongly people value justice.",
+      "To conclude, true crime podcasts are more than just a source of entertainment. They create excitement, encourage critical thinking, teach valuable lessons about safety, and satisfy our desire for justice. By combining suspense with real-life stories, they appeal to our curiosity and natural human instincts. That is why true crime podcasts continue to attract millions of listeners around the world."
+    ];
+
+    const gaps = [
+      {
+        gap: 27, answer: "F",
+        hintEn: "The next sentence describes imaginary scenes, such as footsteps and a detective. What makes listeners able to picture these scenes?",
+        hintBm: "Ayat seterusnya menggambarkan babak seperti bunyi tapak kaki dan detektif. Apakah yang membantu pendengar membayangkan babak tersebut?"
+      },
+      {
+        gap: 28, answer: "A",
+        hintEn: "Read the phrase 'their bodies still react to the suspense'. Find a sentence describing a physical or emotional reaction.",
+        hintBm: "Perhatikan frasa 'their bodies still react to the suspense'. Cari ayat yang menerangkan tindak balas fizikal atau emosi."
+      },
+      {
+        gap: 29, answer: "G",
+        hintEn: "The next sentence says listeners try to predict the criminal's identity. Which option introduces the wish to solve mysteries?",
+        hintBm: "Ayat selepasnya menyatakan pendengar cuba meneka identiti penjenayah. Pilih ayat yang memperkenalkan minat menyelesaikan misteri."
+      },
+      {
+        gap: 30, answer: "B",
+        hintEn: "The paragraph is about learning safety lessons from real cases. Find the result of becoming aware of warning signs.",
+        hintBm: "Perenggan ini membincangkan pengajaran keselamatan daripada kes sebenar. Cari kesan apabila pendengar lebih peka terhadap tanda amaran."
+      },
+      {
+        gap: 31, answer: "C",
+        hintEn: "This gap follows the safety lesson and comes before the new topic 'Finally'. Find a sentence that summarises the educational benefit.",
+        hintBm: "Tempat kosong ini menyusuli pengajaran keselamatan sebelum topik baharu 'Finally'. Cari ayat yang merumuskan manfaat pendidikan tersebut."
+      },
+      {
+        gap: 32, answer: "H",
+        hintEn: "The previous sentence explains satisfaction when justice is served. Which option contrasts this with the feeling when justice is not achieved?",
+        hintBm: "Ayat sebelumnya menerangkan kepuasan apabila keadilan ditegakkan. Cari ayat yang membandingkannya dengan perasaan apabila keadilan tidak tercapai."
+      }
+    ];
+
+    const choices = [
+      { id: "A", text: "Their hearts beat faster, and they feel nervous as the story unfolds." },
+      { id: "B", text: "As a result, listeners become more aware of warning signs and learn to be more careful in their daily lives." },
+      { id: "C", text: "This educational value makes true crime podcasts both informative and entertaining." },
+      { id: "D", text: "Some listeners also enjoy learning about the work of police officers and forensic investigators." },
+      { id: "E", text: "Many podcast hosts invite experts to discuss famous criminal cases in greater detail." },
+      { id: "F", text: "Through realistic sound effects, background music, and expressive storytelling, listeners can easily picture each scene in their minds." },
+      // Tiny grammatical correction to the supplied option: 'is that their interest' -> 'is their interest'.
+      { id: "G", text: "Another reason people enjoy true crime podcasts is their interest in solving mysteries." },
+      { id: "H", text: "However, when a case remains unsolved or a criminal escapes, they often feel disappointed or frustrated." }
+    ];
+
+    const $ = id => document.getElementById(id);
+    const gapNumbers = gaps.map(g => g.gap);
+    let name = "";
+    let answers = {};
+    let locked = new Set();
+    let hints = {};
+    let active = 27;
+    let checks = 0;
+    let firstScore = null;
+
+    function choiceText(id) { return choices.find(c => c.id === id).text; }
+    function gapData(number) { return gaps.find(g => g.gap === number); }
+    function context(number) {
+      const marker = "{{" + number + "}}";
+      const block = passageBlocks.find(p => p.includes(marker));
+      const i = block.indexOf(marker);
+      return block.slice(Math.max(0, i - 135), i).trim() + " [ … ] " + block.slice(i + marker.length, i + marker.length + 142).trim();
+    }
+
+    function start() {
+      name = $("studentName").value.trim();
+      if (!name) { $("studentName").focus(); $("studentName").setCustomValidity("Please enter your name."); $("studentName").reportValidity(); return; }
+      $("studentName").setCustomValidity("");
+      answers = {}; locked = new Set(); hints = {};
+      active = 27; checks = 0; firstScore = null;
+      $("studentTag").textContent = "👤 " + name;
+      $("intro").hidden = true; $("result").hidden = true; $("game").hidden = false;
+      $("message").textContent = "";
+      render();
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    function goTo(number, scroll) {
+      active = number;
+      render();
+      if (scroll && window.innerWidth <= 850) {
+        $("answerPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function gapButton(number) {
+      const b = document.createElement("button"); b.type = "button";
+      b.className = "gap" + (answers[number] ? " filled" : "") +
+        (locked.has(number) ? " correct" : "") + (active === number ? " active" : "");
+      const num = document.createElement("span"); num.className = "number"; num.textContent = number + ".";
+      const label = document.createElement("span");
+      label.textContent = answers[number] ? " " + choiceText(answers[number]) : " _________";
+      b.append(num, label);
+      b.setAttribute("aria-label", "Gap " + number + (answers[number] ? ", answered" : ", unanswered"));
+      b.addEventListener("click", () => goTo(number, true));
+      return b;
+    }
+
+    function renderPassage() {
+      const container = $("passage"); container.replaceChildren();
+      passageBlocks.forEach(block => {
+        const p = document.createElement("p");
+        block.split(/(\{\{(?:27|28|29|30|31|32)\}\})/g).forEach(piece => {
+          const match = piece.match(/^\{\{(\d+)\}\}$/);
+          p.append(match ? gapButton(Number(match[1])) : document.createTextNode(piece));
+        });
+        container.append(p);
+      });
+    }
+
+    function renderNav() {
+      const nav = $("gapNav"); nav.replaceChildren();
+      gaps.forEach(g => {
+        const b = document.createElement("button"); b.type = "button";
+        b.textContent = g.gap;
+        b.className = (active === g.gap ? "active " : "") +
+          (locked.has(g.gap) ? "done" : (answers[g.gap] ? "selected" : ""));
+        b.setAttribute("aria-label", "Select gap " + g.gap);
+        b.addEventListener("click", () => goTo(g.gap, false));
+        nav.append(b);
+      });
+    }
+
+    function renderChoices() {
+      $("gapContext").textContent = "Gap " + active + ": " + context(active);
+      const area = $("hintArea"); area.replaceChildren();
+      if (hints[active] && !locked.has(active)) {
+        const box = document.createElement("div"); box.className = "feedback";
+        const heading = document.createElement("strong");
+        heading.textContent = "Not quite — your last answer was " + hints[active] + ".";
+        const en = document.createElement("p"); en.textContent = "💡 Hint: " + gapData(active).hintEn;
+        const bm = document.createElement("p"); bm.textContent = "🇲🇾 Petunjuk: " + gapData(active).hintBm;
+        box.append(heading, en, bm); area.append(box);
+      } else if (locked.has(active)) {
+        const box = document.createElement("div"); box.className = "focus";
+        box.textContent = "✅ This answer is correct and locked in!"; area.append(box);
+      }
+
+      const list = $("choices"); list.replaceChildren();
+      choices.forEach(item => {
+        const usedBy = Object.keys(answers).find(g => Number(g) !== active && answers[g] === item.id);
+        const picked = answers[active] === item.id;
+        const b = document.createElement("button"); b.type = "button";
+        b.className = "choice" + (usedBy ? " used" : "") + (picked ? " picked" : "") +
+          (picked && locked.has(active) ? " locked" : "");
+        b.disabled = Boolean(usedBy) || locked.has(active);
+        b.setAttribute("aria-pressed", String(picked));
+        const letter = document.createElement("span"); letter.className = "letter"; letter.textContent = item.id;
+        const text = document.createElement("span"); text.textContent = item.text;
+        b.append(letter, text);
+        if (usedBy) b.title = "Already selected for gap " + usedBy;
+        b.addEventListener("click", () => choose(item.id));
+        list.append(b);
+      });
+    }
+
+    function render() {
+      renderPassage(); renderNav(); renderChoices();
+      const filled = Object.keys(answers).length;
+      $("progressTag").textContent = "✏️ " + filled + " / 6 chosen";
+      $("checkBtn").disabled = filled !== 6;
+      $("checkBtn").textContent = checks ? "Check corrections ✓" : "Check all 6 answers ✓";
+      $("previousBtn").disabled = active === 27;
+      $("nextBtn").disabled = active === 32;
+    }
+
+    function choose(id) {
+      if (locked.has(active)) return;
+      if (Object.entries(answers).some(([g, value]) => Number(g) !== active && value === id)) return;
+      const filledGap = active;
+      answers[active] = id;
+      const nextEmpty = gaps.find(g => g.gap > active && !answers[g.gap]);
+      const anyEmpty = gaps.find(g => !answers[g.gap]);
+      active = nextEmpty ? nextEmpty.gap : anyEmpty ? anyEmpty.gap : filledGap;
+      render();
+      $("message").textContent = Object.keys(answers).length === 6
+        ? "All six chosen! You can change your answers or check them now."
+        : "Gap " + filledGap + " saved. Continue with gap " + active + ".";
+    }
+
+    function checkAll() {
+      if (Object.keys(answers).length !== 6) return;
+      checks++;
+      const correct = gaps.filter(g => answers[g.gap] === g.answer);
+      if (firstScore === null) firstScore = correct.length;
+      if (correct.length === 6) { finish(); return; }
+      const wrong = gaps.filter(g => answers[g.gap] !== g.answer);
+      const newHints = {};
+      // Free the wrong picks simultaneously so students can swap them without collisions.
+      wrong.forEach(g => { newHints[g.gap] = answers[g.gap]; delete answers[g.gap]; });
+      correct.forEach(g => locked.add(g.gap));
+      hints = newHints;
+      active = wrong[0].gap;
+      render();
+      $("message").textContent = correct.length + "/6 correct. Correct answers are locked. " +
+        "Hints appear only for the " + wrong.length + " incorrect gap(s). Try again!";
+      if (window.innerWidth <= 850) $("answerPanel").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function finish() {
+      $("game").hidden = true; $("result").hidden = false;
+      $("resultName").textContent = "Well done, " + name + "!";
+      $("resultStats").textContent = "First attempt: " + firstScore + "/6 · " +
+        "Final score: 6/6 · Checks used: " + checks;
+      const list = $("answerReview"); list.replaceChildren();
+      gaps.forEach(g => {
+        const li = document.createElement("li");
+        li.textContent = "(" + g.answer + ") " + choiceText(g.answer);
+        list.append(li);
+      });
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    $("startBtn").addEventListener("click", start);
+    $("studentName").addEventListener("input", () => $("studentName").setCustomValidity(""));
+    $("studentName").addEventListener("keydown", e => { if (e.key === "Enter") start(); });
+    $("previousBtn").addEventListener("click", () => goTo(active - 1, false));
+    $("nextBtn").addEventListener("click", () => goTo(active + 1, false));
+    $("checkBtn").addEventListener("click", checkAll);
+    $("replayBtn").addEventListener("click", () => {
+      $("result").hidden = true; $("intro").hidden = false;
+      $("studentName").value = ""; $("message").textContent = "";
+      $("studentName").focus();
+    });
+  </script>
+</body>
+</html>
