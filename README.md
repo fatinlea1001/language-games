@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**120 games** — automatically updated when an HTML game is added or changed.
+**121 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Missingsentence Smart Teenager (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-smart-teenager-1.html) — updated 16 Oct 2026
 - [Missingsentence Gardening (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-gardening-1.html) — updated 16 Oct 2026
 - [Missingsentence Recycling Symbol (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-recycling-symbol-1.html) — updated 16 Oct 2026
 - [Missing Sentence Challenge — AI in Education (Set 1)](https://fatinlea1001.github.io/language-games/eng-missing-ai-education-1.html) — updated 16 Oct 2026
