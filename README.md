@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**117 games** — automatically updated when an HTML game is added or changed.
+**118 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Missing True Crime (Set 1)](https://fatinlea1001.github.io/language-games/eng-missing-true-crime-1.html) — updated 16 Oct 2026
 - [Missing Ai Education (Set 1)](https://fatinlea1001.github.io/language-games/eng-missing-ai-education-1.html) — updated 16 Oct 2026
 - [Missingsentence Bullyingmentalhealth (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-bullyingmentalhealth-1.html) — updated 15 Oct 2026
 - [Missingsentence Haze (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-haze-1.html) — updated 15 Oct 2026
