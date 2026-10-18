@@ -3,7 +3,7 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**132 games** — automatically updated when an HTML game is added or changed.
+**133 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
@@ -141,6 +141,9 @@ Recently updated games appear first in each category.
 - [N5 Sentence Jumble (Set 1)](https://fatinlea1001.github.io/language-games/n5-sentence-1.html) — updated 06 Oct 2026
 - [N5 Verbs (Set 1)](https://fatinlea1001.github.io/language-games/n5-verb-1.html) — updated 06 Oct 2026
 - [N5 Adjectives (Set 1)](https://fatinlea1001.github.io/language-games/n5-adj-1.html) — updated 06 Oct 2026
+
+### 🎲 Other Games
+- [Jp Reading N5 (Set 1)](https://fatinlea1001.github.io/language-games/jp-reading-n5-1.html) — updated 18 Oct 2026
 
 _This directory is maintained by GitHub Actions._
 <!-- AUTO-GAMES:END -->
