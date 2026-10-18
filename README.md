@@ -7,7 +7,7 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Lexis Article (Set 1)](https://fatinlea1001.github.io/language-games/eng-lexis-article-1.html) — updated 18 Oct 2026
+- [Article Lexis Lab — Caring Communities (Set 1)](https://fatinlea1001.github.io/language-games/eng-lexis-article-1.html) — updated 18 Oct 2026
 - [Missingsentence Puteri Saadong (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-puteri-saadong-1.html) — updated 16 Oct 2026
 - [Missingsentence Beauty Skin Deep (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-beauty-skin-deep-1.html) — updated 16 Oct 2026
 - [Missingsentence Responsible Ai (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-responsible-ai-1.html) — updated 16 Oct 2026
