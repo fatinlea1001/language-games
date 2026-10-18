@@ -99,6 +99,8 @@ jobs:
                   if match.group(2) in mixed_topics:
                       topic = mixed_topics[match.group(2)]
                       return f'Japanese Reading Garden — {topic} (N5/N4 Set {match.group(2)})'
+              if key == 'eng-lexis-article' and match and match.group(2) == '1':
+                  return 'Article Lexis Lab — Caring Communities (Set 1)'
               label = names.get(key, key.replace('-', ' ').title())
               if key.startswith('eng-') and key not in names:
                   label = label.removeprefix('Eng ')
