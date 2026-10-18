@@ -88,6 +88,17 @@ jobs:
                   if match.group(2) in reading_topics:
                       topic = reading_topics[match.group(2)]
                       return f'Japanese Reading Garden — {topic} (N5 Set {match.group(2)})'
+              if key == 'jpn-reading-n5n4' and match:
+                  mixed_topics = {
+                      '11': 'A New Café in Town',
+                      '12': 'The Forgotten Umbrella',
+                      '13': 'My First Cooking Class',
+                      '14': 'A Saturday Without My Phone',
+                      '15': 'A Day Trip to Kyoto',
+                  }
+                  if match.group(2) in mixed_topics:
+                      topic = mixed_topics[match.group(2)]
+                      return f'Japanese Reading Garden — {topic} (N5/N4 Set {match.group(2)})'
               label = names.get(key, key.replace('-', ' ').title())
               if key.startswith('eng-') and key not in names:
                   label = label.removeprefix('Eng ')
