@@ -72,6 +72,18 @@ jobs:
               stem = path.stem
               match = re.fullmatch(r'(.+)-(\d+)', stem)
               key = match.group(1) if match else stem
+              if key == 'jpn-reading-n5' and match:
+                  reading_topics = {
+                      '1': 'Five Short Stories',
+                      '2': 'A Busy Saturday',
+                      '3': 'Shopping for Dinner',
+                      '4': 'A Rainy Day Trip',
+                      '5': 'A Birthday Surprise',
+                      '6': 'Our School Festival',
+                  }
+                  if match.group(2) in reading_topics:
+                      topic = reading_topics[match.group(2)]
+                      return f'Japanese Reading Garden — {topic} (N5 Set {match.group(2)})'
               label = names.get(key, key.replace('-', ' ').title())
               if key.startswith('eng-') and key not in names:
                   label = label.removeprefix('Eng ')
