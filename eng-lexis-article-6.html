@@ -1,0 +1,179 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff6fc"><meta name="description" content="Interactive SPM article-writing vocabulary game. Learn five less-common expressions, practise MCQs and cloze tasks, then improve two paragraphs."><title>Article Lexis Lab | Set 6 — Science &amp; Technology: Digital Life</title><style>
+:root{--paper:#fffbfe;--ink:#342e44;--muted:#6f687a;--line:#e9e2ee;--accent:#b65a8d;--wash:#fff0f6;--deep:#86436c;--good:#237755;--bad:#ae385d;--shadow:0 16px 42px #65577516}
+body[data-color="lavender"]{--accent:#8c62bc;--deep:#654b9b;--wash:#f4edff}
+body[data-color="lilac"]{--accent:#8264bd;--deep:#634993;--wash:#f1ecff}
+body[data-color="mint"]{--accent:#388a79;--deep:#286f60;--wash:#eafaf4}
+body[data-color="sky"]{--accent:#457dbc;--deep:#35628f;--wash:#edf7ff}
+body[data-color="peach"]{--accent:#c8735b;--deep:#a25643;--wash:#fff0ea}
+body[data-color="gold"]{--accent:#a87c34;--deep:#8a6326;--wash:#fff7df}
+body[data-color="pink"]{--accent:#bb6189;--deep:#94476d;--wash:#ffeef6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:16px/1.55 system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:radial-gradient(circle at 4% 0,#ffedf5,transparent 27%),radial-gradient(circle at 94% 5%,#eeebff,transparent 33%),#fffbff;min-height:100vh}
+[hidden]{display:none!important}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #7657aa;outline-offset:3px}
+.mast{background:#ffffffda;border-bottom:1px solid var(--line)}.mast-wrap{max-width:1100px;margin:auto;padding:15px 19px;display:flex;align-items:center;gap:14px;justify-content:space-between;flex-wrap:wrap}.mast-brand{font-weight:950;font-size:17px}.mast-sub{color:var(--muted);font-size:12px}.mast-pill{border-radius:30px;background:var(--wash);color:var(--deep);font-weight:850;font-size:12px;padding:8px 14px}
+.wrap{max-width:1100px;margin:24px auto 50px;padding:0 16px}.paper{background:white;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:25px}.intro{padding:28px}.eyebrow{color:var(--deep);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:850}.hero{display:flex;align-items:center;gap:17px}.hero-icon{display:grid;place-items:center;width:77px;height:77px;flex:0 0 77px;font-size:39px;border-radius:20px;background:var(--wash)}h1{font-size:clamp(25px,5vw,35px);line-height:1.2;margin:6px 0}.intro-desc{color:var(--muted);margin:12px 0 21px;max-width:720px}.progress-hint{background:var(--wash);color:var(--deep);padding:11px 13px;border-radius:13px;font-size:13px;font-weight:700;margin:14px 0}
+.words-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.word-card{border:1px solid var(--line);border-radius:16px;padding:17px;background:linear-gradient(145deg,white,#fffcff)}.word-head{display:flex;justify-content:space-between;gap:12px;align-items:start}.word-number{font-size:11px;color:var(--accent);font-weight:900}.word-card h3{font-size:19px;line-height:1.35;margin:4px 0 8px;color:var(--deep)}.word-card p{margin:5px 0;font-size:13px}.word-card .malay{color:#756081;background:var(--wash);padding:7px 9px;border-radius:9px;margin-top:9px}.example{margin-top:9px!important;border-left:3px solid var(--accent);padding-left:10px;color:#50475b}.example strong{color:var(--deep)}
+.entry{border-top:1px solid var(--line);padding-top:18px;margin-top:23px;display:flex;gap:10px;align-items:end;flex-wrap:wrap;justify-content:space-between}.entry label{font-size:12px;font-weight:750;display:block;margin-bottom:5px}.entry input{border:1.8px solid #d4c7df;border-radius:11px;padding:11px 13px;width:min(360px,100%);font-size:16px;background:white}.btn{border:0;border-radius:13px;padding:11px 17px;font-size:14px;font-weight:850;background:var(--accent);color:white}.btn:disabled{opacity:.42;cursor:default}.btn.secondary{color:var(--deep);background:var(--wash)}.btn.plain{background:white;color:var(--deep);border:1px solid var(--line)}.btn:hover:not(:disabled){filter:brightness(.96)}.tiny{font-size:12px;color:var(--muted)}
+.topline{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 12px;padding:12px 15px;background:white;border:1px solid var(--line);border-radius:13px;font-size:13px;font-weight:730}.topline b{color:var(--deep)}.progress-track{background:#efebf2;height:8px;border-radius:50px;overflow:hidden;margin-bottom:19px}.progress-fill{height:100%;width:0;background:var(--accent);transition:width .25s}
+.practice-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(255px,.45fr);align-items:start;gap:16px}.task{padding:26px;min-height:400px}.task-tag{color:var(--accent);font-weight:850;font-size:12px;letter-spacing:.04em;text-transform:uppercase}.task h2{font-size:clamp(19px,3vw,25px);line-height:1.5;margin:14px 0 20px}.task .source-sentence{background:#fcf7ff;padding:15px;border-radius:12px;border:1px solid var(--line);font-size:16px;line-height:1.8}.options{display:grid;gap:10px}.opt{display:flex;gap:11px;align-items:center;width:100%;text-align:left;border:2px solid var(--line);border-radius:12px;background:white;color:var(--ink);padding:11px 12px;min-height:55px}.opt .letter{display:grid;place-items:center;flex:0 0 29px;height:29px;border-radius:9px;background:var(--wash);color:var(--deep);font-size:12px;font-weight:900}.opt.selected{background:var(--wash);border-color:var(--accent)}.opt.wrong{opacity:.42;text-decoration:line-through}.opt.correct{border-color:#77bca0;background:#f0fbf5}.opt:hover:not(:disabled){border-color:var(--accent)}.opt:disabled{cursor:default}
+.typearea{border-radius:15px;padding:18px;background:var(--wash)}.typearea input{border-radius:11px;border:2px solid #d5c6de;background:white;padding:13px 15px;max-width:460px;width:100%;font-size:17px}.typearea label{display:block;margin-bottom:8px;font-weight:750;font-size:13px}.typearea input:disabled{background:#f8f5f9}.typehelp{font-size:12px;color:var(--muted);margin:10px 0 0}.action-row{display:flex;justify-content:flex-end;gap:9px;margin-top:19px;flex-wrap:wrap}.feedback{border-radius:12px;padding:13px 15px;margin-top:16px;background:var(--wash);border:1px solid var(--line);font-size:13px}.feedback.good{background:#effbf5;border-color:#c3e9d5}.feedback.bad{background:#fff1f5;border-color:#e9b9cd}.feedback strong{font-size:15px;display:block;margin:0 0 3px}.feedback p{margin:5px 0}
+.sidebar{position:sticky;top:14px;padding:17px}.sidebar h3{margin:2px 0 5px;font-size:17px}.sidebar p{font-size:12px;color:var(--muted);margin:0 0 8px}.bank{display:grid;gap:8px;margin-top:13px}.bank-item{border-radius:12px;background:var(--wash);padding:9px 11px;font-size:12px}.bank-item b{display:block;font-size:13px;color:var(--deep)}.sidebar details{cursor:pointer}.sidebar summary{font-weight:850;color:var(--deep);font-size:13px}
+.paragraph-main{padding:26px}.paragraph-main h2{font-size:clamp(22px,4vw,28px);margin:6px 0 7px}.paragraphs{border-radius:17px;border:1px solid #e9e0eb;background:#fffcff;padding:19px 22px;line-height:2.35;font-size:17px;margin:17px 0}.paragraphs p{margin:0 0 16px}.paragraphs p:last-child{margin-bottom:0}.candidate{border:0;display:inline;border-bottom:2px dotted #b999c8;padding:1px 2px 2px;margin:0 1px;background:#f4eaf685;color:inherit;border-radius:3px;line-height:inherit;box-decoration-break:clone;text-align:left}.candidate:hover,.candidate:focus-visible{background:var(--wash);border-bottom-color:var(--accent)}.candidate.done{background:#e8f9ee;border-bottom:2px solid #83caa0;color:#246d4f;font-weight:900;cursor:default}.candidate.kept{border-bottom:2px solid #c0bbcb;background:#f3f0f5;color:#777181;cursor:default}.candidate.active{outline:2px solid var(--accent);outline-offset:2px}.answer-zone{padding:19px;border-radius:16px;background:var(--wash);border:1px solid var(--line);margin-top:12px}.answer-zone h3{font-size:16px;margin:2px 0 6px}.pchoices{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.pchoice{border:1.7px solid #d3c6dd;background:#fff;color:var(--deep);border-radius:11px;font-size:13px;padding:9px 12px;font-weight:800}.pchoice:hover{border-color:var(--accent);background:#fffaff}.pchoice.keep{border-style:dashed;color:#5a5468}.small-pill{display:inline-block;background:var(--wash);border-radius:20px;padding:6px 11px;color:var(--deep);font-size:12px;font-weight:850}.message{font-size:13px;font-weight:730;color:var(--deep);margin-top:12px}.review-para{background:#effbf5;border:1px solid #b8dfcd;border-radius:12px;padding:15px 17px;line-height:1.9}.review-para p{margin:0 0 10px}.review-para p:last-child{margin:0}
+.results{padding:35px 24px;max-width:720px;margin:auto;text-align:center}.bigscore{font-size:clamp(47px,10vw,72px);font-weight:1000;color:var(--accent)}.score-grid{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.score-chip{padding:12px 16px;min-width:175px;border-radius:13px;border:1px solid var(--line);font-size:12px}.score-chip strong{display:block;font-size:23px;color:var(--deep)}.results .buttons{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:20px}.results .note{margin-top:18px;color:var(--muted);font-size:13px}.footer{text-align:center;color:var(--muted);font-size:12px;margin:20px 0}
+@media(max-width:820px){.practice-grid{grid-template-columns:1fr}.sidebar{position:static;order:-1;padding:12px 15px}.sidebar h3,.sidebar p{display:none}.sidebar details{display:block}.sidebar .bank{grid-template-columns:repeat(2,minmax(0,1fr))}.words-grid{grid-template-columns:1fr}.task{min-height:350px}}
+@media(max-width:540px){.wrap{padding:0 10px;margin:12px auto 30px}.mast-wrap{padding:11px 13px}.mast-brand{font-size:15px}.intro,.task,.paragraph-main{padding:17px}.hero{align-items:start}.hero-icon{width:53px;height:53px;flex:0 0 53px;font-size:28px;border-radius:12px}.entry{align-items:stretch}.entry > div{width:100%}.entry input,.entry .btn{width:100%}.paper{border-radius:17px}.words-grid{gap:9px}.word-card{padding:14px}.word-card h3{font-size:17px}.paragraphs{padding:13px;line-height:2.3;font-size:16px}.sidebar .bank{grid-template-columns:1fr}.topline{font-size:12px}.paragraph-main h2{font-size:22px}.pchoice{font-size:12px;padding:8px 10px}}
+@media print{body{background:white}.mast,.topline,.progress-track,.actions,.entry,.sidebar,.footer{display:none}.paper{box-shadow:none}.candidate{border-bottom:0;background:none}}
+
+/* Inline dropdowns keep the choices beside the phrase, not below the paragraphs. */
+.inline-lexis-select{display:inline-block;max-width:90%;width:min(263px,76vw);vertical-align:baseline;min-height:44px;padding:8px 29px 8px 10px;margin:3px 2px;border:2px solid var(--accent);border-radius:10px;background:var(--wash);color:var(--deep);font:inherit;font-size:14px;font-weight:750;line-height:1.3;cursor:pointer;outline-offset:2px;box-shadow:0 3px 10px #6b477018}
+.inline-lexis-select.needs-retry{border-color:var(--bad);background:#fff2f6}
+.inline-lexis-select:focus-visible{outline:3px solid #7657aa}
+@media(max-width:540px){.inline-lexis-select{width:min(235px,77vw);font-size:14px;max-width:96%}}
+</style></head>
+<body data-color="lilac"><header class="mast"><div class="mast-wrap"><div><div class="mast-brand">🌷 Article Lexis Lab</div><div class="mast-sub">SPM Writing · Less Common Lexis · Set 6 / 10</div></div><span class="mast-pill">📱 Technology II</span></div></header>
+<main class="wrap">
+<section id="intro" class="paper intro"><div class="hero"><div class="hero-icon">📱</div><div><span class="eyebrow">Step 1 · Learn before playing</span><h1>Science &amp; Technology: Digital Life</h1></div></div><p class="intro-desc">Learn the meaning and usage of five useful words for article writing. Then try mixed MCQs, type the missing expressions, and upgrade two paragraphs by deciding which simpler phrases deserve better vocabulary.</p><div class="progress-hint">📚 First, study these 5 expressions. Meanings in English + Bahasa Melayu, with article-writing examples.</div><div class="words-grid"><article class="word-card"><div class="word-head"><span class="word-number">WORD 1 / 5</span></div><h3>empathetic</h3><p>able to understand and share another person’s feelings</p><p class="malay"><b>BM:</b> berempati / memahami perasaan orang lain</p><p class="example">An <strong>empathetic</strong> teacher listens carefully to students.</p></article><article class="word-card"><div class="word-head"><span class="word-number">WORD 2 / 5</span></div><h3>altruistic</h3><p>showing selfless concern for the well-being of others</p><p class="malay"><b>BM:</b> tidak mementingkan diri / suka membantu orang lain</p><p class="example">An <strong>altruistic</strong> volunteer helps without expecting a reward.</p></article><article class="word-card"><div class="word-head"><span class="word-number">WORD 3 / 5</span></div><h3>hospitable</h3><p>friendly and welcoming to guests or visitors</p><p class="malay"><b>BM:</b> mesra dan ramah terhadap tetamu</p><p class="example">The <strong>hospitable</strong> family welcomed the visitors warmly.</p></article><article class="word-card"><div class="word-head"><span class="word-number">WORD 4 / 5</span></div><h3>inclusive</h3><p>welcoming and involving people of different backgrounds or abilities</p><p class="malay"><b>BM:</b> inklusif / melibatkan semua golongan</p><p class="example">Our school promotes an <strong>inclusive</strong> learning environment.</p></article><article class="word-card"><div class="word-head"><span class="word-number">WORD 5 / 5</span></div><h3>culturally diverse</h3><p>having people or traditions from many different cultures</p><p class="malay"><b>BM:</b> pelbagai budaya</p><p class="example">Our <strong>culturally diverse</strong> neighbourhood celebrates many festivals.</p></article></div><form id="startForm" class="entry"><div><label for="studentInput">Student name / Nama murid</label><input id="studentInput" maxlength="40" required placeholder="Type your name" autocomplete="name"></div><button class="btn" type="submit">I've studied — start practising →</button></form><p class="tiny">7 practice questions + 7 paragraph decisions · Up to 14 points · No login needed · Works offline</p></section>
+<section id="practice" hidden><div class="topline"><span>👋 <b id="who"></b></span><span id="stageLabel"></span><span>⭐ <b id="pts">0</b> / 14</span></div><div class="progress-track"><div id="bar" class="progress-fill"></div></div><div class="practice-grid"><article class="paper task" id="taskCard"><div id="questionTag" class="task-tag"></div><h2 id="qTitle"></h2><p id="qSentence" class="source-sentence" hidden></p><div id="qOptions" class="options"></div><div id="textBox" class="typearea" hidden><label for="typedInput">Your answer (spelling matters, capitalisation doesn't):</label><input id="typedInput" autocomplete="off" spellcheck="false"><p class="typehelp">Type the complete word or expression. Hyphens and spaces are accepted flexibly.</p></div><div id="qFeedback" class="feedback" role="status" aria-live="polite" hidden></div><div class="action-row"><button type="button" id="qCheck" class="btn" disabled>Check answer ✓</button><button type="button" id="qNext" class="btn" hidden>Next →</button></div></article><aside class="paper sidebar"><h3>🌷 Your five words</h3><p>Need help? Open the reference bank at any time.</p><details><summary>📘 Show / hide word bank</summary><div id="bank" class="bank"></div></details></aside></div></section>
+<section id="paragraph" hidden><div class="topline"><span>👋 <b class="paragraphName"></b></span><span>Step 3 · Upgrade the writing</span><span>⭐ <b class="paragraphPoints"></b> / 14</span></div><div class="paper paragraph-main"><span class="eyebrow">Final challenge · 2 paragraphs</span><h2>🔎 Can you upgrade these paragraphs?</h2><p class="tiny">Seven expressions have a dotted underline. Five can be replaced using the words you learned. Two are fine already — choose “Keep as is” for those!</p><span class="small-pill" id="paragraphCounter">0/7 decisions</span><div id="paragraphText" class="paragraphs"></div><p class="message" id="paraTip" role="status" aria-live="polite"></p><div id="paragraphDone" hidden><div class="review-para"><b>✨ Your upgraded writing:</b><div id="upgradedCopy" style="white-space:pre-line;margin-top:7px"></div></div><div class="action-row"><button type="button" class="btn" id="finishBtn">See final score →</button></div></div></div></section>
+<section id="results" hidden><div class="paper results"><div style="font-size:50px">🏆🌷</div><span class="eyebrow">Results · Article Lexis Lab Set 6</span><h1>Well done, <span id="doneName"></span>!</h1><div class="bigscore"><span id="doneScore">0</span><span style="font-size:23px;color:var(--muted)"> / 14</span></div><p id="doneMessage"></p><div class="score-grid"><div class="score-chip"><strong id="practiceResult">0/7</strong>MCQs &amp; blanks</div><div class="score-chip"><strong id="paragraphResult">0/7</strong>Paragraph decisions</div></div><p class="tiny">Topic: <strong id="doneTopic"></strong></p><div class="buttons"><button class="btn" id="replayBtn" type="button">🔄 Replay this set</button><button class="btn secondary" id="copyBtn" type="button">📋 Copy score</button><button class="btn plain" id="homeBtn" type="button">Back to word list</button></div><h3 style="text-align:left;margin:25px 0 7px">📃 Model upgraded paragraphs</h3><div class="review-para" id="resultsParagraph" style="text-align:left"></div><p class="note">For SPM articles, choose richer vocabulary only when it sounds natural. Clear, accurate writing always comes first.</p></div></section>
+<p class="footer">🌷 Practise · Understand · Upgrade · A little vocabulary goes a long way.</p></main>
+<script id="lesson-data" type="application/json">{"title":"Science & Technology: Digital Life","short":"Technology II","emoji":"📱","color":"lilac","words":[{"word":"versatile","meaning":"able to be used for many different purposes","malay":"serba boleh / pelbagai kegunaan","example":"A versatile tablet can be used for reading, drawing and research."},{"word":"immersive","meaning":"so engaging that it feels as if you are part of the experience","malay":"mendalam dan mengasyikkan","example":"An immersive language game makes learners feel involved."},{"word":"automation","meaning":"using machines or software to perform tasks automatically","malay":"automasi / pelaksanaan tugas secara automatik","example":"Automation reduces repetitive manual work."},{"word":"digital literacy","meaning":"the skills needed to use digital technology safely and effectively","malay":"literasi digital","example":"Digital literacy helps teenagers evaluate online information."},{"word":"technological dependency","meaning":"relying heavily on technology to function or complete tasks","malay":"kebergantungan terhadap teknologi","example":"Excessive technological dependency may weaken offline communication."}],"paragraphs":[[{"text":"At the technology exhibition, pupils tested "},{"text":"devices with many possible uses","word":"versatile","upgrade":"versatile devices","options":{"versatile":"versatile devices","immersive":"devices offering immersive experiences","automation":"devices that use automation","digital literacy":"devices designed to improve digital literacy","technological dependency":"devices that may increase technological dependency"}},{"text":" and enjoyed "},{"text":"learning experiences that drew them in completely","word":"immersive","upgrade":"immersive learning experiences","options":{"versatile":"versatile learning devices","immersive":"immersive learning experiences","automation":"learning experiences using automation","digital literacy":"activities developing digital literacy","technological dependency":"experiences encouraging technological dependency"}},{"text":". The presenter explained how "},{"text":"machines performing tasks automatically","word":"automation","upgrade":"automation","options":{"versatile":"versatile technology","immersive":"immersive technology","automation":"automation","digital literacy":"digital literacy","technological dependency":"technological dependency"}},{"text":" could save time at work."}],[{"text":"Teachers planned activities to improve "},{"text":"the ability to use technology safely and wisely","word":"digital literacy","upgrade":"digital literacy","options":{"versatile":"versatile digital skills","immersive":"immersive learning","automation":"automation skills","digital literacy":"digital literacy","technological dependency":"technological dependency"}},{"text":". However, they warned that "},{"text":"relying too much on technology","word":"technological dependency","upgrade":"technological dependency","options":{"versatile":"versatile technology","immersive":"immersive learning","automation":"automation","digital literacy":"digital literacy","technological dependency":"technological dependency"}},{"text":" could affect communication. The audience took "},{"text":"photographs","decoy":true,"options":{"versatile":"pictures of versatile devices","immersive":"photos of immersive displays","automation":"images of automation equipment","digital literacy":"notes about digital literacy","technological dependency":"examples of technological dependency"}},{"text":" at the end of the event. The exhibition was held in "},{"text":"the school hall","decoy":true,"options":{"versatile":"a hall displaying versatile devices","immersive":"an immersive exhibition space","automation":"a room with automation equipment","digital literacy":"a digital literacy centre","technological dependency":"a workshop about technological dependency"}},{"text":"."}]],"number":6}</script><script>
+'use strict';
+const DATA=JSON.parse(document.getElementById('lesson-data').textContent);
+const $=x=>document.getElementById(x);
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shuffle=(arr)=>{const a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a};
+const normalise=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[‐‑‒–—−]/g,'-').replace(/[\s-]+/g,'').replace(/[^a-z]/g,'');
+const byWord=w=>DATA.words.find(x=>x.word===w);
+let state=null;
+function show(name){for(const x of ['intro','practice','paragraph','results'])$(x).hidden=x!==name;window.scrollTo({top:0,behavior:'instant'})}
+function updateStatus(){if(!state)return;
+ $('who').textContent=state.name;document.querySelectorAll('.paragraphName').forEach(e=>e.textContent=state.name);document.querySelectorAll('.paragraphPoints').forEach(e=>e.textContent=state.practiceScore+state.paragraphScore);
+ $('pts').textContent=state.practiceScore+state.paragraphScore;
+ const completed=state.stage==='practice'?state.qindex:7+state.resolved.size;
+ $('bar').style.width=`${100*completed/14}%`;
+ $('stageLabel').textContent=state.stage==='practice'?`Practice ${state.qindex+1} of 7`:`Paragraph decisions ${state.resolved.size} of 7`;
+}
+function buildQuestions(){
+ const w=DATA.words;
+ const locate=word=>DATA.paragraphs.flat().find(x=>x.word===word);
+ const others=(correct,attribute)=>shuffle(w.filter(x=>x!==correct)).slice(0,3).map(x=>x[attribute]);
+ const choices=(right,list)=>shuffle([right,...list]);
+ return [
+ {kind:'mcq',label:'Meaning recognition',title:`Which less common word means “${w[0].meaning}”?`,options:choices(w[0].word,others(w[0],'word')),correct:w[0].word,word:w[0].word},
+ {kind:'mcq',label:'Context selection',title:'Choose the best word to complete the sentence:',sentence:w[1].example.replace(new RegExp(w[1].word,'i'),'________'),options:choices(w[1].word,others(w[1],'word')),correct:w[1].word,word:w[1].word},
+ {kind:'mcq',label:'Upgrade the expression',title:`Which word best replaces “${locate(w[2].word).text}” in formal article writing?`,options:choices(w[2].word,others(w[2],'word')),correct:w[2].word,word:w[2].word},
+ {kind:'mcq',label:'Malay meaning',title:`What is the Malay meaning of “${w[3].word}”?`,options:choices(w[3].malay,others(w[3],'malay')),correct:w[3].malay,word:w[3].word},
+ ...[w[4],w[0],w[2]].map((x,i)=>({kind:'typed',label:i===0?'Fill in the blank':'Type the missing lexis',title:'Type the exact word or phrase that completes the sentence:',sentence:x.example.replace(new RegExp(x.word,'i'),'________'),correct:x.word,word:x.word}))
+ ];
+}
+function updateBank(){const container=$('bank');container.replaceChildren();DATA.words.forEach(item=>{const d=document.createElement('div');d.className='bank-item';const b=document.createElement('b');b.textContent=item.word;const span=document.createElement('span');span.textContent=item.malay;d.append(b,span);container.append(d)})}
+function startGame(e){if(e)e.preventDefault();const name=$('studentInput').value.trim().replace(/\s+/g,' ').slice(0,40);if(!name){$('studentInput').focus();return;}
+ state={name,qindex:0,practiceScore:0,paragraphScore:0,questions:buildQuestions(),qSelected:null,qWrong:null,qWrongCount:0,qFinished:false,stage:'practice',resolved:new Set(),attempts:new Map(),active:null};updateBank();renderQ();updateStatus();show('practice')}
+function renderQ(){const q=state.questions[state.qindex];state.qSelected=null;state.qWrong=null;state.qWrongCount=0;state.qFinished=false;state.stage='practice';
+ $('questionTag').textContent=`${q.label} · Question ${state.qindex+1}/7`;
+ $('qTitle').textContent=q.title;
+ $('qSentence').hidden=!q.sentence;
+ $('qSentence').textContent=q.sentence||'';
+ $('qOptions').replaceChildren();$('textBox').hidden=q.kind!=='typed';$('qOptions').hidden=q.kind!=='mcq';
+ if(q.kind==='mcq'){q.options=shuffle(q.options);q.options.forEach((item,index)=>{const btn=document.createElement('button');btn.type='button';btn.className='opt';btn.dataset.val=item;const letter=document.createElement('span');letter.className='letter';letter.textContent='ABCD'[index];const body=document.createElement('span');body.textContent=item;btn.append(letter,body);btn.addEventListener('click',()=>{if(state.qFinished||btn.disabled)return;state.qSelected=item;[...$('qOptions').children].forEach(x=>x.classList.toggle('selected',x.dataset.val===item));$('qCheck').disabled=false});$('qOptions').append(btn)})}
+ else{$('typedInput').value='';$('typedInput').disabled=false;$('typedInput').placeholder='Type the missing word or phrase';$('qCheck').disabled=true}
+ $('qCheck').hidden=false;$('qCheck').disabled=true;$('qNext').hidden=true;$('qFeedback').hidden=true;$('qFeedback').replaceChildren();updateStatus()}
+function notifyQ(correct,title,lines){const box=$('qFeedback');box.hidden=false;box.className='feedback '+(correct?'good':'bad');box.replaceChildren();const st=document.createElement('strong');st.textContent=title;box.append(st);lines.forEach(line=>{const p=document.createElement('p');p.textContent=line;box.append(p)});}
+function completeQ(wasFirst){const q=state.questions[state.qindex];state.qFinished=true;if(wasFirst)state.practiceScore++;
+ if(q.kind==='typed'){$('typedInput').disabled=true;$('typedInput').value=q.correct}else{[...$('qOptions').children].forEach(b=>{b.disabled=true;if(b.dataset.val===q.correct)b.classList.add('correct');b.classList.remove('selected')})}
+ $('qCheck').hidden=true;$('qNext').hidden=false;$('qNext').textContent=state.qindex===6?'Continue to paragraph challenge →':'Next question →';updateStatus()}
+function checkQ(){if(state.qFinished)return;const q=state.questions[state.qindex];const answer=q.kind==='typed'?$('typedInput').value:state.qSelected;
+ if(!answer || !String(answer).trim())return;
+ const right=q.kind==='typed'?normalise(answer)===normalise(q.correct):answer===q.correct;
+ if(right){const isFirst=state.qWrongCount===0;completeQ(isFirst);const w=byWord(q.word);notifyQ(true,isFirst?'🌟 First try! +1 point':'🌷 Nice improvement!',[`${w.word} — ${w.meaning}`,`BM: ${w.malay}`]);}
+ else{state.qWrongCount++;if(q.kind==='mcq'){const old=[...$('qOptions').children].find(x=>x.dataset.val===answer);if(old){old.disabled=true;old.classList.add('wrong');old.classList.remove('selected')}state.qSelected=null;$('qCheck').disabled=true}else {$('typedInput').value='';$('typedInput').focus();}
+ if(state.qWrongCount===1){const w=byWord(q.word);notifyQ(false,'💡 Try again!',[q.kind==='typed'?`Hint: it begins with “${w.word[0].toUpperCase()}”. Check the word bank if needed.`:`Think about the meaning: ${w.meaning}.`]);}
+ else{completeQ(false);const w=byWord(q.word);notifyQ(false,"📘 Let's learn the answer",[`Answer: ${q.correct}`,`${w.meaning} | BM: ${w.malay}`]);}}
+}
+function nextQ(){if(!state.qFinished)return;if(state.qindex<6){state.qindex++;renderQ();$('taskCard').scrollIntoView({behavior:'smooth',block:'start'})}else{renderParagraph();show('paragraph');updateStatus()}}
+function renderParagraph(){
+ state.stage='paragraph';state.resolved=new Set();state.attempts=new Map();state.active=null;$('paragraphText').replaceChildren();
+ for(let pi=0;pi<DATA.paragraphs.length;pi++){
+  const p=document.createElement('p');
+  for(let si=0;si<DATA.paragraphs[pi].length;si++){
+   const token=DATA.paragraphs[pi][si];
+   if(token.word||token.decoy){
+    const id=`${pi}-${si}`;
+    const btn=document.createElement('button');btn.type='button';btn.className='candidate';btn.dataset.slot=id;
+    btn.textContent=token.text;btn.setAttribute('aria-label',`Choose an upgrade for: ${token.text}`);
+    btn.addEventListener('click',()=>selectSlot(id,token,btn));p.append(btn);
+   }else{p.append(document.createTextNode(token.text))}
+  }
+  $('paragraphText').append(p);
+ }
+ $('paragraphCounter').textContent='0/7 decisions';$('paragraphDone').hidden=true;
+ $('paraTip').textContent='Tap a dotted phrase to choose an upgrade from its dropdown. Five need better wording; two should be kept as they are.';
+ updateStatus();
+}
+function closeOpenDropdown(){
+ if(state.active && state.active.select.isConnected){
+  state.active.select.replaceWith(state.active.btn);
+ }
+ state.active=null;
+}
+function replacementFor(word,token){
+ if(token.options && Object.prototype.hasOwnProperty.call(token.options,word)) return token.options[word];
+ return word;
+}
+function selectSlot(id,token,btn){
+ if(state.resolved.has(id))return;
+ closeOpenDropdown();
+ const select=document.createElement('select');select.className='inline-lexis-select';
+ select.setAttribute('aria-label',`Choose the best replacement for ${token.text}`);
+ select.title=`Original phrase: ${token.text}`;
+ const placeholder=document.createElement('option');placeholder.value='';placeholder.textContent='Choose a replacement ▾';select.append(placeholder);
+ for(const word of shuffle(DATA.words.map(w=>w.word))){
+  const item=document.createElement('option');item.value=word;item.textContent=replacementFor(word,token);select.append(item);
+ }
+ const keep=document.createElement('option');keep.value='__keep__';keep.textContent='Keep as is (no replacement)';select.append(keep);
+ select.value='';
+ state.active={id,token,btn,select};btn.replaceWith(select);
+ $('paraTip').textContent=`Choose the best upgrade for “${token.text}”, or select “Keep as is”.`;
+ select.addEventListener('change',()=>decideSlot(id,token,btn,select));
+ // Chrome/Android can open the native dropdown from the original tap.
+ // Browsers without showPicker still let the learner tap the select normally.
+ try{if(typeof select.showPicker==='function')select.showPicker();else select.focus()}catch(e){select.focus()}
+}
+function decideSlot(id,token,btn,select){
+ if(state.resolved.has(id)||!select.value)return;
+ const chosen=select.value==='__keep__'?null:select.value;
+ const correct=(token.word||null)===chosen;
+ const attempts=(state.attempts.get(id)||0)+1;state.attempts.set(id,attempts);
+ if(!correct){
+  const hint=token.word?`This phrase has a stronger equivalent. Hint: ${byWord(token.word).meaning}.`:'This phrase is already clear and specific. None of the five new words fits naturally.';
+  $('paraTip').textContent='Not quite. '+hint+' Try the same dropdown again.';
+  select.classList.add('needs-retry');select.value='';select.focus();return;
+ }
+ if(attempts===1)state.paragraphScore++;
+ state.resolved.add(id);
+ if(chosen){btn.textContent=token.upgrade;btn.classList.add('done');btn.setAttribute('aria-label',`Upgraded to ${token.upgrade}`)}
+ else{btn.classList.add('kept');btn.setAttribute('aria-label',`Kept unchanged: ${token.text}`)}
+ btn.disabled=true;btn.classList.remove('active');select.replaceWith(btn);state.active=null;
+ $('paragraphCounter').textContent=`${state.resolved.size}/7 decisions`;
+ $('paraTip').textContent=chosen?`Good upgrade: “${replacementFor(chosen,token)}”. The replacement fits the sentence. Choose another dotted phrase.`:'Correct! This phrase is best kept as it is.';
+ updateStatus();
+ if(state.resolved.size===7){
+  $('paragraphDone').hidden=false;
+  $('upgradedCopy').textContent=DATA.paragraphs.map(para=>para.map(t=>t.upgrade||t.text).join('')).join('\n\n');
+ }
+}
+function finish(){if(state.resolved.size!==7)return;state.stage='done';$('doneName').textContent=state.name;$('doneScore').textContent=state.practiceScore+state.paragraphScore;
+ $('practiceResult').textContent=state.practiceScore+'/7';$('paragraphResult').textContent=state.paragraphScore+'/7';$('doneTopic').textContent=DATA.title;
+ $('doneMessage').textContent=state.practiceScore+state.paragraphScore===14?'Perfect first-try score — impressive vocabulary control!':'Well done! Replaying the quiz will help these words become natural in your writing.';
+ const el=$('resultsParagraph');el.replaceChildren();for(const p of DATA.paragraphs){const line=document.createElement('p');p.forEach(t=>{if(t.word){const strong=document.createElement('strong');strong.textContent=t.upgrade;line.append(strong)}else line.append(document.createTextNode(t.text))});el.append(line)}show('results')}
+async function copyResult(){const content=`Article Lexis Lab · Set ${DATA.number}\nTopic: ${DATA.title}\nStudent: ${state.name}\nScore: ${state.practiceScore+state.paragraphScore}/14\nPractice: ${state.practiceScore}/7\nParagraph: ${state.paragraphScore}/7\nDate: ${new Date().toLocaleDateString('en-MY')}`;try{await navigator.clipboard.writeText(content);$('copyBtn').textContent='Copied! ✓'}catch{$('copyBtn').textContent='Please take a screenshot 📸'}}
+$('startForm').addEventListener('submit',startGame);
+$('qCheck').addEventListener('click',checkQ);
+$('qNext').addEventListener('click',nextQ);
+$('typedInput').addEventListener('input',()=>{$('qCheck').disabled=!$('typedInput').value.trim()});
+$('typedInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!state.qFinished){e.preventDefault();checkQ()}});
+$('finishBtn').addEventListener('click',finish);
+$('copyBtn').addEventListener('click',copyResult);
+$('replayBtn').addEventListener('click',()=>{startGame()});
+$('homeBtn').addEventListener('click',()=>{state=null;show('intro')});
+</script></body></html>
