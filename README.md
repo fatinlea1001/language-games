@@ -3,7 +3,7 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**160 games** — automatically updated when an HTML game is added or changed.
+**161 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
@@ -125,6 +125,7 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [Friends Dialogue (Set 3)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-3.html) — updated 19 Oct 2026
 - [Friends Dialogue (Set 2)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-2.html) — updated 18 Oct 2026
 - [Friends Dialogue (Set 1)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-1.html) — updated 18 Oct 2026
 - [Japanese Café Conversations — N5/N4 (Set 1)](https://fatinlea1001.github.io/language-games/jpn-cafe-dialogue-1.html) — updated 18 Oct 2026
