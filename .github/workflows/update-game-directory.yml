@@ -80,6 +80,10 @@ jobs:
                       '4': 'A Rainy Day Trip',
                       '5': 'A Birthday Surprise',
                       '6': 'Our School Festival',
+                      '7': 'An Afternoon at the Library',
+                      '8': 'A Day at the Zoo',
+                      '9': 'Moving into a New Home',
+                      '10': 'A Neighbourhood Clean-up',
                   }
                   if match.group(2) in reading_topics:
                       topic = reading_topics[match.group(2)]
