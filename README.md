@@ -7,16 +7,16 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Article Lexis Lab — Making a Difference (Set 9)](https://fatinlea1001.github.io/language-games/eng-lexis-article-9.html) — updated 18 Oct 2026
-- [Article Lexis Lab — Smart Consumers (Set 8)](https://fatinlea1001.github.io/language-games/eng-lexis-article-8.html) — updated 18 Oct 2026
-- [Article Lexis Lab — Wise Spending (Set 7)](https://fatinlea1001.github.io/language-games/eng-lexis-article-7.html) — updated 18 Oct 2026
-- [Article Lexis Lab — Digital Life (Set 6)](https://fatinlea1001.github.io/language-games/eng-lexis-article-6.html) — updated 18 Oct 2026
-- [Article Lexis Lab — Smarter Learning (Set 5)](https://fatinlea1001.github.io/language-games/eng-lexis-article-5.html) — updated 18 Oct 2026
-- [Article Lexis Lab — Protecting Nature (Set 4)](https://fatinlea1001.github.io/language-games/eng-lexis-article-4.html) — updated 18 Oct 2026
-- [Article Lexis Lab — Better Well-being (Set 3)](https://fatinlea1001.github.io/language-games/eng-lexis-article-3.html) — updated 18 Oct 2026
-- [Article Lexis Lab — Our Traditions (Set 2)](https://fatinlea1001.github.io/language-games/eng-lexis-article-2.html) — updated 18 Oct 2026
-- [Article Lexis Lab — Taking Action (Set 10)](https://fatinlea1001.github.io/language-games/eng-lexis-article-10.html) — updated 18 Oct 2026
-- [Article Lexis Lab — Caring Communities (Set 1)](https://fatinlea1001.github.io/language-games/eng-lexis-article-1.html) — updated 18 Oct 2026
+- [Less Common Lexis Class — Making a Difference (Set 9)](https://fatinlea1001.github.io/language-games/eng-lexis-article-9.html) — updated 18 Oct 2026
+- [Less Common Lexis Class — Smart Consumers (Set 8)](https://fatinlea1001.github.io/language-games/eng-lexis-article-8.html) — updated 18 Oct 2026
+- [Less Common Lexis Class — Wise Spending (Set 7)](https://fatinlea1001.github.io/language-games/eng-lexis-article-7.html) — updated 18 Oct 2026
+- [Less Common Lexis Class — Digital Life (Set 6)](https://fatinlea1001.github.io/language-games/eng-lexis-article-6.html) — updated 18 Oct 2026
+- [Less Common Lexis Class — Smarter Learning (Set 5)](https://fatinlea1001.github.io/language-games/eng-lexis-article-5.html) — updated 18 Oct 2026
+- [Less Common Lexis Class — Protecting Nature (Set 4)](https://fatinlea1001.github.io/language-games/eng-lexis-article-4.html) — updated 18 Oct 2026
+- [Less Common Lexis Class — Better Well-being (Set 3)](https://fatinlea1001.github.io/language-games/eng-lexis-article-3.html) — updated 18 Oct 2026
+- [Less Common Lexis Class — Our Traditions (Set 2)](https://fatinlea1001.github.io/language-games/eng-lexis-article-2.html) — updated 18 Oct 2026
+- [Less Common Lexis Class — Taking Action (Set 10)](https://fatinlea1001.github.io/language-games/eng-lexis-article-10.html) — updated 18 Oct 2026
+- [Less Common Lexis Class — Caring Communities (Set 1)](https://fatinlea1001.github.io/language-games/eng-lexis-article-1.html) — updated 18 Oct 2026
 - [Missingsentence Puteri Saadong (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-puteri-saadong-1.html) — updated 16 Oct 2026
 - [Missingsentence Beauty Skin Deep (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-beauty-skin-deep-1.html) — updated 16 Oct 2026
 - [Missingsentence Responsible Ai (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-responsible-ai-1.html) — updated 16 Oct 2026
