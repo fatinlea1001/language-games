@@ -36,7 +36,7 @@ body[data-color="pink"]{--accent:#bb6189;--deep:#94476d;--wash:#ffeef6}
 <section id="paragraph" hidden><div class="topline"><span>👋 <b class="paragraphName"></b></span><span>Step 3 · Upgrade the writing</span><span>⭐ <b class="paragraphPoints"></b> / 14</span></div><div class="paper paragraph-main"><span class="eyebrow">Final challenge · 2 paragraphs</span><h2>🔎 Can you upgrade these paragraphs?</h2><p class="tiny">Seven expressions have a dotted underline. Five can be replaced using the words you learned. Two are fine already — choose “Keep as is” for those!</p><span class="small-pill" id="paragraphCounter">0/7 decisions</span><div id="paragraphText" class="paragraphs"></div><p class="message" id="paraTip" role="status" aria-live="polite"></p><div id="paragraphDone" hidden><div class="review-para"><b>✨ Your upgraded writing:</b><div id="upgradedCopy" style="white-space:pre-line;margin-top:7px"></div></div><div class="action-row"><button type="button" class="btn" id="finishBtn">See final score →</button></div></div></div></section>
 <section id="results" hidden><div class="paper results"><div style="font-size:50px">🏆🌷</div><span class="eyebrow">Results · Article Lexis Lab Set 1</span><h1>Well done, <span id="doneName"></span>!</h1><div class="bigscore"><span id="doneScore">0</span><span style="font-size:23px;color:var(--muted)"> / 14</span></div><p id="doneMessage"></p><div class="score-grid"><div class="score-chip"><strong id="practiceResult">0/7</strong>MCQs &amp; blanks</div><div class="score-chip"><strong id="paragraphResult">0/7</strong>Paragraph decisions</div></div><p class="tiny">Topic: <strong id="doneTopic"></strong></p><div class="buttons"><button class="btn" id="replayBtn" type="button">🔄 Replay this set</button><button class="btn secondary" id="copyBtn" type="button">📋 Copy score</button><button class="btn plain" id="homeBtn" type="button">Back to word list</button></div><h3 style="text-align:left;margin:25px 0 7px">📃 Model upgraded paragraphs</h3><div class="review-para" id="resultsParagraph" style="text-align:left"></div><p class="note">For SPM articles, choose richer vocabulary only when it sounds natural. Clear, accurate writing always comes first.</p></div></section>
 <p class="footer">🌷 Practise · Understand · Upgrade · A little vocabulary goes a long way.</p></main>
-<script id="lesson-data" type="application/json">{"title":"People & Culture: Caring Communities","short":"People & Culture I","emoji":"🤝","color":"rose","words":[{"word":"empathetic","meaning":"able to understand and share another person’s feelings","malay":"berempati / memahami perasaan orang lain","example":"An empathetic teacher listens carefully to students."},{"word":"altruistic","meaning":"showing selfless concern for the well-being of others","malay":"tidak mementingkan diri / suka membantu orang lain","example":"An altruistic volunteer helps without expecting a reward."},{"word":"hospitable","meaning":"friendly and welcoming to guests or visitors","malay":"mesra dan ramah terhadap tetamu","example":"The hospitable family welcomed the visitors warmly."},{"word":"inclusive","meaning":"welcoming and involving people of different backgrounds or abilities","malay":"inklusif / melibatkan semua golongan","example":"Our school promotes an inclusive learning environment."},{"word":"culturally diverse","meaning":"having people or traditions from many different cultures","malay":"pelbagai budaya","example":"Our culturally diverse neighbourhood celebrates many festivals."}],"paragraphs":[[{"text":"At our school, teachers try to be "},{"text":"understanding of others’ feelings","word":"empathetic","upgrade":"empathetic"},{"text":" and create "},{"text":"an environment where everyone feels included","word":"inclusive","upgrade":"an inclusive environment"},{"text":". Students from "},{"text":"many different cultural backgrounds","word":"culturally diverse","upgrade":"culturally diverse backgrounds"},{"text":" learn together during "},{"text":"school activities","decoy":true},{"text":"."}],[{"text":"Last weekend, our class organised "},{"text":"an activity focused on helping others","word":"altruistic","upgrade":"an altruistic activity"},{"text":" for a community centre. The volunteers were "},{"text":"friendly and welcoming","word":"hospitable","upgrade":"hospitable"},{"text":" to all guests, and the pupils shared "},{"text":"homemade food","decoy":true},{"text":"."}]],"number":1}</script><script>
+<script id="lesson-data" type="application/json">{"title":"People & Culture: Caring Communities","short":"People & Culture I","emoji":"🤝","color":"rose","words":[{"word":"empathetic","meaning":"able to understand and share another person’s feelings","malay":"berempati / memahami perasaan orang lain","example":"An empathetic teacher listens carefully to students."},{"word":"altruistic","meaning":"showing selfless concern for the well-being of others","malay":"tidak mementingkan diri / suka membantu orang lain","example":"An altruistic volunteer helps without expecting a reward."},{"word":"hospitable","meaning":"friendly and welcoming to guests or visitors","malay":"mesra dan ramah terhadap tetamu","example":"The hospitable family welcomed the visitors warmly."},{"word":"inclusive","meaning":"welcoming and involving people of different backgrounds or abilities","malay":"inklusif / melibatkan semua golongan","example":"Our school promotes an inclusive learning environment."},{"word":"culturally diverse","meaning":"having people or traditions from many different cultures","malay":"pelbagai budaya","example":"Our culturally diverse neighbourhood celebrates many festivals."}],"paragraphs":[[{"text":"At our school, teachers try to be "},{"text":"understanding of others’ feelings","word":"empathetic","upgrade":"empathetic"},{"text":" and create "},{"text":"an environment where everyone feels included","word":"inclusive","upgrade":"an inclusive environment","form":"environment"},{"text":". Students from "},{"text":"many different cultural backgrounds","word":"culturally diverse","upgrade":"culturally diverse backgrounds","form":"backgrounds"},{"text":" learn together during "},{"text":"school activities","decoy":true,"form":"activities"},{"text":"."}],[{"text":"Last weekend, our class organised "},{"text":"an activity focused on helping others","word":"altruistic","upgrade":"an altruistic activity","form":"activity"},{"text":" for a community centre. The volunteers were "},{"text":"friendly and welcoming","word":"hospitable","upgrade":"hospitable"},{"text":" as they greeted the guests, and the pupils shared "},{"text":"homemade food","decoy":true,"form":"food"},{"text":"."}]],"number":1}</script><script>
 'use strict';
 const DATA=JSON.parse(document.getElementById('lesson-data').textContent);
 const $=x=>document.getElementById(x);
@@ -116,6 +116,18 @@ function closeOpenDropdown(){
  }
  state.active=null;
 }
+// Build a complete replacement that fits the exact grammatical slot.
+// Each option uses the same sentence structure, so the learner judges meaning, not an article/noun mismatch.
+function replacementFor(word,token){
+ const form=token.form||'adjective';
+ const article=/^[aeiou]/i.test(word)?'an':'a';
+ if(form==='environment')return `${article} ${word} environment`;
+ if(form==='backgrounds')return `${word} backgrounds`;
+ if(form==='activities')return `${word} activities`;
+ if(form==='activity')return `${article} ${word} activity`;
+ if(form==='food')return `${word} food`;
+ return word;
+}
 function selectSlot(id,token,btn){
  if(state.resolved.has(id))return;
  closeOpenDropdown();
@@ -124,7 +136,7 @@ function selectSlot(id,token,btn){
  select.title=`Original phrase: ${token.text}`;
  const placeholder=document.createElement('option');placeholder.value='';placeholder.textContent='Choose a replacement ▾';select.append(placeholder);
  for(const word of shuffle(DATA.words.map(w=>w.word))){
-  const item=document.createElement('option');item.value=word;item.textContent=word;select.append(item);
+  const item=document.createElement('option');item.value=word;item.textContent=replacementFor(word,token);select.append(item);
  }
  const keep=document.createElement('option');keep.value='__keep__';keep.textContent='Keep as is (no replacement)';select.append(keep);
  select.value='';
@@ -151,7 +163,7 @@ function decideSlot(id,token,btn,select){
  else{btn.classList.add('kept');btn.setAttribute('aria-label',`Kept unchanged: ${token.text}`)}
  btn.disabled=true;btn.classList.remove('active');select.replaceWith(btn);state.active=null;
  $('paragraphCounter').textContent=`${state.resolved.size}/7 decisions`;
- $('paraTip').textContent=chosen?`Good upgrade: ${chosen}. Choose another dotted phrase.`:'Correct! This phrase is best kept as it is.';
+ $('paraTip').textContent=chosen?`Good upgrade: “${replacementFor(chosen,token)}”. The replacement fits the sentence. Choose another dotted phrase.`:'Correct! This phrase is best kept as it is.';
  updateStatus();
  if(state.resolved.size===7){
   $('paragraphDone').hidden=false;
