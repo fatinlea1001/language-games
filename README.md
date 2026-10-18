@@ -115,10 +115,10 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
-- [Japanese Reading Garden — N5 (Set 9)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-9.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — N5 (Set 8)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-8.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — N5 (Set 7)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-7.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — N5 (Set 10)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-10.html) — updated 18 Oct 2026
+- [Japanese Reading Garden — Moving into a New Home (N5 Set 9)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-9.html) — updated 18 Oct 2026
+- [Japanese Reading Garden — A Day at the Zoo (N5 Set 8)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-8.html) — updated 18 Oct 2026
+- [Japanese Reading Garden — An Afternoon at the Library (N5 Set 7)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-7.html) — updated 18 Oct 2026
+- [Japanese Reading Garden — A Neighbourhood Clean-up (N5 Set 10)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-10.html) — updated 18 Oct 2026
 - [Japanese Reading Garden — Our School Festival (N5 Set 6)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-6.html) — updated 18 Oct 2026
 - [Japanese Reading Garden — A Birthday Surprise (N5 Set 5)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-5.html) — updated 18 Oct 2026
 - [Japanese Reading Garden — A Rainy Day Trip (N5 Set 4)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-4.html) — updated 18 Oct 2026
