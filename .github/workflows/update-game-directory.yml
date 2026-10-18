@@ -60,6 +60,7 @@ jobs:
               'eng-elaboration-finance': 'Elaboration — Finance',
               'eng-elaboration-ai': 'Elaboration — AI',
               'jpn-spelling-kanji-katakana': 'Kanji & Katakana Spell-Off',
+              'jpn-cafe-dialogue': 'Japanese Café Conversations — N5/N4',
               'jpn-reading-n5': 'Japanese Reading Garden — N5',
               'n5-adj': 'N5 Adjectives',
               'n5-sentence': 'N5 Sentence Jumble',
