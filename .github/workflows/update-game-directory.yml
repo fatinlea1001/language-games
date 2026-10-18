@@ -60,6 +60,7 @@ jobs:
               'eng-elaboration-finance': 'Elaboration — Finance',
               'eng-elaboration-ai': 'Elaboration — AI',
               'jpn-spelling-kanji-katakana': 'Kanji & Katakana Spell-Off',
+              'jp-reading-n5': 'Japanese Reading Garden — N5',
               'n5-adj': 'N5 Adjectives',
               'n5-sentence': 'N5 Sentence Jumble',
               'n5-verb': 'N5 Verbs',
@@ -98,7 +99,7 @@ jobs:
               filename = path.name.lower()
               if filename.startswith('eng-'):
                   group = 'English'
-              elif filename.startswith(('jpn-', 'n5-', 'teform-')):
+              elif filename.startswith(('jp-', 'jpn-', 'n5-', 'teform-')):
                   group = 'Japanese'
               else:
                   group = 'Other'
