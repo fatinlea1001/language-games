@@ -3,7 +3,7 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**142 games** — automatically updated when an HTML game is added or changed.
+**147 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
@@ -115,6 +115,11 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [Japanese Reading Garden — A Day Trip to Kyoto (N5/N4 Set 15)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-15.html) — updated 18 Oct 2026
+- [Japanese Reading Garden — A Saturday Without My Phone (N5/N4 Set 14)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-14.html) — updated 18 Oct 2026
+- [Japanese Reading Garden — My First Cooking Class (N5/N4 Set 13)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-13.html) — updated 18 Oct 2026
+- [Japanese Reading Garden — The Forgotten Umbrella (N5/N4 Set 12)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-12.html) — updated 18 Oct 2026
+- [Japanese Reading Garden — A New Café in Town (N5/N4 Set 11)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-11.html) — updated 18 Oct 2026
 - [Japanese Reading Garden — Moving into a New Home (N5 Set 9)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-9.html) — updated 18 Oct 2026
 - [Japanese Reading Garden — A Day at the Zoo (N5 Set 8)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-8.html) — updated 18 Oct 2026
 - [Japanese Reading Garden — An Afternoon at the Library (N5 Set 7)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-7.html) — updated 18 Oct 2026
