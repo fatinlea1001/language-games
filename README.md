@@ -125,7 +125,7 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
-- [Cafe Dialogue (Set 1)](https://fatinlea1001.github.io/language-games/jpn-cafe-dialogue-1.html) — updated 18 Oct 2026
+- [Japanese Café Conversations — N5/N4 (Set 1)](https://fatinlea1001.github.io/language-games/jpn-cafe-dialogue-1.html) — updated 18 Oct 2026
 - [Japanese Reading Garden — A Day Trip to Kyoto (N5/N4 Set 15)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-15.html) — updated 18 Oct 2026
 - [Japanese Reading Garden — A Saturday Without My Phone (N5/N4 Set 14)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-14.html) — updated 18 Oct 2026
 - [Japanese Reading Garden — My First Cooking Class (N5/N4 Set 13)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-13.html) — updated 18 Oct 2026
