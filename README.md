@@ -115,7 +115,7 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
-- [Reading N5 (Set 1)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-1.html) — updated 18 Oct 2026
+- [Japanese Reading Garden — N5 (Set 1)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-1.html) — updated 18 Oct 2026
 - [Story Emoji Fill (Set 10)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-10.html) — updated 15 Oct 2026
 - [Story Emoji Fill (Set 9)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-9.html) — updated 15 Oct 2026
 - [Story Emoji Fill (Set 8)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-8.html) — updated 15 Oct 2026
