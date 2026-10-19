@@ -99,7 +99,7 @@ jobs:
               phone.locator("#studentName").fill("Mobile Tester")
               phone.locator("#startForm button").click()
               check(phone.locator(".say").count()==8, "Mobile: scene loads")
-              check(phone.locator(".portrait-frame").count()==8, "Mobile: framed portraits displayed")
+              check(phone.locator("#lines .portrait-frame").count()==8, "Mobile: framed portraits displayed")
               check(phone.locator(".portrait-frame img").evaluate_all("(imgs) => imgs.every(x => x.complete && x.naturalWidth > 0)"), "Mobile: portrait images load")
               check(phone.evaluate("document.documentElement.scrollWidth <= innerWidth + 3"), "Mobile: no horizontal overflow")
               phone.locator("#glossaryTrigger").click()
