@@ -64,7 +64,10 @@ jobs:
               for scene in range(4):
                   check(page.locator(".say").count()==8, "Scene %d: eight dialogue lines" % (scene+1))
                   check(page.locator(".say [data-action='pick']").count()==2, "Scene %d: two interactive questions" % (scene+1))
-                  check(page.locator(".say img").evaluate_all("(imgs) => imgs.every(x => x.complete && x.naturalWidth > 0)"), "Scene %d: all emotion portraits load" % (scene+1))
+                  for img in page.locator(".say img").all():
+                  img.scroll_into_view_if_needed()
+                  img.evaluate("(el) => el.decode()")
+              check(page.locator(".say img").evaluate_all("(imgs) => imgs.every(x => x.complete && x.naturalWidth > 0)"), "Scene %d: all emotion portraits load" % (scene+1))
                   page.locator("#glossaryTrigger").click()
                   check(page.locator(".glossary-entry").count()==7, "Scene %d: glossary updates" % (scene+1))
                   page.locator("#glossaryClose").click()
@@ -100,7 +103,10 @@ jobs:
               phone.locator("#startForm button").click()
               check(phone.locator(".say").count()==8, "Mobile: scene loads")
               check(phone.locator("#lines .portrait-frame").count()==8, "Mobile: framed portraits displayed")
-              check(phone.locator(".portrait-frame img").evaluate_all("(imgs) => imgs.every(x => x.complete && x.naturalWidth > 0)"), "Mobile: portrait images load")
+              for img in phone.locator("#lines .portrait-frame img").all():
+                  img.scroll_into_view_if_needed()
+                  img.evaluate("(el) => el.decode()")
+              check(phone.locator("#lines .portrait-frame img").evaluate_all("(imgs) => imgs.every(x => x.complete && x.naturalWidth > 0)"), "Mobile: portrait images load")
               check(phone.evaluate("document.documentElement.scrollWidth <= innerWidth + 3"), "Mobile: no horizontal overflow")
               phone.locator("#glossaryTrigger").click()
               check(phone.locator("#glossaryPanel").is_visible(), "Mobile: floating glossary opens")
