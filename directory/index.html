@@ -326,6 +326,11 @@ function topicDescription(file, readmeTitle, language){
   return describe('Prepositions Quiz','Prepositions','English Grammar');
  if(stem==='eng-verbtonoun')
   return describe('Word Formation — Verb to Noun','Verb-to-Noun Word Formation','English Grammar');
+ if(stem.startsWith('eng-writing-')){
+  const code=stem.slice('eng-writing-'.length);
+  const topic=code.replace(/[-_]+/g,' ').replace(/(^|\s)\w/g,ch=>ch.toUpperCase());
+  return {label:readmeTitle,topics:[topic],theme:'Writing Part 2 SPM'};
+ }
  // Unknown future files stay discoverable without inventing their contents.
  return {label:readmeTitle,topics:[],theme:language+' Practice'};
 }
