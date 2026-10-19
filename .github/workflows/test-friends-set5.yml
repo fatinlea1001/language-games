@@ -59,7 +59,7 @@ jobs:
               page.locator("#glossaryTrigger").click()
               check(page.locator("#glossaryPanel").is_visible(), "Floating glossary opens")
               check(page.locator(".glossary-entry").count() == 7, "Seven scene-specific glossary entries")
-              check("Escape" in page.locator("#glossaryWords").inner_text(), "English meanings displayed")
+              check("Amusement park" in page.locator("#glossaryWords").inner_text(), "Set 5 English meanings displayed")
               page.locator("#glossaryClose").click()
               check(not page.locator("#glossaryPanel").is_visible(), "Floating glossary closes")
               for scene in range(4):
