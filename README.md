@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**164 games** — automatically updated when an HTML game is added or changed.
+**165 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Writing Charity (Set 1)](https://fatinlea1001.github.io/language-games/eng-writing-charity-1.html) — updated 19 Oct 2026
 - [Less Common Lexis Class — Making a Difference (Set 9)](https://fatinlea1001.github.io/language-games/eng-lexis-article-9.html) — updated 18 Oct 2026
 - [Less Common Lexis Class — Smart Consumers (Set 8)](https://fatinlea1001.github.io/language-games/eng-lexis-article-8.html) — updated 18 Oct 2026
 - [Less Common Lexis Class — Wise Spending (Set 7)](https://fatinlea1001.github.io/language-games/eng-lexis-article-7.html) — updated 18 Oct 2026
