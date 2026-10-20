@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**166 games** — automatically updated when an HTML game is added or changed.
+**167 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Speaking Part 3 (Set 17)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-17.html) — updated 20 Oct 2026
 - [Writing Bullying (Set 1)](https://fatinlea1001.github.io/language-games/eng-writing-bullying-1.html) — updated 19 Oct 2026
 - [Writing Charity (Set 1)](https://fatinlea1001.github.io/language-games/eng-writing-charity-1.html) — updated 19 Oct 2026
 - [Less Common Lexis Class — Making a Difference (Set 9)](https://fatinlea1001.github.io/language-games/eng-lexis-article-9.html) — updated 18 Oct 2026
