@@ -7,7 +7,7 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Matchvocab Stress (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-stress-1.html) — updated 20 Oct 2026
+- [Vocabulary Match-Up — Stress (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-stress-1.html) — updated 20 Oct 2026
 - [Vocabulary Match-Up — Managing Time (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-managingtime-1.html) — updated 20 Oct 2026
 - [Vocabulary Match-Up — Pollution (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-pollution-1.html) — updated 20 Oct 2026
 - [Vocabulary Match-Up — Recycling (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-recycling-1.html) — updated 20 Oct 2026
