@@ -58,6 +58,7 @@ jobs:
               'eng-matchvocab-recycling': 'Vocabulary Match-Up — Recycling',
               'eng-matchvocab-pollution': 'Vocabulary Match-Up — Pollution',
               'eng-matchvocab-managingtime': 'Vocabulary Match-Up — Managing Time',
+              'eng-matchvocab-stress': 'Vocabulary Match-Up — Stress',
               'eng-elaboration-socialmedia': 'Elaboration — Social Media',
               'eng-elaboration-mentalhealth': 'Elaboration — Mental Health',
               'eng-elaboration-sports': 'Elaboration — Playing Sports',
