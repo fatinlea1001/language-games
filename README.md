@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**170 games** — automatically updated when an HTML game is added or changed.
+**171 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Speaking Part 3 (Set 21)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-21.html) — updated 20 Oct 2026
 - [SPM Speaking Part 3 (Set 20)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-20.html) — updated 20 Oct 2026
 - [SPM Speaking Part 3 (Set 19)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-19.html) — updated 20 Oct 2026
 - [SPM Speaking Part 3 (Set 18)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-18.html) — updated 20 Oct 2026
