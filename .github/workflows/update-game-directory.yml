@@ -53,6 +53,7 @@ jobs:
               'eng-missing-true-crime': 'Missing Sentence Challenge — True Crime Podcasts',
               'eng-vocab-environment': 'Environment Vocabulary',
               'eng-vocab-technology': 'Technology Vocabulary',
+              'eng-matchvocab-onlineaddiction': 'Vocabulary Match-Up — Online Addiction',
               'eng-elaboration-socialmedia': 'Elaboration — Social Media',
               'eng-elaboration-mentalhealth': 'Elaboration — Mental Health',
               'eng-elaboration-sports': 'Elaboration — Playing Sports',
