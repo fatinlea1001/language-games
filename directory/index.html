@@ -325,6 +325,8 @@ function topicDescription(file, readmeTitle, language){
   const [topic,theme]=TOPIC_BASE[code]||[code,'Spelling'];
   return describe('Spelling Challenge — '+topic,topic,theme);
  }
+ if(stem==='eng-matchvocab-aiinlife')
+  return describe('Vocabulary Match-Up — AI in Life','AI in Life','Vocabulary');
  if(stem==='eng-matchvocab-aiinstudies')
   return describe('Vocabulary Match-Up — AI in Studies','AI in Studies','Vocabulary');
  if(stem==='eng-matchvocab-stress')
