@@ -56,6 +56,7 @@ jobs:
               'eng-matchvocab-onlineaddiction': 'Vocabulary Match-Up — Online Addiction',
               'eng-matchvocab-onlinegaming': 'Vocabulary Match-Up — Online Gaming',
               'eng-matchvocab-recycling': 'Vocabulary Match-Up — Recycling',
+              'eng-matchvocab-pollution': 'Vocabulary Match-Up — Pollution',
               'eng-elaboration-socialmedia': 'Elaboration — Social Media',
               'eng-elaboration-mentalhealth': 'Elaboration — Mental Health',
               'eng-elaboration-sports': 'Elaboration — Playing Sports',
