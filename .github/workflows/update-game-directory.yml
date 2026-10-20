@@ -60,6 +60,7 @@ jobs:
               'eng-matchvocab-managingtime': 'Vocabulary Match-Up — Managing Time',
               'eng-matchvocab-stress': 'Vocabulary Match-Up — Stress',
               'eng-matchvocab-aiinstudies': 'Vocabulary Match-Up — AI in Studies',
+              'eng-matchvocab-aiinlife': 'Vocabulary Match-Up — AI in Life',
               'eng-elaboration-socialmedia': 'Elaboration — Social Media',
               'eng-elaboration-mentalhealth': 'Elaboration — Mental Health',
               'eng-elaboration-sports': 'Elaboration — Playing Sports',
