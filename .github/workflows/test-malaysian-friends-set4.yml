@@ -1,0 +1,142 @@
+name: One-Time Malaysia Set 4 Browser Test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/test-malaysian-friends-set4.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Playwright browser
+        run: |
+          python -m pip install --quiet playwright
+          python -m playwright install chromium
+      - name: Play complete Malaysia Set 4 quiz on desktop and phone
+        run: |
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+
+          url = (Path.cwd() / "jpn-malaysia-friends-4.html").as_uri()
+
+          def check(condition, description):
+              if not condition:
+                  raise AssertionError(description)
+              print("PASS:", description, flush=True)
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              page = browser.new_page(viewport={"width": 1300, "height": 900})
+              errors = []
+              page.on("pageerror", lambda e: errors.append(str(e)))
+              page.goto(url, wait_until="load")
+              check("Set 4" in page.title(), "Malaysia Set 4 page loads")
+              check(page.locator("#heroPics img").count() == 4, "Four friends shown on entry screen")
+              check(page.locator("#heroPics img").evaluate_all("(imgs) => imgs.every(x => x.complete && x.naturalWidth > 0)"), "All four entry portraits load")
+              page.locator("#studentName").fill("Browser Tester")
+              page.locator("#startForm button").click()
+              check(page.locator("#showName").inner_text() == "Browser Tester", "Student name displayed")
+              check(page.locator(".say").count() == 12, "Scene displays twelve dialogue lines")
+              check(page.locator(".say img").evaluate_all("(imgs) => imgs.every(x => x.complete && x.naturalWidth > 0)"), "Every scene portrait loads")
+              page.locator("#readingBtn").click()
+              check(page.locator("#lines").evaluate("(el) => el.classList.contains('show-reading')"), "Show readings enabled")
+              page.locator("#readingBtn").click()
+              check(not page.locator("#lines").evaluate("(el) => el.classList.contains('show-reading')"), "Hide readings works")
+              check(page.locator(".say ruby rt").count()>0, "Furigana generated as ruby readings")
+              first_kanji=page.locator("#lines .say ruby").first
+              first_kanji.scroll_into_view_if_needed()
+              first_kanji.click()
+              check(first_kanji.evaluate("(el) => el.classList.contains('peek')"), "Tap a kanji to reveal its furigana")
+              first_kanji.click()
+              check(not first_kanji.evaluate("(el) => el.classList.contains('peek')"), "Tap again to hide furigana")
+              page.locator("#glossaryTrigger").click()
+              check(page.locator("#glossaryPanel").is_visible(), "Floating glossary opens")
+              check(page.locator(".glossary-entry").count() == 9, "Nine scene-specific glossary entries")
+              check("Departure" in page.locator("#glossaryWords").inner_text(), "Malaysia Set 4 English meanings displayed")
+              page.locator("#glossaryClose").click()
+              check(not page.locator("#glossaryPanel").is_visible(), "Floating glossary closes")
+              for scene in range(4):
+                  check(page.locator(".say").count()==12, "Scene %d: twelve dialogue lines" % (scene+1))
+                  check(page.locator(".say [data-action='pick']").count()==3, "Scene %d: three interactive questions" % (scene+1))
+                  for img in page.locator(".say img").all():
+                      img.scroll_into_view_if_needed()
+                      img.evaluate("(el) => el.decode()")
+                  check(page.locator(".say img").evaluate_all("(imgs) => imgs.every(x => x.complete && x.naturalWidth > 0)"), "Scene %d: all emotion portraits load" % (scene+1))
+                  page.locator("#glossaryTrigger").click()
+                  check(page.locator(".glossary-entry").count()==[9,9,10,10][scene], "Scene %d: glossary updates" % (scene+1))
+                  page.locator("#glossaryClose").click()
+                  indices=page.locator(".say [data-action='pick']").evaluate_all("(els) => els.map(e => e.dataset.i)")
+                  for j,i in enumerate(indices):
+                      page.locator(f'[data-action="pick"][data-i="{i}"]').click()
+                      if scene==0 and j==0:
+                          page.locator(f'[data-action="choose"][data-i="{i}"][data-opt="1"]').click()
+                          page.locator(f'[data-action="check"][data-i="{i}"]').click()
+                          check("Not quite" in page.locator(f"#feedback-{i}").inner_text(), "Wrong answer shows corrective feedback")
+                          page.locator(f'[data-action="pick"][data-i="{i}"]').click()
+                          check(page.locator(f'[data-action="choose"][data-i="{i}"][data-opt="1"]').is_disabled(), "Wrong choice becomes greyed out")
+                      page.locator(f'[data-action="choose"][data-i="{i}"][data-opt="0"]').click()
+                      page.locator(f'[data-action="check"][data-i="{i}"]').click()
+                      check("Correct!" in page.locator(f"#feedback-{i}").inner_text() or "Perfect!" in page.locator(f"#feedback-{i}").inner_text(), f"Scene {scene+1}, question {j+1}: correct selection accepted")
+                  check(page.locator("#nextScene").is_enabled(), "Scene %d: next button unlocks" % (scene+1))
+                  page.locator("#nextScene").click()
+              check(page.locator("#result").is_visible(), "Results page opens")
+              check(page.locator("#resultScore").inner_text()=="11", "Score is 11/12 after one incorrect first attempt")
+              check("Browser Tester" in page.locator("#resultName").inner_text(), "Results include student name")
+              check(page.locator(".review-item").count()==1, "Missed question shown in review")
+              page.locator("#replay").click()
+              check(page.locator("#showScore").inner_text()=="0/12", "Replay resets score")
+              check(page.locator("#showScene").inner_text()=="1/4", "Replay resets scene")
+              check(not errors, "No uncaught JavaScript errors: "+str(errors))
+              page.close()
+
+              phone = browser.new_page(viewport={"width": 390, "height": 844}, is_mobile=True, has_touch=True)
+              phone_errors = []
+              phone.on("pageerror", lambda e: phone_errors.append(str(e)))
+              phone.goto(url,wait_until="load")
+              phone.locator("#studentName").fill("Mobile Tester")
+              phone.locator("#startForm button").click()
+              check(phone.locator(".say").count()==12, "Mobile: scene loads")
+              check(phone.locator("#lines .portrait-frame").count()==12, "Mobile: framed portraits displayed")
+              mobile_ruby=phone.locator("#lines .say ruby").first
+              mobile_ruby.scroll_into_view_if_needed()
+              mobile_ruby.tap()
+              check(mobile_ruby.evaluate("(el) => el.classList.contains('peek')"), "Mobile: tapping furigana reveals reading")
+              for img in phone.locator("#lines .portrait-frame img").all():
+                  img.scroll_into_view_if_needed()
+                  img.evaluate("(el) => el.decode()")
+              check(phone.locator("#lines .portrait-frame img").evaluate_all("(imgs) => imgs.every(x => x.complete && x.naturalWidth > 0)"), "Mobile: portrait images load")
+              check(phone.evaluate("document.documentElement.scrollWidth <= innerWidth + 3"), "Mobile: no horizontal overflow")
+              phone.locator("#glossaryTrigger").click()
+              check(phone.locator("#glossaryPanel").is_visible(), "Mobile: floating glossary opens")
+              check(phone.locator(".glossary-entry").count()==9, "Mobile: English glossary displays")
+              phone.locator("#glossaryClose").click()
+              check(not phone.locator("#glossaryPanel").is_visible(), "Mobile: floating glossary closes")
+              # Finish the complete story a second time in the 390px phone viewport.
+              for scene in range(4):
+                  check(phone.locator(".say").count()==12, "Mobile scene %d: dialogue rendered" % (scene+1))
+                  indices=phone.locator(".say [data-action='pick']").evaluate_all("(els) => els.map(e => e.dataset.i)")
+                  for i in indices:
+                      phone.locator(f'[data-action="pick"][data-i="{i}"]').click()
+                      phone.locator(f'[data-action="choose"][data-i="{i}"][data-opt="0"]').click()
+                      phone.locator(f'[data-action="check"][data-i="{i}"]').click()
+                  phone.locator("#nextScene").click()
+              check(phone.locator("#resultScore").inner_text()=="12", "Mobile: perfect score is 12/12")
+              check(phone.evaluate("document.documentElement.scrollWidth <= innerWidth + 3"), "Mobile: no horizontal overflow on results page")
+
+              check(not phone_errors, "Mobile: no uncaught JS errors")
+              phone.screenshot(path="malaysia-mobile-tested.png",full_page=False)
+              browser.close()
+          print("MALAYSIA SET 4 FULL BROWSER TEST PASSED",flush=True)
+          PY
