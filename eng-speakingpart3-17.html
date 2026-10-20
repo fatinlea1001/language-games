@@ -317,7 +317,9 @@ function renderGameMap(){
 }
 function buildParagraph(p,lines){return lines.join(' ');}
 function sentenceFor(point){
-  return (stepIndex===0?OPENERS[pointIndex]:'')+point.sentences[stepIndex];
+  const sentence=point.sentences[stepIndex];
+  // Transition phrases are followed by lowercase sentence starts, e.g. "To begin with, virtual lessons..."
+  return stepIndex===0?OPENERS[pointIndex]+sentence.charAt(0).toLowerCase()+sentence.slice(1):sentence;
 }
 function newChoices(){
   const p=selectedPoints[pointIndex];
