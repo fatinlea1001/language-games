@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**187 games** — automatically updated when an HTML game is added or changed.
+**188 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Matchvocab Stress Management (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-stress-management-1.html) — updated 20 Oct 2026
 - [Vocabulary Match-Up — Volunteering (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-volunteering-1.html) — updated 20 Oct 2026
 - [Vocabulary Match-Up — Online Shopping (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-onlineshopping-1.html) — updated 20 Oct 2026
 - [Vocabulary Match-Up — Screen Time (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-screentime-1.html) — updated 20 Oct 2026
