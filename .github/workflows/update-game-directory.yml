@@ -63,6 +63,7 @@ jobs:
               'eng-matchvocab-aiinlife': 'Vocabulary Match-Up — AI in Life',
               'eng-matchvocab-screentime': 'Vocabulary Match-Up — Screen Time',
               'eng-matchvocab-onlineshopping': 'Vocabulary Match-Up — Online Shopping',
+              'eng-matchvocab-volunteering': 'Vocabulary Match-Up — Volunteering',
               'eng-elaboration-socialmedia': 'Elaboration — Social Media',
               'eng-elaboration-mentalhealth': 'Elaboration — Mental Health',
               'eng-elaboration-sports': 'Elaboration — Playing Sports',
