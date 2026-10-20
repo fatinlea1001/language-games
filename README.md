@@ -3,7 +3,7 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**171 games** — automatically updated when an HTML game is added or changed.
+**172 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
@@ -132,6 +132,7 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [Malaysia Friends (Set 2)](https://fatinlea1001.github.io/language-games/jpn-malaysia-friends-2.html) — updated 20 Oct 2026
 - [Malaysia Friends (Set 1)](https://fatinlea1001.github.io/language-games/jpn-malaysia-friends-1.html) — updated 19 Oct 2026
 - [Friends Dialogue (Set 5)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-5.html) — updated 19 Oct 2026
 - [Friends Dialogue (Set 4)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-4.html) — updated 19 Oct 2026
