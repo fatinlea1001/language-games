@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#e6f5dd"><meta name="description" content="SPM Speaking Part 3: Build five connected paragraphs about popular gig economy jobs in Malaysia."><title>Speak &amp; Build | Popular Gig Economy Jobs in Malaysia</title><style>
+
+    :root{--ink:#233651;--muted:#667895;--purple:#397ae6;--purple-dark:#2459be;--purple-light:#edf4ff;--pink:#ffe8f1;--border:#d4e3fc;--good:#176a4b;--good-bg:#eaf9f1;--bad:#a13b57;--bad-bg:#fff0f3;--white:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 0 0,#dfedff 0,transparent 32%),radial-gradient(circle at 100% 0,#d7e0ff 0,transparent 31%),linear-gradient(160deg,#eff7ff,#f7faff 55%,#fff8fd);min-height:100vh}
+    .container{max-width:850px;margin:auto;padding:22px 15px 50px}
+    .brand{text-align:center;margin-bottom:19px}
+    .brand small{display:inline-block;border-radius:99px;background:#fff;padding:7px 14px;color:#3267b7;font-size:.76rem;font-weight:850;letter-spacing:.055em;box-shadow:0 2px 13px #95b7e52c}
+    .brand h1{font-size:clamp(1.7rem,5vw,2.5rem);margin:10px 0 6px;letter-spacing:-.035em}
+    .brand p{margin:0;color:var(--muted);font-size:.95rem}
+    .card{background:#ffffffef;border:1px solid var(--border);border-radius:23px;padding:clamp(19px,4vw,32px);box-shadow:0 13px 33px #6897db21}
+    .hidden{display:none!important}
+    .question{background:linear-gradient(115deg,#dfecff,#f1eaff);border:1px solid #cad9fa;padding:20px 18px;border-radius:18px;text-align:center}
+    .question .label{font-size:.76rem;font-weight:850;color:#3a65ae;text-transform:uppercase;letter-spacing:.07em}
+    .question h2{font-size:clamp(1.18rem,4vw,1.6rem);line-height:1.32;margin:8px auto 0;max-width:670px}
+    .mindmap{margin:19px 0 8px;text-align:center}
+    .mindmap strong{display:block;margin-bottom:12px}
+    .map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    .map-node{border:2px solid #c9d9f5;background:#f9fbff;border-radius:14px;min-height:83px;padding:11px 6px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;text-align:center;font-size:.83rem;font-weight:800;overflow-wrap:anywhere}
+    .map-node .emoji{font-size:1.45rem}
+    .map-node.active{background:#d7e7ff;border-color:#328b90;box-shadow:0 0 0 2px #e0eaff}
+    .map-node.done{background:#e6f4ed;border-color:#94c9b5}
+    .hint{font-size:.9rem;color:var(--muted);line-height:1.65}
+    .name-label{display:block;font-weight:800;margin:23px 0 8px}
+    input[type=text]{font:inherit;width:100%;padding:14px;border:2px solid #c8d9f8;border-radius:12px;color:var(--ink);background:white}
+    input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline:3px solid #8eb1fa;outline-offset:3px}
+    .error{font-size:.88rem;color:var(--bad);margin:8px 0 0}
+    button{font:inherit;font-weight:820;cursor:pointer;border:0;border-radius:13px;padding:13px 19px}
+    button:disabled{opacity:.47;cursor:not-allowed}
+    .btn-primary{background:var(--purple);color:white}
+    .btn-primary:not(:disabled):hover{background:var(--purple-dark)}
+    .btn-soft{background:#e5efff;color:#315fb5}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .button-row>button{flex:1 1 190px}
+    .status{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}
+    .chip{display:inline-flex;align-items:center;background:#e9f1ff;border-radius:99px;padding:6px 11px;color:#3766b2;font-size:.83rem;font-weight:850}
+    .progress{height:9px;border-radius:99px;background:#e7eeff;overflow:hidden;margin:12px 0 20px}
+    .progress-inner{height:100%;width:0;background:linear-gradient(90deg,#61adff,#8474e8);transition:width .25s}
+    .point-heading{font-size:1.45rem;letter-spacing:-.025em;margin:11px 0 5px}
+    .step-desc{font-size:.95rem;color:var(--muted);margin:0 0 14px}
+    .paragraph-box{background:#f5f9ff;border:1px solid #d6e3ff;border-left:5px solid #76a2ee;border-radius:14px;padding:15px 17px;margin:17px 0;min-height:90px;line-height:1.8}
+    .paragraph-box .mini-label{font-size:.73rem;color:#3c6fba;font-weight:850;letter-spacing:.045em;margin-bottom:5px}
+    .placeholder{color:#9a94ae;font-style:italic}
+    .paragraph-box p{margin:0}
+    .paragraph-box .built{font-weight:600}
+    .choose-title{font-size:1.07rem;margin:21px 0 11px}
+    .choices{display:grid;gap:10px}
+    .choice{width:100%;text-align:left;display:flex;align-items:flex-start;gap:12px;color:var(--ink);font-weight:600;line-height:1.5;background:#fff;border:2px solid #d2dff6;transition:background .15s,border-color .15s}
+    .choice:hover:not(:disabled){border-color:#89aaf3;background:#f5f8ff}
+    .choice.correct{border-color:#67b994;background:var(--good-bg)}
+    .choice.wrong{border-color:#e6a3b4;background:var(--bad-bg)}
+    .letter{display:inline-flex;flex:0 0 28px;width:28px;height:28px;justify-content:center;align-items:center;border-radius:9px;background:#e6f0ff;color:#3567ae;font-size:.83rem;font-weight:850}
+    .feedback{border-radius:15px;margin-top:16px;padding:15px 17px;line-height:1.65}
+    .feedback.good{background:var(--good-bg);border:1px solid #9dd5bb}
+    .feedback.bad{background:var(--bad-bg);border:1px solid #ecc2cc}
+    .feedback h3{margin:0 0 6px;font-size:1.04rem}
+    .feedback p{margin:8px 0 0;font-size:.92rem}
+    .feedback .correct-line{padding:9px 11px;border-radius:9px;background:#fff;font-weight:700;margin-top:10px}
+    .para-review{background:#f8faff;border:1px solid #d6e2fa;border-radius:14px;padding:16px 17px;margin:12px 0}
+    .para-review h3{font-size:1.08rem;margin:0 0 6px}
+    .para-review p{margin:0;line-height:1.8}
+    .copy-banner{background:#fff3c9;border:3px solid #dfab38;border-radius:17px;padding:20px;margin:21px 0;box-shadow:0 5px 0 #f3e4bb}
+    .copy-banner h3{margin:0 0 10px;font-size:clamp(1.22rem,4.5vw,1.55rem);color:#7d4e0d}
+    .copy-banner p{margin:6px 0;line-height:1.6}
+    .tick{display:flex;align-items:flex-start;gap:11px;padding:12px 0;font-weight:700;line-height:1.5}
+    .tick input{margin:4px 0 0;transform:scale(1.35);accent-color:var(--purple)}
+    .score{font-size:clamp(3rem,9vw,4.7rem);color:var(--purple-dark);font-weight:950;text-align:center;margin:12px 0 2px}
+    .center{text-align:center}
+    .result-line{padding:11px 0;border-bottom:1px solid #dce6f8;display:flex;justify-content:space-between;gap:9px}
+    .result-line:last-child{border:0}
+    .footer{text-align:center;color:#667895;margin:21px 0 0;font-size:.78rem}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(3,1fr)}.map-node{min-height:72px}.container{padding-top:15px}.card{border-radius:18px}.choice{padding:12px}}
+    @media(max-width:380px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+    @media print{body{background:white}.brand,.question,.mindmap,#welcome,#game,#results,.copy-banner,.tick,.button-row,.footer{display:none!important}#review{display:block!important;box-shadow:none;border:0;padding:0}.para-review{break-inside:avoid}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    .map-node.pick{cursor:pointer;transition:transform .12s,background .12s,border-color .12s}
+    .map-node.pick:hover:not(:disabled){transform:translateY(-2px);border-color:#7ca7f0}
+    .map-node.pick:disabled{cursor:not-allowed;opacity:.66}
+    .map-node.selected{background:#deebff;border-color:#4785e5;box-shadow:0 0 0 2px #e5edff}
+    .map-node.skipped{background:#f2f3f5;border-color:#dde2e5;color:#8b9198}
+    .map-node small{font-size:.67rem;font-weight:800;line-height:1.2}
+    .map-node.active{background:#e8ddff;border-color:#9382da;box-shadow:0 0 0 2px #eeeaff}
+    .select-help{margin-top:12px;border-radius:12px;padding:10px 12px;background:#edf4ff;color:#345d9e;font-size:.92rem;font-weight:750;text-align:center}
+    .map-grid button{font:inherit}
+    .note{background:#eaf3ff;border-radius:12px;padding:12px 14px;line-height:1.55;font-size:.91rem;margin:14px 0}
+    .copy-banner{background:#fff3bf;border-color:#dda225}
+    .copy-banner h3{font-size:clamp(1.3rem,4.6vw,1.65rem)}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+  
+  .subline{font-weight:700;margin-top:9px;color:#47648e}
+  .opening-tag{display:inline-block;border-radius:8px;background:#e0ebff;color:#2e63b7;padding:3px 8px;font-size:.75rem;font-weight:850;margin-bottom:8px}
+  .choice.target{border-color:#3c80d9;background:#e9f2ff;box-shadow:0 0 0 2px #d6e8ff}
+  .choice.target .letter{background:#397ae6;color:white}
+  .paragraph-box .built{font-weight:540}
+  .copy-banner{background:#fff1be;border-color:#dfa33f}
+  .note{background:#edf4ff}
+  @media print{.opening-tag{display:none}}
+
+
+/* Gig Economy: pastel sage + light yellow */
+:root{--ink:#314835;--muted:#677b68;--purple:#488360;--purple-dark:#2e6249;--purple-light:#e6f5dd;--border:#dbe9d5;--good:#176a4b;--good-bg:#e9f9f0;--bad:#9f3d58;--bad-bg:#fff0f3}
+body{background:radial-gradient(circle at 8% 9%,#e3f6d9 0,transparent 35%),radial-gradient(circle at 96% 6%,#fff4c6 0,transparent 35%),linear-gradient(152deg,#f4fff0,#fbfdf6 57%,#fff8e9)}
+.brand small{color:#47845e;box-shadow:0 2px 13px #a1cda84f}
+.brand h1{color:#387450}
+.card{box-shadow:0 14px 36px #73956c24}
+.question{background:linear-gradient(115deg,#e3f5de,#fff5d3);border-color:#d5e6c8}
+.question .label{color:#528059}
+.map-node{border-color:#dce8d7;background:#fff}
+.map-node.selected{background:#e6f6df;border-color:#7cb98a;box-shadow:0 0 0 2px #f3fff0}
+.map-node.active{background:#fff3ce;border-color:#d9bf73;box-shadow:0 0 0 2px #fff9e6}
+.map-node.done{background:#e6f8e8;border-color:#83c9a3}
+.map-node.pick:hover:not(:disabled){border-color:#74ac7f}
+.map-node.skipped{background:#f5f5f5;border-color:#e1e5e8}
+input[type=text]{border-color:#cee3c9}
+input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline-color:#93cb93}
+.btn-soft{background:#e6f4df;color:#3a7750}
+.chip{background:#e7f5e0;color:#387a4c}
+.progress{background:#e2f1dc}
+.progress-inner{background:linear-gradient(90deg,#77c79d,#efc976)}
+.paragraph-box{background:#f3fcf1;border-color:#d8ebd4;border-left-color:#82b78b}
+.paragraph-box .mini-label{color:#4d845c}
+.choice{border-color:#dbe8d6}
+.choice:hover:not(:disabled){border-color:#95c39c;background:#f7fff4}
+.letter{background:#e6f5de;color:#438456}
+.para-review{background:#ffffff;border-color:#d6e8d2}
+.select-help{background:#e5f5dd;color:#39764d}
+.opening-tag{background:#e5f6df;color:#478157}
+.choice.target{border-color:#54a06a;background:#e9fae7;box-shadow:0 0 0 2px #d8f4d9}
+.choice.target .letter{background:#398a53;color:white}
+.result-line{border-bottom-color:#e0ede1}
+.note{background:#fff8dd;color:#665c37;border:1px solid #f0e5ba}
+.copy-banner{background:#fff0bf;border-color:#d9ac38}
+@media print{.container{max-width:none}.para-review{break-inside:avoid}}
+</style></head><body>
+<main class="container">
+<header class="brand"><small>🗣️ SPM ENGLISH SPEAKING PRACTICE</small><h1>💼 Speak &amp; Build!</h1><p>Part 3 · Popular Gig Economy Jobs in Malaysia</p></header>
+<section id="welcome" class="card">
+  <div class="question"><div class="label">Speaking Part 3 · Discussion Question</div><h2>What are some popular gig economy jobs in Malaysia?</h2><p class="subline">Choose any five points from the mind map.</p></div>
+  <div class="note" role="note">💡 <b>Speaking tip:</b> Each paragraph begins with a transition, followed by an explanation, an example and a result. / <b>Tip bertutur:</b> Setiap perenggan bermula dengan penanda wacana, diikuti huraian, contoh dan kesan.</div>
+  <p class="hint">💼 <b>Speaking tip:</b> Describe what each gig worker does, give a realistic Malaysian example, and explain the benefit. / <b>Tip bertutur:</b> Terangkan tugas setiap pekerja gig, berikan contoh di Malaysia dan jelaskan manfaatnya.</p>
+  <div class="mindmap"><strong>🧠 Six Points in the Mind Map</strong><div class="map-grid" id="welcomeMap"></div></div>
+  <div class="select-help" id="selectCount" role="status" aria-live="polite">Choose FIVE points (0 / 5 selected).</div>
+  <p class="hint">Select any <b>FIVE out of SIX</b> points. / Pilih mana-mana <b>LIMA daripada ENAM</b> isi.</p>
+  <label class="name-label" for="studentName">Your name / Nama murid</label>
+  <input id="studentName" type="text" maxlength="65" placeholder="Enter your name" autocomplete="name">
+  <p id="nameError" class="error hidden" role="alert">Please enter your name. / Sila masukkan nama.</p>
+  <div class="button-row"><button type="button" class="btn-primary" id="startBtn" disabled>Start Building My Five Paragraphs →</button></div>
+  <p class="hint">For each point, you will choose <b>3 elaboration sentences</b>. A correct first attempt earns 1 mark. Total: <b>15 marks</b>. Each paragraph begins with a cohesive transition.</p>
+</section>
+<section id="game" class="card hidden">
+  <div class="status"><span class="chip" id="pointCounter">Point 1 of 5</span><span class="chip" id="stepCounter">Sentence 1 of 3</span><span class="chip" id="markCounter">Marks: 0 / 15</span></div>
+  <div class="progress" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progress"><div class="progress-inner" id="progressInner"></div></div>
+  <div class="question"><div class="label">Speaking Part 3 · Discussion Question</div><h2>What are some popular gig economy jobs in Malaysia?</h2></div>
+  <div class="mindmap"><strong>🧠 All Six Original Points</strong><div class="map-grid" id="gameMap"></div></div>
+  <h2 class="point-heading" id="pointTitle">Point 1</h2><p class="step-desc" id="stepHelp"></p>
+  <div class="paragraph-box" aria-live="polite"><div class="mini-label">YOUR PARAGRAPH SO FAR</div><div class="opening-tag">✨ Transition + main point</div><p id="builtParagraph" class="built"></p></div>
+  <h3 class="choose-title" id="chooseTitle">Choose the most suitable sentence:</h3><div class="choices" id="choices"></div>
+  <div class="feedback hidden" id="feedback" role="status" aria-live="polite"></div>
+  <div class="button-row hidden" id="nextWrap"><button type="button" class="btn-primary" id="nextBtn">Next Sentence →</button></div>
+</section>
+<section id="review" class="card hidden">
+  <div class="question"><div class="label">Fantastic! 🎉</div><h2>Your FIVE Completed Paragraphs</h2></div>
+  <p class="hint center">Look at the transitions, explanations, examples and results. Read the paragraphs and copy them into your exercise book.</p>
+  <div id="paragraphsList"></div>
+  <div class="copy-banner" role="note"><h3>📚✏️ IMPORTANT! COPY ALL FIVE PARAGRAPHS INTO YOUR EXERCISE BOOK!</h3><p><b>Copy the five complete paragraphs before viewing your score.</b></p><p><b>PENTING! SALIN KELIMA-LIMA PERENGGAN INI KE DALAM BUKU LATIHAN ANDA SEBELUM MELIHAT MARKAH!</b></p></div>
+  <label class="tick"><input type="checkbox" id="copiedCheck"><span>I have copied all FIVE paragraphs into my exercise book.<span class="hint" style="display:block">Saya telah menyalin KELIMA-LIMA perenggan ke dalam buku latihan.</span></span></label>
+  <div class="button-row"><button type="button" id="scoreBtn" class="btn-primary" disabled>Continue to Final Score →</button></div>
+</section>
+<section id="results" class="card hidden">
+  <div class="center" style="font-size:2.6rem">🎉🏆🌟</div><h2 class="center">Great Work! Quiz Complete!</h2>
+  <p class="center hint">Popular Gig Economy Jobs in Malaysia</p><p id="resultStudent" class="center" style="font-weight:800"></p><div id="finalScore" class="score">0 / 15</div><p class="center" id="resultMessage"></p>
+  <h3>📚 Your Five Selected Points</h3><div id="breakdown"></div>
+  <p class="hint">📸 Take a screenshot showing your name and final score for your teacher.</p>
+  <div class="button-row"><button type="button" class="btn-soft" id="reviewBtn">📖 See My Five Paragraphs</button><button type="button" class="btn-primary" id="replayBtn">🔀 Replay · Choose Five Points</button></div>
+</section>
+<footer class="footer">SPM Speaking Part 3 • Standalone HTML • GitHub Pages friendly • Works offline</footer>
+</main>
+<script>
+'use strict';
+const POINTS = [{"key":"food","name":"Food Delivery Rider","emoji":"🛵","bm":"penghantar makanan","focus":"collecting restaurant orders and delivering meals to customers","focusMs":"mengambil pesanan restoran dan menghantar makanan kepada pelanggan","intro":"working as a food delivery rider is a common gig job in Malaysia.","introSecond":"Another popular gig job is delivering meals ordered through mobile apps.","sentences":["These riders collect food from restaurants and take the orders directly to customers.","For example, a rider may deliver nasi lemak from a local café to a nearby flat.","As a result, customers receive meals conveniently while riders earn money from deliveries."],"en":["This explains the main responsibility of a food delivery rider.","Delivering nasi lemak to a nearby flat is a realistic example of food delivery work.","The result shows how the service benefits both customers and riders."],"ms":["Ayat ini menerangkan tugas utama seorang penghantar makanan.","Menghantar nasi lemak ke rumah pangsa berhampiran ialah contoh kerja penghantaran makanan.","Kesan ini menunjukkan manfaat perkhidmatan tersebut kepada pelanggan dan penghantar."]},{"key":"ehailing","name":"E-Hailing Driver","emoji":"🚗","bm":"pemandu e-panggilan","focus":"driving passengers to destinations booked through an application","focusMs":"membawa penumpang ke destinasi yang ditempah melalui aplikasi","intro":"becoming an e-hailing driver is another popular way to earn money through gig work.","introSecond":"Another well-known gig job is driving passengers through an e-hailing application.","sentences":["Drivers accept bookings through an app and take passengers to their chosen destinations.","For instance, a driver may pick up a traveller at a train station and take them to a hotel.","Therefore, passengers enjoy convenient transport while drivers earn money from each trip."],"en":["This explains how an e-hailing driver finds passengers and completes trips.","Taking a traveller from a train station to a hotel is a clear e-hailing example.","This result connects convenient transport with drivers' earnings."],"ms":["Ayat ini menerangkan cara pemandu e-panggilan menerima tempahan dan melengkapkan perjalanan.","Membawa pelancong dari stesen kereta api ke hotel ialah contoh perkhidmatan e-panggilan.","Kesan ini mengaitkan kemudahan pengangkutan dengan pendapatan pemandu."]},{"key":"parcel","name":"Parcel Delivery Courier","emoji":"📦","bm":"penghantar bungkusan","focus":"collecting parcels and delivering them to homes and offices","focusMs":"mengambil bungkusan dan menghantarnya ke rumah serta pejabat","intro":"delivering parcels is a useful gig job as more Malaysians shop online.","introSecond":"Another type of gig work is delivering parcels to customers.","sentences":["Couriers collect packages from distribution points and deliver them to the correct addresses.","For example, a courier might bring an online shopping parcel to a customer's house.","Consequently, buyers receive their orders while couriers are paid for making deliveries."],"en":["This describes how parcel couriers handle and deliver packages.","A parcel arriving at a customer's home is a clear example of courier work.","The result explains the benefit to online shoppers and delivery workers."],"ms":["Ayat ini menerangkan cara penghantar bungkusan mengambil dan menghantar barangan.","Bungkusan beli-belah dalam talian yang tiba di rumah pelanggan ialah contoh kerja kurier.","Kesan ini menerangkan manfaat kepada pembeli dalam talian dan pekerja penghantaran."]},{"key":"designer","name":"Freelance Graphic Designer","emoji":"🎨","bm":"pereka grafik bebas","focus":"creating digital designs for different clients on a project basis","focusMs":"menghasilkan reka bentuk digital untuk pelanggan berbeza mengikut projek","intro":"freelance graphic design allows creative Malaysians to work on individual projects.","introSecond":"Another gig job that suits creative people is freelance graphic design.","sentences":["Graphic designers create posters, logos and social media visuals for different clients.","For instance, a designer might make a promotional poster for a small bakery.","In this way, designers can earn from their creativity without working in an office full-time."],"en":["This identifies the kinds of creative work freelance graphic designers do.","Making a bakery poster is a specific example of a freelance design project.","This result shows how creative skills can provide flexible income."],"ms":["Ayat ini menyatakan jenis tugasan kreatif yang dibuat oleh pereka grafik bebas.","Menghasilkan poster untuk kedai roti ialah contoh khusus projek reka bentuk bebas.","Kesan ini menunjukkan bagaimana kemahiran kreatif dapat menjana pendapatan fleksibel."]},{"key":"tutor","name":"Online Tutor","emoji":"📚","bm":"tutor dalam talian","focus":"teaching students through video calls and online learning tools","focusMs":"mengajar pelajar melalui panggilan video dan alat pembelajaran dalam talian","intro":"working as an online tutor is suitable for people who enjoy teaching.","introSecond":"Another flexible gig job is tutoring students online.","sentences":["Online tutors explain school subjects and answer students' questions through video calls.","For example, a university student might teach English grammar to a Form 4 pupil online.","As a result, the pupil improves their understanding while the tutor earns money from home."],"en":["This describes the teaching and guidance that online tutors provide.","Teaching English grammar to a Form 4 student is a specific online tutoring example.","This result shows benefits for both the learner and the tutor."],"ms":["Ayat ini menerangkan pengajaran dan bimbingan yang diberikan oleh tutor dalam talian.","Mengajar tatabahasa bahasa Inggeris kepada murid Tingkatan 4 ialah contoh khusus kelas dalam talian.","Kesan ini menunjukkan manfaat kepada pelajar serta tutor."]},{"key":"photo","name":"Freelance Photographer","emoji":"📸","bm":"jurugambar bebas","focus":"taking photographs for events, portraits and small businesses","focusMs":"mengambil gambar untuk majlis, potret dan perniagaan kecil","intro":"freelance photography is another way to earn money using a practical skill.","introSecond":"Another interesting gig job is working as a freelance photographer.","sentences":["Photographers accept bookings to take pictures at events or for individual customers.","For instance, a photographer may take graduation portraits for a family at the weekend.","Thus, customers receive special memories while photographers earn from their skills."],"en":["This explains the kind of bookings freelance photographers accept.","Taking graduation portraits is a clear example of a paid photography job.","The result links memorable photographs to the photographer's earnings."],"ms":["Ayat ini menerangkan jenis tempahan yang diterima oleh jurugambar bebas.","Mengambil gambar potret graduasi ialah contoh jelas kerja fotografi berbayar.","Kesan ini mengaitkan kenangan bergambar dengan pendapatan jurugambar."]}];
+const LEADS = [
+ 'To begin with, ',
+ 'Secondly, ',
+ 'In addition, ',
+ 'Furthermore, ',
+ 'Finally, '
+];
+const PHASES = [
+ {en:'Choose a suitable EXPLANATION.',ms:'Pilih ayat HURAIAN yang sesuai.',name:'Explanation'},
+ {en:'Choose a suitable EXAMPLE or supporting detail.',ms:'Pilih CONTOH atau maklumat sokongan yang sesuai.',name:'Example / Detail'},
+ {en:'Choose a suitable RESULT or benefit.',ms:'Pilih KESAN atau faedah yang sesuai.',name:'Result / Benefit'}
+];
+const $ = id => document.getElementById(id);
+const show = id => $(id).classList.remove('hidden');
+const hide = id => $(id).classList.add('hidden');
+const shuffle = xs => {const a=xs.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let student='',selectedKeys=[],selectedPoints=[],pointIndex=0,stepIndex=0,score=0,pointScores=[],wrongYet=false,solved=false,choices=[],paragraphs=[],completed=0,hasCopied=false;
+function openSentence(p, position){return position===1 ? p.introSecond : LEADS[position] + p.intro;}
+function fullParagraph(p,position,lines){return [openSentence(p,position),...lines].join(' ');}
+function resetWelcomeMap(){
+ const wrap=$('welcomeMap');wrap.replaceChildren();
+ POINTS.forEach(p=>{
+  const b=document.createElement('button');b.type='button';b.className='map-node pick'+(selectedKeys.includes(p.key)?' selected':'');
+  b.disabled=selectedKeys.length===5&&!selectedKeys.includes(p.key);
+  b.setAttribute('aria-pressed',String(selectedKeys.includes(p.key)));
+  const icon=document.createElement('span');icon.className='emoji';icon.textContent=p.emoji;
+  const name=document.createElement('span');name.textContent=p.name;
+  const state=document.createElement('small');state.textContent=selectedKeys.includes(p.key)?'✓ SELECTED':'TAP TO SELECT';
+  b.append(icon,name,state);
+  b.addEventListener('click',()=>{
+   if(selectedKeys.includes(p.key))selectedKeys=selectedKeys.filter(k=>k!==p.key);
+   else if(selectedKeys.length<5)selectedKeys.push(p.key);
+   resetWelcomeMap();
+  });wrap.append(b);
+ });
+ $('selectCount').textContent=selectedKeys.length===5?'✅ Five points selected! You can change one before starting.':`Choose FIVE points (${selectedKeys.length} / 5 selected).`;
+ $('startBtn').disabled=selectedKeys.length!==5;
+}
+function renderGameMap(){
+ const wrap=$('gameMap');wrap.replaceChildren();
+ POINTS.forEach(p=>{
+  const index=selectedPoints.findIndex(q=>q.key===p.key);
+  const node=document.createElement('div');node.className='map-node '+(index<0?'skipped':index===pointIndex?'active':index<pointIndex?'done':'selected');
+  const ico=document.createElement('span');ico.className='emoji';ico.textContent=p.emoji;
+  const name=document.createElement('span');name.textContent=p.name;
+  const st=document.createElement('small');st.textContent=index<0?'NOT SELECTED':index===pointIndex?'CURRENT POINT':index<pointIndex?'COMPLETED':'SELECTED';
+  node.append(ico,name,st);wrap.append(node);
+ });
+}
+function newChoices(){
+ const p=selectedPoints[pointIndex];
+ const others=shuffle(POINTS.filter(q=>q.key!==p.key)).slice(0,2);
+ choices=shuffle([{text:p.sentences[stepIndex],owner:p.key},...others.map(q=>({text:q.sentences[stepIndex],owner:q.key}))]);
+}
+function start(){
+ const name=$('studentName').value.trim();if(!name){show('nameError');$('studentName').focus();return;}
+ hide('nameError');if(selectedKeys.length!==5)return;
+ student=name;
+ // Keep the order consistent with the original mind map, not the order of clicks.
+ selectedPoints=POINTS.filter(p=>selectedKeys.includes(p.key));
+ pointIndex=0;stepIndex=0;score=0;pointScores=Array(5).fill(0);wrongYet=false;solved=false;
+ paragraphs=selectedPoints.map(()=>[]);completed=0;hasCopied=false;
+ $('copiedCheck').checked=false;$('scoreBtn').disabled=true;
+ hide('welcome');hide('review');hide('results');show('game');newChoices();render();window.scrollTo(0,0);
+}
+function render(){
+ const p=selectedPoints[pointIndex];
+ $('pointCounter').textContent=`Point ${pointIndex+1} of 5`;
+ $('stepCounter').textContent=`Sentence ${stepIndex+1} of 3`;
+ $('markCounter').textContent=`Marks: ${score} / 15`;
+ $('progressInner').style.width=`${completed/15*100}%`;
+ $('progress').setAttribute('aria-valuenow',String(completed));
+ $('pointTitle').textContent=`${p.emoji} Point ${pointIndex+1}: ${p.name}`;
+ $('stepHelp').textContent=PHASES[stepIndex].en+' / '+PHASES[stepIndex].ms;
+ $('chooseTitle').textContent=`Choose the best sentence — ${PHASES[stepIndex].name}`;
+ renderGameMap();
+ $('builtParagraph').textContent=fullParagraph(p,pointIndex,paragraphs[pointIndex]);
+ $('choices').replaceChildren();
+ choices.forEach((c,i)=>{
+  const b=document.createElement('button');b.type='button';b.className='choice';b.disabled=solved;
+  const letter=document.createElement('span');letter.className='letter';letter.textContent='ABC'[i];
+  const txt=document.createElement('span');txt.textContent=c.text;
+  b.append(letter,txt);b.addEventListener('click',()=>choose(c,b));$('choices').append(b);
+ });
+ hide('feedback');hide('nextWrap');
+}
+function feedback(type,title,en,ms,correctLine=''){
+ const el=$('feedback');el.className='feedback '+type;el.replaceChildren();
+ const heading=document.createElement('h3');heading.textContent=title;
+ const english=document.createElement('p');english.textContent='🇬🇧 '+en;
+ const malay=document.createElement('p');malay.textContent='🇲🇾 '+ms;
+ el.append(heading,english,malay);
+ if(correctLine){const line=document.createElement('div');line.className='correct-line';line.textContent='✅ Correct sentence: '+correctLine;el.append(line);}
+ show('feedback');
+}
+function choose(c,b){
+ if(solved||b.disabled)return;
+ const p=selectedPoints[pointIndex];
+ if(c.owner!==p.key){
+  wrongYet=true;b.classList.add('wrong');b.disabled=true;
+  const wrong=POINTS.find(q=>q.key===c.owner);
+  document.querySelectorAll('#choices button').forEach((btn,i)=>{if(choices[i].owner===p.key)btn.classList.add('target');});
+  feedback('bad','❌ Not quite — try again!',
+   `This sentence focuses on ${wrong.focus}, but your paragraph is about ${p.focus}. Choose the highlighted sentence to continue.`,
+   `Ayat ini berfokus pada ${wrong.focusMs}, tetapi perenggan ini tentang ${p.focusMs}. Pilih ayat yang ditandakan untuk meneruskan.`,p.sentences[stepIndex]);
+  return;
+ }
+ solved=true;b.classList.remove('target');b.classList.add('correct');
+ if(!wrongYet){score++;pointScores[pointIndex]++;}
+ completed++;paragraphs[pointIndex].push(p.sentences[stepIndex]);
+ $('builtParagraph').textContent=fullParagraph(p,pointIndex,paragraphs[pointIndex]);
+ document.querySelectorAll('#choices button').forEach(btn=>btn.disabled=true);
+ $('markCounter').textContent=`Marks: ${score} / 15`;
+ $('progressInner').style.width=`${completed/15*100}%`;
+ $('progress').setAttribute('aria-valuenow',String(completed));
+ feedback('good',wrongYet?'✅ Correct! Keep practising.':'✅ Excellent! +1 mark',p.en[stepIndex],p.ms[stepIndex]);
+ $('nextBtn').textContent=stepIndex<2?'Next Sentence →':pointIndex<4?'Next Point →':'See All Five Paragraphs →';
+ show('nextWrap');
+}
+function advance(){
+ if(!solved)return;
+ if(stepIndex<2)stepIndex++;
+ else if(pointIndex<4){pointIndex++;stepIndex=0;}
+ else{showReview();return;}
+ wrongYet=false;solved=false;newChoices();render();window.scrollTo(0,0);
+}
+function showReview(){
+ hide('game');hide('results');show('review');
+ $('paragraphsList').replaceChildren();
+ selectedPoints.forEach((p,i)=>{
+  const section=document.createElement('section');section.className='para-review';
+  const title=document.createElement('h3');title.textContent=`${i+1}. ${p.emoji} ${p.name}`;
+  const body=document.createElement('p');body.textContent=fullParagraph(p,i,paragraphs[i]);
+  section.append(title,body);$('paragraphsList').append(section);
+ });
+ $('copiedCheck').checked=hasCopied;$('scoreBtn').disabled=!hasCopied;window.scrollTo(0,0);
+}
+function finish(){
+ if(!hasCopied)return;
+ hide('review');show('results');
+ $('resultStudent').textContent='Student / Nama: '+student;
+ $('finalScore').textContent=`${score} / 15`;
+ $('resultMessage').textContent=score===15?'🌟 Fantastic! All first attempts correct!':score>=11?'🌟 Great job! Keep practising your speaking skills.':score>=7?'📚 Good effort! Review the sentences you learnt.':'💡 Keep practising! Every sentence helps you improve.';
+ $('breakdown').replaceChildren();
+ selectedPoints.forEach((p,i)=>{
+  const line=document.createElement('div');line.className='result-line';
+  const label=document.createElement('span');label.textContent=p.emoji+' '+p.name;
+  const marks=document.createElement('strong');marks.textContent=`${pointScores[i]} / 3`;
+  line.append(label,marks);$('breakdown').append(line);
+ });window.scrollTo(0,0);
+}
+function replay(){hide('results');hide('review');hide('game');show('welcome');selectedKeys=[];resetWelcomeMap();window.scrollTo(0,0);}
+resetWelcomeMap();
+$('startBtn').addEventListener('click',start);
+$('studentName').addEventListener('keydown',e=>{if(e.key==='Enter')start();});
+$('nextBtn').addEventListener('click',advance);
+$('copiedCheck').addEventListener('change',e=>{hasCopied=e.target.checked;$('scoreBtn').disabled=!hasCopied;});
+$('scoreBtn').addEventListener('click',finish);
+$('reviewBtn').addEventListener('click',showReview);
+$('replayBtn').addEventListener('click',replay);
+</script></body></html>
