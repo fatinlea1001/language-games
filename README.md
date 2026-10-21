@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**194 games** — automatically updated when an HTML game is added or changed.
+**195 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Matchvocab Cashless Payment (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-cashless-payment-1.html) — updated 21 Oct 2026
 - [Matchvocab Gig Economy (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-gig-economy-1.html) — updated 21 Oct 2026
 - [Matchvocab Cyberbullying (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-cyberbullying-1.html) — updated 20 Oct 2026
 - [Matchvocab Mental Health (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-mental-health-1.html) — updated 20 Oct 2026
