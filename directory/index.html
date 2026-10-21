@@ -206,7 +206,8 @@ const SPEAKING_3=[
  ['Why People Need to Manage Their Time Well','Time Management'],
  ['Why People Learn New Languages','Language Learning'],
  ['Buying Souvenirs','Shopping & Travel'],
- ['Ways to Improve Public Parks','Community & Environment']
+ ['Ways to Improve Public Parks','Community & Environment'],
+ ['Popular Gig Economy Jobs in Malaysia','Gig Economy & Work']
 ];
 const JAPANESE_STORIES=[
  ['School Festival','School & Culture'],
@@ -269,9 +270,14 @@ function topicDescription(file, readmeTitle, language){
  };
  if(stem==='eng-speakingpart2' && SPEAKING_2[number-1])
   return describe('SPM Speaking Part 2',SPEAKING_2[number-1],'Speaking & Daily Life');
- if(stem==='eng-speakingpart3' && SPEAKING_3[number-1]){
-  const [topic,theme]=SPEAKING_3[number-1];
-  return describe('SPM Speaking Part 3 — '+topic,topic,theme);
+ if(stem==='eng-speakingpart3'){
+  if(SPEAKING_3[number-1]){
+   const [topic,theme]=SPEAKING_3[number-1];
+   return describe('SPM Speaking Part 3 — '+topic,topic,theme);
+  }
+  // The README generator reads future Speaking Part 3 topics from each game's title.
+  const matchTopic=readmeTitle.match(/^SPM Speaking Part 3 — (.+?) \(Set \d+\)$/);
+  if(matchTopic)return {label:readmeTitle,topics:[matchTopic[1]],theme:'Speaking & Daily Life'};
  }
  if(stem==='jpn-story-emoji-fill' && JAPANESE_STORIES[number-1]){
   const [topic,theme]=JAPANESE_STORIES[number-1];
