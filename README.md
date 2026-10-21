@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**197 games** — automatically updated when an HTML game is added or changed.
+**198 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Speaking Part 3 — Ways to Shop Smart (Set 23)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-23.html) — updated 21 Oct 2026
 - [SPM Speaking Part 3 — Popular Gig Economy Jobs in Malaysia (Set 22)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-22.html) — updated 21 Oct 2026
 - [Matchvocab Smart Spending (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-smart-spending-1.html) — updated 21 Oct 2026
 - [Matchvocab Cashless Payment (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-cashless-payment-1.html) — updated 21 Oct 2026
