@@ -7,7 +7,7 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [SPM Speaking Part 3 (Set 22)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-22.html) — updated 21 Oct 2026
+- [SPM Speaking Part 3 — Popular Gig Economy Jobs in Malaysia (Set 22)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-22.html) — updated 21 Oct 2026
 - [Matchvocab Smart Spending (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-smart-spending-1.html) — updated 21 Oct 2026
 - [Matchvocab Cashless Payment (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-cashless-payment-1.html) — updated 21 Oct 2026
 - [Matchvocab Gig Economy (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-gig-economy-1.html) — updated 21 Oct 2026
@@ -25,11 +25,11 @@ Recently updated games appear first in each category.
 - [Vocabulary Match-Up — Recycling (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-recycling-1.html) — updated 20 Oct 2026
 - [Vocabulary Match-Up — Online Gaming (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-onlinegaming-1.html) — updated 20 Oct 2026
 - [Vocabulary Match-Up — Online Addiction (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-onlineaddiction-1.html) — updated 20 Oct 2026
-- [SPM Speaking Part 3 (Set 21)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-21.html) — updated 20 Oct 2026
-- [SPM Speaking Part 3 (Set 20)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-20.html) — updated 20 Oct 2026
-- [SPM Speaking Part 3 (Set 19)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-19.html) — updated 20 Oct 2026
-- [SPM Speaking Part 3 (Set 18)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-18.html) — updated 20 Oct 2026
-- [SPM Speaking Part 3 (Set 17)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-17.html) — updated 20 Oct 2026
+- [SPM Speaking Part 3 — Ways to Improve Public Parks (Set 21)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-21.html) — updated 20 Oct 2026
+- [SPM Speaking Part 3 — What Do People Consider When Buying Souvenirs? (Set 20)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-20.html) — updated 20 Oct 2026
+- [SPM Speaking Part 3 — Why Do People Learn New Languages? (Set 19)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-19.html) — updated 20 Oct 2026
+- [SPM Speaking Part 3 — Why Manage Time Well? (Set 18)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-18.html) — updated 20 Oct 2026
+- [SPM Speaking Part 3 — Features of a Virtual Lesson (Set 17)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-17.html) — updated 20 Oct 2026
 - [Writing Bullying (Set 1)](https://fatinlea1001.github.io/language-games/eng-writing-bullying-1.html) — updated 19 Oct 2026
 - [Writing Charity (Set 1)](https://fatinlea1001.github.io/language-games/eng-writing-charity-1.html) — updated 19 Oct 2026
 - [Less Common Lexis Class — Making a Difference (Set 9)](https://fatinlea1001.github.io/language-games/eng-lexis-article-9.html) — updated 18 Oct 2026
@@ -61,22 +61,22 @@ Recently updated games appear first in each category.
 - [Missingsentence Bullyingmentalhealth (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-bullyingmentalhealth-1.html) — updated 15 Oct 2026
 - [Missingsentence Haze (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-haze-1.html) — updated 15 Oct 2026
 - [Missingsentence Schoollife (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-schoollife-1.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 16)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-16.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 15)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-15.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 14)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-14.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 13)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-13.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 12)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-12.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 11)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-11.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 10)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-10.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 9)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-9.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 8)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-8.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 7)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-7.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 6)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-6.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 5)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-5.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 4)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-4.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 (Set 3)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-3.html) — updated 14 Oct 2026
-- [SPM Speaking Part 3 (Set 2)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-2.html) — updated 14 Oct 2026
-- [SPM Speaking Part 3 (Set 1)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-1.html) — updated 14 Oct 2026
+- [SPM Speaking Part 3 — Ways Teenagers Express Themselves (Set 16)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-16.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Ways Teenagers Can Share Their Problems (Set 15)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-15.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Ways to Practise Green Living (Set 14)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-14.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Importance of Preserving Nature (Set 13)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-13.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Popular Pastime Activities for Teenagers (Set 12)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-12.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Ways to Adapt Yourself in a Foreign Country (Set 11)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-11.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Reasons People Like to Travel (Set 10)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-10.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Types of Part-Time Jobs Suitable for Teenagers (Set 9)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-9.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Challenges of Being a Teenager (Set 8)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-8.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Unhealthy Shopping Habits Among Teenagers (Set 7)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-7.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Factors When Choosing a Part-Time Job (Set 6)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-6.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Ways to Survive During an Emergency (Set 5)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-5.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Adventurous Activities Suitable for Teenagers (Set 4)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-4.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Reasons Teenagers Enjoy Using Social Media (Set 3)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-3.html) — updated 14 Oct 2026
+- [SPM Speaking Part 3 — Ways of Communication (Set 2)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-2.html) — updated 14 Oct 2026
+- [SPM Speaking Part 3 — Why Read Reviews? (Set 1)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-1.html) — updated 14 Oct 2026
 - [Jumble Gaming (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-gaming-1.html) — updated 14 Oct 2026
 - [Jumble Bullying (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-bullying-1.html) — updated 14 Oct 2026
 - [Jumble Finance (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-finance-1.html) — updated 14 Oct 2026
