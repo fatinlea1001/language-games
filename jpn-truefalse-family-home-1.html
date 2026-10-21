@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Japanese Picture Quiz — Family Home</title>
+
+<style>
+:root {
+  --pink: #e875a9;
+  --ink: #4f3c50;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 15px;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(135deg,#ffe7f1,#f3efff,#e8fff3);
+}
+
+.app {
+  width: min(100%,850px);
+  margin: 0 auto;
+  padding: 24px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px #c89caf55;
+}
+
+h1 { text-align: center; color: #d9508e; }
+p { line-height: 1.6; }
+.center { text-align: center; }
+[hidden] { display: none !important; }
+
+.picture {
+  width: 100%;
+  max-height: 390px;
+  object-fit: contain;
+  background: #fff8fc;
+  border: 3px solid #f3c4dc;
+  border-radius: 18px;
+  display: block;
+  margin: 15px auto;
+}
+
+.picture-note {
+  text-align: center;
+  color: #92758a;
+  font-size: 12px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 15px 0;
+  font: inherit;
+  border: 2px solid #edc2d8;
+  border-radius: 12px;
+}
+
+button { font: inherit; cursor: pointer; }
+
+.action {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 13px;
+  background: var(--pink);
+  color: white;
+  font-weight: 800;
+  margin-top: 12px;
+}
+
+.action:hover { background: #d45191; }
+.action.secondary { background: #ac8eb9; }
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pill {
+  background: #ffe9f3;
+  color: #9d4775;
+  padding: 8px 13px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.progress {
+  height: 10px;
+  background: #f8deec;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--pink);
+  transition: width .3s;
+}
+
+.question-box {
+  background: #fff2f8;
+  border: 2px solid #efc8de;
+  border-radius: 18px;
+  padding: 22px 14px;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.question-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: #aa5485;
+  margin-bottom: 12px;
+}
+
+.japanese {
+  font-family: "Yu Gothic","Meiryo","Noto Sans JP",sans-serif;
+  font-size: clamp(22px,4.5vw,30px);
+  line-height: 2.25;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+ruby { ruby-position: over; }
+rt {
+  font-size: 11px;
+  font-weight: 400;
+  color: #876c9e;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+  margin-top: 20px;
+}
+
+.answer {
+  border: 2px solid #edc5db;
+  background: white;
+  border-radius: 16px;
+  padding: 18px 10px;
+  font-weight: 800;
+  color: var(--ink);
+  transition: .15s;
+}
+
+.answer:hover:not(:disabled) {
+  border-color: var(--pink);
+  background: #fff0f7;
+}
+
+.answer:disabled { cursor: default; }
+
+.symbol {
+  display: block;
+  font-size: 37px;
+  margin-bottom: 7px;
+}
+
+.answer.correct {
+  background: #e1f8ea;
+  color: #176b43;
+  border-color: #5ebc86;
+}
+
+.answer.wrong {
+  background: #ffe1e7;
+  color: #a42e4c;
+  border-color: #e5758b;
+  animation: shake .4s;
+}
+
+.feedback {
+  padding: 15px;
+  border-radius: 15px;
+  margin-top: 16px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.feedback.good { background: #e2f8eb; color: #1b7448; }
+.feedback.bad { background: #ffe5ec; color: #a42a48; }
+
+.feedback small {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.big-score {
+  font-size: 65px;
+  font-weight: 900;
+  color: #d84b92;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.review-item {
+  background: #fff7fb;
+  border: 1px solid #edd0df;
+  border-radius: 13px;
+  padding: 14px;
+  margin-top: 10px;
+}
+
+.review-item .japanese { font-size: 18px; }
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%,60% { transform: translateX(-7px); }
+  40%,80% { transform: translateX(7px); }
+}
+
+#effects {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.effect {
+  position: absolute;
+  font-size: 27px;
+  animation: floatAway 1s ease-out forwards;
+}
+
+@keyframes floatAway {
+  0% {
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(.3);
+  }
+  20% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(-50% + var(--dx)),
+      calc(-50% + var(--dy))
+    );
+  }
+}
+
+@media(max-width:550px) {
+  body { padding: 8px; }
+  .app { padding: 17px 12px; }
+  .picture { max-height: 260px; }
+  .question-box { padding: 15px 10px; }
+  .answer { padding: 13px 7px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div id="effects"></div>
+
+<main class="app">
+
+<section id="start">
+  <div class="center" style="font-size:48px">🏠🌸🇯🇵</div>
+
+  <h1>Japanese Picture Quiz!</h1>
+
+  <p class="center">
+    <ruby>家族<rt>かぞく</rt></ruby>の<ruby>家<rt>いえ</rt></ruby><br>
+    <b>Family Home Edition — Set 1</b>
+  </p>
+
+  <p class="center">
+    Look carefully at the picture.
+    Read each Japanese sentence.
+    Decide whether it is TRUE or FALSE.
+  </p>
+
+  <p class="center">
+    🌸 N4–N5 + a little N3<br>
+    ⭐ 20 questions<br>
+    📸 Screenshot your final score
+  </p>
+
+  <form id="nameForm">
+    <input
+      id="nameInput"
+      placeholder="Enter your name"
+      aria-label="Your name"
+      maxlength="60"
+      required
+    >
+    <button class="action">Start Quiz ✨</button>
+  </form>
+</section>
+
+<section id="game" hidden>
+  <div class="stats">
+    <span class="pill" id="playerLabel">👤 Player</span>
+    <span class="pill" id="numberLabel">Question 1/20</span>
+    <span class="pill" id="scoreLabel">⭐ 0/20</span>
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="bar"></div>
+  </div>
+
+  <img
+    class="picture"
+    src="images/FAMILY-HOME.webp"
+    alt="Anime family members doing different activities in a warm home"
+  >
+
+  <div class="picture-note">
+    👀 Look carefully at the picture.
+  </div>
+
+  <div class="question-box">
+    <div class="question-label">
+      この文は<ruby>正<rt>ただ</rt></ruby>しいですか。<br>
+      Is this sentence true?
+    </div>
+    <div class="japanese" id="sentence"></div>
+  </div>
+
+  <div class="answers">
+    <button class="answer" id="trueBtn">
+      <span class="symbol">〇</span>
+      TRUE<br><small>ただしい</small>
+    </button>
+
+    <button class="answer" id="falseBtn">
+      <span class="symbol">×</span>
+      FALSE<br><small>ちがう</small>
+    </button>
+  </div>
+
+  <div class="feedback" id="feedback" hidden></div>
+
+  <button class="action secondary" id="nextBtn" hidden>
+    Next Sentence →
+  </button>
+</section>
+
+<section id="result" hidden>
+  <div class="center" style="font-size:52px">🏆🌸🎉</div>
+
+  <h1>Quiz Completed!</h1>
+  <h2 class="center" id="resultName"></h2>
+
+  <p class="center">Your final score</p>
+  <div class="big-score" id="finalScore"></div>
+
+  <p class="center">
+    <span class="pill" id="percentage"></span>
+  </p>
+
+  <p class="center" id="message"></p>
+
+  <button class="action secondary" id="reviewBtn">
+    Review My Mistakes 📖
+  </button>
+
+  <div id="review" hidden></div>
+
+  <button class="action" id="replayBtn">
+    Play Again 🔀
+  </button>
+
+  <button class="action secondary" id="changeNameBtn">
+    Change Name
+  </button>
+
+  <p class="center">
+    📸 Screenshot your score to share!
+  </p>
+</section>
+
+</main>
+
+<script>
+const QUESTIONS = [
+  {
+    jp: "お<ruby>父<rt>とう</rt></ruby>さんがパソコンを<ruby>使<rt>つか</rt></ruby>っている<ruby>一方<rt>いっぽう</rt></ruby>で、お<ruby>母<rt>かあ</rt></ruby>さんは<ruby>料理<rt>りょうり</rt></ruby>をしています。",
+    en: "While the father is using a computer, the mother is cooking.",
+    truth: true,
+    clue: "The father is on the sofa with a laptop, while the mother stirs a pot in the kitchen."
+  },
+  {
+    jp: "この<ruby>家<rt>いえ</rt></ruby>にはだれもいません。",
+    en: "There is nobody in this house.",
+    truth: false,
+    clue: "Many people are clearly visible in the room."
+  },
+  {
+    jp: "お<ruby>父<rt>とう</rt></ruby>さんはソファーに<ruby>座<rt>すわ</rt></ruby>りながら、パソコンを<ruby>使<rt>つか</rt></ruby>っています。",
+    en: "The father is using a computer while sitting on the sofa.",
+    truth: true,
+    clue: "A man is seated on the sofa with a laptop on his lap."
+  },
+  {
+    jp: "お<ruby>父<rt>とう</rt></ruby>さんは<ruby>台所<rt>だいどころ</rt></ruby>で<ruby>料理<rt>りょうり</rt></ruby>しているところです。",
+    en: "The father is in the kitchen cooking.",
+    truth: false,
+    clue: "The person cooking in the kitchen is the mother, not the father."
+  },
+  {
+    jp: "お<ruby>母<rt>かあ</rt></ruby>さんは<ruby>台所<rt>だいどころ</rt></ruby>で<ruby>赤<rt>あか</rt></ruby>いなべをかきまぜています。",
+    en: "The mother is stirring a red pot in the kitchen.",
+    truth: true,
+    clue: "A woman in an apron is stirring a red pot at the stove."
+  },
+  {
+    jp: "お<ruby>母<rt>かあ</rt></ruby>さんは<ruby>新聞<rt>しんぶん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>みながら、コーヒーを<ruby>飲<rt>の</rt></ruby>んでいます。",
+    en: "The mother is drinking coffee while reading a newspaper.",
+    truth: false,
+    clue: "She is clearly cooking, not reading the newspaper."
+  },
+  {
+    jp: "テーブルで<ruby>勉強<rt>べんきょう</rt></ruby>している<ruby>女<rt>おんな</rt></ruby>の<ruby>子<rt>こ</rt></ruby>は、ノートに<ruby>書<rt>か</rt></ruby>いています。",
+    en: "The girl studying at the table is writing in a notebook.",
+    truth: true,
+    clue: "The schoolgirl at the dining table is writing with books open."
+  },
+  {
+    jp: "テーブルにいる<ruby>女<rt>おんな</rt></ruby>の<ruby>子<rt>こ</rt></ruby>はパンを<ruby>食<rt>た</rt></ruby>べています。",
+    en: "The girl at the table is eating bread.",
+    truth: false,
+    clue: "She is studying and writing, not eating bread."
+  },
+  {
+    jp: "<ruby>小<rt>ちい</rt></ruby>さい<ruby>男<rt>おとこ</rt></ruby>の<ruby>子<rt>こ</rt></ruby>は、ブロックで<ruby>高<rt>たか</rt></ruby>いタワーを<ruby>作<rt>つく</rt></ruby>っているようです。",
+    en: "The little boy seems to be building a tall tower with blocks.",
+    truth: true,
+    clue: "The boy on the rug is building a colorful block tower."
+  },
+  {
+    jp: "<ruby>小<rt>ちい</rt></ruby>さい<ruby>男<rt>おとこ</rt></ruby>の<ruby>子<rt>こ</rt></ruby>はベッドで<ruby>寝<rt>ね</rt></ruby>ています。",
+    en: "The little boy is sleeping on a bed.",
+    truth: false,
+    clue: "The boy is playing on the rug, not sleeping in a bed."
+  },
+  {
+    jp: "おばあさんは<ruby>椅子<rt>いす</rt></ruby>に<ruby>座<rt>すわ</rt></ruby>って、あみものをしています。",
+    en: "The grandmother is sitting in a chair and knitting.",
+    truth: true,
+    clue: "An elderly woman with knitting is seated in an armchair."
+  },
+  {
+    jp: "おばあさんはテレビを<ruby>見<rt>み</rt></ruby>ながら、ギターをひいています。",
+    en: "The grandmother is playing the guitar while watching TV.",
+    truth: false,
+    clue: "She is knitting, not playing a guitar."
+  },
+  {
+    jp: "<ruby>右側<rt>みぎがわ</rt></ruby>の<ruby>小<rt>ちい</rt></ruby>さい<ruby>女<rt>おんな</rt></ruby>の<ruby>子<rt>こ</rt></ruby>は、<ruby>絵<rt>え</rt></ruby>をかいています。",
+    en: "The little girl on the right is drawing a picture.",
+    truth: true,
+    clue: "A young girl is drawing at a low table on the right."
+  },
+  {
+    jp: "<ruby>右側<rt>みぎがわ</rt></ruby>の<ruby>小<rt>ちい</rt></ruby>さい<ruby>女<rt>おんな</rt></ruby>の<ruby>子<rt>こ</rt></ruby>も、おばあさんと<ruby>同<rt>おな</rt></ruby>じようにあみものをしています。",
+    en: "The little girl on the right is also knitting, just like her grandmother.",
+    truth: false,
+    clue: "The little girl is drawing, while her grandmother is knitting."
+  },
+  {
+    jp: "ねこはまるいクッションの<ruby>上<rt>うえ</rt></ruby>で<ruby>寝<rt>ね</rt></ruby>ています。",
+    en: "The cat is sleeping on a round cushion.",
+    truth: true,
+    clue: "The cat is curled up asleep on a round bed."
+  },
+  {
+    jp: "ねこは<ruby>窓<rt>まど</rt></ruby>のところで<ruby>鳥<rt>とり</rt></ruby>を<ruby>見<rt>み</rt></ruby>ています。",
+    en: "The cat is by the window looking at birds.",
+    truth: false,
+    clue: "The cat is sleeping near the boy, not by the window."
+  },
+  {
+    jp: "<ruby>大<rt>おお</rt></ruby>きい<ruby>窓<rt>まど</rt></ruby>の<ruby>外<rt>そと</rt></ruby>には、<ruby>庭<rt>にわ</rt></ruby>の<ruby>緑<rt>みどり</rt></ruby>が<ruby>見<rt>み</rt></ruby>えます。",
+    en: "You can see greenery in the garden outside the big window.",
+    truth: true,
+    clue: "Plants, trees, and a bright garden are visible outside."
+  },
+  {
+    jp: "<ruby>窓<rt>まど</rt></ruby>の<ruby>外<rt>そと</rt></ruby>は<ruby>雪<rt>ゆき</rt></ruby>でまっしろです。",
+    en: "Outside the window, everything is white with snow.",
+    truth: false,
+    clue: "The scene outside is sunny and green, not snowy."
+  },
+  {
+    jp: "<ruby>本棚<rt>ほんだな</rt></ruby>には<ruby>本<rt>ほん</rt></ruby>に<ruby>加<rt>くわ</rt></ruby>えて、<ruby>地球儀<rt>ちきゅうぎ</rt></ruby>も<ruby>置<rt>お</rt></ruby>いてあります。",
+    en: "In addition to books, a globe is also placed on the bookshelf.",
+    truth: true,
+    clue: "A blue-and-yellow globe sits above the books on the right-side shelf."
+  },
+  {
+    jp: "この<ruby>部屋<rt>へや</rt></ruby>にはテーブルもいすもありません。",
+    en: "There is no table and no chair in this room.",
+    truth: false,
+    clue: "There is a dining table with several chairs in the middle of the room."
+  }
+];
+
+const $ = id => document.getElementById(id);
+
+let player = "";
+let round = [];
+let index = 0;
+let score = 0;
+let locked = false;
+let mistakes = [];
+
+function shuffle(items) {
+  const a = [...items];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function makeRound() {
+  for (let attempt = 0; attempt < 500; attempt++) {
+    const questions = shuffle(QUESTIONS);
+    let valid = true;
+
+    for (let i = 2; i < questions.length; i++) {
+      if (
+        questions[i].truth === questions[i - 1].truth &&
+        questions[i].truth === questions[i - 2].truth
+      ) {
+        valid = false;
+        break;
+      }
+    }
+
+    if (valid) return questions;
+  }
+
+  const yes = shuffle(QUESTIONS.filter(q => q.truth));
+  const no = shuffle(QUESTIONS.filter(q => !q.truth));
+  const firstTrue = Math.random() < 0.5;
+  const result = [];
+
+  for (let i = 0; i < 10; i++) {
+    if (firstTrue) {
+      result.push(yes[i], no[i]);
+    } else {
+      result.push(no[i], yes[i]);
+    }
+  }
+
+  return result;
+}
+
+function show(id) {
+  ["start", "game", "result"].forEach(s => {
+    $(s).hidden = s !== id;
+  });
+}
+
+function startGame() {
+  round = makeRound();
+  index = 0;
+  score = 0;
+  locked = false;
+  mistakes = [];
+
+  show("game");
+  render();
+}
+
+function render() {
+  locked = false;
+  const q = round[index];
+
+  $("playerLabel").textContent = "👤 " + player;
+  $("numberLabel").textContent = `Question ${index + 1}/${round.length}`;
+  $("scoreLabel").textContent = `⭐ ${score}/${round.length}`;
+  $("bar").style.width = (index / round.length * 100) + "%";
+  $("sentence").innerHTML = q.jp;
+
+  $("feedback").hidden = true;
+  $("feedback").className = "feedback";
+  $("nextBtn").hidden = true;
+
+  $("trueBtn").disabled = false;
+  $("falseBtn").disabled = false;
+  $("trueBtn").className = "answer";
+  $("falseBtn").className = "answer";
+}
+
+function answer(value) {
+  if (locked) return;
+  locked = true;
+
+  const q = round[index];
+  const correct = value === q.truth;
+
+  $("trueBtn").disabled = true;
+  $("falseBtn").disabled = true;
+
+  const chosenButton = value ? $("trueBtn") : $("falseBtn");
+  const correctButton = q.truth ? $("trueBtn") : $("falseBtn");
+  correctButton.classList.add("correct");
+
+  const box = $("feedback");
+  box.hidden = false;
+
+  if (correct) {
+    score++;
+    box.classList.add("good");
+    box.innerHTML = "<b>✅ せいかい！ Correct! +1 mark</b>";
+    celebrate(chosenButton);
+  } else {
+    chosenButton.classList.add("wrong");
+    box.classList.add("bad");
+    box.innerHTML = "<b>❌ ざんねん！ Not quite!</b>";
+    mistakes.push(q);
+    if (typeof navigator.vibrate === "function") {
+      navigator.vibrate(100);
+    }
+  }
+
+  const meaning = document.createElement("small");
+  meaning.textContent = "Meaning: " + q.en;
+
+  const clue = document.createElement("small");
+  clue.textContent = "Picture clue: " + q.clue;
+
+  box.append(meaning, clue);
+
+  $("scoreLabel").textContent = `⭐ ${score}/${round.length}`;
+  $("bar").style.width = ((index + 1) / round.length * 100) + "%";
+  $("nextBtn").hidden = false;
+  $("nextBtn").textContent = index === round.length - 1 ? "See Final Score 🏆" : "Next Sentence →";
+}
+
+function nextQuestion() {
+  if (!locked) return;
+  index++;
+  if (index >= round.length) {
+    showResult();
+  } else {
+    render();
+  }
+}
+
+function showResult() {
+  locked = false;
+  show("result");
+
+  const percent = Math.round(score / round.length * 100);
+  $("resultName").textContent = player;
+  $("finalScore").textContent = `${score} / ${round.length}`;
+  $("percentage").textContent = percent + "% correct";
+
+  let message;
+  if (score === 20) {
+    message = "🌟 すばらしい！ Perfect score!";
+  } else if (score >= 16) {
+    message = "👏 よくできました！ Excellent work!";
+  } else if (score >= 12) {
+    message = "💗 がんばりました！ Good effort!";
+  } else {
+    message = "🌸 もういちど！ Keep practising!";
+  }
+  $("message").textContent = message;
+
+  $("reviewBtn").textContent = `Review My Mistakes (${mistakes.length}) 📖`;
+  $("review").hidden = true;
+  $("review").replaceChildren();
+
+  if (mistakes.length === 0) {
+    const p = document.createElement("p");
+    p.textContent = "Perfect! No mistakes to review! 🎉";
+    $("review").appendChild(p);
+    return;
+  }
+
+  mistakes.forEach((q, i) => {
+    const card = document.createElement("div");
+    card.className = "review-item";
+
+    const number = document.createElement("b");
+    number.textContent = `Question ${i + 1}`;
+
+    const jp = document.createElement("div");
+    jp.className = "japanese";
+    jp.innerHTML = q.jp;
+
+    const en = document.createElement("p");
+    en.textContent = "Meaning: " + q.en;
+
+    const answerText = document.createElement("p");
+    answerText.textContent = "Correct answer: " + (q.truth ? "〇 TRUE" : "× FALSE");
+
+    const clue = document.createElement("p");
+    clue.textContent = "Picture clue: " + q.clue;
+
+    card.append(number, jp, en, answerText, clue);
+    $("review").appendChild(card);
+  });
+}
+
+function celebrate(button) {
+  const r = button.getBoundingClientRect();
+  const x = r.left + r.width / 2;
+  const y = r.top + r.height / 2;
+  const emojis = ["👏", "✅", "🌸", "✨", "👏", "⭐"];
+
+  emojis.forEach((emoji, i) => {
+    const particle = document.createElement("span");
+    const angle = (Math.PI * 2 * i) / emojis.length;
+    const distance = 70 + Math.random() * 60;
+
+    particle.className = "effect";
+    particle.textContent = emoji;
+    particle.style.left = x + "px";
+    particle.style.top = y + "px";
+    particle.style.setProperty("--dx", Math.cos(angle) * distance + "px");
+    particle.style.setProperty("--dy", Math.sin(angle) * distance + "px");
+
+    $("effects").appendChild(particle);
+    setTimeout(() => particle.remove(), 1100);
+  });
+}
+
+$("nameForm").addEventListener("submit", e => {
+  e.preventDefault();
+  player = $("nameInput").value.trim();
+  if (player) startGame();
+});
+
+$("trueBtn").addEventListener("click", () => answer(true));
+$("falseBtn").addEventListener("click", () => answer(false));
+$("nextBtn").addEventListener("click", nextQuestion);
+$("replayBtn").addEventListener("click", startGame);
+$("changeNameBtn").addEventListener("click", () => show("start"));
+$("reviewBtn").addEventListener("click", () => {
+  $("review").hidden = !$("review").hidden;
+});
+
+document.addEventListener("keydown", e => {
+  if ($("game").hidden || locked) return;
+  if (e.target.matches("input,textarea")) return;
+  if (e.key.toLowerCase() === "t") answer(true);
+  if (e.key.toLowerCase() === "f") answer(false);
+});
+</script>
+</body>
+</html>
