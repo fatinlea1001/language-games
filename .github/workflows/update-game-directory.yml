@@ -32,6 +32,7 @@ jobs:
           import re
           import subprocess
           from datetime import datetime, timedelta, timezone
+          from html import unescape
           from pathlib import Path
           from urllib.parse import quote
 
@@ -84,6 +85,17 @@ jobs:
               stem = path.stem
               match = re.fullmatch(r'(.+)-(\d+)', stem)
               key = match.group(1) if match else stem
+              if key == 'eng-speakingpart3' and match:
+                  # Read the topic directly from each game's title so new sets
+                  # get informative directory labels automatically.
+                  source = path.read_text(encoding='utf-8', errors='replace')
+                  found_title = re.search(r'<title\b[^>]*>(.*?)</title>', source, re.I | re.S)
+                  if found_title:
+                      text_title = unescape(re.sub(r'\s+', ' ', found_title.group(1)).strip())
+                      found_topic = re.fullmatch(r'Speak\s*&\s*Build\s*\|\s*(.+)', text_title, re.I)
+                      if found_topic:
+                          topic = found_topic.group(1).strip()
+                          return f'SPM Speaking Part 3 — {topic} (Set {match.group(2)})'
               if key == 'jpn-reading-n5' and match:
                   reading_topics = {
                       '1': 'Five Short Stories',

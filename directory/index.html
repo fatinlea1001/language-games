@@ -271,13 +271,17 @@ function topicDescription(file, readmeTitle, language){
  if(stem==='eng-speakingpart2' && SPEAKING_2[number-1])
   return describe('SPM Speaking Part 2',SPEAKING_2[number-1],'Speaking & Daily Life');
  if(stem==='eng-speakingpart3'){
+  // README labels are generated from the game's HTML title, including future sets.
+  // Prefer this source of truth; retain the list for older generic README labels.
+  const matchTopic=readmeTitle.match(/^SPM Speaking Part 3 — (.+?) \(Set \d+\)$/);
+  if(matchTopic){
+   const theme=SPEAKING_3[number-1]?.[1] || 'Speaking & Daily Life';
+   return {label:readmeTitle,topics:[matchTopic[1]],theme};
+  }
   if(SPEAKING_3[number-1]){
    const [topic,theme]=SPEAKING_3[number-1];
    return describe('SPM Speaking Part 3 — '+topic,topic,theme);
   }
-  // The README generator reads future Speaking Part 3 topics from each game's title.
-  const matchTopic=readmeTitle.match(/^SPM Speaking Part 3 — (.+?) \(Set \d+\)$/);
-  if(matchTopic)return {label:readmeTitle,topics:[matchTopic[1]],theme:'Speaking & Daily Life'};
  }
  if(stem==='jpn-story-emoji-fill' && JAPANESE_STORIES[number-1]){
   const [topic,theme]=JAPANESE_STORIES[number-1];
