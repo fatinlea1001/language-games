@@ -90,6 +90,32 @@ html.embedded-view .game-sub{gap:4px}
  html.embedded-view .hero .s1{display:block;right:8%;top:18%;font-size:22px}
  html.embedded-view .panel::before{display:none}
 }
+
+/* English learning categories and SPM components. */
+.category-panel{margin:0 0 16px}
+.category-heading{font-size:11px;font-weight:900;color:#81708e;letter-spacing:.12em;margin:0 0 10px}
+.category-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.category-tab{cursor:pointer;appearance:none;border:1px solid #eee4f1;border-radius:16px;background:#faf7fc;min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;font:inherit;color:#675978;font-size:13px;font-weight:850;text-align:center;padding:12px 7px;transition:background .15s,border-color .15s,box-shadow .15s}
+.category-tab .category-icon{font-size:26px;line-height:1}
+.category-tab:hover{background:#f4edff}
+.category-tab[aria-pressed="true"]{background:#f0e6ff;border:2px solid #b596dd;color:#68438d;box-shadow:0 3px 10px #ad8bb828}
+.category-tab:focus-visible,.spm-part:focus-visible,.reset-spm:focus-visible{outline:3px solid #ad8bce;outline-offset:2px}
+.spm-sections{margin:0 0 14px}
+.spm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.spm-part{cursor:pointer;appearance:none;border:1.5px solid #eae2f0;border-radius:13px;background:#fff;min-height:57px;padding:12px 9px;text-align:center;font:inherit;color:#705c83;font-size:13px;font-weight:850;transition:background .15s,border-color .15s}
+.spm-part:hover{background:#faf4ff}
+.spm-part[aria-pressed="true"]{background:#eee2ff;border-color:#aa81d8;color:#684091}
+.reset-spm{display:block;border:0;background:transparent;color:#835bad;font:inherit;font-size:12px;font-weight:850;cursor:pointer;padding:10px 2px 1px}
+.category-panel[hidden],.spm-sections[hidden],.reset-spm[hidden]{display:none!important}
+@media(max-width:620px){
+ .category-panel{margin-bottom:11px}
+ .category-heading{font-size:10px;margin-bottom:8px}
+ .category-tabs{gap:6px}
+ .category-tab{min-height:78px;padding:9px 3px;font-size:11px;gap:6px;border-radius:12px}
+ .category-tab .category-icon{font-size:23px}
+ .spm-grid{gap:7px}
+ .spm-part{min-height:53px;padding:9px 5px;font-size:12px}
+}
 </style>
 </head>
 <body>
@@ -106,11 +132,28 @@ html.embedded-view .game-sub{gap:4px}
       <button id="englishTab" class="language-tab" role="tab" type="button" data-language="English" aria-selected="true" aria-controls="items"><span class="flag" aria-hidden="true">🇬🇧</span> English <span class="tab-count" id="englishCount">0</span></button>
       <button id="japaneseTab" class="language-tab" role="tab" type="button" data-language="Japanese" aria-selected="false" aria-controls="items" tabindex="-1"><span class="flag" aria-hidden="true">🇯🇵</span> Japanese <span class="tab-count" id="japaneseCount">0</span></button>
     </div>
+    <div id="englishCategories" class="category-panel" aria-label="English game categories">
+      <p class="category-heading">ENGLISH CATEGORIES</p>
+      <div class="category-tabs" role="group" aria-label="Choose an English game category">
+        <button type="button" class="category-tab" data-category="SPM Practice" aria-pressed="true"><span class="category-icon" aria-hidden="true">🎓</span><span>SPM Practice</span></button>
+        <button type="button" class="category-tab" data-category="Grammar" aria-pressed="false"><span class="category-icon" aria-hidden="true">🧩</span><span>Grammar</span></button>
+        <button type="button" class="category-tab" data-category="Vocabulary" aria-pressed="false"><span class="category-icon" aria-hidden="true">📚</span><span>Vocabulary</span></button>
+      </div>
+    </div>
+    <label class="search"><span class="search-icon">⌕</span><input id="find" placeholder="Search games or topics…" aria-label="Search games in selected category"><button id="clear" class="clear" aria-label="Clear search" type="button">×</button></label>
     <div class="toolbar">
-      <div><h2 id="sectionTitle" class="section-title">🇬🇧 English Games</h2><p class="smallsub">Most recently updated first, within each language.</p></div>
+      <div><h2 id="sectionTitle" class="section-title">📝 SPM Practice</h2><p id="sectionSub" class="smallsub">Choose an SPM component or browse all SPM games.</p></div>
       <div class="sort" aria-label="Sort order">↧ Newest first</div>
     </div>
-    <label class="search"><span class="search-icon">⌕</span><input id="find" placeholder="Search English games or topics…" aria-label="Search games"><button id="clear" class="clear" aria-label="Clear search" type="button">×</button></label>
+    <div id="spmSections" class="spm-sections" aria-label="SPM practice components">
+      <div class="spm-grid" role="group" aria-label="Choose an SPM paper and part">
+        <button class="spm-part" type="button" data-part="Reading Part 4" aria-pressed="false">Reading Part 4</button>
+        <button class="spm-part" type="button" data-part="Writing Part 2" aria-pressed="false">Writing Part 2</button>
+        <button class="spm-part" type="button" data-part="Speaking Part 2" aria-pressed="false">Speaking Part 2</button>
+        <button class="spm-part" type="button" data-part="Speaking Part 3" aria-pressed="false">Speaking Part 3</button>
+      </div>
+      <button class="reset-spm" type="button" id="allSpm" hidden>← Show all SPM games</button>
+    </div>
     <div class="status"><div><strong id="count">Loading games…</strong> <span id="totalHint"></span></div><div class="status-right"><i class="live-dot"></i><span id="syncLabel">Loading latest list</span></div></div>
     <div id="items" class="items" aria-live="polite" aria-busy="true"></div>
     <div id="empty" class="empty" hidden>🔍 No games found. Try another word!</div>
@@ -143,10 +186,18 @@ const empty = document.getElementById('empty');
 const problem = document.getElementById('problem');
 const clear = document.getElementById('clear');
 const sectionTitle = document.getElementById('sectionTitle');
+const sectionSub = document.getElementById('sectionSub');
+const englishCategories = document.getElementById('englishCategories');
+const categoryButtons = Array.from(document.querySelectorAll('.category-tab'));
+const spmSections = document.getElementById('spmSections');
+const spmButtons = Array.from(document.querySelectorAll('.spm-part'));
+const allSpm = document.getElementById('allSpm');
 const syncLabel = document.getElementById('syncLabel');
 const tabs = Array.from(document.querySelectorAll('.language-tab'));
 let games = [];
 let activeLanguage = 'English';
+let activeCategory = 'SPM Practice';
+let activeSpmPart = 'All';
 let loaded = false;
 
 function gameStyle(path, language){
@@ -373,6 +424,20 @@ function topicDescription(file, readmeTitle, language){
  return {label:readmeTitle,topics:[],theme:language+' Practice'};
 }
 
+// Categorise by stable filename prefixes so newly published quizzes land automatically.
+// Every existing English game belongs to one of these three categories.
+function classifyEnglishGame(file){
+ const name=file.toLowerCase();
+ if(/^eng-(missingsentence-|missing-)/.test(name))return {category:'SPM Practice',spmPart:'Reading Part 4'};
+ if(/^eng-writing-/.test(name) || /^eng-elaboration-/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 2'};
+ if(/^eng-speakingpart2-/.test(name))return {category:'SPM Practice',spmPart:'Speaking Part 2'};
+ if(/^eng-speakingpart3-/.test(name))return {category:'SPM Practice',spmPart:'Speaking Part 3'};
+ if(/^eng-(jumble-|verbtonoun-|preposition-|grammar-|sentence-)/.test(name))return {category:'Grammar',spmPart:''};
+ if(/^eng-(vocab-|matchvocab-|lexis-|spell-|vocabulary-)/.test(name))return {category:'Vocabulary',spmPart:''};
+ // Keep unfamiliar future filenames visible instead of dropping them.
+ return {category:'Vocabulary',spmPart:''};
+}
+
 function parseDirectory(markdown){
  const begin='<!-- AUTO-GAMES:START -->';
  const finish='<!-- AUTO-GAMES:END -->';
@@ -395,7 +460,8 @@ function parseDirectory(markdown){
   const file=decodeURIComponent(url.pathname.split('/').pop());
   const style=gameStyle(file,language);
   const metadata=topicDescription(file,title,language);
-  parsed.push({title:metadata.label,topics:metadata.topics,theme:metadata.theme,kind:language,date,dateLabel:date||'Recently added',url:url.href,file,...style});
+  const grouping=language==='English'?classifyEnglishGame(file):{category:'',spmPart:''};
+  parsed.push({title:metadata.label,topics:metadata.topics,theme:metadata.theme,kind:language,date,dateLabel:date||'Recently added',url:url.href,file,...style,...grouping});
  }
  if(!parsed.length)throw new Error('Game list is empty');
  return parsed; // preserve README's most-recently-updated-first order per category
@@ -421,6 +487,32 @@ function updateTabs(){
  document.getElementById('englishCount').textContent=games.filter(g=>g.kind==='English').length;
  document.getElementById('japaneseCount').textContent=games.filter(g=>g.kind==='Japanese').length;
 }
+function updateFilters(){
+ const english=activeLanguage==='English';
+ englishCategories.hidden=!english;
+ spmSections.hidden=!english || activeCategory!=='SPM Practice';
+ categoryButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.category===activeCategory)));
+ spmButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.part===activeSpmPart)));
+ allSpm.hidden=activeSpmPart==='All';
+ if(english){
+  const heading={
+   'SPM Practice':'📝 SPM Practice',
+   'Grammar':'🧩 Grammar',
+   'Vocabulary':'📚 Vocabulary'
+  };
+  sectionTitle.textContent=heading[activeCategory];
+  sectionSub.textContent=activeCategory==='SPM Practice'
+   ?'Choose an SPM component or browse all SPM games.'
+   :activeCategory==='Grammar'
+    ?'Sentence building, word formation and grammar quizzes.'
+    :'Word meaning, spelling and vocabulary practice.';
+  field.placeholder='Search '+activeCategory+' games or topics…';
+ }else{
+  sectionTitle.textContent='🇯🇵 Japanese Games';
+  sectionSub.textContent='Most recently updated first, within Japanese.';
+  field.placeholder='Search Japanese games or topics…';
+ }
+}
 function switchLanguage(language){
  activeLanguage=language;
  tabs.forEach(tab=>{
@@ -428,9 +520,8 @@ function switchLanguage(language){
   tab.setAttribute('aria-selected',String(selected));
   tab.tabIndex=selected?0:-1;
  });
- sectionTitle.textContent=(language==='English'?'🇬🇧':'🇯🇵')+' '+language+' Games';
  field.value='';
- field.placeholder='Search '+language+' games or topics…';
+ updateFilters();
  render();
 }
 tabs.forEach(tab=>{
@@ -443,9 +534,34 @@ tabs.forEach(tab=>{
   }
  });
 });
+categoryButtons.forEach(button=>{
+ button.addEventListener('click',()=>{
+  activeCategory=button.dataset.category;
+  activeSpmPart='All';
+  field.value='';
+  updateFilters();
+  render();
+ });
+});
+spmButtons.forEach(button=>{
+ button.addEventListener('click',()=>{
+  activeSpmPart=activeSpmPart===button.dataset.part?'All':button.dataset.part;
+  updateFilters();
+  render();
+ });
+});
+allSpm.addEventListener('click',()=>{
+ activeSpmPart='All';
+ updateFilters();
+ render();
+});
 function render(){
  const q=field.value.trim().toLocaleLowerCase();
- const matches=games.filter(g=>g.kind===activeLanguage && [g.title,g.topic,g.file,g.theme,...g.topics].join(' ').toLocaleLowerCase().includes(q));
+ const matches=games.filter(g=>
+  g.kind===activeLanguage &&
+  (activeLanguage!=='English' || (g.category===activeCategory && (activeCategory!=='SPM Practice' || activeSpmPart==='All' || g.spmPart===activeSpmPart))) &&
+  [g.title,g.topic,g.file,g.theme,g.category,g.spmPart,...g.topics].join(' ').toLocaleLowerCase().includes(q)
+ );
  items.replaceChildren();
  if(!loaded){count.textContent='Loading games…';empty.hidden=true;return;}
  const fragment=document.createDocumentFragment();
@@ -483,7 +599,8 @@ async function loadGames(){
   games=await fetchDirectory();
   loaded=true;
   updateTabs();
-  totalHint.textContent='available in the '+activeLanguage+' tab';
+  updateFilters();
+  totalHint.textContent='in '+(activeLanguage==='English'?activeCategory:'Japanese')+' · '+games.filter(g=>g.kind===activeLanguage).length+' total';
   syncLabel.textContent='Synced with GitHub';
   render();
  }catch(error){
@@ -498,7 +615,7 @@ async function loadGames(){
 field.addEventListener('input',render);
 clear.addEventListener('click',()=>{field.value='';render();field.focus();});
 document.getElementById('retry').addEventListener('click',loadGames);
-render();loadGames();
+updateFilters();render();loadGames();
 </script>
 </body>
 </html>
