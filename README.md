@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**207 games** — automatically updated when an HTML game is added or changed.
+**208 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Speaking Part 3 — Ways to Reduce Food Waste (Set 33)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-33.html) — updated 27 Oct 2026
 - [SPM Speaking Part 3 — Importance of Caring for Our School Surroundings (Set 32)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-32.html) — updated 27 Oct 2026
 - [SPM Speaking Part 3 — How to Choose a Good Film (Set 31)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-31.html) — updated 27 Oct 2026
 - [SPM Speaking Part 3 — Benefits of Participating in Sports (Set 30)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-30.html) — updated 27 Oct 2026
