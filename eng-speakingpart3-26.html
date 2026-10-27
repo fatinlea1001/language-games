@@ -1,0 +1,442 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#e8f5ff"><meta name="description" content="SPM Speaking Part 3: Build five connected paragraphs about ideas for raising money online to help needy students."><title>Speak &amp; Build | Ideas for Raising Money Online</title><style>
+
+    :root{--ink:#233651;--muted:#667895;--purple:#397ae6;--purple-dark:#2459be;--purple-light:#edf4ff;--pink:#ffe8f1;--border:#d4e3fc;--good:#176a4b;--good-bg:#eaf9f1;--bad:#a13b57;--bad-bg:#fff0f3;--white:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 0 0,#dfedff 0,transparent 32%),radial-gradient(circle at 100% 0,#d7e0ff 0,transparent 31%),linear-gradient(160deg,#eff7ff,#f7faff 55%,#fff8fd);min-height:100vh}
+    .container{max-width:850px;margin:auto;padding:22px 15px 50px}
+    .brand{text-align:center;margin-bottom:19px}
+    .brand small{display:inline-block;border-radius:99px;background:#fff;padding:7px 14px;color:#3267b7;font-size:.76rem;font-weight:850;letter-spacing:.055em;box-shadow:0 2px 13px #95b7e52c}
+    .brand h1{font-size:clamp(1.7rem,5vw,2.5rem);margin:10px 0 6px;letter-spacing:-.035em}
+    .brand p{margin:0;color:var(--muted);font-size:.95rem}
+    .card{background:#ffffffef;border:1px solid var(--border);border-radius:23px;padding:clamp(19px,4vw,32px);box-shadow:0 13px 33px #6897db21}
+    .hidden{display:none!important}
+    .question{background:linear-gradient(115deg,#dfecff,#f1eaff);border:1px solid #cad9fa;padding:20px 18px;border-radius:18px;text-align:center}
+    .question .label{font-size:.76rem;font-weight:850;color:#3a65ae;text-transform:uppercase;letter-spacing:.07em}
+    .question h2{font-size:clamp(1.18rem,4vw,1.6rem);line-height:1.32;margin:8px auto 0;max-width:670px}
+    .mindmap{margin:19px 0 8px;text-align:center}
+    .mindmap strong{display:block;margin-bottom:12px}
+    .map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    .map-node{border:2px solid #c9d9f5;background:#f9fbff;border-radius:14px;min-height:83px;padding:11px 6px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;text-align:center;font-size:.83rem;font-weight:800;overflow-wrap:anywhere}
+    .map-node .emoji{font-size:1.45rem}
+    .map-node.active{background:#d7e7ff;border-color:#328b90;box-shadow:0 0 0 2px #e0eaff}
+    .map-node.done{background:#e6f4ed;border-color:#94c9b5}
+    .hint{font-size:.9rem;color:var(--muted);line-height:1.65}
+    .name-label{display:block;font-weight:800;margin:23px 0 8px}
+    input[type=text]{font:inherit;width:100%;padding:14px;border:2px solid #c8d9f8;border-radius:12px;color:var(--ink);background:white}
+    input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline:3px solid #8eb1fa;outline-offset:3px}
+    .error{font-size:.88rem;color:var(--bad);margin:8px 0 0}
+    button{font:inherit;font-weight:820;cursor:pointer;border:0;border-radius:13px;padding:13px 19px}
+    button:disabled{opacity:.47;cursor:not-allowed}
+    .btn-primary{background:var(--purple);color:white}
+    .btn-primary:not(:disabled):hover{background:var(--purple-dark)}
+    .btn-soft{background:#e5efff;color:#315fb5}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    .button-row>button{flex:1 1 190px}
+    .status{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}
+    .chip{display:inline-flex;align-items:center;background:#e9f1ff;border-radius:99px;padding:6px 11px;color:#3766b2;font-size:.83rem;font-weight:850}
+    .progress{height:9px;border-radius:99px;background:#e7eeff;overflow:hidden;margin:12px 0 20px}
+    .progress-inner{height:100%;width:0;background:linear-gradient(90deg,#61adff,#8474e8);transition:width .25s}
+    .point-heading{font-size:1.45rem;letter-spacing:-.025em;margin:11px 0 5px}
+    .step-desc{font-size:.95rem;color:var(--muted);margin:0 0 14px}
+    .paragraph-box{background:#f5f9ff;border:1px solid #d6e3ff;border-left:5px solid #76a2ee;border-radius:14px;padding:15px 17px;margin:17px 0;min-height:90px;line-height:1.8}
+    .paragraph-box .mini-label{font-size:.73rem;color:#3c6fba;font-weight:850;letter-spacing:.045em;margin-bottom:5px}
+    .placeholder{color:#9a94ae;font-style:italic}
+    .paragraph-box p{margin:0}
+    .paragraph-box .built{font-weight:600}
+    .choose-title{font-size:1.07rem;margin:21px 0 11px}
+    .choices{display:grid;gap:10px}
+    .choice{width:100%;text-align:left;display:flex;align-items:flex-start;gap:12px;color:var(--ink);font-weight:600;line-height:1.5;background:#fff;border:2px solid #d2dff6;transition:background .15s,border-color .15s}
+    .choice:hover:not(:disabled){border-color:#89aaf3;background:#f5f8ff}
+    .choice.correct{border-color:#67b994;background:var(--good-bg)}
+    .choice.wrong{border-color:#e6a3b4;background:var(--bad-bg)}
+    .letter{display:inline-flex;flex:0 0 28px;width:28px;height:28px;justify-content:center;align-items:center;border-radius:9px;background:#e6f0ff;color:#3567ae;font-size:.83rem;font-weight:850}
+    .feedback{border-radius:15px;margin-top:16px;padding:15px 17px;line-height:1.65}
+    .feedback.good{background:var(--good-bg);border:1px solid #9dd5bb}
+    .feedback.bad{background:var(--bad-bg);border:1px solid #ecc2cc}
+    .feedback h3{margin:0 0 6px;font-size:1.04rem}
+    .feedback p{margin:8px 0 0;font-size:.92rem}
+    .feedback .correct-line{padding:9px 11px;border-radius:9px;background:#fff;font-weight:700;margin-top:10px}
+    .para-review{background:#f8faff;border:1px solid #d6e2fa;border-radius:14px;padding:16px 17px;margin:12px 0}
+    .para-review h3{font-size:1.08rem;margin:0 0 6px}
+    .para-review p{margin:0;line-height:1.8}
+    .copy-banner{background:#fff3c9;border:3px solid #dfab38;border-radius:17px;padding:20px;margin:21px 0;box-shadow:0 5px 0 #f3e4bb}
+    .copy-banner h3{margin:0 0 10px;font-size:clamp(1.22rem,4.5vw,1.55rem);color:#7d4e0d}
+    .copy-banner p{margin:6px 0;line-height:1.6}
+    .tick{display:flex;align-items:flex-start;gap:11px;padding:12px 0;font-weight:700;line-height:1.5}
+    .tick input{margin:4px 0 0;transform:scale(1.35);accent-color:var(--purple)}
+    .score{font-size:clamp(3rem,9vw,4.7rem);color:var(--purple-dark);font-weight:950;text-align:center;margin:12px 0 2px}
+    .center{text-align:center}
+    .result-line{padding:11px 0;border-bottom:1px solid #dce6f8;display:flex;justify-content:space-between;gap:9px}
+    .result-line:last-child{border:0}
+    .footer{text-align:center;color:#667895;margin:21px 0 0;font-size:.78rem}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(3,1fr)}.map-node{min-height:72px}.container{padding-top:15px}.card{border-radius:18px}.choice{padding:12px}}
+    @media(max-width:380px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+    @media print{body{background:white}.brand,.question,.mindmap,#welcome,#game,#results,.copy-banner,.tick,.button-row,.footer{display:none!important}#review{display:block!important;box-shadow:none;border:0;padding:0}.para-review{break-inside:avoid}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    .map-node.pick{cursor:pointer;transition:transform .12s,background .12s,border-color .12s}
+    .map-node.pick:hover:not(:disabled){transform:translateY(-2px);border-color:#7ca7f0}
+    .map-node.pick:disabled{cursor:not-allowed;opacity:.66}
+    .map-node.selected{background:#deebff;border-color:#4785e5;box-shadow:0 0 0 2px #e5edff}
+    .map-node.skipped{background:#f2f3f5;border-color:#dde2e5;color:#8b9198}
+    .map-node small{font-size:.67rem;font-weight:800;line-height:1.2}
+    .map-node.active{background:#e8ddff;border-color:#9382da;box-shadow:0 0 0 2px #eeeaff}
+    .select-help{margin-top:12px;border-radius:12px;padding:10px 12px;background:#edf4ff;color:#345d9e;font-size:.92rem;font-weight:750;text-align:center}
+    .map-grid button{font:inherit}
+    .note{background:#eaf3ff;border-radius:12px;padding:12px 14px;line-height:1.55;font-size:.91rem;margin:14px 0}
+    .copy-banner{background:#fff3bf;border-color:#dda225}
+    .copy-banner h3{font-size:clamp(1.3rem,4.6vw,1.65rem)}
+    @media(max-width:650px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+  
+  .subline{font-weight:700;margin-top:9px;color:#47648e}
+  .opening-tag{display:inline-block;border-radius:8px;background:#e0ebff;color:#2e63b7;padding:3px 8px;font-size:.75rem;font-weight:850;margin-bottom:8px}
+  .choice.target{border-color:#3c80d9;background:#e9f2ff;box-shadow:0 0 0 2px #d6e8ff}
+  .choice.target .letter{background:#397ae6;color:white}
+  .paragraph-box .built{font-weight:540}
+  .copy-banner{background:#fff1be;border-color:#dfa33f}
+  .note{background:#edf4ff}
+  @media print{.opening-tag{display:none}}
+
+
+/* Technology: pastel lilac and soft aqua */
+:root{--ink:#314835;--muted:#677b68;--purple:#488360;--purple-dark:#2e6249;--purple-light:#e6f5dd;--border:#dbe9d5;--good:#176a4b;--good-bg:#e9f9f0;--bad:#9f3d58;--bad-bg:#fff0f3}
+body{background:radial-gradient(circle at 8% 9%,#e3f6d9 0,transparent 35%),radial-gradient(circle at 96% 6%,#fff4c6 0,transparent 35%),linear-gradient(152deg,#f4fff0,#fbfdf6 57%,#fff8e9)}
+.brand small{color:#47845e;box-shadow:0 2px 13px #a1cda84f}
+.brand h1{color:#387450}
+.card{box-shadow:0 14px 36px #73956c24}
+.question{background:linear-gradient(115deg,#e3f5de,#fff5d3);border-color:#d5e6c8}
+.question .label{color:#528059}
+.map-node{border-color:#dce8d7;background:#fff}
+.map-node.selected{background:#e6f6df;border-color:#7cb98a;box-shadow:0 0 0 2px #f3fff0}
+.map-node.active{background:#fff3ce;border-color:#d9bf73;box-shadow:0 0 0 2px #fff9e6}
+.map-node.done{background:#e6f8e8;border-color:#83c9a3}
+.map-node.pick:hover:not(:disabled){border-color:#74ac7f}
+.map-node.skipped{background:#f5f5f5;border-color:#e1e5e8}
+input[type=text]{border-color:#cee3c9}
+input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline-color:#93cb93}
+.btn-soft{background:#e6f4df;color:#3a7750}
+.chip{background:#e7f5e0;color:#387a4c}
+.progress{background:#e2f1dc}
+.progress-inner{background:linear-gradient(90deg,#77c79d,#efc976)}
+.paragraph-box{background:#f3fcf1;border-color:#d8ebd4;border-left-color:#82b78b}
+.paragraph-box .mini-label{color:#4d845c}
+.choice{border-color:#dbe8d6}
+.choice:hover:not(:disabled){border-color:#95c39c;background:#f7fff4}
+.letter{background:#e6f5de;color:#438456}
+.para-review{background:#ffffff;border-color:#d6e8d2}
+.select-help{background:#e5f5dd;color:#39764d}
+.opening-tag{background:#e5f6df;color:#478157}
+.choice.target{border-color:#54a06a;background:#e9fae7;box-shadow:0 0 0 2px #d8f4d9}
+.choice.target .letter{background:#398a53;color:white}
+.result-line{border-bottom-color:#e0ede1}
+.note{background:#fff8dd;color:#665c37;border:1px solid #f0e5ba}
+.copy-banner{background:#fff0bf;border-color:#d9ac38}
+@media print{.container{max-width:none}.para-review{break-inside:avoid}}
+
+/* Set 24 reference palette retained underneath Set 25 overrides */
+:root{--ink:#28384e;--muted:#62738a;--purple:#6564c9;--purple-dark:#4648a2;--purple-light:#eeeaff;--border:#dee1f5;--good:#176a4b;--good-bg:#eaf9f3;--bad:#a13b57;--bad-bg:#fff0f3}
+body{background:radial-gradient(circle at 6% 5%,#e6e5ff 0,transparent 34%),radial-gradient(circle at 99% 2%,#d9faf2 0,transparent 34%),linear-gradient(155deg,#f6f4ff,#f5fbff 60%,#f0fffb)}
+.brand small{color:#545db7;box-shadow:0 2px 13px #9699d53b}
+.brand h1{color:#444a9d}
+.card{box-shadow:0 14px 36px #858bc424}
+.question{background:linear-gradient(115deg,#e9e6ff,#dcf9f4);border-color:#d6dcf1}
+.question .label{color:#5759a7}
+.map-node{border-color:#dfe0f3;background:#fff}
+.map-node.selected{background:#edebff;border-color:#9795df;box-shadow:0 0 0 2px #f7f6ff}
+.map-node.active{background:#e1f8f1;border-color:#68b7a6;box-shadow:0 0 0 2px #effff8}
+.map-node.done{background:#eaf9f0;border-color:#91cdb0}
+.map-node.pick:hover:not(:disabled){border-color:#9995da}
+input[type=text]{border-color:#d4d4ee}
+input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline-color:#9899e3}
+.btn-soft{background:#ebe9ff;color:#5756aa}
+.chip{background:#eeecff;color:#5e5bbb}
+.progress{background:#eae8fa}
+.progress-inner{background:linear-gradient(90deg,#7b83db,#65c5b4)}
+.paragraph-box{background:#f8f7ff;border-color:#e3e0f9;border-left-color:#9492dc}
+.paragraph-box .mini-label{color:#615db7}
+.choice{border-color:#e0e1f0}
+.choice:hover:not(:disabled){border-color:#a3a2df;background:#f9f8ff}
+.letter{background:#edeaff;color:#5e5fbb}
+.para-review{background:#fff;border-color:#e3e2f5}
+.select-help{background:#efecff;color:#5c56ad}
+.opening-tag{background:#ebeaff;color:#5a58b3}
+.choice.target{border-color:#7a75ce;background:#efedff;box-shadow:0 0 0 2px #e3e1fa}
+.choice.target .letter{background:#6361c3;color:#fff}
+.result-line{border-bottom-color:#e4e3f0}
+.note{background:#e7faf7;color:#37635d;border:1px solid #cdebe5}
+.copy-banner{background:#fff0bf;border-color:#d9ac38}
+
+/* Set 25: pastel peach + fresh mint */
+:root{--ink:#3d4350;--muted:#717a85;--purple:#b76b75;--purple-dark:#954b5b;--purple-light:#ffedf0;--border:#f0dedb;--good:#226b52;--good-bg:#e7f9ee;--bad:#a13b57;--bad-bg:#fff0f3}
+body{background:radial-gradient(circle at 5% 4%,#ffe7e0 0,transparent 33%),radial-gradient(circle at 96% 5%,#dbf7e8 0,transparent 35%),linear-gradient(155deg,#fff8f4,#fffdf7 52%,#f3fff9)}
+.brand small{color:#ad6772;box-shadow:0 2px 13px #dfaab750}
+.brand h1{color:#a05a69}
+.card{box-shadow:0 14px 36px #c78b8b22}
+.question{background:linear-gradient(115deg,#ffe6e0,#e2f8e9);border-color:#ebded9}
+.question .label{color:#a35c6c}
+.map-node{border-color:#eddeda;background:#fff}
+.map-node.selected{background:#ffe9e3;border-color:#d89b97;box-shadow:0 0 0 2px #fff5f2}
+.map-node.active{background:#e1f8e9;border-color:#89c8a4;box-shadow:0 0 0 2px #f1fff4}
+.map-node.done{background:#e6f8ed;border-color:#8bcba6}
+.map-node.pick:hover:not(:disabled){border-color:#d9949a}
+input[type=text]{border-color:#ebcfc9}
+input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline-color:#dfa2aa}
+.btn-soft{background:#fff0ec;color:#9b5b65}
+.chip{background:#fff0ec;color:#aa6370}
+.progress{background:#f6e6e2}
+.progress-inner{background:linear-gradient(90deg,#dfa2a1,#78c89f)}
+.paragraph-box{background:#fff9f6;border-color:#f0deda;border-left-color:#d59b93}
+.paragraph-box .mini-label{color:#a86169}
+.choice{border-color:#eedfdc}
+.choice:hover:not(:disabled){border-color:#daa1a3;background:#fff8f6}
+.letter{background:#ffece7;color:#ae6470}
+.para-review{background:#fff;border-color:#f0deda}
+.select-help{background:#ffefe9;color:#9d5a66}
+.opening-tag{background:#ffebe7;color:#a16067}
+.choice.target{border-color:#d7838c;background:#fff0ed;box-shadow:0 0 0 2px #ffe2dd}
+.choice.target .letter{background:#b86577;color:#fff}
+.result-line{border-bottom-color:#f0e2dd}
+.note{background:#e6f8ed;color:#386b51;border:1px solid #c9e9d2}
+.copy-banner{background:#fff0bf;border-color:#d9ac38}
+
+/* Set 26 — sky blue and butter yellow */
+:root{--ink:#273c53;--muted:#627a8c;--purple:#397ec5;--purple-dark:#285e99;--purple-light:#e6f4ff;--border:#dce9f5;--good:#176a4b;--good-bg:#eaf9f1;--bad:#a13b57;--bad-bg:#fff0f3}
+body{background:radial-gradient(circle at 0% 2%,#d9f0ff 0,transparent 34%),radial-gradient(circle at 100% 5%,#fff1b9 0,transparent 36%),linear-gradient(165deg,#f2faff,#f9fcff 53%,#fffdf0)}
+.brand small{color:#3371b5;box-shadow:0 2px 13px #95bde53d}
+.brand h1{color:#2c70b8}
+.card{box-shadow:0 14px 36px #739ec224}
+.question{background:linear-gradient(115deg,#ddf1ff,#fff1c5);border-color:#d8e6ef}
+.question .label{color:#346da9}
+.map-node{border-color:#dbeaf4;background:#fff}
+.map-node.selected{background:#deefff;border-color:#79a8d7;box-shadow:0 0 0 2px #f3faff}
+.map-node.active{background:#fff3cc;border-color:#dab35a;box-shadow:0 0 0 2px #fff9df}
+.map-node.done{background:#e8f7ed;border-color:#8cc6a9}
+.map-node.pick:hover:not(:disabled){border-color:#79addb}
+input[type=text]{border-color:#c9e3f5}
+input[type=text]:focus-visible,.choice:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline-color:#88b7df}
+.btn-soft{background:#e6f3ff;color:#2f6aa8}
+.chip{background:#e8f4ff;color:#3171ad}
+.progress{background:#e0edf9}
+.progress-inner{background:linear-gradient(90deg,#61b4e5,#efc65d)}
+.paragraph-box{background:#f4faff;border-color:#dbeaf6;border-left-color:#7caedd}
+.paragraph-box .mini-label{color:#3876aa}
+.choice{border-color:#dceaf4}
+.choice:hover:not(:disabled){border-color:#8cbee0;background:#f7fcff}
+.letter{background:#e6f4ff;color:#3674ad}
+.para-review{background:#fff;border-color:#dceaf4}
+.select-help{background:#e6f4ff;color:#336fa9}
+.opening-tag{background:#e5f2ff;color:#3673a8}
+.choice.target{border-color:#4f9aca;background:#e8f5ff;box-shadow:0 0 0 2px #d7eeff}
+.choice.target .letter{background:#367fb3;color:#fff}
+.result-line{border-bottom-color:#e0edf6}
+.note{background:#fff8df;color:#675e3b;border:1px solid #f0e3b6}
+.copy-banner{background:#fff0bd;border-color:#d9aa36}
+</style></head><body>
+<main class="container">
+<header class="brand"><small>🗣️ SPM ENGLISH SPEAKING PRACTICE</small><h1>💰 Speak &amp; Build!</h1><p>Part 3 · Ideas for Raising Money Online</p></header>
+<section id="welcome" class="card">
+  <div class="question"><div class="label">Speaking Part 3 · Discussion Question</div><h2>How can we raise money online to help needy students at our school?</h2><p class="subline">Choose any five ideas from the mind map. Think about how successful each fundraising idea could be.</p></div>
+  <div class="note" role="note">💡 <b>Speaking tip:</b> Each paragraph begins with a transition, followed by an explanation, an example and a result. / <b>Tip bertutur:</b> Setiap perenggan bermula dengan penanda wacana, diikuti huraian, contoh dan kesan.</div>
+  <p class="hint">💡 <b>Speaking tip:</b> Explain how each online fundraising idea works, give a specific example, and describe how it could help needy students. / <b>Tip bertutur:</b> Terangkan cara setiap idea kutipan dana dalam talian berfungsi, berikan contoh khusus dan jelaskan bagaimana idea itu dapat membantu murid yang memerlukan.</p>
+  <div class="mindmap"><strong>🧠 Six Points in the Mind Map</strong><div class="map-grid" id="welcomeMap"></div></div>
+  <div class="select-help" id="selectCount" role="status" aria-live="polite">Choose FIVE points (0 / 5 selected).</div>
+  <p class="hint">Select any <b>FIVE out of SIX</b> points. / Pilih mana-mana <b>LIMA daripada ENAM</b> isi.</p>
+  <label class="name-label" for="studentName">Your name / Nama murid</label>
+  <input id="studentName" type="text" maxlength="65" placeholder="Enter your name" autocomplete="name">
+  <p id="nameError" class="error hidden" role="alert">Please enter your name. / Sila masukkan nama.</p>
+  <div class="button-row"><button type="button" class="btn-primary" id="startBtn" disabled>Start Building My Five Paragraphs →</button></div>
+  <p class="hint">For each point, you will choose <b>3 elaboration sentences</b>. A correct first attempt earns 1 mark. Total: <b>15 marks</b>. Each paragraph begins with a cohesive transition.</p>
+</section>
+<section id="game" class="card hidden">
+  <div class="status"><span class="chip" id="pointCounter">Point 1 of 5</span><span class="chip" id="stepCounter">Sentence 1 of 3</span><span class="chip" id="markCounter">Marks: 0 / 15</span></div>
+  <div class="progress" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="progress"><div class="progress-inner" id="progressInner"></div></div>
+  <div class="question"><div class="label">Speaking Part 3 · Discussion Question</div><h2>How can we raise money online to help needy students at our school?</h2></div>
+  <div class="mindmap"><strong>🧠 All Six Original Points</strong><div class="map-grid" id="gameMap"></div></div>
+  <h2 class="point-heading" id="pointTitle">Point 1</h2><p class="step-desc" id="stepHelp"></p>
+  <div class="paragraph-box" aria-live="polite"><div class="mini-label">YOUR PARAGRAPH SO FAR</div><div class="opening-tag">✨ Transition + main point</div><p id="builtParagraph" class="built"></p></div>
+  <h3 class="choose-title" id="chooseTitle">Choose the most suitable sentence:</h3><div class="choices" id="choices"></div>
+  <div class="feedback hidden" id="feedback" role="status" aria-live="polite"></div>
+  <div class="button-row hidden" id="nextWrap"><button type="button" class="btn-primary" id="nextBtn">Next Sentence →</button></div>
+</section>
+<section id="review" class="card hidden">
+  <div class="question"><div class="label">Fantastic! 🎉</div><h2>Your FIVE Completed Paragraphs</h2></div>
+  <p class="hint center">Look at the transitions, explanations, examples and results. Read the paragraphs and copy them into your exercise book.</p>
+  <div id="paragraphsList"></div>
+  <div class="note" role="note">🎤 <b>Partner discussion:</b> Choose ONE online fundraising idea that would work best for your school. Explain why you think it would be the most successful. / <b>Perbincangan berpasangan:</b> Pilih SATU idea kutipan dana dalam talian yang paling sesuai untuk sekolah anda dan jelaskan sebabnya.</div>
+  
+  <div class="copy-banner" role="note"><h3>📚✏️ IMPORTANT! COPY ALL FIVE PARAGRAPHS INTO YOUR EXERCISE BOOK!</h3><p><b>Copy the five complete paragraphs before viewing your score.</b></p><p><b>PENTING! SALIN KELIMA-LIMA PERENGGAN INI KE DALAM BUKU LATIHAN ANDA SEBELUM MELIHAT MARKAH!</b></p></div>
+  <label class="tick"><input type="checkbox" id="copiedCheck"><span>I have copied all FIVE paragraphs into my exercise book.<span class="hint" style="display:block">Saya telah menyalin KELIMA-LIMA perenggan ke dalam buku latihan.</span></span></label>
+  <div class="button-row"><button type="button" id="scoreBtn" class="btn-primary" disabled>Continue to Final Score →</button></div>
+</section>
+<section id="results" class="card hidden">
+  <div class="center" style="font-size:2.6rem">🎉🏆🌟</div><h2 class="center">Great Work! Quiz Complete!</h2>
+  <p class="center hint">Ideas for Raising Money Online</p><p id="resultStudent" class="center" style="font-weight:800"></p><div id="finalScore" class="score">0 / 15</div><p class="center" id="resultMessage"></p>
+  <h3>📚 Your Five Selected Points</h3><div id="breakdown"></div>
+  <p class="hint">📸 Take a screenshot showing your name and final score for your teacher.</p>
+  <div class="button-row"><button type="button" class="btn-soft" id="reviewBtn">📖 See My Five Paragraphs</button><button type="button" class="btn-primary" id="replayBtn">🔀 Replay · Choose Five Points</button></div>
+</section>
+<footer class="footer">SPM Speaking Part 3 • Standalone HTML • GitHub Pages friendly • Works offline</footer>
+</main>
+<script>
+'use strict';
+const POINTS = [{"key":"flip","name":"Flip Items Online","emoji":"♻️","bm":"menjual semula barangan secara dalam talian","focus":"reselling second-hand items online for a profit that can be donated","focusMs":"menjual semula barangan terpakai dalam talian untuk mendapatkan keuntungan yang boleh didermakan","intro":"flipping items online could be a practical way to raise money for students in need.","introSecond":"Another possible fundraising idea is to flip second-hand items online.","sentences":["Students can find useful second-hand items at low prices and resell them online for a small profit.","For example, they could buy used novels cheaply, clean them and list them on a resale platform.","If buyers are interested, the profits could support needy students while giving the books a second life."],"en":["This explains how buying and reselling used goods can generate money for charity.","Preparing and listing second-hand novels is a clear example of flipping items online.","This result describes both the possible fundraising benefit and the value of reusing goods."],"ms":["Ayat ini menerangkan cara membeli dan menjual semula barangan terpakai dapat menjana wang untuk tujuan amal.","Membersihkan dan mengiklankan novel terpakai ialah contoh jelas menjual semula barangan dalam talian.","Kesan ini menunjukkan potensi mengumpul dana serta manfaat menggunakan semula barangan."]},{"key":"handmade","name":"Sell Handmade Products","emoji":"🎨","bm":"menjual produk buatan tangan","focus":"creating handmade gifts and selling them through online orders","focusMs":"menghasilkan hadiah buatan tangan dan menjualnya melalui pesanan dalam talian","intro":"selling handmade products online could turn students' creativity into charity funds.","introSecond":"Students could also raise money by selling their own handmade products online.","sentences":["Students can make attractive items by hand and advertise them to people who enjoy personalised gifts.","For instance, they could create colourful beaded keychains and accept orders through an online form.","Consequently, creative students may attract customers and donate the earnings left after paying for materials."],"en":["This explanation focuses on producing original handmade gifts for online customers.","Beaded keychains sold through online orders are a specific handmade-product example.","This result connects creative work with fundraising after material costs are covered."],"ms":["Huraian ini menumpukan pada penghasilan hadiah buatan tangan untuk pelanggan dalam talian.","Rantai kunci manik yang dijual melalui pesanan dalam talian ialah contoh khusus produk buatan tangan.","Kesan ini mengaitkan hasil kreativiti dengan kutipan dana selepas kos bahan ditolak."]},{"key":"tutoring","name":"Offer Tutoring Lessons","emoji":"🧑‍🏫","bm":"menawarkan kelas tuisyen","focus":"providing paid online lessons to younger learners to collect donations","focusMs":"menawarkan pelajaran dalam talian berbayar kepada murid lebih muda untuk mengumpul derma","intro":"offering online tutoring lessons could raise money while helping younger students learn.","introSecond":"Another worthwhile online fundraising idea is to offer tutoring lessons.","sentences":["Students who are good at a subject can teach younger learners online and charge a small lesson fee.","For example, a Form 5 student could tutor Form 1 pupils in basic English grammar over a video call.","As a result, the younger pupils receive extra guidance while the lesson fees can help classmates in need."],"en":["This explains how sharing academic skills through paid online lessons can raise funds.","An older student teaching English grammar to younger pupils is a clear tutoring example.","This result connects educational help with collecting money for needy classmates."],"ms":["Ayat ini menerangkan bagaimana kemahiran akademik boleh dikongsi melalui kelas dalam talian berbayar untuk mengumpul dana.","Pelajar senior yang mengajar tatabahasa Inggeris kepada murid lebih muda ialah contoh kelas tuisyen.","Kesan ini mengaitkan bantuan pembelajaran dengan pengumpulan wang untuk rakan yang memerlukan."]},{"key":"shirts","name":"Sell T-shirts","emoji":"👕","bm":"menjual baju-T","focus":"designing and selling charity T-shirts using online pre-orders","focusMs":"mereka bentuk dan menjual baju-T amal melalui prapesanan dalam talian","intro":"selling charity T-shirts online could encourage school spirit and support fundraising.","introSecond":"The school could also raise money by selling specially designed charity T-shirts.","sentences":["Students can design T-shirts with a meaningful message and collect online pre-orders before printing them.","For instance, the club could sell shirts printed with the words 'Together We Care' through a school order form.","In this way, pre-orders may reduce unsold stock while the money left after printing helps needy students."],"en":["This explains how a T-shirt design and pre-order system can support a fundraising campaign.","Ordering shirts with a specific charity slogan is an example of a T-shirt sale.","This result highlights lower stock risk and the possibility of donating the remaining funds."],"ms":["Huraian ini menerangkan bagaimana reka bentuk baju-T dan sistem prapesanan membantu kempen kutipan dana.","Menjual baju dengan slogan amal tertentu ialah contoh aktiviti jualan baju-T.","Kesan ini menekankan pengurangan risiko stok tidak terjual dan peluang menderma baki wang."]},{"key":"social","name":"Provide Social Media Services","emoji":"📲","bm":"menawarkan perkhidmatan media sosial","focus":"creating social media content for small organisations in exchange for a fee","focusMs":"menghasilkan kandungan media sosial untuk organisasi kecil dengan mengenakan bayaran","intro":"providing social media services could help students use digital skills to raise money.","introSecond":"Students could also offer social media services to collect funds for the needy.","sentences":["Students who enjoy designing can create simple promotional posts and captions for small businesses at an affordable fee.","For example, a student team could design three Instagram posters to advertise a local bakery's weekend promotion.","Therefore, local businesses may gain useful publicity while the students donate their service fees to the fund."],"en":["This explains how students can earn charity money by offering digital promotional work.","Making Instagram posters for a local bakery is a specific social media service.","This result shows how the service can benefit businesses and the fundraising campaign."],"ms":["Huraian ini menerangkan bagaimana pelajar boleh mengumpul wang amal dengan menawarkan kerja promosi digital.","Menghasilkan poster Instagram untuk kedai roti tempatan ialah contoh khusus perkhidmatan media sosial.","Kesan ini menunjukkan manfaat kepada perniagaan dan kempen pengumpulan dana."]},{"key":"ebooks","name":"Sell E-books","emoji":"📖","bm":"menjual e-buku","focus":"writing original digital books and selling downloads online","focusMs":"menulis buku digital asli dan menjual muat turun dalam talian","intro":"selling e-books online could raise funds without the cost of printing physical books.","introSecond":"Another creative idea for raising money online is to sell e-books.","sentences":["Students can write original digital guides or stories and sell them as affordable downloadable files.","For instance, they could produce a short e-book of revision tips and practice questions for junior students.","As a result, each download could add to the charity fund without requiring extra paper or printing."],"en":["This explains how students can produce their own digital books for online sale.","A downloadable revision guide with original practice questions is an example of an e-book.","This result shows how digital sales may bring in funds without ongoing printing costs."],"ms":["Huraian ini menerangkan bagaimana pelajar boleh menghasilkan buku digital sendiri untuk dijual dalam talian.","Panduan ulang kaji yang boleh dimuat turun dengan soalan latihan asli ialah contoh e-buku.","Kesan ini menunjukkan bagaimana jualan digital boleh menjana dana tanpa kos percetakan berulang."]}];
+const LEADS = [
+ 'To begin with, ',
+ 'Secondly, ',
+ 'In addition, ',
+ 'Furthermore, ',
+ 'Finally, '
+];
+const PHASES = [
+ {en:'Choose a suitable EXPLANATION.',ms:'Pilih ayat HURAIAN yang sesuai.',name:'Explanation'},
+ {en:'Choose a suitable EXAMPLE or supporting detail.',ms:'Pilih CONTOH atau maklumat sokongan yang sesuai.',name:'Example / Detail'},
+ {en:'Choose a suitable RESULT or benefit.',ms:'Pilih KESAN atau faedah yang sesuai.',name:'Result / Benefit'}
+];
+const $ = id => document.getElementById(id);
+const show = id => $(id).classList.remove('hidden');
+const hide = id => $(id).classList.add('hidden');
+const shuffle = xs => {const a=xs.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let student='',selectedKeys=[],selectedPoints=[],pointIndex=0,stepIndex=0,score=0,pointScores=[],wrongYet=false,solved=false,choices=[],paragraphs=[],completed=0,hasCopied=false;
+function openSentence(p, position){return position===1 ? p.introSecond : LEADS[position] + p.intro;}
+function fullParagraph(p,position,lines){return [openSentence(p,position),...lines].join(' ');}
+function resetWelcomeMap(){
+ const wrap=$('welcomeMap');wrap.replaceChildren();
+ POINTS.forEach(p=>{
+  const b=document.createElement('button');b.type='button';b.className='map-node pick'+(selectedKeys.includes(p.key)?' selected':'');
+  b.disabled=selectedKeys.length===5&&!selectedKeys.includes(p.key);
+  b.setAttribute('aria-pressed',String(selectedKeys.includes(p.key)));
+  const icon=document.createElement('span');icon.className='emoji';icon.textContent=p.emoji;
+  const name=document.createElement('span');name.textContent=p.name;
+  const state=document.createElement('small');state.textContent=selectedKeys.includes(p.key)?'✓ SELECTED':'TAP TO SELECT';
+  b.append(icon,name,state);
+  b.addEventListener('click',()=>{
+   if(selectedKeys.includes(p.key))selectedKeys=selectedKeys.filter(k=>k!==p.key);
+   else if(selectedKeys.length<5)selectedKeys.push(p.key);
+   resetWelcomeMap();
+  });wrap.append(b);
+ });
+ $('selectCount').textContent=selectedKeys.length===5?'✅ Five points selected! You can change one before starting.':`Choose FIVE points (${selectedKeys.length} / 5 selected).`;
+ $('startBtn').disabled=selectedKeys.length!==5;
+}
+function renderGameMap(){
+ const wrap=$('gameMap');wrap.replaceChildren();
+ POINTS.forEach(p=>{
+  const index=selectedPoints.findIndex(q=>q.key===p.key);
+  const node=document.createElement('div');node.className='map-node '+(index<0?'skipped':index===pointIndex?'active':index<pointIndex?'done':'selected');
+  const ico=document.createElement('span');ico.className='emoji';ico.textContent=p.emoji;
+  const name=document.createElement('span');name.textContent=p.name;
+  const st=document.createElement('small');st.textContent=index<0?'NOT SELECTED':index===pointIndex?'CURRENT POINT':index<pointIndex?'COMPLETED':'SELECTED';
+  node.append(ico,name,st);wrap.append(node);
+ });
+}
+function newChoices(){
+ const p=selectedPoints[pointIndex];
+ const others=shuffle(POINTS.filter(q=>q.key!==p.key)).slice(0,2);
+ choices=shuffle([{text:p.sentences[stepIndex],owner:p.key},...others.map(q=>({text:q.sentences[stepIndex],owner:q.key}))]);
+}
+function start(){
+ const name=$('studentName').value.trim();if(!name){show('nameError');$('studentName').focus();return;}
+ hide('nameError');if(selectedKeys.length!==5)return;
+ student=name;
+ // Keep the order consistent with the original mind map, not the order of clicks.
+ selectedPoints=POINTS.filter(p=>selectedKeys.includes(p.key));
+ pointIndex=0;stepIndex=0;score=0;pointScores=Array(5).fill(0);wrongYet=false;solved=false;
+ paragraphs=selectedPoints.map(()=>[]);completed=0;hasCopied=false;
+ $('copiedCheck').checked=false;$('scoreBtn').disabled=true;
+ hide('welcome');hide('review');hide('results');show('game');newChoices();render();window.scrollTo(0,0);
+}
+function render(){
+ const p=selectedPoints[pointIndex];
+ $('pointCounter').textContent=`Point ${pointIndex+1} of 5`;
+ $('stepCounter').textContent=`Sentence ${stepIndex+1} of 3`;
+ $('markCounter').textContent=`Marks: ${score} / 15`;
+ $('progressInner').style.width=`${completed/15*100}%`;
+ $('progress').setAttribute('aria-valuenow',String(completed));
+ $('pointTitle').textContent=`${p.emoji} Point ${pointIndex+1}: ${p.name}`;
+ $('stepHelp').textContent=PHASES[stepIndex].en+' / '+PHASES[stepIndex].ms;
+ $('chooseTitle').textContent=`Choose the best sentence — ${PHASES[stepIndex].name}`;
+ renderGameMap();
+ $('builtParagraph').textContent=fullParagraph(p,pointIndex,paragraphs[pointIndex]);
+ $('choices').replaceChildren();
+ choices.forEach((c,i)=>{
+  const b=document.createElement('button');b.type='button';b.className='choice';b.disabled=solved;
+  const letter=document.createElement('span');letter.className='letter';letter.textContent='ABC'[i];
+  const txt=document.createElement('span');txt.textContent=c.text;
+  b.append(letter,txt);b.addEventListener('click',()=>choose(c,b));$('choices').append(b);
+ });
+ hide('feedback');hide('nextWrap');
+}
+function feedback(type,title,en,ms,correctLine=''){
+ const el=$('feedback');el.className='feedback '+type;el.replaceChildren();
+ const heading=document.createElement('h3');heading.textContent=title;
+ const english=document.createElement('p');english.textContent='🇬🇧 '+en;
+ const malay=document.createElement('p');malay.textContent='🇲🇾 '+ms;
+ el.append(heading,english,malay);
+ if(correctLine){const line=document.createElement('div');line.className='correct-line';line.textContent='✅ Correct sentence: '+correctLine;el.append(line);}
+ show('feedback');
+}
+function choose(c,b){
+ if(solved||b.disabled)return;
+ const p=selectedPoints[pointIndex];
+ if(c.owner!==p.key){
+  wrongYet=true;b.classList.add('wrong');b.disabled=true;
+  const wrong=POINTS.find(q=>q.key===c.owner);
+  document.querySelectorAll('#choices button').forEach((btn,i)=>{if(choices[i].owner===p.key)btn.classList.add('target');});
+  feedback('bad','❌ Not quite — try again!',
+   `This sentence focuses on ${wrong.focus}, but your paragraph is about ${p.focus}. Choose the highlighted sentence to continue.`,
+   `Ayat ini berfokus pada ${wrong.focusMs}, tetapi perenggan ini tentang ${p.focusMs}. Pilih ayat yang ditandakan untuk meneruskan.`,p.sentences[stepIndex]);
+  return;
+ }
+ solved=true;b.classList.remove('target');b.classList.add('correct');
+ if(!wrongYet){score++;pointScores[pointIndex]++;}
+ completed++;paragraphs[pointIndex].push(p.sentences[stepIndex]);
+ $('builtParagraph').textContent=fullParagraph(p,pointIndex,paragraphs[pointIndex]);
+ document.querySelectorAll('#choices button').forEach(btn=>btn.disabled=true);
+ $('markCounter').textContent=`Marks: ${score} / 15`;
+ $('progressInner').style.width=`${completed/15*100}%`;
+ $('progress').setAttribute('aria-valuenow',String(completed));
+ feedback('good',wrongYet?'✅ Correct! Keep practising.':'✅ Excellent! +1 mark',p.en[stepIndex],p.ms[stepIndex]);
+ $('nextBtn').textContent=stepIndex<2?'Next Sentence →':pointIndex<4?'Next Point →':'See All Five Paragraphs →';
+ show('nextWrap');
+}
+function advance(){
+ if(!solved)return;
+ if(stepIndex<2)stepIndex++;
+ else if(pointIndex<4){pointIndex++;stepIndex=0;}
+ else{showReview();return;}
+ wrongYet=false;solved=false;newChoices();render();window.scrollTo(0,0);
+}
+function showReview(){
+ hide('game');hide('results');show('review');
+ $('paragraphsList').replaceChildren();
+ selectedPoints.forEach((p,i)=>{
+  const section=document.createElement('section');section.className='para-review';
+  const title=document.createElement('h3');title.textContent=`${i+1}. ${p.emoji} ${p.name}`;
+  const body=document.createElement('p');body.textContent=fullParagraph(p,i,paragraphs[i]);
+  section.append(title,body);$('paragraphsList').append(section);
+ });
+ $('copiedCheck').checked=hasCopied;$('scoreBtn').disabled=!hasCopied;window.scrollTo(0,0);
+}
+function finish(){
+ if(!hasCopied)return;
+ hide('review');show('results');
+ $('resultStudent').textContent='Student / Nama: '+student;
+ $('finalScore').textContent=`${score} / 15`;
+ $('resultMessage').textContent=score===15?'🌟 Fantastic! All first attempts correct!':score>=11?'🌟 Great job! Keep practising your speaking skills.':score>=7?'📚 Good effort! Review the sentences you learnt.':'💡 Keep practising! Every sentence helps you improve.';
+ $('breakdown').replaceChildren();
+ selectedPoints.forEach((p,i)=>{
+  const line=document.createElement('div');line.className='result-line';
+  const label=document.createElement('span');label.textContent=p.emoji+' '+p.name;
+  const marks=document.createElement('strong');marks.textContent=`${pointScores[i]} / 3`;
+  line.append(label,marks);$('breakdown').append(line);
+ });window.scrollTo(0,0);
+}
+function replay(){hide('results');hide('review');hide('game');show('welcome');selectedKeys=[];resetWelcomeMap();window.scrollTo(0,0);}
+resetWelcomeMap();
+$('startBtn').addEventListener('click',start);
+$('studentName').addEventListener('keydown',e=>{if(e.key==='Enter')start();});
+$('nextBtn').addEventListener('click',advance);
+$('copiedCheck').addEventListener('change',e=>{hasCopied=e.target.checked;$('scoreBtn').disabled=!hasCopied;});
+$('scoreBtn').addEventListener('click',finish);
+$('reviewBtn').addEventListener('click',showReview);
+$('replayBtn').addEventListener('click',replay);
+</script></body></html>
