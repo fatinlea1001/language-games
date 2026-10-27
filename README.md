@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**199 games** — automatically updated when an HTML game is added or changed.
+**200 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Speaking Part 3 — Places to Do Charity Work (Set 25)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-25.html) — updated 27 Oct 2026
 - [SPM Speaking Part 3 — How Technology Has Changed Our Lives (Set 24)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-24.html) — updated 27 Oct 2026
 - [SPM Speaking Part 3 — Ways to Shop Smart (Set 23)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-23.html) — updated 21 Oct 2026
 - [SPM Speaking Part 3 — Popular Gig Economy Jobs in Malaysia (Set 22)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-22.html) — updated 21 Oct 2026
