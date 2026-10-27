@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**210 games** — automatically updated when an HTML game is added or changed.
+**211 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Speaking Part 3 — Ways to Study Effectively (Set 36)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-36.html) — updated 27 Oct 2026
 - [SPM Speaking Part 3 — How to Protect Ourselves from Fake Information on the Internet (Set 35)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-35.html) — updated 27 Oct 2026
 - [SPM Speaking Part 3 — Impacts of the Internet on Young People (Set 34)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-34.html) — updated 27 Oct 2026
 - [SPM Speaking Part 3 — Ways to Reduce Food Waste (Set 33)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-33.html) — updated 27 Oct 2026
