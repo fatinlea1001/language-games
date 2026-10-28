@@ -166,7 +166,7 @@ jobs:
               filename = path.name.lower()
               if filename.startswith('eng-'):
                   group = 'English'
-              elif filename.startswith(('jp-', 'jpn-', 'n5-', 'teform-')):
+              elif filename.startswith(('jp-', 'jpn-', 'n5-', 'n4-', 'teform-')):
                   group = 'Japanese'
               else:
                   group = 'Other'
