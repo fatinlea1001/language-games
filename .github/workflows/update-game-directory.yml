@@ -76,6 +76,7 @@ jobs:
               'jpn-reading-n5': 'Japanese Reading Garden — N5',
               'n5-adj': 'N5 Adjectives',
               'n5-sentence': 'N5 Sentence Jumble',
+              'n4-sentence': 'N4 Sentence Scramble',
               'n5-verb': 'N5 Verbs',
               'n5-vocabulary': 'N5 Vocabulary',
               'teform': 'て-form Builder',
