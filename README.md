@@ -165,6 +165,12 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [N4 Sentence Scramble (Set 5)](https://fatinlea1001.github.io/language-games/n4-sentence-5.html) — updated 28 Oct 2026
+- [N4 Sentence Scramble (Set 6)](https://fatinlea1001.github.io/language-games/n4-sentence-6.html) — updated 28 Oct 2026
+- [N4 Sentence Scramble (Set 4)](https://fatinlea1001.github.io/language-games/n4-sentence-4.html) — updated 28 Oct 2026
+- [N4 Sentence Scramble (Set 3)](https://fatinlea1001.github.io/language-games/n4-sentence-3.html) — updated 28 Oct 2026
+- [N4 Sentence Scramble (Set 2)](https://fatinlea1001.github.io/language-games/n4-sentence-2.html) — updated 28 Oct 2026
+- [N4 Sentence Scramble (Set 1)](https://fatinlea1001.github.io/language-games/n4-sentence-1.html) — updated 28 Oct 2026
 - [N5 Sentence Jumble (Set 6)](https://fatinlea1001.github.io/language-games/n5-sentence-6.html) — updated 28 Oct 2026
 - [N5 Sentence Jumble (Set 5)](https://fatinlea1001.github.io/language-games/n5-sentence-5.html) — updated 28 Oct 2026
 - [N5 Sentence Jumble (Set 4)](https://fatinlea1001.github.io/language-games/n5-sentence-4.html) — updated 28 Oct 2026
@@ -226,14 +232,6 @@ Recently updated games appear first in each category.
 - [N5 Vocabulary (Set 1)](https://fatinlea1001.github.io/language-games/n5-vocabulary-1.html) — updated 06 Oct 2026
 - [N5 Verbs (Set 1)](https://fatinlea1001.github.io/language-games/n5-verb-1.html) — updated 06 Oct 2026
 - [N5 Adjectives (Set 1)](https://fatinlea1001.github.io/language-games/n5-adj-1.html) — updated 06 Oct 2026
-
-### 🎲 Other Games
-- [N4 Sentence Scramble (Set 5)](https://fatinlea1001.github.io/language-games/n4-sentence-5.html) — updated 28 Oct 2026
-- [N4 Sentence Scramble (Set 6)](https://fatinlea1001.github.io/language-games/n4-sentence-6.html) — updated 28 Oct 2026
-- [N4 Sentence Scramble (Set 4)](https://fatinlea1001.github.io/language-games/n4-sentence-4.html) — updated 28 Oct 2026
-- [N4 Sentence Scramble (Set 3)](https://fatinlea1001.github.io/language-games/n4-sentence-3.html) — updated 28 Oct 2026
-- [N4 Sentence Scramble (Set 2)](https://fatinlea1001.github.io/language-games/n4-sentence-2.html) — updated 28 Oct 2026
-- [N4 Sentence Scramble (Set 1)](https://fatinlea1001.github.io/language-games/n4-sentence-1.html) — updated 28 Oct 2026
 
 _This directory is maintained by GitHub Actions._
 <!-- AUTO-GAMES:END -->
