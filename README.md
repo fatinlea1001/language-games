@@ -165,6 +165,7 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [N5 Sentence Jumble (Set 1)](https://fatinlea1001.github.io/language-games/n5-sentence-1.html) — updated 28 Oct 2026
 - [N5 Sentence Jumble (Set 2)](https://fatinlea1001.github.io/language-games/n5-sentence-2.html) — updated 28 Oct 2026
 - [Truefalse Tsukiji Market (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-tsukiji-market-1.html) — updated 21 Oct 2026
 - [Truefalse Family Home (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-family-home-1.html) — updated 21 Oct 2026
@@ -219,7 +220,6 @@ Recently updated games appear first in each category.
 - [Kanji & Katakana Spell-Off (Set 1)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-1.html) — updated 10 Oct 2026
 - [て-form Builder (Set 1)](https://fatinlea1001.github.io/language-games/teform-1.html) — updated 06 Oct 2026
 - [N5 Vocabulary (Set 1)](https://fatinlea1001.github.io/language-games/n5-vocabulary-1.html) — updated 06 Oct 2026
-- [N5 Sentence Jumble (Set 1)](https://fatinlea1001.github.io/language-games/n5-sentence-1.html) — updated 06 Oct 2026
 - [N5 Verbs (Set 1)](https://fatinlea1001.github.io/language-games/n5-verb-1.html) — updated 06 Oct 2026
 - [N5 Adjectives (Set 1)](https://fatinlea1001.github.io/language-games/n5-adj-1.html) — updated 06 Oct 2026
 
