@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N5 Sentence Scramble 4 🌸</title>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:18px;font-family:Arial,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:#fff7fb;color:#353238}
+.game{max-width:680px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.tag{color:#e44c96;font-weight:bold;font-size:13px;margin-bottom:3px}
+h1{margin:0;font-size:29px}
+.subtitle{font-size:13px;color:#986a83;margin-top:7px}
+.score{background:#fff;padding:11px 16px;border-radius:15px;text-align:center;box-shadow:0 3px 12px #0000000d;flex-shrink:0}
+.score small{display:block;color:#888}.score strong{font-size:20px}
+.progress-bg{height:10px;background:#f1dce7;border-radius:20px;overflow:hidden;margin-top:20px}
+.progress{height:100%;width:5%;background:#ed5ca6;transition:width .3s}
+.status{display:flex;justify-content:space-between;margin:11px 3px 18px;color:#777;font-size:14px}
+.card,.results{background:white;border-radius:24px;padding:23px;box-shadow:0 5px 20px #00000012}
+.instruction{color:#888;font-size:14px;margin-bottom:8px}
+.meaning{font-size:20px;font-weight:bold;line-height:1.5;margin-bottom:24px}
+.zone-title{font-size:12px;font-weight:bold;color:#999;letter-spacing:1px;margin:15px 0 8px}
+.zone{min-height:87px;padding:12px;border-radius:16px;display:flex;flex-wrap:wrap;gap:9px;align-content:flex-start}
+.answer-zone{border:2px dashed #e2bfd1;background:#fffafd}
+.bank-zone{background:#f9f3f6}
+.word{border:1px solid #e1d7dc;background:white;padding:12px 15px;border-radius:12px;font-size:19px;cursor:grab;user-select:none;box-shadow:0 2px 6px #0000000a;touch-action:manipulation;line-height:1.85}
+.word:active{cursor:grabbing;transform:scale(.97)}.word:focus-visible,button:focus-visible{outline:3px solid #e95a9f;outline-offset:2px}
+ruby{ruby-position:over}rt{font-size:10px;font-weight:400;color:#a44a7d}
+.sortable-ghost{opacity:.3}.sortable-chosen{border-color:#ed5ca6;background:#fff0f7}
+.feedback{margin-top:17px;padding:16px;border-radius:14px;line-height:1.75;display:none}
+.feedback.good{display:block;background:#e5f8ed;color:#256b43}
+.feedback.bad{display:block;background:#fff0f0;color:#9a3f3f}
+.feedback .note{background:#ffffffab;color:#4b4650;padding:11px 12px;border-radius:10px;margin-top:10px}
+.feedback .model{margin:8px 0;font-size:20px;line-height:2.2;color:#264f3b}
+.feedback .mini{font-size:13px;line-height:1.65}
+.controls{display:flex;gap:10px;margin-top:17px}
+button{border:none;min-height:49px;border-radius:13px;font-size:16px;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.5;cursor:default}
+.secondary{flex:1;background:#f0e9ed;color:#555}.primary{flex:2;background:#e95a9f;color:white}
+.next{width:100%;background:#e95a9f;color:white;margin-top:12px;display:none}
+.help{text-align:center;font-size:12px;color:#999;margin-top:13px}
+.results{text-align:center;padding:38px 25px;display:none}
+.results .emoji{font-size:60px}.results h2{font-size:28px;margin-bottom:5px}
+.final-score{font-size:48px;font-weight:bold;margin:15px 0}
+.restart{width:100%;background:#e95a9f;color:white;margin-top:15px}
+.home-link{display:inline-block;margin-top:16px;font-size:13px;color:#a9477b}
+@media(max-width:500px){body{padding:14px}h1{font-size:24px}.card{padding:18px}.meaning{font-size:18px}.word{font-size:18px;padding:11px 12px}rt{font-size:9px}}
+</style>
+</head>
+<body>
+<div class="game">
+ <div id="playArea">
+  <div class="top">
+   <div><div class="tag">🌸 JLPT N5 • SET 4</div><h1>Sentence Scramble</h1><div class="subtitle">Shopping, food & travel • Furigana + tips</div></div>
+   <div class="score"><small>Score</small><strong id="score">0 / 20</strong></div>
+  </div>
+  <div class="progress-bg"><div id="progress" class="progress"></div></div>
+  <div class="status"><span id="questionNumber">Question 1 / 20</span><span id="streak">🔥 0 streak</span></div>
+  <div class="card">
+   <div class="instruction">Rearrange the word boxes to make the Japanese sentence.</div>
+   <div id="meaning" class="meaning"></div>
+   <div class="zone-title">YOUR SENTENCE</div>
+   <div id="answerZone" class="zone answer-zone" aria-label="Your Japanese sentence"></div>
+   <div class="zone-title">WORD BOXES</div>
+   <div id="bankZone" class="zone bank-zone" aria-label="Available word boxes"></div>
+   <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+   <div class="controls">
+    <button id="resetButton" class="secondary">Reset</button>
+    <button id="checkButton" class="primary">Check ✓</button>
+   </div>
+   <button id="nextButton" class="next">Next →</button>
+   <div class="help">Drag boxes or tap to move them. 🌸<br>Some sentences have more than one correct word order!</div>
+  </div>
+ </div>
+ <div id="results" class="results">
+  <div id="resultEmoji" class="emoji">🌸</div><h2>Finished!</h2>
+  <div id="finalScore" class="final-score"></div>
+  <p id="finalMessage"></p><p id="bestStreak"></p>
+  <button id="restartButton" class="restart">Play Again 🔄</button>
+  <a class="home-link" href="n5-sentence-3.html">← Set 3</a> &nbsp; | &nbsp; <a class="home-link" href="n5-sentence-5.html">Set 5 →</a>
+ </div>
+</div>
+<script>
+/* Hand-checked N5 examples. Valid orders are curated per question:
+   grammar-linked words must remain together; the sentence-ending verb stays last. */
+const questions = [
+ {
+  "en": "Two apples, please.",
+  "words": [
+   "りんごを",
+   "{二|ふた}つ",
+   "ください。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "ください can be used to ask for an item. The counter {二|ふた}つ means 'two things'.",
+  "vocab": "りんご = apple; {二|ふた}つ = two (general counter)"
+ },
+ {
+  "en": "This cake is sweet.",
+  "words": [
+   "この",
+   "ケーキは",
+   "{甘|あま}いです。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "この must be followed by a noun. An い-adjective can directly describe the noun.",
+  "vocab": "ケーキ = cake; {甘|あま}い = sweet"
+ },
+ {
+  "en": "A cup of tea, please.",
+  "words": [
+   "お{茶|ちゃ}を",
+   "{一杯|いっぱい}",
+   "ください。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "{一杯|いっぱい} is the counter for one cup or glass. を marks the thing requested.",
+  "vocab": "お{茶|ちゃ} = tea; {一杯|いっぱい} = one cup"
+ },
+ {
+  "en": "How much is this bag?",
+  "words": [
+   "この",
+   "かばんは",
+   "いくらですか。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "いくらですか asks the price. この must come immediately before the noun.",
+  "vocab": "かばん = bag; いくら = how much"
+ },
+ {
+  "en": "I bought three pencils.",
+  "words": [
+   "えんぴつを",
+   "{三本|さんぼん}",
+   "{買|か}いました。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "{三本|さんぼん} counts three long objects, such as pencils. ました marks the past tense.",
+  "vocab": "えんぴつ = pencil; {買|か}う = to buy"
+ },
+ {
+  "en": "I want cheap shoes.",
+  "words": [
+   "{安|やす}い",
+   "くつが",
+   "ほしいです。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "ほしいです expresses wanting a thing; が commonly marks the desired object.",
+  "vocab": "{安|やす}い = cheap; くつ = shoes"
+ },
+ {
+  "en": "That shop closes at nine.",
+  "words": [
+   "あの",
+   "{店|みせ}は",
+   "{九時|くじ}に",
+   "{閉|し}まります。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    2,
+    0,
+    1,
+    3
+   ]
+  ],
+  "grammar": "に marks a specific time. {閉|し}まる means a shop closes, unlike {閉|し}める (to close something).",
+  "vocab": "あの = that (over there); {店|みせ} = shop"
+ },
+ {
+  "en": "A menu, please.",
+  "words": [
+   "メニューを",
+   "ください。"
+  ],
+  "valid": [
+   [
+    0,
+    1
+   ]
+  ],
+  "grammar": "Noun + をください is a simple polite way to request something.",
+  "vocab": "メニュー = menu; ください = please give me"
+ },
+ {
+  "en": "I eat rice with chopsticks.",
+  "words": [
+   "はしで",
+   "ご{飯|はん}を",
+   "{食|た}べます。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    1,
+    0,
+    2
+   ]
+  ],
+  "grammar": "で marks the tool used to do an action; を marks what you eat.",
+  "vocab": "はし = chopsticks; ご{飯|はん} = rice/meal"
+ },
+ {
+  "en": "I pay in cash.",
+  "words": [
+   "{現金|げんきん}で",
+   "{払|はら}います。"
+  ],
+  "valid": [
+   [
+    0,
+    1
+   ]
+  ],
+  "grammar": "で marks a method or means of doing something, such as paying with cash.",
+  "vocab": "{現金|げんきん} = cash; {払|はら}う = to pay"
+ },
+ {
+  "en": "The supermarket is near the station.",
+  "words": [
+   "スーパーは",
+   "{駅|えき}の",
+   "{近|ちか}くに",
+   "あります。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ]
+  ],
+  "grammar": "Noun + の + {近|ちか}くに means 'near [a place]'. あります describes the existence of a place.",
+  "vocab": "スーパー = supermarket; {駅|えき} = station"
+ },
+ {
+  "en": "The next bus comes in ten minutes.",
+  "words": [
+   "{次|つぎ}の",
+   "バスは",
+   "{十分後|じゅっぷんご}に",
+   "{来|き}ます。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    2,
+    0,
+    1,
+    3
+   ]
+  ],
+  "grammar": "{十分後|じゅっぷんご}に means 'in ten minutes' (ten minutes later). に marks a specific future time.",
+  "vocab": "{次|つぎ}の = next; バス = bus"
+ },
+ {
+  "en": "Please go straight along this road.",
+  "words": [
+   "この",
+   "{道|みち}を",
+   "まっすぐ",
+   "{行|い}ってください。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    2,
+    0,
+    1,
+    3
+   ]
+  ],
+  "grammar": "Verb て-form + ください makes a polite request. まっすぐ means 'straight'.",
+  "vocab": "{道|みち} = road; {行|い}く = to go"
+ },
+ {
+  "en": "Please turn right at the traffic light.",
+  "words": [
+   "{信号|しんごう}で",
+   "{右|みぎ}に",
+   "{曲|ま}がってください。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    1,
+    0,
+    2
+   ]
+  ],
+  "grammar": "で marks where you turn; に marks the direction. て-form + ください is a polite request.",
+  "vocab": "{信号|しんごう} = traffic light; {右|みぎ} = right"
+ },
+ {
+  "en": "Which train goes to Tokyo?",
+  "words": [
+   "どの",
+   "{電車|でんしゃ}が",
+   "{東京|とうきょう}へ",
+   "{行|い}きますか。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    2,
+    0,
+    1,
+    3
+   ]
+  ],
+  "grammar": "どの comes before a noun and means 'which'. か turns a polite sentence into a question.",
+  "vocab": "{電車|でんしゃ} = train; {東京|とうきょう} = Tokyo"
+ },
+ {
+  "en": "The restaurant is closed today.",
+  "words": [
+   "レストランは",
+   "{今日|きょう}",
+   "{休|やす}みです。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    1,
+    0,
+    2
+   ]
+  ],
+  "grammar": "{休|やす}みです means 'closed' or 'on a day off' when describing a business.",
+  "vocab": "レストラン = restaurant; {休|やす}み = day off/closed"
+ },
+ {
+  "en": "I want to eat sushi.",
+  "words": [
+   "すしを",
+   "{食|た}べたいです。"
+  ],
+  "valid": [
+   [
+    0,
+    1
+   ]
+  ],
+  "grammar": "Verb stem + たいです expresses wanting to do something. {食|た}べます becomes {食|た}べたいです.",
+  "vocab": "すし = sushi; {食|た}べる = to eat"
+ },
+ {
+  "en": "This shop has many vegetables.",
+  "words": [
+   "この",
+   "{店|みせ}には",
+   "{野菜|やさい}が",
+   "たくさん",
+   "あります。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  ],
+  "grammar": "には marks the location as a topic; が marks what exists. たくさん means 'many'.",
+  "vocab": "{野菜|やさい} = vegetables; たくさん = many/a lot"
+ },
+ {
+  "en": "I bought a red hat yesterday.",
+  "words": [
+   "{昨日|きのう}",
+   "{赤|あか}い",
+   "{帽子|ぼうし}を",
+   "{買|か}いました。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    2,
+    0,
+    3
+   ]
+  ],
+  "grammar": "An い-adjective comes directly before the noun it describes: {赤|あか}い{帽子|ぼうし}.",
+  "vocab": "{昨日|きのう} = yesterday; {帽子|ぼうし} = hat"
+ },
+ {
+  "en": "The coffee is hot.",
+  "words": [
+   "コーヒーは",
+   "{熱|あつ}いです。"
+  ],
+  "valid": [
+   [
+    0,
+    1
+   ]
+  ],
+  "grammar": "An い-adjective can form a complete polite description with です.",
+  "vocab": "コーヒー = coffee; {熱|あつ}い = hot (to touch or drink)"
+ }
+];
+let quiz=[],current=0,score=0,streak=0,bestStreak=0,firstTry=true,solved=false;
+const bankZone=document.getElementById("bankZone");
+const answerZone=document.getElementById("answerZone");
+const meaning=document.getElementById("meaning");
+const feedback=document.getElementById("feedback");
+const checkButton=document.getElementById("checkButton");
+const resetButton=document.getElementById("resetButton");
+const nextButton=document.getElementById("nextButton");
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function rubyHTML(s){return escapeHTML(s).replace(/\{([^{}|]+)\|([^{}|]+)\}/g,"<ruby>$1<rt>$2</rt></ruby>");}
+function modelHTML(q){return q.words.map(rubyHTML).join(" ");}
+function makeWord(word,index){
+ const box=document.createElement("button");
+ box.type="button";box.className="word";box.dataset.id=String(index);
+ box.innerHTML=rubyHTML(word);
+ box.setAttribute("aria-label",word.replace(/\{([^{}|]+)\|([^{}|]+)\}/g,"$1 ($2)"));
+ box.addEventListener("click",function(){if(solved)return;if(box.parentElement===bankZone)answerZone.appendChild(box);else bankZone.appendChild(box);});
+ return box;
+}
+if(window.Sortable){
+ [bankZone,answerZone].forEach(function(zone){
+  new Sortable(zone,{group:"words",animation:170,ghostClass:"sortable-ghost",chosenClass:"sortable-chosen",sort:true,
+   disabled:false,filter:".locked",preventOnFilter:false});
+ });
+}
+function updateStatus(){
+ document.getElementById("questionNumber").textContent="Question "+(current+1)+" / "+quiz.length;
+ document.getElementById("score").textContent=score+" / "+quiz.length;
+ document.getElementById("streak").textContent="🔥 "+streak+" streak";
+ document.getElementById("progress").style.width=((current+1)/quiz.length*100)+"%";
+}
+function loadQuestion(){
+ solved=false;firstTry=true;feedback.className="feedback";feedback.textContent="";
+ nextButton.style.display="none";checkButton.style.display="block";resetButton.disabled=false;
+ const q=quiz[current];meaning.textContent="💬 "+q.en;
+ bankZone.replaceChildren();answerZone.replaceChildren();
+ shuffle(q.words.map(function(word,i){return {word:word,i:i};})).forEach(function(o){bankZone.appendChild(makeWord(o.word,o.i));});
+ updateStatus();
+}
+function checkAnswer(){
+ if(solved)return;
+ const q=quiz[current];const chosen=[...answerZone.children].map(function(el){return Number(el.dataset.id);});
+ if(chosen.length!==q.words.length){
+  feedback.className="feedback bad";feedback.textContent="👀 Move all the word boxes into your sentence first.";return;
+ }
+ const match=q.valid.findIndex(function(order){return order.every(function(id,i){return id===chosen[i];});});
+ if(match>=0){
+  solved=true;
+  if(firstTry){score++;streak++;}else{streak=0;}
+  bestStreak=Math.max(bestStreak,streak);
+  feedback.className="feedback good";
+  feedback.innerHTML="<strong>✨ 正解（せいかい）！ Correct!</strong>"+
+   (match>0?"<div class='mini'>✅ Your alternative word order is also correct.</div>":"")+
+   "<div class='note'><strong>Model sentence</strong><div class='model'>"+modelHTML(q)+"</div>"+
+   "<div class='mini'><strong>📘 Grammar:</strong> "+rubyHTML(q.grammar)+"</div>"+
+   "<div class='mini'><strong>🔎 Vocabulary:</strong> "+rubyHTML(q.vocab)+"</div></div>";
+  checkButton.style.display="none";nextButton.style.display="block";resetButton.disabled=true;
+ }else{
+  firstTry=false;streak=0;
+  feedback.className="feedback bad";
+  feedback.innerHTML="💡 <strong>Not quite!</strong> Try again.<div class='mini'>Hint: Keep related words together and check what belongs at the end.</div>";
+ }
+ updateStatus();
+}
+function resetQuestion(){
+ if(solved)return;
+ [...answerZone.children].forEach(function(el){bankZone.appendChild(el);});
+ feedback.className="feedback";feedback.textContent="";
+}
+function nextQuestion(){current++;if(current<quiz.length)loadQuestion();else showResults();}
+function showResults(){
+ document.getElementById("playArea").style.display="none";
+ document.getElementById("results").style.display="block";
+ document.getElementById("finalScore").textContent=score+" / "+quiz.length;
+ document.getElementById("bestStreak").textContent="Best first-try streak: 🔥 "+bestStreak;
+ let emoji,message;
+ if(score>=18){emoji="🏆";message="すごい！ Excellent sentence building!";}
+ else if(score>=15){emoji="🌸";message="よくできました！ Very good!";}
+ else if(score>=10){emoji="✨";message="Good progress! Practise again to strengthen your Japanese.";}
+ else{emoji="🌱";message="がんばって！ Keep learning — you can improve with every round.";}
+ document.getElementById("resultEmoji").textContent=emoji;
+ document.getElementById("finalMessage").textContent=message;
+}
+function startGame(){
+ quiz=shuffle(questions);current=0;score=0;streak=0;bestStreak=0;
+ document.getElementById("playArea").style.display="block";
+ document.getElementById("results").style.display="none";loadQuestion();
+}
+checkButton.addEventListener("click",checkAnswer);
+resetButton.addEventListener("click",resetQuestion);
+nextButton.addEventListener("click",nextQuestion);
+document.getElementById("restartButton").addEventListener("click",startGame);
+startGame();
+</script>
+</body>
+</html>
