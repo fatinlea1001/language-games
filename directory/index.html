@@ -386,6 +386,7 @@ function topicDescription(file, readmeTitle, language){
  if(stem==='n5-verb')return describe('N5 Verb Quiz','N5 Verbs','Japanese Vocabulary');
  if(stem==='n5-vocabulary')return describe('N5 Vocabulary Quiz','Everyday Japanese Words','Japanese Vocabulary');
  if(stem==='n5-sentence')return describe('N5 Sentence Jumble','Japanese Sentence Formation','N5 Grammar');
+ if(stem==='n4-sentence')return describe('N4 Sentence Scramble','Intermediate Japanese Sentence Formation','N4 Grammar');
  if(stem==='eng-elaboration-finance' && number===1)
   return describe('Paragraph Makeover — Elaboration & Cohesion',['Saving Money','Cultural Awareness','Plastic Waste'],'SPM Writing Skills');
  if(stem.startsWith('eng-missingsentence-') || stem.startsWith('eng-missing-')){
@@ -476,7 +477,7 @@ function classifyJapaneseGame(file){
  const name=file.toLowerCase();
  if(/^jpn-(friends-dialogue-|malaysia-friends-|cafe-dialogue-)/.test(name))return 'Dialogues & Conversations';
  if(/^n5-(vocabulary|verb|adj)-/.test(name) || /^teform-/.test(name))return 'JLPT N5 Basics';
- if(/^n5-sentence-/.test(name))return 'Sentence Building';
+ if(/^n[45]-sentence-/.test(name))return 'Sentence Building';
  if(/^jpn-(reading-|story-emoji-fill-)/.test(name))return 'Reading & Stories';
  if(/^jpn-spelling-kanji-katakana-/.test(name))return 'Kanji & Spelling';
  if(/^jpn-truefalse-/.test(name))return 'Picture Comprehension';
