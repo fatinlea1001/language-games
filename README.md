@@ -3,7 +3,7 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**212 games** — automatically updated when an HTML game is added or changed.
+**213 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
@@ -165,6 +165,7 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [N5 Sentence Jumble (Set 2)](https://fatinlea1001.github.io/language-games/n5-sentence-2.html) — updated 28 Oct 2026
 - [Truefalse Tsukiji Market (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-tsukiji-market-1.html) — updated 21 Oct 2026
 - [Truefalse Family Home (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-family-home-1.html) — updated 21 Oct 2026
 - [Truefalse Konbini (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-konbini-1.html) — updated 21 Oct 2026
