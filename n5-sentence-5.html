@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N5 Sentence Scramble 5 🌸</title>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:18px;font-family:Arial,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:#fff7fb;color:#353238}
+.game{max-width:680px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.tag{color:#e44c96;font-weight:bold;font-size:13px;margin-bottom:3px}
+h1{margin:0;font-size:29px}
+.subtitle{font-size:13px;color:#986a83;margin-top:7px}
+.score{background:#fff;padding:11px 16px;border-radius:15px;text-align:center;box-shadow:0 3px 12px #0000000d;flex-shrink:0}
+.score small{display:block;color:#888}.score strong{font-size:20px}
+.progress-bg{height:10px;background:#f1dce7;border-radius:20px;overflow:hidden;margin-top:20px}
+.progress{height:100%;width:5%;background:#ed5ca6;transition:width .3s}
+.status{display:flex;justify-content:space-between;margin:11px 3px 18px;color:#777;font-size:14px}
+.card,.results{background:white;border-radius:24px;padding:23px;box-shadow:0 5px 20px #00000012}
+.instruction{color:#888;font-size:14px;margin-bottom:8px}
+.meaning{font-size:20px;font-weight:bold;line-height:1.5;margin-bottom:24px}
+.zone-title{font-size:12px;font-weight:bold;color:#999;letter-spacing:1px;margin:15px 0 8px}
+.zone{min-height:87px;padding:12px;border-radius:16px;display:flex;flex-wrap:wrap;gap:9px;align-content:flex-start}
+.answer-zone{border:2px dashed #e2bfd1;background:#fffafd}
+.bank-zone{background:#f9f3f6}
+.word{border:1px solid #e1d7dc;background:white;padding:12px 15px;border-radius:12px;font-size:19px;cursor:grab;user-select:none;box-shadow:0 2px 6px #0000000a;touch-action:manipulation;line-height:1.85}
+.word:active{cursor:grabbing;transform:scale(.97)}.word:focus-visible,button:focus-visible{outline:3px solid #e95a9f;outline-offset:2px}
+ruby{ruby-position:over}rt{font-size:10px;font-weight:400;color:#a44a7d}
+.sortable-ghost{opacity:.3}.sortable-chosen{border-color:#ed5ca6;background:#fff0f7}
+.feedback{margin-top:17px;padding:16px;border-radius:14px;line-height:1.75;display:none}
+.feedback.good{display:block;background:#e5f8ed;color:#256b43}
+.feedback.bad{display:block;background:#fff0f0;color:#9a3f3f}
+.feedback .note{background:#ffffffab;color:#4b4650;padding:11px 12px;border-radius:10px;margin-top:10px}
+.feedback .model{margin:8px 0;font-size:20px;line-height:2.2;color:#264f3b}
+.feedback .mini{font-size:13px;line-height:1.65}
+.controls{display:flex;gap:10px;margin-top:17px}
+button{border:none;min-height:49px;border-radius:13px;font-size:16px;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.5;cursor:default}
+.secondary{flex:1;background:#f0e9ed;color:#555}.primary{flex:2;background:#e95a9f;color:white}
+.next{width:100%;background:#e95a9f;color:white;margin-top:12px;display:none}
+.help{text-align:center;font-size:12px;color:#999;margin-top:13px}
+.results{text-align:center;padding:38px 25px;display:none}
+.results .emoji{font-size:60px}.results h2{font-size:28px;margin-bottom:5px}
+.final-score{font-size:48px;font-weight:bold;margin:15px 0}
+.restart{width:100%;background:#e95a9f;color:white;margin-top:15px}
+.home-link{display:inline-block;margin-top:16px;font-size:13px;color:#a9477b}
+@media(max-width:500px){body{padding:14px}h1{font-size:24px}.card{padding:18px}.meaning{font-size:18px}.word{font-size:18px;padding:11px 12px}rt{font-size:9px}}
+</style>
+</head>
+<body>
+<div class="game">
+ <div id="playArea">
+  <div class="top">
+   <div><div class="tag">🌸 JLPT N5 • SET 5</div><h1>Sentence Scramble</h1><div class="subtitle">People, places & plans • Furigana + tips</div></div>
+   <div class="score"><small>Score</small><strong id="score">0 / 20</strong></div>
+  </div>
+  <div class="progress-bg"><div id="progress" class="progress"></div></div>
+  <div class="status"><span id="questionNumber">Question 1 / 20</span><span id="streak">🔥 0 streak</span></div>
+  <div class="card">
+   <div class="instruction">Rearrange the word boxes to make the Japanese sentence.</div>
+   <div id="meaning" class="meaning"></div>
+   <div class="zone-title">YOUR SENTENCE</div>
+   <div id="answerZone" class="zone answer-zone" aria-label="Your Japanese sentence"></div>
+   <div class="zone-title">WORD BOXES</div>
+   <div id="bankZone" class="zone bank-zone" aria-label="Available word boxes"></div>
+   <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+   <div class="controls">
+    <button id="resetButton" class="secondary">Reset</button>
+    <button id="checkButton" class="primary">Check ✓</button>
+   </div>
+   <button id="nextButton" class="next">Next →</button>
+   <div class="help">Drag boxes or tap to move them. 🌸<br>Some sentences have more than one correct word order!</div>
+  </div>
+ </div>
+ <div id="results" class="results">
+  <div id="resultEmoji" class="emoji">🌸</div><h2>Finished!</h2>
+  <div id="finalScore" class="final-score"></div>
+  <p id="finalMessage"></p><p id="bestStreak"></p>
+  <button id="restartButton" class="restart">Play Again 🔄</button>
+  <a class="home-link" href="n5-sentence-4.html">← Set 4</a> &nbsp; | &nbsp; <a class="home-link" href="n5-sentence-1.html">Back to Set 1 ↺</a>
+ </div>
+</div>
+<script>
+/* Hand-checked N5 examples. Valid orders are curated per question:
+   grammar-linked words must remain together; the sentence-ending verb stays last. */
+const questions = [
+ {
+  "en": "My grandmother lives in Osaka.",
+  "words": [
+   "{祖母|そぼ}は",
+   "{大阪|おおさか}に",
+   "{住|す}んでいます。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "に marks the place someone lives. {住|す}んでいます describes a continuing state.",
+  "vocab": "{祖母|そぼ} = my grandmother; {大阪|おおさか} = Osaka"
+ },
+ {
+  "en": "My younger sister is ten years old.",
+  "words": [
+   "{妹|いもうと}は",
+   "{十歳|じゅっさい}です。"
+  ],
+  "valid": [
+   [
+    0,
+    1
+   ]
+  ],
+  "grammar": "The counter {歳|さい} expresses age. は marks the person being described.",
+  "vocab": "{妹|いもうと} = my younger sister; {十歳|じゅっさい} = ten years old"
+ },
+ {
+  "en": "I have two older brothers.",
+  "words": [
+   "{兄|あに}が",
+   "{二人|ふたり}",
+   "います。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "Use います for living things. {二人|ふたり} counts two people.",
+  "vocab": "{兄|あに} = my older brother; {二人|ふたり} = two people"
+ },
+ {
+  "en": "This is my friend's bicycle.",
+  "words": [
+   "これは",
+   "{友達|ともだち}の",
+   "{自転車|じてんしゃ}です。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "の shows ownership or connection: {友達|ともだち}の{自転車|じてんしゃ} = a friend's bicycle.",
+  "vocab": "{友達|ともだち} = friend; {自転車|じてんしゃ} = bicycle"
+ },
+ {
+  "en": "My teacher speaks Japanese slowly.",
+  "words": [
+   "{先生|せんせい}は",
+   "ゆっくり",
+   "{日本語|にほんご}を",
+   "{話|はな}します。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    0,
+    2,
+    1,
+    3
+   ]
+  ],
+  "grammar": "ゆっくり is an adverb meaning 'slowly'. を marks the language being spoken.",
+  "vocab": "{先生|せんせい} = teacher; {話|はな}す = to speak"
+ },
+ {
+  "en": "We will go to the mountains tomorrow.",
+  "words": [
+   "{私|わたし}たちは",
+   "{明日|あした}",
+   "{山|やま}へ",
+   "{行|い}きます。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    0,
+    2,
+    3
+   ],
+   [
+    0,
+    2,
+    1,
+    3
+   ]
+  ],
+  "grammar": "Japanese present tense can describe a future plan when a time word such as {明日|あした} is included.",
+  "vocab": "{山|やま} = mountain; {明日|あした} = tomorrow"
+ },
+ {
+  "en": "I swim in the pool.",
+  "words": [
+   "プールで",
+   "{泳|およ}ぎます。"
+  ],
+  "valid": [
+   [
+    0,
+    1
+   ]
+  ],
+  "grammar": "で marks the place where an action takes place. {泳|およ}ぐ is the dictionary form.",
+  "vocab": "プール = swimming pool; {泳|およ}ぐ = to swim"
+ },
+ {
+  "en": "The library is behind the post office.",
+  "words": [
+   "{郵便局|ゆうびんきょく}の",
+   "{後|うし}ろに",
+   "{図書館|としょかん}が",
+   "あります。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    2,
+    0,
+    1,
+    3
+   ]
+  ],
+  "grammar": "Noun + の + {後|うし}ろに means 'behind [something]'. あります expresses existence.",
+  "vocab": "{郵便局|ゆうびんきょく} = post office; {図書館|としょかん} = library"
+ },
+ {
+  "en": "I play tennis with my classmates.",
+  "words": [
+   "クラスメートと",
+   "テニスを",
+   "します。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    1,
+    0,
+    2
+   ]
+  ],
+  "grammar": "と marks the people you do something with. テニスをします means 'play tennis'.",
+  "vocab": "クラスメート = classmate; テニス = tennis"
+ },
+ {
+  "en": "The mountains are beautiful in spring.",
+  "words": [
+   "{春|はる}は",
+   "{山|やま}が",
+   "きれいです。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "きれい is a な-adjective. It can describe something as beautiful or clean.",
+  "vocab": "{春|はる} = spring; {山|やま} = mountain"
+ },
+ {
+  "en": "My teacher is kind.",
+  "words": [
+   "{先生|せんせい}は",
+   "{親切|しんせつ}です。"
+  ],
+  "valid": [
+   [
+    0,
+    1
+   ]
+  ],
+  "grammar": "{親切|しんせつ} is a な-adjective meaning 'kind' or 'helpful'.",
+  "vocab": "{先生|せんせい} = teacher; {親切|しんせつ} = kind"
+ },
+ {
+  "en": "Whose bicycle is this?",
+  "words": [
+   "これは",
+   "だれの",
+   "{自転車|じてんしゃ}ですか。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "だれの means 'whose'. か marks a polite question.",
+  "vocab": "だれ = who; {自転車|じてんしゃ} = bicycle"
+ },
+ {
+  "en": "I have a little money.",
+  "words": [
+   "お{金|かね}が",
+   "{少|すこ}し",
+   "あります。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    1,
+    0,
+    2
+   ]
+  ],
+  "grammar": "あります describes the existence or possession of nonliving things; {少|すこ}し means 'a little'.",
+  "vocab": "お{金|かね} = money; {少|すこ}し = a little"
+ },
+ {
+  "en": "Please speak more slowly.",
+  "words": [
+   "もっと",
+   "ゆっくり",
+   "{話|はな}してください。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "もっと means 'more'; ゆっくり means 'slowly'. て-form + ください makes a polite request.",
+  "vocab": "もっと = more; ゆっくり = slowly"
+ },
+ {
+  "en": "I want to learn kanji.",
+  "words": [
+   "{漢字|かんじ}を",
+   "{習|なら}いたいです。"
+  ],
+  "valid": [
+   [
+    0,
+    1
+   ]
+  ],
+  "grammar": "Verb stem + たいです expresses a wish. {習|なら}います becomes {習|なら}いたいです.",
+  "vocab": "{漢字|かんじ} = kanji; {習|なら}う = to learn"
+ },
+ {
+  "en": "I went to Kyoto last week.",
+  "words": [
+   "{先週|せんしゅう}",
+   "{京都|きょうと}へ",
+   "{行|い}きました。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    1,
+    0,
+    2
+   ]
+  ],
+  "grammar": "ました is a polite past-tense verb ending. へ marks the destination.",
+  "vocab": "{先週|せんしゅう} = last week; {京都|きょうと} = Kyoto"
+ },
+ {
+  "en": "My friend is reading a magazine.",
+  "words": [
+   "{友達|ともだち}は",
+   "{雑誌|ざっし}を",
+   "{読|よ}んでいます。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "Verb て-form + います can show an action happening now.",
+  "vocab": "{雑誌|ざっし} = magazine; {読|よ}む = to read"
+ },
+ {
+  "en": "Let's take the train together.",
+  "words": [
+   "いっしょに",
+   "{電車|でんしゃ}に",
+   "{乗|の}りましょう。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    1,
+    0,
+    2
+   ]
+  ],
+  "grammar": "ましょう invites someone to do something together. に marks the vehicle you board.",
+  "vocab": "{電車|でんしゃ} = train; {乗|の}る = to ride/board"
+ },
+ {
+  "en": "It is cold outside today.",
+  "words": [
+   "{今日|きょう}は",
+   "{外|そと}が",
+   "{寒|さむ}いです。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "{寒|さむ}い is an い-adjective used for cold weather or air.",
+  "vocab": "{今日|きょう} = today; {外|そと} = outside"
+ },
+ {
+  "en": "There is a big tree in front of my house.",
+  "words": [
+   "{家|いえ}の",
+   "{前|まえ}に",
+   "{大|おお}きい",
+   "{木|き}が",
+   "あります。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   [
+    2,
+    3,
+    0,
+    1,
+    4
+   ]
+  ],
+  "grammar": "Noun + の + {前|まえ}に means 'in front of'. {大|おお}きい directly describes the tree.",
+  "vocab": "{家|いえ} = house; {木|き} = tree"
+ }
+];
+let quiz=[],current=0,score=0,streak=0,bestStreak=0,firstTry=true,solved=false;
+const bankZone=document.getElementById("bankZone");
+const answerZone=document.getElementById("answerZone");
+const meaning=document.getElementById("meaning");
+const feedback=document.getElementById("feedback");
+const checkButton=document.getElementById("checkButton");
+const resetButton=document.getElementById("resetButton");
+const nextButton=document.getElementById("nextButton");
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function rubyHTML(s){return escapeHTML(s).replace(/\{([^{}|]+)\|([^{}|]+)\}/g,"<ruby>$1<rt>$2</rt></ruby>");}
+function modelHTML(q){return q.words.map(rubyHTML).join(" ");}
+function makeWord(word,index){
+ const box=document.createElement("button");
+ box.type="button";box.className="word";box.dataset.id=String(index);
+ box.innerHTML=rubyHTML(word);
+ box.setAttribute("aria-label",word.replace(/\{([^{}|]+)\|([^{}|]+)\}/g,"$1 ($2)"));
+ box.addEventListener("click",function(){if(solved)return;if(box.parentElement===bankZone)answerZone.appendChild(box);else bankZone.appendChild(box);});
+ return box;
+}
+if(window.Sortable){
+ [bankZone,answerZone].forEach(function(zone){
+  new Sortable(zone,{group:"words",animation:170,ghostClass:"sortable-ghost",chosenClass:"sortable-chosen",sort:true,
+   disabled:false,filter:".locked",preventOnFilter:false});
+ });
+}
+function updateStatus(){
+ document.getElementById("questionNumber").textContent="Question "+(current+1)+" / "+quiz.length;
+ document.getElementById("score").textContent=score+" / "+quiz.length;
+ document.getElementById("streak").textContent="🔥 "+streak+" streak";
+ document.getElementById("progress").style.width=((current+1)/quiz.length*100)+"%";
+}
+function loadQuestion(){
+ solved=false;firstTry=true;feedback.className="feedback";feedback.textContent="";
+ nextButton.style.display="none";checkButton.style.display="block";resetButton.disabled=false;
+ const q=quiz[current];meaning.textContent="💬 "+q.en;
+ bankZone.replaceChildren();answerZone.replaceChildren();
+ shuffle(q.words.map(function(word,i){return {word:word,i:i};})).forEach(function(o){bankZone.appendChild(makeWord(o.word,o.i));});
+ updateStatus();
+}
+function checkAnswer(){
+ if(solved)return;
+ const q=quiz[current];const chosen=[...answerZone.children].map(function(el){return Number(el.dataset.id);});
+ if(chosen.length!==q.words.length){
+  feedback.className="feedback bad";feedback.textContent="👀 Move all the word boxes into your sentence first.";return;
+ }
+ const match=q.valid.findIndex(function(order){return order.every(function(id,i){return id===chosen[i];});});
+ if(match>=0){
+  solved=true;
+  if(firstTry){score++;streak++;}else{streak=0;}
+  bestStreak=Math.max(bestStreak,streak);
+  feedback.className="feedback good";
+  feedback.innerHTML="<strong>✨ 正解（せいかい）！ Correct!</strong>"+
+   (match>0?"<div class='mini'>✅ Your alternative word order is also correct.</div>":"")+
+   "<div class='note'><strong>Model sentence</strong><div class='model'>"+modelHTML(q)+"</div>"+
+   "<div class='mini'><strong>📘 Grammar:</strong> "+rubyHTML(q.grammar)+"</div>"+
+   "<div class='mini'><strong>🔎 Vocabulary:</strong> "+rubyHTML(q.vocab)+"</div></div>";
+  checkButton.style.display="none";nextButton.style.display="block";resetButton.disabled=true;
+ }else{
+  firstTry=false;streak=0;
+  feedback.className="feedback bad";
+  feedback.innerHTML="💡 <strong>Not quite!</strong> Try again.<div class='mini'>Hint: Keep related words together and check what belongs at the end.</div>";
+ }
+ updateStatus();
+}
+function resetQuestion(){
+ if(solved)return;
+ [...answerZone.children].forEach(function(el){bankZone.appendChild(el);});
+ feedback.className="feedback";feedback.textContent="";
+}
+function nextQuestion(){current++;if(current<quiz.length)loadQuestion();else showResults();}
+function showResults(){
+ document.getElementById("playArea").style.display="none";
+ document.getElementById("results").style.display="block";
+ document.getElementById("finalScore").textContent=score+" / "+quiz.length;
+ document.getElementById("bestStreak").textContent="Best first-try streak: 🔥 "+bestStreak;
+ let emoji,message;
+ if(score>=18){emoji="🏆";message="すごい！ Excellent sentence building!";}
+ else if(score>=15){emoji="🌸";message="よくできました！ Very good!";}
+ else if(score>=10){emoji="✨";message="Good progress! Practise again to strengthen your Japanese.";}
+ else{emoji="🌱";message="がんばって！ Keep learning — you can improve with every round.";}
+ document.getElementById("resultEmoji").textContent=emoji;
+ document.getElementById("finalMessage").textContent=message;
+}
+function startGame(){
+ quiz=shuffle(questions);current=0;score=0;streak=0;bestStreak=0;
+ document.getElementById("playArea").style.display="block";
+ document.getElementById("results").style.display="none";loadQuestion();
+}
+checkButton.addEventListener("click",checkAnswer);
+resetButton.addEventListener("click",resetQuestion);
+nextButton.addEventListener("click",nextQuestion);
+document.getElementById("restartButton").addEventListener("click",startGame);
+startGame();
+</script>
+</body>
+</html>
