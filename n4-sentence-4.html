@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N4 Sentence Scramble 4 🌸</title>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:18px;font-family:Arial,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:#fff7fb;color:#353238}
+.game{max-width:680px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.tag{color:#e44c96;font-weight:bold;font-size:13px;margin-bottom:3px}
+h1{margin:0;font-size:29px}
+.subtitle{font-size:13px;color:#986a83;margin-top:7px}
+.score{background:#fff;padding:11px 16px;border-radius:15px;text-align:center;box-shadow:0 3px 12px #0000000d;flex-shrink:0}
+.score small{display:block;color:#888}.score strong{font-size:20px}
+.progress-bg{height:10px;background:#f1dce7;border-radius:20px;overflow:hidden;margin-top:20px}
+.progress{height:100%;width:5%;background:#ed5ca6;transition:width .3s}
+.status{display:flex;justify-content:space-between;margin:11px 3px 18px;color:#777;font-size:14px}
+.card,.results{background:white;border-radius:24px;padding:23px;box-shadow:0 5px 20px #00000012}
+.instruction{color:#888;font-size:14px;margin-bottom:8px}
+.meaning{font-size:20px;font-weight:bold;line-height:1.5;margin-bottom:24px}
+.zone-title{font-size:12px;font-weight:bold;color:#999;letter-spacing:1px;margin:15px 0 8px}
+.zone{min-height:87px;padding:12px;border-radius:16px;display:flex;flex-wrap:wrap;gap:9px;align-content:flex-start}
+.answer-zone{border:2px dashed #e2bfd1;background:#fffafd}
+.bank-zone{background:#f9f3f6}
+.word{border:1px solid #e1d7dc;background:white;padding:12px 15px;border-radius:12px;font-size:19px;cursor:grab;user-select:none;box-shadow:0 2px 6px #0000000a;touch-action:manipulation;line-height:1.85}
+.word:active{cursor:grabbing;transform:scale(.97)}.word:focus-visible,button:focus-visible{outline:3px solid #e95a9f;outline-offset:2px}
+ruby{ruby-position:over}rt{font-size:10px;font-weight:400;color:#a44a7d}
+.sortable-ghost{opacity:.3}.sortable-chosen{border-color:#ed5ca6;background:#fff0f7}
+.feedback{margin-top:17px;padding:16px;border-radius:14px;line-height:1.75;display:none}
+.feedback.good{display:block;background:#e5f8ed;color:#256b43}
+.feedback.bad{display:block;background:#fff0f0;color:#9a3f3f}
+.feedback .note{background:#ffffffab;color:#4b4650;padding:11px 12px;border-radius:10px;margin-top:10px}
+.feedback .model{margin:8px 0;font-size:20px;line-height:2.2;color:#264f3b}
+.feedback .mini{font-size:13px;line-height:1.65}
+.controls{display:flex;gap:10px;margin-top:17px}
+button{border:none;min-height:49px;border-radius:13px;font-size:16px;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.5;cursor:default}
+.secondary{flex:1;background:#f0e9ed;color:#555}.primary{flex:2;background:#e95a9f;color:white}
+.next{width:100%;background:#e95a9f;color:white;margin-top:12px;display:none}
+.help{text-align:center;font-size:12px;color:#999;margin-top:13px}
+.results{text-align:center;padding:38px 25px;display:none}
+.results .emoji{font-size:60px}.results h2{font-size:28px;margin-bottom:5px}
+.final-score{font-size:48px;font-weight:bold;margin:15px 0}
+.restart{width:100%;background:#e95a9f;color:white;margin-top:15px}
+.home-link{display:inline-block;margin-top:16px;font-size:13px;color:#a9477b}
+@media(max-width:500px){body{padding:14px}h1{font-size:24px}.card{padding:18px}.meaning{font-size:18px}.word{font-size:18px;padding:11px 12px}rt{font-size:9px}}
+</style>
+</head>
+<body>
+<div class="game">
+ <div id="playArea">
+  <div class="top">
+   <div><div class="tag">🌸 JLPT N4 • SET 4</div><h1>Sentence Scramble</h1><div class="subtitle">School, study & learning • Furigana + tips</div></div>
+   <div class="score"><small>Score</small><strong id="score">0 / 20</strong></div>
+  </div>
+  <div class="progress-bg"><div id="progress" class="progress"></div></div>
+  <div class="status"><span id="questionNumber">Question 1 / 20</span><span id="streak">🔥 0 streak</span></div>
+  <div class="card">
+   <div class="instruction">Rearrange the word boxes to make the Japanese sentence.</div>
+   <div id="meaning" class="meaning"></div>
+   <div class="zone-title">YOUR SENTENCE</div>
+   <div id="answerZone" class="zone answer-zone" aria-label="Your Japanese sentence"></div>
+   <div class="zone-title">WORD BOXES</div>
+   <div id="bankZone" class="zone bank-zone" aria-label="Available word boxes"></div>
+   <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+   <div class="controls">
+    <button id="resetButton" class="secondary">Reset</button>
+    <button id="checkButton" class="primary">Check ✓</button>
+   </div>
+   <button id="nextButton" class="next">Next →</button>
+   <div class="help">Drag boxes or tap to move them. 🌸<br>Some sentences have more than one correct word order!</div>
+  </div>
+ </div>
+ <div id="results" class="results">
+  <div id="resultEmoji" class="emoji">🌸</div><h2>Finished!</h2>
+  <div id="finalScore" class="final-score"></div>
+  <p id="finalMessage"></p><p id="bestStreak"></p>
+  <button id="restartButton" class="restart">Play Again 🔄</button>
+  <a class="home-link" href="n4-sentence-3.html">← N4 Set 3</a> &nbsp; | &nbsp; <a class="home-link" href="n4-sentence-5.html">N4 Set 5 →</a>
+ </div>
+</div>
+<script>
+/* Hand-checked N5 examples. Valid orders are curated per question:
+   grammar-linked words must remain together; the sentence-ending verb stays last. */
+const questions = [
+ {
+  "en": "Because I forgot my textbook, I borrowed one from a friend.",
+  "words": [
+   "{教科書|きょうかしょ}を",
+   "{忘|わす}れたので、",
+   "{友達|ともだち}に",
+   "{借|か}りました。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ]
+  ],
+  "grammar": "Plain past form + ので gives a reason. に marks the person from whom you borrow.",
+  "vocab": "{教科書|きょうかしょ} = textbook; {借|か}りる = to borrow"
+ },
+ {
+  "en": "You should review before the test.",
+  "words": [
+   "{試験|しけん}の{前|まえ}に、",
+   "{復習|ふくしゅう}したほうが",
+   "いいです。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "Verb plain past + ほうがいいです gives advice, not necessarily advice about a past event.",
+  "vocab": "{試験|しけん} = test/exam; {復習|ふくしゅう}する = to review"
+ },
+ {
+  "en": "I didn't understand what the teacher said.",
+  "words": [
+   "{先生|せんせい}が",
+   "{言|い}ったことが",
+   "{分|わ}かりませんでした。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "Plain-form clause + こと turns an action or statement into a noun phrase.",
+  "vocab": "{先生|せんせい} = teacher; {言|い}う = to say"
+ },
+ {
+  "en": "I started studying Japanese last year.",
+  "words": [
+   "{去年|きょねん}から",
+   "{日本語|にほんご}を",
+   "{勉強|べんきょう}し{始|はじ}めました。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    1,
+    0,
+    2
+   ]
+  ],
+  "grammar": "Verb stem + {始|はじ}める means 'start doing'. から marks the starting point in time.",
+  "vocab": "{去年|きょねん} = last year; {始|はじ}める = to begin"
+ },
+ {
+  "en": "Please don't use your phone during class.",
+  "words": [
+   "{授業中|じゅぎょうちゅう}は",
+   "{携帯電話|けいたいでんわ}を",
+   "{使|つか}わないでください。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "Verb negative plain form + でください means 'please don't do'.",
+  "vocab": "{授業中|じゅぎょうちゅう} = during class; {携帯電話|けいたいでんわ} = mobile phone"
+ },
+ {
+  "en": "The teacher told us to read this page.",
+  "words": [
+   "{先生|せんせい}に",
+   "このページを",
+   "{読|よ}むように",
+   "{言|い}われました。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ]
+  ],
+  "grammar": "Verb dictionary form + ように{言|い}われる means 'be told to do something'.",
+  "vocab": "ページ = page; {読|よ}む = to read"
+ },
+ {
+  "en": "If you don't understand, you should ask a question.",
+  "words": [
+   "{分|わ}からないときは、",
+   "{質問|しつもん}したほうが",
+   "いいです。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "Plain-form verb + とき means 'when'. たほうがいい suggests a good course of action.",
+  "vocab": "{分|わ}かる = to understand; {質問|しつもん}する = to ask a question"
+ },
+ {
+  "en": "I must hand in the report by tomorrow.",
+  "words": [
+   "{明日|あした}までに",
+   "レポートを",
+   "{出|だ}さなければ",
+   "なりません。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    0,
+    2,
+    3
+   ]
+  ],
+  "grammar": "までに sets a deadline. Negative stem + なければなりません expresses an obligation.",
+  "vocab": "{明日|あした} = tomorrow; {出|だ}す = to submit"
+ },
+ {
+  "en": "I forgot to bring my notebook.",
+  "words": [
+   "ノートを",
+   "{持|も}ってくるのを",
+   "{忘|わす}れました。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "Verb plain form + のを{忘|わす}れる means 'forget to do'.",
+  "vocab": "ノート = notebook; {持|も}ってくる = to bring"
+ },
+ {
+  "en": "Even though I studied hard, I didn't pass the exam.",
+  "words": [
+   "{一生懸命|いっしょうけんめい}",
+   "{勉強|べんきょう}したのに、",
+   "{試験|しけん}に",
+   "{合格|ごうかく}できませんでした。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ]
+  ],
+  "grammar": "Clause + のに expresses a surprising or disappointing contrast.",
+  "vocab": "{一生懸命|いっしょうけんめい} = hard/with effort; {合格|ごうかく}する = to pass"
+ },
+ {
+  "en": "I was happy because my score improved.",
+  "words": [
+   "{点数|てんすう}が",
+   "{上|あ}がったので、",
+   "うれしかったです。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "Plain past verb + ので explains the cause of a feeling.",
+  "vocab": "{点数|てんすう} = score; {上|あ}がる = to increase"
+ },
+ {
+  "en": "I try to speak Japanese every day.",
+  "words": [
+   "{毎日|まいにち}",
+   "{日本語|にほんご}を",
+   "{話|はな}すように",
+   "しています。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    0,
+    2,
+    3
+   ]
+  ],
+  "grammar": "Dictionary-form verb + ようにする expresses a conscious habit or effort.",
+  "vocab": "{毎日|まいにち} = every day; {話|はな}す = to speak"
+ },
+ {
+  "en": "Please explain the meaning of this word.",
+  "words": [
+   "この",
+   "{言葉|ことば}の{意味|いみ}を",
+   "{説明|せつめい}してください。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "Noun + の joins two nouns; てください makes a polite request.",
+  "vocab": "{言葉|ことば} = word; {意味|いみ} = meaning"
+ },
+ {
+  "en": "This problem is too difficult for me to solve.",
+  "words": [
+   "この",
+   "{問題|もんだい}は",
+   "{難|むずか}しすぎて、",
+   "{解|と}けません。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ]
+  ],
+  "grammar": "Drop い from an い-adjective and add すぎる to mean 'too ...'. {解|と}ける is the potential form of {解|と}く.",
+  "vocab": "{問題|もんだい} = problem; {解|と}く = to solve"
+ },
+ {
+  "en": "I can now write short sentences.",
+  "words": [
+   "{短|みじか}い",
+   "{文|ぶん}が",
+   "{書|か}けるように",
+   "なりました。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ]
+  ],
+  "grammar": "Potential-form verb + ようになる shows that you acquired an ability.",
+  "vocab": "{短|みじか}い = short; {文|ぶん} = sentence"
+ },
+ {
+  "en": "I want to become able to speak Japanese better.",
+  "words": [
+   "{日本語|にほんご}を",
+   "もっと",
+   "{上手|じょうず}に",
+   "{話|はな}せるようになりたいです。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    0,
+    2,
+    3
+   ]
+  ],
+  "grammar": "Potential verb + ようになる describes acquiring ability; たい expresses a desire.",
+  "vocab": "{日本語|にほんご} = Japanese; {上手|じょうず}に = skilfully"
+ },
+ {
+  "en": "The library is quiet, so it's easy to study there.",
+  "words": [
+   "{図書館|としょかん}は",
+   "{静|しず}かなので、",
+   "{勉強|べんきょう}しやすいです。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ]
+  ],
+  "grammar": "For a な-adjective, add なので to give a reason. Verb stem + やすい means 'easy to do'.",
+  "vocab": "{図書館|としょかん} = library; {静|しず}か = quiet"
+ },
+ {
+  "en": "I haven't finished my homework yet.",
+  "words": [
+   "まだ",
+   "{宿題|しゅくだい}が",
+   "{終|お}わっていません。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    1,
+    0,
+    2
+   ]
+  ],
+  "grammar": "まだ + ていません indicates something has not been completed yet.",
+  "vocab": "まだ = yet; {宿題|しゅくだい} = homework"
+ },
+ {
+  "en": "I read books instead of watching TV.",
+  "words": [
+   "テレビを",
+   "{見|み}ないで、",
+   "{本|ほん}を",
+   "{読|よ}みます。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3
+   ]
+  ],
+  "grammar": "Negative plain verb + で can mean 'without doing'. This often expresses choosing one activity instead of another.",
+  "vocab": "テレビ = television; {本|ほん} = book"
+ },
+ {
+  "en": "If I have time this weekend, I'll practise kanji.",
+  "words": [
+   "{今週末|こんしゅうまつ}",
+   "{時間|じかん}が",
+   "あったら、",
+   "{漢字|かんじ}を",
+   "{練習|れんしゅう}します。"
+  ],
+  "valid": [
+   [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   [
+    1,
+    2,
+    0,
+    3,
+    4
+   ]
+  ],
+  "grammar": "Past plain form + ら forms a conditional. Time words like {今週末|こんしゅうまつ} often take no particle.",
+  "vocab": "{今週末|こんしゅうまつ} = this weekend; {漢字|かんじ} = kanji"
+ }
+];
+let quiz=[],current=0,score=0,streak=0,bestStreak=0,firstTry=true,solved=false;
+const bankZone=document.getElementById("bankZone");
+const answerZone=document.getElementById("answerZone");
+const meaning=document.getElementById("meaning");
+const feedback=document.getElementById("feedback");
+const checkButton=document.getElementById("checkButton");
+const resetButton=document.getElementById("resetButton");
+const nextButton=document.getElementById("nextButton");
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function rubyHTML(s){return escapeHTML(s).replace(/\{([^{}|]+)\|([^{}|]+)\}/g,"<ruby>$1<rt>$2</rt></ruby>");}
+function modelHTML(q){return q.words.map(rubyHTML).join(" ");}
+function makeWord(word,index){
+ const box=document.createElement("button");
+ box.type="button";box.className="word";box.dataset.id=String(index);
+ box.innerHTML=rubyHTML(word);
+ box.setAttribute("aria-label",word.replace(/\{([^{}|]+)\|([^{}|]+)\}/g,"$1 ($2)"));
+ box.addEventListener("click",function(){if(solved)return;if(box.parentElement===bankZone)answerZone.appendChild(box);else bankZone.appendChild(box);});
+ return box;
+}
+if(window.Sortable){
+ [bankZone,answerZone].forEach(function(zone){
+  new Sortable(zone,{group:"words",animation:170,ghostClass:"sortable-ghost",chosenClass:"sortable-chosen",sort:true,
+   disabled:false,filter:".locked",preventOnFilter:false});
+ });
+}
+function updateStatus(){
+ document.getElementById("questionNumber").textContent="Question "+(current+1)+" / "+quiz.length;
+ document.getElementById("score").textContent=score+" / "+quiz.length;
+ document.getElementById("streak").textContent="🔥 "+streak+" streak";
+ document.getElementById("progress").style.width=((current+1)/quiz.length*100)+"%";
+}
+function loadQuestion(){
+ solved=false;firstTry=true;feedback.className="feedback";feedback.textContent="";
+ nextButton.style.display="none";checkButton.style.display="block";resetButton.disabled=false;
+ const q=quiz[current];meaning.textContent="💬 "+q.en;
+ bankZone.replaceChildren();answerZone.replaceChildren();
+ shuffle(q.words.map(function(word,i){return {word:word,i:i};})).forEach(function(o){bankZone.appendChild(makeWord(o.word,o.i));});
+ updateStatus();
+}
+function checkAnswer(){
+ if(solved)return;
+ const q=quiz[current];const chosen=[...answerZone.children].map(function(el){return Number(el.dataset.id);});
+ if(chosen.length!==q.words.length){
+  feedback.className="feedback bad";feedback.textContent="👀 Move all the word boxes into your sentence first.";return;
+ }
+ const match=q.valid.findIndex(function(order){return order.every(function(id,i){return id===chosen[i];});});
+ if(match>=0){
+  solved=true;
+  if(firstTry){score++;streak++;}else{streak=0;}
+  bestStreak=Math.max(bestStreak,streak);
+  feedback.className="feedback good";
+  feedback.innerHTML="<strong>✨ 正解（せいかい）！ Correct!</strong>"+
+   (match>0?"<div class='mini'>✅ Your alternative word order is also correct.</div>":"")+
+   "<div class='note'><strong>Model sentence</strong><div class='model'>"+modelHTML(q)+"</div>"+
+   "<div class='mini'><strong>📘 Grammar:</strong> "+rubyHTML(q.grammar)+"</div>"+
+   "<div class='mini'><strong>🔎 Vocabulary:</strong> "+rubyHTML(q.vocab)+"</div></div>";
+  checkButton.style.display="none";nextButton.style.display="block";resetButton.disabled=true;
+ }else{
+  firstTry=false;streak=0;
+  feedback.className="feedback bad";
+  feedback.innerHTML="💡 <strong>Not quite!</strong> Try again.<div class='mini'>Hint: Keep related words together and check what belongs at the end.</div>";
+ }
+ updateStatus();
+}
+function resetQuestion(){
+ if(solved)return;
+ [...answerZone.children].forEach(function(el){bankZone.appendChild(el);});
+ feedback.className="feedback";feedback.textContent="";
+}
+function nextQuestion(){current++;if(current<quiz.length)loadQuestion();else showResults();}
+function showResults(){
+ document.getElementById("playArea").style.display="none";
+ document.getElementById("results").style.display="block";
+ document.getElementById("finalScore").textContent=score+" / "+quiz.length;
+ document.getElementById("bestStreak").textContent="Best first-try streak: 🔥 "+bestStreak;
+ let emoji,message;
+ if(score>=18){emoji="🏆";message="すごい！ Excellent sentence building!";}
+ else if(score>=15){emoji="🌸";message="よくできました！ Very good!";}
+ else if(score>=10){emoji="✨";message="Good progress! Practise again to strengthen your Japanese.";}
+ else{emoji="🌱";message="がんばって！ Keep learning — you can improve with every round.";}
+ document.getElementById("resultEmoji").textContent=emoji;
+ document.getElementById("finalMessage").textContent=message;
+}
+function startGame(){
+ quiz=shuffle(questions);current=0;score=0;streak=0;bestStreak=0;
+ document.getElementById("playArea").style.display="block";
+ document.getElementById("results").style.display="none";loadQuestion();
+}
+checkButton.addEventListener("click",checkAnswer);
+resetButton.addEventListener("click",resetQuestion);
+nextButton.addEventListener("click",nextQuestion);
+document.getElementById("restartButton").addEventListener("click",startGame);
+startGame();
+</script>
+</body>
+</html>
