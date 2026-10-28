@@ -291,6 +291,12 @@ button {
     padding: 11px 13px;
   }
 }
+
+ruby{ruby-position:over}rt{font-size:10px;color:#a44a7d;font-weight:400}
+.word{line-height:1.85}
+.feedback .note{background:#ffffffaa;color:#4a4146;border-radius:10px;padding:11px;margin-top:10px}
+.feedback .model{font-size:20px;line-height:2.2;margin:7px 0;color:#276244}
+.feedback .mini{font-size:13px;line-height:1.65}
 </style>
 </head>
 
@@ -715,6 +721,20 @@ answer: [
 ];
 
 
+
+/* FURIGANA, GRAMMAR NOTES, AND CURATED ALTERNATIVE WORD ORDERS */
+const readingByWord = {"毎日":"{毎日|まいにち}","学校へ":"{学校|がっこう}へ","行きます。":"{行|い}きます。","毎朝":"{毎朝|まいあさ}","六時に":"{六時|ろくじ}に","起きます。":"{起|お}きます。","図書館で":"{図書館|としょかん}で","本を":"{本|ほん}を","読みます。":"{読|よ}みます。","友達と":"{友達|ともだち}と","公園で":"{公園|こうえん}で","遊びます。":"{遊|あそ}びます。","飲みます。":"{飲|の}みます。","日本語を":"{日本語|にほんご}を","勉強します。":"{勉強|べんきょう}します。","駅へ":"{駅|えき}へ","机の":"{机|つくえ}の","上に":"{上|うえ}に","部屋に":"{部屋|へや}に","猫が":"{猫|ねこ}が","弟は":"{弟|おとうと}は","好きです。":"{好|す}きです。","母は":"{母|はは}は","料理が":"{料理|りょうり}が","上手です。":"{上手|じょうず}です。","昨日":"{昨日|きのう}","映画を":"{映画|えいが}を","見ました。":"{見|み}ました。","明日":"{明日|あした}","友達に":"{友達|ともだち}に","会います。":"{会|あ}います。","今日は":"{今日|きょう}は","天気が":"{天気|てんき}が","飲みません。":"{飲|の}みません。","昼ご飯を":"{昼|ひる}ご{飯|はん}を","食べましょう。":"{食|た}べましょう。","写真を":"{写真|しゃしん}を","撮っても":"{撮|と}っても","宿題を":"{宿題|しゅくだい}を","寝ます。":"{寝|ね}ます。","日本へ":"{日本|にほん}へ","行きたいです。":"{行|い}きたいです。"};
+const guidance = [{"valid":[[0,1,2,3],[1,0,2,3],[0,2,1,3]],"grammar":"{毎日|まいにち} means 'every day'. へ shows the destination. {行|い}きます comes from {行|い}く (to go).","vocab":"{学校|がっこう} = school; {毎日|まいにち} = every day"},{"valid":[[0,1,2]],"grammar":"に marks a specific time. Japanese usually uses the present form for habitual actions.","vocab":"{毎朝|まいあさ} = every morning; {六時|ろくじ} = six o'clock"},{"valid":[[0,1,2],[1,0,2]],"grammar":"で shows where an action happens; を marks the thing you read. {読|よ}みます is the polite form of {読|よ}む.","vocab":"{図書館|としょかん} = library; {本|ほん} = book"},{"valid":[[0,1,2],[1,0,2]],"grammar":"と means 'with' a person. で marks the place where you play.","vocab":"{友達|ともだち} = friend; {公園|こうえん} = park"},{"valid":[[0,1,2],[1,0,2]],"grammar":"を marks the drink. {毎朝|まいあさ} describes how often something happens.","vocab":"コーヒー = coffee; {飲|の}む = to drink"},{"valid":[[0,1,2],[1,0,2]],"grammar":"を marks the subject being studied. {勉強|べんきょう}する means 'to study'.","vocab":"{日本語|にほんご} = Japanese language; {毎日|まいにち} = every day"},{"valid":[[0,1,2],[1,0,2]],"grammar":"で marks how you travel (by bus). へ marks where you are going.","vocab":"バス = bus; {駅|えき} = station"},{"valid":[[0,1,2,3],[2,0,1,3]],"grammar":"Noun + の + {上|うえ}に means 'on top of'. あります is used for nonliving things.","vocab":"{机|つくえ} = desk; {本|ほん} = book"},{"valid":[[0,1,2],[1,0,2]],"grammar":"Use います for living things. に shows where someone or an animal is located.","vocab":"{部屋|へや} = room; {猫|ねこ} = cat"},{"valid":[[0,1,2,3]],"grammar":"この must come directly before a noun. とても means 'very' and describes the adjective.","vocab":"りんご = apple; おいしい = delicious"},{"valid":[[0,1,2]],"grammar":"The pattern A は B が {好|す}きです means 'A likes B'. {好|す}き is a な-adjective.","vocab":"{弟|おとうと} = my younger brother; サッカー = soccer"},{"valid":[[0,1,2]],"grammar":"A は B が {上手|じょうず}です describes someone being good at something.","vocab":"{母|はは} = my mother; {料理|りょうり} = cooking"},{"valid":[[0,1,2],[1,0,2]],"grammar":"The ending ました is the polite past tense, used for completed actions.","vocab":"{昨日|きのう} = yesterday; {映画|えいが} = movie"},{"valid":[[0,1,2],[1,0,2]],"grammar":"に marks the person you meet. Japanese present forms can express future plans with words like {明日|あした}.","vocab":"{明日|あした} = tomorrow; {会|あ}う = to meet"},{"valid":[[0,1,2]],"grammar":"{天気|てんき}がいい is a common expression meaning the weather is good.","vocab":"{今日|きょう} = today; {天気|てんき} = weather"},{"valid":[[0,1,2]],"grammar":"ません is the polite negative verb ending: {飲|の}みます → {飲|の}みません.","vocab":"{飲|の}む = to drink; コーヒー = coffee"},{"valid":[[0,1,2],[1,0,2]],"grammar":"ましょう is a friendly invitation: 'let's ...'. いっしょに means 'together'.","vocab":"{昼|ひる}ご{飯|はん} = lunch; {食|た}べる = to eat"},{"valid":[[0,1,2,3],[1,0,2,3]],"grammar":"The pattern verb て-form + もいいですか asks permission to do something. Keep て-form and いいですか together.","vocab":"{写真|しゃしん} = photo; {撮|と}る = to take (a photo)"},{"valid":[[0,1,2]],"grammar":"Verb て-form + から means 'after doing ...'. Keep してから together before the second action.","vocab":"{宿題|しゅくだい} = homework; {寝|ね}る = to sleep"},{"valid":[[0,1,2]],"grammar":"Verb stem + たいです means 'want to'. へ marks the destination.","vocab":"{日本|にほん} = Japan; {行|い}きたい = want to go"}];
+questions.forEach(function(q,i){q.validOrders=guidance[i].valid;q.grammar=guidance[i].grammar;q.vocab=guidance[i].vocab;});
+function escapeJapaneseHTML(s){
+ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});
+}
+function withFurigana(s){
+ return escapeJapaneseHTML(s).replace(/\{([^{}|]+)\|([^{}|]+)\}/g,"<ruby>$1<rt>$2</rt></ruby>");
+}
+function wordRuby(word){return withFurigana(readingByWord[word]||word);}
+
+
 /* =====================================================
    GAME VARIABLES
 ===================================================== */
@@ -832,7 +852,8 @@ function makeWord(word) {
 
   box.className = "word";
 
-  box.textContent = word;
+  box.innerHTML = wordRuby(word);
+  box.dataset.word = word;
 
   /*
     TAP ALTERNATIVE
@@ -975,7 +996,7 @@ function checkAnswer() {
   const chosen =
   [...answerZone.children]
   .map(
-    box => box.textContent
+    box => box.dataset.word
   );
 
 
@@ -1000,9 +1021,10 @@ function checkAnswer() {
 
 
   const correct =
-  chosen.every(
-    (word, index) =>
-    word === q.answer[index]
+  q.validOrders.some(
+    order => order.every(
+      (wordIndex, i) => q.words[wordIndex] === chosen[i]
+    )
   );
 
 
@@ -1040,11 +1062,11 @@ function checkAnswer() {
     "feedback good";
 
     feedback.innerHTML =
-    `
-    ✨ <strong>正解！ Correct!</strong>
-    <br><br>
-    ${q.answer.join(" ")}
-    `;
+    "✨ <strong>正解！ Correct!</strong>" +
+    "<div class='note'><strong>Model sentence</strong>" +
+    "<div class='model'>" + q.answer.map(wordRuby).join(" ") + "</div>" +
+    "<div class='mini'><strong>📘 Grammar:</strong> " + withFurigana(q.grammar) + "</div>" +
+    "<div class='mini'><strong>🔎 Vocabulary:</strong> " + withFurigana(q.vocab) + "</div></div>";
 
 
     checkButton.style.display =
