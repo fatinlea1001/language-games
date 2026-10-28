@@ -228,8 +228,8 @@ Recently updated games appear first in each category.
 - [N5 Adjectives (Set 1)](https://fatinlea1001.github.io/language-games/n5-adj-1.html) — updated 06 Oct 2026
 
 ### 🎲 Other Games
-- [N4 Sentence Scramble (Set 6)](https://fatinlea1001.github.io/language-games/n4-sentence-6.html) — updated 28 Oct 2026
 - [N4 Sentence Scramble (Set 5)](https://fatinlea1001.github.io/language-games/n4-sentence-5.html) — updated 28 Oct 2026
+- [N4 Sentence Scramble (Set 6)](https://fatinlea1001.github.io/language-games/n4-sentence-6.html) — updated 28 Oct 2026
 - [N4 Sentence Scramble (Set 4)](https://fatinlea1001.github.io/language-games/n4-sentence-4.html) — updated 28 Oct 2026
 - [N4 Sentence Scramble (Set 3)](https://fatinlea1001.github.io/language-games/n4-sentence-3.html) — updated 28 Oct 2026
 - [N4 Sentence Scramble (Set 2)](https://fatinlea1001.github.io/language-games/n4-sentence-2.html) — updated 28 Oct 2026
