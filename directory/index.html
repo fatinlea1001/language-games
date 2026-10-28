@@ -116,6 +116,22 @@ html.embedded-view .game-sub{gap:4px}
  .spm-grid{gap:7px}
  .spm-part{min-height:53px;padding:9px 5px;font-size:12px}
 }
+
+/* Japanese category navigation: consistent cards, with gentle pink accents. */
+.japanese-categories .category-heading{color:#a26c8b}
+.japanese-category-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+.japanese-category-tabs .category-tab{background:#fff8fb;border-color:#f2e3eb;min-height:105px;padding:12px 8px;gap:6px}
+.japanese-category-tabs .category-tab:nth-child(2),.japanese-category-tabs .category-tab:nth-child(5){background:#fbf8ff}
+.japanese-category-tabs .category-tab:nth-child(3),.japanese-category-tabs .category-tab:nth-child(6){background:#f6faff}
+.japanese-category-tabs .category-tab:hover{background:#fff0f8;border-color:#e8bfd7}
+.japanese-category-tabs .category-tab[aria-pressed="true"]{background:#ffebf5;border:2px solid #dc91bc;color:#96476f;box-shadow:0 4px 12px #d996b329}
+.japanese-category-tabs .category-label{line-height:1.32}
+.japanese-category-tabs .category-count{font-size:10px;color:#a48496;font-weight:750}
+.japanese-show-all{display:inline-flex;align-items:center;gap:8px;border:1px solid #ecd5e3;border-radius:11px;padding:10px 13px;margin-top:10px;background:#fffafd;color:#955b80;cursor:pointer;font:inherit;font-weight:850;font-size:12px}
+.japanese-show-all:hover{background:#fff0f8}
+.japanese-show-all[aria-pressed="true"]{background:#fbe7f3;border-color:#dfb4d0;color:#8c3f72}
+.japanese-show-all:focus-visible{outline:3px solid #d79dc7;outline-offset:2px}
+@media(max-width:620px){.japanese-category-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.japanese-category-tabs .category-tab{min-height:97px;padding:9px 6px}.japanese-category-tabs .category-count{font-size:9px}.japanese-show-all{width:100%;justify-content:center;margin-top:9px}}
 </style>
 </head>
 <body>
@@ -139,6 +155,19 @@ html.embedded-view .game-sub{gap:4px}
         <button type="button" class="category-tab" data-category="Grammar" aria-pressed="false"><span class="category-icon" aria-hidden="true">🧩</span><span>Grammar</span></button>
         <button type="button" class="category-tab" data-category="Vocabulary" aria-pressed="false"><span class="category-icon" aria-hidden="true">📚</span><span>Vocabulary</span></button>
       </div>
+    </div>
+
+    <div id="japaneseCategories" class="category-panel japanese-categories" aria-label="Japanese game categories" hidden>
+      <p class="category-heading">JAPANESE CATEGORIES</p>
+      <div class="category-tabs japanese-category-tabs" role="group" aria-label="Choose a Japanese game category">
+        <button type="button" class="category-tab japanese-category-tab" data-japanese-category="Dialogues &amp; Conversations" aria-pressed="false"><span class="category-icon" aria-hidden="true">💬</span><span class="category-label">Dialogues &amp; Conversations</span><span class="category-count">0 games</span></button>
+        <button type="button" class="category-tab japanese-category-tab" data-japanese-category="JLPT N5 Basics" aria-pressed="false"><span class="category-icon" aria-hidden="true">🌱</span><span class="category-label">JLPT N5 Basics</span><span class="category-count">0 games</span></button>
+        <button type="button" class="category-tab japanese-category-tab" data-japanese-category="Sentence Building" aria-pressed="false"><span class="category-icon" aria-hidden="true">🧩</span><span class="category-label">Sentence Building</span><span class="category-count">0 games</span></button>
+        <button type="button" class="category-tab japanese-category-tab" data-japanese-category="Reading &amp; Stories" aria-pressed="false"><span class="category-icon" aria-hidden="true">📖</span><span class="category-label">Reading &amp; Stories</span><span class="category-count">0 games</span></button>
+        <button type="button" class="category-tab japanese-category-tab" data-japanese-category="Kanji &amp; Spelling" aria-pressed="false"><span class="category-icon" aria-hidden="true">🈴</span><span class="category-label">Kanji &amp; Spelling</span><span class="category-count">0 games</span></button>
+        <button type="button" class="category-tab japanese-category-tab" data-japanese-category="Picture Comprehension" aria-pressed="false"><span class="category-icon" aria-hidden="true">🖼️</span><span class="category-label">Picture Comprehension</span><span class="category-count">0 games</span></button>
+      </div>
+      <button id="allJapanese" class="japanese-show-all" type="button" aria-pressed="true">🌸 Show All Japanese Games <span id="allJapaneseCount">(0)</span></button>
     </div>
     <label class="search"><span class="search-icon">⌕</span><input id="find" placeholder="Search games or topics…" aria-label="Search games in selected category"><button id="clear" class="clear" aria-label="Clear search" type="button">×</button></label>
     <div class="toolbar">
@@ -188,7 +217,10 @@ const clear = document.getElementById('clear');
 const sectionTitle = document.getElementById('sectionTitle');
 const sectionSub = document.getElementById('sectionSub');
 const englishCategories = document.getElementById('englishCategories');
-const categoryButtons = Array.from(document.querySelectorAll('.category-tab'));
+const categoryButtons = Array.from(document.querySelectorAll('#englishCategories .category-tab'));
+const japaneseCategories = document.getElementById('japaneseCategories');
+const japaneseCategoryButtons = Array.from(document.querySelectorAll('.japanese-category-tab'));
+const allJapanese = document.getElementById('allJapanese');
 const spmSections = document.getElementById('spmSections');
 const spmButtons = Array.from(document.querySelectorAll('.spm-part'));
 const allSpm = document.getElementById('allSpm');
@@ -198,6 +230,7 @@ let games = [];
 let activeLanguage = 'English';
 let activeCategory = 'SPM Practice';
 let activeSpmPart = 'All';
+let activeJapaneseCategory = 'All';
 let loaded = false;
 
 function gameStyle(path, language){
@@ -438,6 +471,17 @@ function classifyEnglishGame(file){
  return {category:'Vocabulary',spmPart:''};
 }
 
+/* Stable filename rules; future unmatched games remain in Show All. */
+function classifyJapaneseGame(file){
+ const name=file.toLowerCase();
+ if(/^jpn-(friends-dialogue-|malaysia-friends-|cafe-dialogue-)/.test(name))return 'Dialogues & Conversations';
+ if(/^n5-(vocabulary|verb|adj)-/.test(name) || /^teform-/.test(name))return 'JLPT N5 Basics';
+ if(/^n5-sentence-/.test(name))return 'Sentence Building';
+ if(/^jpn-(reading-|story-emoji-fill-)/.test(name))return 'Reading & Stories';
+ if(/^jpn-spelling-kanji-katakana-/.test(name))return 'Kanji & Spelling';
+ if(/^jpn-truefalse-/.test(name))return 'Picture Comprehension';
+ return 'Uncategorised';
+}
 function parseDirectory(markdown){
  const begin='<!-- AUTO-GAMES:START -->';
  const finish='<!-- AUTO-GAMES:END -->';
@@ -460,7 +504,9 @@ function parseDirectory(markdown){
   const file=decodeURIComponent(url.pathname.split('/').pop());
   const style=gameStyle(file,language);
   const metadata=topicDescription(file,title,language);
-  const grouping=language==='English'?classifyEnglishGame(file):{category:'',spmPart:''};
+  const grouping=language==='English'
+    ? {...classifyEnglishGame(file),japaneseCategory:''}
+    : {category:'',spmPart:'',japaneseCategory:classifyJapaneseGame(file)};
   parsed.push({title:metadata.label,topics:metadata.topics,theme:metadata.theme,kind:language,date,dateLabel:date||'Recently added',url:url.href,file,...style,...grouping});
  }
  if(!parsed.length)throw new Error('Game list is empty');
@@ -487,9 +533,20 @@ function updateTabs(){
  document.getElementById('englishCount').textContent=games.filter(g=>g.kind==='English').length;
  document.getElementById('japaneseCount').textContent=games.filter(g=>g.kind==='Japanese').length;
 }
+function updateJapaneseCounts(){
+ const japanese=games.filter(g=>g.kind==='Japanese');
+ japaneseCategoryButtons.forEach(button=>{
+  const total=japanese.filter(g=>g.japaneseCategory===button.dataset.japaneseCategory).length;
+  button.querySelector('.category-count').textContent=total+' '+(total===1?'game':'games');
+ });
+ document.getElementById('allJapaneseCount').textContent='('+japanese.length+')';
+}
 function updateFilters(){
  const english=activeLanguage==='English';
  englishCategories.hidden=!english;
+ japaneseCategories.hidden=english;
+ japaneseCategoryButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.japaneseCategory===activeJapaneseCategory)));
+ allJapanese.setAttribute('aria-pressed',String(activeJapaneseCategory==='All'));
  spmSections.hidden=!english || activeCategory!=='SPM Practice';
  categoryButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.category===activeCategory)));
  spmButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.part===activeSpmPart)));
@@ -508,9 +565,9 @@ function updateFilters(){
     :'Word meaning, spelling and vocabulary practice.';
   field.placeholder='Search '+activeCategory+' games or topics…';
  }else{
-  sectionTitle.textContent='🇯🇵 Japanese Games';
-  sectionSub.textContent='Most recently updated first, within Japanese.';
-  field.placeholder='Search Japanese games or topics…';
+  sectionTitle.textContent=activeJapaneseCategory==='All'?'🇯🇵 Japanese Games':'🇯🇵 '+activeJapaneseCategory;
+  sectionSub.textContent=activeJapaneseCategory==='All'?'Most recently updated first, within Japanese.':'Browse '+activeJapaneseCategory+' games, newest first.';
+  field.placeholder=activeJapaneseCategory==='All'?'Search Japanese games or topics…':'Search '+activeJapaneseCategory+' games…';
  }
 }
 function switchLanguage(language){
@@ -550,6 +607,20 @@ spmButtons.forEach(button=>{
   render();
  });
 });
+japaneseCategoryButtons.forEach(button=>{
+ button.addEventListener('click',()=>{
+  activeJapaneseCategory=button.dataset.japaneseCategory;
+  field.value='';
+  updateFilters();
+  render();
+ });
+});
+allJapanese.addEventListener('click',()=>{
+ activeJapaneseCategory='All';
+ field.value='';
+ updateFilters();
+ render();
+});
 allSpm.addEventListener('click',()=>{
  activeSpmPart='All';
  updateFilters();
@@ -559,7 +630,9 @@ function render(){
  const q=field.value.trim().toLocaleLowerCase();
  const matches=games.filter(g=>
   g.kind===activeLanguage &&
-  (activeLanguage!=='English' || (g.category===activeCategory && (activeCategory!=='SPM Practice' || activeSpmPart==='All' || g.spmPart===activeSpmPart))) &&
+  (activeLanguage==='Japanese'
+   ? (activeJapaneseCategory==='All' || g.japaneseCategory===activeJapaneseCategory)
+   : (g.category===activeCategory && (activeCategory!=='SPM Practice' || activeSpmPart==='All' || g.spmPart===activeSpmPart))) &&
   [g.title,g.topic,g.file,g.theme,g.category,g.spmPart,...g.topics].join(' ').toLocaleLowerCase().includes(q)
  );
  items.replaceChildren();
@@ -585,6 +658,11 @@ function render(){
  });
  items.append(fragment);
  count.textContent=matches.length+' '+(matches.length===1?'game':'games');
+ const scope=games.filter(g=>g.kind===activeLanguage &&
+  (activeLanguage==='Japanese'
+   ? (activeJapaneseCategory==='All'||g.japaneseCategory===activeJapaneseCategory)
+   : g.category===activeCategory));
+ totalHint.textContent=loaded?'in '+(activeLanguage==='English'?activeCategory:(activeJapaneseCategory==='All'?'Japanese':activeJapaneseCategory))+' · '+scope.length+' total':'';
  empty.hidden=matches.length>0 || !loaded;
  clear.classList.toggle('visible',Boolean(field.value));
 }
@@ -599,8 +677,8 @@ async function loadGames(){
   games=await fetchDirectory();
   loaded=true;
   updateTabs();
+  updateJapaneseCounts();
   updateFilters();
-  totalHint.textContent='in '+(activeLanguage==='English'?activeCategory:'Japanese')+' · '+games.filter(g=>g.kind===activeLanguage).length+' total';
   syncLabel.textContent='Synced with GitHub';
   render();
  }catch(error){
