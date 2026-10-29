@@ -165,6 +165,7 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [N4 Verb Garden — Technology & Media (Set 8)](https://fatinlea1001.github.io/language-games/n4-verb-8.html) — updated 29 Oct 2026
 - [N4 Verb Garden — Weather & Changing Things (Set 9)](https://fatinlea1001.github.io/language-games/n4-verb-9.html) — updated 29 Oct 2026
 - [N4 Verb Garden — Home, Cooking & Nature (Set 5)](https://fatinlea1001.github.io/language-games/n4-verb-5.html) — updated 29 Oct 2026
 - [N4 Verb Garden — Feelings & Personal Growth (Set 4)](https://fatinlea1001.github.io/language-games/n4-verb-4.html) — updated 29 Oct 2026
@@ -172,7 +173,6 @@ Recently updated games appear first in each category.
 - [N4 Verb Garden — Communication & Learning (Set 2)](https://fatinlea1001.github.io/language-games/n4-verb-2.html) — updated 29 Oct 2026
 - [N4 Verb Garden — Daily Life & Responsibilities (Set 1)](https://fatinlea1001.github.io/language-games/n4-verb-1.html) — updated 29 Oct 2026
 - [N4 Verb Garden — People, Plans & Relationships (Set 10)](https://fatinlea1001.github.io/language-games/n4-verb-10.html) — updated 29 Oct 2026
-- [N4 Verb Garden — Technology & Media (Set 8)](https://fatinlea1001.github.io/language-games/n4-verb-8.html) — updated 29 Oct 2026
 - [N4 Verb Garden — Health & Body (Set 7)](https://fatinlea1001.github.io/language-games/n4-verb-7.html) — updated 29 Oct 2026
 - [N4 Verb Garden — Shopping & Services (Set 6)](https://fatinlea1001.github.io/language-games/n4-verb-6.html) — updated 29 Oct 2026
 - [N4 Sentence Scramble (Set 5)](https://fatinlea1001.github.io/language-games/n4-sentence-5.html) — updated 28 Oct 2026
