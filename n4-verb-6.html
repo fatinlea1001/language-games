@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N4 Verb Garden — Shopping & Services (Set 6)</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff0f4;color:#593b4a;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:750px;margin:auto;padding:22px 18px 40px}
+header,.stats{display:flex;justify-content:space-between;align-items:center;gap:10px}
+header b{font-size:18px}
+.tag{font-size:11px;letter-spacing:2px;color:#a1647d;font-weight:800}
+h1{font-size:clamp(30px,6vw,43px);letter-spacing:-1.5px;margin:23px 0 6px}
+p{line-height:1.6}
+.intro{margin:0 0 22px;color:#956e81;font-size:14px}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible{outline:3px solid #a94574;outline-offset:4px}
+.pill{border:1px solid #e7c2d0;border-radius:30px;background:#fff9fb;color:#784b60;padding:9px 12px;font-size:12px;white-space:nowrap}
+.stats{font-size:13px;font-weight:700}
+.track{height:7px;border-radius:20px;overflow:hidden;background:#efd5df;margin:12px 0 18px}
+.fill{width:0;height:100%;background:#cc7c9b;transition:width .3s}
+.card{padding:24px;background:#fffdfd;border:1px solid #efd6df;border-radius:26px;box-shadow:0 12px 35px #a65e7810}
+.art{height:185px;border-radius:19px;background:#fff3f6;overflow:hidden}
+.art svg{display:block;width:100%;height:100%}
+.instruction{font-size:10px;letter-spacing:2px;color:#ad7d90;font-weight:800;margin:20px 0 5px}
+.sentence{font-size:clamp(21px,4.5vw,27px);line-height:2.2;font-weight:600;margin:12px 0 20px}
+rt{font-size:.48em;font-weight:400;color:#9c7185}
+.off rt{visibility:hidden}
+.blank{display:inline-block;min-width:100px;text-align:center;color:#b95e86;border-bottom:3px solid #dfa3bd;line-height:1.6}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.option{min-height:79px;border:2px solid #efdce4;background:#fff;border-radius:15px;color:#633f52;display:flex;align-items:center;gap:11px;text-align:left;padding:12px;font-size:21px}
+.option:hover:not(:disabled){background:#fff0f6;border-color:#d191ac}
+.letter{font-size:11px;background:#f9edf2;min-width:25px;height:25px;border-radius:8px;display:grid;place-items:center;color:#a16c85}
+.option:disabled{cursor:default;opacity:1}
+.option.correct{background:#edf7ee;border-color:#77a77e}
+.option.wrong{background:#fff0e9;border-color:#d39176}
+.option.dim{opacity:.5}
+.feedback{background:#fff0f6;padding:16px;border-radius:14px;margin-top:17px;font-size:14px;line-height:1.7}
+.feedback strong{display:block;font-size:17px}
+.feedback p{margin:6px 0}
+.primary{background:#ac557c;color:white;border:0;border-radius:14px;padding:15px;width:100%;font-weight:700;margin-top:16px}
+.primary:hover{background:#934366}
+.footer{text-align:center;color:#9b7587;font-size:12px;margin-top:18px;line-height:1.8}
+.hidden{display:none!important}
+.result{text-align:center}
+.big{font-size:65px;font-weight:800;color:#ad557d}
+.big small{font-size:24px;color:#ac8b9b}
+.flowers{max-width:330px;margin:16px auto;line-height:1.8;font-size:25px;letter-spacing:5px}
+.review{text-align:left}
+.review article{padding:17px 0;border-top:1px solid #efdae3;font-size:14px;line-height:1.8}
+.review .jp{font-size:19px;line-height:2.1}
+.muted{color:#916c7e;font-size:13px}
+@media(max-width:450px){
+.card{padding:17px}
+.art{height:160px}
+.option{font-size:18px;padding:10px;gap:8px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.setlinks{display:flex;gap:6px;flex-wrap:wrap;margin:-5px 0 17px}.setlinks a{font-size:12px;border:1px solid #eed0df;border-radius:999px;padding:7px 13px;color:#8d5b78;background:#fff9fb;text-decoration:none;font-weight:750}.setlinks a.current{background:#ba7398;color:#fff;border-color:#ba7398}.setlinks a:focus-visible{outline:3px solid #a94574}</style>
+</head>
+<body>
+<main>
+<header>
+<div>
+<div class="tag">JAPANESE PRACTICE</div>
+<b>🌸 N4 Verb Garden</b>
+</div>
+<button class="pill" id="furigana" aria-pressed="true">Furigana: ON</button>
+</header>
+
+<h1>Set 6 — Shopping & Services</h1>
+<p class="intro">20 illustrated N4 verb questions · No timer, no rush.</p>
+
+<nav class="setlinks" aria-label="N4 verb quiz sets"><a  href="n4-verb-1.html">Set 1</a><a  href="n4-verb-2.html">Set 2</a><a  href="n4-verb-3.html">Set 3</a><a  href="n4-verb-4.html">Set 4</a><a  href="n4-verb-5.html">Set 5</a><a class="current" aria-current="page" href="n4-verb-6.html">Set 6</a><a  href="n4-verb-7.html">Set 7</a><a  href="n4-verb-8.html">Set 8</a><a  href="n4-verb-9.html">Set 9</a><a  href="n4-verb-10.html">Set 10</a></nav><section id="game">
+<div class="stats">
+<span id="counter"></span>
+<span id="points"></span>
+</div>
+
+<div class="track" id="progress" role="progressbar"
+aria-label="Questions completed" aria-valuemin="0"
+aria-valuemax="20" aria-valuenow="0">
+<div class="fill" id="fill"></div>
+</div>
+
+<div class="card">
+<div class="art" id="art"></div>
+<div class="instruction">CHOOSE THE VERB THAT FITS</div>
+<div class="sentence" lang="ja" id="sentence"></div>
+<div class="options" id="options"></div>
+<div class="feedback hidden" id="feedback" aria-live="polite"></div>
+<button id="next" class="primary hidden">Next question →</button>
+</div>
+
+<p class="footer">
+Choose the action that makes sense in the sentence.<br>
+Replay reshuffles all 20 questions and their answer choices.
+</p>
+</section>
+
+<section id="results" class="card result hidden"></section>
+</main>
+
+<script>
+/*
+Format:
+illustration, sentence, correct answer, distractors,
+dictionary form, meaning, translation, note
+*/
+const questions=[["🛍️","{父|ちち}は{市場|いちば}の{店|みせ}で{新鮮|しんせん}な{野菜|やさい}を（　）。","{売|う}ります",["{貸|か}します","{届|とど}けます","{数|かぞ}えます"],"{売|う}る","to sell","My father sells fresh vegetables at his market stall.","売る means to sell goods to customers."],["💴","{店|みせ}を{出|で}る{前|まえ}に、レジで{代金|だいきん}を（　）。","{払|はら}います",["{返|かえ}します","{届|とど}きます","{測|はか}ります"],"{払|はら}う","to pay","Before leaving the shop, I will pay at the cashier.","代金を払う means to pay the price."],["📚","{図書館|としょかん}で{本|ほん}を{二週間|にしゅうかん}（　）。","{借|か}ります",["{受|う}け{取|と}ります","{預|あず}けます","{試|ため}します"],"{借|か}りる","to borrow","I will borrow books from the library for two weeks.","借りる describes borrowing, not lending."],["🖊️","{友達|ともだち}がペンを{忘|わす}れたので、{私|わたし}のペンを（　）。","{貸|か}します",["{渡|わた}します","{預|あず}かります","{確|たし}かめます"],"{貸|か}す","to lend","My friend forgot a pen, so I will lend them mine.","貸す is the opposite perspective from 借りる."],["📗","{借|か}りた{本|ほん}は{来週|らいしゅう}{図書館|としょかん}に（　）。","{返|かえ}します",["{注文|ちゅうもん}します","{頼|たの}みます","{探|さが}します"],"{返|かえ}す","to return something","I will return the borrowed book to the library next week.","返す means to give something back."],["📦","{宅配便|たくはいびん}の{人|ひと}から{届|とど}いた{荷物|にもつ}を（　）。","{受|う}け{取|と}ります",["{届|とど}けます","{数|かぞ}えます","{見|み}せます"],"{受|う}け{取|と}る","to receive","I will receive the parcel from the courier.","受け取る is to accept something handed to you."],["🛂","{空港|くうこう}でパスポートを{係員|かかりいん}に（　）。","{渡|わた}します",["{届|とど}きます","{測|はか}ります","{並|なら}びます"],"{渡|わた}す","to hand over","At the airport, I will hand my passport to the officer.","人に物を渡す means to hand an object to someone."],["🍜","{食|た}べたいラーメンを{決|き}めて、{店員|てんいん}に（　）。","{注文|ちゅうもん}します",["{預|あず}けます","{試|ため}します","{売|う}ります"],"{注文|ちゅうもん}する","to order","After deciding which ramen I want, I will order it from the waiter.","注文する is used for ordering food and goods."],["📮","{母|はは}が{忘|わす}れた{書類|しょるい}を{会社|かいしゃ}へ（　）。","{届|とど}けます",["{預|あず}かります","{確|たし}かめます","{払|はら}います"],"{届|とど}ける","to deliver","I will deliver the documents my mother forgot to her office.","届ける is transitive: someone delivers an item."],["🚚","ネットで{買|か}った{商品|しょうひん}が{今日|きょう}{家|いえ}に（　）。","{届|とど}きます",["{頼|たの}みます","{探|さが}します","{借|か}ります"],"{届|とど}く","to arrive; to be delivered","The product I bought online will arrive today.","届く is intransitive: something arrives."],["🧳","{大|おお}きな{荷物|にもつ}を{駅|えき}のロッカーに（　）。","{預|あず}けます",["{数|かぞ}えます","{見|み}せます","{貸|か}します"],"{預|あず}ける","to leave for safekeeping","I will leave my big luggage in a station locker.","預ける means to entrust something to another party."],["👶","{母|はは}が{出|で}かける{間|あいだ}、{私|わたし}が{赤|あか}ちゃんを（　）。","{預|あず}かります",["{測|はか}ります","{並|なら}びます","{返|かえ}します"],"{預|あず}かる","to look after temporarily","I will look after the baby while my mother is out.","預かる is used by the person taking responsibility."],["🙏","{荷物|にもつ}が{重|おも}いので、{友達|ともだち}に{手伝|てつだ}いを（　）。","{頼|たの}みます",["{試|ため}します","{売|う}ります","{受|う}け{取|と}ります"],"{頼|たの}む","to ask for; to request","The luggage is heavy, so I will ask a friend for help.","手伝いを頼む means to request assistance."],["🍎","かごの{中|なか}にりんごが{何個|なんこ}あるか（　）。","{数|かぞ}えます",["{確|たし}かめます","{払|はら}います","{渡|わた}します"],"{数|かぞ}える","to count","I will count how many apples are in the basket.","数える means to count individual items."],["📏","{新|あたら}しい{机|つくえ}が{入|はい}るか{知|し}りたいので、{部屋|へや}の{幅|はば}を（　）。","{測|はか}ります",["{探|さが}します","{借|か}ります","{注文|ちゅうもん}します"],"{測|はか}る","to measure","I will measure the room's width to see whether a desk fits.","測る measures dimensions or quantities."],["🧴","{買|か}う{前|まえ}に、この{香水|こうすい}の{香|かお}りを（　）。","{試|ため}します",["{見|み}せます","{貸|か}します","{届|とど}けます"],"{試|ため}す","to try; to test","Before buying, I will try this perfume's fragrance.","試す means to test something first."],["🎫","{出発|しゅっぱつ}する{前|まえ}に、{切符|きっぷ}の{日付|ひづけ}をもう{一度|いちど}（　）。","{確|たし}かめます",["{並|なら}びます","{返|かえ}します","{届|とど}きます"],"{確|たし}かめる","to verify","Before departing, I will check the ticket's date again.","確かめる means to verify that something is correct."],["🔍","{財布|さいふ}が{見|み}つからないので、かばんの{中|なか}を（　）。","{探|さが}します",["{売|う}ります","{受|う}け{取|と}ります","{預|あず}けます"],"{探|さが}す","to search","I cannot find my wallet, so I will search my bag.","探す describes looking for a missing item."],["🖼️","{旅行|りょこう}で{撮|と}った{写真|しゃしん}を{友達|ともだち}に（　）。","{見|み}せます",["{払|はら}います","{渡|わた}します","{預|あず}かります"],"{見|み}せる","to show","I will show my friend my holiday photos.","人に物を見せる means to show something to someone."],["🥐","{人気|にんき}のパン{屋|や}でパンを{買|か}うために、{店|みせ}の{前|まえ}に（　）。","{並|なら}びます",["{借|か}ります","{注文|ちゅうもん}します","{頼|たの}みます"],"{並|なら}ぶ","to queue","I will queue outside the popular bakery.","並ぶ means to form or join a line."]];
+
+function art(icon){
+return `<svg viewBox="135 0 340 195" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pastel illustration for this Japanese verb question">
+<rect x="135" y="0" width="340" height="195" fill="#fff2f6"/>
+<circle cx="418" cy="39" r="49" fill="#fce3ad" opacity=".6"/>
+<circle cx="182" cy="26" r="55" fill="#e9dff6" opacity=".65"/>
+<ellipse cx="303" cy="175" rx="149" ry="10" fill="#f0d6e2"/>
+<path d="M167 167q45-38 88-9t95-2t96 6v33H167Z" fill="#e9e2ee"/>
+<g stroke="#ad7a97" stroke-width="3" stroke-linecap="round">
+<path d="M218 129v40m-15-31-15 13m31-14 16 13" fill="none"/>
+<path d="M218 128q-24-35 0-44q23-3 0 44Z" fill="#cba7c7"/>
+<path d="M205 161l-14 17m26-17 15 17" fill="none"/>
+</g>
+<circle cx="218" cy="72" r="23" fill="#f5d7c1"/>
+<path d="M196 69q-4-30 23-26q27 2 22 30q-11-9-15-17q-11 11-30 13Z" fill="#9e7994"/>
+<circle cx="209" cy="75" r="2" fill="#715364"/><circle cx="227" cy="75" r="2" fill="#715364"/>
+<path d="M214 86q5 6 11 0" stroke="#aa7282" stroke-width="2" fill="none"/>
+<rect x="270" y="34" width="143" height="118" rx="25" fill="#ffffff" stroke="#efd3e0" stroke-width="3"/>
+<path d="M270 119l-16 20 32-6" fill="#fff" stroke="#efd3e0" stroke-width="3"/>
+<text x="341" y="112" font-size="64" text-anchor="middle" font-family="Segoe UI Emoji,Apple Color Emoji,Noto Color Emoji,sans-serif">${icon}</text>
+<path d="M401 18v12m-6-6h12m-223 88v10m-5-5h10" stroke="#e4b781" stroke-width="3" stroke-linecap="round"/>
+</svg>`;
+}
+/* Furigana and game functions */
+const $=id=>document.getElementById(id);
+const jp=s=>s.replace(/\{([^|{}]+)\|([^{}]+)\}/g,
+"<ruby>$1<rt>$2</rt></ruby>");
+const plain=s=>s.replace(/\{([^|{}]+)\|([^{}]+)\}/g,"$1");
+
+function shuffle(array){
+const a=[...array];
+for(let i=a.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[a[i],a[j]]=[a[j],a[i]];
+}
+return a;
+}
+
+let deck=[],position=0,score=0,locked=false,mistakes=[];
+let lastOrder="",lastChoices={};
+
+function start(){
+const order=shuffle(questions.map((_,i)=>i));
+if(order.join()===lastOrder)order.push(order.shift());
+lastOrder=order.join();
+
+deck=order.map(id=>{
+const [image,sentence,answer,wrong,dictionary,meaning,translation,note]=questions[id];
+const choices=shuffle([answer,...wrong]);
+if(choices.join("|")===lastChoices[id])choices.push(choices.shift());
+lastChoices[id]=choices.join("|");
+return {image,sentence,answer,dictionary,meaning,translation,note,choices};
+});
+
+position=0;
+score=0;
+locked=false;
+mistakes=[];
+$("results").classList.add("hidden");
+$("game").classList.remove("hidden");
+render();
+}
+
+function render(){
+locked=false;
+const q=deck[position];
+$("counter").textContent=`Question ${position+1} / 20`;
+$("points").textContent=`🌸 ${score} correct`;
+$("fill").style.width=`${position*5}%`;
+$("progress").setAttribute("aria-valuenow",position);
+$("art").innerHTML=art(q.image);
+$("sentence").innerHTML=jp(q.sentence).replace(
+"（　）",'<span class="blank">?</span>'
+);
+$("feedback").classList.add("hidden");
+$("next").classList.add("hidden");
+$("options").replaceChildren();
+
+q.choices.forEach((choice,i)=>{
+const button=document.createElement("button");
+button.className="option";
+button.lang="ja";
+button.innerHTML=`<span class="letter">${"ABCD"[i]}</span>
+<span>${jp(choice)}</span>`;
+button.onclick=()=>choose(choice);
+$("options").appendChild(button);
+});
+}
+
+function choose(choice){
+if(locked)return;
+locked=true;
+const q=deck[position];
+const right=choice===q.answer;
+if(right)score++;
+else mistakes.push({...q,chosen:choice});
+
+[...$("options").children].forEach((button,i)=>{
+button.disabled=true;
+button.classList.add(
+q.choices[i]===q.answer?"correct":
+q.choices[i]===choice?"wrong":"dim"
+);
+});
+
+$("sentence").innerHTML=jp(q.sentence).replace(
+"（　）",`<span class="blank">${jp(q.answer)}</span>`
+);
+$("points").textContent=`🌸 ${score} correct`;
+$("fill").style.width=`${(position+1)*5}%`;
+$("progress").setAttribute("aria-valuenow",position+1);
+$("feedback").innerHTML=`
+<strong>${right?"🌷 Lovely! That’s correct.":"🌱 A new verb to grow."}</strong>
+<p>${jp(q.dictionary)} → ${jp(q.answer)} <b>· ${q.meaning}</b></p>
+<p>${q.translation}</p>
+<p class="muted">${q.note}</p>
+`;
+$("feedback").classList.remove("hidden");
+$("next").textContent=position===19?"See my results 🌸":"Next question →";
+$("next").classList.remove("hidden");
+}
+
+function finish(){
+$("game").classList.add("hidden");
+$("results").classList.remove("hidden");
+$("results").innerHTML=`
+<div class="tag">ROUND COMPLETE</div>
+<h2>${score===20?"Your verbs are in full bloom!":"Your Japanese is growing."}</h2>
+<div class="big">${score}<small> / 20</small></div>
+<div class="flowers" aria-hidden="true">${"🌸".repeat(score)}${"🌱".repeat(20-score)}</div>
+<p class="muted">One blossom for every correct answer.</p>
+<button class="primary" id="replay">↻ Replay — shuffle all 20</button>
+<p class="muted">New question order · New answer positions · Fresh score</p>
+<div class="review">
+<h3>${mistakes.length?"Verbs to practise":"All 20 correct. Beautiful work! 🌷"}</h3>
+${mistakes.map(q=>`
+<article>
+<div class="jp" lang="ja">${jp(q.sentence.replace("（　）",q.answer))}</div>
+<div>You chose ${plain(q.chosen)} → <b>${plain(q.answer)}</b></div>
+<div>${jp(q.dictionary)} · ${q.meaning}</div>
+<div class="muted">${q.translation}</div>
+</article>
+`).join("")}
+</div>`;
+
+$("replay").onclick=()=>{
+start();
+window.scrollTo(0,0);
+};
+window.scrollTo(0,0);
+}
+
+$("next").onclick=()=>{
+if(!locked)return;
+position++;
+if(position===20)finish();
+else{
+render();
+$("options").firstElementChild.focus({preventScroll:true});
+}
+};
+
+$("furigana").onclick=()=>{
+const off=document.body.classList.toggle("off");
+$("furigana").textContent="Furigana: "+(off?"OFF":"ON");
+$("furigana").setAttribute("aria-pressed",String(!off));
+};
+
+start();
+</script>
+</body>
+</html>
