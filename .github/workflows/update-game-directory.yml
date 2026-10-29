@@ -104,6 +104,11 @@ jobs:
                       '3': 'Travel & Getting Around',
                       '4': 'Feelings & Personal Growth',
                       '5': 'Home, Cooking & Nature',
+                      '6': 'Shopping & Services',
+                      '7': 'Health & Body',
+                      '8': 'Technology & Media',
+                      '9': 'Weather & Changing Things',
+                      '10': 'People, Plans & Relationships',
                   }
                   if match.group(2) in topics:
                       return f'N4 Verb Garden — {topics[match.group(2)]} (Set {match.group(2)})'
