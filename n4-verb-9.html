@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N4 Verb Garden — Weather & Changing Things (Set 9)</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff0f4;color:#593b4a;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:750px;margin:auto;padding:22px 18px 40px}
+header,.stats{display:flex;justify-content:space-between;align-items:center;gap:10px}
+header b{font-size:18px}
+.tag{font-size:11px;letter-spacing:2px;color:#a1647d;font-weight:800}
+h1{font-size:clamp(30px,6vw,43px);letter-spacing:-1.5px;margin:23px 0 6px}
+p{line-height:1.6}
+.intro{margin:0 0 22px;color:#956e81;font-size:14px}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible{outline:3px solid #a94574;outline-offset:4px}
+.pill{border:1px solid #e7c2d0;border-radius:30px;background:#fff9fb;color:#784b60;padding:9px 12px;font-size:12px;white-space:nowrap}
+.stats{font-size:13px;font-weight:700}
+.track{height:7px;border-radius:20px;overflow:hidden;background:#efd5df;margin:12px 0 18px}
+.fill{width:0;height:100%;background:#cc7c9b;transition:width .3s}
+.card{padding:24px;background:#fffdfd;border:1px solid #efd6df;border-radius:26px;box-shadow:0 12px 35px #a65e7810}
+.art{height:185px;border-radius:19px;background:#fff3f6;overflow:hidden}
+.art svg{display:block;width:100%;height:100%}
+.instruction{font-size:10px;letter-spacing:2px;color:#ad7d90;font-weight:800;margin:20px 0 5px}
+.sentence{font-size:clamp(21px,4.5vw,27px);line-height:2.2;font-weight:600;margin:12px 0 20px}
+rt{font-size:.48em;font-weight:400;color:#9c7185}
+.off rt{visibility:hidden}
+.blank{display:inline-block;min-width:100px;text-align:center;color:#b95e86;border-bottom:3px solid #dfa3bd;line-height:1.6}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.option{min-height:79px;border:2px solid #efdce4;background:#fff;border-radius:15px;color:#633f52;display:flex;align-items:center;gap:11px;text-align:left;padding:12px;font-size:21px}
+.option:hover:not(:disabled){background:#fff0f6;border-color:#d191ac}
+.letter{font-size:11px;background:#f9edf2;min-width:25px;height:25px;border-radius:8px;display:grid;place-items:center;color:#a16c85}
+.option:disabled{cursor:default;opacity:1}
+.option.correct{background:#edf7ee;border-color:#77a77e}
+.option.wrong{background:#fff0e9;border-color:#d39176}
+.option.dim{opacity:.5}
+.feedback{background:#fff0f6;padding:16px;border-radius:14px;margin-top:17px;font-size:14px;line-height:1.7}
+.feedback strong{display:block;font-size:17px}
+.feedback p{margin:6px 0}
+.primary{background:#ac557c;color:white;border:0;border-radius:14px;padding:15px;width:100%;font-weight:700;margin-top:16px}
+.primary:hover{background:#934366}
+.footer{text-align:center;color:#9b7587;font-size:12px;margin-top:18px;line-height:1.8}
+.hidden{display:none!important}
+.result{text-align:center}
+.big{font-size:65px;font-weight:800;color:#ad557d}
+.big small{font-size:24px;color:#ac8b9b}
+.flowers{max-width:330px;margin:16px auto;line-height:1.8;font-size:25px;letter-spacing:5px}
+.review{text-align:left}
+.review article{padding:17px 0;border-top:1px solid #efdae3;font-size:14px;line-height:1.8}
+.review .jp{font-size:19px;line-height:2.1}
+.muted{color:#916c7e;font-size:13px}
+@media(max-width:450px){
+.card{padding:17px}
+.art{height:160px}
+.option{font-size:18px;padding:10px;gap:8px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.setlinks{display:flex;gap:6px;flex-wrap:wrap;margin:-5px 0 17px}.setlinks a{font-size:12px;border:1px solid #eed0df;border-radius:999px;padding:7px 13px;color:#8d5b78;background:#fff9fb;text-decoration:none;font-weight:750}.setlinks a.current{background:#ba7398;color:#fff;border-color:#ba7398}.setlinks a:focus-visible{outline:3px solid #a94574}</style>
+</head>
+<body>
+<main>
+<header>
+<div>
+<div class="tag">JAPANESE PRACTICE</div>
+<b>🌸 N4 Verb Garden</b>
+</div>
+<button class="pill" id="furigana" aria-pressed="true">Furigana: ON</button>
+</header>
+
+<h1>Set 9 — Weather & Changing Things</h1>
+<p class="intro">20 illustrated N4 verb questions · No timer, no rush.</p>
+
+<nav class="setlinks" aria-label="N4 verb quiz sets"><a  href="n4-verb-1.html">Set 1</a><a  href="n4-verb-2.html">Set 2</a><a  href="n4-verb-3.html">Set 3</a><a  href="n4-verb-4.html">Set 4</a><a  href="n4-verb-5.html">Set 5</a><a  href="n4-verb-6.html">Set 6</a><a  href="n4-verb-7.html">Set 7</a><a  href="n4-verb-8.html">Set 8</a><a class="current" aria-current="page" href="n4-verb-9.html">Set 9</a><a  href="n4-verb-10.html">Set 10</a></nav><section id="game">
+<div class="stats">
+<span id="counter"></span>
+<span id="points"></span>
+</div>
+
+<div class="track" id="progress" role="progressbar"
+aria-label="Questions completed" aria-valuemin="0"
+aria-valuemax="20" aria-valuenow="0">
+<div class="fill" id="fill"></div>
+</div>
+
+<div class="card">
+<div class="art" id="art"></div>
+<div class="instruction">CHOOSE THE VERB THAT FITS</div>
+<div class="sentence" lang="ja" id="sentence"></div>
+<div class="options" id="options"></div>
+<div class="feedback hidden" id="feedback" aria-live="polite"></div>
+<button id="next" class="primary hidden">Next question →</button>
+</div>
+
+<p class="footer">
+Choose the action that makes sense in the sentence.<br>
+Replay reshuffles all 20 questions and their answer choices.
+</p>
+</section>
+
+<section id="results" class="card result hidden"></section>
+</main>
+
+<script>
+/*
+Format:
+illustration, sentence, correct answer, distractors,
+dictionary form, meaning, translation, note
+*/
+const questions=[["❄️","{冬|ふゆ}になると、{空|そら}から{白|しろ}い{雪|ゆき}が（　）。","{降|ふ}ります",["{曇|くも}ります","{流|なが}れます","{破|やぶ}れます"],"{降|ふ}る","to fall as precipitation","In winter, white snow falls from the sky.","雨や雪が降る describes rain or snow falling."],["🌬️","{台風|たいふう}の{日|ひ}は{強|つよ}い{風|かぜ}が（　）。","{吹|ふ}きます",["やみます","こぼれます","{燃|も}えます"],"{吹|ふ}く","to blow","Strong winds blow during a typhoon.","風が吹く means that the wind blows."],["🌤️","{雨|あめ}のあと、{雲|くも}がなくなって{空|そら}が（　）。","{晴|は}れます",["{積|つ}もります","{倒|たお}れます","{消|き}えます"],"{晴|は}れる","to clear up","After the rain, the clouds disappear and the sky clears.","晴れる describes the sky becoming clear."],["☁️","{太陽|たいよう}が{見|み}えなくなり、{空|そら}が（　）。","{曇|くも}ります",["{溶|と}けます","{折|お}れます","{沈|しず}みます"],"{曇|くも}る","to become cloudy","The sun disappears and the sky becomes cloudy.","曇る describes clouds covering the sky."],["🌂","{雨|あめ}が（　）まで、この{店|みせ}の{中|なか}で{待|ま}ちましょう。","やみます",["{凍|こお}ります","{割|わ}れます","{浮|う}かびます"],"やむ","to stop raining","Let's wait in this shop until the rain stops.","雨がやむ is the usual expression for rain stopping."],["⛄","{昨日|きのう}たくさん{雪|ゆき}が{降|ふ}ったので、{庭|にわ}に{雪|ゆき}が（　）。","{積|つ}もります",["{流|なが}れます","{破|やぶ}れます","{光|ひか}ります"],"{積|つ}もる","to pile up","Because it snowed heavily yesterday, snow accumulates in the garden.","積もる means to accumulate in a layer."],["🧊","{氷|こおり}を{暖|あたた}かい{部屋|へや}に{置|お}くと、（　）。","{溶|と}けます",["こぼれます","{燃|も}えます","{鳴|な}ります"],"{溶|と}ける","to melt","Ice melts when left in a warm room.","溶ける describes a solid becoming liquid."],["🥶","{冬|ふゆ}の{夜|よる}は、{池|いけ}の{水|みず}が（　）。","{凍|こお}ります",["{倒|たお}れます","{消|き}えます","{降|ふ}ります"],"{凍|こお}る","to freeze","On winter nights, the pond water freezes.","凍る means to become ice."],["🏞️","この{川|かわ}の{水|みず}は{山|やま}から{海|うみ}へ（　）。","{流|なが}れます",["{折|お}れます","{沈|しず}みます","{吹|ふ}きます"],"{流|なが}れる","to flow","Water from this river flows from the mountains to the sea.","流れる means to move in a current."],["🥤","コップを{倒|たお}すと、{中|なか}のジュースが（　）。","こぼれます",["{割|わ}れます","{浮|う}かびます","{晴|は}れます"],"こぼれる","to spill","If you knock over the glass, the juice spills.","こぼれる describes liquid spilling out."],["🌳","{強|つよ}い{風|かぜ}で{大|おお}きな{木|き}が（　）。","{倒|たお}れます",["{破|やぶ}れます","{光|ひか}ります","{曇|くも}ります"],"{倒|たお}れる","to fall over","A large tree falls over in the strong wind.","倒れる is intransitive: something topples."],["🌿","{強|つよ}い{風|かぜ}で{細|ほそ}い{木|き}の{枝|えだ}が（　）。","{折|お}れます",["{燃|も}えます","{鳴|な}ります","やみます"],"{折|お}れる","to snap; to break","A thin tree branch snaps in the strong wind.","折れる describes something long or thin breaking."],["🪟","ボールが{当|あ}たって、{窓|まど}ガラスが（　）。","{割|わ}れます",["{消|き}えます","{降|ふ}ります","{積|つ}もります"],"{割|わ}れる","to crack; to shatter","A ball hits the window, and the glass breaks.","割れる describes something breaking into pieces."],["📄","{古|ふる}い{紙|かみ}を{強|つよ}く{引|ひ}っ{張|ぱ}ると、（　）。","{破|やぶ}れます",["{沈|しず}みます","{吹|ふ}きます","{溶|と}けます"],"{破|やぶ}れる","to tear","Old paper tears if you pull it too hard.","破れる describes paper or cloth tearing."],["🔥","{乾|かわ}いた{木|き}に{火|ひ}がつくと、よく（　）。","{燃|も}えます",["{浮|う}かびます","{晴|は}れます","{凍|こお}ります"],"{燃|も}える","to burn","Dry wood burns easily when it catches fire.","燃える means to burn in a fire."],["🕯️","{風|かぜ}が{強|つよ}いと、ろうそくの{火|ひ}が（　）。","{消|き}えます",["{光|ひか}ります","{曇|くも}ります","{流|なが}れます"],"{消|き}える","to go out; to disappear","The candle flame goes out in strong wind.","消える is intransitive, unlike 消す."],["🪨","{重|おも}い{石|いし}を{池|いけ}に{入|い}れると、{底|そこ}へ（　）。","{沈|しず}みます",["{鳴|な}ります","やみます","こぼれます"],"{沈|しず}む","to sink","A heavy stone sinks to the bottom of a pond.","沈む means to go down under water."],["🍃","{葉|は}っぱは{軽|かる}いので、{水|みず}の{上|うえ}に（　）。","{浮|う}かびます",["{降|ふ}ります","{積|つ}もります","{倒|たお}れます"],"{浮|う}かぶ","to float","Leaves are light, so they float on water.","浮かぶ means to float or rise to the surface."],["✨","{晴|は}れた{夜|よる}は、{空|そら}の{星|ほし}がきれいに（　）。","{光|ひか}ります",["{吹|ふ}きます","{溶|と}けます","{折|お}れます"],"{光|ひか}る","to shine","On clear nights, the stars shine beautifully.","光る means to emit or reflect light."],["🔔","{授業|じゅぎょう}が{終|お}わると、{学校|がっこう}のチャイムが（　）。","{鳴|な}ります",["{晴|は}れます","{凍|こお}ります","{割|わ}れます"],"{鳴|な}る","to ring","When the lesson ends, the school bell rings.","鳴る describes a bell or alarm making sound."]];
+
+function art(icon){
+return `<svg viewBox="135 0 340 195" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pastel illustration for this Japanese verb question">
+<rect x="135" y="0" width="340" height="195" fill="#fff2f6"/>
+<circle cx="418" cy="39" r="49" fill="#fce3ad" opacity=".6"/>
+<circle cx="182" cy="26" r="55" fill="#e9dff6" opacity=".65"/>
+<ellipse cx="303" cy="175" rx="149" ry="10" fill="#f0d6e2"/>
+<path d="M167 167q45-38 88-9t95-2t96 6v33H167Z" fill="#e9e2ee"/>
+<g stroke="#ad7a97" stroke-width="3" stroke-linecap="round">
+<path d="M218 129v40m-15-31-15 13m31-14 16 13" fill="none"/>
+<path d="M218 128q-24-35 0-44q23-3 0 44Z" fill="#cba7c7"/>
+<path d="M205 161l-14 17m26-17 15 17" fill="none"/>
+</g>
+<circle cx="218" cy="72" r="23" fill="#f5d7c1"/>
+<path d="M196 69q-4-30 23-26q27 2 22 30q-11-9-15-17q-11 11-30 13Z" fill="#9e7994"/>
+<circle cx="209" cy="75" r="2" fill="#715364"/><circle cx="227" cy="75" r="2" fill="#715364"/>
+<path d="M214 86q5 6 11 0" stroke="#aa7282" stroke-width="2" fill="none"/>
+<rect x="270" y="34" width="143" height="118" rx="25" fill="#ffffff" stroke="#efd3e0" stroke-width="3"/>
+<path d="M270 119l-16 20 32-6" fill="#fff" stroke="#efd3e0" stroke-width="3"/>
+<text x="341" y="112" font-size="64" text-anchor="middle" font-family="Segoe UI Emoji,Apple Color Emoji,Noto Color Emoji,sans-serif">${icon}</text>
+<path d="M401 18v12m-6-6h12m-223 88v10m-5-5h10" stroke="#e4b781" stroke-width="3" stroke-linecap="round"/>
+</svg>`;
+}
+/* Furigana and game functions */
+const $=id=>document.getElementById(id);
+const jp=s=>s.replace(/\{([^|{}]+)\|([^{}]+)\}/g,
+"<ruby>$1<rt>$2</rt></ruby>");
+const plain=s=>s.replace(/\{([^|{}]+)\|([^{}]+)\}/g,"$1");
+
+function shuffle(array){
+const a=[...array];
+for(let i=a.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[a[i],a[j]]=[a[j],a[i]];
+}
+return a;
+}
+
+let deck=[],position=0,score=0,locked=false,mistakes=[];
+let lastOrder="",lastChoices={};
+
+function start(){
+const order=shuffle(questions.map((_,i)=>i));
+if(order.join()===lastOrder)order.push(order.shift());
+lastOrder=order.join();
+
+deck=order.map(id=>{
+const [image,sentence,answer,wrong,dictionary,meaning,translation,note]=questions[id];
+const choices=shuffle([answer,...wrong]);
+if(choices.join("|")===lastChoices[id])choices.push(choices.shift());
+lastChoices[id]=choices.join("|");
+return {image,sentence,answer,dictionary,meaning,translation,note,choices};
+});
+
+position=0;
+score=0;
+locked=false;
+mistakes=[];
+$("results").classList.add("hidden");
+$("game").classList.remove("hidden");
+render();
+}
+
+function render(){
+locked=false;
+const q=deck[position];
+$("counter").textContent=`Question ${position+1} / 20`;
+$("points").textContent=`🌸 ${score} correct`;
+$("fill").style.width=`${position*5}%`;
+$("progress").setAttribute("aria-valuenow",position);
+$("art").innerHTML=art(q.image);
+$("sentence").innerHTML=jp(q.sentence).replace(
+"（　）",'<span class="blank">?</span>'
+);
+$("feedback").classList.add("hidden");
+$("next").classList.add("hidden");
+$("options").replaceChildren();
+
+q.choices.forEach((choice,i)=>{
+const button=document.createElement("button");
+button.className="option";
+button.lang="ja";
+button.innerHTML=`<span class="letter">${"ABCD"[i]}</span>
+<span>${jp(choice)}</span>`;
+button.onclick=()=>choose(choice);
+$("options").appendChild(button);
+});
+}
+
+function choose(choice){
+if(locked)return;
+locked=true;
+const q=deck[position];
+const right=choice===q.answer;
+if(right)score++;
+else mistakes.push({...q,chosen:choice});
+
+[...$("options").children].forEach((button,i)=>{
+button.disabled=true;
+button.classList.add(
+q.choices[i]===q.answer?"correct":
+q.choices[i]===choice?"wrong":"dim"
+);
+});
+
+$("sentence").innerHTML=jp(q.sentence).replace(
+"（　）",`<span class="blank">${jp(q.answer)}</span>`
+);
+$("points").textContent=`🌸 ${score} correct`;
+$("fill").style.width=`${(position+1)*5}%`;
+$("progress").setAttribute("aria-valuenow",position+1);
+$("feedback").innerHTML=`
+<strong>${right?"🌷 Lovely! That’s correct.":"🌱 A new verb to grow."}</strong>
+<p>${jp(q.dictionary)} → ${jp(q.answer)} <b>· ${q.meaning}</b></p>
+<p>${q.translation}</p>
+<p class="muted">${q.note}</p>
+`;
+$("feedback").classList.remove("hidden");
+$("next").textContent=position===19?"See my results 🌸":"Next question →";
+$("next").classList.remove("hidden");
+}
+
+function finish(){
+$("game").classList.add("hidden");
+$("results").classList.remove("hidden");
+$("results").innerHTML=`
+<div class="tag">ROUND COMPLETE</div>
+<h2>${score===20?"Your verbs are in full bloom!":"Your Japanese is growing."}</h2>
+<div class="big">${score}<small> / 20</small></div>
+<div class="flowers" aria-hidden="true">${"🌸".repeat(score)}${"🌱".repeat(20-score)}</div>
+<p class="muted">One blossom for every correct answer.</p>
+<button class="primary" id="replay">↻ Replay — shuffle all 20</button>
+<p class="muted">New question order · New answer positions · Fresh score</p>
+<div class="review">
+<h3>${mistakes.length?"Verbs to practise":"All 20 correct. Beautiful work! 🌷"}</h3>
+${mistakes.map(q=>`
+<article>
+<div class="jp" lang="ja">${jp(q.sentence.replace("（　）",q.answer))}</div>
+<div>You chose ${plain(q.chosen)} → <b>${plain(q.answer)}</b></div>
+<div>${jp(q.dictionary)} · ${q.meaning}</div>
+<div class="muted">${q.translation}</div>
+</article>
+`).join("")}
+</div>`;
+
+$("replay").onclick=()=>{
+start();
+window.scrollTo(0,0);
+};
+window.scrollTo(0,0);
+}
+
+$("next").onclick=()=>{
+if(!locked)return;
+position++;
+if(position===20)finish();
+else{
+render();
+$("options").firstElementChild.focus({preventScroll:true});
+}
+};
+
+$("furigana").onclick=()=>{
+const off=document.body.classList.toggle("off");
+$("furigana").textContent="Furigana: "+(off?"OFF":"ON");
+$("furigana").setAttribute("aria-pressed",String(!off));
+};
+
+start();
+</script>
+</body>
+</html>
