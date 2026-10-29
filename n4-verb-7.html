@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N4 Verb Garden — Health & Body (Set 7)</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff0f4;color:#593b4a;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:750px;margin:auto;padding:22px 18px 40px}
+header,.stats{display:flex;justify-content:space-between;align-items:center;gap:10px}
+header b{font-size:18px}
+.tag{font-size:11px;letter-spacing:2px;color:#a1647d;font-weight:800}
+h1{font-size:clamp(30px,6vw,43px);letter-spacing:-1.5px;margin:23px 0 6px}
+p{line-height:1.6}
+.intro{margin:0 0 22px;color:#956e81;font-size:14px}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible{outline:3px solid #a94574;outline-offset:4px}
+.pill{border:1px solid #e7c2d0;border-radius:30px;background:#fff9fb;color:#784b60;padding:9px 12px;font-size:12px;white-space:nowrap}
+.stats{font-size:13px;font-weight:700}
+.track{height:7px;border-radius:20px;overflow:hidden;background:#efd5df;margin:12px 0 18px}
+.fill{width:0;height:100%;background:#cc7c9b;transition:width .3s}
+.card{padding:24px;background:#fffdfd;border:1px solid #efd6df;border-radius:26px;box-shadow:0 12px 35px #a65e7810}
+.art{height:185px;border-radius:19px;background:#fff3f6;overflow:hidden}
+.art svg{display:block;width:100%;height:100%}
+.instruction{font-size:10px;letter-spacing:2px;color:#ad7d90;font-weight:800;margin:20px 0 5px}
+.sentence{font-size:clamp(21px,4.5vw,27px);line-height:2.2;font-weight:600;margin:12px 0 20px}
+rt{font-size:.48em;font-weight:400;color:#9c7185}
+.off rt{visibility:hidden}
+.blank{display:inline-block;min-width:100px;text-align:center;color:#b95e86;border-bottom:3px solid #dfa3bd;line-height:1.6}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.option{min-height:79px;border:2px solid #efdce4;background:#fff;border-radius:15px;color:#633f52;display:flex;align-items:center;gap:11px;text-align:left;padding:12px;font-size:21px}
+.option:hover:not(:disabled){background:#fff0f6;border-color:#d191ac}
+.letter{font-size:11px;background:#f9edf2;min-width:25px;height:25px;border-radius:8px;display:grid;place-items:center;color:#a16c85}
+.option:disabled{cursor:default;opacity:1}
+.option.correct{background:#edf7ee;border-color:#77a77e}
+.option.wrong{background:#fff0e9;border-color:#d39176}
+.option.dim{opacity:.5}
+.feedback{background:#fff0f6;padding:16px;border-radius:14px;margin-top:17px;font-size:14px;line-height:1.7}
+.feedback strong{display:block;font-size:17px}
+.feedback p{margin:6px 0}
+.primary{background:#ac557c;color:white;border:0;border-radius:14px;padding:15px;width:100%;font-weight:700;margin-top:16px}
+.primary:hover{background:#934366}
+.footer{text-align:center;color:#9b7587;font-size:12px;margin-top:18px;line-height:1.8}
+.hidden{display:none!important}
+.result{text-align:center}
+.big{font-size:65px;font-weight:800;color:#ad557d}
+.big small{font-size:24px;color:#ac8b9b}
+.flowers{max-width:330px;margin:16px auto;line-height:1.8;font-size:25px;letter-spacing:5px}
+.review{text-align:left}
+.review article{padding:17px 0;border-top:1px solid #efdae3;font-size:14px;line-height:1.8}
+.review .jp{font-size:19px;line-height:2.1}
+.muted{color:#916c7e;font-size:13px}
+@media(max-width:450px){
+.card{padding:17px}
+.art{height:160px}
+.option{font-size:18px;padding:10px;gap:8px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.setlinks{display:flex;gap:6px;flex-wrap:wrap;margin:-5px 0 17px}.setlinks a{font-size:12px;border:1px solid #eed0df;border-radius:999px;padding:7px 13px;color:#8d5b78;background:#fff9fb;text-decoration:none;font-weight:750}.setlinks a.current{background:#ba7398;color:#fff;border-color:#ba7398}.setlinks a:focus-visible{outline:3px solid #a94574}</style>
+</head>
+<body>
+<main>
+<header>
+<div>
+<div class="tag">JAPANESE PRACTICE</div>
+<b>🌸 N4 Verb Garden</b>
+</div>
+<button class="pill" id="furigana" aria-pressed="true">Furigana: ON</button>
+</header>
+
+<h1>Set 7 — Health & Body</h1>
+<p class="intro">20 illustrated N4 verb questions · No timer, no rush.</p>
+
+<nav class="setlinks" aria-label="N4 verb quiz sets"><a  href="n4-verb-1.html">Set 1</a><a  href="n4-verb-2.html">Set 2</a><a  href="n4-verb-3.html">Set 3</a><a  href="n4-verb-4.html">Set 4</a><a  href="n4-verb-5.html">Set 5</a><a  href="n4-verb-6.html">Set 6</a><a class="current" aria-current="page" href="n4-verb-7.html">Set 7</a><a  href="n4-verb-8.html">Set 8</a><a  href="n4-verb-9.html">Set 9</a><a  href="n4-verb-10.html">Set 10</a></nav><section id="game">
+<div class="stats">
+<span id="counter"></span>
+<span id="points"></span>
+</div>
+
+<div class="track" id="progress" role="progressbar"
+aria-label="Questions completed" aria-valuemin="0"
+aria-valuemax="20" aria-valuenow="0">
+<div class="fill" id="fill"></div>
+</div>
+
+<div class="card">
+<div class="art" id="art"></div>
+<div class="instruction">CHOOSE THE VERB THAT FITS</div>
+<div class="sentence" lang="ja" id="sentence"></div>
+<div class="options" id="options"></div>
+<div class="feedback hidden" id="feedback" aria-live="polite"></div>
+<button id="next" class="primary hidden">Next question →</button>
+</div>
+
+<p class="footer">
+Choose the action that makes sense in the sentence.<br>
+Replay reshuffles all 20 questions and their answer choices.
+</p>
+</section>
+
+<section id="results" class="card result hidden"></section>
+</main>
+
+<script>
+/*
+Format:
+illustration, sentence, correct answer, distractors,
+dictionary form, meaning, translation, note
+*/
+const questions=[["🍵","{薬|くすり}を{飲|の}んで{休|やす}むと、{風邪|かぜ}がだんだん（　）。","{治|なお}ります",["やせます","ぶつかります","かみます"],"{治|なお}る","to recover","After medicine and rest, my cold gradually gets better.","治る is intransitive: an illness heals."],["🦷","{冷|つめ}たいものを{食|た}べると、この{歯|は}が（　）。","{痛|いた}みます",["{眠|ねむ}ります","けがをします","{飲|の}み{込|こ}みます"],"{痛|いた}む","to ache","When I eat cold food, this tooth aches.","痛む describes pain in a part of the body."],["🍰","{甘|あま}いものを{毎晩|まいばん}{食|た}べすぎると、（　）。","{太|ふと}ります",["{休|やす}みます","{呼吸|こきゅう}します","{浴|あ}びます"],"{太|ふと}る","to gain weight","If I eat too many sweets each night, I gain weight.","太る means to put on body weight."],["🚶","{毎日|まいにち}{少|すこ}しずつ{運動|うんどう}を{続|つづ}けると、（　）。","やせます",["{転|ころ}びます","{吸|す}います","{塗|ぬ}ります"],"やせる","to lose weight","If I exercise regularly, I lose weight gradually.","やせる means to become thinner."],["👶","{赤|あか}ちゃんが{静|しず}かな{部屋|へや}で{気持|きも}ちよさそうに（　）。","{眠|ねむ}ります",["{滑|すべ}ります","{吐|は}きます","{触|さわ}ります"],"{眠|ねむ}る","to sleep","The baby sleeps peacefully in a quiet room.","眠る describes being asleep."],["🛏️","{熱|ねつ}が{高|たか}いので、{今日|きょう}は{学校|がっこう}を（　）。","{休|やす}みます",["ぶつかります","かみます","{掻|か}きます"],"{休|やす}む","to miss school; to rest","I have a high fever, so I will miss school today.","学校を休む means to be absent from school."],["🧎","{道|みち}に{石|いし}があるので、{足元|あしもと}を{見|み}ないと（　）。","{転|ころ}びます",["けがをします","{飲|の}み{込|こ}みます","{効|き}きます"],"{転|ころ}ぶ","to fall down","If I do not watch my step, I might fall over.","転ぶ means to fall over accidentally."],["⛸️","{冬|ふゆ}はスケート{場|じょう}の{氷|こおり}の{上|うえ}で（　）。","{滑|すべ}ります",["{呼吸|こきゅう}します","{浴|あ}びます","{治|なお}ります"],"{滑|すべ}る","to skate; to slide","I skate on the ice in winter.","滑る describes sliding across a smooth surface."],["🚶","{前|まえ}を{見|み}ずに{歩|ある}くと、{電柱|でんちゅう}に（　）。","ぶつかります",["{吸|す}います","{塗|ぬ}ります","{痛|いた}みます"],"ぶつかる","to bump into","If I do not look ahead, I will bump into a pole.","ぶつかる uses に for what is hit."],["⚽","{準備|じゅんび}{運動|うんどう}をしないでサッカーをすると、（　）。","けがをします",["{吐|は}きます","{触|さわ}ります","{太|ふと}ります"],"けがをする","to get injured","I might get injured if I play football without warming up.","けがをする means to suffer an injury."],["🫁","{走|はし}ったあと、{落|お}ち{着|つ}くために、ゆっくり{深|ふか}く（　）。","{呼吸|こきゅう}します",["かみます","{掻|か}きます","やせます"],"{呼吸|こきゅう}する","to breathe","After running, I breathe slowly and deeply.","呼吸する means to breathe in and out."],["🌬️","{花|はな}のいい{香|かお}りがするので、{空気|くうき}をゆっくり（　）。","{吸|す}います",["{飲|の}み{込|こ}みます","{効|き}きます","{眠|ねむ}ります"],"{吸|す}う","to inhale","The flowers smell lovely, so I breathe in slowly.","吸う means to draw air inward."],["😮‍💨","{深|ふか}く{息|いき}を{吸|す}ったら、ゆっくり{息|いき}を（　）。","{吐|は}きます",["{浴|あ}びます","{治|なお}ります","{休|やす}みます"],"{吐|は}く","to exhale","After breathing in deeply, I slowly breathe out.","息を吐く means to exhale."],["🥕","{食|た}べ{物|もの}は{飲|の}み{込|こ}む{前|まえ}によく（　）。","かみます",["{塗|ぬ}ります","{痛|いた}みます","{転|ころ}びます"],"かむ","to chew","Chew your food well before swallowing it.","よくかむ means to chew thoroughly."],["💊","この{薬|くすり}は{少|すこ}し{大|おお}きいので、{水|みず}と{一緒|いっしょ}に（　）。","{飲|の}み{込|こ}みます",["{触|さわ}ります","{太|ふと}ります","{滑|すべ}ります"],"{飲|の}み{込|こ}む","to swallow","I will swallow this large tablet with water.","飲み込む means to swallow something."],["🚿","{朝|あさ}{起|お}きたら、シャワーを（　）。","{浴|あ}びます",["{掻|か}きます","やせます","ぶつかります"],"{浴|あ}びる","to take a shower","After waking up in the morning, I take a shower.","シャワーを浴びる is a common expression."],["🧴","{日焼|ひや}けしないように、{外|そと}に{出|で}る{前|まえ}に{日焼|ひや}け{止|ど}めを（　）。","{塗|ぬ}ります",["{効|き}きます","{眠|ねむ}ります","けがをします"],"{塗|ぬ}る","to apply cream","I apply sunscreen before going outside.","塗る is used for applying cream or paint."],["🧸","この{毛布|もうふ}はとても{柔|やわ}らかいので、つい{手|て}で（　）。","{触|さわ}ります",["{治|なお}ります","{休|やす}みます","{呼吸|こきゅう}します"],"{触|さわ}る","to touch","This blanket is so soft that I keep touching it.","触る means to touch something physically."],["🦟","{蚊|か}に{刺|さ}されたところがかゆいので、つい（　）。","{掻|か}きます",["{痛|いた}みます","{転|ころ}びます","{吸|す}います"],"{掻|か}く","to scratch","The mosquito bite itches, so I scratch it.","掻く means to scratch an itch, unlike 書く."],["💊","この{薬|くすり}は{頭痛|ずつう}によく（　）。","{効|き}きます",["{太|ふと}ります","{滑|すべ}ります","{吐|は}きます"],"{効|き}く","to be effective","This medicine works well for headaches.","薬が効く means medicine has an effect."]];
+
+function art(icon){
+return `<svg viewBox="135 0 340 195" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pastel illustration for this Japanese verb question">
+<rect x="135" y="0" width="340" height="195" fill="#fff2f6"/>
+<circle cx="418" cy="39" r="49" fill="#fce3ad" opacity=".6"/>
+<circle cx="182" cy="26" r="55" fill="#e9dff6" opacity=".65"/>
+<ellipse cx="303" cy="175" rx="149" ry="10" fill="#f0d6e2"/>
+<path d="M167 167q45-38 88-9t95-2t96 6v33H167Z" fill="#e9e2ee"/>
+<g stroke="#ad7a97" stroke-width="3" stroke-linecap="round">
+<path d="M218 129v40m-15-31-15 13m31-14 16 13" fill="none"/>
+<path d="M218 128q-24-35 0-44q23-3 0 44Z" fill="#cba7c7"/>
+<path d="M205 161l-14 17m26-17 15 17" fill="none"/>
+</g>
+<circle cx="218" cy="72" r="23" fill="#f5d7c1"/>
+<path d="M196 69q-4-30 23-26q27 2 22 30q-11-9-15-17q-11 11-30 13Z" fill="#9e7994"/>
+<circle cx="209" cy="75" r="2" fill="#715364"/><circle cx="227" cy="75" r="2" fill="#715364"/>
+<path d="M214 86q5 6 11 0" stroke="#aa7282" stroke-width="2" fill="none"/>
+<rect x="270" y="34" width="143" height="118" rx="25" fill="#ffffff" stroke="#efd3e0" stroke-width="3"/>
+<path d="M270 119l-16 20 32-6" fill="#fff" stroke="#efd3e0" stroke-width="3"/>
+<text x="341" y="112" font-size="64" text-anchor="middle" font-family="Segoe UI Emoji,Apple Color Emoji,Noto Color Emoji,sans-serif">${icon}</text>
+<path d="M401 18v12m-6-6h12m-223 88v10m-5-5h10" stroke="#e4b781" stroke-width="3" stroke-linecap="round"/>
+</svg>`;
+}
+/* Furigana and game functions */
+const $=id=>document.getElementById(id);
+const jp=s=>s.replace(/\{([^|{}]+)\|([^{}]+)\}/g,
+"<ruby>$1<rt>$2</rt></ruby>");
+const plain=s=>s.replace(/\{([^|{}]+)\|([^{}]+)\}/g,"$1");
+
+function shuffle(array){
+const a=[...array];
+for(let i=a.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[a[i],a[j]]=[a[j],a[i]];
+}
+return a;
+}
+
+let deck=[],position=0,score=0,locked=false,mistakes=[];
+let lastOrder="",lastChoices={};
+
+function start(){
+const order=shuffle(questions.map((_,i)=>i));
+if(order.join()===lastOrder)order.push(order.shift());
+lastOrder=order.join();
+
+deck=order.map(id=>{
+const [image,sentence,answer,wrong,dictionary,meaning,translation,note]=questions[id];
+const choices=shuffle([answer,...wrong]);
+if(choices.join("|")===lastChoices[id])choices.push(choices.shift());
+lastChoices[id]=choices.join("|");
+return {image,sentence,answer,dictionary,meaning,translation,note,choices};
+});
+
+position=0;
+score=0;
+locked=false;
+mistakes=[];
+$("results").classList.add("hidden");
+$("game").classList.remove("hidden");
+render();
+}
+
+function render(){
+locked=false;
+const q=deck[position];
+$("counter").textContent=`Question ${position+1} / 20`;
+$("points").textContent=`🌸 ${score} correct`;
+$("fill").style.width=`${position*5}%`;
+$("progress").setAttribute("aria-valuenow",position);
+$("art").innerHTML=art(q.image);
+$("sentence").innerHTML=jp(q.sentence).replace(
+"（　）",'<span class="blank">?</span>'
+);
+$("feedback").classList.add("hidden");
+$("next").classList.add("hidden");
+$("options").replaceChildren();
+
+q.choices.forEach((choice,i)=>{
+const button=document.createElement("button");
+button.className="option";
+button.lang="ja";
+button.innerHTML=`<span class="letter">${"ABCD"[i]}</span>
+<span>${jp(choice)}</span>`;
+button.onclick=()=>choose(choice);
+$("options").appendChild(button);
+});
+}
+
+function choose(choice){
+if(locked)return;
+locked=true;
+const q=deck[position];
+const right=choice===q.answer;
+if(right)score++;
+else mistakes.push({...q,chosen:choice});
+
+[...$("options").children].forEach((button,i)=>{
+button.disabled=true;
+button.classList.add(
+q.choices[i]===q.answer?"correct":
+q.choices[i]===choice?"wrong":"dim"
+);
+});
+
+$("sentence").innerHTML=jp(q.sentence).replace(
+"（　）",`<span class="blank">${jp(q.answer)}</span>`
+);
+$("points").textContent=`🌸 ${score} correct`;
+$("fill").style.width=`${(position+1)*5}%`;
+$("progress").setAttribute("aria-valuenow",position+1);
+$("feedback").innerHTML=`
+<strong>${right?"🌷 Lovely! That’s correct.":"🌱 A new verb to grow."}</strong>
+<p>${jp(q.dictionary)} → ${jp(q.answer)} <b>· ${q.meaning}</b></p>
+<p>${q.translation}</p>
+<p class="muted">${q.note}</p>
+`;
+$("feedback").classList.remove("hidden");
+$("next").textContent=position===19?"See my results 🌸":"Next question →";
+$("next").classList.remove("hidden");
+}
+
+function finish(){
+$("game").classList.add("hidden");
+$("results").classList.remove("hidden");
+$("results").innerHTML=`
+<div class="tag">ROUND COMPLETE</div>
+<h2>${score===20?"Your verbs are in full bloom!":"Your Japanese is growing."}</h2>
+<div class="big">${score}<small> / 20</small></div>
+<div class="flowers" aria-hidden="true">${"🌸".repeat(score)}${"🌱".repeat(20-score)}</div>
+<p class="muted">One blossom for every correct answer.</p>
+<button class="primary" id="replay">↻ Replay — shuffle all 20</button>
+<p class="muted">New question order · New answer positions · Fresh score</p>
+<div class="review">
+<h3>${mistakes.length?"Verbs to practise":"All 20 correct. Beautiful work! 🌷"}</h3>
+${mistakes.map(q=>`
+<article>
+<div class="jp" lang="ja">${jp(q.sentence.replace("（　）",q.answer))}</div>
+<div>You chose ${plain(q.chosen)} → <b>${plain(q.answer)}</b></div>
+<div>${jp(q.dictionary)} · ${q.meaning}</div>
+<div class="muted">${q.translation}</div>
+</article>
+`).join("")}
+</div>`;
+
+$("replay").onclick=()=>{
+start();
+window.scrollTo(0,0);
+};
+window.scrollTo(0,0);
+}
+
+$("next").onclick=()=>{
+if(!locked)return;
+position++;
+if(position===20)finish();
+else{
+render();
+$("options").firstElementChild.focus({preventScroll:true});
+}
+};
+
+$("furigana").onclick=()=>{
+const off=document.body.classList.toggle("off");
+$("furigana").textContent="Furigana: "+(off?"OFF":"ON");
+$("furigana").setAttribute("aria-pressed",String(!off));
+};
+
+start();
+</script>
+</body>
+</html>
