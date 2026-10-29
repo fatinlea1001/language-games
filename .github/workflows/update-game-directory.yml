@@ -97,6 +97,16 @@ jobs:
                       if found_topic:
                           topic = found_topic.group(1).strip()
                           return f'SPM Speaking Part 3 — {topic} (Set {match.group(2)})'
+              if key == 'n4-verb' and match:
+                  topics = {
+                      '1': 'Daily Life & Responsibilities',
+                      '2': 'Communication & Learning',
+                      '3': 'Travel & Getting Around',
+                      '4': 'Feelings & Personal Growth',
+                      '5': 'Home, Cooking & Nature',
+                  }
+                  if match.group(2) in topics:
+                      return f'N4 Verb Garden — {topics[match.group(2)]} (Set {match.group(2)})'
               if key == 'jpn-reading-n5' and match:
                   reading_topics = {
                       '1': 'Five Short Stories',
