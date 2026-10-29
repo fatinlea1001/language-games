@@ -3,7 +3,7 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**228 games** — automatically updated when an HTML game is added or changed.
+**230 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
@@ -165,6 +165,8 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [N4 Verb (Set 7)](https://fatinlea1001.github.io/language-games/n4-verb-7.html) — updated 29 Oct 2026
+- [N4 Verb (Set 6)](https://fatinlea1001.github.io/language-games/n4-verb-6.html) — updated 29 Oct 2026
 - [N4 Verb Garden — Daily Life & Responsibilities (Set 1)](https://fatinlea1001.github.io/language-games/n4-verb-1.html) — updated 29 Oct 2026
 - [N4 Verb Garden — Travel & Getting Around (Set 3)](https://fatinlea1001.github.io/language-games/n4-verb-3.html) — updated 29 Oct 2026
 - [N4 Verb Garden — Home, Cooking & Nature (Set 5)](https://fatinlea1001.github.io/language-games/n4-verb-5.html) — updated 29 Oct 2026
