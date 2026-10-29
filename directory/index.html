@@ -162,6 +162,7 @@ html.embedded-view .game-sub{gap:4px}
       <div class="category-tabs japanese-category-tabs" role="group" aria-label="Choose a Japanese game category">
         <button type="button" class="category-tab japanese-category-tab" data-japanese-category="Dialogues &amp; Conversations" aria-pressed="false"><span class="category-icon" aria-hidden="true">💬</span><span class="category-label">Dialogues &amp; Conversations</span><span class="category-count">0 games</span></button>
         <button type="button" class="category-tab japanese-category-tab" data-japanese-category="JLPT N5 Basics" aria-pressed="false"><span class="category-icon" aria-hidden="true">🌱</span><span class="category-label">JLPT N5 Basics</span><span class="category-count">0 games</span></button>
+        <button type="button" class="category-tab japanese-category-tab" data-japanese-category="JLPT N4 Verbs" aria-pressed="false"><span class="category-icon" aria-hidden="true">🌷</span><span class="category-label">JLPT N4 Verbs</span><span class="category-count">0 games</span></button>
         <button type="button" class="category-tab japanese-category-tab" data-japanese-category="Sentence Building" aria-pressed="false"><span class="category-icon" aria-hidden="true">🧩</span><span class="category-label">Sentence Building</span><span class="category-count">0 games</span></button>
         <button type="button" class="category-tab japanese-category-tab" data-japanese-category="Reading &amp; Stories" aria-pressed="false"><span class="category-icon" aria-hidden="true">📖</span><span class="category-label">Reading &amp; Stories</span><span class="category-count">0 games</span></button>
         <button type="button" class="category-tab japanese-category-tab" data-japanese-category="Kanji &amp; Spelling" aria-pressed="false"><span class="category-icon" aria-hidden="true">🈴</span><span class="category-label">Kanji &amp; Spelling</span><span class="category-count">0 games</span></button>
@@ -245,6 +246,7 @@ function gameStyle(path, language){
  if(name.includes('verbtonoun'))return {emoji:'📝',bg:'#f9ebdc',topic:'Word formation'};
  if(name.includes('preposition'))return {emoji:'📍',bg:'#ebedff',topic:'Prepositions'};
  if(name.includes('teform'))return {emoji:'✍️',bg:'#fff1dc',topic:'Japanese grammar'};
+ if(/^n4-verb-/.test(name))return {emoji:'🌷',bg:'#ffebf5',topic:'JLPT N4 verbs'};
  return language==='Japanese'?{emoji:'🌸',bg:'#ffeaf3',topic:'Japanese practice'}:{emoji:'🎮',bg:'#eeeaff',topic:'English practice'};
 }
 
@@ -386,6 +388,11 @@ function topicDescription(file, readmeTitle, language){
  if(stem==='n5-verb')return describe('N5 Verb Quiz','N5 Verbs','Japanese Vocabulary');
  if(stem==='n5-vocabulary')return describe('N5 Vocabulary Quiz','Everyday Japanese Words','Japanese Vocabulary');
  if(stem==='n5-sentence')return describe('N5 Sentence Jumble','Japanese Sentence Formation','N5 Grammar');
+ if(stem==='n4-verb'){
+  const topics=['Daily Life & Responsibilities','Communication & Learning','Travel & Getting Around','Feelings & Personal Growth','Home, Cooking & Nature'];
+  const topic=topics[number-1]||'Japanese N4 Verbs';
+  return describe('N4 Verb Garden — '+topic,topic,'JLPT N4 Verbs');
+ }
  if(stem==='n4-sentence')return describe('N4 Sentence Scramble','Intermediate Japanese Sentence Formation','N4 Grammar');
  if(stem==='eng-elaboration-finance' && number===1)
   return describe('Paragraph Makeover — Elaboration & Cohesion',['Saving Money','Cultural Awareness','Plastic Waste'],'SPM Writing Skills');
@@ -477,6 +484,7 @@ function classifyJapaneseGame(file){
  const name=file.toLowerCase();
  if(/^jpn-(friends-dialogue-|malaysia-friends-|cafe-dialogue-)/.test(name))return 'Dialogues & Conversations';
  if(/^n5-(vocabulary|verb|adj)-/.test(name) || /^teform-/.test(name))return 'JLPT N5 Basics';
+ if(/^n4-verb-/.test(name))return 'JLPT N4 Verbs';
  if(/^n[45]-sentence-/.test(name))return 'Sentence Building';
  if(/^jpn-(reading-|story-emoji-fill-)/.test(name))return 'Reading & Stories';
  if(/^jpn-spelling-kanji-katakana-/.test(name))return 'Kanji & Spelling';
