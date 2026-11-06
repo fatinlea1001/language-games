@@ -458,6 +458,8 @@ function topicDescription(file, readmeTitle, language){
   return describe('Word Formation — Verb to Noun','Verb-to-Noun Word Formation','English Grammar');
  if(stem==='eng-writing-elaboration-sports')
   return describe('SPM Elaboration Builder — The Popularity of Sports','The Popularity of Sports','Writing Part 2 SPM');
+ if(stem==='eng-writing-elaboration-canteen-day')
+  return describe('SPM Elaboration Builder — Selling Cakes on Canteen Day','Selling Cakes on Canteen Day','Writing Part 2 SPM');
  if(stem.startsWith('eng-writing-')){
   const code=stem.slice('eng-writing-'.length);
   const topic=code.replace(/[-_]+/g,' ').replace(/(^|\s)\w/g,ch=>ch.toUpperCase());
