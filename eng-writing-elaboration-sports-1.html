@@ -111,35 +111,28 @@ const tasks=[
 ["As a result, they may spend more time watching their favourite athletes online.","This describes watching more, not becoming physically active."],
 ["As a result, they might play with friends after school instead of staying indoors.","Yes. This gives a realistic example of becoming more active."],
 ["As a result, professional badminton players might gain more online followers.","This concerns athlete popularity, not teenagers' activities."]],correct:1}]}];
-const state={stage:"welcome",name:"",intro:"",closing:"",introConfirmed:false,closingConfirmed:false,index:0,step:0,selected:-1,checked:false,tries:0,score:0,hint:false,confirmed:false,finished:[]};
+const state={stage:"welcome",name:"",introConfirmed:false,closingConfirmed:false,index:0,step:0,selected:-1,checked:false,tries:0,score:0,hint:false,confirmed:false,finished:[]};
 const root=document.getElementById("app");
 const countWords=text=>text.trim().split(/\s+/).filter(Boolean).length;
 const escapeHTML=text=>String(text).replace(/[&<>"\']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","\'":"&#39;"}[c]));
 const current=()=>tasks[state.index];
 const question=()=>current().parts[state.step];
 const paragraph=i=>[tasks[i].point,tasks[i].parts[0].options[tasks[i].parts[0].correct][0],tasks[i].parts[1].options[tasks[i].parts[1].correct][0]].join(" ");
-const wholeEssay=()=>[state.intro.trim(),...state.finished,state.closing.trim()].join("\n\n");
+const bodyParagraphs=()=>state.finished.join("\n\n");
 const progress=()=>'<div class="progress" aria-label="Paragraph '+(state.index+1)+' of 3">'+tasks.map((_,i)=>'<span class="'+(i<state.index?'done':i===state.index?'active':'')+'"></span>').join("")+'</div>';
 const titleReminder=()=>'<div class="urgent-reminder" role="note"><div class="urgent-heading"><span class="urgent-icon" aria-hidden="true">📕</span><span>STOP! WRITE THIS FIRST!</span></div><p>Before starting the activities, write the <strong>ESSAY TITLE</strong> and your <strong>INTRODUCTION PARAGRAPH</strong> in your exercise book.</p><div class="essay-title">TITLE: The Popularity of Sports</div><p class="urgent-note">✍️ Complete both before you move on to Body Paragraph 1.</p></div>';
 const examTask=()=>'<div class="exam"><strong>Original SPM task</strong><p>Your class has been discussing the popularity of sports. Your teacher has asked you to write an essay about the topic.</p><p>In your essay, you should:</p><ul><li>describe a sport that you enjoy watching</li><li>explain why the sport is popular</li><li>discuss whether watching sports can inspire people to be active</li></ul><p><strong>Use all the notes above and give reasons for your point of view.</strong></p><p>Write your essay in <strong>125–150 words</strong> in an appropriate style.</p></div>';
 function render(){
 if(state.stage==="welcome"){
-root.innerHTML='<div class="row between"><span class="chip">🏸 Sports Edition</span><span class="small">B1–B2 · 6 questions</span></div><h2 style="margin-top:17px">Write your own introduction, develop three body paragraphs and finish with a conclusion.</h2>'+examTask()+titleReminder()+'<p>First, write your introduction. Next, build each body paragraph with guided choices and <strong>copy it into your exercise book</strong>. Finally, write your own conclusion.</p><label class="name" for="student">Student name / Nama murid</label><input type="text" id="student" maxlength="60" autocomplete="name" placeholder="Enter your name"><p class="tiny">6 first-attempt marks for the guided challenges · Unlimited retries · Free and no AI marking</p><button type="button" class="primary full" data-action="start">Begin: Write My Introduction →</button><p id="nameError" class="tiny" role="alert"></p>';
+root.innerHTML='<div class="row between"><span class="chip">🏸 Sports Edition</span><span class="small">B1–B2 · 6 questions</span></div><h2 style="margin-top:17px">Build three body paragraphs, one step at a time.</h2>'+examTask()+titleReminder()+'<label class="name" for="student">Student name / Nama murid</label><input type="text" id="student" maxlength="60" autocomplete="name" placeholder="Enter your name"><label class="confirm"><input type="checkbox" id="confirmIntro" '+(state.introConfirmed?'checked':'')+'><span>I have written the essay title AND my introduction in my exercise book.</span></label><button type="button" class="primary full" data-action="start" '+(state.introConfirmed?'':'disabled')+'>Start Elaboration Activities →</button><p class="tiny">You will copy each body paragraph before moving on, then write your conclusion in your notebook. · 6 first-attempt marks · Unlimited retries</p><p id="nameError" class="tiny" role="alert"></p>';
 return;
 }
-if(state.stage==="intro"||state.stage==="conclusion"){
-const isIntro=state.stage==="intro",kind=isIntro?"introduction":"conclusion";
-const value=isIntro?state.intro:state.closing;
-const confirmed=isIntro?state.introConfirmed:state.closingConfirmed;
-const heading=isIntro?"Write Your Introduction":"Write Your Conclusion";
-const extra=isIntro?examTask()+titleReminder():'<div class="exam"><strong>Your three body paragraphs are complete.</strong><p>You have described badminton, explained its popularity and discussed how watching it might inspire physical activity.</p><p>Now finish the essay with your overall opinion or hope.</p></div>';
-const tips=isIntro?'<li>Introduce sports and the topic of watching them.</li><li>Give readers a brief idea of what your essay will discuss.</li><li>Avoid copying the exam question word for word.</li>':'<li>Summarise your overall view about watching sports.</li><li>End with your opinion, hope or suggestion.</li><li>Avoid introducing a completely new main point.</li>';
-root.innerHTML='<div class="row between"><span class="chip">'+(isIntro?'✏️ BEFORE THE ACTIVITIES':'✏️ FINAL WRITING TASK')+'</span><span class="small">'+(isIntro?'Introduction':'Conclusion')+'</span></div><h2 style="margin-top:19px">'+heading+'</h2>'+extra+'<div class="writing-tip"><strong>Writing tips (suggested length: 15–25 words)</strong><ul>'+tips+'</ul></div><label class="name" for="writingArea">Type your own '+kind+' paragraph here:</label><textarea id="writingArea" maxlength="500" placeholder="Write your own '+kind+' in complete sentences...">'+escapeHTML(value)+'</textarea><div class="writing-meta"><span id="writingCount">'+countWords(value)+' words written</span><span>Not AI-marked — check your own work</span></div><div class="copycheck"><h3>✍️ Write it in your exercise book</h3><p>'+(isIntro?'Write the title <strong>The Popularity of Sports</strong> and your introduction in your exercise book before confirming.':'Read your paragraph once more, then write or copy it into your exercise book before confirming.')+'</p><label class="confirm"><input type="checkbox" id="confirmWriting" '+(confirmed?'checked':'')+'><span>'+(isIntro?'I have written the essay title AND my introduction in my exercise book.':'I have written my conclusion in my exercise book.')+'</span></label><button class="primary full" type="button" data-action="'+(isIntro?'finishIntro':'finishConclusion')+'" '+(confirmed&&value.trim()?'':'disabled')+'>'+(isIntro?'Start Elaboration Activities →':'Complete My Essay →')+'</button><p class="tiny">🔒 Write your paragraph and tick the confirmation box to continue.</p></div>';
+if(state.stage==="conclusion"){
+root.innerHTML='<div class="row between"><span class="chip">✍️ FINAL WRITING TASK</span><span class="small">Conclusion</span></div><h2 style="margin-top:17px">Write Your Conclusion</h2><div class="urgent-reminder" role="note"><div class="urgent-heading"><span class="urgent-icon" aria-hidden="true">📕</span><span>STOP! WRITE YOUR CONCLUSION!</span></div><p>Write your <strong>CONCLUSION PARAGRAPH</strong> in your exercise book. Give your overall opinion or hope about watching sports.</p><p class="urgent-note">✍️ Finish this paragraph before completing the activity.</p></div><label class="confirm"><input type="checkbox" id="confirmConclusion" '+(state.closingConfirmed?'checked':'')+'><span>I have written my conclusion in my exercise book.</span></label><button type="button" class="primary full" data-action="finishConclusion" '+(state.closingConfirmed?'':'disabled')+'>Complete My Writing Practice →</button>';
 return;
 }
 if(state.stage==="finished"){
-const essay=wholeEssay(),wc=countWords(essay);
-root.innerHTML='<div style="text-align:center"><div style="font-size:44px">🏆</div><h2>Essay Completed!</h2><p class="small" id="displayName"></p><div class="score">'+state.score+' / 6</div><p class="small">First-attempt marks on guided challenges</p><span class="chip">'+wc+' words · '+(wc>=125&&wc<=150?'Within the SPM word range':'Review your word count (target: 125–150)')+'</span></div><h2 style="margin-top:25px">Your Complete Essay</h2><div class="essay">'+[state.intro,...state.finished,state.closing].map((x,i)=>'<p><span class="label" style="display:block">'+(i===0?'INTRODUCTION':i===4?'CONCLUSION':'BODY PARAGRAPH '+i)+'</span>'+escapeHTML(x)+'</p>').join("")+'</div><p class="small">Your own introduction and conclusion are included above. The game scores only the six guided choices; it cannot check whether your independent writing is grammatically correct.</p><div class="row no-print"><button type="button" class="primary" data-action="copyEssay">📋 Copy Full Essay</button><button type="button" class="secondary" data-action="restart">↻ Play Again</button></div><p id="copyMessage" class="copied" role="status"></p>';
+root.innerHTML='<div style="text-align:center"><div style="font-size:44px">🏆</div><h2>Writing Practice Completed!</h2><p class="small" id="displayName"></p><div class="score">'+state.score+' / 6</div><p class="small">First-attempt marks on guided challenges</p><span class="chip">3 body paragraphs completed</span></div><div class="writing-tip"><strong>Check your exercise book</strong><p>Your full essay should have an introduction, three developed body paragraphs and a conclusion. Count the words in your complete essay to check the 125–150-word target.</p></div><h2 style="margin-top:25px">Your Three Body Paragraphs</h2><div class="essay">'+state.finished.map((x,i)=>'<p><span class="label" style="display:block">BODY PARAGRAPH '+(i+1)+'</span>'+escapeHTML(x)+'</p>').join("")+'</div><p class="small">The introduction and conclusion were written in your exercise book, so they are not included in the copy below.</p><div class="row no-print"><button type="button" class="primary" data-action="copyEssay">📋 Copy All Body Paragraphs</button><button type="button" class="secondary" data-action="restart">↻ Play Again</button></div><p id="copyMessage" class="copied" role="status"></p>';
 document.getElementById("displayName").textContent=state.name;
 return;
 }
@@ -164,7 +157,8 @@ function resetChoice(){state.selected=-1;state.checked=false;state.tries=0;state
 function start(){
 const v=document.getElementById("student").value.trim();
 if(!v){document.getElementById("nameError").textContent="Please enter your name to begin. / Sila masukkan nama.";document.getElementById("student").focus();return;}
-state.name=v;state.stage="intro";render();
+if(!state.introConfirmed)return;
+state.name=v;state.stage="play";render();
 }
 function check(){
 if(state.selected<0)return;
@@ -191,8 +185,7 @@ root.addEventListener("click",event=>{
 const b=event.target.closest("button[data-action]");if(!b||b.disabled)return;
 const action=b.dataset.action;
 if(action==="start"){start();return;}
-if(action==="finishIntro"){if(state.intro.trim()&&state.introConfirmed){state.stage="play";render();}return;}
-if(action==="finishConclusion"){if(state.closing.trim()&&state.closingConfirmed){state.stage="finished";render();}return;}
+if(action==="finishConclusion"){if(state.closingConfirmed){state.stage="finished";render();}return;}
 if(action==="choose"){if(!state.checked){state.selected=Number(b.dataset.choice);render();}return;}
 if(action==="hint"){state.hint=!state.hint;render();return;}
 if(action==="check"){check();return;}
@@ -204,25 +197,24 @@ render();return;
 }
 if(action==="next"){next();return;}
 if(action==="copyParagraph"){copyText(paragraph(state.index));return;}
-if(action==="copyEssay"){copyText(wholeEssay());return;}
-if(action==="restart"){Object.assign(state,{stage:"welcome",name:"",intro:"",closing:"",introConfirmed:false,closingConfirmed:false,index:0,step:0,selected:-1,checked:false,tries:0,score:0,hint:false,confirmed:false,finished:[]});render();}
-});
-root.addEventListener("input",event=>{
-if(event.target.id!=="writingArea")return;
-const isIntro=state.stage==="intro";
-if(!isIntro&&state.stage!=="conclusion")return;
-if(isIntro){state.intro=event.target.value;state.introConfirmed=false;}else{state.closing=event.target.value;state.closingConfirmed=false;}
-const check=root.querySelector("#confirmWriting");if(check)check.checked=false;
-const button=root.querySelector('[data-action="finishIntro"],[data-action="finishConclusion"]');if(button)button.disabled=true;
-const count=root.querySelector("#writingCount");if(count)count.textContent=countWords(event.target.value)+" words written";
+if(action==="copyEssay"){copyText(bodyParagraphs());return;}
+if(action==="restart"){Object.assign(state,{stage:"welcome",name:"",introConfirmed:false,closingConfirmed:false,index:0,step:0,selected:-1,checked:false,tries:0,score:0,hint:false,confirmed:false,finished:[]});render();}
 });
 root.addEventListener("change",event=>{
-if(event.target.id==="confirmCopy"){state.confirmed=event.target.checked;const button=root.querySelector('[data-action="next"]');if(button)button.disabled=!state.confirmed;}
-if(event.target.id==="confirmWriting"){
-const isIntro=state.stage==="intro";const hasText=(isIntro?state.intro:state.closing).trim().length>0;
-const yes=event.target.checked&&hasText;
-if(isIntro)state.introConfirmed=yes;else state.closingConfirmed=yes;
-const button=root.querySelector('[data-action="finishIntro"],[data-action="finishConclusion"]');if(button)button.disabled=!yes;
+if(event.target.id==="confirmIntro"){
+state.introConfirmed=event.target.checked;
+const button=root.querySelector('[data-action="start"]');
+if(button)button.disabled=!state.introConfirmed;
+}
+if(event.target.id==="confirmCopy"){
+state.confirmed=event.target.checked;
+const button=root.querySelector('[data-action="next"]');
+if(button)button.disabled=!state.confirmed;
+}
+if(event.target.id==="confirmConclusion"){
+state.closingConfirmed=event.target.checked;
+const button=root.querySelector('[data-action="finishConclusion"]');
+if(button)button.disabled=!state.closingConfirmed;
 }
 });
 render();
