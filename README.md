@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**252 games** — automatically updated when an HTML game is added or changed.
+**253 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Entertainment Media (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-entertainment-media-normal.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Entertainment Media (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-entertainment-media-easy.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Physical Appearance (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-physical-appearance-normal.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Physical Appearance (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-physical-appearance-easy.html) — updated 11 Nov 2026
