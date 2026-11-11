@@ -7,6 +7,15 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Speaking Part 2 — Saving Money / Shopping / Something to Buy](https://fatinlea1001.github.io/language-games/eng-speakingpart2-9.html) — updated 11 Nov 2026
+- [SPM Speaking Part 2 — A School Competition / A Teacher / A Club](https://fatinlea1001.github.io/language-games/eng-speakingpart2-8.html) — updated 11 Nov 2026
+- [SPM Speaking Part 2 — A Movie / A Book / A Song](https://fatinlea1001.github.io/language-games/eng-speakingpart2-7.html) — updated 11 Nov 2026
+- [SPM Speaking Part 2 — A Family Gathering / Malaysian Food / A Festival](https://fatinlea1001.github.io/language-games/eng-speakingpart2-6.html) — updated 11 Nov 2026
+- [SPM Speaking Part 2 — An Online Game / A Useful Website / A Social Media Influencer](https://fatinlea1001.github.io/language-games/eng-speakingpart2-5.html) — updated 11 Nov 2026
+- [SPM Speaking Part 2 — A Favourite Restaurant / A Birthday Celebration / A Gift I Received](https://fatinlea1001.github.io/language-games/eng-speakingpart2-4.html) — updated 11 Nov 2026
+- [SPM Speaking Part 2 — A Healthy Habit / An Online Purchase / Helping a Friend](https://fatinlea1001.github.io/language-games/eng-speakingpart2-3.html) — updated 11 Nov 2026
+- [SPM Speaking Part 2 — A School Event / Helping the Environment / A Useful Mobile App](https://fatinlea1001.github.io/language-games/eng-speakingpart2-2.html) — updated 11 Nov 2026
+- [SPM Speaking Part 2 — A Dream Career / A Skill / A Future Goal](https://fatinlea1001.github.io/language-games/eng-speakingpart2-10.html) — updated 11 Nov 2026
 - [Writing Elaboration Sports](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-sports-1.html) — updated 11 Nov 2026
 - [Writing Elaboration Canteen Day](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-canteen-day-2.html) — updated 11 Nov 2026
 - [SPM Speaking Part 3 — How to Curb Cyberbullying](https://fatinlea1001.github.io/language-games/eng-speakingpart3-37.html) — updated 11 Nov 2026
@@ -119,15 +128,6 @@ Recently updated games appear first in each category.
 - [Vocab Health (Set 3)](https://fatinlea1001.github.io/language-games/eng-vocab-health-3.html) — updated 13 Oct 2026
 - [Vocab Health (Set 2)](https://fatinlea1001.github.io/language-games/eng-vocab-health-2.html) — updated 13 Oct 2026
 - [Vocab Health (Set 1)](https://fatinlea1001.github.io/language-games/eng-vocab-health-1.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 — A Dream Career / A Skill / A Future Goal](https://fatinlea1001.github.io/language-games/eng-speakingpart2-10.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 — Saving Money / Shopping / Something to Buy](https://fatinlea1001.github.io/language-games/eng-speakingpart2-9.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 — A School Competition / A Teacher / A Club](https://fatinlea1001.github.io/language-games/eng-speakingpart2-8.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 — A Movie / A Book / A Song](https://fatinlea1001.github.io/language-games/eng-speakingpart2-7.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 — A Family Gathering / Malaysian Food / A Festival](https://fatinlea1001.github.io/language-games/eng-speakingpart2-6.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 — An Online Game / A Useful Website / A Social Media Influencer](https://fatinlea1001.github.io/language-games/eng-speakingpart2-5.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 — A Favourite Restaurant / A Birthday Celebration / A Gift I Received](https://fatinlea1001.github.io/language-games/eng-speakingpart2-4.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 — A Healthy Habit / An Online Purchase / Helping a Friend](https://fatinlea1001.github.io/language-games/eng-speakingpart2-3.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 — A School Event / Helping the Environment / A Useful Mobile App](https://fatinlea1001.github.io/language-games/eng-speakingpart2-2.html) — updated 13 Oct 2026
 - [SPM Speaking Part 2 — My Hometown / My Favourite Place / A Memorable Trip](https://fatinlea1001.github.io/language-games/eng-speakingpart2-1.html) — updated 13 Oct 2026
 - [Elaboration Robloxreview (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-robloxreview-2.html) — updated 12 Oct 2026
 - [Elaboration Robloxreview (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-robloxreview-1.html) — updated 12 Oct 2026
@@ -168,6 +168,21 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [Japanese Emoji Story Fill — First Part-Time Job](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-9.html) — updated 11 Nov 2026
+- [Japanese Emoji Story Fill — Friend's Birthday](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-8.html) — updated 11 Nov 2026
+- [Japanese Emoji Story Fill — Morning in the Park](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-7.html) — updated 11 Nov 2026
+- [Japanese Emoji Story Fill — Studying at the Library](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-6.html) — updated 11 Nov 2026
+- [Japanese Emoji Story Fill — Cooking with Family](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-5.html) — updated 11 Nov 2026
+- [Japanese Emoji Story Fill — Trip to the Sea](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-4.html) — updated 11 Nov 2026
+- [Japanese Emoji Story Fill — Weekend Shopping](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-3.html) — updated 11 Nov 2026
+- [Japanese Emoji Story Fill — Rainy Afternoon](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-2.html) — updated 11 Nov 2026
+- [Japanese Emoji Story Fill — Hiking in the Mountains](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-10.html) — updated 11 Nov 2026
+- [Japanese Emoji Story Fill — School Festival](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-1.html) — updated 11 Nov 2026
+- [Kanji & Katakana Spell-Off — Shopping & Work](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-7.html) — updated 11 Nov 2026
+- [Kanji & Katakana Spell-Off — Feelings & Everyday Actions](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-6.html) — updated 11 Nov 2026
+- [Kanji & Katakana Spell-Off — Travel & Transport](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-5.html) — updated 11 Nov 2026
+- [Kanji & Katakana Spell-Off — School & Learning](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-4.html) — updated 11 Nov 2026
+- [Kanji & Katakana Spell-Off — Daily Life & Home](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-3.html) — updated 11 Nov 2026
 - [N4 Verb Garden — Weather & Changing Things](https://fatinlea1001.github.io/language-games/n4-verb-9.html) — updated 11 Nov 2026
 - [N4 Verb Garden — Technology & Media](https://fatinlea1001.github.io/language-games/n4-verb-8.html) — updated 11 Nov 2026
 - [N4 Verb Garden — Health & Body](https://fatinlea1001.github.io/language-games/n4-verb-7.html) — updated 11 Nov 2026
@@ -226,21 +241,6 @@ Recently updated games appear first in each category.
 - [Friends Dialogue (Set 3)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-3.html) — updated 19 Oct 2026
 - [Friends Dialogue (Set 2)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-2.html) — updated 18 Oct 2026
 - [Friends Dialogue (Set 1)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-1.html) — updated 18 Oct 2026
-- [Japanese Emoji Story Fill — Hiking in the Mountains](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-10.html) — updated 15 Oct 2026
-- [Japanese Emoji Story Fill — First Part-Time Job](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-9.html) — updated 15 Oct 2026
-- [Japanese Emoji Story Fill — Friend's Birthday](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-8.html) — updated 15 Oct 2026
-- [Japanese Emoji Story Fill — Morning in the Park](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-7.html) — updated 15 Oct 2026
-- [Japanese Emoji Story Fill — Studying at the Library](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-6.html) — updated 15 Oct 2026
-- [Japanese Emoji Story Fill — Cooking with Family](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-5.html) — updated 15 Oct 2026
-- [Japanese Emoji Story Fill — Trip to the Sea](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-4.html) — updated 15 Oct 2026
-- [Japanese Emoji Story Fill — Weekend Shopping](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-3.html) — updated 15 Oct 2026
-- [Japanese Emoji Story Fill — Rainy Afternoon](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-2.html) — updated 15 Oct 2026
-- [Japanese Emoji Story Fill — School Festival](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-1.html) — updated 15 Oct 2026
-- [Kanji & Katakana Spell-Off — Shopping & Work](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-7.html) — updated 15 Oct 2026
-- [Kanji & Katakana Spell-Off — Feelings & Everyday Actions](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-6.html) — updated 15 Oct 2026
-- [Kanji & Katakana Spell-Off — Travel & Transport](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-5.html) — updated 15 Oct 2026
-- [Kanji & Katakana Spell-Off — School & Learning](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-4.html) — updated 15 Oct 2026
-- [Kanji & Katakana Spell-Off — Daily Life & Home](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-3.html) — updated 15 Oct 2026
 - [Truefalse Library (Set 2)](https://fatinlea1001.github.io/language-games/jpn-truefalse-library-2.html) — updated 12 Oct 2026
 - [Truefalse Library (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-library-1.html) — updated 10 Oct 2026
 - [Kanji & Katakana Spell-Off — Mixed Kanji & Katakana (Set 2)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-2.html) — updated 10 Oct 2026
