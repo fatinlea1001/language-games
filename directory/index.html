@@ -470,6 +470,15 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Essay — Reading E-books Among Teenagers (EASY)',topics:['E-books','Teenage Reading'],theme:'SPM Writing Part 2 · Sample Essay'};
  if(stem==='eng-sample-essay-ebooks-normal')
   return {label:'Sample Essay — Reading E-books Among Teenagers (NORMAL)',topics:['E-books','Teenage Reading'],theme:'SPM Writing Part 2 · Sample Essay'};
+ // Match every new EASY/NORMAL writing resource to one consistent title format.
+ const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
+ if(levelMatch){
+  const topic=levelMatch[2].split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' ');
+  const level=levelMatch[3].toUpperCase();
+  return levelMatch[1]==='sample-essay'
+   ? {label:'Sample Essay — '+topic+' ('+level+')',topics:[topic],theme:'SPM Writing Part 2 · Sample Essay'}
+   : {label:'SPM Elaboration Builder — '+topic+' ('+level+')',topics:[topic],theme:'Writing Part 2 SPM'};
+ }
  if(stem.startsWith('eng-sample-essay-'))
   return {label:readmeTitle,topics:['Writing Part 2'],theme:'SPM Sample Essays'};
  if(stem.startsWith('eng-writing-')){
