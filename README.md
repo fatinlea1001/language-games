@@ -7,100 +7,100 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Writing Elaboration Sports](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-sports-1.html) — updated 11 Nov 2026
+- [Writing Elaboration Canteen Day](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-canteen-day-2.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — How to Curb Cyberbullying](https://fatinlea1001.github.io/language-games/eng-speakingpart3-37.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — Ways to Study Effectively](https://fatinlea1001.github.io/language-games/eng-speakingpart3-36.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — How to Protect Ourselves from Fake Information on the Internet](https://fatinlea1001.github.io/language-games/eng-speakingpart3-35.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — Impacts of the Internet on Young People](https://fatinlea1001.github.io/language-games/eng-speakingpart3-34.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — Ways to Reduce Food Waste](https://fatinlea1001.github.io/language-games/eng-speakingpart3-33.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — Importance of Caring for Our School Surroundings](https://fatinlea1001.github.io/language-games/eng-speakingpart3-32.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — How to Choose a Good Film](https://fatinlea1001.github.io/language-games/eng-speakingpart3-31.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — Benefits of Participating in Sports](https://fatinlea1001.github.io/language-games/eng-speakingpart3-30.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — Why People Like to Go Shopping](https://fatinlea1001.github.io/language-games/eng-speakingpart3-29.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — Ways to Protect the Environment](https://fatinlea1001.github.io/language-games/eng-speakingpart3-28.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — Why People Commit Crimes](https://fatinlea1001.github.io/language-games/eng-speakingpart3-27.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — Ideas for Raising Money Online](https://fatinlea1001.github.io/language-games/eng-speakingpart3-26.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — Places to Do Charity Work](https://fatinlea1001.github.io/language-games/eng-speakingpart3-25.html) — updated 11 Nov 2026
+- [SPM Speaking Part 3 — How Technology Has Changed Our Lives](https://fatinlea1001.github.io/language-games/eng-speakingpart3-24.html) — updated 11 Nov 2026
+- [Missingsentence Soft Skills](https://fatinlea1001.github.io/language-games/eng-missingsentence-soft-skills-1.html) — updated 11 Nov 2026
+- [Missingsentence Smart Teenager](https://fatinlea1001.github.io/language-games/eng-missingsentence-smart-teenager-1.html) — updated 11 Nov 2026
+- [Missingsentence Smart Consumer](https://fatinlea1001.github.io/language-games/eng-missingsentence-smart-consumer-1.html) — updated 11 Nov 2026
+- [Missingsentence Schoollife](https://fatinlea1001.github.io/language-games/eng-missingsentence-schoollife-1.html) — updated 11 Nov 2026
+- [Missingsentence Responsible Ai](https://fatinlea1001.github.io/language-games/eng-missingsentence-responsible-ai-1.html) — updated 11 Nov 2026
+- [Missingsentence Recycling Symbol](https://fatinlea1001.github.io/language-games/eng-missingsentence-recycling-symbol-1.html) — updated 11 Nov 2026
+- [Missingsentence Puteri Saadong](https://fatinlea1001.github.io/language-games/eng-missingsentence-puteri-saadong-1.html) — updated 11 Nov 2026
+- [Missingsentence Opposites Attract](https://fatinlea1001.github.io/language-games/eng-missingsentence-opposites-attract-1.html) — updated 11 Nov 2026
+- [Missingsentence Learning Spend Wisely](https://fatinlea1001.github.io/language-games/eng-missingsentence-learning-spend-wisely-1.html) — updated 11 Nov 2026
+- [Missingsentence Khairul Aming](https://fatinlea1001.github.io/language-games/eng-missingsentence-khairul-aming-1.html) — updated 11 Nov 2026
+- [Missingsentence Interact Club](https://fatinlea1001.github.io/language-games/eng-missingsentence-interact-club-1.html) — updated 11 Nov 2026
+- [Missingsentence Haze](https://fatinlea1001.github.io/language-games/eng-missingsentence-haze-1.html) — updated 11 Nov 2026
+- [Missingsentence Gardening](https://fatinlea1001.github.io/language-games/eng-missingsentence-gardening-1.html) — updated 11 Nov 2026
+- [Missingsentence Digital Payments](https://fatinlea1001.github.io/language-games/eng-missingsentence-digital-payments-1.html) — updated 11 Nov 2026
+- [Missingsentence Christy Couture](https://fatinlea1001.github.io/language-games/eng-missingsentence-christy-couture-1.html) — updated 11 Nov 2026
+- [Missingsentence Bullyingmentalhealth](https://fatinlea1001.github.io/language-games/eng-missingsentence-bullyingmentalhealth-1.html) — updated 11 Nov 2026
+- [Missingsentence Beauty Skin Deep](https://fatinlea1001.github.io/language-games/eng-missingsentence-beauty-skin-deep-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — Volunteering](https://fatinlea1001.github.io/language-games/eng-matchvocab-volunteering-1.html) — updated 11 Nov 2026
+- [Matchvocab Stress Management](https://fatinlea1001.github.io/language-games/eng-matchvocab-stress-management-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — Stress](https://fatinlea1001.github.io/language-games/eng-matchvocab-stress-1.html) — updated 11 Nov 2026
+- [Matchvocab Smart Spending](https://fatinlea1001.github.io/language-games/eng-matchvocab-smart-spending-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — Screen Time](https://fatinlea1001.github.io/language-games/eng-matchvocab-screentime-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — Recycling](https://fatinlea1001.github.io/language-games/eng-matchvocab-recycling-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — Pollution](https://fatinlea1001.github.io/language-games/eng-matchvocab-pollution-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — Online Shopping](https://fatinlea1001.github.io/language-games/eng-matchvocab-onlineshopping-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — Online Gaming](https://fatinlea1001.github.io/language-games/eng-matchvocab-onlinegaming-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — Online Addiction](https://fatinlea1001.github.io/language-games/eng-matchvocab-onlineaddiction-1.html) — updated 11 Nov 2026
+- [Matchvocab Mental Health](https://fatinlea1001.github.io/language-games/eng-matchvocab-mental-health-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — Managing Time](https://fatinlea1001.github.io/language-games/eng-matchvocab-managingtime-1.html) — updated 11 Nov 2026
+- [Matchvocab Gig Economy](https://fatinlea1001.github.io/language-games/eng-matchvocab-gig-economy-1.html) — updated 11 Nov 2026
+- [Matchvocab Cyberbullying](https://fatinlea1001.github.io/language-games/eng-matchvocab-cyberbullying-1.html) — updated 11 Nov 2026
+- [Matchvocab Cashless Payment](https://fatinlea1001.github.io/language-games/eng-matchvocab-cashless-payment-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — AI in Studies](https://fatinlea1001.github.io/language-games/eng-matchvocab-aiinstudies-1.html) — updated 11 Nov 2026
+- [Vocabulary Match-Up — AI in Life](https://fatinlea1001.github.io/language-games/eng-matchvocab-aiinlife-1.html) — updated 11 Nov 2026
+- [Less Common Lexis Class — Making a Difference](https://fatinlea1001.github.io/language-games/eng-lexis-article-9.html) — updated 11 Nov 2026
+- [Less Common Lexis Class — Smart Consumers](https://fatinlea1001.github.io/language-games/eng-lexis-article-8.html) — updated 11 Nov 2026
+- [Less Common Lexis Class — Wise Spending](https://fatinlea1001.github.io/language-games/eng-lexis-article-7.html) — updated 11 Nov 2026
+- [Less Common Lexis Class — Digital Life](https://fatinlea1001.github.io/language-games/eng-lexis-article-6.html) — updated 11 Nov 2026
+- [Less Common Lexis Class — Smarter Learning](https://fatinlea1001.github.io/language-games/eng-lexis-article-5.html) — updated 11 Nov 2026
+- [Less Common Lexis Class — Protecting Nature](https://fatinlea1001.github.io/language-games/eng-lexis-article-4.html) — updated 11 Nov 2026
+- [Less Common Lexis Class — Better Well-being](https://fatinlea1001.github.io/language-games/eng-lexis-article-3.html) — updated 11 Nov 2026
+- [Less Common Lexis Class — Our Traditions](https://fatinlea1001.github.io/language-games/eng-lexis-article-2.html) — updated 11 Nov 2026
+- [Less Common Lexis Class — Taking Action](https://fatinlea1001.github.io/language-games/eng-lexis-article-10.html) — updated 11 Nov 2026
+- [Less Common Lexis Class — Caring Communities](https://fatinlea1001.github.io/language-games/eng-lexis-article-1.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — E-books (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-3.html) — updated 11 Nov 2026
-- [Writing Elaboration Canteen Day (Set 2)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-canteen-day-2.html) — updated 06 Nov 2026
-- [Writing Elaboration Sports (Set 1)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-sports-1.html) — updated 06 Nov 2026
-- [SPM Speaking Part 3 — How to Curb Cyberbullying (Set 37)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-37.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Ways to Study Effectively (Set 36)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-36.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — How to Protect Ourselves from Fake Information on the Internet (Set 35)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-35.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Impacts of the Internet on Young People (Set 34)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-34.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Ways to Reduce Food Waste (Set 33)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-33.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Importance of Caring for Our School Surroundings (Set 32)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-32.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — How to Choose a Good Film (Set 31)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-31.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Benefits of Participating in Sports (Set 30)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-30.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Why People Like to Go Shopping (Set 29)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-29.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Ways to Protect the Environment (Set 28)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-28.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Why People Commit Crimes (Set 27)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-27.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Ideas for Raising Money Online (Set 26)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-26.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Places to Do Charity Work (Set 25)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-25.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — How Technology Has Changed Our Lives (Set 24)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-24.html) — updated 27 Oct 2026
-- [SPM Speaking Part 3 — Ways to Shop Smart (Set 23)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-23.html) — updated 21 Oct 2026
-- [SPM Speaking Part 3 — Popular Gig Economy Jobs in Malaysia (Set 22)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-22.html) — updated 21 Oct 2026
-- [Matchvocab Smart Spending (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-smart-spending-1.html) — updated 21 Oct 2026
-- [Matchvocab Cashless Payment (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-cashless-payment-1.html) — updated 21 Oct 2026
-- [Matchvocab Gig Economy (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-gig-economy-1.html) — updated 21 Oct 2026
-- [Matchvocab Cyberbullying (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-cyberbullying-1.html) — updated 20 Oct 2026
-- [Matchvocab Mental Health (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-mental-health-1.html) — updated 20 Oct 2026
-- [Matchvocab Stress Management (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-stress-management-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — Volunteering (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-volunteering-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — Online Shopping (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-onlineshopping-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — Screen Time (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-screentime-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — AI in Life (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-aiinlife-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — AI in Studies (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-aiinstudies-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — Stress (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-stress-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — Managing Time (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-managingtime-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — Pollution (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-pollution-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — Recycling (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-recycling-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — Online Gaming (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-onlinegaming-1.html) — updated 20 Oct 2026
-- [Vocabulary Match-Up — Online Addiction (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-onlineaddiction-1.html) — updated 20 Oct 2026
-- [SPM Speaking Part 3 — Ways to Improve Public Parks (Set 21)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-21.html) — updated 20 Oct 2026
-- [SPM Speaking Part 3 — What Do People Consider When Buying Souvenirs? (Set 20)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-20.html) — updated 20 Oct 2026
-- [SPM Speaking Part 3 — Why Do People Learn New Languages? (Set 19)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-19.html) — updated 20 Oct 2026
-- [SPM Speaking Part 3 — Why Manage Time Well? (Set 18)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-18.html) — updated 20 Oct 2026
-- [SPM Speaking Part 3 — Features of a Virtual Lesson (Set 17)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-17.html) — updated 20 Oct 2026
-- [Writing Bullying (Set 1)](https://fatinlea1001.github.io/language-games/eng-writing-bullying-1.html) — updated 19 Oct 2026
-- [Writing Charity (Set 1)](https://fatinlea1001.github.io/language-games/eng-writing-charity-1.html) — updated 19 Oct 2026
-- [Less Common Lexis Class — Making a Difference (Set 9)](https://fatinlea1001.github.io/language-games/eng-lexis-article-9.html) — updated 18 Oct 2026
-- [Less Common Lexis Class — Smart Consumers (Set 8)](https://fatinlea1001.github.io/language-games/eng-lexis-article-8.html) — updated 18 Oct 2026
-- [Less Common Lexis Class — Wise Spending (Set 7)](https://fatinlea1001.github.io/language-games/eng-lexis-article-7.html) — updated 18 Oct 2026
-- [Less Common Lexis Class — Digital Life (Set 6)](https://fatinlea1001.github.io/language-games/eng-lexis-article-6.html) — updated 18 Oct 2026
-- [Less Common Lexis Class — Smarter Learning (Set 5)](https://fatinlea1001.github.io/language-games/eng-lexis-article-5.html) — updated 18 Oct 2026
-- [Less Common Lexis Class — Protecting Nature (Set 4)](https://fatinlea1001.github.io/language-games/eng-lexis-article-4.html) — updated 18 Oct 2026
-- [Less Common Lexis Class — Better Well-being (Set 3)](https://fatinlea1001.github.io/language-games/eng-lexis-article-3.html) — updated 18 Oct 2026
-- [Less Common Lexis Class — Our Traditions (Set 2)](https://fatinlea1001.github.io/language-games/eng-lexis-article-2.html) — updated 18 Oct 2026
-- [Less Common Lexis Class — Taking Action (Set 10)](https://fatinlea1001.github.io/language-games/eng-lexis-article-10.html) — updated 18 Oct 2026
-- [Less Common Lexis Class — Caring Communities (Set 1)](https://fatinlea1001.github.io/language-games/eng-lexis-article-1.html) — updated 18 Oct 2026
-- [Missingsentence Puteri Saadong (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-puteri-saadong-1.html) — updated 16 Oct 2026
-- [Missingsentence Beauty Skin Deep (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-beauty-skin-deep-1.html) — updated 16 Oct 2026
-- [Missingsentence Responsible Ai (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-responsible-ai-1.html) — updated 16 Oct 2026
-- [Missingsentence Christy Couture (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-christy-couture-1.html) — updated 16 Oct 2026
-- [Missingsentence Learning Spend Wisely (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-learning-spend-wisely-1.html) — updated 16 Oct 2026
-- [Missingsentence Khairul Aming (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-khairul-aming-1.html) — updated 16 Oct 2026
-- [Missingsentence Opposites Attract (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-opposites-attract-1.html) — updated 16 Oct 2026
-- [Missingsentence Soft Skills (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-soft-skills-1.html) — updated 16 Oct 2026
-- [Missingsentence Interact Club (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-interact-club-1.html) — updated 16 Oct 2026
-- [Missingsentence Digital Payments (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-digital-payments-1.html) — updated 16 Oct 2026
-- [Missingsentence Smart Consumer (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-smart-consumer-1.html) — updated 16 Oct 2026
-- [Missingsentence Smart Teenager (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-smart-teenager-1.html) — updated 16 Oct 2026
-- [Missingsentence Gardening (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-gardening-1.html) — updated 16 Oct 2026
-- [Missingsentence Recycling Symbol (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-recycling-symbol-1.html) — updated 16 Oct 2026
-- [Missing Sentence Challenge — AI in Education (Set 1)](https://fatinlea1001.github.io/language-games/eng-missing-ai-education-1.html) — updated 16 Oct 2026
-- [Missing Sentence Challenge — True Crime Podcasts (Set 1)](https://fatinlea1001.github.io/language-games/eng-missing-true-crime-1.html) — updated 16 Oct 2026
-- [Missingsentence Bullyingmentalhealth (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-bullyingmentalhealth-1.html) — updated 15 Oct 2026
-- [Missingsentence Haze (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-haze-1.html) — updated 15 Oct 2026
-- [Missingsentence Schoollife (Set 1)](https://fatinlea1001.github.io/language-games/eng-missingsentence-schoollife-1.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Ways Teenagers Express Themselves (Set 16)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-16.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Ways Teenagers Can Share Their Problems (Set 15)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-15.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Ways to Practise Green Living (Set 14)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-14.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Importance of Preserving Nature (Set 13)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-13.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Popular Pastime Activities for Teenagers (Set 12)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-12.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Ways to Adapt Yourself in a Foreign Country (Set 11)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-11.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Reasons People Like to Travel (Set 10)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-10.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Types of Part-Time Jobs Suitable for Teenagers (Set 9)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-9.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Challenges of Being a Teenager (Set 8)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-8.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Unhealthy Shopping Habits Among Teenagers (Set 7)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-7.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Factors When Choosing a Part-Time Job (Set 6)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-6.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Ways to Survive During an Emergency (Set 5)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-5.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Adventurous Activities Suitable for Teenagers (Set 4)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-4.html) — updated 15 Oct 2026
-- [SPM Speaking Part 3 — Reasons Teenagers Enjoy Using Social Media (Set 3)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-3.html) — updated 14 Oct 2026
-- [SPM Speaking Part 3 — Ways of Communication (Set 2)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-2.html) — updated 14 Oct 2026
-- [SPM Speaking Part 3 — Why Read Reviews? (Set 1)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-1.html) — updated 14 Oct 2026
-- [Jumble Gaming (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-gaming-1.html) — updated 14 Oct 2026
-- [Jumble Bullying (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-bullying-1.html) — updated 14 Oct 2026
-- [Jumble Finance (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-finance-1.html) — updated 14 Oct 2026
-- [Jumble Health (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-health-1.html) — updated 14 Oct 2026
-- [Jumble Socialmedia (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-socialmedia-1.html) — updated 14 Oct 2026
-- [Jumble Education (Set 1)](https://fatinlea1001.github.io/language-games/eng-jumble-education-1.html) — updated 14 Oct 2026
+- [SPM Speaking Part 3 — Ways to Shop Smart](https://fatinlea1001.github.io/language-games/eng-speakingpart3-23.html) — updated 21 Oct 2026
+- [SPM Speaking Part 3 — Popular Gig Economy Jobs in Malaysia](https://fatinlea1001.github.io/language-games/eng-speakingpart3-22.html) — updated 21 Oct 2026
+- [SPM Speaking Part 3 — Ways to Improve Public Parks](https://fatinlea1001.github.io/language-games/eng-speakingpart3-21.html) — updated 20 Oct 2026
+- [SPM Speaking Part 3 — What Do People Consider When Buying Souvenirs?](https://fatinlea1001.github.io/language-games/eng-speakingpart3-20.html) — updated 20 Oct 2026
+- [SPM Speaking Part 3 — Why Do People Learn New Languages?](https://fatinlea1001.github.io/language-games/eng-speakingpart3-19.html) — updated 20 Oct 2026
+- [SPM Speaking Part 3 — Why Manage Time Well?](https://fatinlea1001.github.io/language-games/eng-speakingpart3-18.html) — updated 20 Oct 2026
+- [SPM Speaking Part 3 — Features of a Virtual Lesson](https://fatinlea1001.github.io/language-games/eng-speakingpart3-17.html) — updated 20 Oct 2026
+- [Writing Bullying](https://fatinlea1001.github.io/language-games/eng-writing-bullying-1.html) — updated 19 Oct 2026
+- [Writing Charity](https://fatinlea1001.github.io/language-games/eng-writing-charity-1.html) — updated 19 Oct 2026
+- [Missing Sentence Challenge — AI in Education](https://fatinlea1001.github.io/language-games/eng-missing-ai-education-1.html) — updated 16 Oct 2026
+- [Missing Sentence Challenge — True Crime Podcasts](https://fatinlea1001.github.io/language-games/eng-missing-true-crime-1.html) — updated 16 Oct 2026
+- [SPM Speaking Part 3 — Ways Teenagers Express Themselves](https://fatinlea1001.github.io/language-games/eng-speakingpart3-16.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Ways Teenagers Can Share Their Problems](https://fatinlea1001.github.io/language-games/eng-speakingpart3-15.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Ways to Practise Green Living](https://fatinlea1001.github.io/language-games/eng-speakingpart3-14.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Importance of Preserving Nature](https://fatinlea1001.github.io/language-games/eng-speakingpart3-13.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Popular Pastime Activities for Teenagers](https://fatinlea1001.github.io/language-games/eng-speakingpart3-12.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Ways to Adapt Yourself in a Foreign Country](https://fatinlea1001.github.io/language-games/eng-speakingpart3-11.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Reasons People Like to Travel](https://fatinlea1001.github.io/language-games/eng-speakingpart3-10.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Types of Part-Time Jobs Suitable for Teenagers](https://fatinlea1001.github.io/language-games/eng-speakingpart3-9.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Challenges of Being a Teenager](https://fatinlea1001.github.io/language-games/eng-speakingpart3-8.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Unhealthy Shopping Habits Among Teenagers](https://fatinlea1001.github.io/language-games/eng-speakingpart3-7.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Factors When Choosing a Part-Time Job](https://fatinlea1001.github.io/language-games/eng-speakingpart3-6.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Ways to Survive During an Emergency](https://fatinlea1001.github.io/language-games/eng-speakingpart3-5.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Adventurous Activities Suitable for Teenagers](https://fatinlea1001.github.io/language-games/eng-speakingpart3-4.html) — updated 15 Oct 2026
+- [SPM Speaking Part 3 — Reasons Teenagers Enjoy Using Social Media](https://fatinlea1001.github.io/language-games/eng-speakingpart3-3.html) — updated 14 Oct 2026
+- [SPM Speaking Part 3 — Ways of Communication](https://fatinlea1001.github.io/language-games/eng-speakingpart3-2.html) — updated 14 Oct 2026
+- [SPM Speaking Part 3 — Why Read Reviews?](https://fatinlea1001.github.io/language-games/eng-speakingpart3-1.html) — updated 14 Oct 2026
+- [Jumble Gaming](https://fatinlea1001.github.io/language-games/eng-jumble-gaming-1.html) — updated 14 Oct 2026
+- [Jumble Bullying](https://fatinlea1001.github.io/language-games/eng-jumble-bullying-1.html) — updated 14 Oct 2026
+- [Jumble Finance](https://fatinlea1001.github.io/language-games/eng-jumble-finance-1.html) — updated 14 Oct 2026
+- [Jumble Health](https://fatinlea1001.github.io/language-games/eng-jumble-health-1.html) — updated 14 Oct 2026
+- [Jumble Socialmedia](https://fatinlea1001.github.io/language-games/eng-jumble-socialmedia-1.html) — updated 14 Oct 2026
+- [Jumble Education](https://fatinlea1001.github.io/language-games/eng-jumble-education-1.html) — updated 14 Oct 2026
 - [Vocab Education (Set 3)](https://fatinlea1001.github.io/language-games/eng-vocab-education-3.html) — updated 13 Oct 2026
 - [Vocab Education (Set 2)](https://fatinlea1001.github.io/language-games/eng-vocab-education-2.html) — updated 13 Oct 2026
 - [Vocab Education (Set 1)](https://fatinlea1001.github.io/language-games/eng-vocab-education-1.html) — updated 13 Oct 2026
@@ -119,16 +119,16 @@ Recently updated games appear first in each category.
 - [Vocab Health (Set 3)](https://fatinlea1001.github.io/language-games/eng-vocab-health-3.html) — updated 13 Oct 2026
 - [Vocab Health (Set 2)](https://fatinlea1001.github.io/language-games/eng-vocab-health-2.html) — updated 13 Oct 2026
 - [Vocab Health (Set 1)](https://fatinlea1001.github.io/language-games/eng-vocab-health-1.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 (Set 10)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-10.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 (Set 9)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-9.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 (Set 8)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-8.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 (Set 7)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-7.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 (Set 6)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-6.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 (Set 5)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-5.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 (Set 4)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-4.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 (Set 3)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-3.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 (Set 2)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-2.html) — updated 13 Oct 2026
-- [SPM Speaking Part 2 (Set 1)](https://fatinlea1001.github.io/language-games/eng-speakingpart2-1.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 — A Dream Career / A Skill / A Future Goal](https://fatinlea1001.github.io/language-games/eng-speakingpart2-10.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 — Saving Money / Shopping / Something to Buy](https://fatinlea1001.github.io/language-games/eng-speakingpart2-9.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 — A School Competition / A Teacher / A Club](https://fatinlea1001.github.io/language-games/eng-speakingpart2-8.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 — A Movie / A Book / A Song](https://fatinlea1001.github.io/language-games/eng-speakingpart2-7.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 — A Family Gathering / Malaysian Food / A Festival](https://fatinlea1001.github.io/language-games/eng-speakingpart2-6.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 — An Online Game / A Useful Website / A Social Media Influencer](https://fatinlea1001.github.io/language-games/eng-speakingpart2-5.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 — A Favourite Restaurant / A Birthday Celebration / A Gift I Received](https://fatinlea1001.github.io/language-games/eng-speakingpart2-4.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 — A Healthy Habit / An Online Purchase / Helping a Friend](https://fatinlea1001.github.io/language-games/eng-speakingpart2-3.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 — A School Event / Helping the Environment / A Useful Mobile App](https://fatinlea1001.github.io/language-games/eng-speakingpart2-2.html) — updated 13 Oct 2026
+- [SPM Speaking Part 2 — My Hometown / My Favourite Place / A Memorable Trip](https://fatinlea1001.github.io/language-games/eng-speakingpart2-1.html) — updated 13 Oct 2026
 - [Elaboration Robloxreview (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-robloxreview-2.html) — updated 12 Oct 2026
 - [Elaboration Robloxreview (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-robloxreview-1.html) — updated 12 Oct 2026
 - [Elaboration Hotelreview (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-hotelreview-2.html) — updated 12 Oct 2026
@@ -151,11 +151,11 @@ Recently updated games appear first in each category.
 - [Elaboration — Social Media (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-socialmedia-1.html) — updated 12 Oct 2026
 - [Elaboration — AI (Set 2)](https://fatinlea1001.github.io/language-games/eng-elaboration-ai-2.html) — updated 12 Oct 2026
 - [Elaboration — AI (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-ai-1.html) — updated 12 Oct 2026
-- [Elaboration — Finance (Set 1)](https://fatinlea1001.github.io/language-games/eng-elaboration-finance-1.html) — updated 10 Oct 2026
+- [Elaboration — Finance](https://fatinlea1001.github.io/language-games/eng-elaboration-finance-1.html) — updated 10 Oct 2026
 - [Matchvocab Personal (Set 2)](https://fatinlea1001.github.io/language-games/eng-matchvocab-personal-2.html) — updated 10 Oct 2026
 - [Matchvocab Personal (Set 1)](https://fatinlea1001.github.io/language-games/eng-matchvocab-personal-1.html) — updated 10 Oct 2026
-- [Technology Spelling (Set 1)](https://fatinlea1001.github.io/language-games/eng-spell-technology-1.html) — updated 10 Oct 2026
-- [Environment Spelling (Set 1)](https://fatinlea1001.github.io/language-games/eng-spell-environment-1.html) — updated 10 Oct 2026
+- [Technology Spelling](https://fatinlea1001.github.io/language-games/eng-spell-technology-1.html) — updated 10 Oct 2026
+- [Environment Spelling](https://fatinlea1001.github.io/language-games/eng-spell-environment-1.html) — updated 10 Oct 2026
 - [Technology Vocabulary (Set 2)](https://fatinlea1001.github.io/language-games/eng-vocab-technology-2.html) — updated 09 Oct 2026
 - [Technology Vocabulary (Set 1)](https://fatinlea1001.github.io/language-games/eng-vocab-technology-1.html) — updated 09 Oct 2026
 - [Environment Vocabulary (Set 2)](https://fatinlea1001.github.io/language-games/eng-vocab-environment-2.html) — updated 09 Oct 2026
@@ -168,20 +168,41 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [N4 Verb Garden — Weather & Changing Things](https://fatinlea1001.github.io/language-games/n4-verb-9.html) — updated 11 Nov 2026
+- [N4 Verb Garden — Technology & Media](https://fatinlea1001.github.io/language-games/n4-verb-8.html) — updated 11 Nov 2026
+- [N4 Verb Garden — Health & Body](https://fatinlea1001.github.io/language-games/n4-verb-7.html) — updated 11 Nov 2026
+- [N4 Verb Garden — Shopping & Services](https://fatinlea1001.github.io/language-games/n4-verb-6.html) — updated 11 Nov 2026
+- [N4 Verb Garden — Home, Cooking & Nature](https://fatinlea1001.github.io/language-games/n4-verb-5.html) — updated 11 Nov 2026
+- [N4 Verb Garden — Feelings & Personal Growth](https://fatinlea1001.github.io/language-games/n4-verb-4.html) — updated 11 Nov 2026
+- [N4 Verb Garden — Travel & Getting Around](https://fatinlea1001.github.io/language-games/n4-verb-3.html) — updated 11 Nov 2026
+- [N4 Verb Garden — Communication & Learning](https://fatinlea1001.github.io/language-games/n4-verb-2.html) — updated 11 Nov 2026
+- [N4 Verb Garden — People, Plans & Relationships](https://fatinlea1001.github.io/language-games/n4-verb-10.html) — updated 11 Nov 2026
+- [N4 Verb Garden — Daily Life & Responsibilities](https://fatinlea1001.github.io/language-games/n4-verb-1.html) — updated 11 Nov 2026
+- [Truefalse Tsukiji Market](https://fatinlea1001.github.io/language-games/jpn-truefalse-tsukiji-market-1.html) — updated 11 Nov 2026
+- [Truefalse Konbini](https://fatinlea1001.github.io/language-games/jpn-truefalse-konbini-1.html) — updated 11 Nov 2026
+- [Truefalse Family Home](https://fatinlea1001.github.io/language-games/jpn-truefalse-family-home-1.html) — updated 11 Nov 2026
+- [Truefalse Classroom](https://fatinlea1001.github.io/language-games/jpn-truefalse-classroom-1.html) — updated 11 Nov 2026
+- [Truefalse Cinema](https://fatinlea1001.github.io/language-games/jpn-truefalse-cinema-1.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — A Day Trip to Kyoto](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-15.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — A Saturday Without My Phone](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-14.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — My First Cooking Class](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-13.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — The Forgotten Umbrella](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-12.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — A New Café in Town](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-11.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — Moving into a New Home](https://fatinlea1001.github.io/language-games/jpn-reading-n5-9.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — A Day at the Zoo](https://fatinlea1001.github.io/language-games/jpn-reading-n5-8.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — An Afternoon at the Library](https://fatinlea1001.github.io/language-games/jpn-reading-n5-7.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — Our School Festival](https://fatinlea1001.github.io/language-games/jpn-reading-n5-6.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — A Birthday Surprise](https://fatinlea1001.github.io/language-games/jpn-reading-n5-5.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — A Rainy Day Trip](https://fatinlea1001.github.io/language-games/jpn-reading-n5-4.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — Shopping for Dinner](https://fatinlea1001.github.io/language-games/jpn-reading-n5-3.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — A Busy Saturday](https://fatinlea1001.github.io/language-games/jpn-reading-n5-2.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — A Neighbourhood Clean-up](https://fatinlea1001.github.io/language-games/jpn-reading-n5-10.html) — updated 11 Nov 2026
+- [Japanese Reading Garden — Five Short Stories](https://fatinlea1001.github.io/language-games/jpn-reading-n5-1.html) — updated 11 Nov 2026
+- [Japanese Café Conversations — N5/N4](https://fatinlea1001.github.io/language-games/jpn-cafe-dialogue-1.html) — updated 11 Nov 2026
 - [N5 Verbs (Set 5)](https://fatinlea1001.github.io/language-games/n5-verb-5.html) — updated 30 Oct 2026
 - [N5 Verbs (Set 3)](https://fatinlea1001.github.io/language-games/n5-verb-3.html) — updated 30 Oct 2026
 - [N5 Verbs (Set 4)](https://fatinlea1001.github.io/language-games/n5-verb-4.html) — updated 30 Oct 2026
 - [N5 Verbs (Set 2)](https://fatinlea1001.github.io/language-games/n5-verb-2.html) — updated 30 Oct 2026
-- [N4 Verb Garden — Technology & Media (Set 8)](https://fatinlea1001.github.io/language-games/n4-verb-8.html) — updated 29 Oct 2026
-- [N4 Verb Garden — Weather & Changing Things (Set 9)](https://fatinlea1001.github.io/language-games/n4-verb-9.html) — updated 29 Oct 2026
-- [N4 Verb Garden — Home, Cooking & Nature (Set 5)](https://fatinlea1001.github.io/language-games/n4-verb-5.html) — updated 29 Oct 2026
-- [N4 Verb Garden — Feelings & Personal Growth (Set 4)](https://fatinlea1001.github.io/language-games/n4-verb-4.html) — updated 29 Oct 2026
-- [N4 Verb Garden — Travel & Getting Around (Set 3)](https://fatinlea1001.github.io/language-games/n4-verb-3.html) — updated 29 Oct 2026
-- [N4 Verb Garden — Communication & Learning (Set 2)](https://fatinlea1001.github.io/language-games/n4-verb-2.html) — updated 29 Oct 2026
-- [N4 Verb Garden — Daily Life & Responsibilities (Set 1)](https://fatinlea1001.github.io/language-games/n4-verb-1.html) — updated 29 Oct 2026
-- [N4 Verb Garden — People, Plans & Relationships (Set 10)](https://fatinlea1001.github.io/language-games/n4-verb-10.html) — updated 29 Oct 2026
-- [N4 Verb Garden — Health & Body (Set 7)](https://fatinlea1001.github.io/language-games/n4-verb-7.html) — updated 29 Oct 2026
-- [N4 Verb Garden — Shopping & Services (Set 6)](https://fatinlea1001.github.io/language-games/n4-verb-6.html) — updated 29 Oct 2026
 - [N4 Sentence Scramble (Set 5)](https://fatinlea1001.github.io/language-games/n4-sentence-5.html) — updated 28 Oct 2026
 - [N4 Sentence Scramble (Set 6)](https://fatinlea1001.github.io/language-games/n4-sentence-6.html) — updated 28 Oct 2026
 - [N4 Sentence Scramble (Set 4)](https://fatinlea1001.github.io/language-games/n4-sentence-4.html) — updated 28 Oct 2026
@@ -194,9 +215,6 @@ Recently updated games appear first in each category.
 - [N5 Sentence Jumble (Set 3)](https://fatinlea1001.github.io/language-games/n5-sentence-3.html) — updated 28 Oct 2026
 - [N5 Sentence Jumble (Set 1)](https://fatinlea1001.github.io/language-games/n5-sentence-1.html) — updated 28 Oct 2026
 - [N5 Sentence Jumble (Set 2)](https://fatinlea1001.github.io/language-games/n5-sentence-2.html) — updated 28 Oct 2026
-- [Truefalse Tsukiji Market (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-tsukiji-market-1.html) — updated 21 Oct 2026
-- [Truefalse Family Home (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-family-home-1.html) — updated 21 Oct 2026
-- [Truefalse Konbini (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-konbini-1.html) — updated 21 Oct 2026
 - [Malaysia Friends (Set 6)](https://fatinlea1001.github.io/language-games/jpn-malaysia-friends-6.html) — updated 20 Oct 2026
 - [Malaysia Friends (Set 5)](https://fatinlea1001.github.io/language-games/jpn-malaysia-friends-5.html) — updated 20 Oct 2026
 - [Malaysia Friends (Set 4)](https://fatinlea1001.github.io/language-games/jpn-malaysia-friends-4.html) — updated 20 Oct 2026
@@ -208,47 +226,29 @@ Recently updated games appear first in each category.
 - [Friends Dialogue (Set 3)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-3.html) — updated 19 Oct 2026
 - [Friends Dialogue (Set 2)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-2.html) — updated 18 Oct 2026
 - [Friends Dialogue (Set 1)](https://fatinlea1001.github.io/language-games/jpn-friends-dialogue-1.html) — updated 18 Oct 2026
-- [Japanese Café Conversations — N5/N4 (Set 1)](https://fatinlea1001.github.io/language-games/jpn-cafe-dialogue-1.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — A Day Trip to Kyoto (N5/N4 Set 15)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-15.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — A Saturday Without My Phone (N5/N4 Set 14)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-14.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — My First Cooking Class (N5/N4 Set 13)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-13.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — The Forgotten Umbrella (N5/N4 Set 12)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-12.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — A New Café in Town (N5/N4 Set 11)](https://fatinlea1001.github.io/language-games/jpn-reading-n5n4-11.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — Moving into a New Home (N5 Set 9)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-9.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — A Day at the Zoo (N5 Set 8)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-8.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — An Afternoon at the Library (N5 Set 7)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-7.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — A Neighbourhood Clean-up (N5 Set 10)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-10.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — Our School Festival (N5 Set 6)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-6.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — A Birthday Surprise (N5 Set 5)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-5.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — A Rainy Day Trip (N5 Set 4)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-4.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — Shopping for Dinner (N5 Set 3)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-3.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — A Busy Saturday (N5 Set 2)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-2.html) — updated 18 Oct 2026
-- [Japanese Reading Garden — Five Short Stories (N5 Set 1)](https://fatinlea1001.github.io/language-games/jpn-reading-n5-1.html) — updated 18 Oct 2026
-- [Story Emoji Fill (Set 10)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-10.html) — updated 15 Oct 2026
-- [Story Emoji Fill (Set 9)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-9.html) — updated 15 Oct 2026
-- [Story Emoji Fill (Set 8)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-8.html) — updated 15 Oct 2026
-- [Story Emoji Fill (Set 7)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-7.html) — updated 15 Oct 2026
-- [Story Emoji Fill (Set 6)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-6.html) — updated 15 Oct 2026
-- [Story Emoji Fill (Set 5)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-5.html) — updated 15 Oct 2026
-- [Story Emoji Fill (Set 4)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-4.html) — updated 15 Oct 2026
-- [Story Emoji Fill (Set 3)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-3.html) — updated 15 Oct 2026
-- [Story Emoji Fill (Set 2)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-2.html) — updated 15 Oct 2026
-- [Story Emoji Fill (Set 1)](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-1.html) — updated 15 Oct 2026
-- [Kanji & Katakana Spell-Off (Set 7)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-7.html) — updated 15 Oct 2026
-- [Kanji & Katakana Spell-Off (Set 6)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-6.html) — updated 15 Oct 2026
-- [Kanji & Katakana Spell-Off (Set 5)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-5.html) — updated 15 Oct 2026
-- [Kanji & Katakana Spell-Off (Set 4)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-4.html) — updated 15 Oct 2026
-- [Kanji & Katakana Spell-Off (Set 3)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-3.html) — updated 15 Oct 2026
-- [Truefalse Classroom (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-classroom-1.html) — updated 12 Oct 2026
+- [Japanese Emoji Story Fill — Hiking in the Mountains](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-10.html) — updated 15 Oct 2026
+- [Japanese Emoji Story Fill — First Part-Time Job](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-9.html) — updated 15 Oct 2026
+- [Japanese Emoji Story Fill — Friend's Birthday](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-8.html) — updated 15 Oct 2026
+- [Japanese Emoji Story Fill — Morning in the Park](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-7.html) — updated 15 Oct 2026
+- [Japanese Emoji Story Fill — Studying at the Library](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-6.html) — updated 15 Oct 2026
+- [Japanese Emoji Story Fill — Cooking with Family](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-5.html) — updated 15 Oct 2026
+- [Japanese Emoji Story Fill — Trip to the Sea](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-4.html) — updated 15 Oct 2026
+- [Japanese Emoji Story Fill — Weekend Shopping](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-3.html) — updated 15 Oct 2026
+- [Japanese Emoji Story Fill — Rainy Afternoon](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-2.html) — updated 15 Oct 2026
+- [Japanese Emoji Story Fill — School Festival](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-1.html) — updated 15 Oct 2026
+- [Kanji & Katakana Spell-Off — Shopping & Work](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-7.html) — updated 15 Oct 2026
+- [Kanji & Katakana Spell-Off — Feelings & Everyday Actions](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-6.html) — updated 15 Oct 2026
+- [Kanji & Katakana Spell-Off — Travel & Transport](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-5.html) — updated 15 Oct 2026
+- [Kanji & Katakana Spell-Off — School & Learning](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-4.html) — updated 15 Oct 2026
+- [Kanji & Katakana Spell-Off — Daily Life & Home](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-3.html) — updated 15 Oct 2026
 - [Truefalse Library (Set 2)](https://fatinlea1001.github.io/language-games/jpn-truefalse-library-2.html) — updated 12 Oct 2026
-- [Truefalse Cinema (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-cinema-1.html) — updated 12 Oct 2026
 - [Truefalse Library (Set 1)](https://fatinlea1001.github.io/language-games/jpn-truefalse-library-1.html) — updated 10 Oct 2026
-- [Kanji & Katakana Spell-Off (Set 2)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-2.html) — updated 10 Oct 2026
-- [Kanji & Katakana Spell-Off (Set 1)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-1.html) — updated 10 Oct 2026
-- [て-form Builder (Set 1)](https://fatinlea1001.github.io/language-games/teform-1.html) — updated 06 Oct 2026
-- [N5 Vocabulary (Set 1)](https://fatinlea1001.github.io/language-games/n5-vocabulary-1.html) — updated 06 Oct 2026
+- [Kanji & Katakana Spell-Off — Mixed Kanji & Katakana (Set 2)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-2.html) — updated 10 Oct 2026
+- [Kanji & Katakana Spell-Off — Mixed Kanji & Katakana (Set 1)](https://fatinlea1001.github.io/language-games/jpn-spelling-kanji-katakana-1.html) — updated 10 Oct 2026
+- [て-form Builder](https://fatinlea1001.github.io/language-games/teform-1.html) — updated 06 Oct 2026
+- [N5 Vocabulary](https://fatinlea1001.github.io/language-games/n5-vocabulary-1.html) — updated 06 Oct 2026
 - [N5 Verbs (Set 1)](https://fatinlea1001.github.io/language-games/n5-verb-1.html) — updated 06 Oct 2026
-- [N5 Adjectives (Set 1)](https://fatinlea1001.github.io/language-games/n5-adj-1.html) — updated 06 Oct 2026
+- [N5 Adjectives](https://fatinlea1001.github.io/language-games/n5-adj-1.html) — updated 06 Oct 2026
 
 _This directory is maintained by GitHub Actions._
 <!-- AUTO-GAMES:END -->
