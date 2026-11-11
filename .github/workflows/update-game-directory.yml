@@ -87,6 +87,8 @@ jobs:
               stem = path.stem
               match = re.fullmatch(r'(.+)-(\d+)', stem)
               key = match.group(1) if match else stem
+              if stem == 'eng-sample-essay-ebooks-easy':
+                  return 'Sample Essay — Reading E-books Among Teenagers (EASY)'
               # E-book topic is a standalone lesson, not a numbered set.
               if key == 'eng-writing-elaboration-ebooks':
                   return 'SPM Elaboration Builder — E-books (EASY)'
