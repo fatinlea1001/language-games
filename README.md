@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**253 games** — automatically updated when an HTML game is added or changed.
+**255 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Entertainment Media (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-entertainment-media-normal.html) — updated 11 Nov 2026
+- [Sample Essay — Entertainment Media (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-entertainment-media-easy.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Entertainment Media (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-entertainment-media-normal.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Entertainment Media (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-entertainment-media-easy.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Physical Appearance (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-physical-appearance-normal.html) — updated 11 Nov 2026
