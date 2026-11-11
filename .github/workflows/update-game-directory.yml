@@ -86,6 +86,9 @@ jobs:
               stem = path.stem
               match = re.fullmatch(r'(.+)-(\d+)', stem)
               key = match.group(1) if match else stem
+              # E-book topic is a standalone lesson, not a numbered set.
+              if key == 'eng-writing-elaboration-ebooks':
+                  return 'SPM Elaboration Builder — E-books (EASY)'
               if key == 'eng-speakingpart3' and match:
                   # Read the topic directly from each game's title so new sets
                   # get informative directory labels automatically.
