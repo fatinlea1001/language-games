@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#194d51"><meta name="description" content="SPM cyberbullying EASY elaboration builder with exercise-book checkpoints and Malay vocabulary meanings."><title>SPM Elaboration Builder — Cyberbullying (EASY)</title><style>
+:root{--ink:#253943;--muted:#617580;--teal:#237f80;--deep:#194d51;--border:#dce8e9;--soft:#f2f8f8;--mint:#e6f7ed;--green:#1e7450;--red:#a3344f;--rose:#fff0f2;--gold:#b47715}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 0 0,#d8eee6,transparent 36%),radial-gradient(circle at 100% 20%,#fff0d8,transparent 36%),#f7fbfa;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.shell{max-width:790px;margin:auto;padding:18px 14px 42px}
+header{text-align:center;margin:6px auto 22px}
+.kicker{display:inline-block;padding:7px 14px;background:white;border-radius:100px;color:var(--teal);font-size:.76rem;font-weight:850;letter-spacing:.045em}
+h1{font-size:clamp(1.8rem,5vw,2.45rem);line-height:1.12;margin:13px 0 7px;letter-spacing:-.035em;color:var(--deep)}
+.subtitle{margin:0;color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--border);border-radius:24px;padding:clamp(18px,4vw,31px);box-shadow:0 13px 38px #4d857e18}
+h2{font-size:1.32rem;margin:0 0 12px;line-height:1.4}h3{font-size:1.05rem;margin:0 0 10px}
+p,li{line-height:1.7}p{margin:9px 0}ol,ul{padding-left:23px}
+.small{color:var(--muted);font-size:.9rem}.tiny{color:var(--muted);font-size:.78rem}
+.exam{background:var(--soft);border:1px solid #d0e4e4;border-radius:17px;padding:16px 18px;margin:17px 0}
+.exam strong{color:var(--deep)}.exam ul{margin:8px 0}.exam li{margin:5px 0}
+label.name{display:block;margin-top:23px;margin-bottom:8px;font-weight:800}
+input[type=text]{width:100%;font:inherit;padding:14px;border-radius:12px;border:2px solid #bedbda;background:white}
+textarea{width:100%;min-height:145px;resize:vertical;padding:15px;border-radius:13px;border:2px solid #bedbda;background:white;color:var(--ink);font:inherit;line-height:1.65}
+.writing-tip{background:#eaf6f4;border:1px solid #d0e7e1;border-radius:14px;padding:14px 16px;margin:15px 0;line-height:1.65}
+.writing-tip ul{margin:7px 0 0}
+.writing-meta{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-top:7px;color:var(--muted);font-size:.83rem}
+.essay p{white-space:pre-wrap}
+button{font:inherit;cursor:pointer;font-weight:780;border:0;border-radius:12px;padding:13px 17px}
+button:focus-visible,input:focus-visible{outline:3px solid #7bc6c2;outline-offset:3px}
+button:disabled{cursor:not-allowed;opacity:.45}
+.primary{background:var(--teal);color:white}.primary:hover:not(:disabled){background:#176264}
+.secondary{background:#e6f4f2;color:var(--deep)}.secondary:hover:not(:disabled){background:#d5eeeb}
+.full{width:100%}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.row.between{justify-content:space-between}.row>button{flex:1 1 180px}
+.chip{display:inline-block;border-radius:99px;background:#e8f5f2;color:#286a66;font-size:.8rem;font-weight:850;padding:6px 11px}
+.progress{display:flex;gap:6px;margin:12px 0 22px}.progress span{flex:1;height:8px;background:#e8f0ef;border-radius:99px}.progress .done{background:#42a58e}.progress .active{background:#d6a03b}
+.point{background:#f2f8f8;border:1px solid #d6e5e4;border-radius:16px;padding:17px 18px;margin:14px 0}
+.label{font-size:.72rem;text-transform:uppercase;letter-spacing:.065em;font-weight:850;color:#357d7a;margin-bottom:6px}
+.point p{font-weight:730;font-size:1.08rem;margin:0}
+.step-title{margin:20px 0 8px;font-size:1.22rem}
+.choice-list{display:grid;gap:10px;margin-top:15px}
+.choice{width:100%;background:white;border:2px solid #d8e5e4;display:flex;gap:12px;align-items:flex-start;text-align:left;color:var(--ink);line-height:1.55}
+.choice:hover:not(:disabled){border-color:#67ada7;background:#f5fcfa}
+.choice.selected{border-color:var(--teal);background:#eaf8f5}
+.choice.good{border-color:#4fba83;background:#eaf9ef}
+.choice.bad{border-color:#e3a1af;background:var(--rose)}
+.letter{flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:#e5f3f0;color:#266b68;display:grid;place-items:center;font-weight:850}
+.feedback{border-radius:14px;padding:14px 16px;margin:16px 0;line-height:1.65}
+.feedback.good{background:var(--mint);color:var(--green);border:1px solid #a6dcbf}
+.feedback.bad{background:var(--rose);color:var(--red);border:1px solid #eec5ce}
+.draft{background:#f8fbff;border:1px solid #dbe6f1;border-radius:15px;padding:13px 16px;margin:17px 0}
+.draft p{margin:7px 0;font-size:.95rem}
+.missing{color:#84939b;font-style:italic}
+.copycheck{background:#fff3d4;border:3px solid #dfa736;border-radius:18px;padding:19px 18px;margin:18px 0}
+.copycheck h2{color:#80530d;margin-bottom:5px}
+.urgent-reminder{background:#fff0f0;border:3px solid #d52e3e;border-left:9px solid #d52e3e;border-radius:17px;padding:20px 19px;margin:20px 0;box-shadow:0 5px 0 #f9d7da}
+.urgent-reminder .urgent-heading{display:flex;align-items:center;gap:10px;font-size:clamp(1.27rem,5.2vw,1.65rem);line-height:1.25;font-weight:950;color:#a71e30;margin:0 0 12px}
+.urgent-reminder .urgent-icon{font-size:1.7rem;line-height:1}
+.urgent-reminder p{font-size:clamp(1.03rem,3.9vw,1.18rem);font-weight:730;line-height:1.65;margin:9px 0;color:#79212d}
+.urgent-reminder .essay-title{padding:11px 14px;background:white;border:1px solid #eeb4ba;border-radius:11px;font-size:1.12rem;font-weight:900;color:#952230;margin:13px 0}
+.urgent-reminder .urgent-note{font-size:.92rem;font-weight:650;color:#863740;margin-top:10px}
+.paper{background:#fff;border:1px solid #edd7a3;border-radius:14px;padding:15px 17px;margin:15px 0;line-height:1.85}
+.confirm{display:flex;align-items:flex-start;gap:12px;line-height:1.55;font-weight:740;margin:20px 0 9px}
+.confirm input{accent-color:var(--teal);width:21px;height:21px;flex:0 0 21px;margin:2px 0 0}
+.score{font-size:clamp(2.7rem,8vw,4.1rem);font-weight:900;color:var(--teal);line-height:1.1}
+.essay{background:#f8fbfa;border:1px solid #dbe9e6;border-radius:15px;padding:16px;margin:17px 0}
+.essay p{margin:0 0 15px}.essay p:last-child{margin:0}
+.copied{min-height:1.2em;color:var(--green);font-weight:760;font-size:.9rem}
+footer{text-align:center;font-size:.77rem;color:#6a8184;margin-top:20px}
+@media(max-width:480px){.shell{padding:12px 10px 30px}.panel{border-radius:18px}.choice{padding:12px}.copycheck{padding:14px}.row>button{flex:1 1 100%}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{body{background:white}.shell{max-width:none}header,.no-print,footer{display:none!important}.panel{border:0;box-shadow:none}.essay{border:0;padding:0}}
+
+/* Set 2 — distinct point and elaboration stages */
+.segment{margin:14px 0 11px;border-radius:13px;padding:12px 14px;background:#e8f3fc;border-left:5px solid #5795c1;font-weight:820;color:#2c5878}
+.segment.second{background:#fff2db;border-left-color:#d9a33d;color:#805a20}
+.draft p{margin:8px 0}
+.draft .built-sentence{display:block;line-height:1.7}
+.essay-title{overflow-wrap:anywhere}
+
+.vocab{position:relative;display:inline;border-bottom:2px dotted #23808b;color:#176773;font-weight:780;cursor:help;outline-offset:3px}
+.vocab-tooltip{position:absolute;z-index:50;left:0;bottom:calc(100% + 7px);min-width:160px;max-width:min(230px,75vw);background:#193c49;color:white;border-radius:9px;padding:9px 11px;font:600 .81rem/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 6px 16px #173d4930;opacity:0;visibility:hidden;pointer-events:none;text-align:left}
+.vocab:hover .vocab-tooltip,.vocab:focus .vocab-tooltip,.vocab.is-open .vocab-tooltip{opacity:1;visibility:visible}
+.vocab-guide{font-size:.83rem;color:#526b70;margin:7px 0 13px}
+.vocab:focus-visible{outline:2px solid #176773;border-radius:3px}
+.choice-card{display:flex;align-items:flex-start;gap:12px;width:100%;background:white;border:2px solid #d8e5e4;border-radius:12px;padding:13px 17px;cursor:pointer;line-height:1.55}
+ .choice-card:hover{border-color:#67ada7;background:#f5fcfa}.choice-card.selected{border-color:var(--teal);background:#eaf8f5}.choice-card.good{border-color:#4fba83;background:#eaf9ef}.choice-card.bad{border-color:#e3a1af;background:var(--rose)}
+ .choice-pick{flex:0 0 30px;padding:0;border:0;background:transparent;border-radius:9px}.choice-pick:focus-visible{outline:3px solid #348f94;outline-offset:4px}.choice-pick:disabled{opacity:1}.choice-text{flex:1;min-width:0;text-align:left}.choice-list{display:grid;gap:10px}
+ .vocab-tooltip{left:auto;right:0;max-width:min(220px,65vw)}.vocab.vocab-c1{color:#74438d;border-bottom-color:#8958a9}.vocab.vocab-c1 .vocab-tooltip{background:#49305b}
+ </style></head>
+<body><main class="shell"><header><span class="kicker">✍️ SPM WRITING PART 2 · EASY</span><h1>Elaboration Builder</h1><p class="subtitle">💻 Cyberbullying &amp; Online Safety · Guided Writing</p></header><section class="panel" id="app" aria-live="polite"></section><footer>Free, rule-based practice · No AI or account required · Work stays in this browser</footer></main><script>"use strict";
+const tasks=[{"title":"One Example of Cyberbullying on Social Media","bullet":"one example of cyberbullying on social media","plural":false,"steps":[{"tag":"POINT — Choose an example","question":"Which sentence introduces ONE example of cyberbullying?","hint":"Choose a specific harmful action on social media.","correct":0,"options":[["Firstly, one example of cyberbullying on social media is posting cruel comments under a student's photo.","The correct sentence gives a specific incident and reuses the exam bullet."],["Firstly, cyberbullying is a very serious problem.","This names a problem but gives no example."],["Firstly, many students post pictures of pets online.","Sharing pet photos is not cyberbullying."]]},{"tag":"Explanation 1 of 4","question":"HOW do the bullies hurt the student?","hint":"Explain what they say and why it hurts.","correct":1,"options":[["Bullies bully people because bullying is bad.","This repeats the topic without explaining how it happens."],["Some bullies write hurtful words about the student's appearance to embarrass them in front of others.","The answer explains the hurtful words and their purpose."],["Some people watch cooking videos on social media.","Cooking videos do not explain cruel comments."]]},{"tag":"Explanation 2 of 4","question":"Which realistic EXAMPLE shows the cruel comments?","hint":"Think of a public comment under a photograph.","correct":2,"options":[["For example, everyone who uses Instagram is a bully.","This unfairly labels every user and has no specific incident."],["For example, the student takes a photo of a flower.","A flower photo is not an example of a cruel comment."],["For example, they may call the student ugly in the comments on a public Instagram post.","The correct answer gives a believable public Instagram example."]]},{"tag":"Explanation 3 of 4","question":"What happens when OTHER people see the comments?","hint":"Connect public insults to other users' reactions.","correct":0,"options":[["As a result, other users might join in and make the student feel ashamed.","The correct sentence connects spreading comments to embarrassment."],["As a result, all students will immediately destroy their phones.","This is an exaggerated and unlikely response."],["As a result, the student's science homework gets easier.","Homework difficulty has no connection to the public insults."]]},{"tag":"Explanation 4 of 4","question":"What LONGER-TERM effect could the bullying have?","hint":"Think about confidence and sharing photos again.","correct":1,"options":[["This is cyberbullying because it is a kind of cyberbullying.","This repeats the topic without describing an effect."],["This can hurt the student's confidence and make them afraid to share photos again.","The answer develops the impact on confidence and future behaviour."],["This will always make the student famous and happy.","The sentence ignores possible emotional harm and claims an unlikely result."]]}]},{"title":"Why Online Bullying Happens","bullet":"why online bullying happens","plural":true,"steps":[{"tag":"POINT 1 — Choose a reason","question":"What is the FIRST reason online bullying happens?","hint":"Why might someone want friends to notice them?","correct":1,"options":[["Furthermore, online bullying happens because phones have screens.","Phone screens do not explain someone's decision to bully."],["Furthermore, online bullying happens because some students want attention from their friends.","The answer gives peer attention as a reason for bullying."],["Furthermore, online bullying is bad and should not happen.","This is an opinion, not a cause."]]},{"tag":"POINT 1 — Elaboration 1 of 2","question":"HOW might a bully try to get attention?","hint":"Describe a post meant to make others laugh.","correct":2,"options":[["They want attention because attention is what they want.","This repeats the point rather than explaining the action."],["They may share answers to a maths worksheet.","Sharing schoolwork does not show attention-seeking bullying."],["They may post rude jokes about a classmate because they think other people will laugh.","The answer describes a realistic action intended to entertain friends."]]},{"tag":"POINT 1 — Elaboration 2 of 2","question":"WHY might the bully continue?","hint":"Think about likes or shares from friends.","correct":0,"options":[["When friends like or share those jokes, the bully may feel encouraged to continue.","This connects positive reactions from friends to repeated bullying."],["When friends laugh, bullying will definitely end.","Laughter may encourage further bullying, not guarantee it stops."],["When students go home, they eat dinner.","Dinner does not explain why a bully keeps posting."]]},{"tag":"POINT 2 — Choose another reason","question":"What is a DIFFERENT reason for online bullying?","hint":"Think about hiding a person's real name.","correct":1,"options":[["Another reason is that bullies want their friends to laugh.","This repeats the first reason about attention."],["Another reason is that bullies can hide behind fake accounts.","Fake accounts introduce a distinct reason: feeling hidden."],["Another reason is that many teenagers enjoy online music.","Online music is unrelated to harassing classmates."]]},{"tag":"POINT 2 — Elaboration 1 of 2","question":"WHY could fake accounts encourage a bully?","hint":"What might bullies believe about being identified?","correct":2,"options":[["Fake accounts are fake because they are not real.","This merely repeats the word 'fake'."],["Teachers can always identify every fake account at once.","This is an unrealistic claim and misses the bully's false confidence."],["This makes them think that teachers and parents will not discover who they are.","The answer explains the mistaken belief that adults cannot identify them."]]},{"tag":"POINT 2 — Elaboration 2 of 2","question":"What may happen as a RESULT?","hint":"Connect feeling hidden with careless behaviour.","correct":0,"options":[["Consequently, they may send mean messages without thinking about the harm they cause.","The correct result shows how feeling hidden may lead to mean messages."],["Consequently, every person using a fake account becomes a bully.","Having a fake account does not make someone a bully."],["Consequently, social media apps will stop using passwords.","Passwords do not follow from this explanation."]]}]},{"title":"Ways Students Can Stop Cyberbullying","bullet":"ways students can stop cyberbullying","plural":true,"steps":[{"tag":"POINT 1 — Choose a way","question":"Which is the FIRST way to stop cyberbullying?","hint":"Choose a safe, useful action on the platform.","correct":2,"options":[["Lastly, students can stop bullying by avoiding all their friends.","Avoiding everyone is not a realistic way to respond."],["Lastly, students should forward insults to more classmates.","This spreads harmful messages rather than stopping them."],["Lastly, one of the ways students can stop cyberbullying is by reporting harmful comments to the social media platform.","Reporting harmful comments is a specific, constructive first method."]]},{"tag":"POINT 1 — Elaboration 1 of 2","question":"HOW can a student report the incident?","hint":"Think of screenshots and the report button.","correct":0,"options":[["For example, they can save a screenshot and use the report button when someone is bullied.","Saving a screenshot and using the report button are practical steps."],["For example, they can delete their schoolwork.","Deleting homework has nothing to do with reporting abuse."],["For example, they can share the insults with the whole class.","This spreads the bullying rather than keeping useful evidence."]]},{"tag":"POINT 1 — Elaboration 2 of 2","question":"What useful RESULT can reporting have?","hint":"Think about how a platform deals with complaints.","correct":1,"options":[["A report always deletes every bully's account immediately.","This promises a result that cannot be guaranteed."],["This allows the platform to review the comments and may stop them from spreading.","The platform may review the comment and reduce its spread."],["A report changes every social media post into a private post.","A single report does not change every post."]]},{"tag":"POINT 2 — Choose another way","question":"What is a SECOND, DIFFERENT way to help?","hint":"Think about caring for the person being bullied.","correct":2,"options":[["Another way is to report the same comment many times.","This repeats the first method instead of adding another."],["Another way is to laugh at the victim online.","Laughing supports the bullying rather than the victim."],["Another way is to support students who are being bullied.","Supporting the bullied student is a different strategy."]]},{"tag":"POINT 2 — Elaboration 1 of 2","question":"HOW can classmates offer support?","hint":"Think about kindness and a trusted teacher.","correct":0,"options":[["They can send a kind message and encourage the victim to speak to a trusted teacher.","A kind message and help from a trusted adult are practical support."],["They can tell the student to keep the bullying secret forever.","This may prevent the victim from getting needed help."],["They can send the student more cruel messages.","More insults would make the harm worse."]]},{"tag":"POINT 2 — Elaboration 2 of 2","question":"What positive EFFECT may follow?","hint":"Think about the victim's feelings and access to help.","correct":1,"options":[["As a result, all bullying around the world will end instantly.","One helpful act cannot guarantee an end to all bullying."],["As a result, the victim may feel less alone and get help sooner.","The answer links support to feeling less isolated and finding help."],["As a result, the victim never needs to talk to anybody again.","This does not follow from receiving support."]]}]}];
+const vocab={"appearance":{"level":"B2","meaning":"rupa atau penampilan"},"embarrass":{"level":"B2","meaning":"memalukan"},"public":{"level":"B2","meaning":"terbuka kepada orang ramai"},"ashamed":{"level":"B2","meaning":"berasa malu atau aib"},"confidence":{"level":"B2","meaning":"keyakinan diri"},"encouraged":{"level":"B2","meaning":"terdorong atau digalakkan"},"fake accounts":{"level":"B2","meaning":"akaun palsu"},"harmful":{"level":"B2","meaning":"memudaratkan atau menyakitkan hati"},"platform":{"level":"B2","meaning":"perkhidmatan atau tempat dalam talian"},"victim":{"level":"B2","meaning":"mangsa"},"consequently":{"level":"B2","meaning":"akibatnya"},"support":{"level":"B2","meaning":"memberi sokongan"},"reporting":{"level":"B2","meaning":"membuat laporan"}};
+const root=document.getElementById("app");
+const state={stage:"welcome",name:"",introConfirmed:false,closingConfirmed:false,index:0,step:0,selected:-1,checked:false,tries:0,score:0,hint:false,confirmed:false,finished:[]};
+const correctText=(step)=>step.options[step.correct][0];
+const paragraph=(i)=>[...(tasks[i].opening?[tasks[i].opening]:[]),...tasks[i].steps.map(correctText)].join(" ");
+const bodyParagraphs=()=>state.finished.join("\n\n");
+
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+const vocabRx=new RegExp("\\b("+Object.keys(vocab).sort((a,b)=>b.length-a.length).join("|")+")\\b","gi");
+const withVocab=s=>escapeHTML(s).replace(vocabRx,word=>{const info=vocab[word.toLowerCase()],level=info.level,meaning=info.meaning;return '<span class="vocab vocab-'+level.toLowerCase()+'" role="button" tabindex="0" aria-label="'+escapeHTML(word+' ('+level+'): '+meaning)+'">'+word+'<span class="vocab-tooltip"><strong>'+level+'</strong> · '+escapeHTML(meaning)+'</span></span>';});
+const task=()=>tasks[state.index],part=()=>task().steps[state.step];
+const overallTotal=tasks.reduce((n,t)=>n+t.steps.length,0);
+const progress=()=>'<div class="progress" aria-label="Body paragraph '+(state.index+1)+' of three">'+tasks.map((_,i)=>'<span class="'+(i<state.index?'done':i===state.index?'active':'')+'"></span>').join("")+'</div>';
+const examTask=()=>"<div class=\"exam\"><strong>Question 2 · Original Exam Task</strong><p>Your class has been talking about cyberbullying and your teacher has asked you to write an essay about it.</p><p><strong>In your essay, you should write about:</strong></p><ul><li>one example of cyberbullying on social media</li><li>why online bullying happens</li><li>ways students can stop cyberbullying</li></ul><p><strong>Use all the notes above and give reasons for your point of view.</strong></p></div>";
+const titleReminder=()=>"<div class=\"urgent-reminder\" role=\"note\"><div class=\"urgent-heading\"><span class=\"urgent-icon\" aria-hidden=\"true\">📕</span><span>STOP! WRITE THIS FIRST!</span></div><p>Write the <strong>ESSAY TITLE</strong> and your <strong>INTRODUCTION PARAGRAPH</strong> in your exercise book.</p><div class=\"essay-title\">SUGGESTED TITLE: Cyberbullying on Social Media</div><p class=\"urgent-note\">✍️ Complete both in your notebook before starting Body Paragraph 1.</p></div>";
+const preview=()=>[...(task().opening?[task().opening]:[]),...task().steps.slice(0,state.step).map(correctText)].join(" ");
+function resetChoice(){state.selected=-1;state.checked=false;state.tries=0;state.hint=false;}
+function render(){
+if(state.stage==="welcome"){
+root.innerHTML='<div class="row between"><span class="chip">📚 Cyberbullying · EASY</span><span class="small">A2–B1 · '+overallTotal+' challenges</span></div><h2 style="margin-top:17px">Build a complete SPM essay in your exercise book.</h2>'+examTask()+titleReminder()+'<label class="name" for="student">Student name / Nama murid</label><input type="text" id="student" maxlength="60" autocomplete="name" placeholder="Enter your name"><label class="confirm"><input type="checkbox" id="confirmIntro" '+(state.introConfirmed?'checked':'')+'><span>I have written the essay title AND my introduction in my exercise book.</span></label><button class="primary full" type="button" data-action="start" '+(state.introConfirmed?'':'disabled')+'>Start Elaboration Activities →</button><p id="nameError" class="tiny" role="alert"></p><p class="vocab-guide">🔎 Hover over underlined vocabulary on a computer, or tap the word on your phone to see its meaning.</p><p class="tiny">Each sentence has three options. Copy each completed paragraph into your notebook before progressing. Guided score: '+overallTotal+' marks.</p>';
+return;
+}
+if(state.stage==="conclusion"){
+root.innerHTML='<div class="row between"><span class="chip">✍️ FINAL WRITING TASK</span><span class="small">Conclusion</span></div><h2>Write Your Conclusion</h2><div class="urgent-reminder"><div class="urgent-heading">📕 STOP! WRITE YOUR CONCLUSION!</div><p>Write a <strong>CONCLUSION PARAGRAPH</strong> in your exercise book about cyberbullying and online safety. End with your opinion or hope.</p><p class="urgent-note">✍️ Complete your conclusion before finishing.</p></div><label class="confirm"><input type="checkbox" id="confirmConclusion" '+(state.closingConfirmed?'checked':'')+'><span>I have written my conclusion in my exercise book.</span></label><button type="button" class="primary full" data-action="finishConclusion" '+(state.closingConfirmed?'':'disabled')+'>Finish My Writing Practice →</button>';
+return;
+}
+if(state.stage==="finished"){
+root.innerHTML='<div style="text-align:center"><div style="font-size:42px">🏆</div><h2>Writing Practice Completed!</h2><p class="small" id="displayName"></p><div class="score">'+state.score+' / '+overallTotal+'</div><p class="small">First-attempt guided marks</p><span class="chip">3 completed body paragraphs</span></div><div class="writing-tip"><strong>Check your full essay in your notebook</strong><p>It should contain your title, introduction, all three developed body paragraphs and conclusion. Check that you have explained each point clearly and connected your ideas naturally.</p></div><h2 style="margin-top:25px">Your Three Completed Body Paragraphs</h2><div class="essay">'+state.finished.map((p,i)=>'<p><span class="label" style="display:block">BODY PARAGRAPH '+(i+1)+'</span>'+withVocab(p)+'</p>').join("")+'</div><p class="small">Your handwritten introduction and conclusion are not included in the copy below.</p><div class="row no-print"><button type="button" class="primary" data-action="copyAll">📋 Copy All Body Paragraphs</button><button type="button" class="secondary" data-action="restart">↻ Play Again</button></div><p id="copyMessage" class="copied" role="status"></p>';
+document.getElementById("displayName").textContent=state.name;
+return;
+}
+const t=task(),p=part();
+const head='<div class="row between"><span class="chip">PARAGRAPH '+(state.index+1)+' OF 3</span><strong>Score: '+state.score+'/'+overallTotal+'</strong></div>'+progress()+'<h2>'+t.title+'</h2><div class="exam"><div class="label">EXAM REQUIREMENT · BULLET '+(state.index+1)+'</div><strong>'+t.bullet+'</strong>'+(t.plural?'<p class="small"><strong>Two different points</strong> — each point needs two elaborations/examples.</p>':'<p class="small">One main point — add four elaboration/example sentences.</p>')+'</div>';
+if(state.stage==="copy"){
+root.innerHTML=head+'<div class="copycheck"><h2>✍️ STOP! COPY YOUR PARAGRAPH</h2><p>Write the complete paragraph in your exercise book before moving to the next bullet point.</p><div class="paper"><div class="label">YOUR COMPLETED PARAGRAPH</div>'+withVocab(paragraph(state.index))+'</div><button type="button" class="secondary full" data-action="copyParagraph">📋 Copy Paragraph to Clipboard</button><p id="copyMessage" class="copied" role="status"></p><label class="confirm"><input type="checkbox" id="confirmCopy" '+(state.confirmed?'checked':'')+'><span>I have copied this paragraph into my exercise book.</span></label><button class="primary full" type="button" data-action="next" '+(state.confirmed?'':'disabled')+'>'+(state.index===2?'Write My Conclusion →':'Continue to Paragraph '+(state.index+2)+' →')+'</button><p class="tiny" style="text-align:center">🔒 Confirm that you have copied the paragraph to unlock the next part.</p></div>';
+return;
+}
+const selected=state.selected,good=selected===p.correct;
+const buttons=p.options.map((o,i)=>'<div class="choice-card '+(selected===i?(state.checked?(good?'good':'bad'):'selected'):'')+'" data-choice="'+i+'"><button type="button" class="choice-pick" data-action="choose" data-choice="'+i+'" aria-label="Select option '+String.fromCharCode(65+i)+': '+escapeHTML(o[0])+'" aria-pressed="'+(selected===i)+'" '+(state.checked?'disabled':'')+'><span class="letter">'+String.fromCharCode(65+i)+'</span></button><div class="choice-text">'+withVocab(o[0])+'</div></div>').join("");
+let actions;
+if(state.checked){
+actions='<div class="feedback '+(good?'good':'bad')+'" role="status"><strong>'+(good?'✓ Correct! Your paragraph is developing.':'↻ This does not develop the required idea.')+'</strong><p>'+withVocab(p.options[selected][1])+'</p></div><button class="primary full" type="button" data-action="'+(good?'advance':'retry')+'">'+(good?(state.step===t.steps.length-1?'View & Copy My Paragraph →':'Continue to Next Sentence →'):'Try Again ↻')+'</button>';
+}else{
+actions='<div class="row between" style="margin-top:17px"><button class="secondary" type="button" data-action="hint">'+(state.hint?'Hide Hint':'💡 Need a Hint?')+'</button><span class="tiny">'+(state.tries?'Retry':'First attempt · 1 mark')+'</span></div>'+(state.hint?'<div class="draft"><strong>Hint:</strong> '+withVocab(p.hint)+'</div>':'')+'<button class="primary full" type="button" data-action="check" '+(selected<0?'disabled':'')+'>Check My Answer ✓</button>';
+}
+const isPoint=p.tag.startsWith("POINT "),isSecond=p.tag.startsWith("POINT 2");
+root.innerHTML=head+(t.opening?'<div class="point"><div class="label">GIVEN POINT</div><p>'+withVocab(t.opening)+'</p></div>':'')+(state.step>0?'<div class="draft"><div class="label">YOUR PARAGRAPH SO FAR</div><p>'+withVocab(preview())+'</p></div>':'')+(t.plural?'<div class="segment '+(isSecond?'second':'')+'">'+escapeHTML(p.tag)+'</div>':'<div class="segment">'+escapeHTML(p.tag)+'</div>')+'<div class="row between"><span class="chip">SENTENCE '+(state.step+1)+' OF '+t.steps.length+'</span><span class="tiny">'+(isPoint?'Choose a new point':'Develop the point')+'</span></div><h3 class="step-title">'+withVocab(p.question)+'</h3><div class="choice-list">'+buttons+'</div>'+actions;
+}
+function start(){
+if(!state.introConfirmed)return;
+const field=document.getElementById("student");
+const val=field.value.trim();
+if(!val){document.getElementById("nameError").textContent="Please enter your name. / Sila masukkan nama.";field.focus();return;}
+state.name=val;state.stage="play";render();
+}
+function check(){
+if(state.selected<0)return;
+if(state.tries===0&&state.selected===part().correct)state.score++;
+state.tries++;state.checked=true;render();
+}
+function advance(){
+if(!state.checked||state.selected!==part().correct)return;
+if(state.step===task().steps.length-1){state.stage="copy";state.confirmed=false;}
+else state.step++;
+resetChoice();render();
+}
+function next(){
+if(!state.confirmed||state.stage!=="copy")return;
+state.finished.push(paragraph(state.index));state.confirmed=false;
+if(state.index===tasks.length-1)state.stage="conclusion";
+else{state.index++;state.stage="play";}
+state.step=0;resetChoice();render();
+}
+async function copyText(text){
+const status=document.getElementById("copyMessage");
+try{
+if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(text);
+else{const ta=document.createElement("textarea");ta.value=text;ta.readOnly=true;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();if(!ok)throw Error("Clipboard failed");}
+if(status)status.textContent="✓ Copied! You can paste it into your notes.";
+}catch(e){if(status)status.textContent="Copy unavailable here. Select the text and copy it manually.";}
+}
+root.addEventListener("click",e=>{
+const word=e.target.closest(".vocab");
+if(word){e.preventDefault();e.stopPropagation();root.querySelectorAll(".vocab.is-open").forEach(el=>{if(el!==word)el.classList.remove("is-open")});word.classList.toggle("is-open");return;}
+const card=e.target.closest(".choice-card");if(card&&!state.checked){state.selected=Number(card.dataset.choice);render();return;}
+const b=e.target.closest("button[data-action]");if(!b||b.disabled)return;
+const action=b.dataset.action;
+if(action==="start")return start();
+if(action==="finishConclusion"){if(state.closingConfirmed){state.stage="finished";render();}return;}
+if(action==="choose"){if(!state.checked){state.selected=Number(b.dataset.choice);render();}return;}
+if(action==="hint"){state.hint=!state.hint;render();return;}
+if(action==="check")return check();
+if(action==="retry"){state.checked=false;state.selected=-1;render();return;}
+if(action==="advance")return advance();
+if(action==="next")return next();
+if(action==="copyParagraph"){copyText(paragraph(state.index));return;}
+if(action==="copyAll"){copyText(bodyParagraphs());return;}
+if(action==="restart"){Object.assign(state,{stage:"welcome",name:"",introConfirmed:false,closingConfirmed:false,index:0,step:0,selected:-1,checked:false,tries:0,score:0,hint:false,confirmed:false,finished:[]});render();}
+});
+root.addEventListener("change",e=>{
+const id=e.target.id;
+const btn=id==="confirmIntro"?'[data-action="start"]':id==="confirmCopy"?'[data-action="next"]':id==="confirmConclusion"?'[data-action="finishConclusion"]':null;
+if(!btn)return;
+const prop=id==="confirmIntro"?"introConfirmed":id==="confirmCopy"?"confirmed":"closingConfirmed";
+state[prop]=e.target.checked;
+const control=root.querySelector(btn);if(control)control.disabled=!state[prop];
+});
+document.addEventListener("click",e=>{if(!e.target.closest(".vocab"))root.querySelectorAll(".vocab.is-open").forEach(el=>el.classList.remove("is-open"));});
+root.addEventListener("keydown",e=>{if(e.target.classList?.contains("vocab")&&(e.key==="Enter"||e.key===" ")){e.preventDefault();e.target.click();}});
+render();</script></body></html>
