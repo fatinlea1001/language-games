@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**241 games** — automatically updated when an HTML game is added or changed.
+**242 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay Ebooks Easy](https://fatinlea1001.github.io/language-games/eng-sample-essay-ebooks-easy.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — E-books (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-normal.html) — updated 11 Nov 2026
 - [SPM Speaking Part 2 — Saving Money / Shopping / Something to Buy](https://fatinlea1001.github.io/language-games/eng-speakingpart2-9.html) — updated 11 Nov 2026
 - [SPM Speaking Part 2 — A School Competition / A Teacher / A Club](https://fatinlea1001.github.io/language-games/eng-speakingpart2-8.html) — updated 11 Nov 2026
