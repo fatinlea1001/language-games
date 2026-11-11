@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**239 games** — automatically updated when an HTML game is added or changed.
+**240 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Writing Elaboration Ebooks (Set 3)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-3.html) — updated 11 Nov 2026
 - [Writing Elaboration Canteen Day (Set 2)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-canteen-day-2.html) — updated 06 Nov 2026
 - [Writing Elaboration Sports (Set 1)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-sports-1.html) — updated 06 Nov 2026
 - [SPM Speaking Part 3 — How to Curb Cyberbullying (Set 37)](https://fatinlea1001.github.io/language-games/eng-speakingpart3-37.html) — updated 27 Oct 2026
