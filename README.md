@@ -7,6 +7,7 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — E-books (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-3.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-normal.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-easy.html) — updated 11 Nov 2026
 - [Sample Essay — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-normal.html) — updated 11 Nov 2026
@@ -83,7 +84,6 @@ Recently updated games appear first in each category.
 - [Less Common Lexis Class — Our Traditions](https://fatinlea1001.github.io/language-games/eng-lexis-article-2.html) — updated 11 Nov 2026
 - [Less Common Lexis Class — Taking Action](https://fatinlea1001.github.io/language-games/eng-lexis-article-10.html) — updated 11 Nov 2026
 - [Less Common Lexis Class — Caring Communities](https://fatinlea1001.github.io/language-games/eng-lexis-article-1.html) — updated 11 Nov 2026
-- [SPM Elaboration Builder — E-books (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-3.html) — updated 11 Nov 2026
 - [SPM Speaking Part 3 — Ways to Shop Smart](https://fatinlea1001.github.io/language-games/eng-speakingpart3-23.html) — updated 21 Oct 2026
 - [SPM Speaking Part 3 — Popular Gig Economy Jobs in Malaysia](https://fatinlea1001.github.io/language-games/eng-speakingpart3-22.html) — updated 21 Oct 2026
 - [SPM Speaking Part 3 — Ways to Improve Public Parks](https://fatinlea1001.github.io/language-games/eng-speakingpart3-21.html) — updated 20 Oct 2026
