@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#194d51"><meta name="description" content="SPM EASY SPM Entertainment Media writing game with balanced options, Malay B2 definitions, and 125–150-word sample essay."><title>SPM Elaboration Builder — Entertainment Media (EASY)</title><style>
+:root{--ink:#253943;--muted:#617580;--teal:#237f80;--deep:#194d51;--border:#dce8e9;--soft:#f2f8f8;--mint:#e6f7ed;--green:#1e7450;--red:#a3344f;--rose:#fff0f2;--gold:#b47715}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 0 0,#d8eee6,transparent 36%),radial-gradient(circle at 100% 20%,#fff0d8,transparent 36%),#f7fbfa;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.shell{max-width:790px;margin:auto;padding:18px 14px 42px}
+header{text-align:center;margin:6px auto 22px}
+.kicker{display:inline-block;padding:7px 14px;background:white;border-radius:100px;color:var(--teal);font-size:.76rem;font-weight:850;letter-spacing:.045em}
+h1{font-size:clamp(1.8rem,5vw,2.45rem);line-height:1.12;margin:13px 0 7px;letter-spacing:-.035em;color:var(--deep)}
+.subtitle{margin:0;color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--border);border-radius:24px;padding:clamp(18px,4vw,31px);box-shadow:0 13px 38px #4d857e18}
+h2{font-size:1.32rem;margin:0 0 12px;line-height:1.4}h3{font-size:1.05rem;margin:0 0 10px}
+p,li{line-height:1.7}p{margin:9px 0}ol,ul{padding-left:23px}
+.small{color:var(--muted);font-size:.9rem}.tiny{color:var(--muted);font-size:.78rem}
+.exam{background:var(--soft);border:1px solid #d0e4e4;border-radius:17px;padding:16px 18px;margin:17px 0}
+.exam strong{color:var(--deep)}.exam ul{margin:8px 0}.exam li{margin:5px 0}
+label.name{display:block;margin-top:23px;margin-bottom:8px;font-weight:800}
+input[type=text]{width:100%;font:inherit;padding:14px;border-radius:12px;border:2px solid #bedbda;background:white}
+textarea{width:100%;min-height:145px;resize:vertical;padding:15px;border-radius:13px;border:2px solid #bedbda;background:white;color:var(--ink);font:inherit;line-height:1.65}
+.writing-tip{background:#eaf6f4;border:1px solid #d0e7e1;border-radius:14px;padding:14px 16px;margin:15px 0;line-height:1.65}
+.writing-tip ul{margin:7px 0 0}
+.writing-meta{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-top:7px;color:var(--muted);font-size:.83rem}
+.essay p{white-space:pre-wrap}
+button{font:inherit;cursor:pointer;font-weight:780;border:0;border-radius:12px;padding:13px 17px}
+button:focus-visible,input:focus-visible{outline:3px solid #7bc6c2;outline-offset:3px}
+button:disabled{cursor:not-allowed;opacity:.45}
+.primary{background:var(--teal);color:white}.primary:hover:not(:disabled){background:#176264}
+.secondary{background:#e6f4f2;color:var(--deep)}.secondary:hover:not(:disabled){background:#d5eeeb}
+.full{width:100%}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.row.between{justify-content:space-between}.row>button{flex:1 1 180px}
+.chip{display:inline-block;border-radius:99px;background:#e8f5f2;color:#286a66;font-size:.8rem;font-weight:850;padding:6px 11px}
+.progress{display:flex;gap:6px;margin:12px 0 22px}.progress span{flex:1;height:8px;background:#e8f0ef;border-radius:99px}.progress .done{background:#42a58e}.progress .active{background:#d6a03b}
+.point{background:#f2f8f8;border:1px solid #d6e5e4;border-radius:16px;padding:17px 18px;margin:14px 0}
+.label{font-size:.72rem;text-transform:uppercase;letter-spacing:.065em;font-weight:850;color:#357d7a;margin-bottom:6px}
+.point p{font-weight:730;font-size:1.08rem;margin:0}
+.step-title{margin:20px 0 8px;font-size:1.22rem}
+.choice-list{display:grid;gap:10px;margin-top:15px}
+.choice{width:100%;background:white;border:2px solid #d8e5e4;display:flex;gap:12px;align-items:flex-start;text-align:left;color:var(--ink);line-height:1.55}
+.choice:hover:not(:disabled){border-color:#67ada7;background:#f5fcfa}
+.choice.selected{border-color:var(--teal);background:#eaf8f5}
+.choice.good{border-color:#4fba83;background:#eaf9ef}
+.choice.bad{border-color:#e3a1af;background:var(--rose)}
+.letter{flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:#e5f3f0;color:#266b68;display:grid;place-items:center;font-weight:850}
+.feedback{border-radius:14px;padding:14px 16px;margin:16px 0;line-height:1.65}
+.feedback.good{background:var(--mint);color:var(--green);border:1px solid #a6dcbf}
+.feedback.bad{background:var(--rose);color:var(--red);border:1px solid #eec5ce}
+.draft{background:#f8fbff;border:1px solid #dbe6f1;border-radius:15px;padding:13px 16px;margin:17px 0}
+.draft p{margin:7px 0;font-size:.95rem}
+.missing{color:#84939b;font-style:italic}
+.copycheck{background:#fff3d4;border:3px solid #dfa736;border-radius:18px;padding:19px 18px;margin:18px 0}
+.copycheck h2{color:#80530d;margin-bottom:5px}
+.urgent-reminder{background:#fff0f0;border:3px solid #d52e3e;border-left:9px solid #d52e3e;border-radius:17px;padding:20px 19px;margin:20px 0;box-shadow:0 5px 0 #f9d7da}
+.urgent-reminder .urgent-heading{display:flex;align-items:center;gap:10px;font-size:clamp(1.27rem,5.2vw,1.65rem);line-height:1.25;font-weight:950;color:#a71e30;margin:0 0 12px}
+.urgent-reminder .urgent-icon{font-size:1.7rem;line-height:1}
+.urgent-reminder p{font-size:clamp(1.03rem,3.9vw,1.18rem);font-weight:730;line-height:1.65;margin:9px 0;color:#79212d}
+.urgent-reminder .essay-title{padding:11px 14px;background:white;border:1px solid #eeb4ba;border-radius:11px;font-size:1.12rem;font-weight:900;color:#952230;margin:13px 0}
+.urgent-reminder .urgent-note{font-size:.92rem;font-weight:650;color:#863740;margin-top:10px}
+.paper{background:#fff;border:1px solid #edd7a3;border-radius:14px;padding:15px 17px;margin:15px 0;line-height:1.85}
+.confirm{display:flex;align-items:flex-start;gap:12px;line-height:1.55;font-weight:740;margin:20px 0 9px}
+.confirm input{accent-color:var(--teal);width:21px;height:21px;flex:0 0 21px;margin:2px 0 0}
+.score{font-size:clamp(2.7rem,8vw,4.1rem);font-weight:900;color:var(--teal);line-height:1.1}
+.essay{background:#f8fbfa;border:1px solid #dbe9e6;border-radius:15px;padding:16px;margin:17px 0}
+.essay p{margin:0 0 15px}.essay p:last-child{margin:0}
+.copied{min-height:1.2em;color:var(--green);font-weight:760;font-size:.9rem}
+footer{text-align:center;font-size:.77rem;color:#6a8184;margin-top:20px}
+@media(max-width:480px){.shell{padding:12px 10px 30px}.panel{border-radius:18px}.choice{padding:12px}.copycheck{padding:14px}.row>button{flex:1 1 100%}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{body{background:white}.shell{max-width:none}header,.no-print,footer{display:none!important}.panel{border:0;box-shadow:none}.essay{border:0;padding:0}}
+
+/* Set 2 — distinct point and elaboration stages */
+.segment{margin:14px 0 11px;border-radius:13px;padding:12px 14px;background:#e8f3fc;border-left:5px solid #5795c1;font-weight:820;color:#2c5878}
+.segment.second{background:#fff2db;border-left-color:#d9a33d;color:#805a20}
+.draft p{margin:8px 0}
+.draft .built-sentence{display:block;line-height:1.7}
+.essay-title{overflow-wrap:anywhere}
+
+.vocab{position:relative;display:inline;border-bottom:2px dotted #23808b;color:#176773;font-weight:780;cursor:help;outline-offset:3px}
+.vocab-tooltip{position:absolute;z-index:50;left:0;bottom:calc(100% + 7px);min-width:160px;max-width:min(230px,75vw);background:#193c49;color:white;border-radius:9px;padding:9px 11px;font:600 .81rem/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 6px 16px #173d4930;opacity:0;visibility:hidden;pointer-events:none;text-align:left}
+.vocab:hover .vocab-tooltip,.vocab:focus .vocab-tooltip,.vocab.is-open .vocab-tooltip{opacity:1;visibility:visible}
+.vocab-guide{font-size:.83rem;color:#526b70;margin:7px 0 13px}
+.vocab:focus-visible{outline:2px solid #176773;border-radius:3px}
+.choice-card{display:flex;align-items:flex-start;gap:12px;width:100%;background:white;border:2px solid #d8e5e4;border-radius:12px;padding:13px 17px;cursor:pointer;line-height:1.55}
+ .choice-card:hover{border-color:#67ada7;background:#f5fcfa}.choice-card.selected{border-color:var(--teal);background:#eaf8f5}.choice-card.good{border-color:#4fba83;background:#eaf9ef}.choice-card.bad{border-color:#e3a1af;background:var(--rose)}
+ .choice-pick{flex:0 0 30px;padding:0;border:0;background:transparent;border-radius:9px}.choice-pick:focus-visible{outline:3px solid #348f94;outline-offset:4px}.choice-pick:disabled{opacity:1}.choice-text{flex:1;min-width:0;text-align:left}.choice-list{display:grid;gap:10px}
+ .vocab-tooltip{left:auto;right:0;max-width:min(220px,65vw)}.vocab.vocab-c1{color:#74438d;border-bottom-color:#8958a9}.vocab.vocab-c1 .vocab-tooltip{background:#49305b}
+ </style></head>
+<body><main class="shell"><header><span class="kicker">✍️ SPM WRITING PART 2 · EASY</span><h1>Elaboration Builder</h1><p class="subtitle">📺 Entertainment Media &amp; Learning · Guided Writing</p></header><section class="panel" id="app" aria-live="polite"></section><footer>Free, rule-based practice · No AI or account required · Work stays in this browser</footer></main><script>"use strict";
+const tasks=[{"title":"One Entertainment Medium That Helps Learning","bullet":"state one of entertainment media that helps your learning","plural":false,"steps":[{"tag":"POINT — One entertainment medium","question":"Which opening directly answers the FIRST bullet?","hint":"Name one entertainment medium that you use for learning.","correct":1,"options":[["To begin with, YouTube is popular because teenagers enjoy watching funny videos.","Popularity and fun do not identify a medium's learning benefit."],["To begin with, one entertainment medium that helps my learning is YouTube.","This directly develops the required idea with a clear, relevant detail."],["To begin with, television helps students relax after their lessons at school.","Television is a different medium from the chosen YouTube example."]]},{"tag":"ELABORATION 1 — Description","question":"What do you use YouTube to watch?","hint":"Choose an action that involves educational content.","correct":0,"options":[["I watch lessons online.","This directly develops the required idea with a clear, relevant detail."],["I watch cartoons for fun.","Cartoons for fun do not explain using videos for learning."],["I play exciting online games.","Online gaming does not develop the selected study medium."]]},{"tag":"ELABORATION 2 — Example","question":"Which EXAMPLE shows what you learn?","hint":"Look for a realistic example from a school subject.","correct":2,"options":[["For example, science clips feature famous actors discussing their favourite movies.","Actors discussing movies are not a science experiment example."],["For example, funny videos show teenagers dancing during their school holidays.","Dancing videos do not illustrate science learning."],["For example, science clips show simple experiments.","This directly develops the required idea with a clear, relevant detail."]]},{"tag":"ELABORATION 3 — Additional detail","question":"Which detail makes the videos more engaging?","hint":"Explain what helps you focus on the lesson.","correct":1,"options":[["Besides, pictures make my phone colourful.","Phone colours are not a benefit for understanding lessons."],["Besides, pictures hold my attention.","This directly develops the required idea with a clear, relevant detail."],["Besides, pictures help my camera work.","Camera performance is unrelated to studying."]]},{"tag":"ELABORATION 4 — Result","question":"Which RESULT is connected to learning?","hint":"Think of a positive feeling about studying.","correct":0,"options":[["Therefore, studying feels enjoyable.","This directly develops the required idea with a clear, relevant detail."],["Therefore, my phone becomes more useful.","Phone usefulness does not describe enjoyment of studying."],["Therefore, watching videos feels exciting.","The point is learning, not entertainment alone."]]}]},{"title":"How This Media Helps My Studies","bullet":"explain how this media helps you in your studies","plural":false,"steps":[{"tag":"POINT — How it helps studies","question":"Which opening addresses the SECOND bullet?","hint":"Explain how the video makes difficult learning easier.","correct":2,"options":[["Furthermore, this media helps my studies because videos are always available online.","Being available online does not explain how difficult lessons become clearer."],["Furthermore, this media makes me happy when I watch my favourite entertainers.","Enjoying entertainers is not the educational effect requested."],["Furthermore, this media helps me in my studies by explaining difficult topics.","This directly develops the required idea with a clear, relevant detail."]]},{"tag":"ELABORATION 1 — Explanation","question":"What can you do when a video is difficult?","hint":"What can a student do when they do not understand?","correct":0,"options":[["I can pause videos when confused.","This directly develops the required idea with a clear, relevant detail."],["I pause videos to answer messages.","Answering messages does not help understand a difficult explanation."],["I pause videos to change songs.","Changing songs does not assist revision."]]},{"tag":"ELABORATION 2 — Additional action","question":"What is a useful NEXT step?","hint":"Consider what to repeat during revision.","correct":1,"options":[["Then, I replay funny moments.","Funny moments do not help students review confusing lesson content."],["Then, I replay difficult parts.","This directly develops the required idea with a clear, relevant detail."],["Then, I replay the advertisements.","Advertisements do not explain the school topic."]]},{"tag":"ELABORATION 3 — Example","question":"Which example supports revision before tests?","hint":"Choose a practical examination-preparation example.","correct":2,"options":[["For instance, I watch comedy shows before exams.","Comedy shows do not give an example of revising grammar."],["For instance, I discuss movies during my breaks.","Movie conversations are not specific revision for a test."],["For instance, I revise grammar before tests.","This directly develops the required idea with a clear, relevant detail."]]},{"tag":"ELABORATION 4 — Result","question":"What learning RESULT follows?","hint":"Think of remembering lesson content.","correct":0,"options":[["As a result, I remember important ideas better.","This directly develops the required idea with a clear, relevant detail."],["As a result, I can watch videos more often.","Watching more videos is not the same as remembering information."],["As a result, my phone uses more data.","Using data is not a positive study result."]]}]},{"title":"Ways Students Can Control Screen Time","bullet":"suggest ways students can control their screen time","plural":true,"steps":[{"tag":"POINT 1 — Daily limits","question":"Which FIRST way helps control screen time?","hint":"Choose a limit that prevents spending too long online.","correct":1,"options":[["Finally, students can control their screen time by buying better phones.","Buying a better phone does not limit time spent on screens."],["Finally, students can control their screen time by setting daily limits.","This directly develops the required idea with a clear, relevant detail."],["Finally, students can control their screen time by watching shorter movies.","Watching shorter films does not establish a clear daily limit."]]},{"tag":"POINT 1 — Elaboration 1 of 2","question":"How can phone timers help?","hint":"Look for a reminder that encourages stopping.","correct":0,"options":[["Phone timers remind them to stop watching.","This directly develops the required idea with a clear, relevant detail."],["Phone timers help them choose videos.","Choosing videos is not the same as stopping when the limit is reached."],["Phone timers show the current time.","A clock alone does not remind students to stop."]]},{"tag":"POINT 1 — Elaboration 2 of 2","question":"What RESULT can a timer achieve?","hint":"Why are time limits helpful?","correct":2,"options":[["This helps them finish more videos.","Finishing more videos is not the goal of screen-time control."],["This makes their devices run smoothly.","Device performance is not a reason to limit browsing."],["This prevents hours of unnecessary browsing.","This directly develops the required idea with a clear, relevant detail."]]},{"tag":"POINT 2 — Timetable","question":"Which SECOND way is different from daily limits?","hint":"Find a second method that is different from timers.","correct":1,"options":[["Another way is to watch videos together.","Watching together does not necessarily manage time."],["Another way is to follow a timetable.","This directly develops the required idea with a clear, relevant detail."],["Another way is to use brighter screens.","Screen brightness does not establish a schedule."]]},{"tag":"POINT 2 — Elaboration 1 of 2","question":"How should students use the timetable?","hint":"How should homework fit into the routine?","correct":0,"options":[["They should finish homework before watching videos.","This directly develops the required idea with a clear, relevant detail."],["They should watch television while doing homework.","Multitasking with television may distract students from homework."],["They should change their wallpapers before studying.","Wallpaper changes do not create a study routine."]]},{"tag":"POINT 2 — Elaboration 2 of 2","question":"What benefit may follow from this routine?","hint":"What is a positive result of managing study and rest?","correct":2,"options":[["Consequently, they can watch more videos.","Watching more videos contradicts the aim of reducing screen time."],["Consequently, they will use newer apps.","Newer apps do not demonstrate better balance."],["Consequently, they have enough time to rest.","This directly develops the required idea with a clear, relevant detail."]]}]}];
+const vocab={"entertainment":{"level":"B2","meaning":"hiburan"},"medium":{"level":"B2","meaning":"saluran atau bahan perantaraan"},"educational":{"level":"B2","meaning":"berkaitan pendidikan"},"experiments":{"level":"B2","meaning":"uji kaji"},"attention":{"level":"B2","meaning":"perhatian"},"confused":{"level":"B2","meaning":"keliru"},"revise":{"level":"B2","meaning":"mengulang kaji"},"screen time":{"level":"B2","meaning":"masa penggunaan skrin"},"limits":{"level":"B2","meaning":"had atau batas"},"unnecessary":{"level":"B2","meaning":"tidak perlu"},"timetable":{"level":"B2","meaning":"jadual waktu"},"consequently":{"level":"B2","meaning":"oleh itu atau akibatnya"},"balance":{"level":"B2","meaning":"keseimbangan"}};
+const root=document.getElementById("app");
+const state={stage:"welcome",name:"",introConfirmed:false,closingConfirmed:false,index:0,step:0,selected:-1,checked:false,tries:0,score:0,hint:false,confirmed:false,finished:[]};
+const correctText=(step)=>step.options[step.correct][0];
+const paragraph=(i)=>[...(tasks[i].opening?[tasks[i].opening]:[]),...tasks[i].steps.map(correctText)].join(" ");
+const bodyParagraphs=()=>state.finished.join("\n\n");
+
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+const vocabRx=new RegExp("\\b("+Object.keys(vocab).sort((a,b)=>b.length-a.length).join("|")+")\\b","gi");
+const withVocab=s=>escapeHTML(s).replace(vocabRx,word=>{const info=vocab[word.toLowerCase()],level=info.level,meaning=info.meaning;return '<span class="vocab vocab-'+level.toLowerCase()+'" role="button" tabindex="0" aria-label="'+escapeHTML(word+' ('+level+'): '+meaning)+'">'+word+'<span class="vocab-tooltip"><strong>'+level+'</strong> · '+escapeHTML(meaning)+'</span></span>';});
+const task=()=>tasks[state.index],part=()=>task().steps[state.step];
+const overallTotal=tasks.reduce((n,t)=>n+t.steps.length,0);
+const progress=()=>'<div class="progress" aria-label="Body paragraph '+(state.index+1)+' of three">'+tasks.map((_,i)=>'<span class="'+(i<state.index?'done':i===state.index?'active':'')+'"></span>').join("")+'</div>';
+const examTask=()=>"<div class=\"exam\"><strong>Question 2 · Kedah</strong><p>Your class has been discussing how entertainment media affects students’ learning. Your teacher has asked you to write an essay about it.</p><p><strong>In your essay, you should:</strong></p><ul><li>state one of entertainment media that helps your learning</li><li>explain how this media helps you in your studies</li><li>suggest ways students can control their screen time</li></ul><p><strong>Use all the notes above and give reasons for your point of view.</strong></p><p><strong>Write your essay in 125 - 150 words in an appropriate style.</strong></p></div>";
+const titleReminder=()=>"<div class=\"urgent-reminder\" role=\"note\"><div class=\"urgent-heading\"><span class=\"urgent-icon\" aria-hidden=\"true\">📕</span><span>STOP! WRITE THIS FIRST!</span></div><p>Write the <strong>ESSAY TITLE</strong> and your <strong>INTRODUCTION PARAGRAPH</strong> in your exercise book.</p><div class=\"essay-title\">SUGGESTED TITLE: Entertainment Media and Learning</div><p class=\"urgent-note\">✍️ Complete both in your notebook before starting Body Paragraph 1.</p></div>";
+const preview=()=>[...(task().opening?[task().opening]:[]),...task().steps.slice(0,state.step).map(correctText)].join(" ");
+function resetChoice(){state.selected=-1;state.checked=false;state.tries=0;state.hint=false;}
+function render(){
+if(state.stage==="welcome"){
+root.innerHTML='<div class="row between"><span class="chip">📚 Entertainment Media · EASY</span><span class="small">A2–B1 · '+overallTotal+' challenges</span></div><h2 style="margin-top:17px">Build a 125–150-word SPM essay in your exercise book.</h2>'+examTask()+titleReminder()+'<label class="name" for="student">Student name / Nama murid</label><input type="text" id="student" maxlength="60" autocomplete="name" placeholder="Enter your name"><label class="confirm"><input type="checkbox" id="confirmIntro" '+(state.introConfirmed?'checked':'')+'><span>I have written the essay title AND my introduction in my exercise book.</span></label><button class="primary full" type="button" data-action="start" '+(state.introConfirmed?'':'disabled')+'>Start Elaboration Activities →</button><p id="nameError" class="tiny" role="alert"></p><p class="vocab-guide">🔎 Hover over or tap highlighted B2 vocabulary to see its meaning in Bahasa Melayu.</p><p class="tiny">Each sentence has three options. Copy each completed paragraph into your notebook before progressing. Guided score: '+overallTotal+' marks.</p>';
+return;
+}
+if(state.stage==="conclusion"){
+root.innerHTML='<div class="row between"><span class="chip">✍️ FINAL WRITING TASK</span><span class="small">Conclusion</span></div><h2>Write Your Conclusion</h2><div class="urgent-reminder"><div class="urgent-heading">📕 STOP! WRITE YOUR CONCLUSION!</div><p>Write a <strong>CONCLUSION PARAGRAPH</strong> in your exercise book about entertainment media, learning and screen time. End with a balanced opinion.</p><p class="urgent-note">✍️ Complete your conclusion before finishing.</p></div><label class="confirm"><input type="checkbox" id="confirmConclusion" '+(state.closingConfirmed?'checked':'')+'><span>I have written my conclusion in my exercise book.</span></label><button type="button" class="primary full" data-action="finishConclusion" '+(state.closingConfirmed?'':'disabled')+'>Finish My Writing Practice →</button>';
+return;
+}
+if(state.stage==="finished"){
+root.innerHTML='<div style="text-align:center"><div style="font-size:42px">🏆</div><h2>Writing Practice Completed!</h2><p class="small" id="displayName"></p><div class="score">'+state.score+' / '+overallTotal+'</div><p class="small">First-attempt guided marks</p><span class="chip">3 completed body paragraphs</span></div><div class="writing-tip"><strong>Check your full essay in your notebook</strong><p>It should contain your title, introduction, all three developed body paragraphs and conclusion. Check that you have explained each point clearly and connected your ideas naturally.</p></div><h2 style="margin-top:25px">Your Three Completed Body Paragraphs</h2><div class="essay">'+state.finished.map((p,i)=>'<p><span class="label" style="display:block">BODY PARAGRAPH '+(i+1)+'</span>'+withVocab(p)+'</p>').join("")+'</div><p class="small">Your handwritten introduction and conclusion are not included in the copy below.</p><div class="row no-print"><button type="button" class="primary" data-action="copyAll">📋 Copy All Body Paragraphs</button><button type="button" class="secondary" data-action="restart">↻ Play Again</button></div><p id="copyMessage" class="copied" role="status"></p>';
+document.getElementById("displayName").textContent=state.name;
+return;
+}
+const t=task(),p=part();
+const head='<div class="row between"><span class="chip">PARAGRAPH '+(state.index+1)+' OF 3</span><strong>Score: '+state.score+'/'+overallTotal+'</strong></div>'+progress()+'<h2>'+t.title+'</h2><div class="exam"><div class="label">EXAM REQUIREMENT · BULLET '+(state.index+1)+'</div><strong>'+t.bullet+'</strong>'+(t.plural?'<p class="small"><strong>Two different points</strong> — each point needs two elaborations/examples.</p>':'<p class="small">One main point — add four elaboration/example sentences.</p>')+'</div>';
+if(state.stage==="copy"){
+root.innerHTML=head+'<div class="copycheck"><h2>✍️ STOP! COPY YOUR PARAGRAPH</h2><p>Write the complete paragraph in your exercise book before moving to the next bullet point.</p><div class="paper"><div class="label">YOUR COMPLETED PARAGRAPH</div>'+withVocab(paragraph(state.index))+'</div><button type="button" class="secondary full" data-action="copyParagraph">📋 Copy Paragraph to Clipboard</button><p id="copyMessage" class="copied" role="status"></p><label class="confirm"><input type="checkbox" id="confirmCopy" '+(state.confirmed?'checked':'')+'><span>I have copied this paragraph into my exercise book.</span></label><button class="primary full" type="button" data-action="next" '+(state.confirmed?'':'disabled')+'>'+(state.index===2?'Write My Conclusion →':'Continue to Paragraph '+(state.index+2)+' →')+'</button><p class="tiny" style="text-align:center">🔒 Confirm that you have copied the paragraph to unlock the next part.</p></div>';
+return;
+}
+const selected=state.selected,good=selected===p.correct;
+const buttons=p.options.map((o,i)=>'<div class="choice-card '+(selected===i?(state.checked?(good?'good':'bad'):'selected'):'')+'" data-choice="'+i+'"><button type="button" class="choice-pick" data-action="choose" data-choice="'+i+'" aria-label="Select option '+String.fromCharCode(65+i)+': '+escapeHTML(o[0])+'" aria-pressed="'+(selected===i)+'" '+(state.checked?'disabled':'')+'><span class="letter">'+String.fromCharCode(65+i)+'</span></button><div class="choice-text">'+withVocab(o[0])+'</div></div>').join("");
+let actions;
+if(state.checked){
+actions='<div class="feedback '+(good?'good':'bad')+'" role="status"><strong>'+(good?'✓ Correct! Your paragraph is developing.':'↻ This does not develop the required idea.')+'</strong><p>'+withVocab(p.options[selected][1])+'</p></div><button class="primary full" type="button" data-action="'+(good?'advance':'retry')+'">'+(good?(state.step===t.steps.length-1?'View & Copy My Paragraph →':'Continue to Next Sentence →'):'Try Again ↻')+'</button>';
+}else{
+actions='<div class="row between" style="margin-top:17px"><button class="secondary" type="button" data-action="hint">'+(state.hint?'Hide Hint':'💡 Need a Hint?')+'</button><span class="tiny">'+(state.tries?'Retry':'First attempt · 1 mark')+'</span></div>'+(state.hint?'<div class="draft"><strong>Hint:</strong> '+withVocab(p.hint)+'</div>':'')+'<button class="primary full" type="button" data-action="check" '+(selected<0?'disabled':'')+'>Check My Answer ✓</button>';
+}
+const isPoint=p.tag.startsWith("POINT "),isSecond=p.tag.startsWith("POINT 2");
+root.innerHTML=head+(t.opening?'<div class="point"><div class="label">GIVEN POINT</div><p>'+withVocab(t.opening)+'</p></div>':'')+(state.step>0?'<div class="draft"><div class="label">YOUR PARAGRAPH SO FAR</div><p>'+withVocab(preview())+'</p></div>':'')+(t.plural?'<div class="segment '+(isSecond?'second':'')+'">'+escapeHTML(p.tag)+'</div>':'<div class="segment">'+escapeHTML(p.tag)+'</div>')+'<div class="row between"><span class="chip">SENTENCE '+(state.step+1)+' OF '+t.steps.length+'</span><span class="tiny">'+(isPoint?'Choose a new point':'Develop the point')+'</span></div><h3 class="step-title">'+withVocab(p.question)+'</h3><div class="choice-list">'+buttons+'</div>'+actions;
+}
+function start(){
+if(!state.introConfirmed)return;
+const field=document.getElementById("student");
+const val=field.value.trim();
+if(!val){document.getElementById("nameError").textContent="Please enter your name. / Sila masukkan nama.";field.focus();return;}
+state.name=val;state.stage="play";render();
+}
+function check(){
+if(state.selected<0)return;
+if(state.tries===0&&state.selected===part().correct)state.score++;
+state.tries++;state.checked=true;render();
+}
+function advance(){
+if(!state.checked||state.selected!==part().correct)return;
+if(state.step===task().steps.length-1){state.stage="copy";state.confirmed=false;}
+else state.step++;
+resetChoice();render();
+}
+function next(){
+if(!state.confirmed||state.stage!=="copy")return;
+state.finished.push(paragraph(state.index));state.confirmed=false;
+if(state.index===tasks.length-1)state.stage="conclusion";
+else{state.index++;state.stage="play";}
+state.step=0;resetChoice();render();
+}
+async function copyText(text){
+const status=document.getElementById("copyMessage");
+try{
+if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(text);
+else{const ta=document.createElement("textarea");ta.value=text;ta.readOnly=true;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();if(!ok)throw Error("Clipboard failed");}
+if(status)status.textContent="✓ Copied! You can paste it into your notes.";
+}catch(e){if(status)status.textContent="Copy unavailable here. Select the text and copy it manually.";}
+}
+root.addEventListener("click",e=>{
+const word=e.target.closest(".vocab");
+if(word){e.preventDefault();e.stopPropagation();root.querySelectorAll(".vocab.is-open").forEach(el=>{if(el!==word)el.classList.remove("is-open")});word.classList.toggle("is-open");return;}
+const card=e.target.closest(".choice-card");if(card&&!state.checked){state.selected=Number(card.dataset.choice);render();return;}
+const b=e.target.closest("button[data-action]");if(!b||b.disabled)return;
+const action=b.dataset.action;
+if(action==="start")return start();
+if(action==="finishConclusion"){if(state.closingConfirmed){state.stage="finished";render();}return;}
+if(action==="choose"){if(!state.checked){state.selected=Number(b.dataset.choice);render();}return;}
+if(action==="hint"){state.hint=!state.hint;render();return;}
+if(action==="check")return check();
+if(action==="retry"){state.checked=false;state.selected=-1;render();return;}
+if(action==="advance")return advance();
+if(action==="next")return next();
+if(action==="copyParagraph"){copyText(paragraph(state.index));return;}
+if(action==="copyAll"){copyText(bodyParagraphs());return;}
+if(action==="restart"){Object.assign(state,{stage:"welcome",name:"",introConfirmed:false,closingConfirmed:false,index:0,step:0,selected:-1,checked:false,tries:0,score:0,hint:false,confirmed:false,finished:[]});render();}
+});
+root.addEventListener("change",e=>{
+const id=e.target.id;
+const btn=id==="confirmIntro"?'[data-action="start"]':id==="confirmCopy"?'[data-action="next"]':id==="confirmConclusion"?'[data-action="finishConclusion"]':null;
+if(!btn)return;
+const prop=id==="confirmIntro"?"introConfirmed":id==="confirmCopy"?"confirmed":"closingConfirmed";
+state[prop]=e.target.checked;
+const control=root.querySelector(btn);if(control)control.disabled=!state[prop];
+});
+document.addEventListener("click",e=>{if(!e.target.closest(".vocab"))root.querySelectorAll(".vocab.is-open").forEach(el=>el.classList.remove("is-open"));});
+root.addEventListener("keydown",e=>{if(e.target.classList?.contains("vocab")&&(e.key==="Enter"||e.key===" ")){e.preventDefault();e.target.click();}});
+render();</script></body></html>
