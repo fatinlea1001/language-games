@@ -7,10 +7,10 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Sample Essay — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-normal.html) — updated 11 Nov 2026
-- [Sample Essay — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-easy.html) — updated 11 Nov 2026
-- [SPM Elaboration Builder — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-normal.html) — updated 11 Nov 2026
-- [SPM Elaboration Builder — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-easy.html) — updated 11 Nov 2026
+- [Writing Elaboration Cyberbullying Normal](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-normal.html) — updated 11 Nov 2026
+- [Writing Elaboration Cyberbullying Easy](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-easy.html) — updated 11 Nov 2026
+- [Sample Essay Cyberbullying Normal](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-normal.html) — updated 11 Nov 2026
+- [Sample Essay Cyberbullying Easy](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-easy.html) — updated 11 Nov 2026
 - [Sample Essay — Reading E-books Among Teenagers (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ebooks-normal.html) — updated 11 Nov 2026
 - [Sample Essay — Reading E-books Among Teenagers (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ebooks-easy.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — E-books (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-normal.html) — updated 11 Nov 2026
