@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**247 games** — automatically updated when an HTML game is added or changed.
+**248 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Physical Appearance (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-physical-appearance-easy.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — E-books (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-3.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-easy.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — E-books (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-normal.html) — updated 11 Nov 2026
