@@ -356,7 +356,7 @@ function topicDescription(file, readmeTitle, language){
   return {label:base+setLabel,topics:list,theme};
  };
  if(stem==='eng-speakingpart2' && SPEAKING_2[number-1])
-  return describe('SPM Speaking Part 2',SPEAKING_2[number-1],'Speaking & Daily Life');
+  return {label:'SPM Speaking Part 2 — '+SPEAKING_2[number-1].join(' / '),topics:SPEAKING_2[number-1],theme:'Speaking & Daily Life'};
  if(stem==='eng-speakingpart3'){
   // README labels are generated from the game's HTML title, including future sets.
   // Prefer this source of truth; retain the list for older generic README labels.
@@ -525,6 +525,18 @@ function parseDirectory(markdown){
   parsed.push({title:metadata.label,topics:metadata.topics,theme:metadata.theme,kind:language,date,dateLabel:date||'Recently added',url:url.href,file,...style,...grouping});
  }
  if(!parsed.length)throw new Error('Game list is empty');
+ // Topic-first labels: hide set numbers unless doing so makes different
+ // entries look identical. File names and links retain their stable numbers.
+ const withoutSet=label=>label.replace(/\\s*\\(Set\\s+\\d+\\)\\s*$/i,'').trim();
+ const counts=new Map();
+ parsed.forEach(g=>{
+  const key=withoutSet(g.title);
+  counts.set(key,(counts.get(key)||0)+1);
+ });
+ parsed.forEach(g=>{
+  const key=withoutSet(g.title);
+  if(counts.get(key)===1)g.title=key;
+ });
  return parsed; // preserve README's most-recently-updated-first order per category
 }
 
