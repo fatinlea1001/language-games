@@ -7,10 +7,10 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Sample Essay — Physical Appearance (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-physical-appearance-normal.html) — updated 11 Nov 2026
-- [Sample Essay — Physical Appearance (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-physical-appearance-easy.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Physical Appearance (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-physical-appearance-normal.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Physical Appearance (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-physical-appearance-easy.html) — updated 11 Nov 2026
+- [Sample Essay — Physical Appearance (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-physical-appearance-normal.html) — updated 11 Nov 2026
+- [Sample Essay — Physical Appearance (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-physical-appearance-easy.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — E-books (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-3.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-easy.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — E-books (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-normal.html) — updated 11 Nov 2026
