@@ -94,7 +94,7 @@ html.embedded-view .game-sub{gap:4px}
 /* English learning categories and SPM components. */
 .category-panel{margin:0 0 16px}
 .category-heading{font-size:11px;font-weight:900;color:#81708e;letter-spacing:.12em;margin:0 0 10px}
-.category-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.category-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 .category-tab{cursor:pointer;appearance:none;border:1px solid #eee4f1;border-radius:16px;background:#faf7fc;min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;font:inherit;color:#675978;font-size:13px;font-weight:850;text-align:center;padding:12px 7px;transition:background .15s,border-color .15s,box-shadow .15s}
 .category-tab .category-icon{font-size:26px;line-height:1}
 .category-tab:hover{background:#f4edff}
@@ -110,7 +110,7 @@ html.embedded-view .game-sub{gap:4px}
 @media(max-width:620px){
  .category-panel{margin-bottom:11px}
  .category-heading{font-size:10px;margin-bottom:8px}
- .category-tabs{gap:6px}
+ .category-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
  .category-tab{min-height:78px;padding:9px 3px;font-size:11px;gap:6px;border-radius:12px}
  .category-tab .category-icon{font-size:23px}
  .spm-grid{gap:7px}
@@ -154,6 +154,7 @@ html.embedded-view .game-sub{gap:4px}
         <button type="button" class="category-tab" data-category="SPM Practice" aria-pressed="true"><span class="category-icon" aria-hidden="true">🎓</span><span>SPM Practice</span></button>
         <button type="button" class="category-tab" data-category="Grammar" aria-pressed="false"><span class="category-icon" aria-hidden="true">🧩</span><span>Grammar</span></button>
         <button type="button" class="category-tab" data-category="Vocabulary" aria-pressed="false"><span class="category-icon" aria-hidden="true">📚</span><span>Vocabulary</span></button>
+        <button type="button" class="category-tab" data-category="Sample Essays" aria-pressed="false"><span class="category-icon" aria-hidden="true">📖</span><span>Sample Essays</span></button>
       </div>
     </div>
 
@@ -236,6 +237,7 @@ let loaded = false;
 
 function gameStyle(path, language){
  const name=path.toLowerCase();
+ if(name.startsWith('eng-sample-essay-'))return {emoji:'📖',bg:'#f0e5ff',topic:'Complete model essay'};
  if(name.includes('story'))return {emoji:'📖',bg:'#ffe6ef',topic:'Story · Fill in the blanks'};
  if(name.includes('spelling')||name.includes('spell-'))return {emoji:'🈴',bg:'#eee8ff',topic:'Spelling challenge'};
  if(name.includes('speaking'))return {emoji:'🎤',bg:'#ebe8ff',topic:'Speaking practice'};
@@ -464,6 +466,10 @@ function topicDescription(file, readmeTitle, language){
   return {label:'SPM Elaboration Builder — E-books (EASY)',topics:['E-books and Teenage Reading'],theme:'Writing Part 2 SPM'};
  if(stem==='eng-writing-elaboration-ebooks-normal')
   return {label:'SPM Elaboration Builder — E-books (NORMAL)',topics:['E-books and Teenage Reading'],theme:'Writing Part 2 SPM'};
+ if(stem==='eng-sample-essay-ebooks-easy')
+  return {label:'Sample Essay — Reading E-books Among Teenagers (EASY)',topics:['E-books','Teenage Reading'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem.startsWith('eng-sample-essay-'))
+  return {label:readmeTitle,topics:['Writing Part 2'],theme:'SPM Sample Essays'};
  if(stem.startsWith('eng-writing-')){
   const code=stem.slice('eng-writing-'.length);
   const topic=code.replace(/[-_]+/g,' ').replace(/(^|\s)\w/g,ch=>ch.toUpperCase());
@@ -477,6 +483,7 @@ function topicDescription(file, readmeTitle, language){
 // Every existing English game belongs to one of these three categories.
 function classifyEnglishGame(file){
  const name=file.toLowerCase();
+ if(name.startsWith('eng-sample-essay-'))return {category:'Sample Essays',spmPart:''};
  if(/^eng-(missingsentence-|missing-)/.test(name))return {category:'SPM Practice',spmPart:'Reading Part 4'};
  if(/^eng-writing-/.test(name) || /^eng-elaboration-/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 2'};
  if(/^eng-speakingpart2-/.test(name))return {category:'SPM Practice',spmPart:'Speaking Part 2'};
@@ -583,14 +590,17 @@ function updateFilters(){
   const heading={
    'SPM Practice':'📝 SPM Practice',
    'Grammar':'🧩 Grammar',
-   'Vocabulary':'📚 Vocabulary'
+   'Vocabulary':'📚 Vocabulary',
+   'Sample Essays':'📖 Sample Essays'
   };
   sectionTitle.textContent=heading[activeCategory];
   sectionSub.textContent=activeCategory==='SPM Practice'
    ?'Choose an SPM component or browse all SPM games.'
    :activeCategory==='Grammar'
     ?'Sentence building, word formation and grammar quizzes.'
-    :'Word meaning, spelling and vocabulary practice.';
+    :activeCategory==='Sample Essays'
+     ?'Read complete SPM essays with Malay vocabulary meanings.'
+     :'Word meaning, spelling and vocabulary practice.';
   field.placeholder='Search '+activeCategory+' games or topics…';
  }else{
   sectionTitle.textContent=activeJapaneseCategory==='All'?'🇯🇵 Japanese Games':'🇯🇵 '+activeJapaneseCategory;
@@ -681,11 +691,11 @@ function render(){
    topical.textContent='Topics: '+g.topics.join(' · ');
    body.append(topical);
   }
-  const go=document.createElement('span');go.className='go';go.textContent='Play now ↗';
+  const go=document.createElement('span');go.className='go';go.textContent=g.category==='Sample Essays'?'Read essay ↗':'Play now ↗';
   a.append(em,body,go);fragment.append(a);
  });
  items.append(fragment);
- count.textContent=matches.length+' '+(matches.length===1?'game':'games');
+ count.textContent=matches.length+' '+(activeLanguage==='English'&&activeCategory==='Sample Essays'?(matches.length===1?'sample essay':'sample essays'):(matches.length===1?'game':'games'));
  const scope=games.filter(g=>g.kind===activeLanguage &&
   (activeLanguage==='Japanese'
    ? (activeJapaneseCategory==='All'||g.japaneseCategory===activeJapaneseCategory)
