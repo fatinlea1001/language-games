@@ -90,6 +90,8 @@ jobs:
               # E-book topic is a standalone lesson, not a numbered set.
               if key == 'eng-writing-elaboration-ebooks':
                   return 'SPM Elaboration Builder — E-books (EASY)'
+              if key == 'eng-writing-elaboration-ebooks-normal':
+                  return 'SPM Elaboration Builder — E-books (NORMAL)'
               if key == 'eng-speakingpart2' and match:
                   speaking_topics = {
                       '1': 'My Hometown / My Favourite Place / A Memorable Trip',
