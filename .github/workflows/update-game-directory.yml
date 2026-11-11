@@ -96,6 +96,13 @@ jobs:
                   return 'SPM Elaboration Builder — E-books (EASY)'
               if key == 'eng-writing-elaboration-ebooks-normal':
                   return 'SPM Elaboration Builder — E-books (NORMAL)'
+              # Consistent level labels for all new paired writing resources.
+              versioned = re.fullmatch(r'eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)', stem, re.I)
+              if versioned:
+                  topic = ' '.join(piece.capitalize() for piece in versioned.group(2).split('-'))
+                  level = versioned.group(3).upper()
+                  name = 'Sample Essay' if versioned.group(1).lower() == 'sample-essay' else 'SPM Elaboration Builder'
+                  return f'{name} — {topic} ({level})'
               if key == 'eng-speakingpart2' and match:
                   speaking_topics = {
                       '1': 'My Hometown / My Favourite Place / A Memorable Trip',
