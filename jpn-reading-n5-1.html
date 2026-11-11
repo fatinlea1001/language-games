@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#fff5fa"><meta name="description" content="Japanese N5 reading comprehension practice: five passages, 25 questions, furigana, hints and score."><title>Japanese Reading N5 | Set 1</title><style>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#fff5fa"><meta name="description" content="Japanese N5 reading comprehension practice: five passages, 25 questions, furigana, hints and score."><title>Japanese Reading N5</title><style>
 :root{--ink:#343047;--muted:#777287;--pink:#f394b0;--berry:#ba477c;--lav:#f3eafe;--good:#246a50;--bad:#9e3f64;--edge:#e7dee9;--white:#fff;--bg:#fff9f9;--shadow:0 14px 36px rgba(88,57,104,.09)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans JP","Yu Gothic",sans-serif;background:linear-gradient(155deg,#fff5fa 0%,#fffcf8 48%,#f3f1ff 100%);color:var(--ink);min-height:100svh;line-height:1.55}
 header{padding:17px 18px;background:rgba(255,255,255,.88);border-bottom:1px solid #efdee9}header .shell{max-width:1040px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:11px}.mascot{display:grid;place-items:center;font-size:25px;width:44px;height:44px;background:#fbe1eb;border:2px solid #f4b1cb;border-radius:15px;transform:rotate(-5deg)}.brand strong{display:block;font-size:17px;letter-spacing:.1px}.brand small{display:block;color:var(--muted);font-size:12px}.tag-top{font-size:12px;background:#f6ebfa;padding:7px 11px;border-radius:30px;color:#755184;font-weight:750}
@@ -7,7 +7,7 @@ main{max-width:1040px;margin:25px auto 60px;padding:0 16px}.screen[hidden]{displ
 @media(max-width:760px){main{margin-top:15px}.quiz-layout{grid-template-columns:1fr}.reading,.exercise{padding:19px}.passage{font-size:18px;line-height:2.25}.question{font-size:19px}.hero{margin:18px auto;padding:29px 19px}.statusbar span{font-size:12px}.results{padding:21px 16px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style></head>
-<body><header><div class="shell"><div class="brand"><span class="mascot" aria-hidden="true">🌸</span><div><strong>にほんご Reading Garden</strong><small>N5 Reading Comprehension · Set 1</small></div></div><span class="tag-top">🌷 Japanese practice</span></div></header>
+<body><header><div class="shell"><div class="brand"><span class="mascot" aria-hidden="true">🌸</span><div><strong>にほんご Reading Garden</strong><small>N5 Reading Comprehension</small></div></div><span class="tag-top">🌷 Japanese practice</span></div></header>
 <main>
 <section class="screen panel hero screen-fade" id="intro">
  <div class="hero-icon" aria-hidden="true">📚🌸</div><span class="eyebrow">Let’s read Japanese!</span>
@@ -25,7 +25,7 @@ main{max-width:1040px;margin:25px auto 60px;padding:0 16px}.screen[hidden]{displ
  <article class="panel exercise"><span class="count" id="questionCount"></span><h2 class="question" id="question" lang="ja"></h2><div class="choices" id="choices" role="group" aria-label="Choose one answer"></div><div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div><div class="action-row"><button type="button" class="btn primary" id="checkBtn" disabled>Check answer ✓</button><button type="button" class="btn primary" id="nextBtn" hidden>Next question →</button></div></article></div>
  <p class="footer-note">Your score counts first attempts only. If an answer is wrong, you'll get a hint and another try. 💗</p>
 </section>
-<section class="screen panel results screen-fade" id="done" hidden><div class="result-icon">🏆🌸</div><span class="eyebrow">N5 Reading Garden · Set 1</span><h1>よくできました！<br>Well done, <span id="resultName"></span>!</h1><div class="score"><span id="resultScore">0</span><span id="resultTotal">/ 25</span></div><p class="score-message" id="resultMessage"></p>
+<section class="screen panel results screen-fade" id="done" hidden><div class="result-icon">🏆🌸</div><span class="eyebrow">N5 Reading Garden</span><h1>よくできました！<br>Well done, <span id="resultName"></span>!</h1><div class="score"><span id="resultScore">0</span><span id="resultTotal">/ 25</span></div><p class="score-message" id="resultMessage"></p>
  <div class="stats"><div class="stat"><strong id="resultFirst">0</strong>First-try correct</div><div class="stat"><strong id="resultPractice">0</strong>Practised with hints</div><div class="stat"><strong id="resultPassages">5</strong>Passages completed</div></div>
  <div class="button-bar"><button class="btn primary" type="button" id="replayBtn">🔄 Play again</button><button class="btn outline" type="button" id="copyBtn">📋 Copy result</button><button class="btn secondary" type="button" id="homeBtn">Back to start</button></div>
  <div class="review"><h2>📖 Review questions to practise</h2><div id="reviewList"></div></div><p class="note">Take a screenshot to show your teacher your score!</p>
@@ -134,7 +134,7 @@ $('nextBtn').addEventListener('click',next);
 $('replayBtn').addEventListener('click',()=>newGame(game.name));
 $('homeBtn').addEventListener('click',()=>{game=null;show('intro');$('nameInput').focus();});
 $('copyBtn').addEventListener('click',async()=>{
- const value=`Japanese Reading N5 – Set 1\nName: ${game.name}\nScore: ${game.score}/${TOTAL}\nDate: ${new Date().toLocaleDateString('en-MY')}\nFirst-try correct: ${game.score}\nPractice questions: ${TOTAL-game.score}`;
+ const value=`Japanese Reading N5\nName: ${game.name}\nScore: ${game.score}/${TOTAL}\nDate: ${new Date().toLocaleDateString('en-MY')}\nFirst-try correct: ${game.score}\nPractice questions: ${TOTAL-game.score}`;
  try{await navigator.clipboard.writeText(value);$('copyBtn').textContent='Copied! ✓';}
  catch(e){$('copyBtn').textContent='Screenshot your score 📸';}
 });

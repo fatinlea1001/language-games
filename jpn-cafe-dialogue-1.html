@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fff5fa">
 <meta name="description" content="Japanese N5/N4 café dialogue quiz. Choose natural replies from custom dropdowns with hover/tap furigana, hints and score.">
-<title>Japanese Café Conversations — N5/N4 Set 1</title>
+<title>Japanese Café Conversations — N5/N4 </title>
 <style>
 :root{--ink:#473c4b;--sub:#756779;--pink:#cf6393;--pinkdark:#ae4679;--rose:#fff0f6;--cream:#fffaf3;--peach:#ffeadd;--stroke:#efdce8;--white:#fff;--ok:#2f775a;--bad:#ab5471;--shadow:0 14px 45px rgba(111,64,92,.10)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:var(--ink);background:radial-gradient(circle at 5% 3%,#ffe8ef 0,transparent 27%),radial-gradient(circle at 95% 35%,#fdf1de 0,transparent 31%),linear-gradient(140deg,#fff7fb,#fffefa 65%,#f6f1ff);min-height:100vh;line-height:1.65}
@@ -21,11 +21,11 @@ ruby{ruby-position:over;cursor:help}rb{font-weight:inherit}rt{font-size:.60em;fo
 </style>
 </head>
 <body>
-<header><div class="nav"><div class="brand">🌸 にほんご Café Conversations <small>Interactive Japanese dialogues · Set 1</small></div><span class="pill">☕ N5 + N4</span></div></header>
+<header><div class="nav"><div class="brand">🌸 にほんご Café Conversations <small>Interactive Japanese dialogues</small></div><span class="pill">☕ N5 + N4</span></div></header>
 <main>
 <section class="card intro" id="intro">
  <div class="kawaii" aria-hidden="true">☕🍰🌸</div>
- <div class="eyebrow">Japanese Café Conversations · Set 1</div>
+ <div class="eyebrow">Japanese Café Conversations</div>
  <h1>カフェで<ruby tabindex="0"><rb>話</rb><rt>はな</rt></ruby>そう！<br><span style="font-size:.65em;color:var(--pinkdark)">Let's Talk at a Café!</span></h1>
  <p class="lede">Complete 10 mini-dialogues by choosing the most natural Japanese reply. Start at the café door and finish at the cashier!</p>
  <div class="chips"><span class="chip">💬 10 conversations</span><span class="chip">🌷 N5 → N4</span><span class="chip">あ Hover/tap furigana</span><span class="chip">💡 Hints + retry</span></div>
@@ -53,7 +53,7 @@ ruby{ruby-position:over;cursor:help}rb{font-weight:inherit}rt{font-size:.60em;fo
   <div class="footer-actions"><button class="btn primary" type="button" id="checkBtn" disabled>Check my reply ✓</button><button class="btn primary" type="button" id="nextBtn" hidden>Next dialogue →</button></div>
  </article>
 </section>
-<section class="card result-panel" id="results" hidden><div class="kawaii" aria-hidden="true">🏆🍵🌸</div><div class="eyebrow">Café Conversations · Set 1</div><h1>よくできました！<br>Well done, <span id="doneName"></span>!</h1><div class="big-score"><span id="doneScore">0</span><small>/ 10</small></div><p id="doneText"></p><div class="stats"><div class="stat"><b id="firstCount">0</b>First-try answers</div><div class="stat"><b id="practisedCount">0</b>Practised with hints</div></div><div class="btn-row"><button type="button" class="btn primary" id="replayBtn">🔄 Replay</button><button type="button" class="btn secondary" id="copyBtn">📋 Copy my score</button><button type="button" class="btn outline" id="homeBtn">Back to start</button></div><div class="review"><h3>📘 Replies to review</h3><div id="reviewItems"></div></div><p class="small">You can take a screenshot of this result to save your progress.</p></section>
+<section class="card result-panel" id="results" hidden><div class="kawaii" aria-hidden="true">🏆🍵🌸</div><div class="eyebrow">Café Conversations</div><h1>よくできました！<br>Well done, <span id="doneName"></span>!</h1><div class="big-score"><span id="doneScore">0</span><small>/ 10</small></div><p id="doneText"></p><div class="stats"><div class="stat"><b id="firstCount">0</b>First-try answers</div><div class="stat"><b id="practisedCount">0</b>Practised with hints</div></div><div class="btn-row"><button type="button" class="btn primary" id="replayBtn">🔄 Replay</button><button type="button" class="btn secondary" id="copyBtn">📋 Copy my score</button><button type="button" class="btn outline" id="homeBtn">Back to start</button></div><div class="review"><h3>📘 Replies to review</h3><div id="reviewItems"></div></div><p class="small">You can take a screenshot of this result to save your progress.</p></section>
 <p class="foot">☕ One conversation at a time. Speak naturally, learn a little, repeat. 🌸</p>
 </main>
 <script id="quiz-data" type="application/json">
@@ -145,7 +145,7 @@ function start(event){if(event)event.preventDefault();const name=$('studentNameI
 $('startForm').addEventListener('submit',start);$('pickerTrigger').addEventListener('click',()=>{$('pickerMenu').hidden?openMenu():closeMenu()});$('checkBtn').addEventListener('click',check);$('nextBtn').addEventListener('click',next);
 $('readDialogue').addEventListener('click',()=>{const on=$('conversation').classList.toggle('reveal-readings');$('readDialogue').setAttribute('aria-pressed',String(on));$('readDialogue').textContent=on?'あ Hide dialogue readings':'あ Show dialogue readings'});
 $('replayBtn').addEventListener('click',()=>start());$('homeBtn').addEventListener('click',()=>{state=null;show('intro');$('studentNameInput').focus()});
-$('copyBtn').addEventListener('click',async()=>{const content=`Japanese Café Conversations — N5/N4 Set 1\nName: ${state.name}\nScore: ${state.score}/10\nDate: ${new Date().toLocaleDateString('en-MY')}`;try{await navigator.clipboard.writeText(content);$('copyBtn').textContent='Copied! ✓'}catch{$('copyBtn').textContent='Take a screenshot 📸'}});
+$('copyBtn').addEventListener('click',async()=>{const content=`Japanese Café Conversations — N5/N4 \nName: ${state.name}\nScore: ${state.score}/10\nDate: ${new Date().toLocaleDateString('en-MY')}`;try{await navigator.clipboard.writeText(content);$('copyBtn').textContent='Copied! ✓'}catch{$('copyBtn').textContent='Take a screenshot 📸'}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('pickerMenu').hidden)closeMenu()});
 </script>
 </body>
