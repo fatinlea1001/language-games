@@ -90,6 +90,49 @@ jobs:
               # E-book topic is a standalone lesson, not a numbered set.
               if key == 'eng-writing-elaboration-ebooks':
                   return 'SPM Elaboration Builder — E-books (EASY)'
+              if key == 'eng-speakingpart2' and match:
+                  speaking_topics = {
+                      '1': 'My Hometown / My Favourite Place / A Memorable Trip',
+                      '2': 'A School Event / Helping the Environment / A Useful Mobile App',
+                      '3': 'A Healthy Habit / An Online Purchase / Helping a Friend',
+                      '4': 'A Favourite Restaurant / A Birthday Celebration / A Gift I Received',
+                      '5': 'An Online Game / A Useful Website / A Social Media Influencer',
+                      '6': 'A Family Gathering / Malaysian Food / A Festival',
+                      '7': 'A Movie / A Book / A Song',
+                      '8': 'A School Competition / A Teacher / A Club',
+                      '9': 'Saving Money / Shopping / Something to Buy',
+                      '10': 'A Dream Career / A Skill / A Future Goal',
+                  }
+                  if match.group(2) in speaking_topics:
+                      return 'SPM Speaking Part 2 — ' + speaking_topics[match.group(2)]
+              if key == 'jpn-story-emoji-fill' and match:
+                  story_topics = {
+                      '1': 'School Festival',
+                      '2': 'Rainy Afternoon',
+                      '3': 'Weekend Shopping',
+                      '4': 'Trip to the Sea',
+                      '5': 'Cooking with Family',
+                      '6': 'Studying at the Library',
+                      '7': 'Morning in the Park',
+                      '8': "Friend's Birthday",
+                      '9': 'First Part-Time Job',
+                      '10': 'Hiking in the Mountains',
+                  }
+                  if match.group(2) in story_topics:
+                      return 'Japanese Emoji Story Fill — ' + story_topics[match.group(2)]
+              if key == 'jpn-spelling-kanji-katakana' and match:
+                  spell_topics = {
+                      '1': 'Mixed Kanji & Katakana',
+                      '2': 'Mixed Kanji & Katakana',
+                      '3': 'Daily Life & Home',
+                      '4': 'School & Learning',
+                      '5': 'Travel & Transport',
+                      '6': 'Feelings & Everyday Actions',
+                      '7': 'Shopping & Work',
+                  }
+                  if match.group(2) in spell_topics:
+                      suffix = ' (Set ' + match.group(2) + ')' if int(match.group(2)) <= 2 else ''
+                      return 'Kanji & Katakana Spell-Off — ' + spell_topics[match.group(2)] + suffix
               if key == 'eng-speakingpart3' and match:
                   # Read the topic directly from each game's title so new sets
                   # get informative directory labels automatically.
@@ -200,65 +243,9 @@ jobs:
               'Recently updated games appear first in each category.'
           ]
 
-          # Only keep set numbers when removing them would make distinct games indistinguishable.
+          # Prefer topic names. Keep a set number only if titles would collide.
           def without_set(label):
-              return re.sub(r'\\s*\\(Set\\s+\\d+\\)\\s*
-              items = sorted(
-                  groups[group],
-                  key=lambda x: (x[0], str(x[1])),
-                  reverse=True
-              )
-              if not items:
-                  continue
-
-              lines += ['', f'### {emoji} {group} Games']
-
-              for updated, path in items:
-                  url = base + quote(path.as_posix(), safe='/')
-                  date = (
-                      datetime.fromtimestamp(updated, malaysia_time).strftime('%d %b %Y')
-                      if updated else ''
-                  )
-                  original_title = title(path)
-                  clean_title = without_set(original_title)
-                  display_title = clean_title if clean_counts[clean_title] == 1 else original_title
-                  lines.append(
-                      f'- [{display_title}]({url})' +
-                      (f' — updated {date}' if date else '')
-                  )
-
-          lines += [
-              '',
-              '_This directory is maintained by GitHub Actions._',
-              end
-          ]
-
-          directory = '\n'.join(lines)
-          readme = Path('README.md')
-          old = readme.read_text(encoding='utf-8') if readme.exists() else ''
-
-          if start in old and end in old:
-              before = old.split(start, 1)[0].rstrip()
-              after = old.split(end, 1)[1].lstrip('\n')
-              new = (before + '\n\n' if before else '') + directory + '\n' + after
-          else:
-              new = (old.rstrip() + '\n\n' if old.strip() else '') + directory + '\n'
-
-          readme.write_text(new, encoding='utf-8')
-          PY
-
-      - name: Save updated README
-        run: |
-          if git diff --quiet -- README.md; then
-            echo 'Directory already up to date.'
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add README.md
-          git commit -m 'Automatically update game directory'
-          git push
-, '', label, flags=re.I)
+              return re.sub(r'\s*\((?:(?:N5(?:/N4)?)\s+)?Set\s+\d+\)\s*$', '', label, flags=re.I)
 
           clean_counts = Counter(
               without_set(title(path))
@@ -287,8 +274,11 @@ jobs:
                       datetime.fromtimestamp(updated, malaysia_time).strftime('%d %b %Y')
                       if updated else ''
                   )
+                  original_title = title(path)
+                  clean_title = without_set(original_title)
+                  display_title = clean_title if clean_counts[clean_title] == 1 else original_title
                   lines.append(
-                      f'- [{title(path)}]({url})' +
+                      f'- [{display_title}]({url})' +
                       (f' — updated {date}' if date else '')
                   )
 
