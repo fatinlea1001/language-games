@@ -700,6 +700,58 @@ function updateJapaneseCounts(){
  });
  document.getElementById('allJapaneseCount').textContent='('+japanese.length+')';
 }
+
+function sampleTypeFor(g){
+ const theme=(g.theme||'').toLowerCase(),title=(g.title||'').toLowerCase(),name=(g.file||'').toLowerCase();
+ if(theme.includes('sample email')||title.startsWith('sample email')||/-e-?mail[-.]/.test(name))return 'Email';
+ if(theme.includes('sample report')||title.startsWith('sample report')||/-report[-.]/.test(name))return 'Report';
+ if(theme.includes('sample review')||title.startsWith('sample review')||title.startsWith('sample movie review')||/-review[-.]/.test(name)||name.includes('animal-shelter'))return 'Review';
+ if(theme.includes('sample article')||title.startsWith('sample article')||/-(digital-revolution|teenagers-ai|teenagers-pets)-/.test(name))return 'Article';
+ if(theme.includes('sample story')||title.startsWith('sample story')||/-(story|narrative)[-.]/.test(name))return 'Story';
+ return 'Essay';
+}
+function updateSampleTypes(){
+ const show=activeLanguage==='English'&&activeCategory==='Sample Essays';
+ sampleTypes.hidden=!show;allSampleTypes.hidden=activeSampleType==='All';
+ sampleTypeButtons.forEach(b=>{
+  const genre=b.dataset.sampleType;
+  const n=games.filter(g=>g.kind==='English'&&g.category==='Sample Essays'&&sampleTypeFor(g)===genre).length;
+  b.querySelector('.sample-type-count').textContent=n+' '+(n===1?'sample':'samples');
+  b.setAttribute('aria-pressed',String(activeSampleType===genre));
+ });
+}
+function pageButton(label,page,disabled,description,selected=false){
+ const b=document.createElement('button');b.type='button';b.className='page-button';b.dataset.page=String(page);b.textContent=label;
+ b.setAttribute('aria-label',description);b.disabled=disabled;if(selected)b.setAttribute('aria-current','page');
+ return b;
+}
+function renderPager(nav,n){
+ nav.replaceChildren();nav.hidden=!loaded||n<=1;if(nav.hidden)return;
+ const stat=document.createElement('span');stat.className='page-status';stat.textContent='Page '+currentPage+' of '+n;
+ nav.append(stat,pageButton('‹ Prev',currentPage-1,currentPage===1,'Previous page'));
+ const pages=[...new Set([1,n,currentPage-1,currentPage,currentPage+1].filter(i=>i>=1&&i<=n))].sort((a,b)=>a-b);let last=0;
+ pages.forEach(p=>{
+  if(p-last>1){const gap=document.createElement('span');gap.className='page-ellipsis';gap.textContent='…';gap.setAttribute('aria-hidden','true');nav.append(gap);}
+  nav.append(pageButton(String(p),p,false,'Page '+p,p===currentPage));last=p;
+ });
+ nav.append(pageButton('Next ›',currentPage+1,currentPage===n,'Next page'));
+}
+function changePage(page){
+ if(!Number.isInteger(page)||page<1||page===currentPage)return;
+ currentPage=page;render();
+ const heading=document.getElementById('sectionTitle');
+ if(heading&&heading.scrollIntoView)heading.scrollIntoView({behavior:'smooth',block:'start'});
+}
+[paginationTop,paginationBottom].forEach(nav=>nav.addEventListener('click',event=>{
+ const b=event.target.closest('button[data-page]');if(!b||b.disabled)return;
+ changePage(Number(b.dataset.page));
+}));
+sampleTypeButtons.forEach(b=>b.addEventListener('click',()=>{
+ activeSampleType=activeSampleType===b.dataset.sampleType?'All':b.dataset.sampleType;
+ currentPage=1;updateFilters();render();
+}));
+allSampleTypes.addEventListener('click',()=>{activeSampleType='All';currentPage=1;updateFilters();render();});
+
 function updateFilters(){
  const english=activeLanguage==='English';
  englishCategories.hidden=!english;
@@ -710,6 +762,7 @@ function updateFilters(){
  categoryButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.category===activeCategory)));
  spmButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.part===activeSpmPart)));
  allSpm.hidden=activeSpmPart==='All';
+ updateSampleTypes();
  if(english){
   const heading={
    'SPM Practice':'📝 SPM Practice',
