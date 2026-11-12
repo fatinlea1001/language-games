@@ -95,7 +95,7 @@ const bodyParagraphs=()=>state.finished.join("\n\n");
 
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
 const vocabRx=new RegExp("\\b("+Object.keys(vocab).sort((a,b)=>b.length-a.length).join("|")+")\\b","gi");
-const withVocab=s=>escapeHTML(s).replace(vocabRx,word=>{const info=vocab[word.toLowerCase()],level=info.level,meaning=info.meaning;return '<span class="vocab vocab-'+level.toLowerCase()+'" role="button" tabindex="0" aria-label="'+escapeHTML(word+' ('+level+'): '+meaning)+'">'+word+'<span class="vocab-tooltip"><strong>'+level+'</strong> · '+escapeHTML(meaning)+'</span></span>';});
+const withVocab=s=>escapeHTML(s).replace(vocabRx,word=>{const [level,meaning]=vocab[word.toLowerCase()];return '<span class="vocab vocab-'+level.toLowerCase()+'" role="button" tabindex="0" aria-label="'+escapeHTML(word+' ('+level+'): '+meaning)+'">'+word+'<span class="vocab-tooltip"><strong>'+level+'</strong> · '+escapeHTML(meaning)+'</span></span>';});
 const task=()=>tasks[state.index],part=()=>task().steps[state.step];
 const overallTotal=tasks.reduce((n,t)=>n+t.steps.length,0);
 const progress=()=>'<div class="progress" aria-label="Body paragraph '+(state.index+1)+' of three">'+tasks.map((_,i)=>'<span class="'+(i<state.index?'done':i===state.index?'active':'')+'"></span>').join("")+'</div>';
