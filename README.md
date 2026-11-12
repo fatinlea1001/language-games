@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**257 games** — automatically updated when an HTML game is added or changed.
+**259 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — School Canteen Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-school-canteen-review-normal.html) — updated 12 Nov 2026
+- [Sample Essay — School Canteen Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-school-canteen-review-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — School Canteen Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-school-canteen-review-normal.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — School Canteen Review (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-school-canteen-review-easy.html) — updated 12 Nov 2026
 - [Sample Essay — Independence Day (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-independence-day-normal.html) — updated 12 Nov 2026
