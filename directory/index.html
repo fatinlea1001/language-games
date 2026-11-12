@@ -180,6 +180,7 @@ html.embedded-view .game-sub{gap:4px}
       <div class="spm-grid" role="group" aria-label="Choose an SPM paper and part">
         <button class="spm-part" type="button" data-part="Reading Part 4" aria-pressed="false">Reading Part 4</button>
         <button class="spm-part" type="button" data-part="Writing Part 2" aria-pressed="false">Writing Part 2</button>
+        <button class="spm-part" type="button" data-part="Writing Part 3" aria-pressed="false">Writing Part 3</button>
         <button class="spm-part" type="button" data-part="Speaking Part 2" aria-pressed="false">Speaking Part 2</button>
         <button class="spm-part" type="button" data-part="Speaking Part 3" aria-pressed="false">Speaking Part 3</button>
       </div>
@@ -470,6 +471,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Essay — Reading E-books Among Teenagers (EASY)',topics:['E-books','Teenage Reading'],theme:'SPM Writing Part 2 · Sample Essay'};
  if(stem==='eng-sample-essay-ebooks-normal')
   return {label:'Sample Essay — Reading E-books Among Teenagers (NORMAL)',topics:['E-books','Teenage Reading'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-writing-elaboration-digital-revolution-easy')
+  return {label:'SPM Elaboration Builder — The Digital Revolution (EASY)',topics:['Digital Revolution','Communication'],theme:'SPM Writing Part 3 · Article'};
+ if(stem==='eng-writing-elaboration-digital-revolution-normal')
+  return {label:'SPM Elaboration Builder — The Digital Revolution (NORMAL)',topics:['Digital Revolution','Communication'],theme:'SPM Writing Part 3 · Article'};
+ if(stem==='eng-sample-essay-digital-revolution-easy')
+  return {label:'Sample Article — The Digital Revolution (EASY)',topics:['Digital Revolution','Communication'],theme:'SPM Writing Part 3 · Sample Article'};
+ if(stem==='eng-sample-essay-digital-revolution-normal')
+  return {label:'Sample Article — The Digital Revolution (NORMAL)',topics:['Digital Revolution','Communication'],theme:'SPM Writing Part 3 · Sample Article'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
@@ -496,6 +505,7 @@ function classifyEnglishGame(file){
  const name=file.toLowerCase();
  if(name.startsWith('eng-sample-essay-'))return {category:'Sample Essays',spmPart:''};
  if(/^eng-(missingsentence-|missing-)/.test(name))return {category:'SPM Practice',spmPart:'Reading Part 4'};
+ if(/^eng-writing-elaboration-digital-revolution-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-/.test(name) || /^eng-elaboration-/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 2'};
  if(/^eng-speakingpart2-/.test(name))return {category:'SPM Practice',spmPart:'Speaking Part 2'};
  if(/^eng-speakingpart3-/.test(name))return {category:'SPM Practice',spmPart:'Speaking Part 3'};
