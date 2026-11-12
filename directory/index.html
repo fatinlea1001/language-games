@@ -535,6 +535,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Movie Review — Kudrat 1968: High Council (EASY)',topics:['Malaysian Films','Movie Review','Bullying'],theme:'SPM Writing Part 3 · Sample Review'};
  if(stem==='eng-sample-essay-kudrat-1968-review-normal')
   return {label:'Sample Movie Review — Kudrat 1968: High Council (NORMAL)',topics:['Malaysian Films','Movie Review','Bullying'],theme:'SPM Writing Part 3 · Sample Review'};
+ if(stem==='eng-writing-elaboration-teenagers-pets-easy')
+  return {label:'SPM Elaboration Builder — Teenagers and Pets (EASY)',topics:['Pets','Animal Care','Responsibility'],theme:'SPM Writing Part 3 · Article'};
+ if(stem==='eng-writing-elaboration-teenagers-pets-normal')
+  return {label:'SPM Elaboration Builder — Teenagers and Pets (NORMAL)',topics:['Pets','Animal Care','Responsibility'],theme:'SPM Writing Part 3 · Article'};
+ if(stem==='eng-sample-essay-teenagers-pets-easy')
+  return {label:'Sample Article — Teenagers and Pets (EASY)',topics:['Pets','Animal Care','Responsibility'],theme:'SPM Writing Part 3 · Sample Article'};
+ if(stem==='eng-sample-essay-teenagers-pets-normal')
+  return {label:'Sample Article — Teenagers and Pets (NORMAL)',topics:['Pets','Animal Care','Responsibility'],theme:'SPM Writing Part 3 · Sample Article'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
@@ -561,6 +569,7 @@ function classifyEnglishGame(file){
  const name=file.toLowerCase();
  if(name.startsWith('eng-sample-essay-'))return {category:'Sample Essays',spmPart:''};
  if(/^eng-(missingsentence-|missing-)/.test(name))return {category:'SPM Practice',spmPart:'Reading Part 4'};
+ if(/^eng-writing-elaboration-teenagers-pets-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-kudrat-1968-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-spending-habits-report-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-animal-shelter-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
