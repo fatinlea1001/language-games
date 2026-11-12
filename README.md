@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**271 games** — automatically updated when an HTML game is added or changed.
+**273 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Spending Habits Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-spending-habits-report-normal.html) — updated 12 Nov 2026
+- [SPM Elaboration Builder — Spending Habits Report (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-spending-habits-report-easy.html) — updated 12 Nov 2026
 - [Sample Essay — Animal Shelter (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-animal-shelter-normal.html) — updated 12 Nov 2026
 - [Sample Essay — Animal Shelter (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-animal-shelter-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Animal Shelter (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-animal-shelter-normal.html) — updated 12 Nov 2026
