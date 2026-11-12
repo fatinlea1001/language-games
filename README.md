@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**277 games** — automatically updated when an HTML game is added or changed.
+**279 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Kudrat 1968 Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-normal.html) — updated 13 Nov 2026
+- [Sample Essay — Kudrat 1968 Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Kudrat 1968 Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-kudrat-1968-review-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Kudrat 1968 Review (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-kudrat-1968-review-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Spending Habits Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-spending-habits-report-normal.html) — updated 13 Nov 2026
