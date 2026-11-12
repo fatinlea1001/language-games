@@ -113,7 +113,7 @@ document.getElementById("copyEssay").addEventListener("click",async()=>{
   else{
    const box=document.createElement("textarea");box.value=text;box.setAttribute("readonly","");box.style.position="fixed";box.style.opacity="0";document.body.appendChild(box);box.select();const result=document.execCommand("copy");box.remove();if(!result)throw Error("Clipboard unavailable");
   }
-  copyStatus.textContent="✓ Full essay copied!";
+  copyStatus.textContent="✓ Full review copied!";
  }catch(err){copyStatus.textContent="Clipboard unavailable. You can still select and copy the essay manually."}
 });
 document.getElementById("printEssay").addEventListener("click",()=>window.print());
