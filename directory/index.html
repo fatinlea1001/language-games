@@ -503,6 +503,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Essay — Entertainment Media and Learning (EASY)',topics:['English-Language Movies','Entertainment Media'],theme:'SPM Writing Part 2 · Sample Essay'};
  if(stem==='eng-sample-essay-entertainment-learning-normal')
   return {label:'Sample Essay — Entertainment Media and Learning (NORMAL)',topics:['English-Language Movies','Entertainment Media'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-writing-elaboration-animal-shelter-easy')
+  return {label:'SPM Elaboration Builder — Animal Shelter Visit (EASY)',topics:['Animal Shelter','School Trip','Animal Welfare'],theme:'SPM Writing Part 3 · Review'};
+ if(stem==='eng-writing-elaboration-animal-shelter-normal')
+  return {label:'SPM Elaboration Builder — Animal Shelter Visit (NORMAL)',topics:['Animal Shelter','School Trip','Animal Welfare'],theme:'SPM Writing Part 3 · Review'};
+ if(stem==='eng-sample-essay-animal-shelter-easy')
+  return {label:'Sample Review — Animal Shelter Visit (EASY)',topics:['Animal Shelter','School Trip','Animal Welfare'],theme:'SPM Writing Part 3 · Sample Review'};
+ if(stem==='eng-sample-essay-animal-shelter-normal')
+  return {label:'Sample Review — Animal Shelter Visit (NORMAL)',topics:['Animal Shelter','School Trip','Animal Welfare'],theme:'SPM Writing Part 3 · Sample Review'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
@@ -529,6 +537,7 @@ function classifyEnglishGame(file){
  const name=file.toLowerCase();
  if(name.startsWith('eng-sample-essay-'))return {category:'Sample Essays',spmPart:''};
  if(/^eng-(missingsentence-|missing-)/.test(name))return {category:'SPM Practice',spmPart:'Reading Part 4'};
+ if(/^eng-writing-elaboration-animal-shelter-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-teenagers-ai-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-school-canteen-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-digital-revolution-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
