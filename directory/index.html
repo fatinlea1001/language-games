@@ -527,6 +527,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Essay — Cyberbullying on Social Media (EASY)',topics:['Cyberbullying','Online Safety'],theme:'SPM Writing Part 2 · Sample Essay'};
  if(stem==='eng-sample-essay-cyberbullying-normal')
   return {label:'Sample Essay — Cyberbullying on Social Media (NORMAL)',topics:['Cyberbullying','Online Safety'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-writing-elaboration-kudrat-1968-review-easy')
+  return {label:'SPM Elaboration Builder — Kudrat 1968: High Council (EASY)',topics:['Malaysian Films','Movie Review','Bullying'],theme:'SPM Writing Part 3 · Review'};
+ if(stem==='eng-writing-elaboration-kudrat-1968-review-normal')
+  return {label:'SPM Elaboration Builder — Kudrat 1968: High Council (NORMAL)',topics:['Malaysian Films','Movie Review','Bullying'],theme:'SPM Writing Part 3 · Review'};
+ if(stem==='eng-sample-essay-kudrat-1968-review-easy')
+  return {label:'Sample Movie Review — Kudrat 1968: High Council (EASY)',topics:['Malaysian Films','Movie Review','Bullying'],theme:'SPM Writing Part 3 · Sample Review'};
+ if(stem==='eng-sample-essay-kudrat-1968-review-normal')
+  return {label:'Sample Movie Review — Kudrat 1968: High Council (NORMAL)',topics:['Malaysian Films','Movie Review','Bullying'],theme:'SPM Writing Part 3 · Sample Review'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
@@ -553,6 +561,7 @@ function classifyEnglishGame(file){
  const name=file.toLowerCase();
  if(name.startsWith('eng-sample-essay-'))return {category:'Sample Essays',spmPart:''};
  if(/^eng-(missingsentence-|missing-)/.test(name))return {category:'SPM Practice',spmPart:'Reading Part 4'};
+ if(/^eng-writing-elaboration-kudrat-1968-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-spending-habits-report-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-animal-shelter-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-teenagers-ai-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
