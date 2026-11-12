@@ -519,6 +519,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Report — Pupils’ Spending Habits (EASY)',topics:['Financial Literacy','Spending Habits'],theme:'SPM Writing Part 3 · Sample Report'};
  if(stem==='eng-sample-essay-spending-habits-report-normal')
   return {label:'Sample Report — Pupils’ Spending Habits (NORMAL)',topics:['Financial Literacy','Spending Habits'],theme:'SPM Writing Part 3 · Sample Report'};
+ if(stem==='eng-writing-elaboration-cyberbullying-easy')
+  return {label:'SPM Elaboration Builder — Cyberbullying on Social Media (EASY)',topics:['Cyberbullying','Online Safety','Social Media'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-writing-elaboration-cyberbullying-normal')
+  return {label:'SPM Elaboration Builder — Cyberbullying on Social Media (NORMAL)',topics:['Cyberbullying','Online Safety','Social Media'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-sample-essay-cyberbullying-easy')
+  return {label:'Sample Essay — Cyberbullying on Social Media (EASY)',topics:['Cyberbullying','Online Safety'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-sample-essay-cyberbullying-normal')
+  return {label:'Sample Essay — Cyberbullying on Social Media (NORMAL)',topics:['Cyberbullying','Online Safety'],theme:'SPM Writing Part 2 · Sample Essay'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
