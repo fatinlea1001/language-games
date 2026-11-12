@@ -511,6 +511,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Review — Animal Shelter Visit (EASY)',topics:['Animal Shelter','School Trip','Animal Welfare'],theme:'SPM Writing Part 3 · Sample Review'};
  if(stem==='eng-sample-essay-animal-shelter-normal')
   return {label:'Sample Review — Animal Shelter Visit (NORMAL)',topics:['Animal Shelter','School Trip','Animal Welfare'],theme:'SPM Writing Part 3 · Sample Review'};
+ if(stem==='eng-writing-elaboration-spending-habits-report-easy')
+  return {label:'SPM Elaboration Builder — Spending Habits Report (EASY)',topics:['Financial Literacy','Spending Habits','Survey Report'],theme:'SPM Writing Part 3 · Report'};
+ if(stem==='eng-writing-elaboration-spending-habits-report-normal')
+  return {label:'SPM Elaboration Builder — Spending Habits Report (NORMAL)',topics:['Financial Literacy','Spending Habits','Survey Report'],theme:'SPM Writing Part 3 · Report'};
+ if(stem==='eng-sample-essay-spending-habits-report-easy')
+  return {label:'Sample Report — Pupils’ Spending Habits (EASY)',topics:['Financial Literacy','Spending Habits'],theme:'SPM Writing Part 3 · Sample Report'};
+ if(stem==='eng-sample-essay-spending-habits-report-normal')
+  return {label:'Sample Report — Pupils’ Spending Habits (NORMAL)',topics:['Financial Literacy','Spending Habits'],theme:'SPM Writing Part 3 · Sample Report'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
@@ -537,6 +545,7 @@ function classifyEnglishGame(file){
  const name=file.toLowerCase();
  if(name.startsWith('eng-sample-essay-'))return {category:'Sample Essays',spmPart:''};
  if(/^eng-(missingsentence-|missing-)/.test(name))return {category:'SPM Practice',spmPart:'Reading Part 4'};
+ if(/^eng-writing-elaboration-spending-habits-report-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-animal-shelter-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-teenagers-ai-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-school-canteen-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
