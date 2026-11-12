@@ -7,6 +7,8 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-normal.html) — updated 12 Nov 2026
+- [Sample Essay — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-normal.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-easy.html) — updated 12 Nov 2026
 - [Sample Essay — Spending Habits Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-spending-habits-report-normal.html) — updated 12 Nov 2026
@@ -39,8 +41,6 @@ Recently updated games appear first in each category.
 - [SPM Elaboration Builder — Digital Revolution (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-digital-revolution-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — E-books (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-3.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — E-books (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-normal.html) — updated 11 Nov 2026
-- [Sample Essay — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-normal.html) — updated 11 Nov 2026
-- [Sample Essay — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-easy.html) — updated 11 Nov 2026
 - [Sample Essay — Reading E-books Among Teenagers (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ebooks-normal.html) — updated 11 Nov 2026
 - [Sample Essay — Reading E-books Among Teenagers (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ebooks-easy.html) — updated 11 Nov 2026
 - [SPM Speaking Part 2 — Saving Money / Shopping / Something to Buy](https://fatinlea1001.github.io/language-games/eng-speakingpart2-9.html) — updated 11 Nov 2026
