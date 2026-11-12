@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**263 games** — automatically updated when an HTML game is added or changed.
+**264 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Entertainment Learning (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-entertainment-learning-easy.html) — updated 12 Nov 2026
 - [Sample Essay — Teenagers Ai (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-ai-normal.html) — updated 12 Nov 2026
 - [Sample Essay — Teenagers Ai (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-ai-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Teenagers Ai (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-teenagers-ai-normal.html) — updated 12 Nov 2026
