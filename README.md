@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**285 games** — automatically updated when an HTML game is added or changed.
+**287 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Capcut Mobile App (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-capcut-mobile-app-normal.html) — updated 13 Nov 2026
+- [Sample Essay — Capcut Mobile App (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-capcut-mobile-app-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Capcut Mobile App (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-capcut-mobile-app-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Capcut Mobile App (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-capcut-mobile-app-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Teenagers Pets (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-normal.html) — updated 13 Nov 2026
