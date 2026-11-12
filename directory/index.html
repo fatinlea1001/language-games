@@ -543,6 +543,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Article — Teenagers and Pets (EASY)',topics:['Pets','Animal Care','Responsibility'],theme:'SPM Writing Part 3 · Sample Article'};
  if(stem==='eng-sample-essay-teenagers-pets-normal')
   return {label:'Sample Article — Teenagers and Pets (NORMAL)',topics:['Pets','Animal Care','Responsibility'],theme:'SPM Writing Part 3 · Sample Article'};
+ if(stem==='eng-writing-elaboration-capcut-mobile-app-easy')
+  return {label:'SPM Elaboration Builder — CapCut Mobile Application (EASY)',topics:['Mobile Apps','CapCut','Phones at School'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-writing-elaboration-capcut-mobile-app-normal')
+  return {label:'SPM Elaboration Builder — CapCut Mobile Application (NORMAL)',topics:['Mobile Apps','CapCut','Phones at School'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-sample-essay-capcut-mobile-app-easy')
+  return {label:'Sample Essay — CapCut Mobile Application (EASY)',topics:['Mobile Apps','CapCut','Phones at School'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-sample-essay-capcut-mobile-app-normal')
+  return {label:'Sample Essay — CapCut Mobile Application (NORMAL)',topics:['Mobile Apps','CapCut','Phones at School'],theme:'SPM Writing Part 2 · Sample Essay'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
