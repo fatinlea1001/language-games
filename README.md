@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**251 games** — automatically updated when an HTML game is added or changed.
+**253 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Independence Day (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-independence-day-normal.html) — updated 12 Nov 2026
+- [SPM Elaboration Builder — Independence Day (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-independence-day-easy.html) — updated 12 Nov 2026
 - [Sample Essay — Digital Revolution (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-normal.html) — updated 12 Nov 2026
 - [Sample Essay — Digital Revolution (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Digital Revolution (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-digital-revolution-normal.html) — updated 12 Nov 2026
