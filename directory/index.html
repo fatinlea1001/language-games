@@ -787,6 +787,7 @@ function updateFilters(){
 }
 function switchLanguage(language){
  activeLanguage=language;
+ activeSampleType='All';currentPage=1;
  tabs.forEach(tab=>{
   const selected=tab.dataset.language===language;
   tab.setAttribute('aria-selected',String(selected));
@@ -809,7 +810,7 @@ tabs.forEach(tab=>{
 categoryButtons.forEach(button=>{
  button.addEventListener('click',()=>{
   activeCategory=button.dataset.category;
-  activeSpmPart='All';
+  activeSpmPart='All';activeSampleType='All';currentPage=1;
   field.value='';
   updateFilters();
   render();
@@ -818,6 +819,7 @@ categoryButtons.forEach(button=>{
 spmButtons.forEach(button=>{
  button.addEventListener('click',()=>{
   activeSpmPart=activeSpmPart===button.dataset.part?'All':button.dataset.part;
+  currentPage=1;
   updateFilters();
   render();
  });
@@ -825,19 +827,20 @@ spmButtons.forEach(button=>{
 japaneseCategoryButtons.forEach(button=>{
  button.addEventListener('click',()=>{
   activeJapaneseCategory=button.dataset.japaneseCategory;
+  currentPage=1;
   field.value='';
   updateFilters();
   render();
  });
 });
 allJapanese.addEventListener('click',()=>{
- activeJapaneseCategory='All';
+ activeJapaneseCategory='All';currentPage=1;
  field.value='';
  updateFilters();
  render();
 });
 allSpm.addEventListener('click',()=>{
- activeSpmPart='All';
+ activeSpmPart='All';currentPage=1;
  updateFilters();
  render();
 });
@@ -847,13 +850,17 @@ function render(){
   g.kind===activeLanguage &&
   (activeLanguage==='Japanese'
    ? (activeJapaneseCategory==='All' || g.japaneseCategory===activeJapaneseCategory)
-   : (g.category===activeCategory && (activeCategory!=='SPM Practice' || activeSpmPart==='All' || g.spmPart===activeSpmPart))) &&
+   : (g.category===activeCategory && (activeCategory!=='SPM Practice' || activeSpmPart==='All' || g.spmPart===activeSpmPart) && (activeCategory!=='Sample Essays' || activeSampleType==='All' || sampleTypeFor(g)===activeSampleType))) &&
   [g.title,g.topic,g.file,g.theme,g.category,g.spmPart,...g.topics].join(' ').toLocaleLowerCase().includes(q)
  );
  items.replaceChildren();
- if(!loaded){count.textContent='Loading games…';empty.hidden=true;return;}
+ if(!loaded){count.textContent='Loading games…';empty.hidden=true;paginationTop.hidden=true;paginationBottom.hidden=true;return;}
+ const pages=Math.max(1,Math.ceil(matches.length/PAGE_SIZE));
+ if(currentPage>pages)currentPage=pages;
+ const start=(currentPage-1)*PAGE_SIZE;
+ const visible=matches.slice(start,start+PAGE_SIZE);
  const fragment=document.createDocumentFragment();
- matches.forEach(g=>{
+ visible.forEach(g=>{
   const a=document.createElement('a');a.className='game';a.href=g.url;a.target='_blank';a.rel='noopener noreferrer';
   const em=document.createElement('span');em.className='game-emoji';em.style.setProperty('--emoji-bg',g.bg);em.textContent=g.emoji;
   const body=document.createElement('span');body.className='game-body';
@@ -868,17 +875,19 @@ function render(){
    topical.textContent='Topics: '+g.topics.join(' · ');
    body.append(topical);
   }
-  const go=document.createElement('span');go.className='go';go.textContent=g.category==='Sample Essays'?'Read essay ↗':'Play now ↗';
+  const go=document.createElement('span');go.className='go';go.textContent=g.category==='Sample Essays'?'Read sample ↗':'Play now ↗';
   a.append(em,body,go);fragment.append(a);
  });
  items.append(fragment);
+ renderPager(paginationTop,pages);renderPager(paginationBottom,pages);
  count.textContent=matches.length+' '+(activeLanguage==='English'&&activeCategory==='Sample Essays'?(matches.length===1?'sample essay':'sample essays'):(matches.length===1?'game':'games'));
  const scope=games.filter(g=>g.kind===activeLanguage &&
   (activeLanguage==='Japanese'
    ? (activeJapaneseCategory==='All'||g.japaneseCategory===activeJapaneseCategory)
    : g.category===activeCategory));
- totalHint.textContent=loaded?'in '+(activeLanguage==='English'?activeCategory:(activeJapaneseCategory==='All'?'Japanese':activeJapaneseCategory))+' · '+scope.length+' total':'';
+ totalHint.textContent=loaded?'· showing '+(matches.length?start+1:0)+'–'+Math.min(start+PAGE_SIZE,matches.length)+' of '+matches.length+' · '+scope.length+' total in '+(activeLanguage==='English'?activeCategory:(activeJapaneseCategory==='All'?'Japanese':activeJapaneseCategory)):'';
  empty.hidden=matches.length>0 || !loaded;
+ empty.textContent=activeLanguage==='English' && activeCategory==='Sample Essays' && activeSampleType!=='All' ? '📂 No '+activeSampleType.toLowerCase()+' samples found'+(q?' for this search.':' yet. New samples will appear here automatically.') : '🔍 No games found. Try another word!';
  clear.classList.toggle('visible',Boolean(field.value));
 }
 async function loadGames(){
@@ -901,12 +910,12 @@ async function loadGames(){
   loaded=false;
   count.textContent='Game list unavailable';
   syncLabel.textContent='Connection issue';
-  items.replaceChildren();
+  items.replaceChildren();paginationTop.hidden=true;paginationBottom.hidden=true;
   problem.hidden=false;
  }finally{items.setAttribute('aria-busy','false');}
 }
-field.addEventListener('input',render);
-clear.addEventListener('click',()=>{field.value='';render();field.focus();});
+field.addEventListener('input',()=>{currentPage=1;render();});
+clear.addEventListener('click',()=>{field.value='';currentPage=1;render();field.focus();});
 document.getElementById('retry').addEventListener('click',loadGames);
 updateFilters();render();loadGames();
 </script>
