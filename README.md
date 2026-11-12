@@ -3,10 +3,11 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**248 games** — automatically updated when an HTML game is added or changed.
+**249 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Digital Revolution (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-digital-revolution-normal.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Digital Revolution (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-digital-revolution-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — E-books (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-3.html) — updated 11 Nov 2026
 - [SPM Elaboration Builder — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-easy.html) — updated 11 Nov 2026
