@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6651a3">
+<meta name="description" content="SPM Writing Part 3 EASY sample review of an animal shelter visit, with hoverable BM C1 vocabulary.">
+<title>Sample Review — A Visit to an Animal Shelter (EASY)</title>
+<style>
+:root{--ink:#27314c;--muted:#68718b;--purple:#6e52a3;--b2:#176d70;--c1:#7951a5;--line:#e8e3f1;--paper:#fff;--soft:#f5f0fc}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,#eadfff 0,transparent 36%),radial-gradient(circle at 97% 11%,#e8faf5 0,transparent 34%),#faf8fe;color:var(--ink)}
+.shell{max-width:920px;margin:0 auto;padding:22px 18px 66px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.nav a{color:var(--purple);font-weight:750;text-decoration:none;font-size:.88rem}.nav a:hover{text-decoration:underline}
+.chip{border-radius:30px;padding:8px 12px;background:#fff;color:#7854a5;border:1px solid #e3d9f2;font-size:.76rem;font-weight:850}
+.hero{background:linear-gradient(117deg,#eee0fe 0%,#e7f9f2 100%);border:1px solid #e6dbf4;border-radius:24px;padding:28px 30px;margin-bottom:18px;box-shadow:0 9px 24px #8570b112}
+.kicker{color:#7153a3;font-size:.76rem;letter-spacing:.12em;font-weight:900;text-transform:uppercase}
+h1{font-size:clamp(1.65rem,4.6vw,2.45rem);letter-spacing:-.045em;line-height:1.2;margin:12px 0;color:#332e66}
+.hero p{line-height:1.65;color:#5a607a;margin:8px 0 0}
+.legend{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:17px;font-size:.85rem;color:#606984}
+.legend .sample{display:inline-flex;align-items:center;gap:5px;font-weight:800;padding:6px 11px;border-radius:9px;border:1px solid #dcdfe9;background:#fff}
+.legend .b2tag{color:var(--b2)}.legend .c1tag{color:var(--c1)}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:21px;padding:clamp(20px,4.2vw,34px);box-shadow:0 13px 34px #8473a310;margin-top:16px}
+.section-label{font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#8562a7;margin-bottom:10px}
+h2{font-size:1.24rem;line-height:1.35;margin:0 0 15px;color:#373258}
+.question{background:#f9f8fd;border:1px solid #e9e4f0;border-radius:15px;padding:16px 20px;font-size:.97rem;line-height:1.7}
+.question p{margin:8px 0}.question ul{margin:9px 0;padding-left:22px}.question li{margin:6px 0}
+.sample-essay{background:#fff;border-radius:17px}
+.essay-title{font-size:clamp(1.35rem,3.5vw,1.75rem);font-weight:850;line-height:1.3;text-align:center;margin:12px 0 29px;color:#303664}
+.essay-part{margin:0 0 24px}
+.part-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:850;color:#797b96;display:flex;align-items:center;gap:12px;margin:0 0 9px}
+.part-label:after{content:"";height:1px;background:#eeeaf4;flex:1}
+.essay-part p{font-size:1.01rem;line-height:1.95;margin:0;overflow-wrap:break-word}
+.word{display:inline;font:inherit;color:var(--b2);font-weight:800;border:0;border-bottom:2px dotted currentColor;background:transparent;cursor:help;padding:0 1px;position:relative;line-height:inherit}
+.word.c1{color:var(--c1)}
+.word:hover,.word[aria-expanded="true"],.word:focus-visible{background:#eef7f6;border-radius:2px}
+.word.c1:hover,.word.c1[aria-expanded="true"],.word.c1:focus-visible{background:#f4eafd}
+.word:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+@media (hover:hover) and (pointer:fine){
+ .word:after{content:attr(data-level) " · " attr(data-meaning);position:absolute;z-index:20;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);padding:10px 12px;border-radius:10px;background:#24494f;color:white;min-width:155px;max-width:240px;width:max-content;white-space:normal;font-size:.78rem;font-weight:700;line-height:1.45;box-shadow:0 8px 20px #20313a29;opacity:0;visibility:hidden;pointer-events:none;text-align:center}
+ .word.c1:after{background:#5b447e}
+ .word:hover:after,.word:focus-visible:after{opacity:1;visibility:visible}
+}
+.meaning-popup{position:fixed;bottom:19px;left:50%;transform:translateX(-50%);max-width:min(440px,calc(100vw - 28px));width:max-content;background:#27344e;color:white;padding:13px 18px;border-radius:13px;box-shadow:0 9px 32px #29324a50;z-index:40;text-align:center;line-height:1.6;font-size:.87rem}
+.meaning-popup[hidden]{display:none}
+.meaning-popup strong{color:#d3fff6}.meaning-popup .c1level{color:#ead7ff}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:19px;align-items:center}
+.button{appearance:none;cursor:pointer;font:inherit;font-size:.9rem;font-weight:800;border-radius:12px;border:1px solid #ddd5eb;padding:12px 17px;background:#fff;color:#66528a;text-decoration:none}
+.button.primary{background:#6951a2;color:white;border-color:#6951a2}.button.primary:hover{background:#533a8e}
+.button.secondary:hover{background:#f6f1fc}
+.button:focus-visible{outline:3px solid #a89ce4;outline-offset:3px}
+.copy-status{font-size:.83rem;color:#1a7b63;font-weight:750;min-height:1.4em;margin:10px 0 0}
+.note{color:var(--muted);font-size:.85rem;line-height:1.6;margin:11px 0}
+.footer{text-align:center;color:#847f94;font-size:.79rem;margin-top:22px;line-height:1.6}
+@media(max-width:560px){.shell{padding:12px 10px 38px}.hero{padding:20px 18px;border-radius:17px}.panel{border-radius:17px;padding:17px}.essay-title{margin-bottom:23px}.essay-part{margin-bottom:20px}.essay-part p{font-size:.96rem;line-height:1.9}.toolbar>.button{flex:1 1 100%;text-align:center}.nav{margin-bottom:12px}}
+@media print{body{background:white}.shell{max-width:none;padding:0}.nav,.legend,.toolbar,.copy-status,.meaning-popup,.note,.footer{display:none!important}.hero{border:0;box-shadow:none;background:white;padding:0;margin:0}.hero h1{font-size:20px}.hero p,.kicker{display:none}.panel{box-shadow:none;border:0;padding:0;margin:15px 0}.question{border:1px solid #ddd;background:white}.essay-part{break-inside:avoid}.word{color:inherit;border-bottom:none;font-weight:inherit}}
+
+
+</style>
+</head>
+<body>
+<main class="shell">
+<nav class="nav"><a href="directory/" aria-label="Return to Language Arcade">← Language Arcade</a><span class="chip">📖 SAMPLE REVIEWS · EASY</span></nav>
+<section class="hero"><div class="kicker">SPM English · Writing Part 3 · Review</div><h1>A Visit to an Animal Shelter</h1><p>A complete EASY sample review based on the original school magazine task and your lesson notes.</p><div class="legend"><span class="sample b2tag">B2 vocabulary</span><span class="sample c1tag">C1 vocabulary</span><span>Hover or tap an underlined word to see its Bahasa Melayu meaning.</span></div></section>
+<section class="panel" aria-labelledby="questionHeading">
+<div class="section-label">SPM Writing Part 3 · Animal Shelter Review Task</div>
+<h2 id="questionHeading">Exam question</h2>
+<div class="question"><p>You recently saw this notice on a website.</p><p><strong>Reviews required!</strong></p><p>You recently visited an animal shelter as part of your school trip. You have been asked to write a review of your visit for your school magazine.</p><p><strong>In your review, you should include:</strong></p><ul><li>the location and purpose of your visit</li><li>the activities and experiences you had there</li><li>your opinions and suggestions for improvement</li></ul><p>The best review will be published.</p><p><strong>Write your review.</strong></p></div>
+</section>
+<section class="panel" aria-labelledby="essayHeading">
+<div class="section-label">Complete sample review · EASY</div>
+<article class="sample-essay" id="sampleEssay"><h2 class="essay-title" id="essayHeading">A Visit to an Animal Shelter</h2><div class="essay-part"><p>Over the years, I have joined a few school trips. Some were fun, while others taught me useful lessons. Recently, I visited an animal <button type="button" class="word b2" data-level="B2" data-meaning="tempat perlindungan" aria-label="shelter: tempat perlindungan (B2)" aria-expanded="false">shelter</button> in Batu Pahat, Johor, with my classmates. In this review, I will share the purpose of our visit, our activities and my suggestions.</p></div>
+<div class="essay-part"><p>To begin with, there are two important things to know about our visit to the animal <button type="button" class="word b2" data-level="B2" data-meaning="tempat perlindungan" aria-label="shelter: tempat perlindungan (B2)" aria-expanded="false">shelter</button>. One is its location in Batu Pahat, Johor. The <button type="button" class="word b2" data-level="B2" data-meaning="tempat perlindungan" aria-label="shelter: tempat perlindungan (B2)" aria-expanded="false">shelter</button> is in a quiet area away from busy roads, so the animals can rest peacefully. For example, we travelled there by school bus with our teachers. Another important thing is the purpose of our visit. We wanted to learn how the <button type="button" class="word b2" data-level="B2" data-meaning="tempat perlindungan" aria-label="shelter: tempat perlindungan (B2)" aria-expanded="false">shelter</button> takes care of <button type="button" class="word b2" data-level="B2" data-meaning="terbiar / ditinggalkan" aria-label="abandoned: terbiar / ditinggalkan (B2)" aria-expanded="false">abandoned</button> cats and dogs. As a result, we understood why these animals need food, medicine and safe homes.</p></div>
+<div class="essay-part"><p>Furthermore, there were several activities and experiences during our visit. One activity was feeding the <button type="button" class="word b2" data-level="B2" data-meaning="diselamatkan" aria-label="rescued: diselamatkan (B2)" aria-expanded="false">rescued</button> animals. The workers showed us how to give the cats and dogs food safely. For example, I helped feed three cats while a worker watched us. Another activity was cleaning the animal cages. Although it was tiring, I felt happy because I was helping the animals. Therefore, I learnt that taking care of animals requires patience and hard work.</p></div>
+<div class="essay-part"><p>Finally, there are several opinions and suggestions I would like to share about the <button type="button" class="word b2" data-level="B2" data-meaning="tempat perlindungan" aria-label="shelter: tempat perlindungan (B2)" aria-expanded="false">shelter</button>. One thing I liked was how kindly the workers treated the animals. They spoke gently and made sure every animal had enough clean water. For instance, I saw a worker <button type="button" class="word b2" data-level="B2" data-meaning="menenangkan" aria-label="comforting: menenangkan (B2)" aria-expanded="false">comforting</button> a frightened puppy. Another point is that the <button type="button" class="word b2" data-level="B2" data-meaning="tempat perlindungan" aria-label="shelter: tempat perlindungan (B2)" aria-expanded="false">shelter</button> should provide more shaded resting areas. These could <button type="button" class="word c1" data-level="C1" data-meaning="mengurangkan / meringankan ketidakselesaan" aria-label="alleviate: mengurangkan / meringankan ketidakselesaan (C1)" aria-expanded="false">alleviate</button> the animals&#39; <button type="button" class="word b2" data-level="B2" data-meaning="ketidakselesaan" aria-label="discomfort: ketidakselesaan (B2)" aria-expanded="false">discomfort</button> during hot afternoons. As a result, the animals would have a cooler place to rest.</p></div>
+<div class="essay-part"><p>In conclusion, I would recommend this animal <button type="button" class="word b2" data-level="B2" data-meaning="tempat perlindungan" aria-label="shelter: tempat perlindungan (B2)" aria-expanded="false">shelter</button> as a place for school trips. This is because the visit was meaningful and enjoyable. I learnt useful information and gained valuable experience. Hence, I hope I can visit the <button type="button" class="word b2" data-level="B2" data-meaning="tempat perlindungan" aria-label="shelter: tempat perlindungan (B2)" aria-expanded="false">shelter</button> again and help the animals.</p></div></article>
+<div class="toolbar">
+<button type="button" class="button primary" id="copyEssay">📋 Copy Full Review</button>
+<button type="button" class="button secondary" id="printEssay">🖨️ Print</button>
+</div>
+<p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+<p class="note">The introduction and closing follow the Review lesson notes. All three body paragraphs exactly match the correct-answer route of the EASY Animal Shelter Elaboration Builder.</p>
+</section>
+<div class="meaning-popup" id="meaningPopup" role="status" aria-live="polite" hidden></div>
+<footer class="footer">SPM Writing Part 3 · Sample Reviews · Read, learn and revise</footer>
+</main>
+<script>
+"use strict";
+const title="A Visit to an Animal Shelter";
+const paragraphs=["Over the years, I have joined a few school trips. Some were fun, while others taught me useful lessons. Recently, I visited an animal shelter in Batu Pahat, Johor, with my classmates. In this review, I will share the purpose of our visit, our activities and my suggestions.","To begin with, there are two important things to know about our visit to the animal shelter. One is its location in Batu Pahat, Johor. The shelter is in a quiet area away from busy roads, so the animals can rest peacefully. For example, we travelled there by school bus with our teachers. Another important thing is the purpose of our visit. We wanted to learn how the shelter takes care of abandoned cats and dogs. As a result, we understood why these animals need food, medicine and safe homes.","Furthermore, there were several activities and experiences during our visit. One activity was feeding the rescued animals. The workers showed us how to give the cats and dogs food safely. For example, I helped feed three cats while a worker watched us. Another activity was cleaning the animal cages. Although it was tiring, I felt happy because I was helping the animals. Therefore, I learnt that taking care of animals requires patience and hard work.","Finally, there are several opinions and suggestions I would like to share about the shelter. One thing I liked was how kindly the workers treated the animals. They spoke gently and made sure every animal had enough clean water. For instance, I saw a worker comforting a frightened puppy. Another point is that the shelter should provide more shaded resting areas. These could alleviate the animals' discomfort during hot afternoons. As a result, the animals would have a cooler place to rest.","In conclusion, I would recommend this animal shelter as a place for school trips. This is because the visit was meaningful and enjoyable. I learnt useful information and gained valuable experience. Hence, I hope I can visit the shelter again and help the animals."];
+const text=[title,...paragraphs].join("\n\n");
+const popup=document.getElementById("meaningPopup");
+const copyStatus=document.getElementById("copyStatus");
+function dismiss(){document.querySelectorAll(".word[aria-expanded=true]").forEach(b=>b.setAttribute("aria-expanded","false"));popup.hidden=true;popup.textContent="";}
+document.querySelectorAll(".word").forEach(word=>{
+ word.addEventListener("click",event=>{
+  event.stopPropagation();
+  const hadOpen=word.getAttribute("aria-expanded")==="true";
+  dismiss();
+  if(hadOpen)return;
+  word.setAttribute("aria-expanded","true");
+  popup.textContent=word.textContent+" ("+word.dataset.level+") — "+word.dataset.meaning;
+  popup.hidden=false;
+ });
+});
+document.addEventListener("click",event=>{if(!event.target.closest(".word"))dismiss()});
+document.addEventListener("keydown",event=>{if(event.key==="Escape")dismiss()});
+document.getElementById("copyEssay").addEventListener("click",async()=>{
+ try{
+  if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text)}
+  else{
+   const box=document.createElement("textarea");box.value=text;box.setAttribute("readonly","");box.style.position="fixed";box.style.opacity="0";document.body.appendChild(box);box.select();const result=document.execCommand("copy");box.remove();if(!result)throw Error("Clipboard unavailable");
+  }
+  copyStatus.textContent="✓ Full review copied!";
+ }catch(err){copyStatus.textContent="Clipboard unavailable. You can still select and copy the essay manually."}
+});
+document.getElementById("printEssay").addEventListener("click",()=>window.print());
+</script>
+</body>
+</html>
