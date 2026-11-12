@@ -132,6 +132,20 @@ html.embedded-view .game-sub{gap:4px}
 .japanese-show-all[aria-pressed="true"]{background:#fbe7f3;border-color:#dfb4d0;color:#8c3f72}
 .japanese-show-all:focus-visible{outline:3px solid #d79dc7;outline-offset:2px}
 @media(max-width:620px){.japanese-category-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.japanese-category-tabs .category-tab{min-height:97px;padding:9px 6px}.japanese-category-tabs .category-count{font-size:9px}.japanese-show-all{width:100%;justify-content:center;margin-top:9px}}
+
+.sample-types{margin:-2px 0 17px}.sample-types[hidden],.pagination[hidden]{display:none!important}
+.sample-types-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:9px;font-size:11px;letter-spacing:.09em;color:#81708e;font-weight:900}
+.sample-type-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.sample-type-card{cursor:pointer;display:flex;align-items:center;gap:10px;min-height:65px;padding:10px 12px;border:1.5px solid #eee4f1;border-radius:14px;background:#faf7fd;text-align:left;color:#69567d;font:inherit}
+.sample-type-card:hover{background:#f4edff}.sample-type-card[aria-pressed="true"]{border:2px solid #b596dd;background:#f0e6ff;color:#684091}
+.sample-type-card:focus-visible,.sample-type-reset:focus-visible,.page-button:focus-visible{outline:3px solid #ad8bce;outline-offset:2px}
+.sample-type-icon{font-size:22px;flex:0 0 28px;text-align:center}.sample-type-label{display:block;font-size:13px;font-weight:850}.sample-type-count{display:block;font-size:10px;color:#9785a7;font-weight:700;margin-top:2px}
+.sample-type-reset{border:0;background:transparent;color:#7e56a7;font:inherit;font-size:12px;font-weight:850;cursor:pointer;padding:5px}
+.pagination{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin:13px 0 15px;padding:5px 0}
+.page-button{cursor:pointer;border:1px solid #e7daef;border-radius:10px;min-width:36px;min-height:36px;padding:6px 10px;background:#fff;color:#77588f;font:inherit;font-size:12px;font-weight:850}
+.page-button:hover:not(:disabled){background:#f4ebff;border-color:#c7aae4}.page-button[aria-current="page"]{background:#eee1ff;border-color:#b596dd;color:#60358e}.page-button:disabled{cursor:default;opacity:.4}
+.page-ellipsis{color:#9185a0;font-weight:800;padding:0 2px}.page-status{font-size:11px;font-weight:750;color:#8c7d9b;margin:0 4px}
+@media(max-width:620px){.sample-type-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.sample-type-card{min-height:56px;padding:8px;gap:6px}.sample-type-icon{font-size:20px;flex-basis:24px}.sample-type-label{font-size:12px}.pagination{gap:4px}.page-button{min-width:32px;min-height:34px;padding:5px 7px;font-size:11px}.page-status{width:100%;text-align:center;order:-1;margin-bottom:3px}}
 </style>
 </head>
 <body>
@@ -172,6 +186,7 @@ html.embedded-view .game-sub{gap:4px}
       <button id="allJapanese" class="japanese-show-all" type="button" aria-pressed="true">🌸 Show All Japanese Games <span id="allJapaneseCount">(0)</span></button>
     </div>
     <label class="search"><span class="search-icon">⌕</span><input id="find" placeholder="Search games or topics…" aria-label="Search games in selected category"><button id="clear" class="clear" aria-label="Clear search" type="button">×</button></label>
+     <section id="sampleTypes" class="sample-types" aria-label="Browse samples by writing format" hidden><div class="sample-types-heading"><span>CHOOSE A WRITING FORMAT</span><button id="allSampleTypes" class="sample-type-reset" type="button" hidden>← Show all samples</button></div><div class="sample-type-grid" role="group" aria-label="Sample writing formats"><button class="sample-type-card" type="button" data-sample-type="Email" aria-pressed="false"><span class="sample-type-icon" aria-hidden="true">✉️</span><span><span class="sample-type-label">Email</span><span class="sample-type-count">0 samples</span></span></button><button class="sample-type-card" type="button" data-sample-type="Essay" aria-pressed="false"><span class="sample-type-icon" aria-hidden="true">📝</span><span><span class="sample-type-label">Essay</span><span class="sample-type-count">0 samples</span></span></button><button class="sample-type-card" type="button" data-sample-type="Article" aria-pressed="false"><span class="sample-type-icon" aria-hidden="true">📰</span><span><span class="sample-type-label">Article</span><span class="sample-type-count">0 samples</span></span></button><button class="sample-type-card" type="button" data-sample-type="Report" aria-pressed="false"><span class="sample-type-icon" aria-hidden="true">📋</span><span><span class="sample-type-label">Report</span><span class="sample-type-count">0 samples</span></span></button><button class="sample-type-card" type="button" data-sample-type="Review" aria-pressed="false"><span class="sample-type-icon" aria-hidden="true">⭐</span><span><span class="sample-type-label">Review</span><span class="sample-type-count">0 samples</span></span></button><button class="sample-type-card" type="button" data-sample-type="Story" aria-pressed="false"><span class="sample-type-icon" aria-hidden="true">📖</span><span><span class="sample-type-label">Story</span><span class="sample-type-count">0 samples</span></span></button></div></section>
     <div class="toolbar">
       <div><h2 id="sectionTitle" class="section-title">📝 SPM Practice</h2><p id="sectionSub" class="smallsub">Choose an SPM component or browse all SPM games.</p></div>
       <div class="sort" aria-label="Sort order">↧ Newest first</div>
@@ -187,7 +202,9 @@ html.embedded-view .game-sub{gap:4px}
       <button class="reset-spm" type="button" id="allSpm" hidden>← Show all SPM games</button>
     </div>
     <div class="status"><div><strong id="count">Loading games…</strong> <span id="totalHint"></span></div><div class="status-right"><i class="live-dot"></i><span id="syncLabel">Loading latest list</span></div></div>
+    <nav id="paginationTop" class="pagination" aria-label="Resource pages above the list" hidden></nav>
     <div id="items" class="items" aria-live="polite" aria-busy="true"></div>
+    <nav id="paginationBottom" class="pagination" aria-label="Resource pages below the list" hidden></nav>
     <div id="empty" class="empty" hidden>🔍 No games found. Try another word!</div>
     <div id="problem" class="empty" hidden role="alert">The directory could not load right now. <button id="retry" class="retry" type="button">Try again</button></div>
   </section>
@@ -228,6 +245,12 @@ const spmSections = document.getElementById('spmSections');
 const spmButtons = Array.from(document.querySelectorAll('.spm-part'));
 const allSpm = document.getElementById('allSpm');
 const syncLabel = document.getElementById('syncLabel');
+const sampleTypes=document.getElementById('sampleTypes');
+const sampleTypeButtons=Array.from(document.querySelectorAll('.sample-type-card'));
+const allSampleTypes=document.getElementById('allSampleTypes');
+const paginationTop=document.getElementById('paginationTop');
+const paginationBottom=document.getElementById('paginationBottom');
+const PAGE_SIZE=12;
 const tabs = Array.from(document.querySelectorAll('.language-tab'));
 let games = [];
 let activeLanguage = 'English';
@@ -235,6 +258,8 @@ let activeCategory = 'SPM Practice';
 let activeSpmPart = 'All';
 let activeJapaneseCategory = 'All';
 let loaded = false;
+let activeSampleType='All';
+let currentPage=1;
 
 function gameStyle(path, language){
  const name=path.toLowerCase();
