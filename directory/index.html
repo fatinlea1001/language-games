@@ -495,6 +495,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Article — Teenagers and the Use of AI (EASY)',topics:['Artificial Intelligence','AI Safety'],theme:'SPM Writing Part 3 · Sample Article'};
  if(stem==='eng-sample-essay-teenagers-ai-normal')
   return {label:'Sample Article — Teenagers and the Use of AI (NORMAL)',topics:['Artificial Intelligence','AI Safety'],theme:'SPM Writing Part 3 · Sample Article'};
+ if(stem==='eng-writing-elaboration-entertainment-learning-easy')
+  return {label:'SPM Elaboration Builder — Entertainment Media and Learning (EASY)',topics:['English-Language Movies','Entertainment Media','Screen Time'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-writing-elaboration-entertainment-learning-normal')
+  return {label:'SPM Elaboration Builder — Entertainment Media and Learning (NORMAL)',topics:['English-Language Movies','Entertainment Media','Screen Time'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-sample-essay-entertainment-learning-easy')
+  return {label:'Sample Essay — Entertainment Media and Learning (EASY)',topics:['English-Language Movies','Entertainment Media'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-sample-essay-entertainment-learning-normal')
+  return {label:'Sample Essay — Entertainment Media and Learning (NORMAL)',topics:['English-Language Movies','Entertainment Media'],theme:'SPM Writing Part 2 · Sample Essay'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
