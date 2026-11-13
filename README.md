@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**311 games** — automatically updated when an HTML game is added or changed.
+**313 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Langkawi Dream Destination (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-langkawi-dream-destination-normal.html) — updated 13 Nov 2026
+- [SPM Elaboration Builder — Langkawi Dream Destination (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-langkawi-dream-destination-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Leadership Seminar Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leadership-seminar-report-normal.html) — updated 13 Nov 2026
 - [Sample Essay — Leadership Seminar Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leadership-seminar-report-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Leadership Seminar Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-leadership-seminar-report-normal.html) — updated 13 Nov 2026
