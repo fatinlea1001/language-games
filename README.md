@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**303 games** — automatically updated when an HTML game is added or changed.
+**305 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Smartphone Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-smartphone-review-normal.html) — updated 13 Nov 2026
+- [SPM Elaboration Builder — Smartphone Review (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-smartphone-review-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Cameron Highlands Trip (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cameron-highlands-trip-normal.html) — updated 13 Nov 2026
 - [Sample Essay — Cameron Highlands Trip (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cameron-highlands-trip-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Cameron Highlands Trip (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cameron-highlands-trip-normal.html) — updated 13 Nov 2026
