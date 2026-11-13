@@ -624,6 +624,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Report — Leadership Seminar (EASY)',topics:['Leadership Seminar','Prefects','School Events'],theme:'SPM Writing Part 3 · Sample Report'};
  if(stem==='eng-sample-essay-leadership-seminar-report-normal')
   return {label:'Sample Report — Leadership Seminar (NORMAL)',topics:['Leadership Seminar','Prefects','School Events'],theme:'SPM Writing Part 3 · Sample Report'};
+ if(stem==='eng-writing-elaboration-langkawi-dream-destination-easy')
+  return {label:'SPM Elaboration Builder — My Dream Holiday Destination: Langkawi (EASY)',topics:['Langkawi','Dream Destination','Domestic Tourism'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-writing-elaboration-langkawi-dream-destination-normal')
+  return {label:'SPM Elaboration Builder — My Dream Holiday Destination: Langkawi (NORMAL)',topics:['Langkawi','Dream Destination','Domestic Tourism'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-sample-essay-langkawi-dream-destination-easy')
+  return {label:'Sample Essay — My Dream Holiday Destination: Langkawi (EASY)',topics:['Langkawi','Dream Destination','Domestic Tourism'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-sample-essay-langkawi-dream-destination-normal')
+  return {label:'Sample Essay — My Dream Holiday Destination: Langkawi (NORMAL)',topics:['Langkawi','Dream Destination','Domestic Tourism'],theme:'SPM Writing Part 2 · Sample Essay'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
