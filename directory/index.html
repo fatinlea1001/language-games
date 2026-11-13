@@ -608,6 +608,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Essay — A Graduation Trip to Cameron Highlands (EASY)',topics:['Cameron Highlands','Graduation Trip','Holiday Destinations'],theme:'SPM Writing Part 2 · Sample Essay'};
  if(stem==='eng-sample-essay-cameron-highlands-trip-normal')
   return {label:'Sample Essay — A Graduation Trip to Cameron Highlands (NORMAL)',topics:['Cameron Highlands','Graduation Trip','Holiday Destinations'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-writing-elaboration-smartphone-review-easy')
+  return {label:'SPM Elaboration Builder — Smartphone: A Review (EASY)',topics:['Smartphone','Gadgets','Communication'],theme:'SPM Writing Part 3 · Review'};
+ if(stem==='eng-writing-elaboration-smartphone-review-normal')
+  return {label:'SPM Elaboration Builder — Smartphone: A Review (NORMAL)',topics:['Smartphone','Gadgets','Communication'],theme:'SPM Writing Part 3 · Review'};
+ if(stem==='eng-sample-essay-smartphone-review-easy')
+  return {label:'Sample Review — Smartphone: A Review (EASY)',topics:['Smartphone','Gadgets','Communication'],theme:'SPM Writing Part 3 · Sample Review'};
+ if(stem==='eng-sample-essay-smartphone-review-normal')
+  return {label:'Sample Review — Smartphone: A Review (NORMAL)',topics:['Smartphone','Gadgets','Communication'],theme:'SPM Writing Part 3 · Sample Review'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
@@ -636,6 +644,7 @@ function classifyEnglishGame(file){
  if(/^eng-(missingsentence-|missing-)/.test(name))return {category:'SPM Practice',spmPart:'Reading Part 4'};
  if(/^eng-writing-elaboration-eco-friendly-lifestyle-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-teenagers-pets-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
+ if(/^eng-writing-elaboration-smartphone-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-batu-pahat-mall-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-kudrat-1968-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-spending-habits-report-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
