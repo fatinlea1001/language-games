@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**301 games** — automatically updated when an HTML game is added or changed.
+**303 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Cameron Highlands Trip (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cameron-highlands-trip-normal.html) — updated 13 Nov 2026
+- [Sample Essay — Cameron Highlands Trip (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cameron-highlands-trip-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Cameron Highlands Trip (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cameron-highlands-trip-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Cameron Highlands Trip (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cameron-highlands-trip-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Eco Friendly Lifestyle (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-eco-friendly-lifestyle-normal.html) — updated 13 Nov 2026
