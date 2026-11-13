@@ -576,6 +576,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Essay — CapCut Mobile Application (EASY)',topics:['Mobile Apps','CapCut','Phones at School'],theme:'SPM Writing Part 2 · Sample Essay'};
  if(stem==='eng-sample-essay-capcut-mobile-app-normal')
   return {label:'Sample Essay — CapCut Mobile Application (NORMAL)',topics:['Mobile Apps','CapCut','Phones at School'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-writing-elaboration-being-charitable-easy')
+  return {label:'SPM Elaboration Builder — Helping Others Through Charity (EASY)',topics:['Charity','Volunteering','Community Service'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-writing-elaboration-being-charitable-normal')
+  return {label:'SPM Elaboration Builder — Helping Others Through Charity (NORMAL)',topics:['Charity','Volunteering','Community Service'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-sample-essay-being-charitable-easy')
+  return {label:'Sample Essay — Helping Others Through Charity (EASY)',topics:['Charity','Helping Others','Community Service'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-sample-essay-being-charitable-normal')
+  return {label:'Sample Essay — Helping Others Through Charity (NORMAL)',topics:['Charity','Helping Others','Community Service'],theme:'SPM Writing Part 2 · Sample Essay'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
