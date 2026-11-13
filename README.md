@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**291 games** — automatically updated when an HTML game is added or changed.
+**293 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Batu Pahat Mall Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-batu-pahat-mall-review-normal.html) — updated 13 Nov 2026
+- [SPM Elaboration Builder — Batu Pahat Mall Review (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-batu-pahat-mall-review-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Being Charitable (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-charitable-normal.html) — updated 13 Nov 2026
 - [Sample Essay — Being Charitable (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-charitable-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Being Charitable (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-being-charitable-normal.html) — updated 13 Nov 2026
