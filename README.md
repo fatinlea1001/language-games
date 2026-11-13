@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**307 games** — automatically updated when an HTML game is added or changed.
+**309 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Leadership Seminar Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-leadership-seminar-report-normal.html) — updated 13 Nov 2026
+- [SPM Elaboration Builder — Leadership Seminar Report (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-leadership-seminar-report-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Smartphone Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-smartphone-review-normal.html) — updated 13 Nov 2026
 - [Sample Essay — Smartphone Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-smartphone-review-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Smartphone Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-smartphone-review-normal.html) — updated 13 Nov 2026
