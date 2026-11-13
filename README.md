@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**325 games** — automatically updated when an HTML game is added or changed.
+**327 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Financial Literacy Teens (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-financial-literacy-teens-normal.html) — updated 13 Nov 2026
+- [Sample Essay — Financial Literacy Teens (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-financial-literacy-teens-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Financial Literacy Teens (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-financial-literacy-teens-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Financial Literacy Teens (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-financial-literacy-teens-easy.html) — updated 13 Nov 2026
 - [Sample Essay — E Learning Day Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-normal.html) — updated 13 Nov 2026
