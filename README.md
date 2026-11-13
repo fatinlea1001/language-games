@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**319 games** — automatically updated when an HTML game is added or changed.
+**321 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — E Learning Day Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-e-learning-day-report-normal.html) — updated 13 Nov 2026
+- [SPM Elaboration Builder — E Learning Day Report (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-e-learning-day-report-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-normal.html) — updated 13 Nov 2026
 - [Sample Essay — Attack On Titan Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-attack-on-titan-review-normal.html) — updated 13 Nov 2026
