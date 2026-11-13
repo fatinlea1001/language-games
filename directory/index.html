@@ -632,6 +632,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Essay — My Dream Holiday Destination: Langkawi (EASY)',topics:['Langkawi','Dream Destination','Domestic Tourism'],theme:'SPM Writing Part 2 · Sample Essay'};
  if(stem==='eng-sample-essay-langkawi-dream-destination-normal')
   return {label:'Sample Essay — My Dream Holiday Destination: Langkawi (NORMAL)',topics:['Langkawi','Dream Destination','Domestic Tourism'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-writing-elaboration-attack-on-titan-review-easy')
+  return {label:'SPM Elaboration Builder — Attack on Titan: A Review (EASY)',topics:['Attack on Titan','Manga','Comic Review'],theme:'SPM Writing Part 3 · Review'};
+ if(stem==='eng-writing-elaboration-attack-on-titan-review-normal')
+  return {label:'SPM Elaboration Builder — Attack on Titan: A Review (NORMAL)',topics:['Attack on Titan','Manga','Comic Review'],theme:'SPM Writing Part 3 · Review'};
+ if(stem==='eng-sample-essay-attack-on-titan-review-easy')
+  return {label:'Sample Review — Attack on Titan: A Review (EASY)',topics:['Attack on Titan','Manga','Comic Review'],theme:'SPM Writing Part 3 · Sample Review'};
+ if(stem==='eng-sample-essay-attack-on-titan-review-normal')
+  return {label:'Sample Review — Attack on Titan: A Review (NORMAL)',topics:['Attack on Titan','Manga','Comic Review'],theme:'SPM Writing Part 3 · Sample Review'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
@@ -661,6 +669,7 @@ function classifyEnglishGame(file){
  if(/^eng-writing-elaboration-eco-friendly-lifestyle-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-teenagers-pets-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-smartphone-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
+ if(/^eng-writing-elaboration-attack-on-titan-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-batu-pahat-mall-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-kudrat-1968-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-leadership-seminar-report-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
