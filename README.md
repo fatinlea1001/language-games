@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**289 games** — automatically updated when an HTML game is added or changed.
+**291 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Being Charitable (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-charitable-normal.html) — updated 13 Nov 2026
+- [Sample Essay — Being Charitable (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-charitable-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Being Charitable (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-being-charitable-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Being Charitable (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-being-charitable-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Capcut Mobile App (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-capcut-mobile-app-normal.html) — updated 13 Nov 2026
