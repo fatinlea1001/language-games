@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**295 games** — automatically updated when an HTML game is added or changed.
+**297 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [SPM Elaboration Builder — Eco Friendly Lifestyle (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-eco-friendly-lifestyle-normal.html) — updated 13 Nov 2026
+- [SPM Elaboration Builder — Eco Friendly Lifestyle (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-eco-friendly-lifestyle-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Batu Pahat Mall Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-normal.html) — updated 13 Nov 2026
 - [Sample Essay — Batu Pahat Mall Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Batu Pahat Mall Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-batu-pahat-mall-review-normal.html) — updated 13 Nov 2026
