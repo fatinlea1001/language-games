@@ -616,6 +616,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Review — Smartphone: A Review (EASY)',topics:['Smartphone','Gadgets','Communication'],theme:'SPM Writing Part 3 · Sample Review'};
  if(stem==='eng-sample-essay-smartphone-review-normal')
   return {label:'Sample Review — Smartphone: A Review (NORMAL)',topics:['Smartphone','Gadgets','Communication'],theme:'SPM Writing Part 3 · Sample Review'};
+ if(stem==='eng-writing-elaboration-leadership-seminar-report-easy')
+  return {label:'SPM Elaboration Builder — Report on the Leadership Seminar (EASY)',topics:['Leadership Seminar','Prefects','School Events'],theme:'SPM Writing Part 3 · Report'};
+ if(stem==='eng-writing-elaboration-leadership-seminar-report-normal')
+  return {label:'SPM Elaboration Builder — Report on the Leadership Seminar (NORMAL)',topics:['Leadership Seminar','Prefects','School Events'],theme:'SPM Writing Part 3 · Report'};
+ if(stem==='eng-sample-essay-leadership-seminar-report-easy')
+  return {label:'Sample Report — Leadership Seminar (EASY)',topics:['Leadership Seminar','Prefects','School Events'],theme:'SPM Writing Part 3 · Sample Report'};
+ if(stem==='eng-sample-essay-leadership-seminar-report-normal')
+  return {label:'Sample Report — Leadership Seminar (NORMAL)',topics:['Leadership Seminar','Prefects','School Events'],theme:'SPM Writing Part 3 · Sample Report'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
@@ -647,6 +655,7 @@ function classifyEnglishGame(file){
  if(/^eng-writing-elaboration-smartphone-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-batu-pahat-mall-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-kudrat-1968-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
+ if(/^eng-writing-elaboration-leadership-seminar-report-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-spending-habits-report-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-animal-shelter-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-teenagers-ai-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
