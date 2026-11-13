@@ -640,6 +640,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Review — Attack on Titan: A Review (EASY)',topics:['Attack on Titan','Manga','Comic Review'],theme:'SPM Writing Part 3 · Sample Review'};
  if(stem==='eng-sample-essay-attack-on-titan-review-normal')
   return {label:'Sample Review — Attack on Titan: A Review (NORMAL)',topics:['Attack on Titan','Manga','Comic Review'],theme:'SPM Writing Part 3 · Sample Review'};
+ if(stem==='eng-writing-elaboration-e-learning-day-report-easy')
+  return {label:'SPM Elaboration Builder — Report on the E-Learning Day (EASY)',topics:['E-Learning Day','Digital Learning','ICT Club'],theme:'SPM Writing Part 3 · Report'};
+ if(stem==='eng-writing-elaboration-e-learning-day-report-normal')
+  return {label:'SPM Elaboration Builder — Report on the E-Learning Day (NORMAL)',topics:['E-Learning Day','Digital Learning','ICT Club'],theme:'SPM Writing Part 3 · Report'};
+ if(stem==='eng-sample-essay-e-learning-day-report-easy')
+  return {label:'Sample Report — E-Learning Day (EASY)',topics:['E-Learning Day','Digital Learning','ICT Club'],theme:'SPM Writing Part 3 · Sample Report'};
+ if(stem==='eng-sample-essay-e-learning-day-report-normal')
+  return {label:'Sample Report — E-Learning Day (NORMAL)',topics:['E-Learning Day','Digital Learning','ICT Club'],theme:'SPM Writing Part 3 · Sample Report'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
@@ -672,6 +680,7 @@ function classifyEnglishGame(file){
  if(/^eng-writing-elaboration-attack-on-titan-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-batu-pahat-mall-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-kudrat-1968-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
+ if(/^eng-writing-elaboration-e-learning-day-report-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-leadership-seminar-report-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-spending-habits-report-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-animal-shelter-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
