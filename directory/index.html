@@ -592,6 +592,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Review — Batu Pahat Mall: A Review (EASY)',topics:['Batu Pahat Mall','Shopping','Facilities'],theme:'SPM Writing Part 3 · Sample Review'};
  if(stem==='eng-sample-essay-batu-pahat-mall-review-normal')
   return {label:'Sample Review — Batu Pahat Mall: A Review (NORMAL)',topics:['Batu Pahat Mall','Shopping','Facilities'],theme:'SPM Writing Part 3 · Sample Review'};
+ if(stem==='eng-writing-elaboration-eco-friendly-lifestyle-easy')
+  return {label:'SPM Elaboration Builder — Adapting an Eco-friendly Lifestyle (EASY)',topics:['Eco-friendly Habits','Reusable Bottles','Environment'],theme:'SPM Writing Part 3 · Article'};
+ if(stem==='eng-writing-elaboration-eco-friendly-lifestyle-normal')
+  return {label:'SPM Elaboration Builder — Adapting an Eco-friendly Lifestyle (NORMAL)',topics:['Eco-friendly Habits','Reusable Bottles','Environment'],theme:'SPM Writing Part 3 · Article'};
+ if(stem==='eng-sample-essay-eco-friendly-lifestyle-easy')
+  return {label:'Sample Article — Adapting an Eco-friendly Lifestyle (EASY)',topics:['Eco-friendly Habits','Reusable Bottles','Environment'],theme:'SPM Writing Part 3 · Sample Article'};
+ if(stem==='eng-sample-essay-eco-friendly-lifestyle-normal')
+  return {label:'Sample Article — Adapting an Eco-friendly Lifestyle (NORMAL)',topics:['Eco-friendly Habits','Reusable Bottles','Environment'],theme:'SPM Writing Part 3 · Sample Article'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
@@ -618,6 +626,7 @@ function classifyEnglishGame(file){
  const name=file.toLowerCase();
  if(name.startsWith('eng-sample-essay-'))return {category:'Sample Essays',spmPart:''};
  if(/^eng-(missingsentence-|missing-)/.test(name))return {category:'SPM Practice',spmPart:'Reading Part 4'};
+ if(/^eng-writing-elaboration-eco-friendly-lifestyle-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-teenagers-pets-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-batu-pahat-mall-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
  if(/^eng-writing-elaboration-kudrat-1968-review-(easy|normal)\.html$/.test(name))return {category:'SPM Practice',spmPart:'Writing Part 3'};
