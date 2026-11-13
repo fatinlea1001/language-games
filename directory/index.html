@@ -600,6 +600,14 @@ function topicDescription(file, readmeTitle, language){
   return {label:'Sample Article — Adapting an Eco-friendly Lifestyle (EASY)',topics:['Eco-friendly Habits','Reusable Bottles','Environment'],theme:'SPM Writing Part 3 · Sample Article'};
  if(stem==='eng-sample-essay-eco-friendly-lifestyle-normal')
   return {label:'Sample Article — Adapting an Eco-friendly Lifestyle (NORMAL)',topics:['Eco-friendly Habits','Reusable Bottles','Environment'],theme:'SPM Writing Part 3 · Sample Article'};
+ if(stem==='eng-writing-elaboration-cameron-highlands-trip-easy')
+  return {label:'SPM Elaboration Builder — A Graduation Trip to Cameron Highlands (EASY)',topics:['Cameron Highlands','Graduation Trip','Holiday Destinations'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-writing-elaboration-cameron-highlands-trip-normal')
+  return {label:'SPM Elaboration Builder — A Graduation Trip to Cameron Highlands (NORMAL)',topics:['Cameron Highlands','Graduation Trip','Holiday Destinations'],theme:'SPM Writing Part 2 · Guided Essay'};
+ if(stem==='eng-sample-essay-cameron-highlands-trip-easy')
+  return {label:'Sample Essay — A Graduation Trip to Cameron Highlands (EASY)',topics:['Cameron Highlands','Graduation Trip','Holiday Destinations'],theme:'SPM Writing Part 2 · Sample Essay'};
+ if(stem==='eng-sample-essay-cameron-highlands-trip-normal')
+  return {label:'Sample Essay — A Graduation Trip to Cameron Highlands (NORMAL)',topics:['Cameron Highlands','Graduation Trip','Holiday Destinations'],theme:'SPM Writing Part 2 · Sample Essay'};
  // Match every new EASY/NORMAL writing resource to one consistent title format.
  const levelMatch=file.match(/^eng-(sample-essay|writing-elaboration)-(.+)-(easy|normal)\.html$/i);
  if(levelMatch){
