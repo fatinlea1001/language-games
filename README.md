@@ -7,10 +7,10 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Sample Essay — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-normal.html) — updated 13 Nov 2026
-- [Sample Essay — Attack On Titan Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-attack-on-titan-review-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Attack On Titan Review (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-attack-on-titan-review-easy.html) — updated 13 Nov 2026
+- [Sample Essay — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-normal.html) — updated 13 Nov 2026
+- [Sample Essay — Attack On Titan Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Langkawi Dream Destination (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-langkawi-dream-destination-normal.html) — updated 13 Nov 2026
 - [Sample Essay — Langkawi Dream Destination (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-langkawi-dream-destination-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Langkawi Dream Destination (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-langkawi-dream-destination-normal.html) — updated 13 Nov 2026
