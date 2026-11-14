@@ -3,7 +3,7 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**331 games** — automatically updated when an HTML game is added or changed.
+**334 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
@@ -257,6 +257,9 @@ Recently updated games appear first in each category.
 - [Verb to Noun (Set 1)](https://fatinlea1001.github.io/language-games/eng-verbtonoun-1.html) — updated 08 Oct 2026
 
 ### 🇯🇵 Japanese Games
+- [Match Hiragana Kanji Meaning (Set 5)](https://fatinlea1001.github.io/language-games/jpn-match-hiragana-kanji-meaning-5.html) — updated 14 Nov 2026
+- [Match Hiragana Kanji Meaning (Set 4)](https://fatinlea1001.github.io/language-games/jpn-match-hiragana-kanji-meaning-4.html) — updated 14 Nov 2026
+- [Match Hiragana Kanji Meaning (Set 3)](https://fatinlea1001.github.io/language-games/jpn-match-hiragana-kanji-meaning-3.html) — updated 14 Nov 2026
 - [Match Hiragana Kanji Meaning (Set 2)](https://fatinlea1001.github.io/language-games/jpn-match-hiragana-kanji-meaning-2.html) — updated 14 Nov 2026
 - [Match Hiragana Kanji Meaning (Set 1)](https://fatinlea1001.github.io/language-games/jpn-match-hiragana-kanji-meaning-1.html) — updated 14 Nov 2026
 - [Japanese Emoji Story Fill — First Part-Time Job](https://fatinlea1001.github.io/language-games/jpn-story-emoji-fill-9.html) — updated 11 Nov 2026
