@@ -402,6 +402,8 @@ function topicDescription(file, readmeTitle, language){
   const [topic,theme]=JAPANESE_STORIES[number-1];
   return describe('Japanese Emoji Story Fill — '+topic,topic,theme);
  }
+ if(stem==='jpn-match-hiragana-kanji-meaning')
+  return {label:'JLPT N5 Triple Match — Hiragana · Kanji · Meaning',topics:['Hiragana','Kanji','English Meanings'],theme:'JLPT N5 · Vocabulary Matching'};
  if(stem==='jpn-spelling-kanji-katakana' && JAPANESE_SPELL[number-1]){
   const [topic,theme]=JAPANESE_SPELL[number-1];
   return describe('Kanji & Katakana Spell-Off — '+topic,topic,theme);
@@ -713,6 +715,7 @@ function classifyEnglishGame(file){
 function classifyJapaneseGame(file){
  const name=file.toLowerCase();
  if(/^jpn-(friends-dialogue-|malaysia-friends-|cafe-dialogue-)/.test(name))return 'Dialogues & Conversations';
+ if(/^jpn-match-hiragana-kanji-meaning-/.test(name))return 'JLPT N5 Basics';
  if(/^n5-(vocabulary|verb|adj)-/.test(name) || /^teform-/.test(name))return 'JLPT N5 Basics';
  if(/^n4-verb-/.test(name))return 'JLPT N4 Verbs';
  if(/^n[45]-sentence-/.test(name))return 'Sentence Building';
