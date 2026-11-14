@@ -403,7 +403,7 @@ function topicDescription(file, readmeTitle, language){
   return describe('Japanese Emoji Story Fill — '+topic,topic,theme);
  }
  if(stem==='jpn-match-hiragana-kanji-meaning')
-  return {label:'JLPT N5 Triple Match — Hiragana · Kanji · Meaning',topics:['Hiragana','Kanji','English Meanings'],theme:'JLPT N5 · Vocabulary Matching'};
+  return {label:'JLPT N5 Triple Match — Hiragana · Kanji · Meaning (Set '+(number||1)+')',topics:number===2?['Days & Times','School & Family','Everyday Verbs']:['Hiragana','Kanji','English Meanings'],theme:'JLPT N5 · Vocabulary Matching'};
  if(stem==='jpn-spelling-kanji-katakana' && JAPANESE_SPELL[number-1]){
   const [topic,theme]=JAPANESE_SPELL[number-1];
   return describe('Kanji & Katakana Spell-Off — '+topic,topic,theme);
