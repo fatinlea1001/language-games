@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fff3f8">
+<meta name="description" content="Japanese JLPT N5 Triple Match Set 2: new daily vocabulary, school and family words, and everyday verbs. Connect hiragana, kanji and English meanings.">
+<title>JLPT N5 — Triple Match: Hiragana · Kanji · Meaning (Set 2)</title>
+<style>
+:root{color-scheme:light;--ink:#36324a;--muted:#706982;--pink:#d64783;--plum:#7651aa;--line:#ebe3ef;--mint:#18705c;--red:#a33d61;--paper:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 3% 2%,#ffe1ef 0,transparent 36%),radial-gradient(circle at 97% 8%,#eee6ff 0,transparent 38%),#fffafd;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP","Yu Gothic",sans-serif;line-height:1.5}
+.shell{max-width:980px;margin:auto;padding:19px 16px 60px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:17px}
+.nav a{color:#7651aa;font-size:.9rem;font-weight:750;text-decoration:none}.nav a:hover{text-decoration:underline}
+.tag{font-size:.74rem;font-weight:850;letter-spacing:.03em;background:#fff;border:1px solid #e9d8ef;border-radius:999px;padding:8px 13px;color:#8b4675}
+.hero{padding:26px clamp(20px,5vw,38px);background:linear-gradient(110deg,#ffe4f0,#f1e9ff 66%,#e8f8f2);border:1px solid #eadced;border-radius:24px;box-shadow:0 12px 35px #6e427c14}
+.eyebrow{color:#915477;text-transform:uppercase;font-size:.72rem;letter-spacing:.12em;font-weight:900}
+h1{font-size:clamp(1.7rem,5vw,2.7rem);line-height:1.15;letter-spacing:-.035em;margin:9px 0 11px}
+.hero p{margin:0;color:#615a76;max-width:720px;font-size:.97rem}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.pill{font-size:.77rem;font-weight:750;border-radius:999px;padding:7px 11px;background:#ffffffc9;border:1px solid #e7d9eb}
+.panel{margin-top:17px;background:var(--paper);border:1px solid var(--line);border-radius:23px;padding:clamp(17px,3.5vw,29px);box-shadow:0 12px 35px #6e427c0c}
+.topline{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.round{font-size:1.12rem;font-weight:900}
+.round-theme{font-size:.9rem;color:#746b84}
+.progress-number{font-weight:900;color:var(--plum);font-variant-numeric:tabular-nums}
+.progress-track{height:11px;border-radius:20px;background:#f4edf5;margin:16px 0 4px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#e877ae,#805ec4);border-radius:20px;transition:width .22s ease}
+.instructions{background:#faf6ff;border:1px solid #eee2f8;padding:13px 15px;border-radius:14px;margin:18px 0 22px;font-size:.91rem}
+.triple-row{margin:18px 0}
+.row-header{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.row-index{display:grid;place-items:center;width:27px;height:27px;flex:none;border-radius:50%;background:#eee2ff;color:#694f9a;font-size:.82rem;font-weight:900}
+.row-header h2{font-size:.99rem;letter-spacing:.01em;margin:0;font-weight:850}
+.row-header small{font-size:.78rem;color:#8a8294}
+.tile-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px}
+.tile{min-width:0;min-height:72px;border:2px solid #e8deec;border-radius:14px;background:#fff;font-family:inherit;color:#373149;font-weight:800;font-size:1.37rem;box-shadow:0 4px 0 #f4edf6;cursor:pointer;transition:background .14s,border-color .14s,transform .14s;overflow-wrap:anywhere;padding:8px 5px}
+.tile:hover:not(:disabled){transform:translateY(-2px);border-color:#cc9bbf;background:#fffafd}
+.tile:focus-visible{outline:3px solid #9e74d5;outline-offset:3px}
+.tile.selected{border-color:var(--pink);background:#ffedf5;color:#8a2456}
+.tile.matched{border-color:#a7d5c1;background:#e9f8f1;color:#25755e;box-shadow:none;opacity:.82}
+.tile:disabled{cursor:default}
+.tile.kanji{font-size:2rem}
+.tile.meaning{font-size:.92rem;line-height:1.25;font-weight:800}
+.tile .tick{font-size:.8rem;margin-left:5px;vertical-align:middle}
+.selection{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:19px}
+.selection strong{font-size:.85rem;color:#695d7b}
+.slot{border:1px dashed #cab7d7;background:#faf8fc;padding:7px 11px;min-width:91px;min-height:41px;border-radius:11px;text-align:center;font-weight:800}
+.arrow{color:#b490bd;font-weight:900}
+.feedback{min-height:55px;border-radius:14px;padding:12px 14px;margin:15px 0 0;background:#f7f4fa;color:#594f69;font-size:.9rem;font-weight:650}
+.feedback.ok{background:#eaf7ef;color:#216c4c}.feedback.no{background:#fff0f3;color:#973854}
+.bottom-actions{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:19px;flex-wrap:wrap}
+.button{border:0;border-radius:12px;padding:12px 18px;font:800 .93rem system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer;min-height:44px}
+.button.primary{background:#865ab4;color:#fff}.button.primary:hover{background:#70449d}
+.button.secondary{background:#f8eff9;color:#6e4a8e;border:1px solid #e8d8ef}
+.button[hidden],[hidden]{display:none!important}
+.stats{font-size:.83rem;color:#766a82;font-weight:700}
+.finish{text-align:center}.finish h2{font-size:1.65rem;margin:8px 0}.finish .confetti{font-size:3.1rem}
+.answers{max-width:690px;margin:20px auto;text-align:left;display:grid;gap:9px}
+.answer{display:grid;grid-template-columns:1fr 1fr 1.5fr;align-items:center;gap:8px;border:1px solid #eee3f3;border-radius:13px;padding:10px 12px;background:#fcfafe}
+.answer span:nth-child(-n+2){font-size:1.11rem;font-weight:800}.answer span:last-child{font-size:.88rem;font-weight:700}
+.footer{text-align:center;margin:25px 0;color:#92899b;font-size:.75rem}
+@media(max-width:720px){.tile-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tile{min-height:65px}.hero{padding:23px 18px}}
+@media(max-width:390px){.tile-grid{gap:7px}.tile{font-size:1.15rem}.tile.kanji{font-size:1.7rem}.tile.meaning{font-size:.81rem}.selection{gap:5px}.slot{min-width:69px;padding:6px}.arrow{font-size:.75rem}}
+@media(prefers-reduced-motion:reduce){.tile,.progress-fill{transition:none}}
+</style></head>
+<body>
+<main class="shell">
+<nav class="nav"><a href="directory/">← Language Arcade</a><span class="tag">🇯🇵 JAPANESE · JLPT N5</span></nav>
+<section class="hero">
+<div class="eyebrow">🌸 Match all three · 3つをマッチ！</div>
+<h1>Hiragana × Kanji × Meaning · Set 2</h1>
+<p>Find the three cards that belong together. Choose one hiragana reading, its matching kanji, and finally the correct English meaning.</p>
+<div class="pills"><span class="pill">18 new N5 words</span><span class="pill">3 rounds</span><span class="pill">No romaji</span><span class="pill">Tap-friendly</span></div>
+</section>
+<section class="panel" id="playPanel">
+<div class="topline"><div><div class="round" id="roundTitle">Round 1 of 3</div><div class="round-theme" id="roundTheme">Days &amp; times · まいにち</div></div><div class="progress-number" id="progress">0 / 18 matched</div></div>
+<div class="progress-track" role="progressbar" aria-label="Total matches completed" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0" id="progressTrack"><div class="progress-fill" id="progressFill"></div></div>
+<div class="instructions">👆 <strong>Select in order:</strong> ① Hiragana → ② Kanji → ③ English meaning. The three rows are shuffled separately. Correct triples turn green!</div>
+<section class="triple-row" aria-labelledby="hHeading"><div class="row-header"><span class="row-index">1</span><h2 id="hHeading">ひらがな · Hiragana</h2><small>reading</small></div><div class="tile-grid" id="rowH"></div></section>
+<section class="triple-row" aria-labelledby="kHeading"><div class="row-header"><span class="row-index">2</span><h2 id="kHeading">漢字 · Kanji</h2><small>characters</small></div><div class="tile-grid" id="rowK"></div></section>
+<section class="triple-row" aria-labelledby="enHeading"><div class="row-header"><span class="row-index">3</span><h2 id="enHeading">Meaning · English</h2><small>translation</small></div><div class="tile-grid" id="rowEn"></div></section>
+<div class="selection" aria-label="Current matching choices"><strong>Your match</strong><div class="slot" id="slotH">ひらがな</div><span class="arrow">→</span><div class="slot" id="slotK">漢字</div><span class="arrow">→</span><div class="slot" id="slotEn">meaning</div></div>
+<div class="feedback" id="feedback" aria-live="polite" role="status">Start with a hiragana card from the first row.</div>
+<div class="bottom-actions"><span class="stats" id="stats">6 matches left in this round · 0 mistakes</span><div><button class="button secondary" type="button" id="reshuffle">↻ Restart round</button> <button class="button primary" type="button" id="next" hidden>Next round →</button></div></div>
+</section>
+<section class="panel finish" id="finishPanel" hidden>
+<div class="confetti" aria-hidden="true">🌸🎉🌸</div><h2>ぜんぶ できた！ · All matched!</h2>
+<p>You've connected every hiragana reading, kanji and meaning correctly.</p>
+<p class="stats" id="finalStats"></p>
+<h3>Review your 18 matches</h3><div class="answers" id="answers"></div>
+<button class="button primary" type="button" id="again">↻ Play again</button>
+</section>
+<footer class="footer">Japanese beginner practice · Learn the reading, writing and meaning together.</footer>
+</main>
+<script>
+"use strict";
+const PACKS=[{"name":"Days & times · まいにち","items":[{"id":"0-0","h":"きょう","k":"今日","en":"today"},{"id":"0-1","h":"あした","k":"明日","en":"tomorrow"},{"id":"0-2","h":"きのう","k":"昨日","en":"yesterday"},{"id":"0-3","h":"あさ","k":"朝","en":"morning"},{"id":"0-4","h":"ひる","k":"昼","en":"midday"},{"id":"0-5","h":"よる","k":"夜","en":"night"}]},{"name":"School & family · がっこう・かぞく","items":[{"id":"1-0","h":"がっこう","k":"学校","en":"school"},{"id":"1-1","h":"せんせい","k":"先生","en":"teacher"},{"id":"1-2","h":"がくせい","k":"学生","en":"student"},{"id":"1-3","h":"はは","k":"母","en":"mother"},{"id":"1-4","h":"ちち","k":"父","en":"father"},{"id":"1-5","h":"おんな","k":"女","en":"woman"}]},{"name":"Everyday verbs · まいにちのどうし","items":[{"id":"2-0","h":"たべる","k":"食べる","en":"to eat"},{"id":"2-1","h":"のむ","k":"飲む","en":"to drink"},{"id":"2-2","h":"みる","k":"見る","en":"to see"},{"id":"2-3","h":"きく","k":"聞く","en":"to listen"},{"id":"2-4","h":"よむ","k":"読む","en":"to read"},{"id":"2-5","h":"かく","k":"書く","en":"to write"}]}];
+const TYPES=[{key:"h",container:"rowH",className:"hiragana",placeholder:"ひらがな"},{key:"k",container:"rowK",className:"kanji",placeholder:"漢字"},{key:"en",container:"rowEn",className:"meaning",placeholder:"meaning"}];
+const TOTAL=PACKS.reduce((sum,p)=>sum+p.items.length,0);
+let round=0,matched=new Set(),picked={h:null,k:null,en:null},total=0,mistakes=0,locked=false;
+const $=id=>document.getElementById(id);
+function shuffle(source){const a=[...source];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function feedback(message,type=""){const el=$("feedback");el.textContent=message;el.className="feedback"+(type?" "+type:"")}
+function clearChoices(){picked={h:null,k:null,en:null};updateSelections()}
+function updateSelections(){
+ TYPES.forEach(t=>{
+  const value=picked[t.key];
+  $("slot"+t.key[0].toUpperCase()+t.key.slice(1)).textContent=value?PACKS[round].items.find(x=>x.id===value)[t.key]:t.placeholder;
+  document.querySelectorAll("#"+t.container+" .tile").forEach(b=>{
+   const chosen=value===b.dataset.id;b.classList.toggle("selected",chosen);b.setAttribute("aria-pressed",String(chosen));
+  });
+ });
+}
+function updateProgress(){
+ $("progress").textContent=total+" / "+TOTAL+" matched";
+ $("progressFill").style.width=(100*total/TOTAL)+"%";
+ $("progressTrack").setAttribute("aria-valuenow",String(total));
+ $("stats").textContent=(PACKS[round].items.length-matched.size)+" matches left in this round · "+mistakes+" mistake"+(mistakes===1?"":"s");
+}
+function makeRow(type){
+ const div=$(type.container);div.replaceChildren();
+ for(const item of shuffle(PACKS[round].items)){
+  const b=document.createElement("button");b.type="button";
+  b.className="tile "+type.className;b.textContent=item[type.key];b.dataset.id=item.id;
+  b.setAttribute("aria-pressed","false");
+  b.setAttribute("aria-label",item[type.key]+", "+type.className);
+  b.addEventListener("click",()=>select(type.key,item.id));div.appendChild(b);
+ }
+}
+function markMatched(){
+ document.querySelectorAll(".tile").forEach(b=>{
+  if(matched.has(b.dataset.id)){b.classList.add("matched");b.disabled=true;b.setAttribute("aria-pressed","false");b.setAttribute("aria-label",b.textContent+", matched")}
+ });
+}
+function select(type,id){
+ if(locked||matched.has(id))return;
+ if(type==="k"&&!picked.h){feedback("Choose a hiragana card from row 1 first.");return}
+ if(type==="en"&&!picked.k){feedback("Choose a kanji card from row 2 first.");return}
+ if(type==="h"){picked={h:id,k:null,en:null}}
+ else if(type==="k"){picked.k=id;picked.en=null}
+ else picked.en=id;
+ updateSelections();
+ if(type!=="en"){feedback(type==="h"?"Great! Now choose its kanji in row 2.":"Now choose the English meaning in row 3.");return}
+ if(picked.h===picked.k&&picked.k===picked.en){
+  const found=PACKS[round].items.find(x=>x.id===id);
+  matched.add(id);total++;markMatched();clearChoices();updateProgress();
+  feedback("✓ Correct! "+found.h+" = "+found.k+" = "+found.en,"ok");
+  if(matched.size===PACKS[round].items.length){
+   $("next").hidden=false;
+   $("next").textContent=round===PACKS.length-1?"See results →":"Next round →";
+   feedback("🎉 Round "+(round+1)+" complete! All six triples matched. "+(round===PACKS.length-1?"See your results!":"Go to the next round."),"ok");
+  }
+ }else{
+  mistakes++;
+  const hiragana=PACKS[round].items.find(x=>x.id===picked.h).h;
+  picked.k=null;picked.en=null;updateSelections();updateProgress();
+  feedback("Not quite. Keep "+hiragana+" selected and try a different kanji, then meaning.","no");
+ }
+}
+function startRound(){
+ matched=new Set();locked=false;clearChoices();
+ $("roundTitle").textContent="Round "+(round+1)+" of "+PACKS.length;
+ $("roundTheme").textContent=PACKS[round].name;
+ $("next").hidden=true;
+ TYPES.forEach(makeRow);updateSelections();updateProgress();
+ feedback("Start with a hiragana card from the first row.");
+}
+function finish(){
+ $("playPanel").hidden=true;$("finishPanel").hidden=false;
+ $("finalStats").textContent=TOTAL+" complete matches · "+mistakes+" mistake"+(mistakes===1?"":"s");
+ const list=$("answers");list.replaceChildren();
+ for(const pack of PACKS){
+  for(const x of pack.items){
+   const row=document.createElement("div");row.className="answer";
+   for(const v of [x.h,x.k,x.en]){const span=document.createElement("span");span.textContent=v;row.appendChild(span)}
+   list.appendChild(row);
+  }
+ }
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+$("next").addEventListener("click",()=>{
+ if(matched.size!==PACKS[round].items.length)return;
+ if(round===PACKS.length-1){finish();return}
+ round++;startRound();$("playPanel").scrollIntoView({behavior:"smooth"});
+});
+$("reshuffle").addEventListener("click",()=>{
+ total-=matched.size;startRound();
+});
+$("again").addEventListener("click",()=>{
+ round=0;total=0;mistakes=0;$("finishPanel").hidden=true;$("playPanel").hidden=false;startRound();window.scrollTo({top:0,behavior:"smooth"});
+});
+startRound();
+</script>
+</body></html>
