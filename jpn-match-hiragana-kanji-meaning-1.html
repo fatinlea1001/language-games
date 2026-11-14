@@ -184,7 +184,7 @@ $("next").addEventListener("click",()=>{
  round++;startRound();$("playPanel").scrollIntoView({behavior:"smooth"});
 });
 $("reshuffle").addEventListener("click",()=>{
- total-=matched.size;round===0?null:null;startRound();
+ total-=matched.size;startRound();
 });
 $("again").addEventListener("click",()=>{
  round=0;total=0;mistakes=0;$("finishPanel").hidden=true;$("playPanel").hidden=false;startRound();window.scrollTo({top:0,behavior:"smooth"});
