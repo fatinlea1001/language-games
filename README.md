@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**338 games** — automatically updated when an HTML game is added or changed.
+**340 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Being Loving (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-loving-normal.html) — updated 20 Nov 2026
+- [Sample Essay — Being Loving (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-loving-easy.html) — updated 20 Nov 2026
 - [Sample Essay — Leisure Activity (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leisure-activity-normal.html) — updated 20 Nov 2026
 - [Sample Essay — Leisure Activity (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leisure-activity-easy.html) — updated 20 Nov 2026
 - [Sample Essay — Balanced Diet (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-balanced-diet-normal.html) — updated 20 Nov 2026
