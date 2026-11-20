@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**334 games** — automatically updated when an HTML game is added or changed.
+**336 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Balanced Diet (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-balanced-diet-normal.html) — updated 20 Nov 2026
+- [Sample Essay — Balanced Diet (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-balanced-diet-easy.html) — updated 20 Nov 2026
 - [Sample Essay — Desaru Coast Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-desaru-coast-review-normal.html) — updated 14 Nov 2026
 - [Sample Essay — Desaru Coast Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-desaru-coast-review-easy.html) — updated 14 Nov 2026
 - [Sample Essay — Financial Literacy Teens (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-financial-literacy-teens-normal.html) — updated 13 Nov 2026
