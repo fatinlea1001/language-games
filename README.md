@@ -3,10 +3,14 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**340 games** — automatically updated when an HTML game is added or changed.
+**344 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Hari Raya Aidilfitri (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-hari-raya-aidilfitri-normal.html) — updated 20 Nov 2026
+- [Sample Essay — Hari Raya Aidilfitri (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-hari-raya-aidilfitri-easy.html) — updated 20 Nov 2026
+- [Sample Essay — Chinese New Year (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-chinese-new-year-normal.html) — updated 20 Nov 2026
+- [Sample Essay — Chinese New Year (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-chinese-new-year-easy.html) — updated 20 Nov 2026
 - [Sample Essay — Being Loving (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-loving-normal.html) — updated 20 Nov 2026
 - [Sample Essay — Being Loving (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-loving-easy.html) — updated 20 Nov 2026
 - [Sample Essay — Leisure Activity (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leisure-activity-normal.html) — updated 20 Nov 2026
