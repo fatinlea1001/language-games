@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**354 games** — automatically updated when an HTML game is added or changed.
+**356 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Article — Staying Positive (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-staying-positive-normal.html) — updated 23 Nov 2026
+- [Sample Article — Staying Positive (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-staying-positive-easy.html) — updated 23 Nov 2026
 - [Sample Article — Tiktok Entertainment (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-tiktok-entertainment-normal.html) — updated 23 Nov 2026
 - [Sample Article — Tiktok Entertainment (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-tiktok-entertainment-easy.html) — updated 23 Nov 2026
 - [Sample Article — Teh Tarik Drinks (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teh-tarik-drinks-normal.html) — updated 23 Nov 2026
