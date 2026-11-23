@@ -7,6 +7,14 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Article — Eco Friendly Lifestyle (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-eco-friendly-lifestyle-normal.html) — updated 23 Nov 2026
+- [Sample Article — Eco Friendly Lifestyle (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-eco-friendly-lifestyle-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Reading E-books Among Teenagers (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ebooks-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Reading E-books Among Teenagers (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ebooks-easy.html) — updated 23 Nov 2026
+- [Sample Report — E Learning Day Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-normal.html) — updated 23 Nov 2026
+- [Sample Report — E Learning Day Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-easy.html) — updated 23 Nov 2026
+- [Sample Article — Digital Revolution (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-normal.html) — updated 23 Nov 2026
+- [Sample Article — Digital Revolution (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Desaru Coast Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-desaru-coast-review-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Desaru Coast Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-desaru-coast-review-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-normal.html) — updated 23 Nov 2026
@@ -68,12 +76,6 @@ Recently updated games appear first in each category.
 - [Sample Article — Good Leader (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-leader-easy.html) — updated 23 Nov 2026
 - [Sample Report — Fun Run Activity Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-fun-run-activity-report-normal.html) — updated 23 Nov 2026
 - [Sample Report — Fun Run Activity Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-fun-run-activity-report-easy.html) — updated 23 Nov 2026
-- [Sample Article — Eco Friendly Lifestyle (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-eco-friendly-lifestyle-normal.html) — updated 23 Nov 2026
-- [Sample Article — Eco Friendly Lifestyle (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-eco-friendly-lifestyle-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Reading E-books Among Teenagers (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ebooks-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Reading E-books Among Teenagers (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ebooks-easy.html) — updated 23 Nov 2026
-- [Sample Article — Digital Revolution (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-normal.html) — updated 23 Nov 2026
-- [Sample Article — Digital Revolution (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-easy.html) — updated 23 Nov 2026
 - [Sample Article — Staying Positive (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-staying-positive-normal.html) — updated 23 Nov 2026
 - [Sample Article — Tiktok Entertainment (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-tiktok-entertainment-normal.html) — updated 23 Nov 2026
 - [Sample Article — Teenagers Pets (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-easy.html) — updated 23 Nov 2026
@@ -84,8 +86,6 @@ Recently updated games appear first in each category.
 - [Sample Article — Financial Literacy Teens (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-financial-literacy-teens-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Financial Literacy Teens (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-financial-literacy-teens-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Financial Literacy Teens (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-financial-literacy-teens-easy.html) — updated 13 Nov 2026
-- [Sample Report — E Learning Day Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-normal.html) — updated 13 Nov 2026
-- [Sample Report — E Learning Day Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — E Learning Day Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-e-learning-day-report-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — E Learning Day Report (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-e-learning-day-report-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-attack-on-titan-review-normal.html) — updated 13 Nov 2026
