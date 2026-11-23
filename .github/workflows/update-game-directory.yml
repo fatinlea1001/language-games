@@ -101,12 +101,13 @@ jobs:
               if versioned:
                   topic = ' '.join(piece.capitalize() for piece in versioned.group(2).split('-'))
                   level = versioned.group(3).upper()
-                  # Published article pages have a visible author byline.
-                  # Read the file so new articles are classified without a manual filename list.
+                  # Identify sample genre from its published HTML, not the filename.
+                  # A formal report uses To/From/Subject metadata; an article has a byline.
                   if versioned.group(1).lower() == 'sample-essay':
                       source = path.read_text(encoding='utf-8', errors='replace')
+                      has_report_meta = bool(re.search(r'<div\b[^>]*\bclass=["\'][^"\']*\breport-meta\b', source, re.I))
                       has_byline = bool(re.search(r'<p\b[^>]*\bbyline\b', source, re.I))
-                      name = 'Sample Article' if has_byline else 'Sample Essay'
+                      name = 'Sample Report' if has_report_meta else ('Sample Article' if has_byline else 'Sample Essay')
                   else:
                       name = 'SPM Elaboration Builder'
                   return f'{name} — {topic} ({level})'
