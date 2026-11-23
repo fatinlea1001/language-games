@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**390 games** — automatically updated when an HTML game is added or changed.
+**392 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Doomed Love Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-doomed-love-story-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Doomed Love Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-doomed-love-story-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Prefect Interview Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-prefect-interview-story-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Prefect Interview Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-prefect-interview-story-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Diana Bus Terminal Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-diana-bus-terminal-story-normal.html) — updated 23 Nov 2026
