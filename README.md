@@ -7,8 +7,8 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Sample Essay — Camping Activity Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-camping-activity-report-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Camping Activity Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-camping-activity-report-easy.html) — updated 23 Nov 2026
+- [Sample Report — Camping Activity Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-camping-activity-report-normal.html) — updated 23 Nov 2026
+- [Sample Report — Camping Activity Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-camping-activity-report-easy.html) — updated 23 Nov 2026
 - [Sample Article — Think Before You Buy (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-think-before-you-buy-normal.html) — updated 23 Nov 2026
 - [Sample Article — Think Before You Buy (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-think-before-you-buy-easy.html) — updated 23 Nov 2026
 - [Sample Article — Love Our River (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-love-our-river-normal.html) — updated 23 Nov 2026
@@ -49,8 +49,8 @@ Recently updated games appear first in each category.
 - [Sample Article — Financial Literacy Teens (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-financial-literacy-teens-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Financial Literacy Teens (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-financial-literacy-teens-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Financial Literacy Teens (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-financial-literacy-teens-easy.html) — updated 13 Nov 2026
-- [Sample Essay — E Learning Day Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-normal.html) — updated 13 Nov 2026
-- [Sample Essay — E Learning Day Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-easy.html) — updated 13 Nov 2026
+- [Sample Report — E Learning Day Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-normal.html) — updated 13 Nov 2026
+- [Sample Report — E Learning Day Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — E Learning Day Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-e-learning-day-report-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — E Learning Day Report (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-e-learning-day-report-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-normal.html) — updated 13 Nov 2026
@@ -61,8 +61,8 @@ Recently updated games appear first in each category.
 - [Sample Essay — Langkawi Dream Destination (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-langkawi-dream-destination-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Langkawi Dream Destination (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-langkawi-dream-destination-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Langkawi Dream Destination (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-langkawi-dream-destination-easy.html) — updated 13 Nov 2026
-- [Sample Essay — Leadership Seminar Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leadership-seminar-report-normal.html) — updated 13 Nov 2026
-- [Sample Essay — Leadership Seminar Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leadership-seminar-report-easy.html) — updated 13 Nov 2026
+- [Sample Report — Leadership Seminar Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leadership-seminar-report-normal.html) — updated 13 Nov 2026
+- [Sample Report — Leadership Seminar Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leadership-seminar-report-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Leadership Seminar Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-leadership-seminar-report-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Leadership Seminar Report (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-leadership-seminar-report-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Smartphone Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-smartphone-review-normal.html) — updated 13 Nov 2026
@@ -95,8 +95,8 @@ Recently updated games appear first in each category.
 - [SPM Elaboration Builder — Kudrat 1968 Review (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-kudrat-1968-review-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Spending Habits Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-spending-habits-report-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Spending Habits Report (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-spending-habits-report-easy.html) — updated 13 Nov 2026
-- [Sample Essay — Spending Habits Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-spending-habits-report-normal.html) — updated 13 Nov 2026
-- [Sample Essay — Spending Habits Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-spending-habits-report-easy.html) — updated 13 Nov 2026
+- [Sample Report — Spending Habits Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-spending-habits-report-normal.html) — updated 13 Nov 2026
+- [Sample Report — Spending Habits Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-spending-habits-report-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-normal.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cyberbullying-easy.html) — updated 12 Nov 2026
 - [Sample Essay — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-normal.html) — updated 12 Nov 2026
