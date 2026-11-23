@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**350 games** — automatically updated when an HTML game is added or changed.
+**352 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Teh Tarik Drinks (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teh-tarik-drinks-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Teh Tarik Drinks (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teh-tarik-drinks-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Teenagers Pets (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Teenagers Pets (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Teenagers Ai (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-ai-normal.html) — updated 23 Nov 2026
