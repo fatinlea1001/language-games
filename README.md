@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**392 games** — automatically updated when an HTML game is added or changed.
+**394 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Story — Yellow Door Psychological Horror Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-yellow-door-psychological-horror-story-normal.html) — updated 23 Nov 2026
+- [Sample Story — Yellow Door Psychological Horror Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-yellow-door-psychological-horror-story-easy.html) — updated 23 Nov 2026
 - [Sample Story — Doomed Love Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-doomed-love-story-normal.html) — updated 23 Nov 2026
 - [Sample Story — Doomed Love Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-doomed-love-story-easy.html) — updated 23 Nov 2026
 - [Sample Story — Prefect Interview Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-prefect-interview-story-normal.html) — updated 23 Nov 2026
