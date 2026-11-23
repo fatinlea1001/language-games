@@ -7,6 +7,14 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Batu Pahat Mall Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Batu Pahat Mall Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Balanced Diet (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-balanced-diet-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Balanced Diet (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-balanced-diet-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Attack On Titan Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Animal Shelter (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-animal-shelter-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Animal Shelter (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-animal-shelter-easy.html) — updated 23 Nov 2026
 - [Sample Article — Staying Positive (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-staying-positive-easy.html) — updated 23 Nov 2026
 - [Sample Article — Tiktok Entertainment (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-tiktok-entertainment-easy.html) — updated 23 Nov 2026
 - [Sample Article — Think Before You Buy (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-think-before-you-buy-normal.html) — updated 23 Nov 2026
@@ -57,10 +65,6 @@ Recently updated games appear first in each category.
 - [Sample Report — Camping Activity Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-camping-activity-report-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Being Loving (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-loving-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Being Charitable (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-charitable-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Batu Pahat Mall Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Batu Pahat Mall Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Animal Shelter (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-animal-shelter-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Animal Shelter (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-animal-shelter-easy.html) — updated 23 Nov 2026
 - [Sample Report — Camping Activity Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-camping-activity-report-normal.html) — updated 23 Nov 2026
 - [Sample Article — Staying Positive (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-staying-positive-normal.html) — updated 23 Nov 2026
 - [Sample Article — Tiktok Entertainment (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-tiktok-entertainment-normal.html) — updated 23 Nov 2026
@@ -69,8 +73,6 @@ Recently updated games appear first in each category.
 - [Sample Essay — Musical Instrument (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-musical-instrument-normal.html) — updated 20 Nov 2026
 - [Sample Essay — Musical Instrument (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-musical-instrument-easy.html) — updated 20 Nov 2026
 - [Sample Essay — Being Loving (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-loving-easy.html) — updated 20 Nov 2026
-- [Sample Essay — Balanced Diet (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-balanced-diet-normal.html) — updated 20 Nov 2026
-- [Sample Essay — Balanced Diet (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-balanced-diet-easy.html) — updated 20 Nov 2026
 - [Sample Essay — Desaru Coast Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-desaru-coast-review-normal.html) — updated 14 Nov 2026
 - [Sample Essay — Desaru Coast Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-desaru-coast-review-easy.html) — updated 14 Nov 2026
 - [Sample Article — Financial Literacy Teens (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-financial-literacy-teens-normal.html) — updated 13 Nov 2026
@@ -81,8 +83,6 @@ Recently updated games appear first in each category.
 - [Sample Report — E Learning Day Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — E Learning Day Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-e-learning-day-report-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — E Learning Day Report (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-e-learning-day-report-easy.html) — updated 13 Nov 2026
-- [Sample Essay — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-normal.html) — updated 13 Nov 2026
-- [Sample Essay — Attack On Titan Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-attack-on-titan-review-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Attack On Titan Review (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-attack-on-titan-review-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Langkawi Dream Destination (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-langkawi-dream-destination-normal.html) — updated 13 Nov 2026
