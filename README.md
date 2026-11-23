@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**380 games** — automatically updated when an HTML game is added or changed.
+**382 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Titian Jaya Language Center Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-titian-jaya-language-center-review-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Titian Jaya Language Center Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-titian-jaya-language-center-review-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Grabfood Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-grabfood-review-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Grabfood Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-grabfood-review-easy.html) — updated 23 Nov 2026
 - [Sample Essay — It Fair Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-it-fair-review-normal.html) — updated 23 Nov 2026
