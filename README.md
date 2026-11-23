@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**372 games** — automatically updated when an HTML game is added or changed.
+**374 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Night Market Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-night-market-review-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Night Market Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-night-market-review-easy.html) — updated 23 Nov 2026
 - [Sample Report — Good Dental Care Habits (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-dental-care-habits-normal.html) — updated 23 Nov 2026
 - [Sample Report — Good Dental Care Habits (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-dental-care-habits-easy.html) — updated 23 Nov 2026
 - [Sample Report — Study Effectively Workshop Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-study-effectively-workshop-report-normal.html) — updated 23 Nov 2026
