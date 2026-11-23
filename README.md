@@ -7,8 +7,16 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Sample Essay — Good Leader (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-leader-normal.html) — updated 20 Nov 2026
-- [Sample Essay — Good Leader (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-leader-easy.html) — updated 20 Nov 2026
+- [Sample Essay — Teenagers Pets (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Teenagers Pets (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Teenagers Ai (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-ai-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Teenagers Ai (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-ai-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Good Leader (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-leader-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Good Leader (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-leader-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Eco Friendly Lifestyle (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-eco-friendly-lifestyle-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Eco Friendly Lifestyle (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-eco-friendly-lifestyle-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Digital Revolution (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Digital Revolution (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Keeping Environment Clean (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-keeping-environment-clean-normal.html) — updated 20 Nov 2026
 - [Sample Essay — Keeping Environment Clean (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-keeping-environment-clean-easy.html) — updated 20 Nov 2026
 - [Sample Essay — Musical Instrument (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-musical-instrument-normal.html) — updated 20 Nov 2026
@@ -53,8 +61,6 @@ Recently updated games appear first in each category.
 - [Sample Essay — Cameron Highlands Trip (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cameron-highlands-trip-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Cameron Highlands Trip (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cameron-highlands-trip-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Cameron Highlands Trip (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-cameron-highlands-trip-easy.html) — updated 13 Nov 2026
-- [Sample Essay — Eco Friendly Lifestyle (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-eco-friendly-lifestyle-normal.html) — updated 13 Nov 2026
-- [Sample Essay — Eco Friendly Lifestyle (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-eco-friendly-lifestyle-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Eco Friendly Lifestyle (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-eco-friendly-lifestyle-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Eco Friendly Lifestyle (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-eco-friendly-lifestyle-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Batu Pahat Mall Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-normal.html) — updated 13 Nov 2026
@@ -69,8 +75,6 @@ Recently updated games appear first in each category.
 - [Sample Essay — Capcut Mobile App (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-capcut-mobile-app-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Capcut Mobile App (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-capcut-mobile-app-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Capcut Mobile App (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-capcut-mobile-app-easy.html) — updated 13 Nov 2026
-- [Sample Essay — Teenagers Pets (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-normal.html) — updated 13 Nov 2026
-- [Sample Essay — Teenagers Pets (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Teenagers Pets (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-teenagers-pets-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Teenagers Pets (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-teenagers-pets-easy.html) — updated 13 Nov 2026
 - [Sample Essay — Kudrat 1968 Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-normal.html) — updated 13 Nov 2026
@@ -93,8 +97,6 @@ Recently updated games appear first in each category.
 - [Sample Essay — Entertainment Learning (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-entertainment-learning-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Entertainment Learning (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-entertainment-learning-normal.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Entertainment Learning (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-entertainment-learning-easy.html) — updated 12 Nov 2026
-- [Sample Essay — Teenagers Ai (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-ai-normal.html) — updated 12 Nov 2026
-- [Sample Essay — Teenagers Ai (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-ai-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Teenagers Ai (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-teenagers-ai-normal.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Teenagers Ai (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-teenagers-ai-easy.html) — updated 12 Nov 2026
 - [Sample Essay — School Canteen Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-school-canteen-review-normal.html) — updated 12 Nov 2026
@@ -105,8 +107,6 @@ Recently updated games appear first in each category.
 - [Sample Essay — Independence Day (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-independence-day-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Independence Day (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-independence-day-normal.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Independence Day (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-independence-day-easy.html) — updated 12 Nov 2026
-- [Sample Essay — Digital Revolution (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-normal.html) — updated 12 Nov 2026
-- [Sample Essay — Digital Revolution (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Digital Revolution (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-digital-revolution-normal.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — Digital Revolution (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-digital-revolution-easy.html) — updated 12 Nov 2026
 - [SPM Elaboration Builder — E-books (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-ebooks-3.html) — updated 11 Nov 2026
