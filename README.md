@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**374 games** — automatically updated when an HTML game is added or changed.
+**376 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Xiaomi Smartwatch Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-xiaomi-smartwatch-review-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Xiaomi Smartwatch Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-xiaomi-smartwatch-review-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Night Market Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-night-market-review-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Night Market Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-night-market-review-easy.html) — updated 23 Nov 2026
 - [Sample Report — Good Dental Care Habits (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-dental-care-habits-normal.html) — updated 23 Nov 2026
