@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**378 games** — automatically updated when an HTML game is added or changed.
+**380 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Grabfood Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-grabfood-review-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Grabfood Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-grabfood-review-easy.html) — updated 23 Nov 2026
 - [Sample Essay — It Fair Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-it-fair-review-normal.html) — updated 23 Nov 2026
 - [Sample Essay — It Fair Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-it-fair-review-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Xiaomi Smartwatch Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-xiaomi-smartwatch-review-normal.html) — updated 23 Nov 2026
