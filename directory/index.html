@@ -675,9 +675,16 @@ function topicDescription(file, readmeTitle, language){
  if(levelMatch){
   const topic=levelMatch[2].split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' ');
   const level=levelMatch[3].toUpperCase();
-  return levelMatch[1]==='sample-essay'
-   ? {label:'Sample Essay — '+topic+' ('+level+')',topics:[topic],theme:'SPM Writing Part 2 · Sample Essay'}
-   : {label:'SPM Elaboration Builder — '+topic+' ('+level+')',topics:[topic],theme:'Writing Part 2 SPM'};
+  if(levelMatch[1]==='sample-essay'){
+   // The generated README title reflects the page's visible byline.
+   const isArticle=/^Sample Article\b/i.test(readmeTitle);
+   return {
+    label:isArticle?readmeTitle:'Sample Essay — '+topic+' ('+level+')',
+    topics:[topic],
+    theme:isArticle?'SPM Writing Part 3 · Sample Article':'SPM Writing Part 2 · Sample Essay'
+   };
+  }
+  return {label:'SPM Elaboration Builder — '+topic+' ('+level+')',topics:[topic],theme:'Writing Part 2 SPM'};
  }
  if(stem.startsWith('eng-sample-essay-'))
   return {label:readmeTitle,topics:['Writing Part 2'],theme:'SPM Sample Essays'};
@@ -754,6 +761,10 @@ function parseDirectory(markdown){
   const file=decodeURIComponent(url.pathname.split('/').pop());
   const style=gameStyle(file,language);
   const metadata=topicDescription(file,title,language);
+  if(language==='English' && /^Sample Article\b/i.test(metadata.label)){
+   style.emoji='📰';
+   style.topic='Complete model article';
+  }
   const grouping=language==='English'
     ? {...classifyEnglishGame(file),japaneseCategory:''}
     : {category:'',spmPart:'',japaneseCategory:classifyJapaneseGame(file)};
@@ -808,7 +819,7 @@ function sampleTypeFor(g){
  if(theme.includes('sample email')||title.startsWith('sample email')||/-e-?mail[-.]/.test(name))return 'Email';
  if(theme.includes('sample report')||title.startsWith('sample report')||/-report[-.]/.test(name))return 'Report';
  if(theme.includes('sample review')||title.startsWith('sample review')||title.startsWith('sample movie review')||/-review[-.]/.test(name)||name.includes('animal-shelter'))return 'Review';
- if(theme.includes('sample article')||title.startsWith('sample article')||/-(digital-revolution|teenagers-ai|teenagers-pets)-/.test(name))return 'Article';
+ if(theme.includes('sample article')||title.startsWith('sample article'))return 'Article';
  if(theme.includes('sample story')||title.startsWith('sample story')||/-(story|narrative)[-.]/.test(name))return 'Story';
  return 'Essay';
 }

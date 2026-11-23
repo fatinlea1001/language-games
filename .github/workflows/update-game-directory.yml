@@ -101,7 +101,14 @@ jobs:
               if versioned:
                   topic = ' '.join(piece.capitalize() for piece in versioned.group(2).split('-'))
                   level = versioned.group(3).upper()
-                  name = 'Sample Essay' if versioned.group(1).lower() == 'sample-essay' else 'SPM Elaboration Builder'
+                  # Published article pages have a visible author byline.
+                  # Read the file so new articles are classified without a manual filename list.
+                  if versioned.group(1).lower() == 'sample-essay':
+                      source = path.read_text(encoding='utf-8', errors='replace')
+                      has_byline = bool(re.search(r'<p\b[^>]*\bbyline\b', source, re.I))
+                      name = 'Sample Article' if has_byline else 'Sample Essay'
+                  else:
+                      name = 'SPM Elaboration Builder'
                   return f'{name} — {topic} ({level})'
               if key == 'eng-speakingpart2' and match:
                   speaking_topics = {
