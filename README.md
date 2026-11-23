@@ -7,6 +7,14 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Kudrat 1968 Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Kudrat 1968 Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Keeping Environment Clean (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-keeping-environment-clean-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Keeping Environment Clean (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-keeping-environment-clean-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Independence Day (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-independence-day-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Independence Day (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-independence-day-easy.html) — updated 23 Nov 2026
+- [Sample Essay — Hari Raya Aidilfitri (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-hari-raya-aidilfitri-normal.html) — updated 23 Nov 2026
+- [Sample Essay — Hari Raya Aidilfitri (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-hari-raya-aidilfitri-easy.html) — updated 23 Nov 2026
 - [Sample Article — Good Leader (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-leader-normal.html) — updated 23 Nov 2026
 - [Sample Article — Good Leader (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-leader-easy.html) — updated 23 Nov 2026
 - [Sample Report — Fun Run Activity Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-fun-run-activity-report-normal.html) — updated 23 Nov 2026
@@ -73,13 +81,6 @@ Recently updated games appear first in each category.
 - [Sample Report — Language Carnival Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-language-carnival-report-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Langkawi Dream Destination (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-langkawi-dream-destination-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Langkawi Dream Destination (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-langkawi-dream-destination-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Kudrat 1968 Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Keeping Environment Clean (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-keeping-environment-clean-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Keeping Environment Clean (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-keeping-environment-clean-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Independence Day (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-independence-day-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Independence Day (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-independence-day-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Hari Raya Aidilfitri (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-hari-raya-aidilfitri-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Hari Raya Aidilfitri (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-hari-raya-aidilfitri-easy.html) — updated 23 Nov 2026
 - [Sample Article — Staying Positive (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-staying-positive-normal.html) — updated 23 Nov 2026
 - [Sample Article — Tiktok Entertainment (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-tiktok-entertainment-normal.html) — updated 23 Nov 2026
 - [Sample Article — Teenagers Pets (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-easy.html) — updated 23 Nov 2026
@@ -110,7 +111,6 @@ Recently updated games appear first in each category.
 - [SPM Elaboration Builder — Capcut Mobile App (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-capcut-mobile-app-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Teenagers Pets (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-teenagers-pets-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Teenagers Pets (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-teenagers-pets-easy.html) — updated 13 Nov 2026
-- [Sample Essay — Kudrat 1968 Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Kudrat 1968 Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-kudrat-1968-review-normal.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Kudrat 1968 Review (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-kudrat-1968-review-easy.html) — updated 13 Nov 2026
 - [SPM Elaboration Builder — Spending Habits Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-spending-habits-report-normal.html) — updated 13 Nov 2026
