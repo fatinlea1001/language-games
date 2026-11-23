@@ -7,26 +7,26 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Sample Essay — Doomed Love Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-doomed-love-story-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Doomed Love Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-doomed-love-story-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Prefect Interview Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-prefect-interview-story-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Prefect Interview Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-prefect-interview-story-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Diana Bus Terminal Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-diana-bus-terminal-story-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Diana Bus Terminal Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-diana-bus-terminal-story-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Target Supermarket Parit Raja Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-target-supermarket-parit-raja-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Target Supermarket Parit Raja Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-target-supermarket-parit-raja-review-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Reusable Water Tumbler Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-reusable-water-tumbler-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Reusable Water Tumbler Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-reusable-water-tumbler-review-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Titian Jaya Language Center Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-titian-jaya-language-center-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Titian Jaya Language Center Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-titian-jaya-language-center-review-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Grabfood Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-grabfood-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Grabfood Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-grabfood-review-easy.html) — updated 23 Nov 2026
-- [Sample Essay — It Fair Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-it-fair-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — It Fair Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-it-fair-review-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Xiaomi Smartwatch Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-xiaomi-smartwatch-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Xiaomi Smartwatch Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-xiaomi-smartwatch-review-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Night Market Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-night-market-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Night Market Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-night-market-review-easy.html) — updated 23 Nov 2026
+- [Sample Story — Doomed Love Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-doomed-love-story-normal.html) — updated 23 Nov 2026
+- [Sample Story — Doomed Love Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-doomed-love-story-easy.html) — updated 23 Nov 2026
+- [Sample Story — Prefect Interview Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-prefect-interview-story-normal.html) — updated 23 Nov 2026
+- [Sample Story — Prefect Interview Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-prefect-interview-story-easy.html) — updated 23 Nov 2026
+- [Sample Story — Diana Bus Terminal Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-diana-bus-terminal-story-normal.html) — updated 23 Nov 2026
+- [Sample Story — Diana Bus Terminal Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-diana-bus-terminal-story-easy.html) — updated 23 Nov 2026
+- [Sample Review — Target Supermarket Parit Raja Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-target-supermarket-parit-raja-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Target Supermarket Parit Raja Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-target-supermarket-parit-raja-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — Reusable Water Tumbler Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-reusable-water-tumbler-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Reusable Water Tumbler Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-reusable-water-tumbler-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — Titian Jaya Language Center Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-titian-jaya-language-center-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Titian Jaya Language Center Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-titian-jaya-language-center-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — Grabfood Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-grabfood-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Grabfood Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-grabfood-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — It Fair Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-it-fair-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — It Fair Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-it-fair-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — Xiaomi Smartwatch Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-xiaomi-smartwatch-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Xiaomi Smartwatch Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-xiaomi-smartwatch-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — Night Market Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-night-market-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Night Market Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-night-market-review-easy.html) — updated 23 Nov 2026
 - [Sample Report — Good Dental Care Habits (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-dental-care-habits-normal.html) — updated 23 Nov 2026
 - [Sample Report — Good Dental Care Habits (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-good-dental-care-habits-easy.html) — updated 23 Nov 2026
 - [Sample Report — Study Effectively Workshop Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-study-effectively-workshop-report-normal.html) — updated 23 Nov 2026
@@ -37,12 +37,12 @@ Recently updated games appear first in each category.
 - [Sample Article — Teenagers Ai (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-ai-easy.html) — updated 23 Nov 2026
 - [Sample Report — Spending Habits Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-spending-habits-report-normal.html) — updated 23 Nov 2026
 - [Sample Report — Spending Habits Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-spending-habits-report-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Smartphone Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-smartphone-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Smartphone Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-smartphone-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — Smartphone Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-smartphone-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Smartphone Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-smartphone-review-easy.html) — updated 23 Nov 2026
 - [Sample Report — School Library Survey Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-school-library-survey-report-normal.html) — updated 23 Nov 2026
 - [Sample Report — School Library Survey Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-school-library-survey-report-easy.html) — updated 23 Nov 2026
-- [Sample Essay — School Canteen Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-school-canteen-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — School Canteen Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-school-canteen-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — School Canteen Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-school-canteen-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — School Canteen Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-school-canteen-review-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Musical Instrument (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-musical-instrument-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Musical Instrument (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-musical-instrument-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Leisure Activity (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leisure-activity-normal.html) — updated 23 Nov 2026
@@ -53,8 +53,8 @@ Recently updated games appear first in each category.
 - [Sample Report — Language Carnival Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-language-carnival-report-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Langkawi Dream Destination (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-langkawi-dream-destination-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Langkawi Dream Destination (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-langkawi-dream-destination-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Kudrat 1968 Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Kudrat 1968 Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — Kudrat 1968 Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Kudrat 1968 Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-kudrat-1968-review-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Keeping Environment Clean (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-keeping-environment-clean-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Keeping Environment Clean (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-keeping-environment-clean-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Independence Day (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-independence-day-normal.html) — updated 23 Nov 2026
@@ -77,8 +77,8 @@ Recently updated games appear first in each category.
 - [Sample Report — E Learning Day Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-e-learning-day-report-easy.html) — updated 23 Nov 2026
 - [Sample Article — Digital Revolution (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-normal.html) — updated 23 Nov 2026
 - [Sample Article — Digital Revolution (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-digital-revolution-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Desaru Coast Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-desaru-coast-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Desaru Coast Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-desaru-coast-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — Desaru Coast Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-desaru-coast-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Desaru Coast Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-desaru-coast-review-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Cyberbullying (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Cyberbullying (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cyberbullying-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Chinese New Year (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-chinese-new-year-normal.html) — updated 23 Nov 2026
@@ -91,14 +91,14 @@ Recently updated games appear first in each category.
 - [Sample Essay — Being Loving (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-loving-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Being Charitable (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-charitable-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Being Charitable (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-charitable-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Batu Pahat Mall Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Batu Pahat Mall Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — Batu Pahat Mall Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Batu Pahat Mall Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-batu-pahat-mall-review-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Balanced Diet (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-balanced-diet-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Balanced Diet (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-balanced-diet-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Attack On Titan Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-easy.html) — updated 23 Nov 2026
-- [Sample Essay — Animal Shelter (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-animal-shelter-normal.html) — updated 23 Nov 2026
-- [Sample Essay — Animal Shelter (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-animal-shelter-easy.html) — updated 23 Nov 2026
+- [Sample Review — Attack On Titan Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-normal.html) — updated 23 Nov 2026
+- [Sample Review — Attack On Titan Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-attack-on-titan-review-easy.html) — updated 23 Nov 2026
+- [Sample Review — Animal Shelter (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-animal-shelter-normal.html) — updated 23 Nov 2026
+- [Sample Review — Animal Shelter (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-animal-shelter-easy.html) — updated 23 Nov 2026
 - [Sample Article — Tiktok Entertainment (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-tiktok-entertainment-normal.html) — updated 23 Nov 2026
 - [Sample Article — Tiktok Entertainment (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-tiktok-entertainment-easy.html) — updated 23 Nov 2026
 - [Sample Article — Think Before You Buy (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-think-before-you-buy-normal.html) — updated 23 Nov 2026
