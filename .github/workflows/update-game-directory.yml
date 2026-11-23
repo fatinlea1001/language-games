@@ -101,13 +101,25 @@ jobs:
               if versioned:
                   topic = ' '.join(piece.capitalize() for piece in versioned.group(2).split('-'))
                   level = versioned.group(3).upper()
-                  # Identify sample genre from its published HTML, not the filename.
-                  # A formal report uses To/From/Subject metadata; an article has a byline.
+                  # Determine sample genre from the published page's own title and genre.
+                  # The eng-sample-essay prefix is a legacy filename convention, not a genre.
                   if versioned.group(1).lower() == 'sample-essay':
                       source = path.read_text(encoding='utf-8', errors='replace')
+                      found_genre = re.search(r'<title\b[^>]*>\s*Sample\s+(Story|Review|Report|Article)\b', source, re.I)
+                      title_genre = found_genre.group(1).title() if found_genre else ''
+                      slug = versioned.group(2).lower()
                       has_report_meta = bool(re.search(r'<div\b[^>]*\bclass=["\'][^"\']*\breport-meta\b', source, re.I))
                       has_byline = bool(re.search(r'<p\b[^>]*\bbyline\b', source, re.I))
-                      name = 'Sample Report' if has_report_meta else ('Sample Article' if has_byline else 'Sample Essay')
+                      if has_report_meta or title_genre == 'Report':
+                          name = 'Sample Report'
+                      elif has_byline or title_genre == 'Article':
+                          name = 'Sample Article'
+                      elif title_genre == 'Story' or slug.endswith(('-story', '-narrative')):
+                          name = 'Sample Story'
+                      elif title_genre == 'Review' or slug.endswith('-review'):
+                          name = 'Sample Review'
+                      else:
+                          name = 'Sample Essay'
                   else:
                       name = 'SPM Elaboration Builder'
                   return f'{name} — {topic} ({level})'
