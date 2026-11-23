@@ -168,7 +168,7 @@ html.embedded-view .game-sub{gap:4px}
         <button type="button" class="category-tab" data-category="SPM Practice" aria-pressed="true"><span class="category-icon" aria-hidden="true">🎓</span><span>SPM Practice</span></button>
         <button type="button" class="category-tab" data-category="Grammar" aria-pressed="false"><span class="category-icon" aria-hidden="true">🧩</span><span>Grammar</span></button>
         <button type="button" class="category-tab" data-category="Vocabulary" aria-pressed="false"><span class="category-icon" aria-hidden="true">📚</span><span>Vocabulary</span></button>
-        <button type="button" class="category-tab" data-category="Sample Essays" aria-pressed="false"><span class="category-icon" aria-hidden="true">📖</span><span>Sample Essays</span></button>
+        <button type="button" class="category-tab" data-category="Sample Essays" aria-pressed="false"><span class="category-icon" aria-hidden="true">📖</span><span>Writing Samples</span></button>
       </div>
     </div>
 
@@ -263,7 +263,7 @@ let currentPage=1;
 
 function gameStyle(path, language){
  const name=path.toLowerCase();
- if(name.startsWith('eng-sample-essay-'))return {emoji:'📖',bg:'#f0e5ff',topic:'Complete model essay'};
+ if(name.startsWith('eng-sample-essay-'))return {emoji:'📖',bg:'#f0e5ff',topic:'Complete writing sample'};
  if(name.includes('story'))return {emoji:'📖',bg:'#ffe6ef',topic:'Story · Fill in the blanks'};
  if(name.includes('spelling')||name.includes('spell-'))return {emoji:'🈴',bg:'#eee8ff',topic:'Spelling challenge'};
  if(name.includes('speaking'))return {emoji:'🎤',bg:'#ebe8ff',topic:'Speaking practice'};
@@ -676,13 +676,17 @@ function topicDescription(file, readmeTitle, language){
   const topic=levelMatch[2].split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' ');
   const level=levelMatch[3].toUpperCase();
   if(levelMatch[1]==='sample-essay'){
-   // The README genre is derived from the actual HTML: report metadata or article byline.
-   const isArticle=/^Sample Article\b/i.test(readmeTitle);
-   const isReport=/^Sample Report\b/i.test(readmeTitle);
+   // Identify the actual writing genre, including Story, before README refresh.
+   const slug=levelMatch[2].toLowerCase();
+   const genre=/-(story|narrative)$/.test(slug)||/^Sample Story\b/i.test(readmeTitle)?'Story'
+    :/-review$/.test(slug)||/^Sample Review\b/i.test(readmeTitle)?'Review'
+    :/^Sample Report\b/i.test(readmeTitle)||/-report$/.test(slug)?'Report'
+    :/^Sample Article\b/i.test(readmeTitle)?'Article':'Essay';
+   const matchingLabel=new RegExp('^Sample '+genre+'\\b','i').test(readmeTitle);
    return {
-    label:(isArticle||isReport)?readmeTitle:'Sample Essay — '+topic+' ('+level+')',
+    label:matchingLabel?readmeTitle:'Sample '+genre+' — '+topic+' ('+level+')',
     topics:[topic],
-    theme:isReport?'SPM Writing Part 3 · Sample Report':isArticle?'SPM Writing Part 3 · Sample Article':'SPM Writing Part 2 · Sample Essay'
+    theme:'SPM Writing Part '+(genre==='Essay'?'2':'3')+' · Sample '+genre
    };
   }
   return {label:'SPM Elaboration Builder — '+topic+' ('+level+')',topics:[topic],theme:'Writing Part 2 SPM'};
@@ -762,7 +766,13 @@ function parseDirectory(markdown){
   const file=decodeURIComponent(url.pathname.split('/').pop());
   const style=gameStyle(file,language);
   const metadata=topicDescription(file,title,language);
-  if(language==='English' && /^Sample Article\b/i.test(metadata.label)){
+  if(language==='English' && /^Sample Story\b/i.test(metadata.label)){
+    style.emoji='📖';
+    style.topic='Complete model story';
+  }else if(language==='English' && /^Sample Review\b/i.test(metadata.label)){
+    style.emoji='⭐';
+    style.topic='Complete model review';
+  }else if(language==='English' && /^Sample Article\b/i.test(metadata.label)){
    style.emoji='📰';
    style.topic='Complete model article';
   }else if(language==='English' && /^Sample Report\b/i.test(metadata.label)){
@@ -885,7 +895,7 @@ function updateFilters(){
    'SPM Practice':'📝 SPM Practice',
    'Grammar':'🧩 Grammar',
    'Vocabulary':'📚 Vocabulary',
-   'Sample Essays':'📖 Sample Essays'
+   'Sample Essays':'📖 Writing Samples'
   };
   sectionTitle.textContent=heading[activeCategory];
   sectionSub.textContent=activeCategory==='SPM Practice'
@@ -893,9 +903,9 @@ function updateFilters(){
    :activeCategory==='Grammar'
     ?'Sentence building, word formation and grammar quizzes.'
     :activeCategory==='Sample Essays'
-     ?'Read complete SPM essays with Malay vocabulary meanings.'
+     ?'Read model essays, reviews, stories and other writing formats with Malay vocabulary meanings.'
      :'Word meaning, spelling and vocabulary practice.';
-  field.placeholder='Search '+activeCategory+' games or topics…';
+  field.placeholder='Search '+(activeCategory==='Sample Essays'?'writing samples':activeCategory+' games')+' or topics…';
  }else{
   sectionTitle.textContent=activeJapaneseCategory==='All'?'🇯🇵 Japanese Games':'🇯🇵 '+activeJapaneseCategory;
   sectionSub.textContent=activeJapaneseCategory==='All'?'Most recently updated first, within Japanese.':'Browse '+activeJapaneseCategory+' games, newest first.';
@@ -997,12 +1007,12 @@ function render(){
  });
  items.append(fragment);
  renderPager(paginationTop,pages);renderPager(paginationBottom,pages);
- count.textContent=matches.length+' '+(activeLanguage==='English'&&activeCategory==='Sample Essays'?(matches.length===1?'sample essay':'sample essays'):(matches.length===1?'game':'games'));
+ count.textContent=matches.length+' '+(activeLanguage==='English'&&activeCategory==='Sample Essays'?(matches.length===1?'sample':'samples'):(matches.length===1?'game':'games'));
  const scope=games.filter(g=>g.kind===activeLanguage &&
   (activeLanguage==='Japanese'
    ? (activeJapaneseCategory==='All'||g.japaneseCategory===activeJapaneseCategory)
    : g.category===activeCategory));
- totalHint.textContent=loaded?'· showing '+(matches.length?start+1:0)+'–'+Math.min(start+PAGE_SIZE,matches.length)+' of '+matches.length+' · '+scope.length+' total in '+(activeLanguage==='English'?activeCategory:(activeJapaneseCategory==='All'?'Japanese':activeJapaneseCategory)):'';
+ totalHint.textContent=loaded?'· showing '+(matches.length?start+1:0)+'–'+Math.min(start+PAGE_SIZE,matches.length)+' of '+matches.length+' · '+scope.length+' total in '+(activeLanguage==='English'?(activeCategory==='Sample Essays'?'Writing Samples':activeCategory):(activeJapaneseCategory==='All'?'Japanese':activeJapaneseCategory)):'';
  empty.hidden=matches.length>0 || !loaded;
  empty.textContent=activeLanguage==='English' && activeCategory==='Sample Essays' && activeSampleType!=='All' ? '📂 No '+activeSampleType.toLowerCase()+' samples found'+(q?' for this search.':' yet. New samples will appear here automatically.') : '🔍 No games found. Try another word!';
  clear.classList.toggle('visible',Boolean(field.value));
