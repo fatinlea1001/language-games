@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**362 games** — automatically updated when an HTML game is added or changed.
+**364 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Report — Fun Run Activity Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-fun-run-activity-report-normal.html) — updated 23 Nov 2026
+- [Sample Report — Fun Run Activity Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-fun-run-activity-report-easy.html) — updated 23 Nov 2026
 - [Sample Report — Camping Activity Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-camping-activity-report-normal.html) — updated 23 Nov 2026
 - [Sample Report — Camping Activity Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-camping-activity-report-easy.html) — updated 23 Nov 2026
 - [Sample Article — Think Before You Buy (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-think-before-you-buy-normal.html) — updated 23 Nov 2026
