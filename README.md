@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**358 games** — automatically updated when an HTML game is added or changed.
+**360 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Article — Think Before You Buy (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-think-before-you-buy-normal.html) — updated 23 Nov 2026
+- [Sample Article — Think Before You Buy (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-think-before-you-buy-easy.html) — updated 23 Nov 2026
 - [Sample Article — Love Our River (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-love-our-river-normal.html) — updated 23 Nov 2026
 - [Sample Article — Love Our River (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-love-our-river-easy.html) — updated 23 Nov 2026
 - [Sample Article — Staying Positive (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-staying-positive-normal.html) — updated 23 Nov 2026
