@@ -3,12 +3,10 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**370 games** — automatically updated when an HTML game is added or changed.
+**368 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Sample Report — Study Effectively Workshop Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-study-effectively-workshop-report-normal.html) — updated 23 Nov 2026
-- [Sample Report — Study Effectively Workshop Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-study-effectively-workshop-report-easy.html) — updated 23 Nov 2026
 - [Sample Article — Teenagers Pets (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-normal.html) — updated 23 Nov 2026
 - [Sample Article — Teenagers Pets (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-pets-easy.html) — updated 23 Nov 2026
 - [Sample Article — Teenagers Ai (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-teenagers-ai-normal.html) — updated 23 Nov 2026
