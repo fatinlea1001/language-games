@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**396 games** — automatically updated when an HTML game is added or changed.
+**398 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Bullying In Schools (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-bullying-in-schools-normal.html) — updated 24 Nov 2026
+- [Sample Essay — Bullying In Schools (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-bullying-in-schools-easy.html) — updated 24 Nov 2026
 - [Sample Story — Cempaka Labubu Blind Box Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cempaka-labubu-blind-box-story-normal.html) — updated 23 Nov 2026
 - [Sample Story — Cempaka Labubu Blind Box Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-cempaka-labubu-blind-box-story-easy.html) — updated 23 Nov 2026
 - [Sample Story — Yellow Door Psychological Horror Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-yellow-door-psychological-horror-story-normal.html) — updated 23 Nov 2026
