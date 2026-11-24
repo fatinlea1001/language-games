@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**408 games** — automatically updated when an HTML game is added or changed.
+**410 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Story — Polluted River Realisation Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-polluted-river-realisation-story-normal.html) — updated 24 Nov 2026
+- [Sample Story — Polluted River Realisation Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-polluted-river-realisation-story-easy.html) — updated 24 Nov 2026
 - [Sample Story — Examination Results Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-examination-results-story-normal.html) — updated 24 Nov 2026
 - [Sample Story — Examination Results Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-examination-results-story-easy.html) — updated 24 Nov 2026
 - [Sample Article — Haze Climate Change Health (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-haze-climate-change-health-normal.html) — updated 24 Nov 2026
