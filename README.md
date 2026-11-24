@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**400 games** — automatically updated when an HTML game is added or changed.
+**402 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Being Hardworking (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-hardworking-normal.html) — updated 24 Nov 2026
+- [Sample Essay — Being Hardworking (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-hardworking-easy.html) — updated 24 Nov 2026
 - [SPM Elaboration Builder — Being Hardworking (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-being-hardworking-normal.html) — updated 24 Nov 2026
 - [SPM Elaboration Builder — Being Hardworking (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-being-hardworking-easy.html) — updated 24 Nov 2026
 - [Sample Essay — Bullying In Schools (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-bullying-in-schools-normal.html) — updated 24 Nov 2026
