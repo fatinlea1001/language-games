@@ -3,10 +3,12 @@ English and Japanese Games and Quiz
 
 <!-- AUTO-GAMES:START -->
 ## 🎮 Play My Language Games
-**404 games** — automatically updated when an HTML game is added or changed.
+**406 games** — automatically updated when an HTML game is added or changed.
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Article — Haze Climate Change Health (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-haze-climate-change-health-normal.html) — updated 24 Nov 2026
+- [Sample Article — Haze Climate Change Health (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-haze-climate-change-health-easy.html) — updated 24 Nov 2026
 - [Sample Article — Ai Smart Tool Dangerous Shortcut (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ai-smart-tool-dangerous-shortcut-normal.html) — updated 24 Nov 2026
 - [Sample Article — Ai Smart Tool Dangerous Shortcut (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ai-smart-tool-dangerous-shortcut-easy.html) — updated 24 Nov 2026
 - [Sample Essay — Being Hardworking (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-hardworking-normal.html) — updated 24 Nov 2026
