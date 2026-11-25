@@ -7,8 +7,8 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
-- [Sample Review — Travel Camera Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-travel-camera-review-normal.html) — updated 24 Nov 2026
-- [Sample Review — Travel Camera Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-travel-camera-review-easy.html) — updated 24 Nov 2026
+- [Sample Review — Travel Camera Review (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-travel-camera-review-normal.html) — updated 25 Nov 2026
+- [Sample Review — Travel Camera Review (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-travel-camera-review-easy.html) — updated 25 Nov 2026
 - [Sample Report — Students Reading Habits Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-students-reading-habits-report-normal.html) — updated 24 Nov 2026
 - [Sample Report — Students Reading Habits Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-students-reading-habits-report-easy.html) — updated 24 Nov 2026
 - [Sample Story — Polluted River Realisation Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-polluted-river-realisation-story-normal.html) — updated 24 Nov 2026
