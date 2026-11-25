@@ -7,6 +7,9 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Essay — Being Hardworking (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-hardworking-normal.html) — updated 25 Nov 2026
+- [Sample Article — Ai Smart Tool Dangerous Shortcut (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ai-smart-tool-dangerous-shortcut-normal.html) — updated 25 Nov 2026
+- [Sample Article — Haze Climate Change Health (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-haze-climate-change-health-easy.html) — updated 25 Nov 2026
 - [Sample Article — Haze Climate Change Health (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-haze-climate-change-health-normal.html) — updated 25 Nov 2026
 - [Sample Report — Students Reading Habits Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-students-reading-habits-report-easy.html) — updated 25 Nov 2026
 - [Sample Report — Students Reading Habits Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-students-reading-habits-report-normal.html) — updated 25 Nov 2026
@@ -16,10 +19,7 @@ Recently updated games appear first in each category.
 - [Sample Story — Polluted River Realisation Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-polluted-river-realisation-story-easy.html) — updated 24 Nov 2026
 - [Sample Story — Examination Results Story (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-examination-results-story-normal.html) — updated 24 Nov 2026
 - [Sample Story — Examination Results Story (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-examination-results-story-easy.html) — updated 24 Nov 2026
-- [Sample Article — Haze Climate Change Health (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-haze-climate-change-health-easy.html) — updated 24 Nov 2026
-- [Sample Article — Ai Smart Tool Dangerous Shortcut (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ai-smart-tool-dangerous-shortcut-normal.html) — updated 24 Nov 2026
 - [Sample Article — Ai Smart Tool Dangerous Shortcut (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ai-smart-tool-dangerous-shortcut-easy.html) — updated 24 Nov 2026
-- [Sample Essay — Being Hardworking (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-hardworking-normal.html) — updated 24 Nov 2026
 - [Sample Essay — Being Hardworking (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-hardworking-easy.html) — updated 24 Nov 2026
 - [SPM Elaboration Builder — Being Hardworking (NORMAL)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-being-hardworking-normal.html) — updated 24 Nov 2026
 - [SPM Elaboration Builder — Being Hardworking (EASY)](https://fatinlea1001.github.io/language-games/eng-writing-elaboration-being-hardworking-easy.html) — updated 24 Nov 2026
