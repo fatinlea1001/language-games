@@ -7,6 +7,8 @@ English and Japanese Games and Quiz
 Recently updated games appear first in each category.
 
 ### 🇬🇧 English Games
+- [Sample Report — Leadership Seminar Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leadership-seminar-report-normal.html) — updated 25 Nov 2026
+- [Sample Report — Leadership Seminar Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leadership-seminar-report-easy.html) — updated 25 Nov 2026
 - [Sample Essay — Being Hardworking (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-being-hardworking-normal.html) — updated 25 Nov 2026
 - [Sample Article — Ai Smart Tool Dangerous Shortcut (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-ai-smart-tool-dangerous-shortcut-normal.html) — updated 25 Nov 2026
 - [Sample Article — Haze Climate Change Health (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-haze-climate-change-health-easy.html) — updated 25 Nov 2026
@@ -69,8 +71,6 @@ Recently updated games appear first in each category.
 - [Sample Essay — Musical Instrument (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-musical-instrument-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Leisure Activity (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leisure-activity-normal.html) — updated 23 Nov 2026
 - [Sample Essay — Leisure Activity (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leisure-activity-easy.html) — updated 23 Nov 2026
-- [Sample Report — Leadership Seminar Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leadership-seminar-report-normal.html) — updated 23 Nov 2026
-- [Sample Report — Leadership Seminar Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-leadership-seminar-report-easy.html) — updated 23 Nov 2026
 - [Sample Report — Language Carnival Report (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-language-carnival-report-normal.html) — updated 23 Nov 2026
 - [Sample Report — Language Carnival Report (EASY)](https://fatinlea1001.github.io/language-games/eng-sample-essay-language-carnival-report-easy.html) — updated 23 Nov 2026
 - [Sample Essay — Langkawi Dream Destination (NORMAL)](https://fatinlea1001.github.io/language-games/eng-sample-essay-langkawi-dream-destination-normal.html) — updated 23 Nov 2026
